@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from system.refinement_guard import join_refined_segments, reject_reasons, split_for_refinement
+from system.refinement_guard import (
+    join_refined_segments,
+    preserve_terminal_punctuation,
+    permits_self_correction_punctuation_repair,
+    reject_reasons,
+    source_punctuation_lost,
+    split_for_refinement,
+)
 
 
 class RefinementGuardTest(unittest.TestCase):
@@ -13,6 +20,23 @@ class RefinementGuardTest(unittest.TestCase):
         self.assertEqual(join_refined_segments(parts), source)
         self.assertTrue(all(len(part) <= 80 for part in parts))
 
+    def test_one_punctuation_window_splits_commas_and_sentence_marks(self) -> None:
+        source = "第一段，第二段。第三段！第四段？"
+        parts = split_for_refinement(
+            source, one_punctuation_window=True
+        )
+
+        self.assertEqual(
+            parts, ("第一段，", "第二段。", "第三段！", "第四段？")
+        )
+        self.assertEqual(join_refined_segments(parts), source)
+
+    def test_decimal_points_do_not_create_windows_or_spaces(self) -> None:
+        source = "4.5万条、45.22米、2.6个、1.7亿。"
+        parts = split_for_refinement(source, one_punctuation_window=True)
+        self.assertEqual(join_refined_segments(parts), source)
+        self.assertEqual(parts[0], "4.5万条、")
+
     def test_sentence_preferred_split_preserves_source(self) -> None:
         source = "第一句需要保留。第二句也需要保留，而且内容稍长。第三句结束。第四句继续说明，确保文本超过分段长度。"
         parts = split_for_refinement(source, max_chars=32)
@@ -20,6 +44,50 @@ class RefinementGuardTest(unittest.TestCase):
         self.assertEqual(join_refined_segments(parts), source)
         self.assertGreater(len(parts), 1)
         self.assertTrue(all(len(part) <= 32 for part in parts))
+
+    def test_refiner_cannot_drop_source_window_punctuation(self) -> None:
+        self.assertEqual(
+            preserve_terminal_punctuation("第一段，", "第一段"),
+            "第一段，",
+        )
+        self.assertEqual(
+            preserve_terminal_punctuation("第二段。", "第二段"),
+            "第二段。",
+        )
+        self.assertEqual(
+            preserve_terminal_punctuation("疑问？！", "疑问！"),
+            "疑问？！",
+        )
+
+    def test_source_punctuation_loss_is_detected_for_multi_block_window(self) -> None:
+        self.assertTrue(
+            source_punctuation_lost("第一段，第二段。第三段！", "第一段第二段第三段！")
+        )
+        self.assertFalse(
+            source_punctuation_lost("第一段，第二段。第三段！", "第一段，第二段。第三段！")
+        )
+
+    def test_self_correction_may_drop_abandoned_prefix_punctuation(self) -> None:
+        self.assertTrue(
+            permits_self_correction_punctuation_repair(
+                "我有一个苹果。不对，我有一个香蕉，还是有问题。",
+                "我有1个香蕉，还是有问题。",
+            )
+        )
+
+    def test_self_correction_may_not_drop_retained_tail_punctuation(self) -> None:
+        self.assertFalse(
+            permits_self_correction_punctuation_repair(
+                "我有一个苹果。不对，我有一个香蕉，还是有问题。",
+                "我有1个香蕉。",
+            )
+        )
+
+    def test_unfinished_source_does_not_gain_punctuation(self) -> None:
+        self.assertEqual(
+            preserve_terminal_punctuation("未结束的片段", "未结束的片段"),
+            "未结束的片段",
+        )
 
     def test_repeated_generated_sentence_is_rejected(self) -> None:
         raw = "请说明当前情况，然后等待进一步通知。"
@@ -149,6 +217,35 @@ class RefinementGuardTest(unittest.TestCase):
                 "随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的。",
                 "随便你们进来杀杀，快给我滚！你听见了，我是不会跟你打杀杀的。",
             ),
+        )
+
+    def test_unjustified_content_insertion_is_rejected(self) -> None:
+        self.assertIn(
+            "unsupported_insertion",
+            reject_reasons(
+                "共同编织出1张互相连通、互相补给的水系网络",
+                "共同编织出1张互相连通的东西、互相补给的水系网络",
+            ),
+        )
+
+    def test_reduplication_loss_is_rejected(self) -> None:
+        for raw, refined in (
+            ("一座座绿洲城市。", "一座绿洲城市。"),
+            ("一朵朵云，一层层山。", "一朵云，一层山。"),
+            ("一艘艘船，一本本书。", "一艘船，一本书。"),
+            ("一串串灯，一群群人。", "一串灯，一群人。"),
+            ("一蓬蓬雾。", "一蓬雾。"),
+            ("层层叠叠的山峦。", "层叠叠的山峦。"),
+            ("水汽源源不断地送入中国。", "水汽源不断地送入中国。"),
+            ("让大网生生不息地运转。", "让大网生不息地运转。"),
+        ):
+            with self.subTest(raw=raw):
+                self.assertIn("semantic_content_loss", reject_reasons(raw, refined))
+
+    def test_negation_pattern_substitution_is_rejected(self) -> None:
+        self.assertIn(
+            "semantic_substitution",
+            reject_reasons("这里不只有悬挂的公路。", "这里不是有悬挂的公路。"),
         )
 
 

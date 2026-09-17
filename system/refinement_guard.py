@@ -13,10 +13,22 @@ from .numeric_normalizer import (
     _COUNT_UNITS,
     _FIXED_EXPRESSIONS,
 )
+from .quantifiers import (
+    REDUPLICABLE_QUANTIFIER_CHARS,
+    is_quantifier_reduplication_deletion,
+)
 
 
 _SENTENCE_ENDINGS = frozenset("。！？!?；;\n")
 _SOFT_BREAKS = frozenset("，、：:）)】] ")
+_PUNCTUATION_WINDOW_CHARS = frozenset("，,、。！？!?；;：:.")
+_NON_DOT_PUNCTUATION = "".join(
+    sorted(_PUNCTUATION_WINDOW_CHARS - frozenset("."))
+)
+_PUNCTUATION_WINDOW_RE = re.compile(
+    rf"(?:[{re.escape(_NON_DOT_PUNCTUATION)}]|"
+    r"(?<!\d)\.(?!\d))+$"
+)
 _SENTENCE_RE = re.compile(r"[^。！？!?；;\n]+[。！？!?；;\n]?")
 DEFAULT_REFINEMENT_MAX_CHARS = 80
 _SEVERE_LOSS_MIN_SOURCE_CHARS = 16
@@ -58,20 +70,27 @@ _FUNCTION_CHARS = frozenset(
     "的地得了着过是就才又也都还很太吗呢啊呀吧啦哦嗯呃和与及而给把被从向"
 )
 _ROLE_NUMBER_SUFFIXES = frozenset("伯叔爷奶哥姐妹弟")
+_PROTECTED_REDUPLICATION_PAIRS = frozenset(
+    {"根根", "条条", "座座", "道道", "代代", "源源", "生生"}
+) | frozenset(
+    character * 2 for character in REDUPLICABLE_QUANTIFIER_CHARS
+)
+_NEGATION_CHARS = frozenset("不没无未别莫勿")
 _CORRECTION_MARKERS = ("不对", "不是", "而是", "应该是")
 _CORRECTION_MARKER_RE = re.compile("|".join(_CORRECTION_MARKERS))
 _CORRECTION_SURFACE_NORMALIZER = ContextualNumericNormalizer()
 
 
 def split_for_refinement(
-    text: str, *, max_chars: int = DEFAULT_REFINEMENT_MAX_CHARS
+    text: str, *, max_chars: int = DEFAULT_REFINEMENT_MAX_CHARS,
+    one_punctuation_window: bool = False,
 ) -> tuple[str, ...]:
-    """Split text into bounded, punctuation-preferred Refiner windows.
+    """Split text into bounded Refiner windows.
 
-    The Refiner has a finite generation budget.  Sending a long meeting
-    transcript in one request can exhaust that budget and cause repetition or
-    a truncated ending.  This preserves all source characters while preferring
-    sentence boundaries, then softer clause boundaries.
+    With ``one_punctuation_window=True`` every comma/clause mark or sentence
+    terminator closes the current window (the punctuation stays in that
+    window). This is used by the live Web path to keep model context short.
+    The legacy sentence-preferred policy remains available to other callers.
     """
 
     if max_chars < 32:
@@ -79,6 +98,8 @@ def split_for_refinement(
     source = text.strip()
     if not source:
         return ()
+    if one_punctuation_window:
+        return _split_one_punctuation_window(source, max_chars)
 
     parts: list[str] = []
     start = 0
@@ -96,6 +117,31 @@ def split_for_refinement(
     return tuple(part for part in parts if part)
 
 
+def _split_one_punctuation_window(source: str, max_chars: int) -> tuple[str, ...]:
+    parts: list[str] = []
+    start = 0
+    index = 0
+    while index < len(source):
+        if _is_window_punctuation(source, index):
+            end = index + 1
+            # Keep runs such as ``？！`` together instead of creating a
+            # punctuation-only model request.
+            while end < len(source) and source[end] in _PUNCTUATION_WINDOW_CHARS:
+                end += 1
+            if end - start <= max_chars:
+                parts.append(source[start:end])
+                start = end
+                index = end
+                continue
+        if index - start + 1 >= max_chars:
+            parts.append(source[start:index + 1])
+            start = index + 1
+        index += 1
+    if start < len(source):
+        parts.append(source[start:])
+    return tuple(part for part in parts if part)
+
+
 def join_refined_segments(parts: Iterable[str]) -> str:
     """Join segment outputs without inserting unwanted spaces in Chinese text."""
 
@@ -104,10 +150,137 @@ def join_refined_segments(parts: Iterable[str]) -> str:
         value = part.strip()
         if not value:
             continue
-        if output and output[-1].isascii() and value[0].isascii():
+        # Keep ASCII words separated across independent chunks, but never
+        # insert a space inside a decimal value split at a window boundary
+        # (``4.`` + ``5万`` must remain ``4.5万``).
+        if (
+            output
+            and output[-1].isascii()
+            and value[0].isascii()
+            and not (output[-1].isdigit() and value[0].isdigit())
+        ):
             output += " "
         output += value
     return output
+
+
+def _is_window_punctuation(text: str, index: int) -> bool:
+    """Return whether ``text[index]`` is a real boundary punctuation mark.
+
+    An ASCII full stop between two digits is a decimal point, not a sentence
+    boundary.  Treating it as a boundary was the source of outputs such as
+    ``4. 5万`` and ``45. 22米``.
+    """
+
+    character = text[index]
+    if character not in _PUNCTUATION_WINDOW_CHARS:
+        return False
+    if character == ".":
+        previous = text[index - 1 : index]
+        following = text[index + 1 : index + 2]
+        return not (previous.isdigit() and following.isdigit())
+    return True
+
+
+def source_punctuation_lost(source_text: str, refined_text: str) -> bool:
+    """Return whether source punctuation is missing from a refined window.
+
+    Extra punctuation can be a legitimate model edit, but removing a source
+    mark is unsafe when one model request contains several punctuation-owned
+    chunks. Compare the source marks as an ordered subsequence so inserted
+    formatting does not cause a false rejection while omissions do.
+    """
+
+    return _punctuation_subsequence_lost(source_text, refined_text)
+
+
+def _punctuation_subsequence_lost(
+    source_text: str,
+    refined_text: str,
+    *,
+    excluded_span: tuple[int, int] | None = None,
+) -> bool:
+    """Compare source punctuation with the candidate as an ordered subsequence."""
+
+    source_marks = tuple(
+        char
+        for index, char in enumerate(source_text)
+        if _is_window_punctuation(source_text, index)
+        and (
+            excluded_span is None
+            or not (excluded_span[0] <= index < excluded_span[1])
+        )
+    )
+    if not source_marks:
+        return False
+    target_marks = tuple(
+        char
+        for index, char in enumerate(refined_text)
+        if _is_window_punctuation(refined_text, index)
+    )
+    target_index = 0
+    for source_mark in source_marks:
+        while (
+            target_index < len(target_marks)
+            and target_marks[target_index] != source_mark
+        ):
+            target_index += 1
+        if target_index >= len(target_marks):
+            return True
+        target_index += 1
+    return False
+
+
+def permits_self_correction_punctuation_repair(
+    source_text: str, refined_text: str
+) -> bool:
+    """Return whether punctuation loss is confined to a superseded prefix.
+
+    In a punctuation-sized window, ASR can emit ``错误句。`` and then a
+    correction marker in the next chunk: ``错误句。不对，正确句。``.  A
+    Refiner that resolves the correction is expected to return only
+    ``正确句。``.  The punctuation attached to the abandoned clause is then
+    intentionally absent, rather than an accidental formatting loss.
+
+    Only the boundary from the previous clause mark through the correction
+    marker is exempted.  Punctuation in the retained replacement clause and
+    anything after it must still remain an ordered subsequence, so this does
+    not turn a general punctuation deletion into an accepted edit.
+    """
+
+    source = _correction_surface(source_text)
+    refined = _correction_surface(refined_text)
+    span = _matched_correction_tail_span(source, refined)
+    if span is None:
+        return False
+    allowed_start, allowed_end, _ = span
+    return not _punctuation_subsequence_lost(
+        source, refined, excluded_span=(allowed_start, allowed_end)
+    )
+
+
+def preserve_terminal_punctuation(source_text: str, refined_text: str) -> str:
+    """Keep punctuation that closed a source-owned refinement window.
+
+    The Refiner is allowed to clean spoken content, but it must not make a
+    comma or sentence mark disappear merely because a short window omitted it
+    in its response. In punctuation-window mode each source segment ends in
+    at most one punctuation run, so restoring that exact suffix is
+    deterministic and does not invent punctuation for an unfinished segment.
+    """
+
+    source = source_text.rstrip()
+    refined = refined_text.rstrip()
+    if not source or not refined:
+        return refined_text
+    source_match = _PUNCTUATION_WINDOW_RE.search(source)
+    if source_match is None:
+        return refined_text
+    source_suffix = source_match.group(0)
+    refined_match = _PUNCTUATION_WINDOW_RE.search(refined)
+    if refined_match is not None:
+        refined = refined[: refined_match.start()]
+    return refined + source_suffix
 
 
 def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
@@ -250,7 +423,9 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
                 continue
             if _meaningful_edit_text(source) and len(source) - len(target) >= 2:
                 reasons.append("semantic_content_loss")
-            elif _suspicious_function_substitution(
+            elif _is_protected_semantic_substitution(
+                raw, source_start, source, target
+            ) or _suspicious_function_substitution(
                 refined, target_start, target_end, source, target
             ):
                 reasons.append("semantic_substitution")
@@ -271,6 +446,8 @@ def _allowed_deletion(
         return True
     if all(char in _LOW_RISK_DELETION_CHARS for char in compact):
         return True
+    if _is_protected_reduplication_deletion(raw, start, end, compact):
+        return False
     if _is_repeated_deletion(raw, start, end, compact):
         return True
     if len(compact) == 1 and compact in _SEMANTIC_ANCHOR_CHARS:
@@ -325,6 +502,8 @@ def _allowed_replacement(
     # Pure punctuation and whitespace edits are editorial surface changes.
     if not _meaningful_edit_text(source) and not _meaningful_edit_text(target):
         return True
+    if _is_protected_semantic_substitution(raw, source_start, source, target):
+        return False
     # Rewriting two meaningful characters into two other meaningful characters
     # is the normal typo-correction case.  Keep it available to the Refiner;
     # the stricter checks target omission and particle substitutions.
@@ -352,10 +531,47 @@ def _suspicious_insertion(text: str, start: int, end: int, target: str) -> bool:
         return False
     if all(char in _LOW_RISK_DELETION_CHARS for char in compact):
         return False
+    # A multi-character content insertion has no source evidence.  Treat it
+    # as unsafe even when it is not a repeated phrase (for example the model
+    # inventing “的东西” in “互相连通、互相补给”).  Missing words require an
+    # audio-backed re-decode or an explicit reviewed patch.
+    if len(compact) >= 2:
+        return True
     # Do not allow a repeated content run to be copied into a second location
     # (``...打打杀杀...不会跟你打`` -> ``...不会跟你打杀杀``).
     if len(set(compact)) == 1 and text[:start].count(compact) + text[end:].count(compact):
         return True
+    return False
+
+
+def _is_protected_reduplication_deletion(
+    raw: str, start: int, end: int, compact: str
+) -> bool:
+    """Protect productive ``AA`` forms from the content-loss allowlist."""
+
+    if len(compact) != 1:
+        return False
+    character = compact
+    pair = character * 2
+    if pair not in _PROTECTED_REDUPLICATION_PAIRS:
+        # A classifier immediately preceded by a numeral is distributive even
+        # when the specific noun is not in the static pair list.
+        return is_quantifier_reduplication_deletion(raw, start, end, character)
+    return raw[start - 1 : start] == character or raw[end : end + 1] == character
+
+
+def _is_protected_semantic_substitution(
+    raw: str, source_start: int, source: str, target: str
+) -> bool:
+    """Reject small edits that alter negation or a fixed contrast pattern."""
+
+    if source == "只" and target == "是" and raw[source_start - 1 : source_start] == "不":
+        return True
+    if len(source) == len(target) == 1:
+        if source in _NEGATION_CHARS and target not in _NEGATION_CHARS:
+            return True
+        if target in _NEGATION_CHARS and source not in _NEGATION_CHARS:
+            return True
     return False
 
 
@@ -400,8 +616,17 @@ def _correction_surface(text: str) -> str:
     return _CORRECTION_SURFACE_NORMALIZER.normalize(text).text
 
 
-def _matched_correction_tail(raw: str, refined: str) -> str | None:
-    """Return the replacement clause that ``refined`` still keeps, if any."""
+def _matched_correction_tail_span(
+    raw: str, refined: str
+) -> tuple[int, int, str] | None:
+    """Locate a retained replacement clause in the normalized source.
+
+    The returned span is ``(allowed_start, tail_start, tail_text)``.  The
+    interval before ``tail_start`` begins at the punctuation immediately
+    preceding the correction marker; punctuation in that interval belongs to
+    the superseded clause/marker boundary and may be removed when the marker
+    is resolved.
+    """
 
     raw_surface = _correction_surface(raw)
     refined_surface = _correction_surface(refined)
@@ -411,33 +636,48 @@ def _matched_correction_tail(raw: str, refined: str) -> str | None:
         # at the very end of a window.  That occurrence has no replacement
         # clause, so scan backwards for the most recent marker that does.
         offsets = [m.start() for m in re.finditer(re.escape(marker), raw_surface)]
-        for index in reversed(offsets):
-            remainder = raw_surface[index + len(marker):].lstrip(" ，,、")
+        for marker_start in reversed(offsets):
+            marker_end = marker_start + len(marker)
+            remainder = raw_surface[marker_end:].lstrip(" ，,、")
             # Only the clause immediately following the correction marker is
-            # the replacement target.  Do not require later independent
+            # the replacement target. Do not require later independent
             # sentences to survive verbatim, otherwise a valid correction is
             # mistaken for whole-window loss because another clause changed.
-            tail = re.split(r"[,，、.。！？!?;；\n]", remainder, maxsplit=1)[0].strip(
-                " ，,、"
-            )
+            tail = re.split(
+                r"[,，、.。！？!?;；\n]", remainder, maxsplit=1
+            )[0].strip(" ，,、")
             if not tail:
                 continue
-            if tail in refined_surface:
-                return tail
-            # The refiner is told to resolve self-corrections, so it may
-            # restate the replacement clause instead of copying it.  A
-            # numeric correction such as ``不对，应该是一百五十块`` can
-            # legitimately surface as ``获得100元``: the ``应该是``
-            # connector is dropped and the currency unit is rewritten.
-            # Accept the clause when its numeric content is still present;
-            # a genuinely wrong value is not in ``refined_values`` and is
-            # still reported by the numeric guard below.
-            tail_values = _numeric_values(tail)
-            if tail_values and all(
-                value in refined_values for value in tail_values
+            tail_start = marker_end
+            while (
+                tail_start < len(raw_surface)
+                and raw_surface[tail_start] in " ，,、"
             ):
-                return tail
+                tail_start += 1
+
+            # The refiner may copy the replacement clause or restate it while
+            # changing only its numeric surface form.
+            tail_values = _numeric_values(tail)
+            if tail not in refined_surface and not (
+                tail_values
+                and all(value in refined_values for value in tail_values)
+            ):
+                continue
+
+            allowed_start = marker_start
+            for index in range(marker_start - 1, -1, -1):
+                if _is_window_punctuation(raw_surface, index):
+                    allowed_start = index
+                    break
+            return allowed_start, tail_start, tail
     return None
+
+
+def _matched_correction_tail(raw: str, refined: str) -> str | None:
+    """Return the replacement clause that ``refined`` still keeps, if any."""
+
+    span = _matched_correction_tail_span(raw, refined)
+    return span[2] if span is not None else None
 
 
 def _retains_correction_tail(raw: str, refined: str) -> bool:

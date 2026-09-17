@@ -29,6 +29,7 @@ from .deterministic_cleanup import clean_transcript_deterministically
 from .entity_store import EntityStore
 from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
 from .entity_pipeline import (
+    FinalizedEntitySegment,
     finalize_entity_segment,
     has_placeholder_failure,
     has_retryable_integrity_failure,
@@ -37,20 +38,14 @@ from .entity_pipeline import (
 from .protection import EntityProtector
 from .refinement_gate import RefinementGate, RefinementGateMode
 from .numeric_normalizer import ContextualNumericNormalizer
-from .refinement_protocol import STRICT_PLACEHOLDER_PROMPT
+from .refinement_protocol import (
+    STRICT_PLACEHOLDER_PROMPT,
+    STRUCTURED_REFINER_SYSTEM_PROMPT,
+    apply_structured_patch,
+)
 from .session_memory import SessionEntityMemory
 
-SYSTEM_PROMPT = (
-    "你是 ASR 文本纠错助手。保留原意，最小修改：去口癖/重复，修错字，补必要标点，"
-    "处理自我修正。不要总结、扩写或解释。数字、日期、术语和代码符号已由系统规则"
-    "处理，不得自行转换数字，成语中的汉字数字（如三番五次）必须保持原样。"
-    "除明确的口头重复和自我修正废弃片段外，不得删减信息；人称、指代、否定、"
-    "数量、动作对象和地点必须保留。无法确定的修改保留原文。"
-    "输入末尾的 <KEY>[词1、词2] 是已验证术语表；仅在原文已出现对应名称或别名时"
-    "使用它来纠错或规范为标准名称，不得据此添加原文未提及的实体，也不要在输出中保留 <KEY>。"
-    "输入中形如 __ENTITY_000__ 的内容是不可编辑的受保护标记；"
-    "每个标记必须在输出中原样保留一次，不得删除、改写、重复或调整顺序。"
-)
+SYSTEM_PROMPT = STRUCTURED_REFINER_SYSTEM_PROMPT
 
 class TransformersRefiner:
     """Local Transformers backend matching the offline Refiner prompt."""
@@ -191,6 +186,28 @@ def _append_record(path: Path, record: dict[str, object]) -> None:
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
+def _patch_audit(
+    payload: dict[str, object] | None, issue: str | None
+) -> dict[str, object]:
+    """Make structured-patch decisions visible in the JSONL audit record."""
+
+    if payload is None:
+        return {
+            "format": "legacy_text",
+            "accepted": issue is None,
+            "issue": issue,
+        }
+    return {
+        "format": "json_patch",
+        "action": payload.get("action"),
+        "source": payload.get("source", ""),
+        "target": payload.get("target", ""),
+        "reason": payload.get("reason", ""),
+        "accepted": issue is None,
+        "issue": issue,
+    }
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Microphone AgenticASR via a local Qwen3-ASR service"
@@ -297,7 +314,13 @@ def main(argv: list[str] | None = None) -> int:
         if entity_definitions and fuzzy_mode is not EntityFuzzyMode.OFF
         else None
     )
-    refinement_gate = RefinementGate(args.refinement_gate_mode)
+    refinement_gate = RefinementGate(
+        args.refinement_gate_mode,
+        refine_on_unverified_confidence=(
+            RefinementGateMode.parse(args.refinement_gate_mode)
+            is not RefinementGateMode.TRI_STATE
+        ),
+    )
     numeric_normalizer = ContextualNumericNormalizer()
     print(f"Using Qwen3-ASR service at {args.asr_url}")
     print("Listening. Press Ctrl+C to stop.", flush=True)
@@ -344,10 +367,12 @@ def main(argv: list[str] | None = None) -> int:
             baseline_text,
             asr_confidence=asr_confidence,
             entity_hints=prepared.hints,
+            is_final=True,
         )
         refiner_executed = gate_decision.should_refine
         latency_ms = 0.0
         refiner_masked_outputs: list[str] = []
+        structured_patch_audits: list[dict[str, object]] = []
         placeholder_retry_count = 0
         refiner_retry_count = 0
         refiner_retry_reasons: tuple[str, ...] = ()
@@ -356,7 +381,21 @@ def main(argv: list[str] | None = None) -> int:
                 masked_text, entity_hints=prepared.hints
             )
             refiner_masked_outputs.append(refined_text)
-            finalized = finalize_entity_segment(refined_text, prepared, protector)
+            structured_candidate, patch_payload, structured_issue = apply_structured_patch(
+                masked_text, refined_text
+            )
+            structured_patch_audits.append(
+                _patch_audit(patch_payload, structured_issue)
+            )
+            finalized = (
+                FinalizedEntitySegment(
+                    prepared.baseline_text, False, (structured_issue,)
+                )
+                if structured_issue
+                else finalize_entity_segment(
+                    structured_candidate, prepared, protector
+                )
+            )
             if has_retryable_integrity_failure(finalized.reject_reasons):
                 refiner_retry_reasons = finalized.reject_reasons
                 placeholder_failed = has_placeholder_failure(
@@ -371,8 +410,20 @@ def main(argv: list[str] | None = None) -> int:
                 refiner_retry_count = 1
                 placeholder_retry_count = int(placeholder_failed)
                 refiner_masked_outputs.append(refined_text)
-                finalized = finalize_entity_segment(
-                    refined_text, prepared, protector
+                structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
+                    masked_text, refined_text
+                )
+                structured_patch_audits.append(
+                    _patch_audit(retry_payload, structured_retry_issue)
+                )
+                finalized = (
+                    FinalizedEntitySegment(
+                        prepared.baseline_text, False, (structured_retry_issue,)
+                    )
+                    if structured_retry_issue
+                    else finalize_entity_segment(
+                        structured_retry, prepared, protector
+                    )
                 )
             refined_text = finalized.text
         else:
@@ -433,6 +484,7 @@ def main(argv: list[str] | None = None) -> int:
                         "refiner_retry_count": refiner_retry_count,
                         "refiner_retry_reasons": list(refiner_retry_reasons),
                         "refiner_masked_outputs": refiner_masked_outputs,
+                        "structured_patch_audits": structured_patch_audits,
                         "refinement_gate_mode": refinement_gate.mode.value,
                         "refinement_gate_config": refinement_gate.config_dict(),
                         "refinement_gate_decisions": [gate_decision.public_dict()],

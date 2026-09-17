@@ -1,5 +1,8 @@
 # 方向 A：基于置信度门控的可控流式 ASR 精修方案
 
+> **实现状态（2026-09-16）**：本文是目标架构和实施计划，不是当前实现清单。仓库已具备可选 ASR confidence 提取/校准、off / conservative / tri_state 路由、HypothesisTracker、latest-only 文件流调度、局部 K=3/有界窗口、实体保护与恢复、数字规范化及输出拒绝/回退能力。
+> 尚未实现为统一研究闭环的内容包括 ASRHypothesis 契约、稳定前缀与动态 active span、结构化 Refiner 协议、完整分层 Validator、双参考数据、事件 replay 和完整对照实验；tri_state 当前已作为 Web 第一版规则门控落地。详见 [当前项目状态](CURRENT_WORK_AND_NEXT_STEPS.md)。
+
 ## 1. 研究目标
 
 本方案以当前 AgenticASR 项目为基础，研究“何时精修、精修哪一段、如何保证不改错”，最终实现一个同时支持 Whisper 和 Qwen3-ASR 的低延迟、可控、可回退流式语音识别系统。

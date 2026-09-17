@@ -5,9 +5,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-_SENTENCE_END = re.compile(r"[.!?\u3002\uff01\uff1f]\s*")
+_SENTENCE_END = re.compile(
+    r"(?:[!?\u3002\uff01\uff1f]|(?<!\d)\.(?!\d))\s*"
+)
 _ANY_PUNCTUATION = re.compile(
-    r"[,;:!?\uff0c\u3002\uff01\uff1f\uff1b\uff1a\u3001]\s*"
+    r"(?:[,;:!?\uff0c\u3002\uff01\uff1f\uff1b\uff1a\u3001]|"
+    r"(?<!\d)\.(?!\d))\s*"
 )
 _SELF_CORRECTION = re.compile(r"(?:不对|不是|而是|应该是)")
 _SELF_CORRECTION_PREFIX = re.compile(r"^(?:不对|不是|而是|应该是)")
@@ -18,6 +21,9 @@ _SELF_CORRECTION_PREFIX = re.compile(r"^(?:不对|不是|而是|应该是)")
 # K-window refinement range.
 _CORRECTION_BOUNDARY_PUNCTUATION = re.compile(r"[,，;；:：、。！？!?]\s*")
 _SENTENCE_END_CHARACTERS = frozenset(".!?。！？")
+_CLAUSE_BOUNDARY_CHARACTERS = _SENTENCE_END_CHARACTERS | frozenset(
+    ",，、;；:："
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -40,10 +46,13 @@ class ChunkManager:
     A VAD boundary flushes the remaining text and starts a new hypothesis.
     """
 
-    def __init__(self, max_chars: int = 80) -> None:
+    def __init__(
+        self, max_chars: int = 80, *, one_punctuation_window: bool = False
+    ) -> None:
         if max_chars < 1:
             raise ValueError("max_chars must be at least 1")
         self.max_chars = max_chars
+        self.one_punctuation_window = one_punctuation_window
         self._hypothesis = ""
         self._committed_source = ""
         self._next_index = 0
@@ -92,9 +101,19 @@ class ChunkManager:
                 continue
             emitted.append(Chunk(index=self._next_index, text=text))
             self._next_index += 1
+        if self.one_punctuation_window:
+            return emitted
         return merge_self_correction_chunks(emitted, self.max_chars)
 
     def _split_point(self, text: str, *, flush: bool) -> int | None:
+        if self.one_punctuation_window:
+            punctuation_end = _ANY_PUNCTUATION.search(text)
+            if punctuation_end is not None and punctuation_end.end() <= self.max_chars:
+                return punctuation_end.end()
+            if len(text) > self.max_chars:
+                return self.max_chars
+            return len(text) if flush else None
+
         correction_end = self._self_correction_break(text)
         if correction_end is not None:
             return correction_end
@@ -138,23 +157,52 @@ class ChunkManager:
 def merge_self_correction_chunks(
     chunks: list[Chunk], max_chars: int = 80
 ) -> list[Chunk]:
-    """Keep a sentence and a following correction in the same chunk.
+    """Keep a self-correction clause in one source-owned chunk.
 
     ASR punctuation may end the abandoned clause before emitting ``不对``.
-    Merging that prefix prevents the gate from committing the wrong clause
-    before the correction becomes visible.
+    In the one-punctuation streaming mode this commonly produces three
+    adjacent chunks: ``错误内容，`` / ``不对，`` / ``修正内容。``.  If those
+    chunks are counted independently, the first one can be committed before
+    the Refiner ever sees the correction.  Group the antecedent, marker, and
+    corrected clause (up to the first sentence boundary) as one logical,
+    source-owned chunk.  Ordinary punctuation chunks remain independent.
     """
 
     merged: list[Chunk] = []
-    for chunk in chunks:
+    index = 0
+    while index < len(chunks):
+        chunk = chunks[index]
+        marker_text = chunk.text.lstrip()
         if (
             merged
-            and _SELF_CORRECTION_PREFIX.match(chunk.text)
-            and merged[-1].text.endswith(tuple(_SENTENCE_END_CHARACTERS))
+            and _SELF_CORRECTION_PREFIX.match(marker_text)
+            and _ends_with_clause_boundary(merged[-1].text)
             and len(merged[-1].text) + len(chunk.text) <= max_chars
         ):
-            previous = merged[-1]
-            merged[-1] = Chunk(previous.index, previous.text + chunk.text)
-        else:
-            merged.append(chunk)
+            previous = merged.pop()
+            group_text = previous.text + chunk.text
+            next_index = index + 1
+            # The marker chunk usually ends in a comma. Include the following
+            # source chunk(s) until the corrected clause closes, so the model
+            # receives the full ``错误，不对，修正。`` relation.
+            while (
+                next_index < len(chunks)
+                and not _ends_with_sentence(group_text)
+                and len(group_text) + len(chunks[next_index].text) <= max_chars
+            ):
+                group_text += chunks[next_index].text
+                next_index += 1
+            merged.append(Chunk(previous.index, group_text))
+            index = next_index
+            continue
+        merged.append(chunk)
+        index += 1
     return merged
+
+
+def _ends_with_clause_boundary(text: str) -> bool:
+    return bool(text.rstrip()) and text.rstrip()[-1] in _CLAUSE_BOUNDARY_CHARACTERS
+
+
+def _ends_with_sentence(text: str) -> bool:
+    return bool(text.rstrip()) and text.rstrip()[-1] in _SENTENCE_END_CHARACTERS

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from system.refinement_gate import RefinementGate
+from system.refinement_gate import HypothesisTracker, RefinementGate
 
 
 class RefinementGateTest(unittest.TestCase):
@@ -208,6 +208,78 @@ class RefinementGateTest(unittest.TestCase):
 
         self.assertTrue(decision.should_refine)
         self.assertIn("numeric_normalization", decision.cleanup_signals)
+
+    def test_tri_state_defers_unstable_intermediate_hypothesis(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "今天天气很好", stable=False, tail_age_ms=120.0
+        )
+
+        self.assertFalse(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "defer")
+        self.assertEqual(decision.public_dict()["state"], "DEFER")
+        self.assertEqual(decision.reasons, ("tail_too_young",))
+
+    def test_tri_state_keeps_stable_high_confidence_clean_text(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "今天天气很好。",
+            asr_confidence=0.97,
+            calibrated=True,
+            covers_segment=True,
+            stable=True,
+        )
+
+        self.assertFalse(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "keep")
+        self.assertEqual(decision.reasons, ("high_confidence_clean_segment",))
+
+    def test_tri_state_refines_stable_uncalibrated_text(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "今天天气很好。", stable=True, asr_confidence=0.99,
+            calibrated=False, covers_segment=False
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "refine")
+        self.assertEqual(decision.reasons, ("confidence_uncalibrated",))
+
+    def test_tri_state_refines_stable_cleanup_signal(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "我我我知道了。", stable=True, asr_confidence=0.99,
+            calibrated=True, covers_segment=True
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "refine")
+        self.assertEqual(decision.reasons, ("cleanup_signal_present",))
+
+    def test_tri_state_final_uncertainty_never_defers(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "今天天气很好", is_final=True, stable=False
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "refine")
+        self.assertEqual(decision.reasons, ("final_uncertain",))
+
+    def test_hypothesis_tracker_marks_low_edit_growth_stable(self) -> None:
+        tracker = HypothesisTracker(stable_updates=2)
+        tracker.observe("今天天气")
+        grown = tracker.observe("今天天气很好")
+
+        self.assertTrue(grown.stable)
+        self.assertLessEqual(grown.revision_ratio, 0.20)
+
+    def test_hypothesis_tracker_marks_repeated_tail_stable(self) -> None:
+        tracker = HypothesisTracker(stable_updates=2)
+        first = tracker.observe("今天天气")
+        second = tracker.observe("今天天气")
+        third = tracker.observe("今天天气")
+
+        self.assertFalse(first.stable)
+        self.assertFalse(second.stable)
+        self.assertTrue(third.stable)
+        self.assertEqual(third.unchanged_updates, 2)
+
 
 
 if __name__ == "__main__":

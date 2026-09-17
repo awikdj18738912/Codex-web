@@ -122,6 +122,21 @@ class NumeralBoundaryRegressionTest(unittest.TestCase):
             with self.subTest(source=source):
                 self.assertEqual(self.normalizer.normalize(source).text, expected)
 
+    def test_approximate_quantities_use_arabic_digits(self) -> None:
+        result = self.normalizer.normalize(
+            "三千多个西湖、五十多座、五千多个、六十多万条、七十多年、两千多次。"
+        )
+        self.assertEqual(
+            result.text,
+            "3000多个西湖、50多座、5000多个、60多万条、70多年、2000多次。",
+        )
+
+    def test_reduplicated_classifier_is_not_hybridized(self) -> None:
+        self.assertEqual(
+            self.normalizer.normalize("如同一条条天河。").text,
+            "如同一条条天河。",
+        )
+
     def test_lexical_usage_keeps_the_spoken_form(self) -> None:
         cases = (
             "为了不让万一发生",

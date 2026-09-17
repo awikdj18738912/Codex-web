@@ -24,13 +24,20 @@ from .entity_store import EntityDefinition, EntityStore
 from .deterministic_cleanup import clean_transcript_deterministically
 from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
 from .entity_pipeline import (
+    FinalizedEntitySegment,
     finalize_entity_segment,
     has_placeholder_failure,
     has_retryable_integrity_failure,
     prepare_entity_segment,
 )
 from .protection import EntityProtector
-from .refinement_gate import RefinementGate, RefinementGateMode
+from .refinement_gate import (
+    HypothesisStability,
+    HypothesisTracker,
+    RefinementGate,
+    RefinementGateDecision,
+    RefinementGateMode,
+)
 from .refinement_guard import join_refined_segments, split_for_refinement
 from .numeric_normalizer import ContextualNumericNormalizer
 from .window_refinement import (
@@ -38,6 +45,10 @@ from .window_refinement import (
     StreamingRefinementDisplay,
 )
 from .session_memory import SessionEntityMemory
+from .refinement_protocol import (
+    apply_structured_patch,
+    permits_boundary_punctuation_repair,
+)
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
 # Refining the complete cumulative hypothesis for every streaming chunk is
@@ -300,7 +311,20 @@ def create_app(
     refiner_lock = threading.Lock()
     entity_store = EntityStore(entity_db) if entity_db is not None else None
     fuzzy_mode = EntityFuzzyMode.parse(entity_fuzzy_mode)
-    refinement_gate = RefinementGate(refinement_gate_mode)
+    refinement_gate = RefinementGate(
+        refinement_gate_mode,
+        # The ASR backend currently exposes an uncalibrated suffix
+        # log-probability, not full-segment confidence.  Treating that value
+        # as a reason to refine every clean segment caused the Refiner to
+        # introduce more errors than it removed.
+        refine_on_unverified_confidence=(
+            RefinementGateMode.parse(refinement_gate_mode)
+            is not RefinementGateMode.TRI_STATE
+        ),
+    )
+    use_punctuation_windows = (
+        refinement_gate.mode is RefinementGateMode.TRI_STATE
+    )
     numeric_normalizer = ContextualNumericNormalizer()
 
     def managed_entity_store() -> EntityStore:
@@ -363,6 +387,7 @@ def create_app(
         entity_candidates: list[dict[str, object]] = []
         refiner_reject_reasons: list[str] = []
         refiner_masked_outputs: list[str] = []
+        structured_patch_audits: list[dict[str, object]] = []
         placeholder_retry_count = 0
         refiner_retry_count = 0
         refiner_retry_reasons: list[str] = []
@@ -372,13 +397,21 @@ def create_app(
         total_latency_ms = 0.0
         matcher_latency_ms = 0.0
         refiner_available = True
-        segments = (raw_text,) if single_window and raw_text else split_for_refinement(raw_text)
+        segments = (raw_text,) if single_window and raw_text else split_for_refinement(
+            raw_text, one_punctuation_window=use_punctuation_windows
+        )
         for segment_index, segment in enumerate(segments):
             prepared = prepare_entity_segment(
                 segment,
                 protector,
                 matcher,
-                allow_auto=final,
+                # Apply high-confidence, low-risk fuzzy normalization in every
+                # window.  Streaming hypotheses may still revise their tail,
+                # but source-owned cache invalidation will reprocess a revised
+                # span; withholding an already verified term until ``finish``
+                # made the displayed intermediate text inconsistent with the
+                # final result.
+                allow_auto=True,
                 confidence=asr_confidence,
             )
             protection = prepared.protection
@@ -408,6 +441,7 @@ def create_app(
                     confidence_metadata.get("covers_full_text") is True
                 ),
                 entity_hints=hints,
+                is_final=final,
             )
             refinement_gate_decisions.append(
                 {"segment_index": segment_index + 1, **gate_decision.public_dict()}
@@ -465,9 +499,28 @@ def create_app(
                     )
                     total_latency_ms += latency_ms
                     refiner_masked_outputs.append(refined_candidate)
-                    finalized = finalize_entity_segment(
-                        refined_candidate, prepared, protector
+                    structured_candidate, patch_payload, structured_issue = apply_structured_patch(
+                        masked_text, refined_candidate
                     )
+                    structured_patch_audits.append(
+                        _patch_audit(patch_payload, structured_issue)
+                    )
+                    if structured_issue:
+                        finalized = FinalizedEntitySegment(
+                            prepared.baseline_text,
+                            False,
+                            (structured_issue,),
+                        )
+                    else:
+                        finalized = finalize_entity_segment(
+                            structured_candidate,
+                            prepared,
+                            protector,
+                            preserve_source_punctuation=use_punctuation_windows,
+                            allow_boundary_punctuation_repair=(
+                                permits_boundary_punctuation_repair(patch_payload)
+                            ),
+                        )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
                         initial_reasons = finalized.reject_reasons
                         retry_candidate, retry_latency_ms = invoke_refiner(
@@ -484,9 +537,28 @@ def create_app(
                         )
                         total_latency_ms += retry_latency_ms
                         refiner_masked_outputs.append(retry_candidate)
-                        finalized = finalize_entity_segment(
-                            retry_candidate, prepared, protector
+                        structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
+                            masked_text, retry_candidate
                         )
+                        structured_patch_audits.append(
+                            _patch_audit(retry_payload, structured_retry_issue)
+                        )
+                        if structured_retry_issue:
+                            finalized = FinalizedEntitySegment(
+                                prepared.baseline_text,
+                                False,
+                                (structured_retry_issue,),
+                            )
+                        else:
+                            finalized = finalize_entity_segment(
+                                structured_retry,
+                                prepared,
+                                protector,
+                                preserve_source_punctuation=use_punctuation_windows,
+                                allow_boundary_punctuation_repair=(
+                                    permits_boundary_punctuation_repair(retry_payload)
+                                ),
+                            )
                 finally:
                     refiner_lock.release()
                 clean_segment = finalized.text
@@ -534,6 +606,7 @@ def create_app(
             "refiner_retry_count": refiner_retry_count,
             "refiner_retry_reasons": refiner_retry_reasons,
             "refiner_masked_outputs": refiner_masked_outputs,
+            "structured_patch_audits": structured_patch_audits,
             "refinement_gate_mode": refinement_gate.mode.value,
             "refinement_gate_config": refinement_gate.config_dict(),
             "refinement_gate_decisions": refinement_gate_decisions,
@@ -551,6 +624,25 @@ def create_app(
             ),
             "rule_protection_enabled": rule_protection,
             "numeric_normalization_enabled": numeric_normalization,
+        }
+
+    def _patch_audit(
+        payload: dict[str, object] | None, issue: str | None
+    ) -> dict[str, object]:
+        if payload is None:
+            return {
+                "format": "legacy_text",
+                "accepted": issue is None,
+                "issue": issue,
+            }
+        return {
+            "format": "json_patch",
+            "action": payload.get("action"),
+            "source": payload.get("source", ""),
+            "target": payload.get("target", ""),
+            "reason": payload.get("reason", ""),
+            "accepted": issue is None,
+            "issue": issue,
         }
 
     def fallback_update(
@@ -573,7 +665,9 @@ def create_app(
         entity_audit_issues: list[str] = []
         entity_candidates: list[dict[str, object]] = []
         matcher_latency_ms = 0.0
-        for segment in split_for_refinement(raw_text):
+        for segment in split_for_refinement(
+            raw_text, one_punctuation_window=use_punctuation_windows
+        ):
             prepared = prepare_entity_segment(
                 segment,
                 protector,
@@ -648,8 +742,12 @@ def create_app(
         )
 
     @app.get("/health")
-    def health() -> dict[str, bool]:
-        return {"ok": True, "entity_db": entity_store is not None}
+    def health() -> dict[str, object]:
+        return {
+            "ok": True,
+            "entity_db": entity_store is not None,
+            "refinement_gate_mode": refinement_gate.mode.value,
+        }
 
     @app.get("/api/entities")
     def list_entities(
@@ -769,6 +867,7 @@ def create_app(
         asr_activity: dict[str, object] = {}
         session_memory = SessionEntityMemory()
         refiner_session_stats = _RefinerSessionStats()
+        hypothesis_tracker = HypothesisTracker()
 
         def attach_refiner_session_stats(
             result: dict[str, object], *, close: bool = False
@@ -836,7 +935,15 @@ def create_app(
         streaming_finish_requested = False
         latest_refinement_revision = 0
         last_refinement_started_at: float | None = None
-        window_refinement = CumulativeWindowRefinement(session_refine_update)
+        # Every punctuation mark closes one source chunk in tri_state, while
+        # the active model window still contains the latest three chunks. This
+        # keeps comma boundaries visible without forcing one model call per
+        # comma. Legacy modes retain sentence-preferred K=3 behavior.
+        window_refinement = CumulativeWindowRefinement(
+            session_refine_update,
+            window_size=3,
+            one_punctuation_window=use_punctuation_windows,
+        )
         refinement_display = StreamingRefinementDisplay()
 
         def transcript_event(
@@ -846,6 +953,8 @@ def create_app(
             confidence_metadata: dict[str, object],
             *,
             deferred: bool,
+            gate_decision: RefinementGateDecision | None = None,
+            stability: HypothesisStability | None = None,
         ) -> dict[str, object]:
             """Publish raw ASR immediately while retaining valid refinements."""
 
@@ -857,8 +966,42 @@ def create_app(
                 "asr_confidence_metadata": confidence_metadata,
                 "refiner_deferred": deferred,
             }
+            if gate_decision is not None:
+                public_gate = gate_decision.public_dict()
+                payload["refinement_gate_action"] = public_gate["action"]
+                payload["refinement_gate_state"] = public_gate["state"]
+                payload["refinement_gate_reasons"] = public_gate["reasons"]
+            if stability is not None:
+                payload["refinement_hypothesis"] = {
+                    "stable": stability.stable,
+                    "unchanged_updates": stability.unchanged_updates,
+                    "revision_ratio": round(stability.revision_ratio, 4),
+                    "tail_age_ms": round(stability.tail_age_ms, 1),
+                    "sentence_complete": stability.sentence_complete,
+                }
             payload.update(refinement_display.compose(raw_text))
             return payload
+
+        def intermediate_gate(
+            raw_text: str,
+            asr_confidence: float | None,
+            confidence_metadata: dict[str, object],
+        ) -> tuple[HypothesisStability, RefinementGateDecision | None]:
+            stability = hypothesis_tracker.observe(raw_text)
+            if refinement_gate.mode is not RefinementGateMode.TRI_STATE:
+                return stability, None
+            decision = refinement_gate.decide(
+                raw_text,
+                asr_confidence=asr_confidence,
+                calibrated=confidence_metadata.get("calibrated") is True,
+                covers_segment=confidence_metadata.get("covers_full_text") is True,
+                is_final=False,
+                stable=stability.stable,
+                tail_age_ms=stability.tail_age_ms,
+                revision_ratio=stability.revision_ratio,
+                unchanged_updates=stability.unchanged_updates,
+            )
+            return stability, decision
 
         def finalize_streaming_windows(
             raw_text: str,
@@ -871,11 +1014,10 @@ def create_app(
         ) -> dict[str, object]:
             """Reuse committed streaming refinements and finalize only the tail.
 
-            Intermediate windows deliberately disable automatic fuzzy entity
-            normalization because cumulative ASR hypotheses can still change.
-            Run the inexpensive entity-only fallback over the cached clean text
-            at finalization so reusing Refiner output does not regress final
-            entity replacement.
+            Intermediate and final windows both allow high-confidence, low-risk
+            fuzzy entity normalization.  The source-owned window cache still
+            invalidates any span revised by ASR, while the final entity-only
+            fallback remains as an idempotent consistency pass.
             """
 
             # Finalize through the same sentence-bounded window path even if
@@ -1097,7 +1239,15 @@ def create_app(
                 )
             )
             loop = asyncio.get_running_loop()
-            segment_count = max(1, len(split_for_refinement(raw_text)))
+            segment_count = max(
+                1,
+                len(
+                    split_for_refinement(
+                        raw_text,
+                        one_punctuation_window=use_punctuation_windows,
+                    )
+                ),
+            )
             deadline_seconds = min(
                 FINAL_REFINEMENT_MAX_TIMEOUT_SECONDS,
                 max(
@@ -1353,16 +1503,30 @@ def create_app(
                             if isinstance(detected_language, str)
                             else None
                         )
+                        stability, gate_decision = intermediate_gate(
+                            raw_text, asr_confidence, confidence_metadata
+                        )
+                        is_deferred = (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "defer"
+                        )
                         if not await send_json(
                             transcript_event(
                                 raw_text,
                                 language_value,
                                 asr_confidence,
                                 confidence_metadata,
-                                deferred=False,
+                                deferred=is_deferred,
+                                gate_decision=gate_decision,
+                                stability=stability,
                             )
                         ):
                             break
+                        if is_deferred or (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "keep"
+                        ):
+                            continue
                         tail_start = max(
                             0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
                         )
@@ -1390,16 +1554,30 @@ def create_app(
                         detected_language if isinstance(detected_language, str) else None
                     )
                     if requested_mode in {"online", "streaming"}:
+                        stability, gate_decision = intermediate_gate(
+                            raw_text, asr_confidence, confidence_metadata
+                        )
+                        is_deferred = (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "defer"
+                        )
                         if not await send_json(
                             transcript_event(
                                 raw_text,
                                 language_value,
                                 asr_confidence,
                                 confidence_metadata,
-                                deferred=False,
+                                deferred=is_deferred,
+                                gate_decision=gate_decision,
+                                stability=stability,
                             )
                         ):
                             break
+                        if is_deferred or (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "keep"
+                        ):
+                            continue
                         tail_start = max(
                             0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
                         )
@@ -1479,7 +1657,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--refinement-gate-mode",
         choices=[mode.value for mode in RefinementGateMode],
         default="off",
-        help="off preserves the baseline; conservative skips only safely gated segments",
+        help="off preserves the baseline; conservative uses two-state gating; tri_state emits KEEP/DEFER/REFINE",
     )
     parser.add_argument(
         "--disable-rule-protection",

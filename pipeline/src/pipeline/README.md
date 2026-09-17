@@ -1,5 +1,7 @@
-# Data Processing
+# 数据质控与去重
 
-- `quality_control.py`: semantic validation helpers for Refiner targets.
-- `dedup.py`: near-duplicate filtering and distribution statistics.
-- `__init__.py`: package marker.
+- quality_control.py：提供 Refiner 目标文本的语义和记录校验辅助逻辑。
+- dedup.py：过滤近重复数据并计算分布统计。
+- __init__.py：包标记。
+
+这部分运行在数据生成与组装之后、最终导出之前。自动 QC 不能替代人工抽样；修改规则后应检查被拒样本和保留样本，避免误删有效表达。

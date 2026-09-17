@@ -4,6 +4,17 @@ from system.chunking import ChunkManager
 
 
 class ChunkManagerTest(unittest.TestCase):
+    def test_one_punctuation_mode_emits_comma_delimited_chunks(self):
+        source = "第一段，第二段。第三段！"
+        chunks = ChunkManager(80, one_punctuation_window=True).update(
+            source, vad_boundary=True
+        )
+
+        self.assertEqual(
+            [chunk.text for chunk in chunks],
+            ["第一段，", "第二段。", "第三段！"],
+        )
+
     def test_short_self_correction_stays_together(self):
         source = "我有一个苹果，不对，我有一个梨。"
         chunks = ChunkManager(80).update(source, vad_boundary=True)

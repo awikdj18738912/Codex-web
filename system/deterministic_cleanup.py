@@ -4,6 +4,12 @@ from __future__ import annotations
 
 import re
 
+from .quantifiers import (
+    has_reduplicated_classifier_shape,
+    is_prefixed_reduplicated_quantifier,
+)
+from .transcript_repairs import apply_known_transcript_repairs
+
 
 _UTTERANCE_RE = re.compile(r"[^。！？!?\uff1b;\n]+(?:[。！？!?\uff1b;]+|\n+|$)")
 _TRAILING_BOUNDARY_RE = re.compile(r"[。！？!?\uff1b;\s]+$")
@@ -39,6 +45,9 @@ _LEXICAL_REDUPLICATIONS = frozenset(
         "明明", "菲菲", "婷婷", "珊珊", "萌萌", "乐乐", "念念", "津津",
         "喃喃", "依依", "楚楚", "冉冉", "芸芸", "寥寥", "区区", "惴惴",
         "惶惶", "惺惺", "铮铮", "凿凿", "孜孜", "佼佼",
+        # Productive reduplicated classifiers/adverbial forms.  Removing one
+        # character changes plurality or continuity (一根根、源源不断).
+        "根根", "条条", "座座", "道道", "代代", "源源", "生生",
     }
 )
 
@@ -50,7 +59,9 @@ def clean_transcript_deterministically(text: str) -> str:
         collapse_repeated_comma_items(
             collapse_repeated_character_stutters(
                 collapse_repeated_pronoun_stutters(
-                    collapse_standalone_fillers(text)
+                    collapse_standalone_fillers(
+                        apply_known_transcript_repairs(text)
+                    )
                 )
             )
         )
@@ -94,18 +105,29 @@ def collapse_repeated_pronoun_stutters(text: str) -> str:
 def collapse_repeated_character_stutters(text: str) -> str:
     """Collapse repeated single-character ASR stutters inside a word.
 
-    A repeated CJK character followed by more CJK text is treated as a
-    stutter unless the two-character sequence is a common lexical
-    reduplication.  Requiring a following CJK character avoids changing a
-    standalone lexical pair at the end of a phrase.
+    Generic ``AA`` deletion is unsafe in Chinese: forms such as ``一根根``
+    and ``源源不断`` are grammatical and carry plurality or continuity.  We
+    therefore collapse only a tiny, explicitly known set of high-confidence
+    speech stutters; pronoun stutters are handled by the dedicated rule above.
     """
 
     if not text:
         return text
 
+    known_stutter_chars = frozenset("儒孟争")
+
     def replace(match: re.Match[str]) -> str:
         pair = match.group(0)
-        return pair if pair in _LEXICAL_REDUPLICATIONS else match.group(1)
+        if pair in _LEXICAL_REDUPLICATIONS:
+            return pair
+        # Quantifier + AA is a productive distributive construction even when
+        # the pair is not in the static lexicon (例如“一朵朵”“一层层”).
+        if (
+            is_prefixed_reduplicated_quantifier(text, match.start())
+            or has_reduplicated_classifier_shape(text, match.start())
+        ):
+            return pair
+        return match.group(1) if match.group(1) in known_stutter_chars else pair
 
     return _REPEATED_CHARACTER_STUTTER_RE.sub(replace, text)
 

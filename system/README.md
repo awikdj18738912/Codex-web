@@ -1,4 +1,35 @@
-# Streaming AgenticASR
+# 系统服务与实时精修
+
+system/ 包含本地 Refiner、ASR 后端和 Web 应用。浏览器实际使用时，Qwen 或 Whisper ASR 后端与 Web/Refiner 是独立服务；Web 前端接收音频或转写更新，Refiner 对文本执行保护、精修、校验和失败回退。
+
+## 当前仓库启动方式
+
+在仓库根目录的两个终端分别执行：
+
+~~~bash
+bash scripts/start_qwen_asr.sh
+bash scripts/start_web.sh
+~~~
+
+启动后默认打开 http://127.0.0.1:8081。Qwen 服务默认使用 8766 端口。脚本针对当前工作机设置了 Conda 环境、模型目录和 GPU 编号；更换环境请通过脚本读取的环境变量覆盖，不能假设这些绝对路径适用于其他机器。ASR 端需要 Qwen 模型与 Silero VAD 文件；Web 端需要 Refiner checkpoint 与 SQLite 术语库。
+
+若使用 Whisper，启动 system.whisper_stream_server 代替 Qwen 流式服务，再把 Web 的 ASR URL 指向该服务。各服务参数、VAD、术语库和规则说明见下方原有详细章节。
+
+## 当前实现边界
+
+- 浏览器支持麦克风在线、音频文件整段离线、音频文件分块流式三种处理模式。
+- Web 精修入口当前有 off / conservative / tri_state 门控、实体准备与掩码恢复、数字规则、输出校验、重试和回退。
+- `system/quantifiers.py` 提供广覆盖量词安全词表；确定性去重保护“数词/限定词 + 量词 AA”（如 `一朵朵`、`一层层`），并以结构模式兜底未收录的量词。
+- 文件流式精修采用 latest-only 调度，降低后台积压；tri_state 另外根据 HypothesisTracker 输出 KEEP / DEFER / REFINE，并按逗号/句末标点切成单块，并将最近最多 3 个块组成活动窗口（仍受字符上限约束），最终阶段强制解析。
+- tri_state 会把每个窗口的原始末尾标点作为边界事实：Refiner 漏掉标点时自动恢复，未结束片段不补标点；口癖和确定性重复清理仍可移除其自身的冗余标点。
+- Qwen 可返回可选 token-logprob 派生分数；未经开发集温度校准前不能当作可靠概率。
+- sherpa-onnx + MLX、Qwen 麦克风客户端和浏览器 Web 属于不同运行路径，所需依赖也不同。
+
+当前代码路径和验证边界见 [CURRENT_WORK_AND_NEXT_STEPS.md](../CURRENT_WORK_AND_NEXT_STEPS.md)。
+
+---
+
+## 原有流式系统说明
 
 `system/` contains the streaming implementation used by the AgenticASR desktop App. The packaged Windows/macOS application is distributed through the [VibeXASR product page](https://vibexasr.speech.wiki/); this directory is the reproducible Python implementation.
 

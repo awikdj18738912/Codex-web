@@ -1,8 +1,8 @@
-# Assets
+# 项目插图与演示素材
 
-Paper figures used by the root README.
+本目录保存论文图示和 README 可显示的 PNG 版本。
 
-- `teaser6.pdf` / `teaser6.png`: paper teaser figure.
-- `AgenticASR-method1.pdf` / `AgenticASR-method1.png`: data-generation and system overview.
+- teaser6.pdf / teaser6.png：论文 teaser 图及其位图预览。
+- AgenticASR-method1.pdf / AgenticASR-method1.png：数据生成流程与系统总览图及其位图预览。
 
-The PNG files are README-friendly renders of the original PDF figures.
+根目录 README 演示视频位于 MediaSup/，不是本目录内容。PDF 是原始矢量图，PNG 供网页和 Markdown 预览使用。

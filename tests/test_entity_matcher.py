@@ -74,7 +74,7 @@ class EntityCandidateMatcherTest(unittest.TestCase):
         self.assertEqual(report.auto_matches[0].observed, "Agentic ASR")
         self.assertEqual(report.auto_matches[0].canonical, "AgenticASR")
 
-    def test_partial_event_is_hint_only_even_in_auto_mode(self) -> None:
+    def test_explicit_partial_mode_can_remain_hint_only(self) -> None:
         matcher = EntityCandidateMatcher(
             (_definition("鬼灵门"),), selected_domain="game", mode="auto"
         )

@@ -123,6 +123,22 @@ class _SemanticLossOnceRefiner:
         return text.replace("傻", "的"), 1.0
 
 
+class _DropsPunctuationRefiner:
+    """Simulate a model that returns the words but omits terminal marks."""
+
+    def __init__(self, *args, **kwargs) -> None:
+        pass
+
+    def refine(
+        self,
+        text: str,
+        *,
+        entity_hints: tuple[str, ...] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        return text.rstrip("，,、。！？!?；;：:.").rstrip(), 1.0
+
+
 class _WrongNumberRefiner:
     def __init__(self, *args, **kwargs) -> None:
         pass
@@ -726,7 +742,59 @@ class WebAppFinishTest(unittest.TestCase):
             self.assertEqual(final["window_max_chars"], 80)
             self.assertTrue(all(len(call) <= 80 for call in _CountingRefiner.calls))
 
-    def test_streaming_cached_result_still_applies_final_fuzzy_entity(self) -> None:
+    def test_tri_state_uses_one_punctuation_window(self) -> None:
+        with (
+            patch.object(web_app, "TransformersRefiner", _CountingRefiner),
+            patch.object(web_app, "_stream_request", _stable_stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"),
+                "cpu",
+                "http://fake-asr",
+                "Chinese",
+                32,
+                None,
+                refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=online") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    self.assertEqual(websocket.receive_json()["event"], "transcript")
+                    final = websocket.receive_json()
+
+        self.assertEqual(final["window_size"], 3)
+        punctuation_counts = [
+            sum(call.count(mark) for mark in "，,、。！？!?；;：:.")
+            for call in _CountingRefiner.calls
+        ]
+        self.assertTrue(all(count <= 3 for count in punctuation_counts))
+        self.assertTrue(any(count >= 2 for count in punctuation_counts))
+
+    def test_tri_state_restores_source_punctuation_omitted_by_refiner(self) -> None:
+        with (
+            patch.object(web_app, "TransformersRefiner", _DropsPunctuationRefiner),
+            patch.object(web_app, "_stream_request", _stable_stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"),
+                "cpu",
+                "http://fake-asr",
+                "Chinese",
+                32,
+                None,
+                refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=online") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    self.assertEqual(websocket.receive_json()["event"], "transcript")
+                    final = websocket.receive_json()
+
+        self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本。")
+
+    def test_streaming_window_applies_fuzzy_entity_before_finish(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             entity_db = Path(directory) / "entities.db"
             EntityStore(entity_db).upsert_entity(
@@ -758,7 +826,11 @@ class WebAppFinishTest(unittest.TestCase):
                         while message["event"] != "update":
                             message = websocket.receive_json()
                         self.assertEqual(
-                            message["clean_text"], "鬼灵们是这个副本的入口。"
+                            message["clean_text"], "鬼灵门是这个副本的入口。"
+                        )
+                        self.assertEqual(
+                            message["entity_candidates"][0]["decision"],
+                            "AUTO_NORMALIZE",
                         )
 
                         websocket.send_json({"event": "finish"})

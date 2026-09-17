@@ -1,5 +1,7 @@
 # AgenticASR 实验设计与评测方案
 
+> **文档定位（2026-09-16）**：本文描述建议开展的实验和评测设计，不表示这些实验已全部执行或达到预期结果。当前已有批处理、ASR + Refiner 推理、AASR-Bench Judge、文本错误率工具、confidence 校准工具以及部分门控/实体保护实现；完整双参考数据、replay、跨后端门控消融和正式测试集结果仍待完成。配置表是实验快照，运行前请以当前配置文件和代码为准。当前实现见 [CURRENT_WORK_AND_NEXT_STEPS.md](CURRENT_WORK_AND_NEXT_STEPS.md)。
+
 ## 1. 实验目标
 
 本方案用于评估当前项目的三项核心能力：

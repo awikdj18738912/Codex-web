@@ -76,6 +76,21 @@ class DeterministicCleanupTest(unittest.TestCase):
         source = "人人平等，天天向上，看看这里，爸爸妈妈，哈哈笑。"
         self.assertEqual(collapse_repeated_character_stutters(source), source)
 
+    def test_distributive_and_continuative_reduplication_is_preserved(self) -> None:
+        source = (
+            "一根根线条，一条条天河，一座座城市，一道道防线，"
+            "一代代人，源源不断，生生不息。"
+        )
+        self.assertEqual(collapse_repeated_character_stutters(source), source)
+
+    def test_broad_classifier_reduplication_inventory_is_preserved(self) -> None:
+        source = (
+            "一朵朵云，一层层山，一艘艘船，一本本书，一串串灯，"
+            "一群群人，一阵阵风，一缕缕水汽，一排排树，一束束光，"
+            "一簇簇花，一波波人潮，一轮轮明月，一蓬蓬雾。"
+        )
+        self.assertEqual(collapse_repeated_character_stutters(source), source)
+
     def test_standalone_fillers_are_removed_without_touching_words(self) -> None:
         self.assertEqual(
             collapse_standalone_fillers("饭，呃，要上床，呃，这是本性的"),

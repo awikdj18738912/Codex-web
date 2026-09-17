@@ -21,6 +21,55 @@ class WindowTest(unittest.TestCase):
     def update(self, text, final=False):
         return self.session.update(text, 'Chinese', final, None, None)
 
+    def test_one_punctuation_window_keeps_each_clause_independent(self):
+        session = CumulativeWindowRefinement(
+            self.session.refine,
+            window_size=1,
+            one_punctuation_window=True,
+        )
+        text = "第一段，第二段。第三段！"
+
+        result = session.update(text, "Chinese", True, None, None)
+
+        self.assertEqual(result["clean_text"], text)
+        self.assertEqual(self.calls, ["第一段，", "第二段。", "第三段！"])
+        self.assertEqual(result["window_size"], 1)
+
+    def test_one_punctuation_chunks_use_three_block_active_window(self):
+        session = CumulativeWindowRefinement(
+            self.session.refine,
+            window_size=3,
+            one_punctuation_window=True,
+        )
+        text = "第一段，第二段。第三段！第四段？"
+
+        result = session.update(text, "Chinese", True, None, None)
+
+        self.assertEqual(result["clean_text"], text)
+        self.assertEqual(
+            self.calls,
+            ["第一段，", "第二段。第三段！第四段？"],
+        )
+        self.assertEqual(result["window_size"], 3)
+
+    def test_post_merge_boundary_repair_handles_keep_chunks(self):
+        """Reviewed repairs still run when a bad mark split two KEEP chunks."""
+
+        session = CumulativeWindowRefinement(
+            self.session.refine,
+            window_size=3,
+            one_punctuation_window=True,
+        )
+        source = "前文。补充。正义就是那种。最好的东西。结尾。"
+
+        result = session.update(source, "Chinese", True, None, None)
+
+        self.assertEqual(result["raw_text"], source)
+        self.assertEqual(
+            result["clean_text"],
+            "前文。补充。正义就是那种最好的东西。结尾。",
+        )
+
     def test_shift_preserves_prefix_and_suffix_without_duplicate(self):
         for text in ['苹果。', '苹果。天气好。', '苹果。天气好。出门。',
                      '苹果。天气好。出门。结束。']:
@@ -115,6 +164,42 @@ class WindowTest(unittest.TestCase):
                 "我有一箱苹果，不对，我有一箱梨，",
                 "我有两千一百三十五元，我有百分之三的几率获得五万四千三百二十一元。",
             ],
+        )
+
+    def test_one_punctuation_window_keeps_self_correction_context(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            clean = text
+            if "我有一个苹果，不对，我有一个梨。" in text:
+                clean = text.replace("我有一个苹果，不对，我有一个梨。", "我有一个梨。")
+            return {
+                "raw_text": text,
+                "clean_text": clean,
+                "refiner_latency_ms": 1,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine,
+            window_size=3,
+            one_punctuation_window=True,
+        )
+        source = "我有一个苹果，不对，我有一个梨。为什么不转换？"
+
+        result = session.update(source, "Chinese", True, None, None)
+
+        self.assertEqual(result["clean_text"], "我有一个梨。为什么不转换？")
+        self.assertTrue(
+            any("我有一个苹果，不对，我有一个梨。" in call for call in calls)
         )
 
     def test_correction_after_sentence_boundary_is_not_committed_separately(self):

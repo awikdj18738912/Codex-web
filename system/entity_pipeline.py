@@ -6,7 +6,12 @@ from dataclasses import dataclass
 
 from .entity_matcher import EntityCandidateMatcher, EntityMatchReport
 from .protection import EntityProtector, ProtectionResult
-from .refinement_guard import reject_reasons
+from .refinement_guard import (
+    permits_self_correction_punctuation_repair,
+    preserve_terminal_punctuation,
+    reject_reasons,
+    source_punctuation_lost,
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -62,6 +67,7 @@ def has_retryable_integrity_failure(reasons: tuple[str, ...]) -> bool:
             "severe_content_loss",
             "truncated_refiner_output",
             "entity_sentence_boundary_lost",
+            "source_punctuation_lost",
             "numeric_value_mismatch",
             "semantic_content_loss",
             "semantic_substitution",
@@ -112,6 +118,9 @@ def finalize_entity_segment(
     refined_masked_text: str,
     prepared: PreparedEntitySegment,
     protector: EntityProtector,
+    *,
+    preserve_source_punctuation: bool = False,
+    allow_boundary_punctuation_repair: bool = False,
 ) -> FinalizedEntitySegment:
     restored = protector.restore(refined_masked_text, prepared.protection)
     if not restored.accepted:
@@ -120,13 +129,27 @@ def finalize_entity_segment(
             False,
             restored.reject_reasons,
         )
+    restored_text = preserve_terminal_punctuation(
+        prepared.baseline_text, restored.text
+    )
+    punctuation_reasons = (
+        ("source_punctuation_lost",)
+        if preserve_source_punctuation
+        and not allow_boundary_punctuation_repair
+        and source_punctuation_lost(prepared.baseline_text, restored_text)
+        and not permits_self_correction_punctuation_repair(
+            prepared.baseline_text, restored_text
+        )
+        else ()
+    )
     reasons = (
-        *_introduced_hint_reasons(prepared, restored.text),
-        *reject_reasons(prepared.baseline_text, restored.text),
+        *punctuation_reasons,
+        *_introduced_hint_reasons(prepared, restored_text),
+        *reject_reasons(prepared.baseline_text, restored_text),
     )
     if reasons:
         return FinalizedEntitySegment(prepared.baseline_text, False, reasons)
-    return FinalizedEntitySegment(restored.text, True, ())
+    return FinalizedEntitySegment(restored_text, True, ())
 
 
 def _introduced_hint_reasons(

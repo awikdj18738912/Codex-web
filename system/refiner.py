@@ -8,7 +8,10 @@ from dataclasses import dataclass
 from typing import Protocol, Sequence
 
 from .chunking import Chunk
-from .refinement_protocol import REFINER_SYSTEM_PROMPT as SYSTEM_PROMPT
+from .refinement_protocol import (
+    REFINER_SYSTEM_PROMPT as SYSTEM_PROMPT,
+    apply_structured_patch,
+)
 
 
 class TextRefiner(Protocol):
@@ -122,7 +125,8 @@ class MLXRefiner:
 
     def refine(self, text: str) -> str:
         response = self._generate(SYSTEM_PROMPT, text)
-        return response.strip()
+        refined, _, _ = apply_structured_patch(text, response)
+        return refined.strip()
 
     def _generate(self, system_prompt: str, user_text: str) -> str:
         from mlx_lm import generate

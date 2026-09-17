@@ -1,8 +1,10 @@
 # 流式 ASR 精修门控模块设计方案
 
+> **实现状态（2026-09-16）**：本文描述选择性精修门控的目标设计。当前 Web 代码已支持 off / conservative / tri_state；tri_state 第一版通过 HypothesisTracker 观察跨次假设，并在浏览器中显示 KEEP / DEFER / REFINE。稳定前缀、动态 active span、统一跨后端协议和正式门控评测仍在后续范围。缺失、未校准或不完整的 ASR confidence 不应被当成可靠高置信证据。已实现与未实现边界见 [当前项目状态](CURRENT_WORK_AND_NEXT_STEPS.md)。
+
 ## 1. 文档目的
 
-本文档设计 AgenticASR 的选择性 Refiner 门控模块，用于解决流式 ASR 中每次文本更新都调用 Refiner 所造成的重复计算、GPU 排队和延迟升高问题。
+本文档设计 AgenticASR 的选择性 Refiner 门控模块，用于解决流式 ASR 中每次文本更新都调用 Refiner 所造成的重复计算、GPU 排队和延迟升高问题。 当前 Web 的 tri_state 实现把逗号和句末标点都视为窗口边界，并将活动模型输入限制为一个片段；K=3 仍保留给其他兼容路径。
 
 门控模块的职责不是修改文本，而是判断当前文本是否值得调用 Refiner：
 
@@ -12,11 +14,12 @@ DEFER：当前信息不足，等待更多上下文
 REFINE：满足条件，调用 Refiner
 ```
 
-门控模块需要和现有的 K=3 滑动窗口配合使用：
+兼容路径的门控模块可以和 K=3 滑动窗口配合使用；Web tri_state 当前采用单标点活动窗口：
 
 ```text
 门控模块：决定“要不要调用 Refiner”
-K=3 窗口：决定“调用时给 Refiner 看多少文本”
+K=3 窗口：兼容路径决定“调用时给 Refiner 看多少文本”
+单标点窗口：Web tri_state 让逗号也成为边界，每次只给 Refiner 一个片段
 Validator：决定“精修结果能不能接受”
 ```
 
@@ -36,16 +39,11 @@ Validator：决定“精修结果能不能接受”
 
 它限制了输入窗口长度，但没有减少调用次数。
 
-### 2.2 `system.web_app`
+### 2.2 system.web_app 当前状态
 
-浏览器 Web 服务目前不是 K=3 滑动窗口路径：
+浏览器服务目前已有 RefinementGate，支持 off / conservative 两种模式；这部分不再是“尚未接入门控”。在线麦克风路径、文件整段离线模式和文件分块流式模式的调用时机不同。文件分块模式使用 latest-only 后台调度，避免待精修任务无限排队；Web 路径同时有长度受限的文本分段。
 
-- 在线模式会对变化后的累计 ASR 假设进行精修。
-- 离线整段模式在结束后精修完整文本。
-- 离线流式模式使用 latest-only，避免任务排队，但当前任务仍可能是累计假设。
-- 结束时通常还会对最终完整文本执行一次精修。
-
-因此，Web 路径也需要接入统一的门控和 K=3 窗口机制。
+当前实现已在 Web 链路加入 HypothesisTracker 与 KEEP / DEFER / REFINE 三态；latest-only 仍只负责任务调度，三态门控负责判断中间假设是否保留、等待或调用模型。稳定前缀、动态 active span 和统一门控实验回放仍未完成。详细实现状态见 [CURRENT_WORK_AND_NEXT_STEPS.md](CURRENT_WORK_AND_NEXT_STEPS.md)。
 
 ## 3. 总体架构
 

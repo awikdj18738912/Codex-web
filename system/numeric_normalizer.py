@@ -207,6 +207,23 @@ _LARGE_UNIT_NUMBER_RE = re.compile(
     rf"(?![{_CN_INTEGER}])"
 )
 
+# Approximate quantities are still numeric quantities when a classifier or
+# time/age unit makes their role explicit.  Keep ``多`` outside the parsed
+# number so the approximation is preserved: ``五十多座`` -> ``50多座``.
+# Large-unit forms such as ``六十多万条`` remain handled by the rule above.
+_APPROXIMATE_UNITS = tuple(
+    dict.fromkeys((*_COUNT_UNITS, "座", "年", "月", "日", "人", "岁"))
+)
+_APPROXIMATE_UNIT_PATTERN = "|".join(
+    sorted(map(re.escape, _APPROXIMATE_UNITS), key=len, reverse=True)
+)
+_APPROXIMATE_NUMBER_RE = re.compile(
+    rf"{_NUMERAL_START_GUARD}"
+    rf"(?P<number>[{_CN_INTEGER}]+)(?P<approx>多)"
+    rf"(?P<unit>{_APPROXIMATE_UNIT_PATTERN})"
+    rf"(?![{_CN_INTEGER}])"
+)
+
 # A positional Chinese number is still a number without a trailing unit:
 # ``二十三`` and ``一百二十三``.  Bare adjacent digit runs such as ``二三``
 # are deliberately excluded because they commonly express an approximation,
@@ -313,6 +330,26 @@ class ContextualNumericNormalizer:
                 suffix = "分钟" if match.group(0).endswith("分钟") else "分"
                 add(*match.span(), f"{int(hour)}点{int(minute)}{suffix}", "time")
 
+        for match in _APPROXIMATE_NUMBER_RE.finditer(text):
+            token = match.group("number")
+            # ``三万多个`` and ``六十多万条`` must retain the large-unit
+            # spelling (3万多个/60多万条); those are handled by the dedicated
+            # large-unit rule below.
+            if any(char in "万亿" for char in token):
+                continue
+            # Inspect the character after ``多``.  Passing the end of the
+            # numeric stem would classify the intentional approximation
+            # suffix itself as an ambiguity marker and skip every match.
+            if _ambiguous_number_token(token, text, match.end()):
+                continue
+            value = chinese_number_to_decimal(token)
+            if value is not None:
+                add(
+                    *match.span(),
+                    f"{_format_decimal(value)}多{match.group('unit')}",
+                    "approximate_count",
+                )
+
         for match in _RANGE_RE.finditer(text):
             left = chinese_number_to_decimal(match.group("left"))
             right = chinese_number_to_decimal(match.group("right"))
@@ -366,6 +403,12 @@ class ContextualNumericNormalizer:
         # ``23个``.
         for match in _COUNT_NUMBER_RE.finditer(text):
             token = match.group("number")
+            # ``一条条/一张张/一只只`` are distributive reduplications, not
+            # the scalar count ``一条`` followed by an unrelated character.
+            # Converting only the first classifier would produce the malformed
+            # hybrid ``1条条`` and obscure the plurality encoded by the source.
+            if text[match.end("unit") :].startswith(match.group("unit")):
+                continue
             if _ambiguous_number_token(token, text, match.end()):
                 continue
             value = chinese_number_to_decimal(token)

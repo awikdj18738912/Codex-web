@@ -1,5 +1,7 @@
 # ASR 置信度复现实验
 
+> **状态更新：2026-09-16**。Qwen 的 token-logprob 置信度提取是可选实验路径，原始分数仍未校准；校准工具存在不代表已经获得可用于生产门控的概率。本仓库当前 pytest 回归为 188 passed、1 条 Starlette/httpx 弃用提醒。门控边界见 [当前项目状态](CURRENT_WORK_AND_NEXT_STEPS.md)。
+
 ## 当前结论
 
 本次先复现“置信度提取 → 聚合 → 后校准”的安全最小链路，没有改变在线服务的默认行为。
@@ -74,8 +76,8 @@ calibrated = calibrator.transform(evidence.value or 0.0)
 ## 验证结果
 
 ```text
-python -m unittest discover -s tests -v
-Ran 81 tests ... OK
+pytest -q
+188 passed, 1 warning (2026-09-16)
 ```
 
 新增的置信度测试覆盖：显式 confidence、NeMo 词级聚合、Whisper avg_logprob 的未校准标记、

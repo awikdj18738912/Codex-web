@@ -703,17 +703,28 @@
           if (data.clean_text !== undefined && (data.event === 'update' || data.event === 'final')) latestRefinedText = data.clean_text;
           if (data.event === 'transcript') {
             const deferred = data.refiner_deferred === true;
-            refinerExecuted.textContent = deferred ? '等待最终精修' : '后台精修排队中';
-            refinerResult.textContent = deferred ? '正在完成最后一个活动窗口' : '正在识别并更新活动窗口';
-            refinerResult.classList.remove('warning');
-            refinerType.textContent = deferred
-              ? (selectedMode === 'offline' ? '离线最终精修' : '流式最终精修')
-              : '流式异步精修';
-            setStatus(
-              deferred
-                ? (selectedMode === 'offline' ? '完整转录已完成，正在最终精修' : '离线流式转录已完成，正在最终精修')
-                : '离线流式转录中，精修异步跟进'
-            );
+            const gateAction = String(data.refinement_gate_action || '');
+            const gateLabels = { keep: 'KEEP · 保留', defer: 'DEFER · 等待稳定', refine: 'REFINE · 调用模型' };
+            if (gateAction && data.refinement_gate_state) {
+              const reasons = Array.isArray(data.refinement_gate_reasons) ? data.refinement_gate_reasons.join('、') : '';
+              refinerExecuted.textContent = gateLabels[gateAction] || data.refinement_gate_state;
+              refinerResult.textContent = reasons ? `三态门控：${reasons}` : '三态门控已完成判断';
+              refinerResult.classList.remove('warning');
+              refinerType.textContent = 'tri_state · 实时假设路由';
+              setStatus(gateAction === 'defer' ? '等待 ASR 假设稳定' : (gateAction === 'keep' ? '保留当前转写，跳过模型' : '已进入精修队列'));
+            } else {
+              refinerExecuted.textContent = deferred ? '等待最终精修' : '后台精修排队中';
+              refinerResult.textContent = deferred ? '正在完成最后一个活动窗口' : '正在识别并更新活动窗口';
+              refinerResult.classList.remove('warning');
+              refinerType.textContent = deferred
+                ? (selectedMode === 'offline' ? '离线最终精修' : '流式最终精修')
+                : '流式异步精修';
+              setStatus(
+                deferred
+                  ? (selectedMode === 'offline' ? '完整转录已完成，正在最终精修' : '离线流式转录已完成，正在最终精修')
+                  : '离线流式转录中，精修异步跟进'
+              );
+            }
           }
           recordRefinementStep(data);
           updateRefinerStatus(data);

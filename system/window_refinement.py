@@ -160,7 +160,10 @@ class StreamingRefinementDisplay:
 
 
 class CumulativeWindowRefinement:
-    def __init__(self, refine, window_size=3, window_max_chars=80):
+    def __init__(
+        self, refine, window_size=3, window_max_chars=80,
+        *, one_punctuation_window: bool = False,
+    ):
         if window_size < 1:
             raise ValueError("window_size must be at least 1")
         if window_max_chars < 1:
@@ -168,6 +171,7 @@ class CumulativeWindowRefinement:
         self.refine = refine
         self.window_size = window_size
         self.window_max_chars = window_max_chars
+        self.one_punctuation_window = one_punctuation_window
         self.committed = []
         self.active = None
         self.lock = Lock()
@@ -191,7 +195,10 @@ class CumulativeWindowRefinement:
         confidence_metadata=None,
     ):
         with self.lock:
-            manager = ChunkManager(max_chars=self.window_max_chars)
+            manager = ChunkManager(
+                max_chars=self.window_max_chars,
+                one_punctuation_window=self.one_punctuation_window,
+            )
             chunks = [
                 c.text
                 for c in merge_self_correction_chunks(
@@ -363,6 +370,7 @@ class CumulativeWindowRefinement:
             "refiner_masked_outputs",
             "refiner_retry_reasons",
             "refinement_gate_decisions",
+            "structured_patch_audits",
         ):
             result[key] = [item for p in parts for item in p.get(key, [])]
         result["entity_matcher_latency_ms"] = sum(
