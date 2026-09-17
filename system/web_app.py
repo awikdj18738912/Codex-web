@@ -38,7 +38,11 @@ from .refinement_gate import (
     RefinementGateDecision,
     RefinementGateMode,
 )
-from .refinement_guard import join_refined_segments, split_for_refinement
+from .refinement_guard import (
+    detect_boundary_anomalies,
+    join_refined_segments,
+    split_for_refinement,
+)
 from .numeric_normalizer import ContextualNumericNormalizer
 from .window_refinement import (
     CumulativeWindowRefinement,
@@ -388,6 +392,7 @@ def create_app(
         refiner_reject_reasons: list[str] = []
         refiner_masked_outputs: list[str] = []
         structured_patch_audits: list[dict[str, object]] = []
+        boundary_anomalies: list[dict[str, object]] = []
         placeholder_retry_count = 0
         refiner_retry_count = 0
         refiner_retry_reasons: list[str] = []
@@ -425,6 +430,13 @@ def create_app(
                 normalized_baseline.text
                 if normalized_baseline is not None
                 else prepared.baseline_text
+            )
+            boundary_anomalies.extend(
+                {
+                    "segment_index": segment_index + 1,
+                    **anomaly.public_dict(),
+                }
+                for anomaly in detect_boundary_anomalies(baseline_text)
             )
             masked_text = (
                 numeric_normalizer.normalize(protection.masked_text).text
@@ -518,7 +530,14 @@ def create_app(
                             protector,
                             preserve_source_punctuation=use_punctuation_windows,
                             allow_boundary_punctuation_repair=(
-                                permits_boundary_punctuation_repair(patch_payload)
+                                permits_boundary_punctuation_repair(
+                                    patch_payload,
+                                    source_text=masked_text,
+                                    protected_spans=tuple(
+                                        span.placeholder
+                                        for span in protection.spans
+                                    ),
+                                )
                             ),
                         )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
@@ -556,7 +575,14 @@ def create_app(
                                 protector,
                                 preserve_source_punctuation=use_punctuation_windows,
                                 allow_boundary_punctuation_repair=(
-                                    permits_boundary_punctuation_repair(retry_payload)
+                                    permits_boundary_punctuation_repair(
+                                        retry_payload,
+                                        source_text=masked_text,
+                                        protected_spans=tuple(
+                                            span.placeholder
+                                            for span in protection.spans
+                                        ),
+                                    )
                                 ),
                             )
                 finally:
@@ -607,6 +633,7 @@ def create_app(
             "refiner_retry_reasons": refiner_retry_reasons,
             "refiner_masked_outputs": refiner_masked_outputs,
             "structured_patch_audits": structured_patch_audits,
+            "boundary_anomalies": boundary_anomalies,
             "refinement_gate_mode": refinement_gate.mode.value,
             "refinement_gate_config": refinement_gate.config_dict(),
             "refinement_gate_decisions": refinement_gate_decisions,
@@ -715,6 +742,20 @@ def create_app(
             "refiner_retry_count": 0,
             "refiner_retry_reasons": [],
             "refiner_masked_outputs": [],
+            "structured_patch_audits": [],
+            "boundary_anomalies": [
+                anomaly
+                for segment in split_for_refinement(
+                    raw_text, one_punctuation_window=use_punctuation_windows
+                )
+                for anomaly in (
+                    {
+                        "segment_text": segment,
+                        **item.public_dict(),
+                    }
+                    for item in detect_boundary_anomalies(segment)
+                )
+            ],
             "refinement_gate_mode": refinement_gate.mode.value,
             "refinement_gate_config": refinement_gate.config_dict(),
             "refinement_gate_decisions": [],
@@ -1418,6 +1459,12 @@ def create_app(
                                         ],
                                         "refiner_masked_outputs": result[
                                             "refiner_masked_outputs"
+                                        ],
+                                        "structured_patch_audits": result[
+                                            "structured_patch_audits"
+                                        ],
+                                        "boundary_anomalies": result[
+                                            "boundary_anomalies"
                                         ],
                                         "refinement_gate_mode": result[
                                             "refinement_gate_mode"

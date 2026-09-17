@@ -3,12 +3,14 @@ from __future__ import annotations
 import unittest
 
 from system.refinement_guard import (
+    detect_boundary_anomalies,
     join_refined_segments,
     preserve_terminal_punctuation,
     permits_self_correction_punctuation_repair,
     reject_reasons,
     source_punctuation_lost,
     split_for_refinement,
+    validate_boundary_repair,
 )
 
 
@@ -74,12 +76,50 @@ class RefinementGuardTest(unittest.TestCase):
                 "我有1个香蕉，还是有问题。",
             )
         )
+        self.assertTrue(
+            permits_self_correction_punctuation_repair(
+                "然后我有一箱苹果，嗯，不对我有一箱梨。",
+                "然后我有1箱梨。",
+            )
+        )
 
     def test_self_correction_may_not_drop_retained_tail_punctuation(self) -> None:
         self.assertFalse(
             permits_self_correction_punctuation_repair(
                 "我有一个苹果。不对，我有一个香蕉，还是有问题。",
                 "我有1个香蕉。",
+            )
+        )
+
+    def test_boundary_anomaly_detector_excludes_lexical_continuations(self) -> None:
+        anomalies = detect_boundary_anomalies("三番五次的。的提醒就不太好了")
+        self.assertEqual(len(anomalies), 1)
+        self.assertEqual(anomalies[0].public_dict()["pattern"], "的。的")
+        self.assertEqual(detect_boundary_anomalies("是的。的确如此。"), ())
+        self.assertEqual(
+            detect_boundary_anomalies("这个方案很好。了不起的是，它很快。"), ()
+        )
+
+    def test_safe_boundary_repair_requires_local_anomaly_and_deletion_only(self) -> None:
+        self.assertTrue(
+            validate_boundary_repair(
+                "三番五次的。的提醒",
+                "三番五次的提醒",
+                "boundary_punctuation",
+            )
+        )
+        self.assertFalse(
+            validate_boundary_repair(
+                "第一段，第二段。",
+                "第一段第二段",
+                "boundary_punctuation",
+            )
+        )
+        self.assertFalse(
+            validate_boundary_repair(
+                "三番五次的。的提醒",
+                "三番五次的新的提醒",
+                "boundary_punctuation",
             )
         )
 

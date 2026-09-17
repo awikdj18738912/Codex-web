@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import os
 from dataclasses import dataclass
 
 _SENTENCE_END = re.compile(
@@ -12,8 +13,23 @@ _ANY_PUNCTUATION = re.compile(
     r"(?:[,;:!?\uff0c\u3002\uff01\uff1f\uff1b\uff1a\u3001]|"
     r"(?<!\d)\.(?!\d))\s*"
 )
-_SELF_CORRECTION = re.compile(r"(?:不对|不是|而是|应该是)")
-_SELF_CORRECTION_PREFIX = re.compile(r"^(?:不对|不是|而是|应该是)")
+STRONG_CORRECTION_MARKERS = (
+    "不对",
+    "我说错了",
+    "说错了",
+    "应该是",
+    "应该说",
+    "准确地说",
+    "我是说",
+    "改成",
+)
+WEAK_CORRECTION_MARKERS = ("不是", "不，是")
+_SELF_CORRECTION = re.compile(
+    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
+)
+_SELF_CORRECTION_PREFIX = re.compile(
+    r"^(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
+)
 # A corrected clause may end with either a soft clause punctuation or a
 # sentence terminator.  Only searching soft punctuation lets a break jump
 # past the real clause boundary to a far-away comma, producing an
@@ -23,6 +39,36 @@ _CORRECTION_BOUNDARY_PUNCTUATION = re.compile(r"[,，;；:：、。！？!?]\s*"
 _SENTENCE_END_CHARACTERS = frozenset(".!?。！？")
 _CLAUSE_BOUNDARY_CHARACTERS = _SENTENCE_END_CHARACTERS | frozenset(
     ",，、;；:："
+)
+_HARD_BOUNDARY_CHARACTERS = frozenset(".!?。！？；!?；\n")
+_BOUNDARY_DUPLICATE_RE = re.compile(
+    r"(?P<left>[的地得了着过])(?P<punctuation>[。！？!?；;])"
+    r"(?P<right>[的地得了着过])"
+)
+_BOUNDARY_DUPLICATE_EXCEPTIONS = (
+    "的确",
+    "的话",
+    "的时候",
+    "的一",
+    "了不起",
+)
+FILLER_TOKENS = frozenset(
+    {"嗯", "嗯嗯", "呃", "额", "啊", "呃呃", "那个", "这个"}
+)
+SELF_CORRECTION_MAX_BACKTRACK_CHUNKS = 3
+SELF_CORRECTION_MAX_FILLER_CHUNKS = 2
+SELF_CORRECTION_MAX_WINDOW_CHARS = 100
+
+
+def _env_bool(name: str, default: bool = True) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() not in {"0", "false", "no", "off"}
+
+
+SELF_CORRECTION_ANTECEDENT_RECOVERY_ENABLED = _env_bool(
+    "SELF_CORRECTION_ANTECEDENT_RECOVERY", True
 )
 
 
@@ -168,6 +214,124 @@ def merge_self_correction_chunks(
     source-owned chunk.  Ordinary punctuation chunks remain independent.
     """
 
+    if not chunks:
+        return []
+    if not SELF_CORRECTION_ANTECEDENT_RECOVERY_ENABLED:
+        return _merge_adjacent_self_correction_chunks(chunks, max_chars)
+
+    # Build non-overlapping source intervals first.  This lets a correction
+    # reopen an antecedent that was already emitted into ``merged`` without
+    # mutating or guessing at refined-text offsets.
+    intervals: list[tuple[int, int]] = []
+    cursor = 0
+    consumed_end = 0
+    while cursor < len(chunks):
+        antecedent = find_self_correction_antecedent(chunks, cursor)
+        if antecedent is None:
+            cursor += 1
+            continue
+        marker_index = cursor
+        if antecedent < consumed_end:
+            cursor += 1
+            continue
+        group_end = marker_index + 1
+        group_text = "".join(
+            chunk.text for chunk in chunks[antecedent:group_end]
+        )
+        # Include the complete corrected clause, including its closing
+        # punctuation.  Self-correction is the only path allowed to use the
+        # slightly wider recovery budget; ordinary windows remain unchanged.
+        while (
+            group_end < len(chunks)
+            and not _ends_with_sentence(group_text)
+            and len(group_text) + len(chunks[group_end].text)
+            <= max(max_chars, SELF_CORRECTION_MAX_WINDOW_CHARS)
+        ):
+            group_text += chunks[group_end].text
+            group_end += 1
+        if group_end == marker_index + 1 and marker_index + 1 < len(chunks):
+            # Marker-only chunks are still useful context, but do not consume
+            # a following clause when doing so would exceed the recovery cap.
+            group_end = marker_index + 1
+        if antecedent >= consumed_end and len(group_text) <= max(
+            max_chars, SELF_CORRECTION_MAX_WINDOW_CHARS
+        ):
+            intervals.append((antecedent, group_end))
+            consumed_end = group_end
+            cursor = group_end
+        else:
+            cursor += 1
+
+    if not intervals:
+        return list(chunks)
+
+    merged: list[Chunk] = []
+    source_cursor = 0
+    for start, end in intervals:
+        if start < source_cursor:
+            continue
+        merged.extend(chunks[source_cursor:start])
+        merged.append(
+            Chunk(
+                chunks[start].index,
+                "".join(chunk.text for chunk in chunks[start:end]),
+            )
+        )
+        source_cursor = end
+    merged.extend(chunks[source_cursor:])
+    return merged
+
+
+def merge_boundary_anomaly_chunks(
+    chunks: list[Chunk], max_chars: int = 80
+) -> list[Chunk]:
+    """Join adjacent chunks when a suspicious boundary crosses the split.
+
+    One-punctuation mode intentionally creates very small source blocks.  A
+    malformed hard stop such as ``三番五次的。`` / ``的提醒`` therefore never
+    appears in one gate or Refiner input and can be incorrectly kept.  Join
+    only the two blocks containing a reviewed low-risk ``particle + hard mark +
+    same particle`` pattern; lexical continuations such as ``的。的确`` remain
+    separate.  The slightly wider cap is limited to this recovery path.
+    """
+
+    if len(chunks) < 2:
+        return list(chunks)
+    limit = max(max_chars, 100)
+    merged: list[Chunk] = []
+    index = 0
+    while index < len(chunks):
+        if index + 1 < len(chunks):
+            left = chunks[index]
+            right = chunks[index + 1]
+            combined = left.text + right.text
+            boundary = len(left.text)
+            anomaly = next(
+                (
+                    match
+                    for match in _BOUNDARY_DUPLICATE_RE.finditer(combined)
+                    if match.start() < boundary < match.end()
+                    and not any(
+                        combined.startswith(exception, match.start("right"))
+                        for exception in _BOUNDARY_DUPLICATE_EXCEPTIONS
+                    )
+                ),
+                None,
+            )
+            if anomaly is not None and len(combined) <= limit:
+                merged.append(Chunk(left.index, combined))
+                index += 2
+                continue
+        merged.append(chunks[index])
+        index += 1
+    return merged
+
+
+def _merge_adjacent_self_correction_chunks(
+    chunks: list[Chunk], max_chars: int
+) -> list[Chunk]:
+    """Baseline merge used when antecedent recovery is disabled by flag."""
+
     merged: list[Chunk] = []
     index = 0
     while index < len(chunks):
@@ -182,9 +346,6 @@ def merge_self_correction_chunks(
             previous = merged.pop()
             group_text = previous.text + chunk.text
             next_index = index + 1
-            # The marker chunk usually ends in a comma. Include the following
-            # source chunk(s) until the corrected clause closes, so the model
-            # receives the full ``错误，不对，修正。`` relation.
             while (
                 next_index < len(chunks)
                 and not _ends_with_sentence(group_text)
@@ -194,14 +355,77 @@ def merge_self_correction_chunks(
                 next_index += 1
             merged.append(Chunk(previous.index, group_text))
             index = next_index
-            continue
-        merged.append(chunk)
-        index += 1
+        else:
+            merged.append(chunk)
+            index += 1
     return merged
+
+
+def strip_punctuation_and_spaces(text: str) -> str:
+    """Return the lexical content used for filler-only classification."""
+
+    return re.sub(r"[\s,，、。！？!?；;：:]+", "", text)
+
+
+def is_filler_only(text: str) -> bool:
+    """Return whether a chunk consists solely of a spoken filler token."""
+
+    return strip_punctuation_and_spaces(text) in FILLER_TOKENS
+
+
+def _has_correction_marker(text: str) -> bool:
+    value = text.lstrip()
+    if any(value.startswith(marker) for marker in STRONG_CORRECTION_MARKERS):
+        return True
+    return value.startswith("不是") or value.startswith("不，是")
+
+
+def find_self_correction_antecedent(
+    chunks: list[Chunk], correction_idx: int,
+    *,
+    max_backtrack: int = SELF_CORRECTION_MAX_BACKTRACK_CHUNKS,
+    max_fillers: int = SELF_CORRECTION_MAX_FILLER_CHUNKS,
+) -> int | None:
+    """Find the nearest soft-boundary semantic chunk before a correction.
+
+    Filler-only chunks may be skipped, but hard sentence boundaries stop the
+    search. Weak ``不是`` markers require at least one skipped filler; this
+    prevents ordinary negations from reopening an unrelated source span.
+    """
+
+    if correction_idx <= 0 or correction_idx >= len(chunks):
+        return None
+    marker_text = chunks[correction_idx].text.lstrip()
+    if not _has_correction_marker(marker_text):
+        return None
+    weak_marker = marker_text.startswith(WEAK_CORRECTION_MARKERS)
+    filler_count = 0
+    start = max(0, correction_idx - max_backtrack)
+    for index in range(correction_idx - 1, start - 1, -1):
+        text = chunks[index].text
+        if is_filler_only(text):
+            filler_count += 1
+            if filler_count > max_fillers:
+                return None
+            continue
+        if weak_marker and filler_count == 0:
+            return None
+        if _ends_with_hard_boundary(text) and filler_count:
+            # A filler after a hard boundary is usually a new sentence, not
+            # evidence that the earlier sentence is the correction target.
+            return None
+        if _ends_with_clause_boundary(text):
+            return index
+        return None
+    return None
 
 
 def _ends_with_clause_boundary(text: str) -> bool:
     return bool(text.rstrip()) and text.rstrip()[-1] in _CLAUSE_BOUNDARY_CHARACTERS
+
+
+def _ends_with_hard_boundary(text: str) -> bool:
+    return bool(text.rstrip()) and text.rstrip()[-1] in _HARD_BOUNDARY_CHARACTERS
 
 
 def _ends_with_sentence(text: str) -> bool:

@@ -14,6 +14,8 @@ from difflib import SequenceMatcher
 from enum import Enum
 from typing import Iterable
 
+from .refinement_guard import detect_boundary_anomalies
+
 
 _SENTENCE_ENDINGS = frozenset("。！？!?；;")
 _VISIBLE_RE = re.compile(r"[\w\u3400-\u9fff]", re.UNICODE)
@@ -27,7 +29,9 @@ _DISFLUENCY_RE = re.compile(
     r"(?:^|[，,。！？!?；;、\s])(?:嗯+|呃+|额+|啊+|哎+|呀+|嘿+|呼+|喂|这个|那个|就是)(?=$|[，,。！？!?；;、\s])"
 )
 _EMBEDDED_DISFLUENCY_RE = re.compile(r"(?:嗯+|呃+)")
-_SELF_CORRECTION_RE = re.compile(r"(?:不对|我是说|应该是|准确地说|更正一下)")
+_SELF_CORRECTION_RE = re.compile(
+    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|更正一下)"
+)
 _CROSS_CLAUSE_PUNCTUATION_RE = re.compile(
     r"[\u3400-\u9fff][。！？!?][\u3400-\u9fff]"
 )
@@ -460,6 +464,8 @@ def _cleanup_signals(text: str) -> tuple[str, ...]:
     # KEEP when confidence is unverified.
     if _CROSS_CLAUSE_PUNCTUATION_RE.search(text):
         signals.append("cross_clause_punctuation")
+    if detect_boundary_anomalies(text):
+        signals.append("boundary_anomaly")
     return tuple(signals)
 
 

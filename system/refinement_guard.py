@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import re
+import os
 from collections import Counter
 from collections.abc import Iterable
+from dataclasses import dataclass
 from difflib import SequenceMatcher
 from decimal import Decimal, InvalidOperation
 
@@ -76,9 +78,69 @@ _PROTECTED_REDUPLICATION_PAIRS = frozenset(
     character * 2 for character in REDUPLICABLE_QUANTIFIER_CHARS
 )
 _NEGATION_CHARS = frozenset("不没无未别莫勿")
-_CORRECTION_MARKERS = ("不对", "不是", "而是", "应该是")
+_CORRECTION_MARKERS = (
+    "不对",
+    "我说错了",
+    "说错了",
+    "应该是",
+    "应该说",
+    "准确地说",
+    "我是说",
+    "改成",
+    "不是",
+    "而是",
+)
 _CORRECTION_MARKER_RE = re.compile("|".join(_CORRECTION_MARKERS))
 _CORRECTION_SURFACE_NORMALIZER = ContextualNumericNormalizer()
+_BOUNDARY_PARTICLES = frozenset("的地得了着过")
+_BOUNDARY_DUPLICATE_RE = re.compile(
+    r"(?P<left>[的地得了着过])(?P<punctuation>[。！？!?；;])"
+    r"(?P<right>[的地得了着过])"
+)
+_BOUNDARY_DUPLICATE_EXCEPTIONS = (
+    "的确",
+    "的话",
+    "的时候",
+    "的一",
+    "了不起",
+)
+_CORRECTION_FILLER_TOKENS = frozenset(
+    {"嗯", "嗯嗯", "呃", "额", "啊", "那个", "这个"}
+)
+_SAFE_BOUNDARY_REASONS = frozenset(
+    {"boundary", "boundary_repair", "boundary_punctuation", "punctuation", "断句", "标点"}
+)
+
+
+def _env_bool(name: str, default: bool = True) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() not in {"0", "false", "no", "off"}
+
+
+SAFE_BOUNDARY_REPAIR_ENABLED = _env_bool("SAFE_BOUNDARY_REPAIR", True)
+
+
+@dataclass(frozen=True, slots=True)
+class BoundaryAnomaly:
+    """A suspicious hard punctuation boundary between repeated particles."""
+
+    position: int
+    left_particle: str
+    right_particle: str
+    punctuation: str
+
+    def public_dict(self) -> dict[str, object]:
+        return {
+            "position": self.position,
+            "left_particle": self.left_particle,
+            "right_particle": self.right_particle,
+            "punctuation": self.punctuation,
+            "pattern": (
+                f"{self.left_particle}{self.punctuation}{self.right_particle}"
+            ),
+        }
 
 
 def split_for_refinement(
@@ -192,6 +254,93 @@ def source_punctuation_lost(source_text: str, refined_text: str) -> bool:
     """
 
     return _punctuation_subsequence_lost(source_text, refined_text)
+
+
+def detect_boundary_anomalies(text: str) -> tuple[BoundaryAnomaly, ...]:
+    """Detect punctuation splits that duplicate a low-risk function particle.
+
+    This is deliberately a detector only.  It never edits text and excludes
+    common lexical continuations such as ``的确`` and ``了不起``.
+    """
+
+    anomalies: list[BoundaryAnomaly] = []
+    for match in _BOUNDARY_DUPLICATE_RE.finditer(text):
+        right_start = match.start("right")
+        if any(text.startswith(exception, right_start) for exception in _BOUNDARY_DUPLICATE_EXCEPTIONS):
+            continue
+        anomalies.append(
+            BoundaryAnomaly(
+                position=match.start(),
+                left_particle=match.group("left"),
+                right_particle=match.group("right"),
+                punctuation=match.group("punctuation"),
+            )
+        )
+    return tuple(anomalies)
+
+
+def validate_boundary_repair(
+    source: str,
+    target: str,
+    reason: str,
+    *,
+    protected_spans: Iterable[str] = (),
+) -> bool:
+    """Validate one structured, local repair of an anomalous boundary.
+
+    Only deletion-only patches over a detected ``particle + punctuation +
+    particle`` anomaly are accepted.  Numeric values, protected placeholders,
+    and negation characters must remain unchanged; all other semantic guards
+    still run after this validator returns.
+    """
+
+    if not SAFE_BOUNDARY_REPAIR_ENABLED:
+        return False
+    normalized_reason = str(reason).strip().lower()
+    if normalized_reason not in _SAFE_BOUNDARY_REASONS:
+        return False
+    source = str(source)
+    target = str(target)
+    if not source or not target or len(source) > 30:
+        return False
+    if not detect_boundary_anomalies(source):
+        return False
+    if _numeric_values(source) != _numeric_values(target):
+        return False
+    if tuple(_PLACEHOLDER_RE.findall(source)) != tuple(_PLACEHOLDER_RE.findall(target)):
+        return False
+    if tuple(char for char in source if char in _NEGATION_CHARS) != tuple(
+        char for char in target if char in _NEGATION_CHARS
+    ):
+        return False
+    protected = tuple(item for item in protected_spans if item)
+    if any(source.count(item) != target.count(item) for item in protected):
+        return False
+
+    punctuation_chars = _PUNCTUATION_WINDOW_CHARS
+    deleted_punctuation = 0
+    deleted_content: list[str] = []
+    matcher = SequenceMatcher(None, source, target, autojunk=False)
+    for tag, source_start, source_end, target_start, target_end in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        if tag != "delete":
+            return False
+        deleted = source[source_start:source_end]
+        deleted_punctuation += sum(char in punctuation_chars for char in deleted)
+        deleted_content.extend(
+            char for char in deleted
+            if char not in punctuation_chars and not char.isspace()
+        )
+    if not deleted_punctuation or deleted_punctuation > 2:
+        return False
+    if len(deleted_content) > 1:
+        return False
+    if deleted_content:
+        anomalies = detect_boundary_anomalies(source)
+        if not any(char == anomaly.right_particle for char in deleted_content for anomaly in anomalies):
+            return False
+    return True
 
 
 def _punctuation_subsequence_lost(
@@ -669,6 +818,30 @@ def _matched_correction_tail_span(
                 if _is_window_punctuation(raw_surface, index):
                     allowed_start = index
                     break
+            # A filler can sit between the abandoned clause and the explicit
+            # correction (``苹果，嗯，不对，我有梨``).  Its punctuation is
+            # part of the superseded prefix too, so widen the exempted span
+            # across filler-only material.  Do not cross ordinary lexical
+            # content or an unrelated sentence boundary.
+            while allowed_start > 0:
+                previous_mark = None
+                for index in range(allowed_start - 1, -1, -1):
+                    if _is_window_punctuation(raw_surface, index):
+                        previous_mark = index
+                        break
+                if previous_mark is None:
+                    break
+                filler_surface = raw_surface[previous_mark + 1 : allowed_start]
+                tokens = [
+                    token
+                    for token in re.split(r"[，,、；;：:\s]+", filler_surface)
+                    if token
+                ]
+                if not tokens or not all(
+                    token in _CORRECTION_FILLER_TOKENS for token in tokens
+                ):
+                    break
+                allowed_start = previous_mark
             return allowed_start, tail_start, tail
     return None
 

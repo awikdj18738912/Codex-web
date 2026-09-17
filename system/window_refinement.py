@@ -8,12 +8,18 @@ three sentence chunks and at most 80 characters by default.
 """
 import re
 from threading import Lock
-from .chunking import ChunkManager, merge_self_correction_chunks
+from .chunking import (
+    ChunkManager,
+    merge_boundary_anomaly_chunks,
+    merge_self_correction_chunks,
+)
 from .deterministic_cleanup import clean_transcript_deterministically
 from .refinement_guard import join_refined_segments
 
 
-_SELF_CORRECTION = re.compile(r"(?:不对|不是|而是|应该是)")
+_SELF_CORRECTION = re.compile(
+    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|而是)"
+)
 
 
 class StreamingRefinementDisplay:
@@ -201,8 +207,11 @@ class CumulativeWindowRefinement:
             )
             chunks = [
                 c.text
-                for c in merge_self_correction_chunks(
-                    manager.update(text, vad_boundary=True),
+                for c in merge_boundary_anomaly_chunks(
+                    merge_self_correction_chunks(
+                        manager.update(text, vad_boundary=True),
+                        self.window_max_chars,
+                    ),
                     self.window_max_chars,
                 )
             ]
@@ -371,6 +380,7 @@ class CumulativeWindowRefinement:
             "refiner_retry_reasons",
             "refinement_gate_decisions",
             "structured_patch_audits",
+            "boundary_anomalies",
         ):
             result[key] = [item for p in parts for item in p.get(key, [])]
         result["entity_matcher_latency_ms"] = sum(

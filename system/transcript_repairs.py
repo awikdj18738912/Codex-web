@@ -188,6 +188,11 @@ KNOWN_TRANSCRIPT_REPAIRS: tuple[KnownTranscriptRepair, ...] = (
         "黄土高原早已换了模样",
         "repeated_time_adverb",
     ),
+    KnownTranscriptRepair(
+        "但是三番五次的。的提醒就不太好了",
+        "但是三番五次的提醒就不太好了",
+        "boundary_punctuation_cross_window",
+    ),
 )
 
 

@@ -26,8 +26,9 @@ STRUCTURED_REFINER_SYSTEM_PROMPT = (
     '{"action":"keep","source":"","target":"","reason":"no_change"}。'
     "需要修改时返回 {\"action\":\"replace\",\"source\":\"原文中的连续片段\","
     "\"target\":\"修改后的片段\",\"reason\":\"具体原因\"}。source 必须逐字来自输入，"
-    "target 不得凭空增加没有依据的实词；允许 source 跨相邻标点块以处理自我修正，"
-    "但只能修改一个局部片段。"
+    "target 不得凭空增加没有依据的实词；reason 优先使用 no_change、disfluency、"
+    "repetition、self_correction、boundary_punctuation、local_typo 之一；允许 source"
+    "跨相邻标点块以处理自我修正，但只能修改一个局部片段。"
 )
 
 STRICT_PLACEHOLDER_PROMPT = (
@@ -77,7 +78,12 @@ def apply_structured_patch(
     )
 
 
-def permits_boundary_punctuation_repair(payload: dict[str, object] | None) -> bool:
+def permits_boundary_punctuation_repair(
+    payload: dict[str, object] | None,
+    *,
+    source_text: str | None = None,
+    protected_spans: tuple[str, ...] = (),
+) -> bool:
     """Return whether a patch explicitly requests a bounded boundary repair.
 
     Source punctuation is protected by default.  Removing one or two marks is
@@ -109,7 +115,21 @@ def permits_boundary_punctuation_repair(payload: dict[str, object] | None) -> bo
     deleted = sum(char in punctuation_chars for char in source) - sum(
         char in punctuation_chars for char in target
     )
-    return 1 <= deleted <= 2
+    if not 1 <= deleted <= 2:
+        return False
+    if source_text is None:
+        # Keep the protocol helper backwards-compatible for callers that only
+        # perform a syntactic patch check.  Runtime acceptance passes the
+        # source text and uses the full anomaly validator below.
+        return True
+    from .refinement_guard import validate_boundary_repair
+
+    return validate_boundary_repair(
+        source,
+        target,
+        reason,
+        protected_spans=protected_spans,
+    )
 
 
 def _extract_json_object(value: str) -> dict[str, object] | None:

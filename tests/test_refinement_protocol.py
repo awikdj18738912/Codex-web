@@ -64,6 +64,28 @@ class StructuredPatchTest(unittest.TestCase):
                 }
             )
         )
+        self.assertTrue(
+            permits_boundary_punctuation_repair(
+                {
+                    "action": "replace",
+                    "source": "三番五次的。的提醒",
+                    "target": "三番五次的提醒",
+                    "reason": "boundary_punctuation",
+                },
+                source_text="三番五次的。的提醒",
+            )
+        )
+        self.assertFalse(
+            permits_boundary_punctuation_repair(
+                {
+                    "action": "replace",
+                    "source": "第一段。第二段",
+                    "target": "第一段第二段",
+                    "reason": "boundary_punctuation",
+                },
+                source_text="第一段。第二段",
+            )
+        )
 
 
 if __name__ == "__main__":

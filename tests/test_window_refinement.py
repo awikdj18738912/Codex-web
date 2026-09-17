@@ -202,6 +202,46 @@ class WindowTest(unittest.TestCase):
             any("我有一个苹果，不对，我有一个梨。" in call for call in calls)
         )
 
+    def test_self_correction_reopens_committed_antecedent_after_filler(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            clean = text.replace(
+                "然后我有一箱苹果，嗯，不对我有一箱梨。",
+                "然后我有一箱梨。",
+            )
+            return {
+                "raw_text": text,
+                "clean_text": clean,
+                "refiner_latency_ms": 1,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine,
+            window_size=1,
+            one_punctuation_window=True,
+        )
+        session.update("甲。然后我有一箱苹果，嗯，", "Chinese", True, None, None)
+        result = session.update(
+            "甲。然后我有一箱苹果，嗯，不对我有一箱梨。",
+            "Chinese",
+            True,
+            None,
+            None,
+        )
+
+        self.assertEqual(result["clean_text"], "甲。然后我有一箱梨。")
+        self.assertIn("然后我有一箱苹果，嗯，不对我有一箱梨。", calls)
+
     def test_correction_after_sentence_boundary_is_not_committed_separately(self):
         text = "你好，我有一个苹果。不对，我有一个梨。我有一千元。"
         self.update(text, True)
