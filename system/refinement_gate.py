@@ -14,6 +14,7 @@ from difflib import SequenceMatcher
 from enum import Enum
 from typing import Iterable
 
+from .numeric_normalizer import _COUNT_UNITS, _MEASURE_UNITS
 from .refinement_guard import detect_boundary_anomalies
 
 
@@ -35,9 +36,24 @@ _SELF_CORRECTION_RE = re.compile(
 _CROSS_CLAUSE_PUNCTUATION_RE = re.compile(
     r"[\u3400-\u9fff][。！？!?][\u3400-\u9fff]"
 )
+_NUMERIC_CLASSIFIER_PATTERN = "|".join(
+    sorted(
+        map(re.escape, dict.fromkeys((*_COUNT_UNITS, *_MEASURE_UNITS, "座"))),
+        key=len,
+        reverse=True,
+    )
+)
+# This is a routing hint only. Multi-character Chinese numbers are allowed
+# without a following unit, while a single digit needs numeric grammar (a
+# classifier/measure, percentage, ordinal, or decimal context). This avoids
+# waking the model for lexical uses such as ``不值一提`` without maintaining
+# sentence- or phrase-specific exceptions.
 _NUMERIC_NORMALIZATION_RE = re.compile(
-    r"(?:百分之[零〇一二三四五六七八九十百千万亿两0-9]+"
-    r"|[零〇一二三四五六七八九十百千万亿两]{2,}(?=[年月日号元块点]|人民币))"
+    r"百分之[零〇一二三四五六七八九十百千万亿两0-9]+"
+    r"|第[零〇一二三四五六七八九十百千万亿两]+"
+    r"|[零〇一二三四五六七八九十百千万亿两]{2,}"
+    r"(?:点[零〇一二三四五六七八九]+)?"
+    rf"|[零〇一二三四五六七八九两](?:{_NUMERIC_CLASSIFIER_PATTERN})"
 )
 
 
@@ -155,10 +171,10 @@ class RefinementGate:
     """Conservative pre-Refiner gate with no model or database dependency.
 
     In ``off`` mode every non-empty segment follows the original Refiner path.
-    In ``conservative`` mode the gate skips only very short fragments, or
-    complete high-confidence text with no visible cleanup signal.  Missing ASR
-    confidence, calibration evidence, or complete segment coverage is treated
-    as uncertainty and therefore does not skip useful refinement work.
+    In ``conservative`` mode the gate skips complete high-confidence text with
+    no visible cleanup signal. Missing ASR confidence, calibration evidence,
+    or complete segment coverage is treated as uncertainty and therefore does
+    not skip useful refinement work.
     """
 
     def __init__(
@@ -166,16 +182,12 @@ class RefinementGate:
         mode: str | RefinementGateMode = RefinementGateMode.OFF,
         *,
         high_confidence: float = 0.92,
-        max_short_chars: int = 2,
         refine_on_unverified_confidence: bool = True,
     ) -> None:
         self.mode = RefinementGateMode.parse(mode)
         if not 0 <= high_confidence <= 1:
             raise ValueError("high_confidence must be between 0 and 1")
-        if max_short_chars < 0:
-            raise ValueError("max_short_chars must be non-negative")
         self.high_confidence = high_confidence
-        self.max_short_chars = max_short_chars
         # Kept configurable for A/B compatibility.  The Web service enables
         # the fail-closed value because Qwen currently reports only a short,
         # uncalibrated generated suffix rather than confidence for the full
@@ -188,7 +200,6 @@ class RefinementGate:
         return {
             "mode": self.mode.value,
             "high_confidence": self.high_confidence,
-            "max_short_chars": self.max_short_chars,
             "refine_on_unverified_confidence": self.refine_on_unverified_confidence,
         }
 
@@ -207,6 +218,7 @@ class RefinementGate:
         unchanged_updates: int = 0,
         cooldown_active: bool = False,
         same_as_last_refined: bool = False,
+        numeric_refinement: bool = False,
     ) -> RefinementGateDecision:
         source = text.strip()
         visible_chars = len(_VISIBLE_RE.findall(source))
@@ -229,6 +241,7 @@ class RefinementGate:
                 unchanged_updates=unchanged_updates,
                 cooldown_active=cooldown_active,
                 same_as_last_refined=same_as_last_refined,
+                numeric_refinement=numeric_refinement,
             )
 
         if self.mode is RefinementGateMode.OFF:
@@ -252,11 +265,6 @@ class RefinementGate:
             return self._decision(
                 True, "cleanup_signal_present", visible_chars, asr_confidence,
                 calibrated, covers_segment, signals
-            )
-        if visible_chars <= self.max_short_chars:
-            return self._decision(
-                False, "too_short_for_safe_refinement", visible_chars,
-                asr_confidence, calibrated, covers_segment, signals
             )
         if asr_confidence is None:
             return self._decision(
@@ -305,12 +313,14 @@ class RefinementGate:
         unchanged_updates: int,
         cooldown_active: bool,
         same_as_last_refined: bool,
+        numeric_refinement: bool,
     ) -> RefinementGateDecision:
         """Route a cumulative hypothesis to keep, defer, or refine.
 
         ``defer`` is limited to non-final unstable hypotheses; finalization
-        always resolves to either ``keep`` or ``refine``. Numeric normalization
-        is deterministic and does not by itself wake the neural Refiner.
+        always resolves to either ``keep`` or ``refine``. Numeric signals can
+        wake the neural Refiner when model-driven numeric normalization is
+        enabled by the caller.
         """
         del unchanged_updates  # retained for future policy tuning and auditability
         if not source:
@@ -339,9 +349,13 @@ class RefinementGate:
             )
 
         # Entity hints and human disfluency signals are high-value reasons to
-        # spend a model call. Numeric normalization remains deterministic.
+        # spend a model call. In model-driven numeric mode, a numeric signal
+        # is also a reason to invoke the Refiner; in deterministic mode it is
+        # handled by the numeric normalizer instead.
         model_signals = tuple(
-            signal for signal in signals if signal != "numeric_normalization"
+            signal
+            for signal in signals
+            if numeric_refinement or signal != "numeric_normalization"
         )
         if hints:
             return self._decision(
@@ -353,13 +367,6 @@ class RefinementGate:
                 True, "cleanup_signal_present", visible_chars, asr_confidence,
                 calibrated, covers_segment, signals, action="refine"
             )
-        if visible_chars <= self.max_short_chars:
-            return self._decision(
-                False, "too_short_for_safe_refinement", visible_chars,
-                asr_confidence, calibrated, covers_segment, signals,
-                action="keep"
-            )
-
         confidence_usable = (
             asr_confidence is not None and calibrated and covers_segment
         )

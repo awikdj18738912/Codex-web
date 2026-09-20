@@ -42,20 +42,42 @@ class StreamingVADGate:
         *,
         sample_rate: int = 16_000,
         preroll_seconds: float = 0.35,
+        window_samples: int | None = None,
     ) -> None:
         if sample_rate <= 0:
             raise ValueError("sample_rate must be positive")
         if preroll_seconds < 0:
             raise ValueError("preroll_seconds must be non-negative")
+        if window_samples is not None and window_samples <= 0:
+            raise ValueError("window_samples must be positive")
         self.detector = detector
         self.sample_rate = sample_rate
         self.preroll_seconds = preroll_seconds
+        self.window_samples = window_samples
         self.active = False
         self._preroll: deque[np.ndarray] = deque()
         self._preroll_samples = 0
 
     def _remember_preroll(self, samples: np.ndarray) -> None:
-        if self.preroll_seconds <= 0 or samples.size == 0:
+        if samples.size == 0:
+            return
+        if self.window_samples is not None:
+            # Match AgenticASR-original: pre-roll is retained as complete VAD
+            # windows, with the window count rounded from the requested time.
+            limit_windows = max(
+                1,
+                round(
+                    self.preroll_seconds
+                    * self.sample_rate
+                    / self.window_samples
+                ),
+            )
+            self._preroll.append(samples.copy())
+            self._preroll_samples += samples.size
+            while len(self._preroll) > limit_windows:
+                self._preroll_samples -= self._preroll.popleft().size
+            return
+        if self.preroll_seconds <= 0:
             return
         limit = max(1, round(self.preroll_seconds * self.sample_rate))
         chunk = samples[-limit:].copy()
@@ -114,9 +136,12 @@ class StreamingVADGate:
             # the detector's hangover timer changes to non-speech.
             forward = chunk.copy()
         else:
-            self._remember_preroll(chunk)
             forward = None
 
+        # AgenticASR-original appends every processed VAD window after making
+        # the forwarding/finalization decision.  Keeping the same ordering is
+        # important at both the speech-start and speech-end boundaries.
+        self._remember_preroll(chunk)
         self.active = speech
         return VADDecision(
             forward=forward,

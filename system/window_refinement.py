@@ -180,6 +180,7 @@ class CumulativeWindowRefinement:
         self.one_punctuation_window = one_punctuation_window
         self.committed = []
         self.active = None
+        self.boundary_reviews = []
         self.lock = Lock()
 
     @property
@@ -199,22 +200,42 @@ class CumulativeWindowRefinement:
         matcher=None,
         *,
         confidence_metadata=None,
+        source_chunks=None,
     ):
         with self.lock:
-            manager = ChunkManager(
-                max_chars=self.window_max_chars,
-                one_punctuation_window=self.one_punctuation_window,
-            )
-            chunks = [
-                c.text
-                for c in merge_boundary_anomaly_chunks(
-                    merge_self_correction_chunks(
-                        manager.update(text, vad_boundary=True),
-                        self.window_max_chars,
-                    ),
-                    self.window_max_chars,
+            if source_chunks is None:
+                manager = ChunkManager(
+                    max_chars=self.window_max_chars,
+                    one_punctuation_window=self.one_punctuation_window,
                 )
-            ]
+                chunks = [
+                    c.text
+                    for c in merge_boundary_anomaly_chunks(
+                        merge_self_correction_chunks(
+                            manager.update(text, vad_boundary=True),
+                            self.window_max_chars,
+                        ),
+                        self.window_max_chars,
+                    )
+                ]
+            else:
+                # Real VAD-finalized segments already carry source ownership.
+                # Preserve those boundaries instead of reconstructing them
+                # from punctuation in the cumulative transcript.  Only split
+                # an unusually long segment to keep model input bounded.
+                chunks = []
+                for source_chunk in source_chunks:
+                    value = str(source_chunk).strip()
+                    if not value:
+                        continue
+                    if len(value) <= self.window_max_chars:
+                        chunks.append(value)
+                        continue
+                    manager = ChunkManager(max_chars=self.window_max_chars)
+                    chunks.extend(
+                        chunk.text
+                        for chunk in manager.update(value, vad_boundary=True)
+                    )
             start = self._active_start(chunks)
             # A recognizer may revise earlier text. Invalidate affected cached
             # spans using source equality, never refined-text character offsets.
@@ -249,6 +270,7 @@ class CumulativeWindowRefinement:
                         matcher,
                         single_window=True,
                         confidence_metadata=confidence_metadata,
+                        force_refine=source_chunks is not None,
                     )
                 self.committed.append((chunk, result))
             source = join_refined_segments(chunks[start:])
@@ -282,6 +304,7 @@ class CumulativeWindowRefinement:
                             matcher,
                             single_window=True,
                             confidence_metadata=confidence_metadata,
+                            force_refine=source_chunks is not None,
                         )
                         for chunk in active_chunks
                     ]
@@ -301,6 +324,7 @@ class CumulativeWindowRefinement:
                         matcher,
                         single_window=True,
                         confidence_metadata=confidence_metadata,
+                        force_refine=source_chunks is not None,
                     )
                 # A long active window can trigger the content-loss guard even
                 # when most of its individual chunks are safe. Recover it at
@@ -321,6 +345,7 @@ class CumulativeWindowRefinement:
                             matcher,
                             single_window=True,
                             confidence_metadata=confidence_metadata,
+                            force_refine=source_chunks is not None,
                         )
                         for chunk in chunks[start:]
                     ]
@@ -330,6 +355,23 @@ class CumulativeWindowRefinement:
                         final=final,
                         committed_chunks=0,
                     )
+                if source_chunks is not None:
+                    review = {
+                        "source_chunk_indices": list(
+                            range(start + 1, len(chunks) + 1)
+                        ),
+                        "source_text": source,
+                        "clean_text": result.get("clean_text", source),
+                        "accepted": result.get("refiner_accepted", True),
+                        "reject_reasons": list(
+                            result.get("refiner_reject_reasons", [])
+                        ),
+                    }
+                    if (
+                        not self.boundary_reviews
+                        or self.boundary_reviews[-1] != review
+                    ):
+                        self.boundary_reviews.append(review)
                 self.active = (source, result)
             parts = [result for _, result in self.committed] + [self.active[1]]
             result = self._aggregate(
@@ -344,7 +386,42 @@ class CumulativeWindowRefinement:
                 start,
                 parts,
             )
+            if source_chunks is not None:
+                result["boundary_reviews"] = list(self.boundary_reviews)
             return result
+
+    def update_segments(
+        self,
+        segments,
+        language,
+        final,
+        protector,
+        confidence,
+        matcher=None,
+        *,
+        confidence_metadata=None,
+        raw_text=None,
+    ):
+        """Refine stable ASR/VAD source segments through one persistent K-window."""
+
+        source_chunks = tuple(
+            value for value in (str(segment).strip() for segment in segments) if value
+        )
+        source_text = (
+            str(raw_text).strip()
+            if raw_text is not None
+            else join_refined_segments(source_chunks)
+        )
+        return self.update(
+            source_text,
+            language,
+            final,
+            protector,
+            confidence,
+            matcher,
+            confidence_metadata=confidence_metadata,
+            source_chunks=source_chunks,
+        )
 
     def _aggregate(self, parts, raw_text, *, final, committed_chunks):
         result = dict(parts[-1])
@@ -381,6 +458,7 @@ class CumulativeWindowRefinement:
             "refinement_gate_decisions",
             "structured_patch_audits",
             "boundary_anomalies",
+            "boundary_reviews",
         ):
             result[key] = [item for p in parts for item in p.get(key, [])]
         result["entity_matcher_latency_ms"] = sum(

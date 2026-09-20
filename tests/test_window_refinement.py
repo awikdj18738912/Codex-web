@@ -52,6 +52,43 @@ class WindowTest(unittest.TestCase):
         )
         self.assertEqual(result["window_size"], 3)
 
+    def test_vad_segments_are_refined_as_one_cross_boundary_window(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            clean = text.replace("甲。乙", "甲乙").replace("你。你", "你")
+            return {
+                "raw_text": text,
+                "clean_text": clean,
+                "refiner_latency_ms": 1,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(refine, window_size=3)
+        result = session.update_segments(
+            ("前文甲。", "乙补充。", "你。你来了。"),
+            "Chinese",
+            True,
+            None,
+            None,
+        )
+
+        self.assertEqual(calls, ["前文甲。乙补充。你。你来了。"])
+        self.assertEqual(result["clean_text"], "前文甲乙补充。你来了。")
+        self.assertEqual(
+            result["boundary_reviews"][0]["source_chunk_indices"],
+            [1, 2, 3],
+        )
+        self.assertTrue(result["boundary_reviews"][0]["accepted"])
+
     def test_post_merge_boundary_repair_handles_keep_chunks(self):
         """Reviewed repairs still run when a bad mark split two KEEP chunks."""
 

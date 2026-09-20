@@ -60,6 +60,45 @@ class StreamingVADGateTest(unittest.TestCase):
         decision = gate.accept(np.full(10, 3, dtype=np.float32))
         np.testing.assert_array_equal(decision.forward, np.concatenate((np.full(5, 2), np.full(10, 3))))
 
+    def test_original_mode_retains_complete_rounded_windows(self) -> None:
+        detector = FakeDetector([False, False, False, True])
+        gate = StreamingVADGate(
+            detector,
+            sample_rate=10,
+            preroll_seconds=0.5,
+            window_samples=2,
+        )
+        gate.accept(np.full(2, 1, dtype=np.float32))
+        gate.accept(np.full(2, 2, dtype=np.float32))
+        gate.accept(np.full(2, 3, dtype=np.float32))
+
+        decision = gate.accept(np.full(2, 4, dtype=np.float32))
+
+        # round(0.5 * 10 / 2) == 2 complete pre-roll windows.
+        np.testing.assert_array_equal(
+            decision.forward,
+            np.concatenate((np.full(2, 2), np.full(2, 3), np.full(2, 4))),
+        )
+
+    def test_original_mode_remembers_endpoint_window_for_next_segment(self) -> None:
+        detector = FakeDetector([True, False, True])
+        gate = StreamingVADGate(
+            detector,
+            sample_rate=10,
+            preroll_seconds=0,
+            window_samples=2,
+        )
+        gate.accept(np.full(2, 1, dtype=np.float32))
+        gate.accept(np.full(2, 2, dtype=np.float32))
+
+        decision = gate.accept(np.full(2, 3, dtype=np.float32))
+
+        # original uses max(1, rounded_window_count), even for zero seconds.
+        np.testing.assert_array_equal(
+            decision.forward,
+            np.concatenate((np.full(2, 2), np.full(2, 3))),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

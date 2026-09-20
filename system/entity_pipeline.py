@@ -129,8 +129,10 @@ def finalize_entity_segment(
             False,
             restored.reject_reasons,
         )
-    restored_text = preserve_terminal_punctuation(
-        prepared.baseline_text, restored.text
+    restored_text = (
+        preserve_terminal_punctuation(prepared.baseline_text, restored.text)
+        if preserve_source_punctuation
+        else restored.text
     )
     punctuation_reasons = (
         ("source_punctuation_lost",)

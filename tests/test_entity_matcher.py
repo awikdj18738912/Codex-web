@@ -151,6 +151,20 @@ class EntityCandidateMatcherTest(unittest.TestCase):
 
 
 class EntityPipelineTest(unittest.TestCase):
+    def test_default_finalization_allows_source_punctuation_edit(self) -> None:
+        protector = EntityProtector(())
+        prepared = prepare_entity_segment(
+            "第一段。",
+            protector,
+            None,
+            allow_auto=False,
+        )
+
+        finalized = finalize_entity_segment("第一段", prepared, protector)
+
+        self.assertTrue(finalized.accepted)
+        self.assertEqual(finalized.text, "第一段")
+
     def test_auto_match_is_masked_and_restored_to_canonical(self) -> None:
         entity = _definition("鬼灵门")
         protector = EntityProtector((entity,))

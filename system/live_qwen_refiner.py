@@ -255,7 +255,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--disable-numeric-normalization",
         action="store_true",
-        help="disable deterministic context-bound Chinese number normalization",
+        help="keep model-driven numeric normalization enabled (legacy alias)",
+    )
+    parser.add_argument(
+        "--enable-numeric-normalization",
+        action="store_true",
+        help="enable legacy deterministic context-bound Chinese number normalization",
     )
     args = parser.parse_args(argv)
     if args.preroll < 0 or args.asr_timeout <= 0:
@@ -350,7 +355,7 @@ def main(argv: list[str] | None = None) -> int:
         protection = prepared.protection
         normalized_baseline = (
             numeric_normalizer.normalize(prepared.baseline_text)
-            if not args.disable_numeric_normalization
+            if args.enable_numeric_normalization and not args.disable_numeric_normalization
             else None
         )
         baseline_text = (
@@ -360,7 +365,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         masked_text = (
             numeric_normalizer.normalize(protection.masked_text).text
-            if not args.disable_numeric_normalization
+            if args.enable_numeric_normalization and not args.disable_numeric_normalization
             else protection.masked_text
         )
         gate_decision = refinement_gate.decide(
@@ -368,6 +373,10 @@ def main(argv: list[str] | None = None) -> int:
             asr_confidence=asr_confidence,
             entity_hints=prepared.hints,
             is_final=True,
+            numeric_refinement=(
+                not args.enable_numeric_normalization
+                or args.disable_numeric_normalization
+            ),
         )
         refiner_executed = gate_decision.should_refine
         latency_ms = 0.0
@@ -431,7 +440,7 @@ def main(argv: list[str] | None = None) -> int:
             finalized_accepted = True
             finalized_reasons: tuple[str, ...] = ()
         numeric_changes = ()
-        if not args.disable_numeric_normalization:
+        if args.enable_numeric_normalization and not args.disable_numeric_normalization:
             normalized_output = numeric_normalizer.normalize(refined_text)
             refined_text = normalized_output.text
             numeric_changes = (
@@ -510,7 +519,10 @@ def main(argv: list[str] | None = None) -> int:
                             matcher.config.version if matcher is not None else None
                         ),
                         "rule_protection_enabled": not args.disable_rule_protection,
-                        "numeric_normalization_enabled": not args.disable_numeric_normalization,
+                        "numeric_normalization_enabled": (
+                            args.enable_numeric_normalization
+                            and not args.disable_numeric_normalization
+                        ),
                     },
                 },
             )

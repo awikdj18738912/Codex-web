@@ -10,7 +10,7 @@ AgenticASR 将自动语音识别（ASR）的原始转写进一步整理成可读
 - **理解自我修正**：结合上下文处理“我想要苹果——不对，是梨”这类改口，而不是机械保留错误版本。
 - **适配不同 ASR 前端**：批处理和浏览器服务可接入 Qwen3-ASR 或 Whisper；本地流式示例还支持 sherpa-onnx。
 - **支持离线与流式使用**：批量精修已有转写、对音频文件端到端处理，或通过浏览器麦克风和分块上传音频。
-- **保护重要内容**：术语、缩写、URL 和标识符可先掩码再恢复；数字由上下文规则处理；模型候选经校验，失败时回退到规则处理后的 ASR 文本。
+- **保护重要内容**：术语、缩写、URL 和标识符可先掩码再恢复；普通数字由 Refiner 按语义规范化，固定数字成语单独掩码保护；模型候选经校验，失败时回退到原始 ASR 文本。
 - **支持研究复现**：包含训练数据生成、SFT 导出、AASR-Bench Judge、CER/WER/MER 指标和置信度校准脚本。
 
 AASR-Bench 公开版本包含 917 条样本和 6,637 项原子评分标准，覆盖 Content、Format、Filter、Rephrase。
@@ -24,7 +24,7 @@ AASR-Bench 公开版本包含 917 条样本和 6,637 项原子评分标准，覆
        ASR 前端（Qwen3 / Whisper / sherpa-onnx）
                  │ 原始假设 raw_text
                  ▼
-   分段与窗口 → 实体/术语保护 → 数字规则
+   分段与窗口 → 实体/术语保护与数字成语掩码
                  │
                  ▼
       off / conservative / tri_state 门控 → Refiner（按状态调用）
@@ -40,7 +40,7 @@ AASR-Bench 公开版本包含 917 条样本和 6,637 项原子评分标准，覆
 实验评测：批量推理 → 基准 Judge / CER、WER、MER
 ~~~
 
-精修不是单一模型调用。当前系统会组合分段、实体保护、确定性数字转换、可选门控、Refiner 和输出校验。原始 ASR 文本与最终 clean_text 分开保存；占位符或数值校验失败时，不会直接采用有问题的候选。
+精修不是单一模型调用。当前系统会组合分段、实体保护、模型数字规范化、可选门控、Refiner 和输出校验。普通数字交给模型按语义转换，固定数字成语在模型前后保持原样；原始 ASR 文本与最终 clean_text 分开保存，数值校验失败时回退到原始 ASR 文本。
 
 ## 仓库模块
 
@@ -72,6 +72,14 @@ bash scripts/start_web.sh
 ~~~
 
 启动成功后打开 [http://127.0.0.1:8081](http://127.0.0.1:8081)。脚本默认让 Qwen 监听 8766、Web 监听 8081。端口冲突时可设置 QWEN_PORT 或 WEB_PORT；修改 ASR 端口后也要同步设置 ASR_URL。
+
+Qwen ASR 服务同时支持当前 `/stream/...` 协议和原始 `/v1/stream/{session_id}/...` 协议。Web 默认使用当前协议；需要复现原始调用契约时可设置：
+
+~~~bash
+ASR_API_STYLE=legacy_v1 bash scripts/start_web.sh
+~~~
+
+等价的直接参数是 `python -m system.web_app ... --asr-api-style legacy_v1`。切换协议只改变 Web 与 ASR 之间的 HTTP 路由和参数位置，不会关闭当前服务端的 VAD、长音频分段或置信度功能。
 
 这两个脚本针对当前工作机配置了 Conda、模型和 GPU 默认路径。在其他机器上可覆盖 CONDA_EXE、QWEN_ENV、QWEN_MODEL、REFINER_MODEL、ENTITY_DB、QWEN_GPU、WEB_GPU 等环境变量。Qwen 服务还需要 Silero VAD 文件（默认 models/silero_vad.onnx）；Web 服务需要 Refiner checkpoint 和可用的 SQLite 实体库。脚本会检查依赖路径，但不会自动下载模型或创建 Conda 环境。详细参数见 [system/README.md](system/README.md) 和仓库根目录的 [启动指令](启动指令)。
 

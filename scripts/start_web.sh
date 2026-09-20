@@ -7,6 +7,7 @@ CONDA_EXE="${CONDA_EXE:-/home/aim0/anaconda3/bin/conda}"
 AGENTIC_ENV="${AGENTIC_ENV:-agentic-asr}"
 REFINER_MODEL="${REFINER_MODEL:-/home/aim0/data/models/ASR/AgenticASR-Refiner}"
 ASR_URL="${ASR_URL:-http://127.0.0.1:8766}"
+ASR_API_STYLE="${ASR_API_STYLE:-current}"
 ENTITY_DB="${ENTITY_DB:-${PROJECT_ROOT}/data/entities.db}"
 WEB_GPU="${WEB_GPU:-1}"
 WEB_PORT="${WEB_PORT:-8081}"
@@ -30,6 +31,7 @@ exec env CUDA_VISIBLE_DEVICES="${WEB_GPU}" "${CONDA_EXE}" run --no-capture-outpu
   --refiner-model "${REFINER_MODEL}" \
   --refiner-device cuda:0 \
   --asr-url "${ASR_URL}" \
+  --asr-api-style "${ASR_API_STYLE}" \
   --language "${LANGUAGE:-Chinese}" \
   --entity-db "${ENTITY_DB}" \
   --entity-fuzzy-mode "${ENTITY_FUZZY_MODE}" \

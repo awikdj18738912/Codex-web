@@ -12,11 +12,11 @@ class RefinementGateTest(unittest.TestCase):
         self.assertTrue(decision.should_refine)
         self.assertEqual(decision.reasons, ("gate_disabled",))
 
-    def test_conservative_mode_skips_unsafe_short_fragment(self) -> None:
+    def test_conservative_mode_applies_normal_policy_to_short_fragment(self) -> None:
         decision = RefinementGate("conservative").decide("好。")
 
-        self.assertFalse(decision.should_refine)
-        self.assertEqual(decision.reasons, ("too_short_for_safe_refinement",))
+        self.assertTrue(decision.should_refine)
+        self.assertEqual(decision.reasons, ("confidence_unavailable",))
 
     def test_entity_hint_overrides_short_fragment_skip(self) -> None:
         decision = RefinementGate("conservative").decide(
@@ -209,6 +209,27 @@ class RefinementGateTest(unittest.TestCase):
         self.assertTrue(decision.should_refine)
         self.assertIn("numeric_normalization", decision.cleanup_signals)
 
+    def test_single_lexical_numeral_does_not_trigger_numeric_refinement(self) -> None:
+        decision = RefinementGate("conservative").decide(
+            "这件事不值一提。",
+            asr_confidence=0.99,
+            calibrated=True,
+            covers_segment=True,
+        )
+
+        self.assertNotIn("numeric_normalization", decision.cleanup_signals)
+
+    def test_bare_multi_character_and_classifier_numbers_still_trigger(self) -> None:
+        for text in ("他今年五十。", "总共有三座。"):
+            with self.subTest(text=text):
+                decision = RefinementGate("conservative").decide(
+                    text,
+                    asr_confidence=0.99,
+                    calibrated=True,
+                    covers_segment=True,
+                )
+                self.assertIn("numeric_normalization", decision.cleanup_signals)
+
     def test_tri_state_defers_unstable_intermediate_hypothesis(self) -> None:
         decision = RefinementGate("tri_state").decide(
             "今天天气很好", stable=False, tail_age_ms=120.0
@@ -251,6 +272,20 @@ class RefinementGateTest(unittest.TestCase):
         self.assertTrue(decision.should_refine)
         self.assertEqual(decision.public_dict()["action"], "refine")
         self.assertEqual(decision.reasons, ("cleanup_signal_present",))
+
+    def test_tri_state_numeric_model_mode_wakes_refiner(self) -> None:
+        gate = RefinementGate("tri_state", refine_on_unverified_confidence=False)
+        for text in ("五十", "五十多座", "七十公里", "相当于建起了三座三峡。"):
+            with self.subTest(text=text):
+                decision = gate.decide(
+                    text,
+                    asr_confidence=0.99,
+                    numeric_refinement=True,
+                )
+
+                self.assertTrue(decision.should_refine)
+                self.assertEqual(decision.reasons, ("cleanup_signal_present",))
+                self.assertIn("numeric_normalization", decision.cleanup_signals)
 
     def test_tri_state_final_uncertainty_never_defers(self) -> None:
         decision = RefinementGate("tri_state").decide(

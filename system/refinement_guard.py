@@ -44,7 +44,6 @@ _CHINESE_NUMERAL_RE = re.compile(
 _ARABIC_NUMERAL_RE = re.compile(r"[+-]?\d+(?:\.\d+)?")
 _CHINESE_NUMERIC_UNITS = frozenset("十百千万亿年月日号元块点")
 _CHINESE_COUNT_UNITS = frozenset(_COUNT_UNITS)
-_AMBIGUOUS_NUMBER_SUFFIXES = frozenset("几多来余")
 _CHINESE_DIGITS = {
     "零": 0,
     "〇": 0,
@@ -559,6 +558,14 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
             if _meaningful_edit_text(source):
                 reasons.append("semantic_content_loss")
         elif tag == "replace":
+            # Compare the text surrounding an equivalent numeric core as
+            # well as the value itself.  This accepts open-ended approximate
+            # forms such as ``五十多座 -> 50多座`` without maintaining a
+            # suffix allowlist, while rejecting a candidate that silently
+            # drops the qualifier (``五十多 -> 50``).
+            if _numeric_context_is_lost(source, target):
+                reasons.append("numeric_value_mismatch")
+                continue
             if _allowed_replacement(
                 raw,
                 refined,
@@ -961,6 +968,42 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
         values.append((minute_start, match.end(2), minute, ""))
         occupied.append((start, end))
 
+    # Hybrid large-unit forms are the normal written result of ITN:
+    # ``六万 -> 6万`` and ``一点七亿 -> 1.7亿``.  Parse the Arabic
+    # coefficient together with the Chinese multiplier so both surfaces have
+    # one comparable semantic value.  The Chinese-decimal form needs the same
+    # treatment because the general numeral regex intentionally ends its
+    # fractional part before ``万``/``亿``.
+    for match in re.finditer(
+        r"([零〇一二三四五六七八九十百千两]+点[零〇一二三四五六七八九]+)([万亿])",
+        text,
+    ):
+        start, end = match.span()
+        if _overlaps(start, end, occupied):
+            continue
+        coefficient = _parse_chinese_number(match.group(1))
+        if coefficient is None:
+            continue
+        multiplier = Decimal(_CHINESE_LARGE_UNITS[match.group(2)])
+        values.append(
+            (start, end, coefficient * multiplier, _unit_for(text[end : end + 1]))
+        )
+        occupied.append((start, end))
+
+    for match in re.finditer(r"([+-]?\d+(?:\.\d+)?)([万亿])", text):
+        start, end = match.span()
+        if _overlaps(start, end, occupied):
+            continue
+        try:
+            coefficient = Decimal(match.group(1))
+        except InvalidOperation:
+            continue
+        multiplier = Decimal(_CHINESE_LARGE_UNITS[match.group(2)])
+        values.append(
+            (start, end, coefficient * multiplier, _unit_for(text[end : end + 1]))
+        )
+        occupied.append((start, end))
+
     for match in _ARABIC_NUMERAL_RE.finditer(text):
         start, end = match.span()
         if _overlaps(start, end, occupied):
@@ -1002,7 +1045,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
         # positional Chinese numeral whose value is 10.  It must be retained
         # here so ``十个`` and the equivalent ``10个`` compare equally.  The
         # same applies to ``百``/``千``/``万``/``亿``; fixed idioms and
-        # approximate forms are excluded above.
+        # ambiguous adjacent-digit runs are excluded above.
         if (
             len(token) == 1
             and token in _CHINESE_DIGITS
@@ -1026,6 +1069,21 @@ def _numeric_edit_is_equivalent(source: str, target: str) -> bool:
     if not source_values or source_values != _numeric_values(target):
         return False
     return _numeric_skeleton(source) == _numeric_skeleton(target)
+
+
+def _numeric_context_is_lost(source: str, target: str) -> bool:
+    """Return whether an equivalent local value lost its semantic shell.
+
+    Approximation, range, and boundary wording remains ordinary text in the
+    numeric skeleton.  The check is therefore vocabulary-independent: ``多``,
+    ``来``, ``左右``, ``上下``, ``不到`` and future forms all follow the same
+    rule instead of needing to be enumerated as numeric suffixes.
+    """
+
+    source_values = _numeric_values(source)
+    if not source_values or source_values != _numeric_values(target):
+        return False
+    return _numeric_skeleton(source) != _numeric_skeleton(target)
 
 
 def _numeric_surface_only(raw: str, refined: str) -> bool:
@@ -1067,7 +1125,12 @@ def _unit_for(value: str) -> str:
 
 
 def _ambiguous_chinese_number(token: str, text: str, end: int) -> bool:
-    """Keep approximate/list-like Chinese digit runs out of numeric checks."""
+    """Keep list-like Chinese digit runs out of numeric checks.
+
+    Approximation wording after a parseable value is deliberately not handled
+    here.  The numeric core is compared by value and its surrounding wording
+    is preserved by ``_numeric_context_is_lost``.
+    """
 
     # A date year such as ``二零一五年`` is an explicit numeric assertion;
     # other bare adjacent digits such as ``二三个人`` commonly mean an
@@ -1084,7 +1147,7 @@ def _ambiguous_chinese_number(token: str, text: str, end: int) -> bool:
         prefix = token[:first_unit]
         if all(char in _CHINESE_DIGITS for char in prefix):
             return True
-    return text[end : end + 1] in _AMBIGUOUS_NUMBER_SUFFIXES
+    return False
 
 
 def _parse_chinese_number(token: str) -> Decimal | None:

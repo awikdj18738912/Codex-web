@@ -309,6 +309,14 @@ class NumericValidationAlignmentTest(unittest.TestCase):
             ("走了二十分钟。", "走了20分钟。"),
             ("我让他五个法器；再不行，我让他十个，怎么样？", "我让他5个法器；再不行，我让他10个，怎么样？"),
             ("下午三点半开会。", "下午3点半开会。"),
+            ("总共发生了两千多次。", "总共发生了2000多次。"),
+            ("相当于五十多座水库。", "相当于50多座水库。"),
+            ("连接了三千多个湖泊。", "连接了3000多个湖泊。"),
+            ("大约三百来人到场。", "大约300来人到场。"),
+            ("不到五十公里。", "不到50公里。"),
+            ("数量在三百左右。", "数量在300左右。"),
+            ("容量约六万立方米。", "容量约6万立方米。"),
+            ("这里有一点七亿人口。", "这里有1.7亿人口。"),
         )
         for raw, refined in cases:
             with self.subTest(raw=raw, refined=refined):
@@ -321,6 +329,20 @@ class NumericValidationAlignmentTest(unittest.TestCase):
             ("我有两千一百三十五元。", "我有两百三十五元。"),
             ("我有百分之五的概率。", "我有百分之十五的概率。"),
             ("今天是一月五日。", "今天是12月5日。"),
+        )
+        for raw, refined in cases:
+            with self.subTest(raw=raw, refined=refined):
+                self.assertIn(
+                    "numeric_value_mismatch", reject_reasons(raw, refined)
+                )
+
+    def test_numeric_context_loss_is_rejected_without_a_suffix_allowlist(self) -> None:
+        cases = (
+            ("相当于五十多座水库。", "相当于50座水库。"),
+            ("大约三百来人到场。", "大约300人到场。"),
+            ("水深四十五点二二米。", "水深45.2米。"),
+            ("这里有一点七亿人口。", "这里有1.7亿元人口。"),
+            ("相当于二点六个三峡。", "相当于2.6三峡。"),
         )
         for raw, refined in cases:
             with self.subTest(raw=raw, refined=refined):

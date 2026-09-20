@@ -12,6 +12,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
+from enum import Enum
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -51,7 +52,6 @@ from .window_refinement import (
 from .session_memory import SessionEntityMemory
 from .refinement_protocol import (
     apply_structured_patch,
-    permits_boundary_punctuation_repair,
 )
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
@@ -81,6 +81,23 @@ ASR_CONTROL_REQUEST_TIMEOUT_SECONDS = 120.0
 # but allow chunk processing to finish before the browser's watchdog fires.
 ASR_CHUNK_REQUEST_TIMEOUT_SECONDS = 300.0
 ASR_CHUNK_STATUS_INTERVAL_SECONDS = 10.0
+class ASRApiStyle(str, Enum):
+    """Wire protocol used between the Web service and streaming ASR."""
+
+    CURRENT = "current"
+    LEGACY_V1 = "legacy_v1"
+
+    @classmethod
+    def parse(cls, value: str | "ASRApiStyle") -> "ASRApiStyle":
+        if isinstance(value, cls):
+            return value
+        try:
+            return cls(value)
+        except ValueError as error:
+            choices = ", ".join(style.value for style in cls)
+            raise ValueError(
+                f"unsupported ASR API style {value!r}; expected one of: {choices}"
+            ) from error
 
 
 class EntityInput(BaseModel):
@@ -248,19 +265,53 @@ def _stream_request(
     session_id: str | None = None,
     data: bytes = b"",
     params: dict[str, str] | None = None,
+    *,
+    api_style: str | ASRApiStyle = ASRApiStyle.CURRENT,
 ) -> dict[str, object]:
-    query_params = dict(params or {})
-    if session_id:
-        query_params["session_id"] = session_id
-    query = urllib.parse.urlencode(query_params)
-    url = f"{asr_url.rstrip('/')}{endpoint}"
-    if query:
-        url = f"{url}?{query}"
+    style = ASRApiStyle.parse(api_style)
+    request_data = data
+    content_type = "application/octet-stream"
+    method = "POST"
+    if style is ASRApiStyle.CURRENT:
+        query_params = dict(params or {})
+        if session_id:
+            query_params["session_id"] = session_id
+        query = urllib.parse.urlencode(query_params)
+        url = f"{asr_url.rstrip('/')}{endpoint}"
+        if query:
+            url = f"{url}?{query}"
+    else:
+        if endpoint == "/stream/start":
+            url = f"{asr_url.rstrip('/')}/v1/stream/start"
+            request_data = json.dumps(params or {}, ensure_ascii=False).encode("utf-8")
+            content_type = "application/json"
+        else:
+            if not session_id:
+                raise ValueError(f"{endpoint} requires a streaming ASR session_id")
+            encoded_session_id = urllib.parse.quote(session_id, safe="")
+            if endpoint == "/stream/chunk":
+                url = (
+                    f"{asr_url.rstrip('/')}/v1/stream/"
+                    f"{encoded_session_id}/chunk"
+                )
+            elif endpoint == "/stream/finish":
+                url = (
+                    f"{asr_url.rstrip('/')}/v1/stream/"
+                    f"{encoded_session_id}/finish"
+                )
+                request_data = b"{}"
+                content_type = "application/json"
+            elif endpoint == "/stream/cancel":
+                url = f"{asr_url.rstrip('/')}/v1/stream/{encoded_session_id}"
+                request_data = None
+                method = "DELETE"
+            else:
+                raise ValueError(f"unsupported streaming ASR endpoint: {endpoint}")
     request = urllib.request.Request(
         url,
-        data=data,
-        headers={"Content-Type": "application/octet-stream"},
-        method="POST",
+        data=request_data,
+        headers={"Content-Type": content_type},
+        method=method,
     )
     try:
         timeout = (
@@ -283,9 +334,23 @@ async def _stream_request_async(
     session_id: str | None = None,
     data: bytes = b"",
     params: dict[str, str] | None = None,
+    *,
+    api_style: str | ASRApiStyle = ASRApiStyle.CURRENT,
 ) -> dict[str, object]:
     """Run the blocking ASR HTTP adapter without stopping the WebSocket loop."""
 
+    style = ASRApiStyle.parse(api_style)
+    if style is ASRApiStyle.CURRENT:
+        # Preserve the original call shape so existing test doubles and custom
+        # adapters that implement the current protocol remain compatible.
+        return await asyncio.to_thread(
+            _stream_request,
+            asr_url,
+            endpoint,
+            session_id,
+            data,
+            params,
+        )
     return await asyncio.to_thread(
         _stream_request,
         asr_url,
@@ -293,6 +358,7 @@ async def _stream_request_async(
         session_id,
         data,
         params,
+        api_style=style,
     )
 
 
@@ -307,7 +373,8 @@ def create_app(
     entity_fuzzy_mode: str = "shadow",
     refinement_gate_mode: str = "off",
     rule_protection: bool = True,
-    numeric_normalization: bool = True,
+    numeric_normalization: bool = False,
+    asr_api_style: str = ASRApiStyle.CURRENT.value,
 ) -> FastAPI:
     app = FastAPI(docs_url=None, redoc_url=None)
     print("Loading AgenticASR Refiner...", flush=True)
@@ -330,6 +397,22 @@ def create_app(
         refinement_gate.mode is RefinementGateMode.TRI_STATE
     )
     numeric_normalizer = ContextualNumericNormalizer()
+    selected_asr_api_style = ASRApiStyle.parse(asr_api_style)
+
+    async def request_asr(
+        endpoint: str,
+        session_id: str | None = None,
+        data: bytes = b"",
+        params: dict[str, str] | None = None,
+    ) -> dict[str, object]:
+        return await _stream_request_async(
+            asr_url,
+            endpoint,
+            session_id,
+            data,
+            params,
+            api_style=selected_asr_api_style,
+        )
 
     def managed_entity_store() -> EntityStore:
         if entity_store is None:
@@ -350,6 +433,7 @@ def create_app(
         single_window: bool = False,
         confidence_metadata: dict[str, object] | None = None,
         call_stats: _RefinerSessionStats | None = None,
+        force_refine: bool = False,
     ) -> dict[str, object]:
         confidence_metadata = dict(confidence_metadata or {})
 
@@ -454,7 +538,20 @@ def create_app(
                 ),
                 entity_hints=hints,
                 is_final=final,
+                numeric_refinement=not numeric_normalization,
             )
+            if force_refine and not gate_decision.should_refine:
+                gate_decision = RefinementGateDecision(
+                    mode=gate_decision.mode,
+                    should_refine=True,
+                    reasons=("vad_finalized_window",),
+                    visible_chars=gate_decision.visible_chars,
+                    asr_confidence=gate_decision.asr_confidence,
+                    cleanup_signals=gate_decision.cleanup_signals,
+                    calibrated=gate_decision.calibrated,
+                    covers_segment=gate_decision.covers_segment,
+                    action="refine",
+                )
             refinement_gate_decisions.append(
                 {"segment_index": segment_index + 1, **gate_decision.public_dict()}
             )
@@ -528,17 +625,6 @@ def create_app(
                             structured_candidate,
                             prepared,
                             protector,
-                            preserve_source_punctuation=use_punctuation_windows,
-                            allow_boundary_punctuation_repair=(
-                                permits_boundary_punctuation_repair(
-                                    patch_payload,
-                                    source_text=masked_text,
-                                    protected_spans=tuple(
-                                        span.placeholder
-                                        for span in protection.spans
-                                    ),
-                                )
-                            ),
                         )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
                         initial_reasons = finalized.reject_reasons
@@ -573,17 +659,6 @@ def create_app(
                                 structured_retry,
                                 prepared,
                                 protector,
-                                preserve_source_punctuation=use_punctuation_windows,
-                                allow_boundary_punctuation_repair=(
-                                    permits_boundary_punctuation_repair(
-                                        retry_payload,
-                                        source_text=masked_text,
-                                        protected_spans=tuple(
-                                            span.placeholder
-                                            for span in protection.spans
-                                        ),
-                                    )
-                                ),
                             )
                 finally:
                     refiner_lock.release()
@@ -634,6 +709,7 @@ def create_app(
             "refiner_masked_outputs": refiner_masked_outputs,
             "structured_patch_audits": structured_patch_audits,
             "boundary_anomalies": boundary_anomalies,
+            "boundary_reviews": [],
             "refinement_gate_mode": refinement_gate.mode.value,
             "refinement_gate_config": refinement_gate.config_dict(),
             "refinement_gate_decisions": refinement_gate_decisions,
@@ -743,6 +819,7 @@ def create_app(
             "refiner_retry_reasons": [],
             "refiner_masked_outputs": [],
             "structured_patch_audits": [],
+            "boundary_reviews": [],
             "boundary_anomalies": [
                 anomaly
                 for segment in split_for_refinement(
@@ -788,6 +865,8 @@ def create_app(
             "ok": True,
             "entity_db": entity_store is not None,
             "refinement_gate_mode": refinement_gate.mode.value,
+            "asr_api_style": selected_asr_api_style.value,
+            "numeric_normalization_enabled": numeric_normalization,
         }
 
     @app.get("/api/entities")
@@ -971,11 +1050,14 @@ def create_app(
             str,
             int,
             int,
+            tuple[str, ...] | None,
         ] | None = None
         streaming_refiner_task: asyncio.Task[None] | None = None
         streaming_finish_requested = False
         latest_refinement_revision = 0
         last_refinement_started_at: float | None = None
+        vad_source_segments: list[str] = []
+        seen_vad_segment_ids: set[int] = set()
         # Every punctuation mark closes one source chunk in tri_state, while
         # the active model window still contains the latest three chunks. This
         # keeps comma boundaries visible without forcing one model call per
@@ -986,6 +1068,32 @@ def create_app(
             one_punctuation_window=use_punctuation_windows,
         )
         refinement_display = StreamingRefinementDisplay()
+
+        def consume_completed_segments(payload: dict[str, object]) -> int:
+            """Consume request-scoped ASR segment events exactly once."""
+
+            events = payload.get("completed_segments")
+            if not isinstance(events, list):
+                return 0
+            added = 0
+            for event in events:
+                if not isinstance(event, dict):
+                    continue
+                segment_id = event.get("segment_id")
+                text_value = event.get("text")
+                if (
+                    not isinstance(segment_id, int)
+                    or isinstance(segment_id, bool)
+                    or segment_id < 1
+                    or segment_id in seen_vad_segment_ids
+                    or not isinstance(text_value, str)
+                    or not text_value.strip()
+                ):
+                    continue
+                seen_vad_segment_ids.add(segment_id)
+                vad_source_segments.append(text_value.strip())
+                added += 1
+            return added
 
         def transcript_event(
             raw_text: str,
@@ -1052,6 +1160,7 @@ def create_app(
             asr_confidence: float | None,
             confidence_metadata: dict[str, object],
             matcher_value: EntityCandidateMatcher | None,
+            source_segments: tuple[str, ...] | None = None,
         ) -> dict[str, object]:
             """Reuse committed streaming refinements and finalize only the tail.
 
@@ -1065,15 +1174,27 @@ def create_app(
             # the client finished before an intermediate refinement completed.
             # This keeps online, offline, and streaming modes from sending the
             # entire final hypothesis to the Refiner in one request.
-            result = window_refinement.update(
-                raw_text,
-                detected_language,
-                final,
-                protector,
-                asr_confidence,
-                matcher_value,
-                confidence_metadata=confidence_metadata,
-            )
+            if source_segments:
+                result = window_refinement.update_segments(
+                    source_segments,
+                    detected_language,
+                    final,
+                    protector,
+                    asr_confidence,
+                    matcher_value,
+                    confidence_metadata=confidence_metadata,
+                    raw_text=raw_text,
+                )
+            else:
+                result = window_refinement.update(
+                    raw_text,
+                    detected_language,
+                    final,
+                    protector,
+                    asr_confidence,
+                    matcher_value,
+                    confidence_metadata=confidence_metadata,
+                )
             result["asr_confidence"] = asr_confidence
             result["asr_confidence_metadata"] = dict(confidence_metadata)
             entity_result = fallback_update(
@@ -1134,7 +1255,7 @@ def create_app(
             chunk_index = received_chunk_count
             started_at = time.perf_counter()
             task = asyncio.create_task(
-                _stream_request_async(asr_url, "/stream/chunk", session_id, audio)
+                request_asr("/stream/chunk", session_id, audio)
             )
             while True:
                 try:
@@ -1188,6 +1309,7 @@ def create_app(
                     full_raw_value,
                     tail_start,
                     revision,
+                    source_segments_value,
                 ) = pending_refinement
                 pending_refinement = None
                 # Claim the revision only now that this pass really starts.
@@ -1196,24 +1318,40 @@ def create_app(
                 latest_refinement_revision = revision
                 last_refinement_started_at = time.perf_counter()
                 try:
-                    result = await asyncio.to_thread(
-                        window_refinement.update,
-                        full_raw_value,
-                        language_value,
-                        False,
-                        protector,
-                        confidence_value,
-                        matcher,
-                        confidence_metadata=confidence_metadata_value,
-                    )
+                    if source_segments_value:
+                        owned_raw_value = join_refined_segments(
+                            source_segments_value
+                        )
+                        result = await asyncio.to_thread(
+                            window_refinement.update_segments,
+                            source_segments_value,
+                            language_value,
+                            True,
+                            protector,
+                            confidence_value,
+                            matcher,
+                            confidence_metadata=confidence_metadata_value,
+                            raw_text=owned_raw_value,
+                        )
+                    else:
+                        result = await asyncio.to_thread(
+                            window_refinement.update,
+                            full_raw_value,
+                            language_value,
+                            False,
+                            protector,
+                            confidence_value,
+                            matcher,
+                            confidence_metadata=confidence_metadata_value,
+                        )
                     # ``finish`` already published the complete transcript and
                     # the browser ignores intermediate updates afterwards.
                     if streaming_finish_requested or revision != latest_refinement_revision:
                         continue
                     result["refinement_revision"] = revision
-                    result["raw_text"] = full_raw_value
                     result["event"] = "update"
                     refinement_display.accept(result, revision)
+                    result["raw_text"] = full_raw_value
                     # ASR may have advanced while this model call was running.
                     # Publish the real result for history/metrics, but render it
                     # together with the newest source-owned pending tail.
@@ -1240,6 +1378,7 @@ def create_app(
             confidence_metadata_value: dict[str, object],
             full_raw_value: str,
             tail_start: int,
+            source_segments_value: tuple[str, ...] | None = None,
         ) -> None:
             nonlocal pending_refinement, streaming_refiner_task
             # Enqueueing must not invalidate the pass that is already
@@ -1253,6 +1392,7 @@ def create_app(
                 full_raw_value,
                 tail_start,
                 revision,
+                source_segments_value,
             )
             if streaming_refiner_task is None or streaming_refiner_task.done():
                 streaming_refiner_task = asyncio.create_task(run_streaming_refiner())
@@ -1262,6 +1402,7 @@ def create_app(
             protector: EntityProtector,
             asr_confidence: float | None,
             confidence_metadata: dict[str, object],
+            source_segments: tuple[str, ...] | None = None,
         ) -> dict[str, object]:
             started_at = time.perf_counter()
             # All browser modes use the same bounded sentence-window finalizer;
@@ -1277,6 +1418,7 @@ def create_app(
                     asr_confidence,
                     confidence_metadata,
                     matcher,
+                    source_segments,
                 )
             )
             loop = asyncio.get_running_loop()
@@ -1322,8 +1464,7 @@ def create_app(
                     )
 
         try:
-            start = await _stream_request_async(
-                asr_url,
+            start = await request_asr(
                 "/stream/start",
                 params={"language": requested_language} if requested_language else None,
             )
@@ -1349,20 +1490,30 @@ def create_app(
                         streaming_finish_requested = True
                         latest_refinement_revision += 1
                         pending_refinement = None
-                    payload = await _stream_request_async(
-                        asr_url, "/stream/finish", session_id
-                    )
+                    payload = await request_asr("/stream/finish", session_id)
+                    consume_completed_segments(payload)
                     asr_activity = {
                         key: payload.get(key)
                         for key in (
                             "vad",
                             "vad_speech_detected",
+                            "vad_segment_ended",
                             "vad_skipped_chunks",
                             "silence_skipped_chunks",
+                            "asr_segment_count",
+                            "segmentation_mode",
                         )
                         if key in payload
                     }
                     final_raw = str(payload.get("text", "")).strip()
+                    final_source_segments = tuple(vad_source_segments) or None
+                    if (
+                        final_source_segments is not None
+                        and join_refined_segments(final_source_segments) != final_raw
+                    ):
+                        # A mixed/older backend may omit an event. Never let an
+                        # incomplete event stream drop text from final output.
+                        final_source_segments = None
                     last_raw_text = final_raw
                     detected_language = payload.get("language")
                     asr_confidence = _optional_confidence(payload.get("confidence"))
@@ -1394,6 +1545,7 @@ def create_app(
                                 protector,
                                 asr_confidence,
                                 confidence_metadata,
+                                final_source_segments,
                             )
                         except asyncio.TimeoutError:
                             refiner_session_stats.close_new_calls()
@@ -1466,6 +1618,9 @@ def create_app(
                                         "boundary_anomalies": result[
                                             "boundary_anomalies"
                                         ],
+                                        "boundary_reviews": result.get(
+                                            "boundary_reviews", []
+                                        ),
                                         "refinement_gate_mode": result[
                                             "refinement_gate_mode"
                                         ],
@@ -1533,12 +1688,13 @@ def create_app(
                     continue
                 if requested_mode == "offline":
                     payload, chunk_index = await process_audio_chunk(audio)
+                    completed_now = consume_completed_segments(payload)
                     if not await send_json(
                         {"event": "chunk_ack", "chunk_index": chunk_index}
                     ):
                         break
                     raw_text = str(payload.get("text", "")).strip()
-                    if raw_text and raw_text != last_raw_text:
+                    if raw_text and (raw_text != last_raw_text or completed_now):
                         last_raw_text = raw_text
                         detected_language = payload.get("language")
                         asr_confidence = _optional_confidence(
@@ -1569,6 +1725,20 @@ def create_app(
                             )
                         ):
                             break
+                        if completed_now:
+                            tail_start = max(
+                                0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                            )
+                            queue_streaming_refinement(
+                                raw_text[tail_start:],
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                raw_text,
+                                tail_start,
+                                tuple(vad_source_segments),
+                            )
+                            continue
                         if is_deferred or (
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "keep"
@@ -1587,12 +1757,13 @@ def create_app(
                         )
                     continue
                 payload, chunk_index = await process_audio_chunk(audio)
+                completed_now = consume_completed_segments(payload)
                 if requested_mode == "streaming":
                     await send_json(
                         {"event": "chunk_ack", "chunk_index": chunk_index}
                     )
                 raw_text = str(payload.get("text", "")).strip()
-                if raw_text and raw_text != last_raw_text:
+                if raw_text and (raw_text != last_raw_text or completed_now):
                     last_raw_text = raw_text
                     detected_language = payload.get("language")
                     asr_confidence = _optional_confidence(payload.get("confidence"))
@@ -1620,6 +1791,20 @@ def create_app(
                             )
                         ):
                             break
+                        if completed_now:
+                            tail_start = max(
+                                0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                            )
+                            queue_streaming_refinement(
+                                raw_text[tail_start:],
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                raw_text,
+                                tail_start,
+                                tuple(vad_source_segments),
+                            )
+                            continue
                         if is_deferred or (
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "keep"
@@ -1665,7 +1850,7 @@ def create_app(
                 streaming_refiner_task.cancel()
             if session_id is not None and not finished:
                 try:
-                    await _stream_request_async(asr_url, "/stream/cancel", session_id)
+                    await request_asr("/stream/cancel", session_id)
                 except (RuntimeError, TimeoutError):
                     pass
 
@@ -1684,6 +1869,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--refiner-model", type=Path, required=True)
     parser.add_argument("--refiner-device", default="cuda:1")
     parser.add_argument("--asr-url", default="http://127.0.0.1:8766")
+    parser.add_argument(
+        "--asr-api-style",
+        choices=[style.value for style in ASRApiStyle],
+        default=ASRApiStyle.CURRENT.value,
+        help="current uses /stream endpoints; legacy_v1 uses the original /v1/stream/{session_id} contract",
+    )
     parser.add_argument("--language", default="Chinese", help="use auto for automatic detection")
     parser.add_argument("--max-new-tokens", type=int, default=256)
     parser.add_argument("--host", default="127.0.0.1")
@@ -1714,7 +1905,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--disable-numeric-normalization",
         action="store_true",
-        help="disable deterministic context-bound Chinese number normalization",
+        help="keep model-driven numeric normalization enabled (legacy alias)",
+    )
+    parser.add_argument(
+        "--enable-numeric-normalization",
+        action="store_true",
+        help="enable legacy deterministic context-bound Chinese number normalization",
     )
     args = parser.parse_args(argv)
     if not args.refiner_model.exists():
@@ -1737,7 +1933,8 @@ def main(argv: list[str] | None = None) -> int:
         args.entity_fuzzy_mode,
         args.refinement_gate_mode,
         not args.disable_rule_protection,
-        not args.disable_numeric_normalization,
+        args.enable_numeric_normalization and not args.disable_numeric_normalization,
+        args.asr_api_style,
     )
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0

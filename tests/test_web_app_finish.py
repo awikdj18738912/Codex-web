@@ -77,6 +77,40 @@ class _CountingRefiner:
         return text.replace("原始", "精修"), 1.0
 
 
+class _NumericItnRefiner:
+    calls: list[str] = []
+
+    def __init__(self, *args, **kwargs) -> None:
+        type(self).calls = []
+
+    def refine(
+        self,
+        text: str,
+        *,
+        entity_hints: tuple[str, ...] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        type(self).calls.append(text)
+        return text.replace("二万二千二百元", "22200元"), 1.0
+
+
+class _IdiomAndNumericRefiner:
+    calls: list[str] = []
+
+    def __init__(self, *args, **kwargs) -> None:
+        type(self).calls = []
+
+    def refine(
+        self,
+        text: str,
+        *,
+        entity_hints: tuple[str, ...] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        type(self).calls.append(text)
+        return text.replace("三座", "3座"), 1.0
+
+
 class _DropsPlaceholderOnceRefiner:
     def __init__(self, *args, **kwargs) -> None:
         pass
@@ -228,6 +262,47 @@ class _GrowingStreamRequest:
         raise AssertionError(f"unexpected endpoint: {endpoint}")
 
 
+class _VadEventStreamRequest:
+    SEGMENTS = ("甲段原始，", "乙段原始。", "丙段原始。")
+
+    def __init__(self) -> None:
+        self.chunk_count = 0
+
+    def __call__(
+        self,
+        asr_url: str,
+        endpoint: str,
+        session_id: str | None = None,
+        data: bytes = b"",
+        params: dict[str, str] | None = None,
+    ) -> dict[str, object]:
+        if endpoint == "/stream/start":
+            return {"session_id": "vad-event-session"}
+        if endpoint == "/stream/chunk":
+            index = min(self.chunk_count, len(self.SEGMENTS) - 1)
+            self.chunk_count += 1
+            return {
+                "text": "".join(self.SEGMENTS[: index + 1]),
+                "language": "Chinese",
+                "completed_segments": [
+                    {
+                        "segment_id": index + 1,
+                        "text": self.SEGMENTS[index],
+                        "vad_boundary": True,
+                    }
+                ],
+            }
+        if endpoint == "/stream/finish":
+            return {
+                "text": "".join(self.SEGMENTS),
+                "language": "Chinese",
+                "completed_segments": [],
+            }
+        if endpoint == "/stream/cancel":
+            return {"cancelled": True}
+        raise AssertionError(f"unexpected endpoint: {endpoint}")
+
+
 def _entity_stream_request(
     asr_url: str,
     endpoint: str,
@@ -342,6 +417,25 @@ def _numeric_stream_request(
     raise AssertionError(f"unexpected endpoint: {endpoint}")
 
 
+def _idiom_and_numeric_stream_request(
+    asr_url: str,
+    endpoint: str,
+    session_id: str | None = None,
+    data: bytes = b"",
+    params: dict[str, str] | None = None,
+) -> dict[str, object]:
+    if endpoint == "/stream/start":
+        return {"session_id": "idiom-numeric-test-session"}
+    if endpoint == "/stream/finish":
+        return {
+            "text": "此人三番五次欲置我于死地，相当于建起了三座三峡。",
+            "language": "Chinese",
+        }
+    if endpoint == "/stream/cancel":
+        return {"cancelled": True}
+    raise AssertionError(f"unexpected endpoint: {endpoint}")
+
+
 _MULTI_STAGE_CORRECTION_TEXT = (
     "你好，你好，我有一个苹果，不对，我有一个梨，不对，我有一个香蕉。"
 )
@@ -381,9 +475,9 @@ def _multi_stage_correction_stream_request(
 
 @unittest.skipIf(web_app is None, "FastAPI is not installed")
 class WebAppFinishTest(unittest.TestCase):
-    def test_numeric_text_reaches_refiner_normalized_without_placeholders(self) -> None:
+    def test_numeric_text_reaches_refiner_for_model_driven_itn(self) -> None:
         with (
-            patch.object(web_app, "TransformersRefiner", _CountingRefiner),
+            patch.object(web_app, "TransformersRefiner", _NumericItnRefiner),
             patch.object(web_app, "_stream_request", _numeric_stream_request),
         ):
             app = web_app.create_app(
@@ -401,14 +495,14 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
                     final = websocket.receive_json()
 
-        self.assertIn("你好，我有22200元。", _CountingRefiner.calls)
+        self.assertIn("你好，我有二万二千二百元。", _NumericItnRefiner.calls)
         self.assertTrue(
-            all("__ENTITY_" not in value for value in _CountingRefiner.calls)
+            all("__ENTITY_" not in value for value in _NumericItnRefiner.calls)
         )
         self.assertEqual(final["clean_text"], "你好，我有22200元。")
         self.assertEqual(final["protected_entities"], [])
 
-    def test_wrong_model_number_falls_back_to_exact_deterministic_value(self) -> None:
+    def test_wrong_model_number_falls_back_to_original_asr_value(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _WrongNumberRefiner),
             patch.object(web_app, "_stream_request", _numeric_stream_request),
@@ -428,13 +522,49 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
                     final = websocket.receive_json()
 
-        self.assertEqual(final["clean_text"], "你好，我有22200元。")
-        self.assertTrue(final["numeric_normalization_enabled"])
-        self.assertEqual(
-            final["numeric_normalizations"][0]["replacement"], "22200元"
+        self.assertEqual(final["clean_text"], "你好，我有二万二千二百元。")
+        self.assertFalse(final["numeric_normalization_enabled"])
+        self.assertEqual(final["numeric_normalizations"], [])
+        self.assertTrue(
+            any(
+                "numeric_value_mismatch" in reason
+                for reason in final["refiner_reject_reasons"]
+            )
         )
 
-    def test_conservative_gate_skips_short_segment_without_calling_model(self) -> None:
+    def test_model_numeric_itn_keeps_fixed_idiom_verbatim(self) -> None:
+        with (
+            patch.object(web_app, "TransformersRefiner", _IdiomAndNumericRefiner),
+            patch.object(
+                web_app,
+                "_stream_request",
+                _idiom_and_numeric_stream_request,
+            ),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"),
+                "cpu",
+                "http://fake-asr",
+                "Chinese",
+                32,
+                None,
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=online") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    self.assertEqual(websocket.receive_json()["event"], "transcript")
+                    final = websocket.receive_json()
+
+        self.assertTrue(
+            any("__ENTITY_000__" in value for value in _IdiomAndNumericRefiner.calls)
+        )
+        self.assertEqual(
+            final["clean_text"],
+            "此人三番五次欲置我于死地，相当于建起了3座三峡。",
+        )
+
+    def test_conservative_gate_refines_short_segment(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _CountingRefiner),
             patch.object(
@@ -460,13 +590,13 @@ class WebAppFinishTest(unittest.TestCase):
                     final = websocket.receive_json()
 
             self.assertEqual(final["clean_text"], "好。")
-            self.assertFalse(final["refiner_executed"])
-            self.assertEqual(final["refinement_gate_skipped_segments"], 1)
-            self.assertEqual(final["refinement_gate_decisions"][0]["action"], "skip")
-            self.assertEqual(_CountingRefiner.calls, [])
-            self.assertEqual(final["session_refiner_call_count"], 0)
+            self.assertTrue(final["refiner_executed"])
+            self.assertEqual(final["refinement_gate_skipped_segments"], 0)
+            self.assertEqual(final["refinement_gate_decisions"][0]["action"], "refine")
+            self.assertEqual(_CountingRefiner.calls, ["好。"])
+            self.assertEqual(final["session_refiner_call_count"], 1)
             self.assertEqual(
-                final["refiner_session_stats"]["gate_skipped_segment_count"], 1
+                final["refiner_session_stats"]["gate_skipped_segment_count"], 0
             )
             self.assertTrue(final["refiner_session_stats"]["stats_complete"])
 
@@ -635,6 +765,34 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(second["pending_raw_text"], "")
                     self.assertFalse(second["has_pending_refinement"])
 
+    def test_vad_events_drive_one_persistent_three_segment_window(self) -> None:
+        with (
+            patch.object(web_app, "TransformersRefiner", _CountingRefiner),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+            patch.object(web_app, "_stream_request", _VadEventStreamRequest()),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"),
+                "cpu",
+                "http://fake-asr",
+                "Chinese",
+                32,
+                None,
+                None,
+                "shadow",
+                "tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect(
+                    "/ws/stream?mode=streaming"
+                ) as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    for _ in range(3):
+                        websocket.send_bytes(b"pcm")
+                        self._await_event(websocket, "update")
+
+        self.assertIn("".join(_VadEventStreamRequest.SEGMENTS), _CountingRefiner.calls)
+
     def test_intermediate_refinement_interval_limits_repeated_passes(self) -> None:
         """Hypotheses arriving inside the interval collapse into one pass."""
         with (
@@ -771,7 +929,7 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertTrue(all(count <= 3 for count in punctuation_counts))
         self.assertTrue(any(count >= 2 for count in punctuation_counts))
 
-    def test_tri_state_restores_source_punctuation_omitted_by_refiner(self) -> None:
+    def test_tri_state_allows_refiner_to_replace_source_punctuation(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _DropsPunctuationRefiner),
             patch.object(web_app, "_stream_request", _stable_stream_request),
@@ -792,7 +950,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
                     final = websocket.receive_json()
 
-        self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本。")
+        self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本")
 
     def test_streaming_window_applies_fuzzy_entity_before_finish(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

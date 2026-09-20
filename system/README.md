@@ -18,7 +18,7 @@ bash scripts/start_web.sh
 ## 当前实现边界
 
 - 浏览器支持麦克风在线、音频文件整段离线、音频文件分块流式三种处理模式。
-- Web 精修入口当前有 off / conservative / tri_state 门控、实体准备与掩码恢复、数字规则、输出校验、重试和回退。
+- Web 精修入口当前有 off / conservative / tri_state 门控、实体准备与掩码恢复、模型数字规范化、固定数字成语保护、输出校验、重试和回退。
 - `system/quantifiers.py` 提供广覆盖量词安全词表；确定性去重保护“数词/限定词 + 量词 AA”（如 `一朵朵`、`一层层`），并以结构模式兜底未收录的量词。
 - 文件流式精修采用 latest-only 调度，降低后台积压；tri_state 另外根据 HypothesisTracker 输出 KEEP / DEFER / REFINE，并按逗号/句末标点切成单块，并将最近最多 3 个块组成活动窗口（仍受字符上限约束），最终阶段强制解析。
 - tri_state 会把每个窗口的原始末尾标点作为边界事实：Refiner 漏掉标点时自动恢复，未结束片段不补标点；口癖和确定性重复清理仍可移除其自身的冗余标点。
@@ -223,25 +223,23 @@ The routing gate is a separate deterministic module and does not change entity
 normalization or the post-generation safety validator. Use
 `--refinement-gate-mode off` for the original always-refine baseline, and use
 `--refinement-gate-mode conservative` for the gated experiment. Conservative
-mode skips very short fragments and complete high-confidence segments without
+mode skips complete high-confidence segments without
 cleanup signals. Missing ASR confidence fails open to the Refiner. Each Web
 response and JSONL record includes `refiner_executed`,
 `refinement_gate_config`, `refinement_gate_decisions`, and
 `refinement_gate_skipped_segments`.
 
-Context-bound Chinese number normalization is enabled by default after entity
-preparation and again after Refiner validation. It deterministically handles
-money, percentages, complete dates/times, measurements, clear classifier
-quantities, and positional numbers such as `二十三` or `一百二十三万`.
-Adjacent digit runs (`二三`, `二三十`) and fixed expressions such as `一五一十`
-remain in Chinese. Each result records `numeric_normalizations`; use
-`--disable-numeric-normalization` only when running an A/B baseline without
-this module. Numeric-aware streaming paths send the deterministically
-normalized digits directly to the Refiner instead of replacing numbers with
-`__ENTITY_NNN__` placeholders. The output guard compares numeric values,
-order, and unit context and falls back to the normalized source if the model
-changes them. Verified terms, acronyms, URLs, and fixed idioms remain eligible
-for placeholder protection.
+Model-driven Chinese number normalization is enabled by default. The Refiner
+receives spoken numeric forms such as `三座三峡` and can render them as
+`3座三峡`; the output guard still checks numeric value and order and falls back
+to the original ASR text if the model changes them. Fixed expressions such as
+`一五一十` and `三番五次` are masked as `__ENTITY_NNN__` placeholders before
+the model and restored verbatim afterwards, so their Chinese numerals are not
+converted. Each result still records `numeric_normalizations` for compatibility,
+but it is empty in the default model-driven mode. Use
+`--enable-numeric-normalization` to opt into the legacy deterministic converter.
+Verified terms, acronyms, URLs, and fixed idioms remain eligible for
+placeholder protection.
 
 After sentence windows are joined, a deterministic repetition pass collapses
 two or more adjacent identical short utterances (up to eight visible
