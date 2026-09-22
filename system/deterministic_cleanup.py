@@ -4,10 +4,6 @@ from __future__ import annotations
 
 import re
 
-from .quantifiers import (
-    has_reduplicated_classifier_shape,
-    is_prefixed_reduplicated_quantifier,
-)
 from .transcript_repairs import apply_known_transcript_repairs
 
 
@@ -17,54 +13,103 @@ _TERMINAL_BOUNDARY_RE = re.compile(r"([。！？!?\uff1b;\n]+\s*)$")
 _COMMA_RE = re.compile(r"([，,])")
 _VISIBLE_RE = re.compile(r"[\w\u3400-\u9fff]", re.UNICODE)
 _PRONOUN_STUTTER_RE = re.compile(r"([我你您他她它这那])\1+")
-_REPEATED_CHARACTER_STUTTER_RE = re.compile(
-    r"([\u3400-\u9fff])\1(?=[\u3400-\u9fff])"
-)
 _STANDALONE_FILLER_RE = re.compile(
     r"(?P<left>^|[，,、；;])\s*"
     r"(?P<filler>呃+|额+)\s*"
     r"(?P<right>[，,、；;。！？!?]|$)"
 )
-
-# These are common lexical reduplications, not ASR stutters.  The repeated
-# character rule below is intentionally disabled for this small allowlist so
-# phrases such as ``看看这里`` and ``人人平等`` remain unchanged.
-_LEXICAL_REDUPLICATIONS = frozenset(
-    {
-        "人人", "天天", "年年", "月月", "日日", "家家", "处处", "时时",
-        "事事", "步步", "层层", "面面", "头头", "句句", "字字", "件件",
-        "次次", "样样", "种种", "常常", "往往", "渐渐", "慢慢", "悄悄",
-        "默默", "深深", "紧紧", "牢牢", "早早", "高高", "好好", "看看",
-        "听听", "说说", "想想", "试试", "问问", "走走", "聊聊", "等等",
-        "刚刚", "仅仅", "偏偏", "重重", "整整", "满满", "稳稳", "远远",
-        "多多", "大大", "轻轻", "缓缓", "纷纷", "偷偷", "静静", "悄悄",
-        "滚滚", "滔滔", "熊熊", "翩翩", "彬彬", "济济", "赫赫", "茫茫",
-        "哈哈", "呵呵", "嘿嘿", "嘻嘻", "爸爸", "妈妈", "哥哥", "姐姐",
-        "弟弟", "妹妹", "爷爷", "奶奶", "叔叔", "伯伯", "姑姑", "舅舅",
-        "宝宝", "娃娃", "星星", "点点", "团团", "圆圆", "毛毛", "晶晶",
-        "明明", "菲菲", "婷婷", "珊珊", "萌萌", "乐乐", "念念", "津津",
-        "喃喃", "依依", "楚楚", "冉冉", "芸芸", "寥寥", "区区", "惴惴",
-        "惶惶", "惺惺", "铮铮", "凿凿", "孜孜", "佼佼",
-        # Productive reduplicated classifiers/adverbial forms.  Removing one
-        # character changes plurality or continuity (一根根、源源不断).
-        "根根", "条条", "座座", "道道", "代代", "源源", "生生",
-    }
+_POST_SENTENCE_FILLER_RE = re.compile(
+    r"(?P<boundary>[。！？!?；;\n])\s*嗯(?P<separator>[，,、：:])"
 )
-
+_BOUNDARY_ECHO_RE = re.compile(
+    r"(?<=[\u3400-\u9fff])"
+    r"(?<![，,、；;。！？!?\n\s])"
+    r"(?P<echo>[\u3400-\u9fff])"
+    r"(?P<separator>[，,])"
+    r"(?:(?P=echo)(?P=separator))+"
+)
+_SENTENCE_BOUNDARY_ECHO_RE = re.compile(
+    r"(?P<echo>[\u3400-\u9fff])"
+    r"(?P<separator>[。！？!?；;])"
+    r"(?P=echo)(?=[\u3400-\u9fff])"
+)
 
 def clean_transcript_deterministically(text: str) -> str:
     """Apply only exact, low-ambiguity cleanup rules to refined text."""
 
     return collapse_repeated_short_utterances(
-        collapse_repeated_comma_items(
-            collapse_repeated_character_stutters(
-                collapse_repeated_pronoun_stutters(
-                    collapse_standalone_fillers(
-                        apply_known_transcript_repairs(text)
+        collapse_sentence_boundary_echoes(
+            collapse_boundary_echo_fields(
+                collapse_repeated_comma_items(
+                    collapse_repeated_pronoun_stutters(
+                        collapse_sentence_boundary_fillers(
+                            collapse_standalone_fillers(
+                                apply_known_transcript_repairs(text)
+                            )
+                        )
                     )
                 )
             )
         )
+    )
+
+
+def collapse_boundary_echo_fields(text: str) -> str:
+    """Remove repeated one-character comma fields at a clause boundary.
+
+    This handles a source-owned boundary echo such as ``的话，话，你``.
+    The first occurrence remains part of the preceding clause; only the
+    subsequent standalone ``话，`` field is removed. The preceding field must
+    contain more than that one character, which prevents ``慢，慢，`` at the
+    start of a sentence from being treated as this boundary shape. No lexical
+    list is used, and the operation is idempotent.
+    """
+
+    if not text:
+        return text
+
+    return _BOUNDARY_ECHO_RE.sub(
+        lambda match: match.group("echo") + match.group("separator"),
+        text,
+    )
+
+
+def detect_boundary_echo_repairs(text: str) -> tuple[dict[str, object], ...]:
+    """Describe deterministic comma and sentence-boundary echo repairs."""
+
+    repairs: list[dict[str, object]] = []
+    for match in _BOUNDARY_ECHO_RE.finditer(text):
+        repairs.append(
+            {
+                "source": match.group(0),
+                "target": match.group("echo") + match.group("separator"),
+                "echo": match.group("echo"),
+                "start": match.start(),
+                "end": match.end(),
+            }
+        )
+    for match in _SENTENCE_BOUNDARY_ECHO_RE.finditer(text):
+        repairs.append(
+            {
+                "source": match.group(0),
+                "target": match.group("echo"),
+                "echo": match.group("echo"),
+                "start": match.start(),
+                "end": match.end(),
+                "boundary_type": "sentence",
+            }
+        )
+    return tuple(repairs)
+
+
+def collapse_sentence_boundary_echoes(text: str) -> str:
+    """Merge an exact repeated character split by a sentence boundary."""
+
+    if not text:
+        return text
+    return _SENTENCE_BOUNDARY_ECHO_RE.sub(
+        lambda match: match.group("echo"),
+        text,
     )
 
 
@@ -92,6 +137,24 @@ def collapse_standalone_fillers(text: str) -> str:
     return _STANDALONE_FILLER_RE.sub(replace, text)
 
 
+def collapse_sentence_boundary_fillers(text: str) -> str:
+    """Remove an isolated ``嗯`` that opens a new clause after a sentence.
+
+    A sentence-boundary position followed by a clause separator is a
+    structural cue for a discourse filler, as in ``调查一下。嗯，那我``.
+    Restricting this rule to that shape avoids changing lexical forms such as
+    ``嗯哼``/``嗯嗯`` and leaves an initial or comma-delimited ``嗯`` for the
+    Refiner, where it may be a meaningful acknowledgement.
+    """
+
+    if not text:
+        return text
+    return _POST_SENTENCE_FILLER_RE.sub(
+        lambda match: match.group("boundary"),
+        text,
+    )
+
+
 def collapse_repeated_pronoun_stutters(text: str) -> str:
     """Collapse adjacent repeated pronouns/demonstratives used as stutters.
 
@@ -103,33 +166,15 @@ def collapse_repeated_pronoun_stutters(text: str) -> str:
 
 
 def collapse_repeated_character_stutters(text: str) -> str:
-    """Collapse repeated single-character ASR stutters inside a word.
+    """Retain ambiguous AA forms until the Refiner proposes a local edit.
 
-    Generic ``AA`` deletion is unsafe in Chinese: forms such as ``一根根``
-    and ``源源不断`` are grammatical and carry plurality or continuity.  We
-    therefore collapse only a tiny, explicitly known set of high-confidence
-    speech stutters; pronoun stutters are handled by the dedicated rule above.
+    Text alone cannot distinguish a stutter from a lexical reduplication or a
+    name.  The previous global AA collapse damaged words even when the model
+    had preserved them.  Keep this public helper for existing callers, but
+    leave ambiguous text untouched.
     """
 
-    if not text:
-        return text
-
-    known_stutter_chars = frozenset("儒孟争")
-
-    def replace(match: re.Match[str]) -> str:
-        pair = match.group(0)
-        if pair in _LEXICAL_REDUPLICATIONS:
-            return pair
-        # Quantifier + AA is a productive distributive construction even when
-        # the pair is not in the static lexicon (例如“一朵朵”“一层层”).
-        if (
-            is_prefixed_reduplicated_quantifier(text, match.start())
-            or has_reduplicated_classifier_shape(text, match.start())
-        ):
-            return pair
-        return match.group(1) if match.group(1) in known_stutter_chars else pair
-
-    return _REPEATED_CHARACTER_STUTTER_RE.sub(replace, text)
+    return text
 
 
 def collapse_repeated_comma_items(

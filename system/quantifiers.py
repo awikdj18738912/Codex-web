@@ -35,10 +35,28 @@ COMMON_QUANTIFIERS = frozenset(
     """.split()
 )
 
-# Numeral/determiner prefixes that license a distributive classifier form:
-# ``一朵朵``, ``两排排``, ``各家家`` and so on.  ``数`` is included for
-# forms such as ``数道道`` encountered in documentary-style speech.
-QUANTIFIER_REDUP_PREFIXES = frozenset("一两几各每众逐数")
+# A distributive classifier form is protected only when it has the explicit
+# ``一XX`` surface used by the transcript policy.  Other prefixes may occur in
+# ordinary Chinese, but they are not protected by the classifier-reduplication
+# rule; this keeps bare ASR stutters such as ``首首先`` recoverable.
+QUANTIFIER_REDUP_PREFIXES = frozenset({"一"})
+
+# These are lexical reduplications rather than classifier syntax.  They stay
+# protected independently of the ``一XX`` classifier rule so tightening the
+# latter does not turn ordinary words such as ``人人`` or ``看看`` into ASR
+# stutters.
+LEXICAL_REDUPLICATIONS = frozenset(
+    """
+    人人 天天 年年 月月 日日 家家 处处 时时 事事 步步 层层 面面 头头 句句 字字 件件
+    次次 样样 种种 常常 往往 渐渐 慢慢 悄悄 默默 深深 紧紧 牢牢 早早 高高 好好 看看
+    听听 说说 想想 试试 问问 走走 聊聊 等等 刚刚 仅仅 偏偏 重重 整整 满满 稳稳 远远
+    多多 大大 轻轻 缓缓 纷纷 偷偷 静静 滚滚 滔滔 熊熊 翩翩 彬彬 济济 赫赫 茫茫
+    哈哈 呵呵 嘿嘿 嘻嘻 爸爸 妈妈 哥哥 姐姐 弟弟 妹妹 爷爷 奶奶 叔叔 伯伯 姑姑 舅舅
+    宝宝 娃娃 星星 点点 团团 圆圆 毛毛 晶晶 明明 菲菲 婷婷 珊珊 萌萌 乐乐 念念 津津
+    喃喃 依依 楚楚 冉冉 芸芸 寥寥 区区 惴惴 惶惶 惺惺 铮铮 凿凿 孜孜 佼佼
+    根根 条条 座座 道道 代代 源源 生生
+    """.split()
+) - frozenset({"根根", "条条", "座座", "道道", "代代"})
 
 REDUPLICABLE_QUANTIFIER_CHARS = frozenset(
     token for token in COMMON_QUANTIFIERS if len(token) == 1
@@ -96,6 +114,7 @@ def is_quantifier_reduplication_deletion(
 __all__ = [
     "COMMON_QUANTIFIERS",
     "QUANTIFIER_REDUP_PREFIXES",
+    "LEXICAL_REDUPLICATIONS",
     "REDUPLICABLE_QUANTIFIER_CHARS",
     "has_reduplicated_classifier_shape",
     "is_prefixed_reduplicated_quantifier",

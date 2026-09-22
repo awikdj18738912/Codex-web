@@ -21,6 +21,12 @@ _BARE_PLACEHOLDER_RE = re.compile(
 )
 _SENTENCE_BOUNDARY_RE = re.compile(r"[。！？!?；;\n]")
 _REFINER_KEY_SUFFIX_RE = re.compile(r"\s*<KEY>\[[^\]]*\]\s*$")
+
+
+def strip_refiner_key_suffix(text: str) -> str:
+    """Remove the optional trailing entity hint emitted by the Refiner."""
+
+    return _REFINER_KEY_SUFFIX_RE.sub("", text).strip()
 _RULE_PATTERNS: tuple[tuple[str, re.Pattern[str], int], ...] = (
     ("URL", re.compile(r"https?://[^\s，。！？；]+", re.IGNORECASE), 900),
     (
@@ -338,7 +344,7 @@ class EntityProtector:
         return ProtectionResult(text, "".join(parts), tuple(spans))
 
     def restore(self, refined_text: str, protection: ProtectionResult) -> RestorationResult:
-        output = _REFINER_KEY_SUFFIX_RE.sub("", refined_text).strip()
+        output = strip_refiner_key_suffix(refined_text)
         if not output or "<KEY>" in output:
             return RestorationResult(protection.original_text, False, ("empty_or_metadata_output",))
         # Repair placeholders whose underscore framing was damaged by the
@@ -442,7 +448,7 @@ class EntityProtector:
         # ``<KEY>`` is a Refiner input annotation, not user-facing text. Some
         # checkpoints echo it despite the prompt, so remove a trailing echo
         # before applying a verified replacement.
-        normalized = _REFINER_KEY_SUFFIX_RE.sub("", refined_text).strip()
+        normalized = strip_refiner_key_suffix(refined_text)
         changes: list[dict[str, str]] = []
         for span in protection.spans:
             if (

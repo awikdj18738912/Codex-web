@@ -33,8 +33,17 @@ _EMBEDDED_DISFLUENCY_RE = re.compile(r"(?:嗯+|呃+)")
 _SELF_CORRECTION_RE = re.compile(
     r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|更正一下)"
 )
-_CROSS_CLAUSE_PUNCTUATION_RE = re.compile(
-    r"[\u3400-\u9fff][。！？!?][\u3400-\u9fff]"
+# A normal sentence boundary is also ``汉字 + 标点 + 汉字``.  Do not treat
+# that shape alone as an ASR anomaly.  The routing signal is deliberately
+# narrower: one isolated CJK character between punctuation, or such a
+# one-character clause at the beginning of the text.  It only wakes the
+# Refiner; it never removes the character deterministically.
+_PUNCTUATION = r"[\u3000-\u303f\uff01-\uff65!\"#$%&'()*+,\-./:;<=>?@\[\\\]^_`{|}~]"
+_ISOLATED_LEADING_CJK_CLAUSE_RE = re.compile(
+    rf"^\s*[\u3400-\u9fff]\s*{_PUNCTUATION}\s*(?=[\u3400-\u9fff])"
+)
+_ISOLATED_MIDDLE_CJK_CLAUSE_RE = re.compile(
+    rf"[\u3400-\u9fff]\s*{_PUNCTUATION}\s*[\u3400-\u9fff]\s*{_PUNCTUATION}\s*(?=[\u3400-\u9fff])"
 )
 _NUMERIC_CLASSIFIER_PATTERN = "|".join(
     sorted(
@@ -465,12 +474,11 @@ def _cleanup_signals(text: str) -> tuple[str, ...]:
         signals.append("numeric_normalization")
     if "  " in text or "，，" in text or "。。" in text:
         signals.append("malformed_spacing_or_punctuation")
-    # In tri-state mode a request may contain the three adjacent punctuation
-    # chunks used as context.  Give the Refiner one chance to repair an ASR
-    # boundary error spanning those chunks, while clean single chunks remain
-    # KEEP when confidence is unverified.
-    if _CROSS_CLAUSE_PUNCTUATION_RE.search(text):
-        signals.append("cross_clause_punctuation")
+    if (
+        _ISOLATED_LEADING_CJK_CLAUSE_RE.search(text)
+        or _ISOLATED_MIDDLE_CJK_CLAUSE_RE.search(text)
+    ):
+        signals.append("isolated_single_character_clause")
     if detect_boundary_anomalies(text):
         signals.append("boundary_anomaly")
     return tuple(signals)

@@ -37,6 +37,7 @@ from .entity_pipeline import (
 )
 from .protection import EntityProtector
 from .refinement_gate import RefinementGate, RefinementGateMode
+from .refinement_guard import preserve_safe_repetition_edits
 from .numeric_normalizer import ContextualNumericNormalizer
 from .refinement_protocol import (
     STRICT_PLACEHOLDER_PROMPT,
@@ -122,6 +123,11 @@ class TransformersRefiner:
             generated[0, input_width:], skip_special_tokens=True
         ).strip()
         return text, (time.perf_counter() - started) * 1000
+
+    def review_repetition(self, text: str) -> tuple[str, float]:
+        """Refine only the candidate's local transcript context."""
+
+        return self.refine(text)
 
 
 def _sounddevice():
@@ -382,6 +388,8 @@ def main(argv: list[str] | None = None) -> int:
         latency_ms = 0.0
         refiner_masked_outputs: list[str] = []
         structured_patch_audits: list[dict[str, object]] = []
+        safe_repetition_repairs: list[dict[str, object]] = []
+        candidate_for_salvage: str | None = None
         placeholder_retry_count = 0
         refiner_retry_count = 0
         refiner_retry_reasons: tuple[str, ...] = ()
@@ -405,6 +413,8 @@ def main(argv: list[str] | None = None) -> int:
                     structured_candidate, prepared, protector
                 )
             )
+            if not structured_issue:
+                candidate_for_salvage = structured_candidate
             if has_retryable_integrity_failure(finalized.reject_reasons):
                 refiner_retry_reasons = finalized.reject_reasons
                 placeholder_failed = has_placeholder_failure(
@@ -434,7 +444,25 @@ def main(argv: list[str] | None = None) -> int:
                         structured_retry, prepared, protector
                     )
                 )
+                if not structured_retry_issue:
+                    candidate_for_salvage = structured_retry
             refined_text = finalized.text
+            if finalized.reject_reasons and candidate_for_salvage:
+                restored = protector.restore(candidate_for_salvage, protection)
+                if restored.accepted:
+                    salvaged = preserve_safe_repetition_edits(
+                        prepared.baseline_text,
+                        restored.text,
+                    )
+                    if salvaged is not None:
+                        refined_text = salvaged
+                        safe_repetition_repairs.append(
+                            {
+                                "source_text": prepared.baseline_text,
+                                "salvaged_text": salvaged,
+                                "reason": "safe_adjacent_repetition_after_integrity_fallback",
+                            }
+                        )
         else:
             refined_text = baseline_text
             finalized_accepted = True
@@ -505,6 +533,7 @@ def main(argv: list[str] | None = None) -> int:
                         "numeric_normalizations": [
                             change.public_dict() for change in numeric_changes
                         ],
+                        "safe_repetition_repairs": safe_repetition_repairs,
                         "protected_entities": [
                             span.public_dict() for span in protection.spans
                         ],

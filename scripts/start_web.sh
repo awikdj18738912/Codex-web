@@ -15,6 +15,16 @@ ENTITY_FUZZY_MODE="${ENTITY_FUZZY_MODE:-auto}"
 REFINEMENT_GATE_MODE="${REFINEMENT_GATE_MODE:-tri_state}"
 OUTPUT_PATH="${OUTPUT_PATH:-${PROJECT_ROOT}/results/web/session.jsonl}"
 
+if curl --silent --show-error --fail --max-time 3 \
+  "http://127.0.0.1:${WEB_PORT}/" >/dev/null 2>&1; then
+  echo "Refiner/Web is already healthy on port ${WEB_PORT}; reusing it."
+  exit 0
+fi
+if ss -ltn "sport = :${WEB_PORT}" 2>/dev/null | tail -n +2 | grep -q .; then
+  echo "Web port ${WEB_PORT} is occupied but health check failed; refusing to restart it." >&2
+  exit 1
+fi
+
 cd "${PROJECT_ROOT}"
 
 if [[ ! -d "${REFINER_MODEL}" ]]; then

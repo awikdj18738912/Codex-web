@@ -3,10 +3,15 @@ from __future__ import annotations
 import unittest
 
 from system.refinement_guard import (
+    apply_repetition_review_decisions,
     detect_boundary_anomalies,
+    find_repetition_review_candidates,
     join_refined_segments,
     preserve_terminal_punctuation,
     permits_self_correction_punctuation_repair,
+    preserve_safe_numeric_edits,
+    preserve_safe_repetition_edits,
+    repetition_decisions_from_text_response,
     reject_reasons,
     source_punctuation_lost,
     split_for_refinement,
@@ -213,6 +218,29 @@ class RefinementGuardTest(unittest.TestCase):
             (),
         )
 
+    def test_safe_numeric_edits_survive_unrelated_window_rejection(self) -> None:
+        raw = "我让他五个法器。再不行，我让他十个，怎么样啊？叶大侠，谭道友，谭道友。"
+        rejected_candidate = "我让他5个法器。再不行，我让他10个，怎么样啊？叶大侠，谭道友。"
+
+        self.assertEqual(
+            preserve_safe_numeric_edits(raw, rejected_candidate),
+            "我让他5个法器。再不行，我让他10个，怎么样啊？叶大侠，谭道友，谭道友。",
+        )
+
+    def test_safe_numeric_edit_survives_punctuation_loss_after_number(self) -> None:
+        raw = "再不行，我让他十个，怎么样啊？叶大侠，谭道友，谭道友，道爷知道天难比。"
+        rejected_candidate = "再不行，我让他10个怎么样啊？叶大侠，谭道友知道天难比。"
+
+        self.assertEqual(
+            preserve_safe_numeric_edits(raw, rejected_candidate),
+            "再不行，我让他10个，怎么样啊？叶大侠，谭道友，谭道友，道爷知道天难比。",
+        )
+
+    def test_unsafe_bare_numeral_edit_is_not_salvaged(self) -> None:
+        self.assertIsNone(
+            preserve_safe_numeric_edits("这件事不值一提。", "这件事不值1提。")
+        )
+
     def test_semantic_deletions_are_rejected(self) -> None:
         cases = (
             (
@@ -246,6 +274,167 @@ class RefinementGuardTest(unittest.TestCase):
             reject_reasons(
                 "今天有一个苹果，不对，有一个梨。",
                 "今天有一个梨。",
+            ),
+            (),
+        )
+
+    def test_classifier_reduplication_requires_one_prefix(self) -> None:
+        self.assertEqual(
+            reject_reasons("首首先说明。", "首先说明。"),
+            (),
+        )
+        self.assertIn(
+            "semantic_content_loss",
+            reject_reasons("一首首歌。", "一首歌。"),
+        )
+
+    def test_repetition_edits_survive_unrelated_window_rejection(self) -> None:
+        raw = "又又从利义的角度选，初心嘛。"
+        rejected_candidate = "又从利义的角度选，初心吗。"
+
+        self.assertEqual(
+            preserve_safe_repetition_edits(raw, rejected_candidate),
+            "又从利义的角度选，初心嘛。",
+        )
+        self.assertIsNone(
+            preserve_safe_repetition_edits("一座座城市。", "一座城市。")
+        )
+
+    def test_adjacent_phrase_repetition_survives_unrelated_rejection(self) -> None:
+        raw = "我们我们就假设所有人都是为了利的。"
+        rejected = "我们就假设所有人都是为了义的。"
+        self.assertEqual(
+            preserve_safe_repetition_edits(raw, rejected),
+            "我们就假设所有人都是为了利的。",
+        )
+        self.assertEqual(
+            preserve_safe_repetition_edits(
+                "我们我们就假设所有人都是为了利的。",
+                "我们假设所有人都是为了义的。",
+            ),
+            "我们就假设所有人都是为了利的。",
+        )
+
+    def test_unsupported_single_character_deletions_are_rejected(self) -> None:
+        for raw, refined in (
+            ("所以这可能也是在人类历史上。", "所以这可能也在人类历史上。"),
+            ("只不过这个结果很好。", "不过这个结果很好。"),
+            ("人没有仁义。", "人有仁义。"),
+        ):
+            with self.subTest(raw=raw):
+                self.assertIn("semantic_content_loss", reject_reasons(raw, refined))
+
+    def test_repetition_review_candidates_are_structural(self) -> None:
+        candidates = find_repetition_review_candidates(
+            "首首先说明，引引入一个假假设，那人人性到底是什么？一首首歌。"
+        )
+        self.assertEqual(
+            [candidate.source for candidate in candidates],
+            ["首首", "引引", "假假", "人人"],
+        )
+
+    def test_punctuated_repetition_review_candidates_are_structural(self) -> None:
+        candidates = find_repetition_review_candidates(
+            "模拟普通人接到警察电话：‘喂，喂，是郭庆子。你，你先听我说。啊！啊，别急。喂。喂。你：你。啊…啊。’"
+        )
+        self.assertEqual(
+            [candidate.source for candidate in candidates],
+            ["喂，喂", "你，你", "啊！啊", "喂。喂", "你：你", "啊…啊"],
+        )
+        self.assertTrue(
+            all(candidate.kind == "punctuated_run" for candidate in candidates)
+        )
+
+    def test_punctuated_repetition_deletion_passes_local_guard(self) -> None:
+        self.assertEqual(
+            reject_reasons("喂，喂，是郭庆子是吧？", "喂，是郭庆子是吧？"),
+            (),
+        )
+        source = "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’"
+        candidates = find_repetition_review_candidates(source)
+        repaired, reviews = apply_repetition_review_decisions(
+            source,
+            candidates,
+            [{"index": 1, "action": "remove", "reason": "speech repetition"}],
+        )
+        self.assertEqual(
+            repaired,
+            "模拟普通人接到警察电话：‘喂，是郭庆子是吧？’",
+        )
+        self.assertTrue(reviews[0]["applied"])
+
+    def test_repetition_review_applies_only_selected_spans(self) -> None:
+        source = "首首先说明，引引入一个假假设。"
+        candidates = find_repetition_review_candidates(source)
+        repaired, reviews = apply_repetition_review_decisions(
+            source,
+            candidates,
+            [
+                {"index": 1, "action": "remove", "reason": "speech repetition"},
+                {"index": 2, "action": "keep", "reason": "uncertain"},
+                {"index": 3, "action": "remove", "reason": "speech repetition"},
+            ],
+        )
+        self.assertEqual(repaired, "首先说明，引引入一个假设。")
+        self.assertEqual(
+            [review["decision"] for review in reviews],
+            ["remove", "keep", "remove"],
+        )
+
+    def test_model_selected_ambiguous_repetition_can_pass_local_guard(self) -> None:
+        source = "那人人性到底是什么呢？"
+        candidates = find_repetition_review_candidates(source)
+        repaired, reviews = apply_repetition_review_decisions(
+            source,
+            candidates,
+            [{"index": 1, "action": "remove", "reason": "model_local_review"}],
+        )
+        self.assertEqual(repaired, "那人性到底是什么呢？")
+        self.assertTrue(reviews[0]["applied"])
+
+    def test_legacy_repetition_review_accepts_candidate_deletions_only(self) -> None:
+        source = "首首先说明，引引入一个假假设。"
+        candidates = find_repetition_review_candidates(source)
+        decisions = repetition_decisions_from_text_response(
+            source,
+            candidates,
+            "首先说明，引引入一个假设。",
+        )
+        self.assertIsNotNone(decisions)
+        self.assertEqual(
+            [item["action"] for item in decisions or []],
+            ["remove", "keep", "remove"],
+        )
+        self.assertIsNone(
+            repetition_decisions_from_text_response(
+                source,
+                candidates,
+                "首先说明，引引入一个假设!",
+            )
+        )
+
+    def test_single_character_subject_cannot_be_replaced_by_new_phrase(self) -> None:
+        self.assertIn(
+            "unsupported_insertion",
+            reject_reasons(
+                "我让渡我的利益，你也让渡我的利益。",
+                "我让渡我的利益，同时也让渡我的利益。",
+            ),
+        )
+        self.assertIn(
+            "semantic_content_loss",
+            reject_reasons("当然，这些问题还有争议。", "哦，这些问题还有争议。"),
+        )
+        self.assertIn(
+            "semantic_substitution",
+            reject_reasons("当然，这些问题还有争议。", "哦对了，这些问题还有争议。"),
+        )
+
+    def test_single_character_boundary_echo_deletion_is_allowed(self) -> None:
+        self.assertEqual(
+            reject_reasons(
+                "你。你竟结成了元婴，厌恶力有多？",
+                "你竟结成了元婴，厌恶力有多？",
             ),
             (),
         )

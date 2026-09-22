@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import os
+import unicodedata
 from collections import Counter
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -14,9 +15,10 @@ from .numeric_normalizer import (
     ContextualNumericNormalizer,
     _COUNT_UNITS,
     _FIXED_EXPRESSIONS,
+    _MULTIPLIER_UNITS,
 )
 from .quantifiers import (
-    REDUPLICABLE_QUANTIFIER_CHARS,
+    LEXICAL_REDUPLICATIONS,
     is_quantifier_reduplication_deletion,
 )
 
@@ -44,6 +46,7 @@ _CHINESE_NUMERAL_RE = re.compile(
 _ARABIC_NUMERAL_RE = re.compile(r"[+-]?\d+(?:\.\d+)?")
 _CHINESE_NUMERIC_UNITS = frozenset("十百千万亿年月日号元块点")
 _CHINESE_COUNT_UNITS = frozenset(_COUNT_UNITS)
+_CHINESE_MULTIPLIER_UNITS = frozenset(_MULTIPLIER_UNITS)
 _CHINESE_DIGITS = {
     "零": 0,
     "〇": 0,
@@ -62,19 +65,16 @@ _CHINESE_SMALL_UNITS = {"十": 10, "百": 100, "千": 1000}
 _CHINESE_LARGE_UNITS = {"万": 10_000, "亿": 100_000_000}
 _PLACEHOLDER_RE = re.compile(r"__ENTITY_\d{3}__")
 _LOW_RISK_DELETION_CHARS = frozenset(
-    "的地得了着过和及而也又很太啊呀吧呢吗嗯呃哈嘿唉哎"
-)
-_SEMANTIC_ANCHOR_CHARS = frozenset(
-    "我你他她它们咱自己不没无未别莫勿会能可要给把被从向与此这那是就"
+    "啊呀吧呢吗嗯呃哈嘿唉哎"
 )
 _FUNCTION_CHARS = frozenset(
     "的地得了着过是就才又也都还很太吗呢啊呀吧啦哦嗯呃和与及而给把被从向"
 )
-_ROLE_NUMBER_SUFFIXES = frozenset("伯叔爷奶哥姐妹弟")
-_PROTECTED_REDUPLICATION_PAIRS = frozenset(
-    {"根根", "条条", "座座", "道道", "代代", "源源", "生生"}
-) | frozenset(
-    character * 2 for character in REDUPLICABLE_QUANTIFIER_CHARS
+# Lexical reduplications are protected independently of classifier syntax.
+# Productive classifier pairs are checked structurally below and therefore
+# require the explicit ``一XX`` prefix.
+_PROTECTED_REDUPLICATION_PAIRS = LEXICAL_REDUPLICATIONS - frozenset(
+    {"根根", "条条", "座座", "道道", "代代"}
 )
 _NEGATION_CHARS = frozenset("不没无未别莫勿")
 _CORRECTION_MARKERS = (
@@ -109,6 +109,259 @@ _CORRECTION_FILLER_TOKENS = frozenset(
 _SAFE_BOUNDARY_REASONS = frozenset(
     {"boundary", "boundary_repair", "boundary_punctuation", "punctuation", "断句", "标点"}
 )
+_REPEATED_CJK_RUN_RE = re.compile(r"(?P<unit>[\u3400-\u9fff])(?P=unit)+")
+_PUNCTUATED_REPETITION_RE = re.compile(
+    r"(?P<unit>[\u3400-\u9fff]+)"
+    r"(?P<separator>[^\w\s\u3400-\u9fff])"
+    r"(?P=unit)"
+)
+_REPETITION_REVIEW_CONTEXT_CHARS = 16
+
+
+@dataclass(frozen=True, slots=True)
+class RepetitionReviewCandidate:
+    """One structural repeated-span decision presented to the Refiner."""
+
+    index: int
+    start: int
+    end: int
+    source: str
+    target: str
+    kind: str
+    context: str
+
+    def public_dict(self) -> dict[str, object]:
+        return {
+            "index": self.index,
+            "start": self.start,
+            "end": self.end,
+            "source": self.source,
+            "target": self.target,
+            "kind": self.kind,
+            "context": self.context,
+        }
+
+
+def find_repetition_review_candidates(
+    text: str, *, max_candidates: int = 24
+) -> tuple[RepetitionReviewCandidate, ...]:
+    """Find structural AA or adjacent phrase spans for model review.
+
+    This function deliberately has no lexical vocabulary.  It only proposes
+    alternatives; the Refiner decides whether a span is lexical or spoken
+    repetition, and an unresolved candidate remains unchanged.
+    """
+
+    if not text or max_candidates < 1:
+        return ()
+
+    spans: list[tuple[int, int, str, str]] = []
+    occupied: list[tuple[int, int]] = []
+
+    def overlaps(start: int, end: int) -> bool:
+        return any(start < other_end and end > other_start for other_start, other_end in occupied)
+
+    for match in _REPEATED_CJK_RUN_RE.finditer(text):
+        start, end = match.span()
+        unit = match.group("unit")
+        # This is the structural ``一XX`` rule selected by the user.  It is
+        # checked by shape, never by a list of specific classifier words.
+        if start > 0 and text[start - 1] == "一":
+            continue
+        if end - start < 2:
+            continue
+        spans.append((start, end, text[start:end], unit))
+        occupied.append((start, end))
+
+    # A punctuation mark can be emitted between two copies of the same
+    # spoken unit (for example ``喂，喂`` or ``啊！啊``).  Keep this structural:
+    # the Refiner decides whether the repetition is natural emphasis or a
+    # disfluency.  No word list is used here.
+    for match in _PUNCTUATED_REPETITION_RE.finditer(text):
+        start, end = match.span()
+        unit = match.group("unit")
+        if not _is_unicode_punctuation(match.group("separator")):
+            continue
+        if start > 0 and text[start - 1] == "一":
+            continue
+        if not unit or (start, end) in occupied or overlaps(start, end):
+            continue
+        spans.append((start, end, text[start:end], unit))
+        occupied.append((start, end))
+
+    # Look for a repeated multi-character span after single-character runs
+    # have claimed their positions.  The longest matching unit is considered
+    # first, which makes ``我们我们`` a candidate without adding vocabulary.
+    max_width = min(12, len(text) // 2)
+    for width in range(max_width, 1, -1):
+        for start in range(0, len(text) - (width * 2) + 1):
+            end = start + (width * 2)
+            if overlaps(start, end):
+                continue
+            unit = text[start : start + width]
+            if unit != text[start + width : end]:
+                continue
+            if not re.fullmatch(r"[\u3400-\u9fff]+", unit):
+                continue
+            if len(set(unit)) == 1:
+                continue
+            if start > 0 and text[start - 1] == "一":
+                continue
+            spans.append((start, end, text[start:end], unit))
+            occupied.append((start, end))
+
+    spans.sort(key=lambda item: item[0])
+    candidates: list[RepetitionReviewCandidate] = []
+    for index, (start, end, source, target) in enumerate(spans[:max_candidates], 1):
+        left = max(0, start - _REPETITION_REVIEW_CONTEXT_CHARS)
+        right = min(len(text), end + _REPETITION_REVIEW_CONTEXT_CHARS)
+        candidates.append(
+            RepetitionReviewCandidate(
+                index=index,
+                start=start,
+                end=end,
+                source=source,
+                target=target,
+                kind=(
+                    "character_run"
+                    if len(set(source)) == 1
+                    else "punctuated_run"
+                    if any(_is_unicode_punctuation(character) for character in source)
+                    else "phrase_run"
+                ),
+                context=text[left:right],
+            )
+        )
+    return tuple(candidates)
+
+
+def apply_repetition_review_decisions(
+    text: str,
+    candidates: tuple[RepetitionReviewCandidate, ...],
+    decisions: object,
+) -> tuple[str, tuple[dict[str, object], ...]]:
+    """Apply only model-selected candidate deletions at source offsets."""
+
+    if not isinstance(decisions, list):
+        return text, tuple(
+            {**candidate.public_dict(), "decision": "unresolved", "reason": "invalid_response"}
+            for candidate in candidates
+        )
+    by_index = {candidate.index: candidate for candidate in candidates}
+    selected: list[RepetitionReviewCandidate] = []
+    records: list[dict[str, object]] = []
+    for item in decisions:
+        if not isinstance(item, dict):
+            continue
+        try:
+            index = int(item.get("index"))
+        except (TypeError, ValueError):
+            continue
+        candidate = by_index.get(index)
+        action = str(item.get("action", "keep")).strip().lower()
+        reason = str(item.get("reason", "")).strip()
+        if candidate is None or action not in {"keep", "remove"}:
+            continue
+        record = {**candidate.public_dict(), "decision": action, "reason": reason}
+        records.append(record)
+        if action == "remove":
+            selected.append(candidate)
+
+    selected.sort(key=lambda candidate: candidate.start)
+    non_overlapping: list[RepetitionReviewCandidate] = []
+    for candidate in selected:
+        if non_overlapping and candidate.start < non_overlapping[-1].end:
+            continue
+        if text[candidate.start : candidate.end] != candidate.source:
+            continue
+        non_overlapping.append(candidate)
+
+    # Validate each model-selected deletion against the current text instead
+    # of validating the whole batch at once.  One ambiguous candidate must not
+    # roll back unrelated, independently safe repetitions.
+    repaired = text
+    applied_spans: set[tuple[int, int]] = set()
+    rejected_spans: set[tuple[int, int]] = set()
+    for candidate in reversed(non_overlapping):
+        start, end = candidate.start, candidate.end
+        candidate_repaired = (
+            repaired[:start] + candidate.target + repaired[end:]
+        )
+        reasons = reject_reasons(repaired, candidate_repaired)
+        repeated_source = (
+            bool(candidate.target)
+            and len(candidate.source) % len(candidate.target) == 0
+            and candidate.source
+            == candidate.target * (len(candidate.source) // len(candidate.target))
+        )
+        if reasons and not (
+            repeated_source and set(reasons) <= {"semantic_content_loss"}
+        ):
+            rejected_spans.add((start, end))
+            continue
+        repaired = candidate_repaired
+        applied_spans.add((start, end))
+
+    output_records: list[dict[str, object]] = []
+    for record in records:
+        span = (int(record["start"]), int(record["end"]))
+        if span in rejected_spans:
+            output_records.append(
+                {
+                    **record,
+                    "applied": False,
+                    "decision": "unresolved",
+                    "reason": "guard_rejected",
+                }
+            )
+        else:
+            output_records.append(
+                {**record, "applied": span in applied_spans}
+            )
+    return repaired, tuple(output_records)
+
+
+def repetition_decisions_from_text_response(
+    text: str,
+    candidates: tuple[RepetitionReviewCandidate, ...],
+    response: str,
+) -> list[dict[str, object]] | None:
+    """Read a legacy plain-text review only when every edit is a candidate delete."""
+
+    candidate_ranges: dict[tuple[int, int], int] = {}
+    for candidate in candidates:
+        # SequenceMatcher is free to represent ``AA -> A`` as deleting the
+        # first or the second copy.  Both source spans express the same
+        # candidate decision; the actual edit is still applied by the
+        # offset-safe candidate path above.
+        unit_width = len(candidate.target)
+        candidate_ranges[(candidate.start, candidate.start + unit_width)] = (
+            candidate.index
+        )
+        candidate_ranges[(candidate.start + unit_width, candidate.end)] = (
+            candidate.index
+        )
+    matcher = SequenceMatcher(None, text, response.strip(), autojunk=False)
+    removed: set[int] = set()
+    for tag, source_start, source_end, _, _ in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        if tag != "delete":
+            return None
+        candidate_index = candidate_ranges.get((source_start, source_end))
+        if candidate_index is None:
+            return None
+        removed.add(candidate_index)
+    if not removed:
+        return None
+    return [
+        {
+            "index": candidate.index,
+            "action": "remove" if candidate.index in removed else "keep",
+            "reason": "legacy_text_response",
+        }
+        for candidate in candidates
+    ]
 
 
 def _env_bool(name: str, default: bool = True) -> bool:
@@ -566,6 +819,26 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
             if _numeric_context_is_lost(source, target):
                 reasons.append("numeric_value_mismatch")
                 continue
+            # A fluent-looking synonym or discourse marker can reverse the
+            # speaker's meaning.  An unequal-length, character-disjoint
+            # Chinese rewrite has no source-owned evidence.  Equal-length
+            # typo corrections, equivalent numbers, and explicit
+            # self-corrections keep their existing acceptance paths.
+            source_cjk = set(re.findall(r"[\u3400-\u9fff]", source))
+            target_cjk = set(re.findall(r"[\u3400-\u9fff]", target))
+            if (
+                len(source_cjk) >= 2
+                and len(target_cjk) >= 2
+                and len(source) != len(target)
+                and source_cjk.isdisjoint(target_cjk)
+                and not _numeric_edit_is_equivalent(source, target)
+                and not (
+                    _retains_correction_tail(raw, refined)
+                    and _deletion_touches_correction(raw, source_start, source_end)
+                )
+            ):
+                reasons.append("semantic_substitution")
+                continue
             if _allowed_replacement(
                 raw,
                 refined,
@@ -576,6 +849,20 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
                 source,
                 target,
             ):
+                continue
+            if (
+                len(source) == 1
+                and len(_strip_edit_punctuation(target)) >= 2
+                and _meaningful_edit_text(source)
+            ):
+                reasons.append("unsupported_insertion")
+                continue
+            if (
+                len(_strip_edit_punctuation(source)) >= 2
+                and len(_strip_edit_punctuation(target)) == 1
+                and _meaningful_edit_text(source)
+            ):
+                reasons.append("semantic_content_loss")
                 continue
             if _meaningful_edit_text(source) and len(source) - len(target) >= 2:
                 reasons.append("semantic_content_loss")
@@ -606,16 +893,13 @@ def _allowed_deletion(
         return False
     if _is_repeated_deletion(raw, start, end, compact):
         return True
-    if len(compact) == 1 and compact in _SEMANTIC_ANCHOR_CHARS:
-        return False
-    if len(compact) == 1 and compact in _CHINESE_DIGITS:
-        following = raw[end : end + 1]
-        if following in _ROLE_NUMBER_SUFFIXES:
-            return False
+    if len(compact) == 1 and _is_boundary_echo_deletion(raw, start, end, compact):
         return True
-    # Multi-character deletions are high risk unless they were explicitly
-    # classified as a correction, filler, or repetition above.
-    return len(compact) == 1
+    # A single deleted character can change the assertion just as much as a
+    # long omission (for example 只不过 -> 不过).  Numeric formatting is
+    # checked separately; unsupported character deletion is never inferred
+    # safe merely from its length.
+    return False
 
 
 def _allowed_replacement(
@@ -703,17 +987,27 @@ def _suspicious_insertion(text: str, start: int, end: int, target: str) -> bool:
 def _is_protected_reduplication_deletion(
     raw: str, start: int, end: int, compact: str
 ) -> bool:
-    """Protect productive ``AA`` forms from the content-loss allowlist."""
+    """Protect lexical forms and explicit ``一XX`` classifier forms."""
 
-    if len(compact) != 1:
+    if not compact or len(set(compact)) != 1:
         return False
     character = compact
     pair = character * 2
     if pair not in _PROTECTED_REDUPLICATION_PAIRS:
-        # A classifier immediately preceded by a numeral is distributive even
-        # when the specific noun is not in the static pair list.
-        return is_quantifier_reduplication_deletion(raw, start, end, character)
-    return raw[start - 1 : start] == character or raw[end : end + 1] == character
+        # A classifier is protected only when the repeated pair is directly
+        # preceded by the required ``一``.  This also handles an unseen
+        # classifier without adding a phrase-specific exception.
+        if len(compact) == 1:
+            return is_quantifier_reduplication_deletion(raw, start, end, character)
+        pair_start = max(0, start - 1)
+        pair_end = min(len(raw) - 1, end + 1)
+        return any(
+            raw[index : index + 2] == pair
+            and index > 0
+            and raw[index - 1] == "一"
+            for index in range(pair_start, pair_end)
+        )
+    return True
 
 
 def _is_protected_semantic_substitution(
@@ -741,7 +1035,9 @@ def _deletion_touches_correction(raw: str, start: int, end: int) -> bool:
 
 
 def _is_repeated_deletion(raw: str, start: int, end: int, compact: str) -> bool:
-    if len(compact) >= 2 and len(set(compact)) == 1:
+    if _is_adjacent_repetition_deletion(raw, start, end, compact):
+        return True
+    if _is_punctuated_repetition_deletion(raw, start, end, compact):
         return True
     if len(compact) >= 2 and raw[:start].endswith(compact):
         return True
@@ -750,6 +1046,81 @@ def _is_repeated_deletion(raw: str, start: int, end: int, compact: str) -> bool:
     # Punctuation can sit between two spoken repetitions (可恶！可恶！).
     pieces = [piece for piece in re.split(r"[，,、。！？!?；;\s]+", compact) if piece]
     return len(pieces) >= 2 and len(set(pieces)) == 1
+
+
+def _is_punctuated_repetition_deletion(
+    raw: str, start: int, end: int, compact: str
+) -> bool:
+    """Recognize deleting one copy from ``unit，unit``-shaped text."""
+
+    if not compact:
+        return False
+    repeated_re = re.compile(
+        re.escape(compact)
+        + r"([^\w\s\u3400-\u9fff])"
+        + re.escape(compact)
+    )
+    for match in repeated_re.finditer(raw):
+        separator = match.group(1)
+        if not _is_unicode_punctuation(separator):
+            continue
+        possible_ranges = {
+            # SequenceMatcher may align the retained copy with either side
+            # of the repetition, so permit removing the first copy+separator
+            # or separator+second copy.
+            (match.start(), match.start() + len(compact) + 1),
+            (match.start() + len(compact), match.end()),
+        }
+        # It may also delete the second copy together with the separator that
+        # follows it when the retained copy is aligned to the first.
+        if match.end() < len(raw) and raw[match.end()] == separator:
+            possible_ranges.add(
+                (match.start() + len(compact) + 1, match.end() + 1)
+            )
+        if (start, end) in possible_ranges:
+            return True
+    return False
+
+
+def _is_unicode_punctuation(value: str) -> bool:
+    """Return whether a single character belongs to Unicode punctuation."""
+
+    return len(value) == 1 and unicodedata.category(value).startswith("P")
+
+
+def _is_boundary_echo_deletion(raw: str, start: int, end: int, echo: str) -> bool:
+    """Allow removing one exact echoed glyph together with its boundary."""
+
+    source = raw[start:end]
+    boundary = "。！？!?；;"
+    return (
+        len(source) == 2
+        and (
+            (source[0] == echo and source[1] in boundary and raw[end:end + 1] == echo)
+            or (source[1] == echo and source[0] in boundary and raw[start - 1:start] == echo)
+        )
+    )
+
+
+def _is_adjacent_repetition_deletion(
+    raw: str, start: int, end: int, compact: str
+) -> bool:
+    """Recognize deletion of one or more copies from an adjacent character run."""
+
+    if not compact or len(set(compact)) != 1:
+        return False
+    if raw[start:end] != compact:
+        return False
+    unit = compact[0]
+    if len(compact) == 1:
+        return (
+            raw[start - 1 : start] == unit
+            or raw[end : end + 1] == unit
+        )
+    return (
+        raw[start - 1 : start] == unit
+        or raw[end : end + 1] == unit
+    )
 
 
 def _strip_edit_punctuation(value: str) -> str:
@@ -1051,6 +1422,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             and token in _CHINESE_DIGITS
             and suffix not in _CHINESE_NUMERIC_UNITS
             and suffix not in _CHINESE_COUNT_UNITS
+            and suffix not in _CHINESE_MULTIPLIER_UNITS
         ):
             continue
         value = _parse_chinese_number(token)
@@ -1069,6 +1441,143 @@ def _numeric_edit_is_equivalent(source: str, target: str) -> bool:
     if not source_values or source_values != _numeric_values(target):
         return False
     return _numeric_skeleton(source) == _numeric_skeleton(target)
+
+
+def preserve_safe_numeric_edits(raw: str, refined: str) -> str | None:
+    """Keep equivalent numeric surface edits from an otherwise rejected output.
+
+    Integrity validation is intentionally conservative for semantic deletions,
+    but rejecting a whole window can hide an independently safe conversion such
+    as a Chinese count to Arabic digits.  This helper projects only aligned
+    replacements whose surrounding numeric values and shells are equivalent
+    back onto the original text. All other model edits are discarded.
+    """
+
+    source = raw.strip()
+    candidate = refined.strip()
+    if not source or not candidate or source == candidate:
+        return None
+
+    edits: list[tuple[int, int, str]] = []
+    matcher = SequenceMatcher(None, source, candidate, autojunk=False)
+    # Keep the comparison local. A whole sentence may contain an unrelated
+    # rejected deletion; including it would hide an otherwise equivalent
+    # numeric edit from this salvage pass.
+    context_radius = 8
+    boundary_chars = frozenset("\uff0c,\u3001\u3002\uff01\uff1f!?\uff1b;\uff1a:\n")
+
+    def local_context(text: str, start: int, end: int) -> str:
+        left_boundary = max(
+            (index for index, char in enumerate(text[:start]) if char in boundary_chars),
+            default=-1,
+        )
+        right_candidates = [
+            index for index in range(end, len(text)) if text[index] in boundary_chars
+        ]
+        right_boundary = (right_candidates[0] + 1) if right_candidates else len(text)
+        if right_boundary - left_boundary <= 40:
+            return text[left_boundary + 1 : right_boundary]
+        return text[max(0, start - context_radius) : min(len(text), end + context_radius)]
+    for tag, source_start, source_end, target_start, target_end in matcher.get_opcodes():
+        if tag != "replace" or source_start == source_end or target_start == target_end:
+            continue
+        source_fragment = source[source_start:source_end]
+        target_fragment = candidate[target_start:target_end]
+        # SequenceMatcher normally isolates a numeric surface replacement
+        # from nearby punctuation.  Prefer that exact replacement when it is
+        # independently equivalent: another rejected edit may have removed a
+        # comma immediately after the number, which would otherwise make the
+        # punctuation-bounded contexts differ and hide the safe conversion.
+        if _numeric_edit_is_equivalent(source_fragment, target_fragment):
+            edits.append((source_start, source_end, target_fragment))
+            continue
+        source_context = local_context(source, source_start, source_end)
+        target_context = local_context(candidate, target_start, target_end)
+        if not _numeric_edit_is_equivalent(source_context, target_context):
+            continue
+        edits.append((source_start, source_end, candidate[target_start:target_end]))
+
+    if not edits:
+        return None
+    repaired = source
+    for start, end, replacement in reversed(edits):
+        repaired = repaired[:start] + replacement + repaired[end:]
+    if repaired == source or not _numeric_surface_only(source, repaired):
+        return None
+    return repaired
+
+
+def preserve_safe_repetition_edits(raw: str, refined: str) -> str | None:
+    """Project independently provable adjacent repetition deletions.
+
+    A rejected refinement can contain a valid stutter cleanup next to an
+    unsafe rewrite.  This helper starts from the source and accepts only
+    delete opcodes whose entire source span is an adjacent repeated-character
+    run or an exact adjacent repeated phrase.  Insertions, substitutions,
+    punctuation edits, numbers, entities, and unsupported semantic deletions
+    are never copied from the rejected candidate.
+    The result is checked by the same guard before it is returned.
+    """
+
+    source = raw.strip()
+    candidate = refined.strip()
+    if not source or not candidate or source == candidate:
+        return None
+
+    edits: list[tuple[int, int, str]] = []
+    matcher = SequenceMatcher(None, source, candidate, autojunk=False)
+    for tag, source_start, source_end, target_start, target_end in matcher.get_opcodes():
+        if tag != "delete" or source_start == source_end:
+            continue
+        source_fragment = source[source_start:source_end]
+        # The model may delete one repeated phrase together with an unrelated
+        # particle: 我们我们就假设 -> 我们假设.  Recover only the exact adjacent
+        # repeated phrase, leaving the particle and all other source text in
+        # place.  This uses the model's deletion as evidence but never copies
+        # its wider rewrite into the fallback.
+        phrase_width = next(
+            (
+                width
+                for width in range(min(6, len(source_fragment)), 1, -1)
+                if len(set(source_fragment[:width])) > 1
+                and source[:source_start].endswith(source_fragment[:width])
+            ),
+            0,
+        )
+        if phrase_width:
+            edits.append((source_start, source_start + phrase_width, ""))
+            continue
+        compact = _strip_edit_punctuation(source_fragment)
+        if compact != source_fragment or not compact:
+            continue
+        single_char_run = len(set(compact)) == 1
+        if single_char_run:
+            if _is_protected_reduplication_deletion(
+                source, source_start, source_end, compact
+            ):
+                continue
+            if not _is_adjacent_repetition_deletion(
+                source, source_start, source_end, compact
+            ):
+                continue
+        elif not (
+            len(compact) >= 2
+            and (
+                source[:source_start].endswith(compact)
+                or source[source_end:].startswith(compact)
+            )
+        ):
+            continue
+        edits.append((source_start, source_end, ""))
+
+    if not edits:
+        return None
+    repaired = source
+    for start, end, replacement in reversed(edits):
+        repaired = repaired[:start] + replacement + repaired[end:]
+    if repaired == source or reject_reasons(source, repaired):
+        return None
+    return repaired
 
 
 def _numeric_context_is_lost(source: str, target: str) -> bool:
@@ -1121,6 +1630,8 @@ def _unit_for(value: str) -> str:
         return "currency"
     if value in _CHINESE_COUNT_UNITS:
         return "count"
+    if value in _CHINESE_MULTIPLIER_UNITS:
+        return "multiplier"
     return ""
 
 

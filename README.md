@@ -71,6 +71,16 @@ bash scripts/start_qwen_asr.sh
 bash scripts/start_web.sh
 ~~~
 
+如果两个服务已经启动，后续使用下面的入口不会重新加载模型；它只会复用健康服务，
+只有发现服务缺失时才启动对应进程：
+
+~~~bash
+bash scripts/start_services.sh
+~~~
+
+后台日志和 PID 文件保存在 `.runtime/services/`。需要停止服务时，再按端口或 PID
+进行明确停止；不要重复执行单独的前台启动脚本来“刷新”服务。
+
 启动成功后打开 [http://127.0.0.1:8081](http://127.0.0.1:8081)。脚本默认让 Qwen 监听 8766、Web 监听 8081。端口冲突时可设置 QWEN_PORT 或 WEB_PORT；修改 ASR 端口后也要同步设置 ASR_URL。
 
 Qwen ASR 服务同时支持当前 `/stream/...` 协议和原始 `/v1/stream/{session_id}/...` 协议。Web 默认使用当前协议；需要复现原始调用契约时可设置：

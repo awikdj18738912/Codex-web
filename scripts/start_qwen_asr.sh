@@ -14,6 +14,16 @@ QWEN_VAD_BACKEND="${QWEN_VAD_BACKEND:-silero}"
 QWEN_GPU="${QWEN_GPU:-0}"
 QWEN_PORT="${QWEN_PORT:-8766}"
 
+if curl --silent --show-error --fail --max-time 3 \
+  "http://127.0.0.1:${QWEN_PORT}/health" >/dev/null 2>&1; then
+  echo "Qwen ASR is already healthy on port ${QWEN_PORT}; reusing it."
+  exit 0
+fi
+if ss -ltn "sport = :${QWEN_PORT}" 2>/dev/null | tail -n +2 | grep -q .; then
+  echo "Qwen ASR port ${QWEN_PORT} is occupied but health check failed; refusing to restart it." >&2
+  exit 1
+fi
+
 cd "${PROJECT_ROOT}"
 
 if [[ "${QWEN_VAD_BACKEND}" == "silero" && ! -f "${VAD_MODEL}" ]]; then

@@ -8,6 +8,7 @@ import json
 import sys
 import time
 import threading
+import uuid
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -31,7 +32,7 @@ from .entity_pipeline import (
     has_retryable_integrity_failure,
     prepare_entity_segment,
 )
-from .protection import EntityProtector
+from .protection import EntityProtector, strip_refiner_key_suffix
 from .refinement_gate import (
     HypothesisStability,
     HypothesisTracker,
@@ -40,8 +41,13 @@ from .refinement_gate import (
     RefinementGateMode,
 )
 from .refinement_guard import (
+    RepetitionReviewCandidate,
+    apply_repetition_review_decisions,
     detect_boundary_anomalies,
+    find_repetition_review_candidates,
     join_refined_segments,
+    preserve_safe_numeric_edits,
+    preserve_safe_repetition_edits,
     split_for_refinement,
 )
 from .numeric_normalizer import ContextualNumericNormalizer
@@ -259,6 +265,159 @@ def _confidence_metadata(payload: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _repetition_review_cache_key(
+    candidate: RepetitionReviewCandidate,
+) -> tuple[int, int, str, str, str]:
+    """Identify a candidate across streaming revisions without using its index."""
+
+    return (
+        candidate.start,
+        candidate.end,
+        candidate.source,
+        candidate.target,
+        candidate.context,
+    )
+
+
+def _repetition_decision_from_refined_context(
+    text: str, candidate: RepetitionReviewCandidate, response: str
+) -> list[dict[str, object]] | None:
+    """Accept a model edit only when it changes exactly this repeated span."""
+
+    context = candidate.context
+    # The same phrase may occur elsewhere in a window.  Align the candidate
+    # with its source-owned offset rather than replacing the first occurrence.
+    context_start = next(
+        (
+            start
+            for start in range(max(0, candidate.end - len(context)), candidate.start + 1)
+            if text[start : start + len(context)] == context
+            and start <= candidate.start
+            and candidate.end <= start + len(context)
+        ),
+        None,
+    )
+    if context_start is None:
+        return None
+    local_start = candidate.start - context_start
+    local_end = candidate.end - context_start
+    if context[local_start:local_end] != candidate.source:
+        return None
+    expected = context[:local_start] + candidate.target + context[local_end:]
+    refined, _, issue = apply_structured_patch(
+        context, strip_refiner_key_suffix(response)
+    )
+    if issue is not None:
+        return None
+    if refined == context:
+        action = "keep"
+    elif refined == expected:
+        action = "remove"
+    elif (
+        expected.startswith(refined)
+        and refined.endswith(tuple("。！？!?；;"))
+        and any(
+            mark in refined[local_start + len(candidate.target):]
+            for mark in "。！？!?；;"
+        )
+    ):
+        # A text Refiner may stop at a complete sentence before the end of
+        # the supplied context.  Its entire visible answer must still equal
+        # the expected candidate-only edit; never apply the omitted suffix.
+        action = "remove"
+    else:
+        return None
+    return [
+        {
+            "index": candidate.index,
+            "action": action,
+            "reason": "model_local_text_review",
+        }
+    ]
+
+
+def _reviewed_source_spans(
+    source_spans: object,
+    before: str,
+    after: str,
+    reviews: list[dict[str, object]],
+) -> list[dict[str, object]] | None:
+    """Keep accepted local review edits attached to their original ASR spans."""
+
+    if not isinstance(source_spans, (list, tuple)):
+        return None
+    entries: list[dict[str, object]] = []
+    prefix = ""
+    for span in source_spans:
+        if not isinstance(span, dict):
+            return None
+        source = span.get("source_text")
+        clean = span.get("clean_text")
+        if not isinstance(source, str) or not isinstance(clean, str):
+            return None
+        extended = join_refined_segments((prefix, clean))
+        if not extended.endswith(clean):
+            return None
+        entries.append({
+            "source_text": source,
+            "clean_text": clean,
+            "state": span.get("state", "active"),
+            "start": len(extended) - len(clean),
+            "end": len(extended),
+        })
+        prefix = extended
+    if prefix != before:
+        return None
+
+    applied = sorted(
+        (record for record in reviews
+         if record.get("decision") == "remove" and record.get("applied") is True),
+        key=lambda record: int(record["start"]),
+        reverse=True,
+    )
+    if not applied:
+        return None
+    for record in applied:
+        start, end = record.get("start"), record.get("end")
+        source, target = record.get("source"), record.get("target")
+        if (
+            not isinstance(start, int) or not isinstance(end, int)
+            or not isinstance(source, str) or not isinstance(target, str)
+            or before[start:end] != source
+        ):
+            return None
+        left = next((i for i, item in enumerate(entries)
+                     if item["start"] <= start < item["end"]), None)
+        right = next((i for i, item in enumerate(entries)
+                      if item["start"] < end <= item["end"]), None)
+        if left is None or right is None or left > right:
+            return None
+        affected = entries[left:right + 1]
+        combined = join_refined_segments(item["clean_text"] for item in affected)
+        local_start = start - affected[0]["start"]
+        local_end = end - affected[0]["start"]
+        if combined[local_start:local_end] != source:
+            return None
+        entries[left:right + 1] = [{
+            "source_text": "".join(item["source_text"] for item in affected),
+            "clean_text": combined[:local_start] + target + combined[local_end:],
+            "state": (
+                "active" if any(item["state"] == "active" for item in affected)
+                else "committed"
+            ),
+            "start": affected[0]["start"],
+            "end": affected[-1]["end"],
+        }]
+    if clean_transcript_deterministically(
+        join_refined_segments(item["clean_text"] for item in entries)
+    ) != after:
+        return None
+    return [
+        {key: item[key] for key in ("source_text", "clean_text", "state")}
+        for item in entries
+    ]
+
+
 def _stream_request(
     asr_url: str,
     endpoint: str,
@@ -380,6 +539,196 @@ def create_app(
     print("Loading AgenticASR Refiner...", flush=True)
     refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens)
     refiner_lock = threading.Lock()
+
+    def review_final_repetition_text(
+        text: str,
+        *,
+        final: bool,
+        call_stats: _RefinerSessionStats | None,
+        streaming: bool = False,
+        review_cache: dict[
+            tuple[int, int, str, str, str], dict[str, object]
+        ] | None = None,
+    ) -> tuple[str, list[dict[str, object]], float, bool]:
+        """Review structural repetitions in a stable stream window or final text."""
+
+        if (not final and not streaming) or not text:
+            return text, [], 0.0, False
+        candidates = find_repetition_review_candidates(text, max_candidates=128)
+        if not candidates:
+            return text, [], 0.0, False
+
+        cached_decisions: list[dict[str, object]] = []
+        pending_candidates: list[RepetitionReviewCandidate] = []
+        for candidate in candidates:
+            cached = (
+                review_cache.get(_repetition_review_cache_key(candidate))
+                if review_cache is not None
+                else None
+            )
+            action = cached.get("action") if isinstance(cached, dict) else None
+            if action in {"keep", "remove"}:
+                cached_decisions.append(
+                    {
+                        "index": candidate.index,
+                        "action": action,
+                        "reason": str(cached.get("reason", "streaming_cache")),
+                    }
+                )
+            else:
+                pending_candidates.append(candidate)
+
+        if not pending_candidates:
+            if cached_decisions:
+                # Cached decisions must retain their applied records.  The
+                # streaming display uses those records to attach an edit to
+                # its source-owned spans.  Dropping them here left the text
+                # clean while the spans reverted to raw ASR on the next pass.
+                reviewed_text, applied_records = apply_repetition_review_decisions(
+                    text, candidates, cached_decisions
+                )
+                return reviewed_text, list(applied_records), 0.0, False
+            return text, [], 0.0, False
+
+        records: list[dict[str, object]] = []
+        if not refiner_lock.acquire(timeout=REFINER_LOCK_TIMEOUT_SECONDS):
+            records = [
+                {
+                    **candidate.public_dict(),
+                    "decision": "unresolved",
+                    "reason": "review_unavailable",
+                }
+                for candidate in pending_candidates
+            ]
+            if cached_decisions:
+                text, cached_records = apply_repetition_review_decisions(
+                    text, candidates, cached_decisions
+                )
+                records.extend(cached_records)
+            return text, records, 0.0, False
+
+        total_latency_ms = 0.0
+        decisions: list[dict[str, object]] = list(cached_decisions)
+        model_responses: dict[int, str] = {}
+        try:
+            reviewer = getattr(refiner, "review_repetition", None)
+            if reviewer is None:
+                records = [
+                    {
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": "review_unavailable",
+                    }
+                    for candidate in pending_candidates
+                ]
+                reviewed_text = text
+                if cached_decisions:
+                    reviewed_text, cached_records = apply_repetition_review_decisions(
+                        text, candidates, cached_decisions
+                    )
+                    records.extend(cached_records)
+                return reviewed_text, records, total_latency_ms, False
+            for candidate in pending_candidates:
+                started_at = (
+                    call_stats.begin_call(final=final, retry=False)
+                    if call_stats is not None
+                    else time.perf_counter()
+                )
+                if started_at is None:
+                    records.append(
+                        {
+                            **candidate.public_dict(),
+                            "decision": "unresolved",
+                            "reason": "review_calls_closed",
+                        }
+                    )
+                    continue
+                try:
+                    response, latency_ms = reviewer(candidate.context)
+                except BaseException:
+                    if call_stats is not None:
+                        call_stats.finish_call(started_at, failed=True)
+                    records.append(
+                        {
+                            **candidate.public_dict(),
+                            "decision": "unresolved",
+                            "reason": "review_failed",
+                        }
+                    )
+                    continue
+                if call_stats is not None:
+                    call_stats.finish_call(started_at, failed=False)
+                total_latency_ms += latency_ms
+                model_responses[candidate.index] = response
+                decision = _repetition_decision_from_refined_context(
+                    text, candidate, response
+                )
+                if decision is None:
+                    records.append(
+                        {
+                            **candidate.public_dict(),
+                            "decision": "unresolved",
+                            "reason": "invalid_response",
+                            "model_response": response,
+                        }
+                    )
+                else:
+                    decisions.extend(decision)
+            if decisions:
+                reviewed_text, applied_records = apply_repetition_review_decisions(
+                    text, candidates, decisions
+                )
+            else:
+                reviewed_text, applied_records = text, ()
+            applied_by_index = {
+                int(record["index"]): record for record in applied_records
+            }
+            # A cached deletion was already validated on an earlier stream
+            # pass.  Still emit its applied record on this pass so the
+            # source-span map can carry the edit forward to the browser.
+            records.extend(
+                applied_by_index[item["index"]]
+                for item in cached_decisions
+                if int(item["index"]) in applied_by_index
+            )
+            records.extend(
+                {
+                    **applied_by_index[candidate.index],
+                    "model_response": model_responses[candidate.index],
+                }
+                for candidate in pending_candidates
+                if candidate.index in applied_by_index
+            )
+            records.sort(key=lambda record: int(record["index"]))
+
+            if review_cache is not None:
+                decision_by_index = {
+                    int(item["index"]): item for item in decisions
+                }
+                for candidate in pending_candidates:
+                    decision = decision_by_index.get(candidate.index)
+                    if decision is None:
+                        continue
+                    action = str(decision.get("action", "")).lower()
+                    applied_record = applied_by_index.get(candidate.index)
+                    if action == "keep" or (
+                        action == "remove"
+                        and isinstance(applied_record, dict)
+                        and applied_record.get("applied") is True
+                    ):
+                        review_cache[_repetition_review_cache_key(candidate)] = {
+                            "action": action,
+                            "reason": str(
+                                decision.get("reason", "streaming_cache")
+                            ),
+                        }
+                if len(review_cache) > 1024:
+                    for key in tuple(review_cache)[:256]:
+                        review_cache.pop(key, None)
+            return reviewed_text, records, total_latency_ms, True
+        finally:
+            refiner_lock.release()
+
     entity_store = EntityStore(entity_db) if entity_db is not None else None
     fuzzy_mode = EntityFuzzyMode.parse(entity_fuzzy_mode)
     refinement_gate = RefinementGate(
@@ -433,9 +782,11 @@ def create_app(
         single_window: bool = False,
         confidence_metadata: dict[str, object] | None = None,
         call_stats: _RefinerSessionStats | None = None,
-        force_refine: bool = False,
+        trace_segments: list[dict[str, object]] | None = None,
+        pending_only: bool = False,
     ) -> dict[str, object]:
         confidence_metadata = dict(confidence_metadata or {})
+        trace_segment: dict[str, object] | None = None
 
         def invoke_refiner(
             text: str,
@@ -458,10 +809,20 @@ def create_app(
                     entity_hints=hints,
                     strict_placeholders=strict_placeholders,
                 )
-            except BaseException:
+            except BaseException as error:
+                if trace_segment is not None:
+                    trace_segment.setdefault("model_calls", []).append(
+                        {"input": text, "strict_placeholders": strict_placeholders,
+                         "error": type(error).__name__}
+                    )
                 if call_stats is not None:
                     call_stats.finish_call(started_at, failed=True)
                 raise
+            if trace_segment is not None:
+                trace_segment.setdefault("model_calls", []).append(
+                    {"input": text, "output": result[0],
+                     "strict_placeholders": strict_placeholders}
+                )
             if call_stats is not None:
                 call_stats.finish_call(started_at, failed=False)
             return result
@@ -471,6 +832,10 @@ def create_app(
         entity_hints: list[str] = []
         entity_normalizations: list[dict[str, str]] = []
         numeric_normalizations: list[dict[str, object]] = []
+        numeric_fallbacks: list[dict[str, object]] = []
+        safe_numeric_repairs: list[dict[str, object]] = []
+        safe_repetition_repairs: list[dict[str, object]] = []
+        repetition_reviews: list[dict[str, object]] = []
         entity_audit_issues: list[str] = []
         entity_candidates: list[dict[str, object]] = []
         refiner_reject_reasons: list[str] = []
@@ -486,6 +851,7 @@ def create_app(
         total_latency_ms = 0.0
         matcher_latency_ms = 0.0
         refiner_available = True
+
         segments = (raw_text,) if single_window and raw_text else split_for_refinement(
             raw_text, one_punctuation_window=use_punctuation_windows
         )
@@ -540,26 +906,47 @@ def create_app(
                 is_final=final,
                 numeric_refinement=not numeric_normalization,
             )
-            if force_refine and not gate_decision.should_refine:
+            if pending_only and gate_decision.should_refine:
                 gate_decision = RefinementGateDecision(
                     mode=gate_decision.mode,
-                    should_refine=True,
-                    reasons=("vad_finalized_window",),
+                    should_refine=False,
+                    reasons=("incomplete_fixed_group",),
                     visible_chars=gate_decision.visible_chars,
                     asr_confidence=gate_decision.asr_confidence,
                     cleanup_signals=gate_decision.cleanup_signals,
                     calibrated=gate_decision.calibrated,
                     covers_segment=gate_decision.covers_segment,
-                    action="refine",
+                    action="defer",
                 )
             refinement_gate_decisions.append(
                 {"segment_index": segment_index + 1, **gate_decision.public_dict()}
             )
+            trace_segment = (
+                {"segment_index": segment_index + 1, "source": segment,
+                 "baseline": baseline_text, "masked_input": masked_text,
+                 "gate": gate_decision.public_dict(), "model_calls": []}
+                if trace_segments is not None else None
+            )
+            if trace_segment is not None:
+                trace_segments.append(trace_segment)
             if not gate_decision.should_refine:
                 refinement_gate_skipped_segments += 1
                 if call_stats is not None:
                     call_stats.record_gate_skip()
                 clean_segment = baseline_text
+                if not numeric_normalization:
+                    approximate_fallback = numeric_normalizer.normalize_approximate(
+                        clean_segment
+                    )
+                    clean_segment = approximate_fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "gate_kept_approximate_number",
+                        }
+                        for change in approximate_fallback.changes
+                    )
                 changes = list(prepared.normalizations)
                 if normalized_baseline is not None:
                     numeric_normalizations.extend(
@@ -578,6 +965,8 @@ def create_app(
                 entity_audit_issues.extend(
                     protector.audit_unmasked(clean_segment, protection)
                 )
+                if trace_segment is not None:
+                    trace_segment.update({"outcome": "gate_skip", "output": clean_segment})
                 continue
             # A stale browser connection must not be able to block the final
             # result forever.  After one timeout, preserve all remaining source
@@ -590,7 +979,16 @@ def create_app(
                 refiner_available = False
                 if call_stats is not None:
                     call_stats.record_busy_segment()
-                clean_segment = baseline_text
+                fallback = numeric_normalizer.normalize(prepared.baseline_text)
+                clean_segment = fallback.text
+                numeric_fallbacks.extend(
+                    {
+                        **change.public_dict(),
+                        "segment_index": segment_index + 1,
+                        "reason": "refiner_unavailable",
+                    }
+                    for change in fallback.changes
+                )
                 changes = list(prepared.normalizations)
                 if normalized_baseline is not None:
                     numeric_normalizations.extend(
@@ -599,8 +997,11 @@ def create_app(
                 refiner_reject_reasons.append(
                     f"segment_{segment_index + 1}:refiner_busy"
                 )
+                if trace_segment is not None:
+                    trace_segment.update({"outcome": "refiner_busy", "output": clean_segment})
             else:
                 refiner_executed = True
+                candidate_for_numeric_salvage: str | None = None
                 try:
                     refined_candidate, latency_ms = invoke_refiner(
                         masked_text,
@@ -621,6 +1022,7 @@ def create_app(
                             (structured_issue,),
                         )
                     else:
+                        candidate_for_numeric_salvage = structured_candidate
                         finalized = finalize_entity_segment(
                             structured_candidate,
                             prepared,
@@ -642,6 +1044,7 @@ def create_app(
                         )
                         total_latency_ms += retry_latency_ms
                         refiner_masked_outputs.append(retry_candidate)
+                        candidate_for_numeric_salvage = retry_candidate
                         structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
                             masked_text, retry_candidate
                         )
@@ -663,6 +1066,87 @@ def create_app(
                 finally:
                     refiner_lock.release()
                 clean_segment = finalized.text
+                salvaged_candidate: str | None = None
+                if finalized.reject_reasons and candidate_for_numeric_salvage:
+                    restored_candidate = protector.restore(
+                        candidate_for_numeric_salvage,
+                        protection,
+                    )
+                    if restored_candidate.accepted:
+                        repetition_salvaged = preserve_safe_repetition_edits(
+                            prepared.baseline_text,
+                            restored_candidate.text,
+                        )
+                        if repetition_salvaged is not None:
+                            safe_repetition_repairs.append(
+                                {
+                                    "source_text": prepared.baseline_text,
+                                    "salvaged_text": repetition_salvaged,
+                                    "reason": "safe_adjacent_repetition_after_integrity_fallback",
+                                }
+                            )
+                        numeric_salvaged = preserve_safe_numeric_edits(
+                            prepared.baseline_text,
+                            restored_candidate.text,
+                        )
+                        if numeric_salvaged is not None:
+                            safe_numeric_repairs.append(
+                                {
+                                    "source_text": prepared.baseline_text,
+                                    "salvaged_text": numeric_salvaged,
+                                    "reason": "equivalent_numeric_surface_after_integrity_fallback",
+                                }
+                            )
+                        if repetition_salvaged is not None:
+                            combined = (
+                                preserve_safe_numeric_edits(
+                                    repetition_salvaged,
+                                    restored_candidate.text,
+                                )
+                                or repetition_salvaged
+                            )
+                            salvaged_candidate = combined
+                        elif numeric_salvaged is not None:
+                            salvaged_candidate = numeric_salvaged
+                if finalized.reject_reasons:
+                    # A rejected model result may contain both a wrong value
+                    # and a valid conversion elsewhere in the same window.
+                    # Use the source-owned text as the authority and run the
+                    # deterministic numeric rules over it. If an equivalent
+                    # model-only numeric edit was safely salvaged above, use
+                    # that as an additional input; no other model edits enter
+                    # the fallback result.
+                    fallback_source = (
+                        salvaged_candidate
+                        if salvaged_candidate is not None
+                        else prepared.baseline_text
+                    )
+                    fallback = numeric_normalizer.normalize(fallback_source)
+                    clean_segment = fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "refiner_rejected",
+                            "refiner_reject_reasons": list(
+                                finalized.reject_reasons
+                            ),
+                        }
+                        for change in fallback.changes
+                    )
+                elif not numeric_normalization:
+                    approximate_fallback = numeric_normalizer.normalize_approximate(
+                        clean_segment
+                    )
+                    clean_segment = approximate_fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "model_omitted_approximate_number",
+                        }
+                        for change in approximate_fallback.changes
+                    )
                 changes = list(prepared.normalizations)
                 if numeric_normalization:
                     normalized_output = numeric_normalizer.normalize(clean_segment)
@@ -680,6 +1164,12 @@ def create_app(
                         f"segment_{segment_index + 1}:{reason}"
                         for reason in finalized.reject_reasons
                     )
+                if trace_segment is not None:
+                    trace_segment.update({
+                        "outcome": "rejected" if finalized.reject_reasons else "accepted",
+                        "reject_reasons": list(finalized.reject_reasons),
+                        "output": clean_segment,
+                    })
             clean_parts.append(clean_segment)
             protected_entities.extend(span.public_dict() for span in protection.spans)
             entity_hints.extend(hints)
@@ -718,6 +1208,11 @@ def create_app(
             "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
             "entity_normalizations": entity_normalizations,
             "numeric_normalizations": numeric_normalizations,
+            "numeric_fallbacks": numeric_fallbacks,
+            "safe_numeric_repairs": safe_numeric_repairs,
+            "safe_repetition_repairs": safe_repetition_repairs,
+            "repetition_reviews": repetition_reviews,
+            "boundary_echo_repairs": [],
             "protected_entities": protected_entities,
             "entity_candidates": entity_candidates,
             "entity_matcher_latency_ms": round(matcher_latency_ms, 3),
@@ -757,6 +1252,7 @@ def create_app(
         reason: str,
         started_at: float,
         confidence_metadata: dict[str, object] | None = None,
+        apply_numeric_fallback: bool = False,
     ) -> dict[str, object]:
         # Preserve the complete ASR text and still apply deterministic entity
         # normalization when the neural Refiner exceeds the final deadline.
@@ -765,6 +1261,7 @@ def create_app(
         entity_hints: list[str] = []
         entity_normalizations: list[dict[str, str]] = []
         numeric_normalizations: list[dict[str, object]] = []
+        numeric_fallbacks: list[dict[str, object]] = []
         entity_audit_issues: list[str] = []
         entity_candidates: list[dict[str, object]] = []
         matcher_latency_ms = 0.0
@@ -781,16 +1278,25 @@ def create_app(
             protection = prepared.protection
             normalized = (
                 numeric_normalizer.normalize(prepared.baseline_text)
-                if numeric_normalization
+                if numeric_normalization or apply_numeric_fallback
                 else None
             )
             clean_parts.append(
                 normalized.text if normalized is not None else prepared.baseline_text
             )
             if normalized is not None:
-                numeric_normalizations.extend(
-                    change.public_dict() for change in normalized.changes
-                )
+                if numeric_normalization:
+                    numeric_normalizations.extend(
+                        change.public_dict() for change in normalized.changes
+                    )
+                elif apply_numeric_fallback:
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "reason": "refiner_unavailable",
+                        }
+                        for change in normalized.changes
+                    )
             protected_entities.extend(span.public_dict() for span in protection.spans)
             entity_hints.extend(prepared.hints)
             entity_normalizations.extend(prepared.normalizations)
@@ -841,6 +1347,11 @@ def create_app(
             "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
             "entity_normalizations": entity_normalizations,
             "numeric_normalizations": numeric_normalizations,
+            "numeric_fallbacks": numeric_fallbacks,
+            "safe_numeric_repairs": [],
+            "safe_repetition_repairs": [],
+            "repetition_reviews": [],
+            "boundary_echo_repairs": [],
             "protected_entities": protected_entities,
             "entity_candidates": entity_candidates,
             "entity_matcher_latency_ms": round(matcher_latency_ms, 3),
@@ -988,6 +1499,28 @@ def create_app(
         session_memory = SessionEntityMemory()
         refiner_session_stats = _RefinerSessionStats()
         hypothesis_tracker = HypothesisTracker()
+        trace_id = uuid.uuid4().hex
+        trace_path = (
+            output.with_name(f"{output.stem}.stream_trace.jsonl")
+            if output is not None else None
+        )
+        trace_lock = threading.Lock()
+        trace_context: dict[str, object] = {"phase": "stream", "revision": None}
+
+        def record_trace(event: str, **details: object) -> None:
+            if trace_path is None:
+                return
+            try:
+                with trace_lock:
+                    _append_record(trace_path, {
+                        "captured_at": datetime.now(timezone.utc).isoformat(),
+                        "trace_id": trace_id,
+                        "event": event,
+                        **details,
+                    })
+            except (OSError, TypeError, ValueError):
+                # Diagnostics must never change a transcription decision.
+                pass
 
         def attach_refiner_session_stats(
             result: dict[str, object], *, close: bool = False
@@ -1017,7 +1550,31 @@ def create_app(
 
         def session_refine_update(*args, **kwargs) -> dict[str, object]:
             kwargs["call_stats"] = refiner_session_stats
-            return refine_update(*args, **kwargs)
+            segments: list[dict[str, object]] = []
+            phase = trace_context["phase"]
+            revision = trace_context["revision"]
+            if trace_path is not None:
+                kwargs["trace_segments"] = segments
+            try:
+                result = refine_update(*args, **kwargs)
+            except Exception as error:
+                record_trace(
+                    "window_error", phase=phase, revision=revision,
+                    input=args[0] if args else None, segments=segments,
+                    error=type(error).__name__,
+                )
+                raise
+            record_trace(
+                "window_result", phase=phase, revision=revision,
+                input=args[0] if args else None, segments=segments,
+                output=result.get("clean_text"),
+                reject_reasons=result.get("refiner_reject_reasons"),
+            )
+            return result
+
+        def session_prepare_pending(*args, **kwargs) -> dict[str, object]:
+            kwargs["pending_only"] = True
+            return session_refine_update(*args, **kwargs)
 
         definitions = (
             entity_store.list_entities(domain=requested_domain)
@@ -1058,16 +1615,20 @@ def create_app(
         last_refinement_started_at: float | None = None
         vad_source_segments: list[str] = []
         seen_vad_segment_ids: set[int] = set()
-        # Every punctuation mark closes one source chunk in tri_state, while
-        # the active model window still contains the latest three chunks. This
-        # keeps comma boundaries visible without forcing one model call per
-        # comma. Legacy modes retain sentence-preferred K=3 behavior.
+        # In tri_state, wait for three punctuation chunks and refine them as
+        # one source-owned group. Legacy modes retain rolling K=3 behavior.
         window_refinement = CumulativeWindowRefinement(
             session_refine_update,
             window_size=3,
             one_punctuation_window=use_punctuation_windows,
+            fixed_groups=use_punctuation_windows,
+            prepare_pending=session_prepare_pending if use_punctuation_windows else None,
         )
         refinement_display = StreamingRefinementDisplay()
+        streaming_repetition_cache: dict[
+            tuple[int, int, str, str, str], dict[str, object]
+        ] = {}
+        streaming_repetition_reviews: list[dict[str, object]] = []
 
         def consume_completed_segments(payload: dict[str, object]) -> int:
             """Consume request-scoped ASR segment events exactly once."""
@@ -1232,6 +1793,10 @@ def create_app(
                 *result.get("numeric_normalizations", []),
                 *entity_result["numeric_normalizations"],
             ]
+            result["numeric_fallbacks"] = [
+                *result.get("numeric_fallbacks", []),
+                *entity_result["numeric_fallbacks"],
+            ]
             result["protected_entities"] = [
                 *result.get("protected_entities", []),
                 *entity_result["protected_entities"],
@@ -1244,6 +1809,28 @@ def create_app(
                 float(result.get("entity_matcher_latency_ms", 0.0))
                 + float(entity_result["entity_matcher_latency_ms"]),
                 3,
+            )
+            reviewed_text, review_records, review_latency_ms, review_executed = (
+                review_final_repetition_text(
+                    str(result["clean_text"]),
+                    final=final,
+                    call_stats=refiner_session_stats,
+                    review_cache=streaming_repetition_cache,
+                )
+            )
+            result["clean_text"] = clean_transcript_deterministically(
+                reviewed_text
+            )
+            result["repetition_reviews"] = [
+                *streaming_repetition_reviews,
+                *result.get("repetition_reviews", []),
+                *review_records,
+            ]
+            result["refiner_latency_ms"] = round(
+                float(result.get("refiner_latency_ms", 0.0)) + review_latency_ms
+            )
+            result["refiner_executed"] = bool(
+                result.get("refiner_executed", False) or review_executed
             )
             return result
 
@@ -1317,6 +1904,12 @@ def create_app(
                 # longer see a newer revision and discard a finished result.
                 latest_refinement_revision = revision
                 last_refinement_started_at = time.perf_counter()
+                trace_context.update(phase="stream", revision=revision)
+                record_trace(
+                    "pass_started", revision=revision,
+                    raw_text=full_raw_value, tail=tail_value,
+                    source_segments=source_segments_value,
+                )
                 try:
                     if source_segments_value:
                         owned_raw_value = join_refined_segments(
@@ -1326,7 +1919,7 @@ def create_app(
                             window_refinement.update_segments,
                             source_segments_value,
                             language_value,
-                            True,
+                            not use_punctuation_windows,
                             protector,
                             confidence_value,
                             matcher,
@@ -1344,9 +1937,75 @@ def create_app(
                             matcher,
                             confidence_metadata=confidence_metadata_value,
                         )
-                    # ``finish`` already published the complete transcript and
-                    # the browser ignores intermediate updates afterwards.
+                    # Repetition review belongs to the streaming result, not
+                    # only to a VAD-finalized source segment.  Some ASR
+                    # backends expose VAD boundaries only on ``finish``; if
+                    # this remains conditional on ``source_segments_value``,
+                    # punctuation-separated repetitions stay visible until
+                    # the final pass even though the active window is ready.
+                    before_review = str(result["clean_text"])
+                    if use_punctuation_windows and result["committed_chunks"] == 0:
+                        # The current ASR hypothesis has not produced a full
+                        # K=3 group.  Keep its source-owned text pending until
+                        # the third punctuation chunk is available.
+                        reviewed_text = before_review
+                        review_records = []
+                        review_latency_ms = 0.0
+                        review_executed = False
+                    else:
+                        (
+                            reviewed_text,
+                            review_records,
+                            review_latency_ms,
+                            review_executed,
+                        ) = await asyncio.to_thread(
+                            review_final_repetition_text,
+                            before_review,
+                            final=False,
+                            streaming=True,
+                            call_stats=refiner_session_stats,
+                            review_cache=streaming_repetition_cache,
+                        )
+                    result["clean_text"] = clean_transcript_deterministically(
+                        reviewed_text
+                    )
+                    reviewed_spans = _reviewed_source_spans(
+                        result.get("refinement_source_spans"),
+                        before_review,
+                        str(result["clean_text"]),
+                        review_records,
+                    )
+                    if reviewed_spans is not None:
+                        result["refinement_source_spans"] = reviewed_spans
+                    record_trace(
+                        "stream_review", revision=revision,
+                        input=before_review, model_review_output=reviewed_text,
+                        output=result["clean_text"], reviews=review_records,
+                        source_spans_updated=reviewed_spans is not None,
+                    )
+                    result["repetition_reviews"] = [
+                        *result.get("repetition_reviews", []),
+                        *review_records,
+                    ]
+                    result["refiner_latency_ms"] = round(
+                        float(result.get("refiner_latency_ms", 0.0))
+                        + review_latency_ms
+                    )
+                    result["refiner_executed"] = bool(
+                        result.get("refiner_executed", False)
+                        or review_executed
+                    )
+                    streaming_repetition_reviews.extend(review_records)
+                    # A finish request may be waiting for this pass.  Publish
+                    # it unless the pass was explicitly invalidated after a
+                    # timeout or replaced by a newer hypothesis.
                     if streaming_finish_requested or revision != latest_refinement_revision:
+                        record_trace(
+                            "pass_not_published", revision=revision,
+                            reason=("finish_requested" if streaming_finish_requested
+                                    else "superseded"),
+                            output=result.get("clean_text"),
+                        )
                         continue
                     result["refinement_revision"] = revision
                     result["event"] = "update"
@@ -1359,9 +2018,21 @@ def create_app(
                         refinement_display.compose(last_raw_text or full_raw_value)
                     )
                     attach_refiner_session_stats(result)
-                    if not await send_json(result):
+                    sent = await send_json(result)
+                    record_trace(
+                        "pass_published" if sent else "pass_send_failed",
+                        revision=revision, output=result.get("clean_text"),
+                        display_refined_text=result.get("display_refined_text"),
+                        pending_raw_text=result.get("pending_raw_text"),
+                        source_spans=result.get("refinement_source_spans"),
+                    )
+                    if not sent:
                         return
                 except Exception as error:
+                    record_trace(
+                        "pass_error", revision=revision,
+                        error=type(error).__name__, detail=str(error),
+                    )
                     if (
                         not streaming_finish_requested
                         and revision == latest_refinement_revision
@@ -1384,6 +2055,12 @@ def create_app(
             # Enqueueing must not invalidate the pass that is already
             # running: the revision is claimed in run_streaming_refiner.
             revision = latest_refinement_revision + 1
+            record_trace(
+                "pass_queued", revision=revision,
+                replaced_pending=pending_refinement is not None,
+                raw_text=full_raw_value, tail=tail_value,
+                source_segments=source_segments_value,
+            )
             pending_refinement = (
                 tail_value,
                 language_value,
@@ -1480,17 +2157,34 @@ def create_app(
                     command = json.loads(text)
                     if command.get("event") != "finish":
                         continue
-                    if requested_mode in {"online", "offline", "streaming"}:
-                        # Mark intermediate output stale immediately. Do not
-                        # wait here: a slow partial generation used to delay
-                        # the final ASR result and made the refinement panel
-                        # appear frozen. Its worker is bounded by the Refiner
-                        # generation timeout and will discard its result once
-                        # it observes this flag.
-                        streaming_finish_requested = True
-                        latest_refinement_revision += 1
-                        pending_refinement = None
                     payload = await request_asr("/stream/finish", session_id)
+                    if requested_mode in {"online", "offline", "streaming"}:
+                        # Let the in-flight streaming pass publish before the
+                        # final pass starts.  Previously the finish command
+                        # invalidated it immediately, so a repetition found
+                        # by the streaming reviewer was discarded and only
+                        # the final Refiner could change the visible text.
+                        if (
+                            streaming_refiner_task is not None
+                            and not streaming_refiner_task.done()
+                        ):
+                            try:
+                                await asyncio.wait_for(
+                                    asyncio.shield(streaming_refiner_task),
+                                    timeout=REFINER_LOCK_TIMEOUT_SECONDS,
+                                )
+                            except asyncio.TimeoutError:
+                                # The final pass remains the safe fallback for
+                                # a slow streaming generation.  Invalidate its
+                                # revision so a late result cannot overwrite
+                                # the final text.
+                                latest_refinement_revision += 1
+                                streaming_finish_requested = True
+                            except Exception:
+                                streaming_finish_requested = True
+                        if not streaming_finish_requested:
+                            streaming_finish_requested = True
+                        pending_refinement = None
                     consume_completed_segments(payload)
                     asr_activity = {
                         key: payload.get(key)
@@ -1538,6 +2232,12 @@ def create_app(
                             finished = True
                             break
                         refinement_started = time.perf_counter()
+                        trace_context.update(phase="final", revision=latest_refinement_revision)
+                        record_trace(
+                            "final_started", revision=latest_refinement_revision,
+                            raw_text=final_raw,
+                            source_segments=final_source_segments,
+                        )
                         try:
                             result = await refine_final(
                                 final_raw,
@@ -1558,6 +2258,7 @@ def create_app(
                                 "final_refinement_timeout",
                                 refinement_started,
                                 confidence_metadata,
+                                apply_numeric_fallback=True,
                             )
                         except Exception as error:
                             refiner_session_stats.close_new_calls()
@@ -1572,9 +2273,17 @@ def create_app(
                                 f"final_refinement_error:{type(error).__name__}",
                                 refinement_started,
                                 confidence_metadata,
+                                apply_numeric_fallback=True,
                             )
                         result["refinement_revision"] = latest_refinement_revision
                         attach_refiner_session_stats(result, close=True)
+                        record_trace(
+                            "final_result", revision=latest_refinement_revision,
+                            raw_text=final_raw,
+                            output=result.get("clean_text"),
+                            reviews=result.get("repetition_reviews"),
+                            reject_reasons=result.get("refiner_reject_reasons"),
+                        )
                         if output is not None:
                             _append_record(
                                 output,
@@ -1645,6 +2354,21 @@ def create_app(
                                         "numeric_normalizations": result[
                                             "numeric_normalizations"
                                         ],
+                                        "numeric_fallbacks": result[
+                                            "numeric_fallbacks"
+                                        ],
+                                        "safe_numeric_repairs": result[
+                                            "safe_numeric_repairs"
+                                        ],
+                                        "safe_repetition_repairs": result.get(
+                                            "safe_repetition_repairs", []
+                                        ),
+                                        "repetition_reviews": result.get(
+                                            "repetition_reviews", []
+                                        ),
+                                        "boundary_echo_repairs": result[
+                                            "boundary_echo_repairs"
+                                        ],
                                         "protected_entities": result[
                                             "protected_entities"
                                         ],
@@ -1713,6 +2437,17 @@ def create_app(
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "defer"
                         )
+                        has_repetition_candidate = bool(
+                            find_repetition_review_candidates(raw_text, max_candidates=1)
+                        )
+                        record_trace(
+                            "asr_hypothesis", mode=requested_mode,
+                            chunk_index=chunk_index, raw_text=raw_text,
+                            completed_segments=completed_now,
+                            gate=gate_decision.public_dict() if gate_decision else None,
+                            repetition_candidate=has_repetition_candidate,
+                            deferred=is_deferred,
+                        )
                         if not await send_json(
                             transcript_event(
                                 raw_text,
@@ -1739,10 +2474,10 @@ def create_app(
                                 tuple(vad_source_segments),
                             )
                             continue
-                        if is_deferred or (
+                        if (is_deferred or (
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "keep"
-                        ):
+                        )) and not has_repetition_candidate:
                             continue
                         tail_start = max(
                             0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
@@ -1779,6 +2514,17 @@ def create_app(
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "defer"
                         )
+                        has_repetition_candidate = bool(
+                            find_repetition_review_candidates(raw_text, max_candidates=1)
+                        )
+                        record_trace(
+                            "asr_hypothesis", mode=requested_mode,
+                            chunk_index=chunk_index, raw_text=raw_text,
+                            completed_segments=completed_now,
+                            gate=gate_decision.public_dict() if gate_decision else None,
+                            repetition_candidate=has_repetition_candidate,
+                            deferred=is_deferred,
+                        )
                         if not await send_json(
                             transcript_event(
                                 raw_text,
@@ -1805,10 +2551,10 @@ def create_app(
                                 tuple(vad_source_segments),
                             )
                             continue
-                        if is_deferred or (
+                        if (is_deferred or (
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "keep"
-                        ):
+                        )) and not has_repetition_candidate:
                             continue
                         tail_start = max(
                             0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS

@@ -52,6 +52,99 @@ class WindowTest(unittest.TestCase):
         )
         self.assertEqual(result["window_size"], 3)
 
+    def test_fixed_groups_wait_for_three_chunks_and_keep_cross_boundary_edit(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return dict(
+                raw_text=text,
+                clean_text=text.replace("喂，喂，", "喂，"),
+                refiner_latency_ms=1,
+                refiner_accepted=True,
+                refiner_reject_reasons=[],
+                entity_audit_issues=[],
+                entity_refinement_hints=[],
+                entity_normalizations=[],
+                protected_entities=[],
+                entity_candidates=[],
+                entity_matcher_latency_ms=0,
+            )
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        prefix = "模拟普通人接到警察电话：“喂，喂，"
+        self.assertEqual(
+            session.update("模拟普通人接到警察电话：“喂，", "Chinese", False, None, None)["clean_text"],
+            "模拟普通人接到警察电话：“喂，",
+        )
+        self.assertEqual(calls, [])
+
+        first = session.update(prefix, "Chinese", False, None, None)
+        self.assertEqual(calls, [prefix])
+        self.assertEqual(first["clean_text"], "模拟普通人接到警察电话：“喂，")
+        self.assertEqual(first["committed_chunks"], 3)
+        display = StreamingRefinementDisplay()
+        display.accept(first, 1)
+        revised_tail = display.compose(prefix + "是郭庆子是吧？")
+        self.assertEqual(
+            revised_tail["display_refined_text"],
+            "模拟普通人接到警察电话：“喂，",
+        )
+        self.assertEqual(revised_tail["pending_raw_text"], "是郭庆子是吧？")
+
+        extended = session.update(
+            prefix + "是郭庆子是吧？", "Chinese", False, None, None,
+        )
+        self.assertEqual(calls, [prefix])
+        self.assertEqual(extended["clean_text"], "模拟普通人接到警察电话：“喂，是郭庆子是吧？")
+        final = session.update(
+            prefix + "是郭庆子是吧？", "Chinese", True, None, None,
+        )
+        self.assertEqual(calls, [prefix, "是郭庆子是吧？"])
+        self.assertEqual(final["clean_text"], extended["clean_text"])
+
+    def test_fixed_groups_reuse_exact_source_after_group_index_shift(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 1,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        session.update(
+            "甲。乙。丙。丁。戊。己。", "Chinese", True, None, None,
+        )
+        calls.clear()
+
+        result = session.update(
+            "新甲。新乙。新丙。新丁。新戊。新己。丁。戊。己。",
+            "Chinese", True, None, None,
+        )
+
+        self.assertEqual(calls, [
+            "新甲。新乙。新丙。",
+            "新丁。新戊。新己。",
+        ])
+        self.assertIn("丁。戊。己。", result["clean_text"])
+
     def test_vad_segments_are_refined_as_one_cross_boundary_window(self):
         calls = []
 
@@ -334,6 +427,32 @@ class WindowTest(unittest.TestCase):
             "第一句梨。第二句梨。第三句原始文本。",
         )
         self.assertTrue(payload["has_pending_refinement"])
+
+    def test_streaming_display_removes_boundary_echo_from_pending_tail(self):
+        committed = "如果说你要询问我的话，"
+        source = committed + "话，"
+        display = StreamingRefinementDisplay()
+        self.assertTrue(
+            display.accept(
+                {
+                    "raw_text": committed,
+                    "clean_text": committed,
+                    "refinement_source_spans": [
+                        {
+                            "source_text": committed,
+                            "clean_text": committed,
+                            "state": "active",
+                        }
+                    ],
+                },
+                1,
+            )
+        )
+
+        payload = display.compose(source)
+
+        self.assertEqual(payload["display_text"], "如果说你要询问我的话，")
+        self.assertEqual(payload["pending_raw_text"], "话，")
 
     def test_display_drops_revised_active_span_but_keeps_committed_prefix(self):
         self.session.window_size = 1

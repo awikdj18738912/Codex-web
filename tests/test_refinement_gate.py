@@ -273,6 +273,42 @@ class RefinementGateTest(unittest.TestCase):
         self.assertEqual(decision.public_dict()["action"], "refine")
         self.assertEqual(decision.reasons, ("cleanup_signal_present",))
 
+    def test_isolated_single_character_clause_wakes_gate(self) -> None:
+        gate = RefinementGate("tri_state")
+        for text in (
+            "你。你竟结成了元婴。",
+            "调查一下。嗯，那我这样一听。",
+        ):
+            with self.subTest(text=text):
+                decision = gate.decide(
+                    text,
+                    stable=True,
+                    asr_confidence=0.99,
+                    calibrated=True,
+                    covers_segment=True,
+                )
+                self.assertTrue(decision.should_refine)
+                self.assertEqual(decision.reasons, ("cleanup_signal_present",))
+                self.assertIn(
+                    "isolated_single_character_clause",
+                    decision.cleanup_signals,
+                )
+
+    def test_normal_sentence_boundaries_do_not_wake_gate(self) -> None:
+        decision = RefinementGate("tri_state").decide(
+            "是吧？我是警察。天哪，",
+            stable=True,
+            asr_confidence=0.99,
+            calibrated=True,
+            covers_segment=True,
+        )
+
+        self.assertFalse(decision.should_refine)
+        self.assertEqual(decision.public_dict()["action"], "keep")
+        self.assertNotIn(
+            "isolated_single_character_clause", decision.cleanup_signals
+        )
+
     def test_tri_state_numeric_model_mode_wakes_refiner(self) -> None:
         gate = RefinementGate("tri_state", refine_on_unverified_confidence=False)
         for text in ("五十", "五十多座", "七十公里", "相当于建起了三座三峡。"):

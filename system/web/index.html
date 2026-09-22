@@ -528,6 +528,15 @@
       const auditIssues = Array.isArray(data.entity_audit_issues) ? data.entity_audit_issues : [];
       const entityHints = Array.isArray(data.entity_refinement_hints) ? data.entity_refinement_hints : [];
       const entityChanges = Array.isArray(data.entity_normalizations) ? data.entity_normalizations : [];
+      const pendingChunks = Number(data.pending_refinement_chunks || 0);
+      const refinementBatchSize = Number(data.refinement_batch_size || data.window_size || 3);
+      if (!isFinal && data.refinement_state === 'waiting_for_group') {
+        refinerExecuted.textContent = '流式精修已发布';
+        refinerResult.textContent = `等待凑齐 ${refinementBatchSize} 个片段 · 当前还有 ${pendingChunks} 个待精修`;
+        refinerResult.classList.remove('warning');
+        refinerType.textContent = `${modeType} · 分组窗口 ${refinementBatchSize}`;
+        return;
+      }
       if (data.refiner_executed === false) {
         const decisions = Array.isArray(data.refinement_gate_decisions) ? data.refinement_gate_decisions : [];
         const skipped = decisions.filter(item => item.action === 'skip');
@@ -560,7 +569,7 @@
         refinerResult.textContent = `已完成 · 实体审计提示：${auditIssues.join('、')}`;
         refinerResult.classList.add('warning');
       } else {
-        refinerResult.textContent = isFinal ? '已完成' : '活动窗口已精修，转录继续中';
+        refinerResult.textContent = isFinal ? '已完成' : (finishing ? '流式窗口已精修，等待最终结果' : '活动窗口已精修，转录继续中');
         refinerResult.classList.remove('warning');
       }
     }
@@ -674,9 +683,9 @@
             currentSocket.dispatchEvent(new Event('chunk-ack'));
             return;
           }
-          // Once finish has been requested, late intermediate ASR/refiner
-          // updates must not overwrite the finalization status.
-          if (finishing && (data.event === 'update' || (data.event === 'transcript' && data.refiner_deferred !== true))) return;
+          // Keep validated streaming refinements visible while the final pass
+          // runs. Only stale ASR hypotheses are suppressed after finish.
+          if (finishing && data.event === 'transcript' && data.refiner_deferred !== true) return;
           if (data.event === 'ready') return;
           if (data.event === 'error') { completeTranscription('识别服务错误：' + data.detail, true); return; }
           if (data.event === 'status' && data.stage === 'final_refinement') {
@@ -728,7 +737,7 @@
           }
           recordRefinementStep(data);
           updateRefinerStatus(data);
-          if (data.event === 'update') {
+          if (data.event === 'update' && !finishing) {
             setStatus(
               selectedMode === 'streaming'
                 ? '离线流式转录与精修中'

@@ -34,6 +34,20 @@ class ContextualNumericNormalizerTest(unittest.TestCase):
             "今天是2015年12月5日，进度5%，长1到2.5米。",
         )
 
+    def test_multiplier_units_are_normalized(self) -> None:
+        source = "最大径流量更是平时的三倍之多，价格打了三折，损失达到两成。"
+
+        result = self.normalizer.normalize(source)
+
+        self.assertEqual(
+            result.text,
+            "最大径流量更是平时的3倍之多，价格打了3折，损失达到2成。",
+        )
+        self.assertEqual(
+            [change.kind for change in result.changes],
+            ["multiplier", "multiplier", "multiplier"],
+        )
+
     def test_idiom_is_protected_but_classifier_quantity_is_normalized(self) -> None:
         source = "他一五一十地说清了经过，做事一心一意，我还有一个苹果。"
 
@@ -129,6 +143,29 @@ class NumeralBoundaryRegressionTest(unittest.TestCase):
         self.assertEqual(
             result.text,
             "3000多个西湖、50多座、5000多个、60多万条、70多年、2000多次。",
+        )
+
+    def test_approximation_does_not_require_a_listed_unit(self) -> None:
+        cases = (
+            ("我这一千多公里了。", "我这1000多公里了。"),
+            ("走了一千多米。", "走了1000多米。"),
+            ("大概一千多。", "大概1000多。"),
+            ("十多种方案。", "10多种方案。"),
+        )
+        for source, expected in cases:
+            with self.subTest(source=source):
+                self.assertEqual(self.normalizer.normalize(source).text, expected)
+
+    def test_bare_digit_plus_more_is_not_forced_to_a_number(self) -> None:
+        source = "一多就容易乱，三多一少，许多事情。"
+        self.assertEqual(self.normalizer.normalize(source).text, source)
+
+    def test_model_omission_fallback_only_changes_approximations(self) -> None:
+        source = "一千多公里，一个人，六十多万条。"
+        result = self.normalizer.normalize_approximate(source)
+        self.assertEqual(result.text, "1000多公里，一个人，60多万条。")
+        self.assertEqual(
+            self.normalizer.normalize_approximate(result.text).changes, ()
         )
 
     def test_reduplicated_classifier_is_not_hybridized(self) -> None:

@@ -1,10 +1,9 @@
-"""Sentence-bounded K=3 refinement for revisable cumulative ASR hypotheses.
+"""Sentence-bounded refinement for revisable cumulative ASR hypotheses.
 
-Committed source chunks and their outputs have explicit ownership. Active
-windows replace, never append to, the previous active output. Like the local
-StreamingRefinementSession, chunks leaving the window are refined separately
-to establish an unambiguous committed boundary. The active tail is limited to
-three sentence chunks and at most 80 characters by default.
+Committed source chunks and their outputs have explicit ownership. The
+legacy rolling window keeps a bounded active tail; fixed-group mode waits
+for three punctuation chunks before calling the Refiner, and flushes a short
+tail on finalization.
 """
 import re
 from threading import Lock
@@ -13,7 +12,10 @@ from .chunking import (
     merge_boundary_anomaly_chunks,
     merge_self_correction_chunks,
 )
-from .deterministic_cleanup import clean_transcript_deterministically
+from .deterministic_cleanup import (
+    clean_transcript_deterministically,
+    detect_boundary_echo_repairs,
+)
 from .refinement_guard import join_refined_segments
 
 
@@ -150,17 +152,20 @@ class StreamingRefinementDisplay:
         *,
         refined_text: str | None = None,
     ) -> dict[str, object]:
+        display_refined = (
+            join_refined_segments((committed, active))
+            if refined_text is None
+            else refined_text
+        )
         return {
             "display_revision": self._revision,
             "committed_clean_text": committed,
             "active_clean_text": active,
-            "display_refined_text": (
-                join_refined_segments((committed, active))
-                if refined_text is None
-                else refined_text
+            "display_refined_text": clean_transcript_deterministically(
+                display_refined
             ),
             "pending_raw_text": pending,
-            "display_text": display,
+            "display_text": clean_transcript_deterministically(display),
             "has_pending_refinement": bool(pending),
         }
 
@@ -169,6 +174,8 @@ class CumulativeWindowRefinement:
     def __init__(
         self, refine, window_size=3, window_max_chars=80,
         *, one_punctuation_window: bool = False,
+        fixed_groups: bool = False,
+        prepare_pending=None,
     ):
         if window_size < 1:
             raise ValueError("window_size must be at least 1")
@@ -178,8 +185,11 @@ class CumulativeWindowRefinement:
         self.window_size = window_size
         self.window_max_chars = window_max_chars
         self.one_punctuation_window = one_punctuation_window
+        self.fixed_groups = fixed_groups
+        self.prepare_pending = prepare_pending
         self.committed = []
         self.active = None
+        self.group_cache = []
         self.boundary_reviews = []
         self.lock = Lock()
 
@@ -188,7 +198,7 @@ class CumulativeWindowRefinement:
         """Return whether at least one window refinement has completed."""
 
         with self.lock:
-            return self.active is not None
+            return bool(self.group_cache) if self.fixed_groups else self.active is not None
 
     def update(
         self,
@@ -203,6 +213,12 @@ class CumulativeWindowRefinement:
         source_chunks=None,
     ):
         with self.lock:
+            if self.fixed_groups:
+                return self._update_fixed(
+                    text, language, final, protector, confidence, matcher,
+                    confidence_metadata=confidence_metadata,
+                    source_chunks=source_chunks,
+                )
             if source_chunks is None:
                 manager = ChunkManager(
                     max_chars=self.window_max_chars,
@@ -270,7 +286,6 @@ class CumulativeWindowRefinement:
                         matcher,
                         single_window=True,
                         confidence_metadata=confidence_metadata,
-                        force_refine=source_chunks is not None,
                     )
                 self.committed.append((chunk, result))
             source = join_refined_segments(chunks[start:])
@@ -304,7 +319,6 @@ class CumulativeWindowRefinement:
                             matcher,
                             single_window=True,
                             confidence_metadata=confidence_metadata,
-                            force_refine=source_chunks is not None,
                         )
                         for chunk in active_chunks
                     ]
@@ -324,7 +338,6 @@ class CumulativeWindowRefinement:
                         matcher,
                         single_window=True,
                         confidence_metadata=confidence_metadata,
-                        force_refine=source_chunks is not None,
                     )
                 # A long active window can trigger the content-loss guard even
                 # when most of its individual chunks are safe. Recover it at
@@ -345,7 +358,6 @@ class CumulativeWindowRefinement:
                             matcher,
                             single_window=True,
                             confidence_metadata=confidence_metadata,
-                            force_refine=source_chunks is not None,
                         )
                         for chunk in chunks[start:]
                     ]
@@ -390,6 +402,170 @@ class CumulativeWindowRefinement:
                 result["boundary_reviews"] = list(self.boundary_reviews)
             return result
 
+    def _update_fixed(
+        self, text, language, final, protector, confidence, matcher,
+        *, confidence_metadata, source_chunks,
+    ):
+        """Refine complete groups of K source chunks without splitting a group."""
+
+        if source_chunks is None:
+            manager = ChunkManager(
+                max_chars=self.window_max_chars,
+                one_punctuation_window=self.one_punctuation_window,
+            )
+            chunks = [
+                chunk.text for chunk in merge_boundary_anomaly_chunks(
+                    merge_self_correction_chunks(
+                        manager.update(text, vad_boundary=final),
+                        self.window_max_chars,
+                    ),
+                    self.window_max_chars,
+                )
+            ]
+            pending = manager.pending_text if not final else ""
+        else:
+            chunks = []
+            for source_chunk in source_chunks:
+                value = str(source_chunk).strip()
+                if not value:
+                    continue
+                manager = ChunkManager(
+                    max_chars=self.window_max_chars,
+                    one_punctuation_window=self.one_punctuation_window,
+                )
+                chunks.extend(
+                    chunk.text
+                    for chunk in merge_boundary_anomaly_chunks(
+                        merge_self_correction_chunks(
+                            manager.update(value, vad_boundary=True),
+                            self.window_max_chars,
+                        ),
+                        self.window_max_chars,
+                    )
+                )
+            pending = ""
+
+        complete_count = len(chunks) // self.window_size * self.window_size
+        if final:
+            complete_count = len(chunks)
+        group_chunks = [
+            tuple(chunks[index:index + self.window_size])
+            for index in range(0, complete_count, self.window_size)
+        ]
+        previous = self.group_cache
+        used_cache_indices: set[int] = set()
+        updated = []
+        for index, group in enumerate(group_chunks):
+            source = join_refined_segments(group)
+            # Final ASR punctuation/VAD boundaries can regroup the same source
+            # text.  Matching only by position turns an already accepted
+            # streaming result into a new model request.  Prefer the old
+            # position for the common append-only case, then fall back to an
+            # unused exact source-group match.  The source tuple remains part
+            # of the key, so this does not reuse a result for revised text.
+            cache_index = None
+            if (
+                index < len(previous)
+                and index not in used_cache_indices
+                and previous[index][0] == group
+            ):
+                cache_index = index
+            else:
+                cache_index = next(
+                    (
+                        candidate_index
+                        for candidate_index, (candidate_group, _result)
+                        in enumerate(previous)
+                        if candidate_index not in used_cache_indices
+                        and candidate_group == group
+                    ),
+                    None,
+                )
+            cached = (
+                previous[cache_index][1]
+                if cache_index is not None
+                else None
+            )
+            if cache_index is not None:
+                used_cache_indices.add(cache_index)
+            if cached is None or (final and not cached.get("refiner_accepted", True)):
+                cached = self.refine(
+                    source, language, final, protector, confidence, matcher,
+                    single_window=True,
+                    confidence_metadata=confidence_metadata,
+                )
+            updated.append((group, cached))
+        self.group_cache = updated
+
+        pending_source = join_refined_segments((*chunks[complete_count:], pending))
+        parts = [result for _, result in updated]
+        sources = [join_refined_segments(group) for group, _ in updated]
+        if pending_source or not parts:
+            pending_result = (
+                self.prepare_pending(
+                    pending_source, language, False, protector, confidence, matcher,
+                    single_window=True,
+                    confidence_metadata=confidence_metadata,
+                )
+                if self.prepare_pending is not None and pending_source
+                else self._unrefined_part(
+                    pending_source, language, confidence, confidence_metadata,
+                    exemplar=parts[-1] if parts else None,
+                )
+            )
+            parts.append(pending_result)
+            sources.append(pending_source)
+        result = self._aggregate(
+            parts, text, final=final, committed_chunks=complete_count,
+        )
+        result["pending_refinement_chunks"] = max(
+            0, len(chunks) - complete_count
+        )
+        result["refinement_batch_size"] = self.window_size
+        result["refinement_state"] = (
+            "waiting_for_group"
+            if result["pending_refinement_chunks"]
+            else "window_refined"
+        )
+        result["refinement_source_spans"] = self._source_spans(
+            text, sources, len(updated), parts,
+        )
+        if source_chunks is not None:
+            result["boundary_reviews"] = list(self.boundary_reviews)
+        return result
+
+    @staticmethod
+    def _unrefined_part(text, language, confidence, metadata, *, exemplar):
+        """Represent an incomplete group as visible raw text, without a model call."""
+
+        part = dict(exemplar or {})
+        part.update(
+            raw_text=text,
+            clean_text=text,
+            asr_language=language,
+            asr_confidence=confidence,
+            asr_confidence_metadata=dict(metadata or {}),
+            refiner_latency_ms=0,
+            refiner_executed=False,
+            refiner_accepted=True,
+            placeholder_retry_count=0,
+            refiner_retry_count=0,
+            refinement_gate_skipped_segments=0,
+            entity_matcher_latency_ms=0.0,
+        )
+        for key in (
+            "refiner_reject_reasons", "entity_audit_issues",
+            "entity_refinement_hints", "entity_normalizations",
+            "numeric_normalizations", "numeric_fallbacks",
+            "safe_numeric_repairs", "safe_repetition_repairs",
+            "repetition_reviews", "protected_entities", "entity_candidates",
+            "refiner_masked_outputs", "refiner_retry_reasons",
+            "refinement_gate_decisions", "structured_patch_audits",
+            "boundary_anomalies", "boundary_reviews",
+        ):
+            part[key] = []
+        return part
+
     def update_segments(
         self,
         segments,
@@ -425,12 +601,12 @@ class CumulativeWindowRefinement:
 
     def _aggregate(self, parts, raw_text, *, final, committed_chunks):
         result = dict(parts[-1])
+        joined_clean = join_refined_segments(p["clean_text"] for p in parts)
+        boundary_echo_repairs = detect_boundary_echo_repairs(joined_clean)
         result.update(
             event="final" if final else "update",
             raw_text=raw_text,
-            clean_text=clean_transcript_deterministically(
-                join_refined_segments(p["clean_text"] for p in parts)
-            ),
+            clean_text=clean_transcript_deterministically(joined_clean),
             refiner_accepted=all(p["refiner_accepted"] for p in parts),
             refiner_executed=any(p.get("refiner_executed", True) for p in parts),
             refiner_latency_ms=sum(p["refiner_latency_ms"] for p in parts),
@@ -451,6 +627,10 @@ class CumulativeWindowRefinement:
             "entity_refinement_hints",
             "entity_normalizations",
             "numeric_normalizations",
+            "numeric_fallbacks",
+            "safe_numeric_repairs",
+            "safe_repetition_repairs",
+            "repetition_reviews",
             "protected_entities",
             "entity_candidates",
             "refiner_masked_outputs",
@@ -464,6 +644,7 @@ class CumulativeWindowRefinement:
         result["entity_matcher_latency_ms"] = sum(
             p.get("entity_matcher_latency_ms", 0.0) for p in parts
         )
+        result["boundary_echo_repairs"] = list(boundary_echo_repairs)
         return result
 
     @staticmethod

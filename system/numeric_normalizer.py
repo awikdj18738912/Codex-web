@@ -186,6 +186,17 @@ _COUNT_NUMBER_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
     rf"(?P<number>{_CN_NUMBER_PATTERN})(?P<unit>{_COUNT_UNIT_PATTERN})"
 )
+# Multiplicative and ratio expressions are numeric contexts too:
+# ``三倍``/``三成``/``三折``. Keep them separate from classifiers so their
+# audit kind and semantic unit remain explicit.
+_MULTIPLIER_UNITS = ("倍", "成", "折")
+_MULTIPLIER_UNIT_PATTERN = "|".join(
+    sorted(map(re.escape, _MULTIPLIER_UNITS), key=len, reverse=True)
+)
+_MULTIPLIER_NUMBER_RE = re.compile(
+    rf"{_NUMERAL_START_GUARD}"
+    rf"(?P<number>{_CN_NUMBER_PATTERN})(?P<unit>{_MULTIPLIER_UNIT_PATTERN})"
+)
 _RANGE_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
     rf"(?P<left>{_CN_NUMBER_PATTERN})(?P<separator>到|至|[-~～])"
@@ -207,20 +218,14 @@ _LARGE_UNIT_NUMBER_RE = re.compile(
     rf"(?![{_CN_INTEGER}])"
 )
 
-# Approximate quantities are still numeric quantities when a classifier or
-# time/age unit makes their role explicit.  Keep ``多`` outside the parsed
-# number so the approximation is preserved: ``五十多座`` -> ``50多座``.
+# A positional number followed by ``多`` is an approximation regardless of
+# the following unit (or whether there is one).  Keep the suffix unchanged.
+# Bare digits such as ``一多`` are ambiguous without context, so this rule
+# only converts stems containing a positional marker (十/百/千/etc.).
 # Large-unit forms such as ``六十多万条`` remain handled by the rule above.
-_APPROXIMATE_UNITS = tuple(
-    dict.fromkeys((*_COUNT_UNITS, "座", "年", "月", "日", "人", "岁"))
-)
-_APPROXIMATE_UNIT_PATTERN = "|".join(
-    sorted(map(re.escape, _APPROXIMATE_UNITS), key=len, reverse=True)
-)
 _APPROXIMATE_NUMBER_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
     rf"(?P<number>[{_CN_INTEGER}]+)(?P<approx>多)"
-    rf"(?P<unit>{_APPROXIMATE_UNIT_PATTERN})"
     rf"(?![{_CN_INTEGER}])"
 )
 
@@ -276,6 +281,19 @@ class NumericNormalizationResult:
 
 class ContextualNumericNormalizer:
     """Normalize Chinese numbers only when their numeric role is explicit."""
+
+    def normalize_approximate(self, text: str) -> NumericNormalizationResult:
+        """Apply only safe ``number + 多`` surface edits to model output."""
+
+        changes = tuple(
+            change
+            for change in self.normalize(text).changes
+            if "多" in change.original and "多" in change.replacement
+        )
+        output = text
+        for change in reversed(changes):
+            output = output[: change.start] + change.replacement + output[change.end :]
+        return NumericNormalizationResult(output, changes)
 
     def normalize(self, text: str) -> NumericNormalizationResult:
         if not text:
@@ -337,6 +355,8 @@ class ContextualNumericNormalizer:
             # large-unit rule below.
             if any(char in "万亿" for char in token):
                 continue
+            if not any(char in _SMALL_UNITS for char in token):
+                continue
             # Inspect the character after ``多``.  Passing the end of the
             # numeric stem would classify the intentional approximation
             # suffix itself as an ambiguity marker and skip every match.
@@ -346,7 +366,7 @@ class ContextualNumericNormalizer:
             if value is not None:
                 add(
                     *match.span(),
-                    f"{_format_decimal(value)}多{match.group('unit')}",
+                    f"{_format_decimal(value)}多",
                     "approximate_count",
                 )
 
@@ -395,6 +415,18 @@ class ContextualNumericNormalizer:
                     *match.span(),
                     f"{_format_decimal(value)}{match.group('unit')}",
                     "currency" if match.group("unit") in {"人民币", "块钱", "元", "块"} else "measurement",
+                )
+
+        for match in _MULTIPLIER_NUMBER_RE.finditer(text):
+            token = match.group("number")
+            if _ambiguous_number_token(token, text, match.end()):
+                continue
+            value = chinese_number_to_decimal(token)
+            if value is not None:
+                add(
+                    *match.span(),
+                    f"{_format_decimal(value)}{match.group('unit')}",
+                    "multiplier",
                 )
 
         # Classifier quantities such as ``五个苹果`` are safe to render with
