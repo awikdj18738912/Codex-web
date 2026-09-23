@@ -34,6 +34,11 @@ class ContextualNumericNormalizerTest(unittest.TestCase):
             "今天是2015年12月5日，进度5%，长1到2.5米。",
         )
 
+    def test_count_range_is_converted_as_one_span(self) -> None:
+        result = self.normalizer.normalize("现场来了一到两个人，门口有三到四位同事。")
+        self.assertEqual(result.text, "现场来了1到2个人，门口有3到4位同事。")
+        self.assertEqual([change.kind for change in result.changes], ["count_range", "count_range"])
+
     def test_multiplier_units_are_normalized(self) -> None:
         source = "最大径流量更是平时的三倍之多，价格打了三折，损失达到两成。"
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from difflib import SequenceMatcher
 import json
 import sys
 import time
@@ -59,6 +60,7 @@ from .session_memory import SessionEntityMemory
 from .refinement_protocol import (
     apply_structured_patch,
 )
+from .repetition_plausibility import RepetitionPlausibility
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
 # Refining the complete cumulative hypothesis for every streaming chunk is
@@ -266,16 +268,17 @@ def _confidence_metadata(payload: dict[str, object]) -> dict[str, object]:
 
 
 def _repetition_review_cache_key(
-    candidate: RepetitionReviewCandidate,
+    candidate: RepetitionReviewCandidate, text: str,
 ) -> tuple[int, int, str, str, str]:
-    """Identify a candidate across streaming revisions without using its index."""
+    """Keep decisions when neighboring sentences change during streaming."""
 
+    sentence = _repetition_candidate_sentence(text, candidate, final=True)
     return (
         candidate.start,
         candidate.end,
         candidate.source,
         candidate.target,
-        candidate.context,
+        sentence[0] if sentence is not None else candidate.context,
     )
 
 
@@ -325,6 +328,20 @@ def _repetition_decision_from_refined_context(
         # the supplied context.  Its entire visible answer must still equal
         # the expected candidate-only edit; never apply the omitted suffix.
         action = "remove"
+    elif (
+        (candidate.kind == "character_run"
+         or candidate.kind == "punctuated_run" and len(candidate.target) == 1)
+        and _model_deleted_only_candidate_copy(
+            context, refined, local_start, local_end, candidate.target
+        )
+    ):
+        return [
+            {
+                "index": candidate.index,
+                "action": "remove",
+                "reason": "model_aligned_candidate_edit",
+            }
+        ]
     else:
         return None
     return [
@@ -334,6 +351,98 @@ def _repetition_decision_from_refined_context(
             "reason": "model_local_text_review",
         }
     ]
+
+
+def _model_deleted_only_candidate_copy(
+    source: str, refined: str, start: int, end: int, target: str
+) -> bool:
+    """Project a model deletion at one source-owned candidate span.
+
+    Other model edits are ignored.  An unchanged anchor on each available
+    side must identify the candidate, and no replacement or insertion may
+    touch its interior.
+    """
+
+    matched: list[tuple[int, str]] = []
+    deleted = False
+    left_anchor = start == 0
+    right_anchor = end == len(source)
+    opcodes = SequenceMatcher(
+        None, source, refined, autojunk=False
+    ).get_opcodes()
+    # A wrapped explanation is not a plain transcript even if it contains
+    # the desired edit somewhere inside it.
+    if opcodes and (opcodes[0][0] == "insert" or opcodes[-1][0] == "insert"):
+        return False
+    for tag, source_start, source_end, target_start, _ in opcodes:
+        overlap_start = max(start, source_start)
+        overlap_end = min(end, source_end)
+        if tag == "equal":
+            if source_start < start:
+                left_anchor = True
+            if source_end > end:
+                right_anchor = True
+            for source_index in range(overlap_start, overlap_end):
+                matched.append((
+                    target_start + source_index - source_start,
+                    source[source_index],
+                ))
+        elif tag == "delete" and overlap_start < overlap_end:
+            deleted = True
+        elif tag == "insert":
+            if start < source_start < end:
+                return False
+        elif overlap_start < overlap_end:
+            return False
+
+    aligned = bool(matched) and (
+        deleted
+        and left_anchor
+        and right_anchor
+        and "".join(character for _, character in matched) == target
+        and [position for position, _ in matched]
+        == list(range(matched[0][0], matched[0][0] + len(matched)))
+    )
+    if aligned:
+        return True
+    # SequenceMatcher can align the comma of ``喂，喂，`` to the first
+    # comma and report deletion of the second copy plus the following comma.
+    # Recheck the complete replacement with source-owned surrounding anchors.
+    for left_width in range(min(3, start), 0, -1):
+        left = source[start - left_width:start]
+        for right_width in range(min(3, len(source) - end), 0, -1):
+            if left_width + right_width < 3:
+                continue
+            right = source[end:end + right_width]
+            original = left + source[start:end] + right
+            replacement = left + target + right
+            if (source.count(original) == 1
+                    and refined.count(replacement) == 1
+                    and refined.count(original) == 0):
+                return True
+    return False
+
+
+def _repetition_candidate_sentence(
+    text: str, candidate: RepetitionReviewCandidate, *, final: bool
+) -> tuple[str, int, int] | None:
+    """Find the candidate's complete sentence, without its neighboring sentences."""
+
+    start = text.rfind(
+        candidate.context, 0, candidate.start + len(candidate.context) + 1
+    )
+    if start < 0 or not start <= candidate.start < candidate.end <= start + len(candidate.context):
+        return None
+    marks = "。！？!?；;\n"
+    left = max((index + 1 for index in range(candidate.start)
+                if text[index] in marks), default=0)
+    right = next((index + 1 for index in range(candidate.end, len(text))
+                  if text[index] in marks), None)
+    if right is None:
+        if not final:
+            return None
+        right = len(text)
+    return text[left:right], candidate.start - left, candidate.end - left
 
 
 def _reviewed_source_spans(
@@ -539,6 +648,7 @@ def create_app(
     print("Loading AgenticASR Refiner...", flush=True)
     refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens)
     refiner_lock = threading.Lock()
+    repetition_plausibility = RepetitionPlausibility(refiner_device)
 
     def review_final_repetition_text(
         text: str,
@@ -562,7 +672,7 @@ def create_app(
         pending_candidates: list[RepetitionReviewCandidate] = []
         for candidate in candidates:
             cached = (
-                review_cache.get(_repetition_review_cache_key(candidate))
+                review_cache.get(_repetition_review_cache_key(candidate, text))
                 if review_cache is not None
                 else None
             )
@@ -610,6 +720,7 @@ def create_app(
         total_latency_ms = 0.0
         decisions: list[dict[str, object]] = list(cached_decisions)
         model_responses: dict[int, str] = {}
+        plausibility_evidence: dict[int, dict[str, object]] = {}
         try:
             reviewer = getattr(refiner, "review_repetition", None)
             if reviewer is None:
@@ -663,6 +774,28 @@ def create_app(
                 decision = _repetition_decision_from_refined_context(
                     text, candidate, response
                 )
+                if (candidate.kind == "character_run"
+                        and (decision is None or decision[0]["action"] == "keep")):
+                    sentence = _repetition_candidate_sentence(
+                        text, candidate, final=final
+                    )
+                    if sentence is not None:
+                        sentence_text, local_start, local_end = sentence
+                        plausibility = repetition_plausibility.decide(
+                            sentence_text, local_start, local_end, candidate.target
+                        )
+                        plausibility_evidence[candidate.index] = {
+                            "plausibility_margin": plausibility.margin,
+                            "plausibility_reason": plausibility.reason,
+                        }
+                        if plausibility.decision == "remove" or (
+                            decision is None and plausibility.decision == "keep"
+                        ):
+                            decision = [{
+                                "index": candidate.index,
+                                "action": plausibility.decision,
+                                "reason": plausibility.reason,
+                            }]
                 if decision is None:
                     records.append(
                         {
@@ -670,6 +803,7 @@ def create_app(
                             "decision": "unresolved",
                             "reason": "invalid_response",
                             "model_response": response,
+                            **plausibility_evidence.get(candidate.index, {}),
                         }
                     )
                 else:
@@ -695,6 +829,7 @@ def create_app(
                 {
                     **applied_by_index[candidate.index],
                     "model_response": model_responses[candidate.index],
+                    **plausibility_evidence.get(candidate.index, {}),
                 }
                 for candidate in pending_candidates
                 if candidate.index in applied_by_index
@@ -716,7 +851,7 @@ def create_app(
                         and isinstance(applied_record, dict)
                         and applied_record.get("applied") is True
                     ):
-                        review_cache[_repetition_review_cache_key(candidate)] = {
+                        review_cache[_repetition_review_cache_key(candidate, text)] = {
                             "action": action,
                             "reason": str(
                                 decision.get("reason", "streaming_cache")
@@ -918,6 +1053,16 @@ def create_app(
                     covers_segment=gate_decision.covers_segment,
                     action="defer",
                 )
+            # A numeric-only call has no evidence for changing the punctuation
+            # that separates this group from the next one. Keep its terminal
+            # mark while leaving genuine cleanup and boundary-repair calls free
+            # to revise ASR punctuation.
+            preserve_numeric_boundary = (
+                gate_decision.should_refine
+                and gate_decision.reasons == ("cleanup_signal_present",)
+                and gate_decision.cleanup_signals == ("numeric_normalization",)
+                and not hints
+            )
             refinement_gate_decisions.append(
                 {"segment_index": segment_index + 1, **gate_decision.public_dict()}
             )
@@ -1027,6 +1172,7 @@ def create_app(
                             structured_candidate,
                             prepared,
                             protector,
+                            preserve_terminal_only=preserve_numeric_boundary,
                         )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
                         initial_reasons = finalized.reject_reasons
@@ -1062,6 +1208,7 @@ def create_app(
                                 structured_retry,
                                 prepared,
                                 protector,
+                                preserve_terminal_only=preserve_numeric_boundary,
                             )
                 finally:
                     refiner_lock.release()

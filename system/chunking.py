@@ -13,6 +13,12 @@ _ANY_PUNCTUATION = re.compile(
     r"(?:[,;:!?\uff0c\u3002\uff01\uff1f\uff1b\uff1a\u3001]|"
     r"(?<!\d)\.(?!\d))\s*"
 )
+# Streaming punctuation windows keep enumerated phrases together.  The
+# broader set above is still used by the legacy length-bound splitter.
+_STREAM_WINDOW_PUNCTUATION = re.compile(
+    r"(?:[,;:!?\uff0c\u3002\uff01\uff1f\uff1b\uff1a]|"
+    r"(?<!\d)\.(?!\d))\s*"
+)
 STRONG_CORRECTION_MARKERS = (
     "不对",
     "我说错了",
@@ -153,7 +159,7 @@ class ChunkManager:
 
     def _split_point(self, text: str, *, flush: bool) -> int | None:
         if self.one_punctuation_window:
-            punctuation_end = _ANY_PUNCTUATION.search(text)
+            punctuation_end = _STREAM_WINDOW_PUNCTUATION.search(text)
             if punctuation_end is not None and punctuation_end.end() <= self.max_chars:
                 return punctuation_end.end()
             if len(text) > self.max_chars:

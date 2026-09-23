@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import unittest
 
+from system.numeric_normalizer import ContextualNumericNormalizer
 from system.refinement_guard import (
     apply_repetition_review_decisions,
     detect_boundary_anomalies,
@@ -42,7 +43,28 @@ class RefinementGuardTest(unittest.TestCase):
         source = "4.5万条、45.22米、2.6个、1.7亿。"
         parts = split_for_refinement(source, one_punctuation_window=True)
         self.assertEqual(join_refined_segments(parts), source)
-        self.assertEqual(parts[0], "4.5万条、")
+        self.assertEqual(parts, (source,))
+
+    def test_enumeration_comma_stays_inside_refinement_window(self) -> None:
+        source = (
+            "中国大地上，大自然和人类共同创造的江河纵横交织，"
+            "共同编织出一张互相连通、互相补给的水系网络，这就是国家水网。"
+        )
+        self.assertEqual(
+            split_for_refinement(source, one_punctuation_window=True),
+            (
+                "中国大地上，",
+                "大自然和人类共同创造的江河纵横交织，",
+                "共同编织出一张互相连通、互相补给的水系网络，",
+                "这就是国家水网。",
+            ),
+        )
+        self.assertTrue(
+            source_punctuation_lost(
+                "互相连通、互相补给的水系网络，",
+                "互相连通互相补给的水系网络，",
+            )
+        )
 
     def test_sentence_preferred_split_preserves_source(self) -> None:
         source = "第一句需要保留。第二句也需要保留，而且内容稍长。第三句结束。第四句继续说明，确保文本超过分段长度。"
@@ -195,6 +217,26 @@ class RefinementGuardTest(unittest.TestCase):
         self.assertEqual(
             reject_reasons("我有五个苹果。", "我有5个苹果。"),
             (),
+        )
+
+    def test_partially_converted_range_uses_source_numeric_fallback(self) -> None:
+        cases = (
+            ("人们将大堤加高了一到两米。", "人们将大堤加高了一到2米。", "人们将大堤加高了1到2米。"),
+            ("现场来了一到两个人。", "现场来了一到2个人。", "现场来了1到2个人。"),
+            ("门口站着三到四位同事。", "门口站着3到四位同事。", "门口站着3到4位同事。"),
+        )
+        normalizer = ContextualNumericNormalizer()
+        for source, partial, complete in cases:
+            with self.subTest(source=source):
+                self.assertIn("partial_numeric_range_conversion", reject_reasons(source, partial))
+                self.assertIsNone(preserve_safe_numeric_edits(source, partial))
+                self.assertEqual(normalizer.normalize(source).text, complete)
+                self.assertEqual(reject_reasons(source, complete), ())
+
+    def test_approximate_adjacent_digits_are_not_treated_as_range(self) -> None:
+        self.assertNotIn(
+            "partial_numeric_range_conversion",
+            reject_reasons("门口站着三四个人。", "门口站着三四个人。"),
         )
 
     def test_ambiguous_digit_run_conversion_is_rejected(self) -> None:

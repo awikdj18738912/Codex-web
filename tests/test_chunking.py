@@ -22,6 +22,14 @@ class ChunkManagerTest(unittest.TestCase):
             ["第一段，", "第二段。", "第三段！"],
         )
 
+    def test_streaming_waits_past_enumeration_comma(self):
+        manager = ChunkManager(80, one_punctuation_window=True)
+        self.assertEqual(manager.update("互相连通、"), [])
+        self.assertEqual(
+            [chunk.text for chunk in manager.update("互相连通、互相补给的水系网络，")],
+            ["互相连通、互相补给的水系网络，"],
+        )
+
     def test_short_self_correction_stays_together(self):
         source = "我有一个苹果，不对，我有一个梨。"
         chunks = ChunkManager(80).update(source, vad_boundary=True)

@@ -182,6 +182,9 @@ _COUNT_UNITS = (
 _COUNT_UNIT_PATTERN = "|".join(
     sorted(map(re.escape, _COUNT_UNITS), key=len, reverse=True)
 )
+_RANGE_UNIT_PATTERN = "|".join(
+    sorted(map(re.escape, (*_MEASURE_UNITS, *_COUNT_UNITS)), key=len, reverse=True)
+)
 _COUNT_NUMBER_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
     rf"(?P<number>{_CN_NUMBER_PATTERN})(?P<unit>{_COUNT_UNIT_PATTERN})"
@@ -200,7 +203,7 @@ _MULTIPLIER_NUMBER_RE = re.compile(
 _RANGE_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
     rf"(?P<left>{_CN_NUMBER_PATTERN})(?P<separator>到|至|[-~～])"
-    rf"(?P<right>{_CN_NUMBER_PATTERN})(?P<unit>{_UNIT_PATTERN})"
+    rf"(?P<right>{_CN_NUMBER_PATTERN})(?P<unit>{_RANGE_UNIT_PATTERN})"
 )
 _UNIT_NUMBER_RE = re.compile(
     rf"{_NUMERAL_START_GUARD}"
@@ -378,7 +381,7 @@ class ContextualNumericNormalizer:
                     *match.span(),
                     f"{_format_decimal(left)}{match.group('separator')}"
                     f"{_format_decimal(right)}{match.group('unit')}",
-                    "measurement_range",
+                    "count_range" if match.group("unit") in _COUNT_UNITS else "measurement_range",
                 )
 
         # Keep the unit character for large values instead of expanding to

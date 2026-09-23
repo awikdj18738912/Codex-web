@@ -7,11 +7,13 @@ run the refinement regression set before changing it.
 
 import json
 
-RUNTIME_PROTOCOL_VERSION = "v3-model-numeric-idiom-guard"
+RUNTIME_PROTOCOL_VERSION = "v4-model-numeric-range-guard"
 
 REFINER_SYSTEM_PROMPT = (
     "你是 ASR 文本纠错助手。保留原意，最小修改：去口癖/重复，修错字，补必要标点，"
     "处理自我修正。规范数字、日期、术语和代码符号，但必须保持数值和原意不变。"
+    "数字范围必须作为一个整体规范化：凡由‘到’、‘至’、连字符或波浪线连接的数量或测量表达式，"
+    "两端必须同时转换，禁止只转换一端，也禁止生成中文数字和阿拉伯数字混合的范围。"
     "不要总结、扩写或解释。成语中的汉字数字（如三番五次）必须保持原样。"
     "重要易错实体在末尾追加 <KEY>[词1、词2]；没有则不加。"
     "输入中形如 __ENTITY_000__ 的受保护标记必须在输出中原样保留一次，"

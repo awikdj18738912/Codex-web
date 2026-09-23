@@ -16,6 +16,7 @@ from .numeric_normalizer import (
     _COUNT_UNITS,
     _FIXED_EXPRESSIONS,
     _MULTIPLIER_UNITS,
+    _RANGE_RE,
 )
 from .quantifiers import (
     LEXICAL_REDUPLICATIONS,
@@ -26,6 +27,9 @@ from .quantifiers import (
 _SENTENCE_ENDINGS = frozenset("。！？!?；;\n")
 _SOFT_BREAKS = frozenset("，、：:）)】] ")
 _PUNCTUATION_WINDOW_CHARS = frozenset("，,、。！？!?；;：:.")
+# A comma or sentence mark may end a streaming window; an enumeration comma
+# stays inside the window.  Keep it in the full set above for integrity checks.
+_SPLIT_WINDOW_CHARS = _PUNCTUATION_WINDOW_CHARS - frozenset("、")
 _NON_DOT_PUNCTUATION = "".join(
     sorted(_PUNCTUATION_WINDOW_CHARS - frozenset("."))
 )
@@ -115,7 +119,40 @@ _PUNCTUATED_REPETITION_RE = re.compile(
     r"(?P<separator>[^\w\s\u3400-\u9fff])"
     r"(?P=unit)"
 )
-_REPETITION_REVIEW_CONTEXT_CHARS = 16
+_REPETITION_REVIEW_SENTENCE_ENDINGS = _SENTENCE_ENDINGS | frozenset("…")
+_REPETITION_REVIEW_CLOSING_QUOTES = frozenset("\"'”’」』】）)]〉》〕〗〙〛")
+
+
+def _repetition_review_context(text: str, start: int, end: int) -> str:
+    """Return the candidate sentence with one complete sentence on each side."""
+    boundaries: list[int] = []
+    index = 0
+    while index < len(text):
+        if text[index] not in _REPETITION_REVIEW_SENTENCE_ENDINGS:
+            index += 1
+            continue
+        index += 1
+        # Consume punctuation runs such as ``？！`` and ellipses as one
+        # boundary, then retain any quote/bracket closing that follows it.
+        while index < len(text) and (
+            text[index] in _REPETITION_REVIEW_SENTENCE_ENDINGS
+            or text[index] in _REPETITION_REVIEW_CLOSING_QUOTES
+        ):
+            index += 1
+        boundaries.append(index)
+
+    preceding_boundaries = [boundary for boundary in boundaries if boundary <= start]
+    context_start = preceding_boundaries[-2] if len(preceding_boundaries) >= 2 else 0
+
+    current_end = next((boundary for boundary in boundaries if boundary >= end), None)
+    if current_end is None:
+        return text[context_start:]
+
+    context_end = next(
+        (boundary for boundary in boundaries if boundary > current_end),
+        len(text),
+    )
+    return text[context_start:context_end]
 
 
 @dataclass(frozen=True, slots=True)
@@ -213,8 +250,6 @@ def find_repetition_review_candidates(
     spans.sort(key=lambda item: item[0])
     candidates: list[RepetitionReviewCandidate] = []
     for index, (start, end, source, target) in enumerate(spans[:max_candidates], 1):
-        left = max(0, start - _REPETITION_REVIEW_CONTEXT_CHARS)
-        right = min(len(text), end + _REPETITION_REVIEW_CONTEXT_CHARS)
         candidates.append(
             RepetitionReviewCandidate(
                 index=index,
@@ -229,7 +264,7 @@ def find_repetition_review_candidates(
                     if any(_is_unicode_punctuation(character) for character in source)
                     else "phrase_run"
                 ),
-                context=text[left:right],
+                context=_repetition_review_context(text, start, end),
             )
         )
     return tuple(candidates)
@@ -401,9 +436,9 @@ def split_for_refinement(
 ) -> tuple[str, ...]:
     """Split text into bounded Refiner windows.
 
-    With ``one_punctuation_window=True`` every comma/clause mark or sentence
-    terminator closes the current window (the punctuation stays in that
-    window). This is used by the live Web path to keep model context short.
+    With ``one_punctuation_window=True`` commas and sentence/clause marks
+    close the current window, while enumeration commas stay with the following
+    phrase. This is used by the live Web path to keep model context short.
     The legacy sentence-preferred policy remains available to other callers.
     """
 
@@ -436,7 +471,7 @@ def _split_one_punctuation_window(source: str, max_chars: int) -> tuple[str, ...
     start = 0
     index = 0
     while index < len(source):
-        if _is_window_punctuation(source, index):
+        if source[index] in _SPLIT_WINDOW_CHARS and _is_window_punctuation(source, index):
             end = index + 1
             # Keep runs such as ``？！`` together instead of creating a
             # punctuation-only model request.
@@ -749,6 +784,9 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
     ):
         reasons.append("numeric_value_mismatch")
 
+    if _partially_converted_numeric_range(raw, refined):
+        reasons.append("partial_numeric_range_conversion")
+
     # Length and global similarity are useful for catching a collapsed window,
     # but they miss small deletions that change who did what (``他给``), or a
     # one-character substitution that turns a meaningful word into a particle
@@ -767,6 +805,33 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
     ):
         reasons.append("truncated_refiner_output")
     return tuple(dict.fromkeys(reasons))
+
+
+def _partially_converted_numeric_range(raw: str, refined: str) -> bool:
+    """Reject a model edit that changes only one side of a supported range.
+
+    Reuse the source normalizer's accepted range spans so fixed expressions
+    and unsupported numeric contexts keep their existing behavior.
+    """
+
+    for change in _CORRECTION_SURFACE_NORMALIZER.normalize(raw).changes:
+        if change.kind not in {"measurement_range", "count_range"}:
+            continue
+        source_match = _RANGE_RE.fullmatch(change.original)
+        if source_match is None:
+            continue
+        separator = source_match.group("separator")
+        unit = source_match.group("unit")
+        converted_left, converted_tail = change.replacement.split(separator, 1)
+        converted_right = converted_tail[: -len(unit)]
+        left = source_match.group("left")
+        right = source_match.group("right")
+        if (
+            f"{left}{separator}{converted_right}{unit}" in refined
+            or f"{converted_left}{separator}{right}{unit}" in refined
+        ):
+            return True
+    return False
 
 
 def _last_break(
@@ -1502,7 +1567,11 @@ def preserve_safe_numeric_edits(raw: str, refined: str) -> str | None:
     repaired = source
     for start, end, replacement in reversed(edits):
         repaired = repaired[:start] + replacement + repaired[end:]
-    if repaired == source or not _numeric_surface_only(source, repaired):
+    if (
+        repaired == source
+        or not _numeric_surface_only(source, repaired)
+        or _partially_converted_numeric_range(source, repaired)
+    ):
         return None
     return repaired
 

@@ -120,6 +120,7 @@ def finalize_entity_segment(
     protector: EntityProtector,
     *,
     preserve_source_punctuation: bool = False,
+    preserve_terminal_only: bool = False,
     allow_boundary_punctuation_repair: bool = False,
 ) -> FinalizedEntitySegment:
     restored = protector.restore(refined_masked_text, prepared.protection)
@@ -131,7 +132,7 @@ def finalize_entity_segment(
         )
     restored_text = (
         preserve_terminal_punctuation(prepared.baseline_text, restored.text)
-        if preserve_source_punctuation
+        if preserve_source_punctuation or preserve_terminal_only
         else restored.text
     )
     punctuation_reasons = (

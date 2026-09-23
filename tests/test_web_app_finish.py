@@ -185,6 +185,17 @@ class _DropsPunctuationRefiner:
         return text.rstrip("，,、。！？!?；;：:.").rstrip(), 1.0
 
 
+class _NumericDropsTerminalRefiner(_IdentityRefiner):
+    def refine(
+        self,
+        text: str,
+        *,
+        entity_hints: tuple[str, ...] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        return text.replace("七十多", "70多").rstrip("，,、。！？!?；;：:."), 1.0
+
+
 class _WrongNumberRefiner:
     def __init__(self, *args, **kwargs) -> None:
         pass
@@ -593,11 +604,88 @@ class WebAppFinishTest(unittest.TestCase):
             )[0]["action"],
             "remove",
         )
-        self.assertIsNone(decide(source, candidate, expected.replace("本人", "他")))
+        projected = decide(source, candidate, expected.replace("本人", "他"))
+        self.assertEqual(projected[0]["action"], "remove")
+        self.assertEqual(projected[0]["reason"], "model_aligned_candidate_edit")
         self.assertIsNone(decide(source, candidate, "喂"))
         self.assertIsNone(
             decide(source, candidate, "上下文：" + expected + "<br>remove 后片段：喂")
         )
+
+    def test_local_repetition_review_projects_only_source_owned_deletion(self) -> None:
+        from system.refinement_guard import find_repetition_review_candidates
+
+        decide = web_app._repetition_decision_from_refined_context
+        for source, target_text, repeated in (
+            ("那人人性到底是什么呢？所以这可能也是争论。",
+             "那人性到底是什么呢？所以这可能也争论。", "人人"),
+            ("父父子之间有争议。", "父子之间存在争议。", "父父"),
+            ("他其实有有有这个毅力。", "他其实有这个能力。", "有有有"),
+        ):
+            with self.subTest(repeated=repeated):
+                candidate = next(item for item in find_repetition_review_candidates(source)
+                                 if item.source == repeated)
+                decision = decide(source, candidate, target_text)
+                self.assertIsNotNone(decision)
+                self.assertEqual(decision[0]["action"], "remove")
+                repaired, _ = web_app.apply_repetition_review_decisions(
+                    source, (candidate,), decision
+                )
+                self.assertEqual(
+                    repaired,
+                    source[:candidate.start] + candidate.target + source[candidate.end:],
+                )
+
+        lexical = "人人平等，是重要原则。"
+        candidate = next(item for item in find_repetition_review_candidates(lexical)
+                         if item.source == "人人")
+        self.assertEqual(decide(lexical, candidate, lexical)[0]["action"], "keep")
+        self.assertIsNone(decide(lexical, candidate, "每个人都平等，是重要原则。"))
+
+        logged_source = (
+            "他是。这个毛中纲父父子的批语呢，可以得出这个结论的。"
+            "对，真小人比伪君子好得多。"
+        )
+        logged_candidate = next(
+            item for item in find_repetition_review_candidates(logged_source)
+            if item.source == "父父"
+        )
+        logged_model = (
+            "毛中纲父子的批语可以得出这个结论的。"
+            "对，真小人比伪君子好得多。<KEY>[毛中纲]"
+        )
+        self.assertEqual(
+            decide(logged_source, logged_candidate, logged_model)[0]["action"],
+            "remove",
+        )
+
+    def test_repetition_candidate_sentence_uses_complete_owned_sentence(self) -> None:
+        from system.refinement_guard import find_repetition_review_candidates
+
+        source = "他说了。首首先从防范角度讲，我们应该立法。随后继续。"
+        candidate = next(item for item in find_repetition_review_candidates(source)
+                         if item.source == "首首")
+        sentence = web_app._repetition_candidate_sentence(source, candidate, final=False)
+        self.assertEqual(sentence, ("首首先从防范角度讲，我们应该立法。", 0, 2))
+        self.assertIsNone(web_app._repetition_candidate_sentence(
+            "首首先从防范角度讲", next(item for item in
+                find_repetition_review_candidates("首首先从防范角度讲")
+                if item.source == "首首"), final=False
+        ))
+
+    def test_multiword_quotation_requires_exact_candidate_only_review(self) -> None:
+        from system.refinement_guard import find_repetition_review_candidates
+
+        source = "叫实色性也，实色性也就是要吃饭。"
+        candidate = next(
+            item for item in find_repetition_review_candidates(source)
+            if item.source == "实色性也，实色性也"
+        )
+        decide = web_app._repetition_decision_from_refined_context
+        self.assertIsNone(decide(source, candidate,
+                                 "说实色性也就是要吃饭。"))
+        expected = source[:candidate.start] + candidate.target + source[candidate.end:]
+        self.assertEqual(decide(source, candidate, expected)[0]["action"], "remove")
 
     def test_reviewed_repetition_stays_owned_across_asr_tail_revision(self) -> None:
         from system.refinement_guard import find_repetition_review_candidates
@@ -1469,7 +1557,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(second["committed_chunks"], 3)
                     self.assertEqual(_CountingRefiner.calls, ["甲，甲，乙。"])
 
-    def test_tri_state_allows_refiner_to_replace_source_punctuation(self) -> None:
+    def test_numeric_only_refinement_keeps_terminal_sentence_mark(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _DropsPunctuationRefiner),
             patch.object(web_app, "_stream_request", _stable_stream_request),
@@ -1490,7 +1578,104 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
                     final = websocket.receive_json()
 
-        self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本")
+        self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本。")
+
+    def test_non_numeric_cleanup_can_remove_terminal_punctuation(self) -> None:
+        source = "开头开头原始文本。后面原始文本。"
+
+        def stream_request(
+            asr_url: str,
+            endpoint: str,
+            session_id: str | None = None,
+            data: bytes = b"",
+            params: dict[str, str] | None = None,
+        ) -> dict[str, object]:
+            if endpoint == "/stream/start":
+                return {"session_id": "punctuation-cleanup-test"}
+            if endpoint in {"/stream/chunk", "/stream/finish"}:
+                return {"text": source, "language": "Chinese"}
+            if endpoint == "/stream/cancel":
+                return {"cancelled": True}
+            raise AssertionError(f"unexpected endpoint: {endpoint}")
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _DropsPunctuationRefiner),
+            patch.object(web_app, "_stream_request", stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None, refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=online") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    self.assertEqual(websocket.receive_json()["event"], "transcript")
+                    final = websocket.receive_json()
+
+        self.assertEqual(final["clean_text"], "开头开头原始文本。后面原始文本")
+        self.assertEqual(final["refinement_gate_decisions"][0]["cleanup_signals"], ["repeated_phrase"])
+
+    def test_numeric_only_group_keeps_terminal_comma_for_next_group(self) -> None:
+        source = (
+            "经过了七十多年的水土流失治理，黄土高原早已换了模样。"
+            "山坡上的梯田，沟谷中的淤地坝。"
+        )
+        source_chunks = (
+            "经过了七十多年的水土流失治理，",
+            "黄土高原早已换了模样。",
+            "山坡上的梯田，",
+            "沟谷中的淤地坝。",
+        )
+
+        def stream_request(
+            asr_url: str,
+            endpoint: str,
+            session_id: str | None = None,
+            data: bytes = b"",
+            params: dict[str, str] | None = None,
+        ) -> dict[str, object]:
+            if endpoint == "/stream/start":
+                return {"session_id": "numeric-boundary-test"}
+            if endpoint == "/stream/chunk":
+                return {
+                    "text": source,
+                    "language": "Chinese",
+                    "completed_segments": [
+                        {"segment_id": index + 1, "text": value, "vad_boundary": True}
+                        for index, value in enumerate(source_chunks)
+                    ],
+                }
+            if endpoint == "/stream/finish":
+                return {"text": source, "language": "Chinese"}
+            if endpoint == "/stream/cancel":
+                return {"cancelled": True}
+            raise AssertionError(f"unexpected endpoint: {endpoint}")
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _NumericDropsTerminalRefiner),
+            patch.object(web_app, "_stream_request", stream_request),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None, refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=streaming") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_bytes(b"pcm")
+                    update = self._await_event(websocket, "update")
+                    websocket.send_json({"event": "finish"})
+                    final = self._await_event(websocket, "final")
+
+        self.assertIn("山坡上的梯田，沟谷中的淤地坝。", update["clean_text"])
+        self.assertEqual(
+            final["clean_text"],
+            "经过了70多年的水土流失治理，黄土高原早已换了模样。"
+            "山坡上的梯田，沟谷中的淤地坝。",
+        )
+        self.assertEqual(final["refinement_gate_decisions"][0]["cleanup_signals"], ["numeric_normalization"])
 
     def test_streaming_window_applies_fuzzy_entity_before_finish(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
