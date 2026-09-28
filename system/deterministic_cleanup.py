@@ -33,6 +33,54 @@ _SENTENCE_BOUNDARY_ECHO_RE = re.compile(
     r"(?P<separator>[。！？!?；;])"
     r"(?P=echo)(?=[\u3400-\u9fff])"
 )
+_NUMBERED_LIST_ITEM_RE = re.compile(
+    r"\s*(?P<number>\d+)[.．、)]\s*(?P<item>.+?)\s*"
+)
+
+
+def _flatten_numbered_list_line_breaks(text: str) -> str:
+    """Flatten colon-headed, consecutively numbered lists into inline text."""
+
+    lines = text.split("\n")
+    flattened: list[str] = []
+    index = 0
+    while index < len(lines):
+        header = lines[index]
+        first = (
+            _NUMBERED_LIST_ITEM_RE.fullmatch(lines[index + 1])
+            if index + 1 < len(lines)
+            else None
+        )
+        if not header.rstrip().endswith(("：", ":")) or first is None:
+            flattened.append(header)
+            index += 1
+            continue
+        if int(first.group("number")) != 1:
+            flattened.append(header)
+            index += 1
+            continue
+
+        items = [first.group(0).strip()]
+        expected_number = 2
+        next_index = index + 2
+        while next_index < len(lines):
+            match = _NUMBERED_LIST_ITEM_RE.fullmatch(lines[next_index])
+            if match is None or int(match.group("number")) != expected_number:
+                break
+            items.append(match.group(0).strip())
+            expected_number += 1
+            next_index += 1
+        if len(items) < 2:
+            flattened.append(header)
+            index += 1
+            continue
+
+        flattened.append(header.rstrip() + items[0])
+        flattened[-1] += "".join(f"，{item}" for item in items[1:])
+        index = next_index
+
+    return "\n".join(flattened)
+
 
 def clean_transcript_deterministically(text: str) -> str:
     """Apply only exact, low-ambiguity cleanup rules to refined text."""
@@ -44,7 +92,9 @@ def clean_transcript_deterministically(text: str) -> str:
                     collapse_repeated_pronoun_stutters(
                         collapse_sentence_boundary_fillers(
                             collapse_standalone_fillers(
-                                apply_known_transcript_repairs(text)
+                                apply_known_transcript_repairs(
+                                    _flatten_numbered_list_line_breaks(text)
+                                )
                             )
                         )
                     )

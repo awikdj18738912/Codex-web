@@ -40,6 +40,7 @@ from .refinement_gate import RefinementGate, RefinementGateMode
 from .refinement_guard import preserve_safe_repetition_edits
 from .numeric_normalizer import ContextualNumericNormalizer
 from .refinement_protocol import (
+    REPETITION_REVIEW_SYSTEM_PROMPT,
     STRICT_PLACEHOLDER_PROMPT,
     STRUCTURED_REFINER_SYSTEM_PROMPT,
     apply_structured_patch,
@@ -47,6 +48,9 @@ from .refinement_protocol import (
 from .session_memory import SessionEntityMemory
 
 SYSTEM_PROMPT = STRUCTURED_REFINER_SYSTEM_PROMPT
+REPETITION_REVIEW_SCORE_MARGIN = 0.25
+REPETITION_REVIEW_MAX_SENTENCE_CHARS = 256
+_REPETITION_SENTENCE_ENDINGS = frozenset("。！？!?；;\n…")
 
 class TransformersRefiner:
     """Local Transformers backend matching the offline Refiner prompt."""
@@ -143,9 +147,84 @@ class TransformersRefiner:
     ) -> tuple[str, float, bool]:
         """Return whether generation ended naturally so callers can cache it."""
 
+        return self._review_messages_with_status(SYSTEM_PROMPT, text)
+
+    def review_repetition_candidate_with_status(
+        self, context: str, source: str, target: str, local_start: int,
+    ) -> tuple[str, float, bool, float | None]:
+        """Compare the Refiner's likelihood of keeping and merging one span."""
+
+        started = time.perf_counter()
+        local_end = local_start + len(source)
+        if (
+            local_start < 0 or context[local_start:local_end] != source
+            or not target
+        ):
+            return "UNRESOLVED", 0.0, True, None
+
+        focus_start = max(
+            (index + 1 for index in range(local_start)
+             if context[index] in _REPETITION_SENTENCE_ENDINGS),
+            default=0,
+        )
+        focus_end = next(
+            (index + 1 for index in range(local_end, len(context))
+             if context[index] in _REPETITION_SENTENCE_ENDINGS),
+            len(context),
+        )
+        sentence = context[focus_start:focus_end]
+        if len(sentence) > REPETITION_REVIEW_MAX_SENTENCE_CHARS:
+            return "UNRESOLVED", (time.perf_counter() - started) * 1000, True, None
+        edited = (
+            context[focus_start:local_start] + target + context[local_end:focus_end]
+        )
+        system_prompt = (
+            f"{REPETITION_REVIEW_SYSTEM_PROMPT}"
+            f"\n前文（仅供参考）：{context[:focus_start]}"
+            f"\n后文（仅供参考）：{context[focus_end:]}"
+        )
+        inputs = self._tokenizer.apply_chat_template(
+            [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": sentence},
+            ],
+            tokenize=True,
+            add_generation_prompt=True,
+            return_dict=True,
+            return_tensors="pt",
+            **self._template_kwargs,
+        )
+        device = self._model.get_input_embeddings().weight.device
+        prompt_ids = inputs["input_ids"][0].to(device)
+
+        def mean_log_probability(completion: str) -> float:
+            completion_ids = self._tokenizer(
+                completion, add_special_tokens=False, return_tensors="pt"
+            )["input_ids"][0].to(device)
+            combined = self._torch.cat((prompt_ids, completion_ids)).unsqueeze(0)
+            with self._torch.inference_mode():
+                logits = self._model(input_ids=combined).logits[
+                    0, len(prompt_ids) - 1 : -1, :
+                ].float()
+                probabilities = self._torch.log_softmax(logits, dim=-1)
+                chosen = probabilities.gather(1, completion_ids.unsqueeze(1))
+            return chosen.mean().item()
+
+        margin = mean_log_probability(edited) - mean_log_probability(sentence)
+        if margin >= REPETITION_REVIEW_SCORE_MARGIN:
+            decision = "REMOVE"
+        elif margin <= -REPETITION_REVIEW_SCORE_MARGIN:
+            decision = "KEEP"
+        else:
+            decision = "UNRESOLVED"
+        return decision, (time.perf_counter() - started) * 1000, True, round(margin, 4)
+
+    def _review_messages_with_status(
+        self, system_prompt: str, user_content: str,
+    ) -> tuple[str, float, bool]:
         messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": text},
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_content},
         ]
         inputs = self._tokenizer.apply_chat_template(
             messages,

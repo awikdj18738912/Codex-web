@@ -33,6 +33,11 @@ STRUCTURED_REFINER_SYSTEM_PROMPT = (
     "跨相邻标点块以处理自我修正，但只能修改一个局部片段。"
 )
 
+REPETITION_REVIEW_SYSTEM_PROMPT = (
+    f"{REFINER_SYSTEM_PROMPT}"
+    "前文和后文只用于理解用户输入的转写。只精修用户消息中的句子。"
+)
+
 STRICT_PLACEHOLDER_PROMPT = (
     "最高优先级：完整保留输入中的每个句子和信息，不得总结、缩写、"
     "合并或删除内容。先逐字复制所有 __ENTITY_NNN__ 标记到对应位置，"

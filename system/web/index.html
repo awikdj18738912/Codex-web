@@ -12,6 +12,9 @@
     main { width: min(820px, calc(100% - 32px)); margin: 0 auto; padding: 56px 0; }
     header { border-bottom: 1px solid #c9d1cf; padding-bottom: 20px; }
     .header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
+    .log-link { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border: 1px solid #aebbb8; border-radius: 6px; background: #fff; color: #17201f; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+    .log-link:hover { background: #edf2f0; }
     h1 { margin: 0; font-size: 28px; font-weight: 680; letter-spacing: 0; }
     .status { margin: 9px 0 0; color: #53615f; font-size: 14px; }
     .control { display: flex; align-items: center; gap: 16px; padding: 28px 0; border-bottom: 1px solid #c9d1cf; }
@@ -108,7 +111,10 @@
     <header>
       <div class="header-row">
         <h1>AgenticASR</h1>
-        <button id="manage-entities" class="secondary" type="button">术语库管理</button>
+        <div class="header-actions">
+          <a class="log-link" href="/refinement-log" target="_blank" rel="noopener">精修日志</a>
+          <button id="manage-entities" class="secondary" type="button">术语库管理</button>
+        </div>
       </div>
       <p id="status" class="status">准备就绪</p>
     </header>

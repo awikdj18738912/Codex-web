@@ -6,6 +6,7 @@ import argparse
 import asyncio
 from difflib import SequenceMatcher
 import json
+import re
 import sys
 import time
 import threading
@@ -63,6 +64,7 @@ from .refinement_protocol import (
 from .repetition_plausibility import RepetitionPlausibility
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
+REFINEMENT_LOG_DIR = Path(__file__).resolve().parents[1] / "results" / "web"
 # Refining the complete cumulative hypothesis for every streaming chunk is
 # expensive and can monopolize the single GPU-backed refiner when a long file
 # is uploaded (especially if the browser has more than one open connection).
@@ -282,6 +284,47 @@ def _repetition_review_cache_key(
     )
 
 
+def _repetition_candidate_context_offset(
+    text: str, candidate: RepetitionReviewCandidate,
+) -> int | None:
+    """Locate this candidate inside its context using the source-owned offset."""
+
+    context = candidate.context
+    for start in range(max(0, candidate.end - len(context)), candidate.start + 1):
+        if (
+            text[start : start + len(context)] == context
+            and start <= candidate.start
+            and candidate.end <= start + len(context)
+        ):
+            local_start = candidate.start - start
+            if context[local_start : local_start + len(candidate.source)] == candidate.source:
+                return local_start
+    return None
+
+
+def _repetition_decision_from_candidate_response(
+    text: str, candidate: RepetitionReviewCandidate, response: str,
+) -> list[dict[str, object]] | None:
+    """Read a focused KEEP/REMOVE answer, with legacy transcript support."""
+
+    if _repetition_candidate_context_offset(text, candidate) is None:
+        return None
+    answer = strip_refiner_key_suffix(response).strip().strip("`\"'“”‘’。.!！").upper()
+    action = {
+        "KEEP": "keep",
+        "REMOVE": "remove",
+        "保留": "keep",
+        "删除": "remove",
+    }.get(answer)
+    if action is not None:
+        return [{
+            "index": candidate.index,
+            "action": action,
+            "reason": "model_candidate_decision",
+        }]
+    return _repetition_decision_from_refined_context(text, candidate, response)
+
+
 def _repetition_decision_from_refined_context(
     text: str, candidate: RepetitionReviewCandidate, response: str
 ) -> list[dict[str, object]] | None:
@@ -290,20 +333,10 @@ def _repetition_decision_from_refined_context(
     context = candidate.context
     # The same phrase may occur elsewhere in a window.  Align the candidate
     # with its source-owned offset rather than replacing the first occurrence.
-    context_start = next(
-        (
-            start
-            for start in range(max(0, candidate.end - len(context)), candidate.start + 1)
-            if text[start : start + len(context)] == context
-            and start <= candidate.start
-            and candidate.end <= start + len(context)
-        ),
-        None,
-    )
-    if context_start is None:
+    local_start = _repetition_candidate_context_offset(text, candidate)
+    if local_start is None:
         return None
-    local_start = candidate.start - context_start
-    local_end = candidate.end - context_start
+    local_end = local_start + len(candidate.source)
     if context[local_start:local_end] != candidate.source:
         return None
     expected = context[:local_start] + candidate.target + context[local_end:]
@@ -527,6 +560,225 @@ def _reviewed_source_spans(
     ]
 
 
+def _review_matches_window(review: dict[str, object], window_text: str) -> bool:
+    candidate = str(review.get("source", ""))
+    context = str(review.get("context", ""))
+    if not candidate or candidate not in window_text or not context:
+        return False
+    if window_text in context or context in window_text:
+        return True
+    overlap = SequenceMatcher(None, window_text, context, autojunk=False)
+    minimum_overlap = min(12, max(1, len(window_text) // 3))
+    return overlap.find_longest_match().size >= minimum_overlap
+
+
+def _render_refinement_log_report(
+    records: list[dict[str, object]], mode: str, trace_id: str,
+) -> str:
+    """Render one completed WebSocket trace for the existing paged log UI."""
+
+    final_record = next(
+        (item for item in reversed(records) if item.get("event") == "final_result"),
+        {},
+    )
+    raw_text = str(final_record.get("raw_text", ""))
+    clean_text = str(final_record.get("output", ""))
+    review_map: dict[tuple[object, ...], dict[str, object]] = {}
+    reviews = final_record.get("reviews", [])
+    if isinstance(reviews, list):
+        for review in reviews:
+            if not isinstance(review, dict):
+                continue
+            key = (
+                review.get("start"), review.get("end"),
+                review.get("source"), review.get("target"),
+            )
+            review_map[key] = review
+    unique_reviews = sorted(
+        review_map.values(), key=lambda item: (int(item.get("start", 0)), int(item.get("end", 0)))
+    )
+    attached_reviews: set[tuple[object, ...]] = set()
+    pages: list[str] = []
+
+    def code_block(value: object) -> str:
+        text = str(value) if value is not None else "（空）"
+        text = text.replace("```", "``\u200b`")
+        return f"```text\n{text}\n```"
+
+    def timestamp(value: object) -> str:
+        try:
+            return datetime.fromisoformat(str(value)).astimezone().strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
+        except (TypeError, ValueError):
+            return str(value or "时间未知")
+
+    window_events = [item for item in records if item.get("event") == "window_result"]
+    for event in window_events:
+        segments = event.get("segments")
+        if not isinstance(segments, list) or not segments:
+            segments = [{"source": event.get("input", ""), "output": event.get("output", "")}]
+        for segment in segments:
+            if not isinstance(segment, dict):
+                continue
+            source = str(segment.get("source") or event.get("input", ""))
+            page_number = len(pages) + 1
+            phase = {"stream": "流式", "final": "结束阶段"}.get(
+                str(event.get("phase", "")), str(event.get("phase", "未知阶段"))
+            )
+            revision = event.get("revision", "—")
+            segment_index = segment.get("segment_index", "—")
+            body = [
+                f"## {page_number}. {timestamp(event.get('captured_at'))} · {phase} · 修订 {revision} · 片段 {segment_index}",
+                "",
+                "原始句子窗口：",
+                "",
+                code_block(source),
+                "",
+            ]
+            gate = segment.get("gate")
+            if isinstance(gate, dict):
+                gate_reasons = gate.get("reasons") or []
+                cleanup_signals = gate.get("cleanup_signals") or []
+                body.append(
+                    "门控：`{}`；原因：`{}`；触发信号：`{}`。".format(
+                        gate.get("action", "未知"),
+                        ", ".join(str(item) for item in gate_reasons) or "无",
+                        ", ".join(str(item) for item in cleanup_signals) or "无",
+                    )
+                )
+                body.append("")
+
+            calls = segment.get("model_calls")
+            if isinstance(calls, list) and calls:
+                body.extend(["普通窗口精修调用：", ""])
+                for call_number, call in enumerate(calls, 1):
+                    if not isinstance(call, dict):
+                        continue
+                    call_kind = "占位符保护重试" if call.get("strict_placeholders") else "模型调用"
+                    body.extend([
+                        f"{call_number}. {call_kind}输入：",
+                        "",
+                        code_block(call.get("input", "")),
+                        "",
+                        "模型输出：",
+                        "",
+                        code_block(call.get("output", call.get("error", "无输出"))),
+                        "",
+                    ])
+                outcome = str(segment.get("outcome", "未知"))
+                outcome_label = {"accepted": "接受", "rejected": "拒绝"}.get(outcome, outcome)
+                reject_reasons = segment.get("reject_reasons") or []
+                body.extend([
+                    f"窗口验收：{outcome_label}；拒绝原因：`{', '.join(map(str, reject_reasons)) or '无'}`。",
+                    "",
+                ])
+            else:
+                body.extend(["本窗口没有调用 Refiner。", ""])
+
+            body.extend(["本窗口最终输出：", "", code_block(segment.get("output", segment.get("baseline", source))), ""])
+            local_reviews = [
+                review for review in unique_reviews
+                if _review_matches_window(review, source)
+            ]
+            if local_reviews:
+                body.extend(["本窗口关联的局部候选复核：", ""])
+                for review_number, review in enumerate(local_reviews, 1):
+                    key = (
+                        review.get("start"), review.get("end"),
+                        review.get("source"), review.get("target"),
+                    )
+                    attached_reviews.add(key)
+                    body.extend([
+                        f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：`{review.get('decision', 'unresolved')}`；原因：`{review.get('reason', '未知')}`；已应用：`{review.get('applied', False)}`。",
+                    ])
+                    if review.get("model_response"):
+                        body.extend(["模型复核输出：", "", code_block(review["model_response"]), ""])
+                    score_fields = (
+                        ("候选分数差", "candidate_score_margin"),
+                        ("全文 plausibility 分数差", "plausibility_margin"),
+                        ("局部 plausibility 分数差", "local_plausibility_margin"),
+                    )
+                    scores = [f"{label}：{review[key]}" for label, key in score_fields if review.get(key) is not None]
+                    if scores:
+                        body.extend(["；".join(scores), ""])
+                    if review.get("context"):
+                        body.extend(["复核上下文：", "", code_block(review["context"]), ""])
+            else:
+                body.extend(["本窗口没有关联到局部候选复核。", ""])
+            pages.append("\n".join(body).rstrip())
+
+    if not pages:
+        pages.append(
+            "## 1. 转录窗口\n\n原始句子窗口：\n\n"
+            + code_block(raw_text)
+            + "\n\n本窗口最终输出：\n\n"
+            + code_block(clean_text)
+        )
+
+    appendix = [
+        "## 未可靠归属到单个窗口",
+        "",
+        "### 本次转录概览",
+        "",
+        f"完成时间：{timestamp(final_record.get('captured_at'))}；模式：`{mode}`；追踪编号：`{trace_id}`。",
+    ]
+    stats = final_record.get("refiner_session_stats")
+    if isinstance(stats, dict):
+        appendix.extend([
+            f"Refiner 调用：{stats.get('call_count', 0)} 次；初次调用：{stats.get('initial_call_count', 0)} 次；重试：{stats.get('retry_call_count', 0)} 次；门控跳过：{stats.get('gate_skipped_segment_count', 0)} 次。",
+        ])
+    appendix.extend([
+        "",
+        "原始转写全文：",
+        "",
+        code_block(raw_text),
+        "",
+        "最终精修全文：",
+        "",
+        code_block(clean_text),
+        "",
+    ])
+    unassigned = []
+    for review in unique_reviews:
+        key = (
+            review.get("start"), review.get("end"),
+            review.get("source"), review.get("target"),
+        )
+        if key in attached_reviews:
+            continue
+        unassigned.append(review)
+    if unassigned:
+        appendix.extend(["未关联到单个窗口的候选复核：", ""])
+        for review in unassigned:
+            appendix.append(
+                f"- 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：`{review.get('decision', 'unresolved')}`；原因：`{review.get('reason', '未知')}`；已应用：`{review.get('applied', False)}`。"
+            )
+    return "\n\n---\n\n".join(pages) + "\n\n" + "\n".join(appendix) + "\n"
+
+
+def _write_refinement_log_report(
+    directory: Path, trace_id: str, mode: str, records: list[dict[str, object]],
+) -> Path:
+    """Atomically save a completed transcription for the existing log page."""
+
+    captured_at = datetime.now(timezone.utc)
+    filename = (
+        f"refinement_windows_grouped_{captured_at:%Y%m%d_%H%M%S_%f}_{trace_id}.md"
+    )
+    report_path = directory / filename
+    temporary_path = directory / f".{filename}.tmp"
+    directory.mkdir(parents=True, exist_ok=True)
+    report = _render_refinement_log_report(records, mode, trace_id)
+    try:
+        temporary_path.write_text(report, encoding="utf-8")
+        temporary_path.replace(report_path)
+    except OSError:
+        temporary_path.unlink(missing_ok=True)
+        raise
+    return report_path
+
+
 def _stream_request(
     asr_url: str,
     endpoint: str,
@@ -659,7 +911,9 @@ def create_app(
         review_cache: dict[
             tuple[int, int, str, str, str], dict[str, object]
         ] | None = None,
-        response_cache: dict[str, str] | None = None,
+        response_cache: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] | None = None,
     ) -> tuple[str, list[dict[str, object]], float, int, int]:
         """Review structural repetitions in a stable stream window or final text."""
 
@@ -724,14 +978,22 @@ def create_app(
         decisions: list[dict[str, object]] = list(cached_decisions)
         model_responses: dict[int, str] = {}
         response_cache_hits: set[int] = set()
-        batch_responses: dict[str, str] = {}
+        batch_responses: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] = {}
+        candidate_score_margins: dict[int, float] = {}
         plausibility_evidence: dict[int, dict[str, object]] = {}
         try:
             reviewer = getattr(refiner, "review_repetition", None)
             reviewer_with_status = getattr(
                 refiner, "review_repetition_with_status", None
             )
-            if reviewer is None:
+            candidate_reviewer = getattr(
+                refiner, "review_repetition_candidate_with_status", None
+            )
+            if not any(callable(item) for item in (
+                reviewer, reviewer_with_status, candidate_reviewer
+            )):
                 records = [
                     {
                         **candidate.public_dict(),
@@ -748,21 +1010,34 @@ def create_app(
                     records.extend(cached_records)
                 return reviewed_text, records, total_latency_ms, 0, 0
             for candidate in pending_candidates:
-                response = batch_responses.get(candidate.context)
-                if response is not None:
+                local_start = _repetition_candidate_context_offset(text, candidate)
+                if local_start is None:
+                    records.append({
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": "invalid_candidate_context",
+                    })
+                    continue
+                request_key = (
+                    candidate.context, local_start, candidate.source, candidate.target
+                )
+                cached_response = batch_responses.get(request_key)
+                if cached_response is not None:
+                    response, score_margin = cached_response
                     response_cache_hit_count += 1
                     response_cache_hits.add(candidate.index)
                     response_latency_ms = 0.0
                 elif (
                     response_cache is not None
-                    and candidate.context in response_cache
+                    and request_key in response_cache
                 ):
-                    response = response_cache[candidate.context]
-                    batch_responses[candidate.context] = response
+                    response, score_margin = response_cache[request_key]
+                    batch_responses[request_key] = (response, score_margin)
                     response_cache_hit_count += 1
                     response_cache_hits.add(candidate.index)
                     response_latency_ms = 0.0
                 else:
+                    score_margin = None
                     started_at = (
                         call_stats.begin_call(final=final, retry=False)
                         if call_stats is not None
@@ -779,7 +1054,15 @@ def create_app(
                         continue
                     model_call_count += 1
                     try:
-                        if callable(reviewer_with_status):
+                        if callable(candidate_reviewer):
+                            reviewed = candidate_reviewer(
+                                candidate.context, candidate.source,
+                                candidate.target, local_start,
+                            )
+                            response, response_latency_ms, completed = reviewed[:3]
+                            if len(reviewed) > 3:
+                                score_margin = reviewed[3]
+                        elif callable(reviewer_with_status):
                             response, response_latency_ms, completed = (
                                 reviewer_with_status(candidate.context)
                             )
@@ -805,24 +1088,25 @@ def create_app(
                         call_stats.finish_call(started_at, failed=False)
                     if not isinstance(response, str):
                         response = str(response)
-                    batch_responses[candidate.context] = response
+                    batch_responses[request_key] = (response, score_margin)
                     if (
                         completed is True
                         and response.strip()
                         and response_cache is not None
                     ):
-                        response_cache[candidate.context] = response
+                        response_cache[request_key] = (response, score_margin)
                         if len(response_cache) > 1024:
                             for old_context in tuple(response_cache)[:256]:
                                 response_cache.pop(old_context, None)
 
                 total_latency_ms += response_latency_ms
                 model_responses[candidate.index] = response
-                decision = _repetition_decision_from_refined_context(
+                if score_margin is not None:
+                    candidate_score_margins[candidate.index] = float(score_margin)
+                decision = _repetition_decision_from_candidate_response(
                     text, candidate, response
                 )
-                if (candidate.kind == "character_run"
-                        and (decision is None or decision[0]["action"] == "keep")):
+                if candidate.kind == "character_run" and decision is None:
                     sentence = _repetition_candidate_sentence(
                         text, candidate, final=final
                     )
@@ -835,9 +1119,20 @@ def create_app(
                             "plausibility_margin": plausibility.margin,
                             "plausibility_reason": plausibility.reason,
                         }
-                        if plausibility.decision == "remove" or (
-                            decision is None and plausibility.decision == "keep"
+                        if (
+                            plausibility.decision == "unresolved"
+                            and candidate.source == candidate.target * 2
                         ):
+                            local_plausibility = repetition_plausibility.decide_short_context(
+                                sentence_text, local_start, local_end, candidate.target
+                            )
+                            plausibility_evidence[candidate.index].update({
+                                "local_plausibility_margin": local_plausibility.margin,
+                                "local_plausibility_reason": local_plausibility.reason,
+                            })
+                            if local_plausibility.decision in {"remove", "keep"}:
+                                plausibility = local_plausibility
+                        if plausibility.decision in {"remove", "keep"}:
                             decision = [{
                                 "index": candidate.index,
                                 "action": plausibility.decision,
@@ -847,8 +1142,16 @@ def create_app(
                     record = {
                         **candidate.public_dict(),
                         "decision": "unresolved",
-                        "reason": "invalid_response",
+                        "reason": (
+                            "model_uncertain"
+                            if response.strip().upper() == "UNRESOLVED"
+                            else "invalid_response"
+                        ),
                         "model_response": response,
+                        **(
+                            {"candidate_score_margin": candidate_score_margins[candidate.index]}
+                            if candidate.index in candidate_score_margins else {}
+                        ),
                         **plausibility_evidence.get(candidate.index, {}),
                     }
                     if candidate.index in response_cache_hits:
@@ -879,6 +1182,10 @@ def create_app(
                 record = {
                     **applied_by_index[candidate.index],
                     "model_response": model_responses[candidate.index],
+                    **(
+                        {"candidate_score_margin": candidate_score_margins[candidate.index]}
+                        if candidate.index in candidate_score_margins else {}
+                    ),
                     **plausibility_evidence.get(candidate.index, {}),
                 }
                 if candidate.index in response_cache_hits:
@@ -1584,6 +1891,47 @@ def create_app(
             headers={"Cache-Control": "no-store"},
         )
 
+    @app.get("/refinement-log")
+    def refinement_log_page() -> FileResponse:
+        return FileResponse(
+            WEB_DIR / "refinement_log.html",
+            headers={"Cache-Control": "no-store"},
+        )
+
+    @app.get("/api/refinement-log")
+    def refinement_log_data() -> dict[str, object]:
+        candidates = sorted(
+            REFINEMENT_LOG_DIR.glob("refinement_windows_grouped_*.md"),
+            key=lambda path: path.stat().st_mtime_ns,
+            reverse=True,
+        )
+        if not candidates:
+            raise HTTPException(
+                status_code=404,
+                detail="还没有生成按窗口整理的精修日志。",
+            )
+        log_path = candidates[0]
+        content = log_path.read_text(encoding="utf-8")
+        headings = list(re.finditer(r"(?m)^## (\d+)\. .+$", content))
+        pages = [
+            content[match.start():headings[index + 1].start()
+                   if index + 1 < len(headings) else content.find(
+                       "\n## 未可靠归属到单个窗口", match.start()
+                   ) if "\n## 未可靠归属到单个窗口" in content[match.start():] else len(content)]
+            for index, match in enumerate(headings)
+        ]
+        appendix_marker = "\n## 未可靠归属到单个窗口"
+        appendix_offset = content.find(appendix_marker)
+        appendix = content[appendix_offset + 1:] if appendix_offset >= 0 else ""
+        return {
+            "name": log_path.name,
+            "updated_at": datetime.fromtimestamp(
+                log_path.stat().st_mtime, tz=timezone.utc
+            ).isoformat(),
+            "pages": pages,
+            "appendix": appendix,
+        }
+
     @app.get("/health")
     def health() -> dict[str, object]:
         return {
@@ -1719,19 +2067,23 @@ def create_app(
             if output is not None else None
         )
         trace_lock = threading.Lock()
+        refinement_log_records: list[dict[str, object]] = []
         trace_context: dict[str, object] = {"phase": "stream", "revision": None}
 
         def record_trace(event: str, **details: object) -> None:
             if trace_path is None:
                 return
             try:
+                record = {
+                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                    "trace_id": trace_id,
+                    "event": event,
+                    **details,
+                }
                 with trace_lock:
-                    _append_record(trace_path, {
-                        "captured_at": datetime.now(timezone.utc).isoformat(),
-                        "trace_id": trace_id,
-                        "event": event,
-                        **details,
-                    })
+                    _append_record(trace_path, record)
+                    if event in {"window_result", "final_result"}:
+                        refinement_log_records.append(record)
             except (OSError, TypeError, ValueError):
                 # Diagnostics must never change a transcription decision.
                 pass
@@ -1845,7 +2197,9 @@ def create_app(
         streaming_repetition_cache: dict[
             tuple[int, int, str, str, str], dict[str, object]
         ] = {}
-        streaming_repetition_response_cache: dict[str, str] = {}
+        streaming_repetition_response_cache: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] = {}
         streaming_repetition_reviews: list[dict[str, object]] = []
 
         def consume_completed_segments(payload: dict[str, object]) -> int:
@@ -2643,12 +2997,30 @@ def create_app(
                             repetition_response_cache_hits=result.get(
                                 "repetition_response_cache_hits", 0
                             ),
+                            refiner_session_stats=result.get("refiner_session_stats"),
                         )
                         if output is not None:
+                            refinement_log_file: str | None = None
+                            try:
+                                refinement_log_path = _write_refinement_log_report(
+                                    output.parent,
+                                    trace_id,
+                                    requested_mode,
+                                    refinement_log_records,
+                                )
+                                refinement_log_file = refinement_log_path.name
+                            except (OSError, TypeError, ValueError) as error:
+                                record_trace(
+                                    "refinement_log_write_failed",
+                                    error=type(error).__name__,
+                                    detail=str(error),
+                                )
                             _append_record(
                                 output,
                                 {
                                     "captured_at": datetime.now(timezone.utc).isoformat(),
+                                    "trace_id": trace_id,
+                                    "refinement_log_file": refinement_log_file,
                                     "mode": requested_mode,
                                     "entity_domain": requested_domain,
                                     "asr_language": result["asr_language"],

@@ -1,6 +1,7 @@
 # 推理与评测脚本索引
 
 - postprocess_asr.py：对 ASR JSONL 运行批量 Refiner 推理。
+- test_refiner_zh_itn.py：用 100 条含多处数字的长句及非数字长句，对比 Refiner-only 与“数字保护 Refiner + zh-itn”，检查数字转换、占位符完整性及非数字精修隔离。
 - postprocess_contract.py：定义及检查推理输入/输出契约。
 - transcribe_and_refine.py：选择 Qwen3-ASR 或 Whisper，对音频执行 ASR + Refiner 端到端推理。
 - transcribe_and_refine_qwen3.py：Qwen3-ASR 专用端到端入口。

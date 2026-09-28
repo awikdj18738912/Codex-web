@@ -1,0 +1,1482 @@
+{
+  "status": "passed",
+  "refiner_model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "zh_itn_cli": "/tmp/zh-itn-codex-test-build/zh_itn",
+  "non_numeric_isolation_pass": true,
+  "non_numeric_cleanup_observed": true,
+  "mixed_refinement_pass": true,
+  "expected_itn_outputs_pass": true,
+  "mixed_refiner_fallback_cases": [],
+  "cases": [
+    {
+      "case_id": "date_percent",
+      "category": "numeric",
+      "text": "二零二四年五月三日增长百分之十。",
+      "expected_fragments": [
+        "2024年5月3日",
+        "10%"
+      ],
+      "masked_text": "__ENTITY_000__增长__ENTITY_001__。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "二零二四年五月三日"
+        },
+        {
+          "marker": "__ENTITY_001__",
+          "text": "百分之十"
+        }
+      ],
+      "refiner_masked_output": "__ENTITY_000__增长__ENTITY_001__。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "二零二四年五月三日增长百分之十。",
+      "itn_text": "2024年5月3日增长10%。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "二零二四年五月三日"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "2024年5月3日"
+          },
+          "provenance": {
+            "candidate_id": "zh-full-date-0-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.date.explicit_full_date",
+                "value": "four_digit_year_month_day"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.date.explicit_full_date",
+                "value": "complete_year_month_day"
+              },
+              {
+                "kind": "context",
+                "source": "zh.date.explicit_full_date",
+                "value": "explicit_date_units"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2024年5月3日",
+            "reason": "explicit_calendar_date",
+            "rule_id": "zh.date.explicit_full_date",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 9,
+              "start": 0,
+              "text": "二零二四年五月三日"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_full_date"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 9,
+            "text": "增长"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 9,
+            "text": "增长"
+          }
+        },
+        {
+          "input": {
+            "end": 15,
+            "start": 11,
+            "text": "百分之十"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 14,
+            "start": 11,
+            "text": "10%"
+          },
+          "provenance": {
+            "candidate_id": "zh-percentage-11-15",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.percentage.explicit",
+                "value": "percent_prefix_spoken_number"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.percentage.explicit",
+                "value": "complete_percentage"
+              },
+              {
+                "kind": "context",
+                "source": "zh.percentage.explicit",
+                "value": "explicit_percentage_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10%",
+            "reason": "explicit_percentage",
+            "rule_id": "zh.percentage.explicit",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 15,
+              "start": 11,
+              "text": "百分之十"
+            },
+            "semantic_type": "percentage",
+            "subtype": "explicit_percentage"
+          }
+        },
+        {
+          "input": {
+            "end": 16,
+            "start": 15,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 15,
+            "start": 14,
+            "text": "。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "time",
+      "category": "numeric",
+      "text": "下午三点半开始。",
+      "expected_fragments": [
+        "下午3点半"
+      ],
+      "masked_text": "下午__ENTITY_000__开始。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "三点半"
+        }
+      ],
+      "refiner_masked_output": "下午__ENTITY_000__开始。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "下午三点半开始。",
+      "itn_text": "下午3点半开始。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "下午三点半"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "下午3点半"
+          },
+          "provenance": {
+            "candidate_id": "zh-clock-time-0-5",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.explicit_clock_time",
+                "value": "period_spoken_clock_time"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.explicit_clock_time",
+                "value": "complete_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.explicit_clock_time",
+                "value": "explicit_chinese_period"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "下午3点半",
+            "reason": "explicit_clock_time",
+            "rule_id": "zh.time.explicit_clock_time",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 5,
+              "start": 0,
+              "text": "下午三点半"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 5,
+            "text": "开始。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 5,
+            "text": "开始。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "money_range",
+      "category": "numeric",
+      "text": "合计需要四千到五千元。",
+      "expected_fragments": [
+        "4000到5000元"
+      ],
+      "masked_text": "合计需要__ENTITY_000__。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "四千到五千元"
+        }
+      ],
+      "refiner_masked_output": "合计需要__ENTITY_000__。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "合计需要四千到五千元。",
+      "itn_text": "合计需要4000到5000元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "合计需要"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "合计需要"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 4,
+            "text": "四千"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 4,
+            "text": "4000"
+          },
+          "provenance": {
+            "candidate_id": "zh.money.explicit_range-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "4000到5000元",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.money.explicit_range",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "四千到五千元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_money_range"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "到"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "到"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 7,
+            "text": "五千"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 13,
+            "start": 9,
+            "text": "5000"
+          },
+          "provenance": {
+            "candidate_id": "zh.money.explicit_range-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "4000到5000元",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.money.explicit_range",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "四千到五千元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_money_range"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 9,
+            "text": "元。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 15,
+            "start": 13,
+            "text": "元。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "phone",
+      "category": "numeric",
+      "text": "联系电话幺三九九幺二六三七九七。",
+      "expected_fragments": [
+        "13991263797"
+      ],
+      "masked_text": "联系电话__ENTITY_000__。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "幺三九九幺二六三七九七"
+        }
+      ],
+      "refiner_masked_output": "联系电话__ENTITY_000__。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "联系电话幺三九九幺二六三七九七。",
+      "itn_text": "联系电话13991263797。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "联系电话"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "联系电话"
+          }
+        },
+        {
+          "input": {
+            "end": 15,
+            "start": 4,
+            "text": "幺三九九幺二六三七九七"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 15,
+            "start": 4,
+            "text": "13991263797"
+          },
+          "provenance": {
+            "candidate_id": "zh-telephone-number-4-15",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.telephone_number",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.telephone_number",
+                "value": "complete_telephone_number"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.telephone_number",
+                "value": "explicit_telephone_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "13991263797",
+            "reason": "standard_telephone_identifier",
+            "rule_id": "zh.identifier.telephone_number",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 15,
+              "start": 4,
+              "text": "幺三九九幺二六三七九七"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_telephone_number"
+          }
+        },
+        {
+          "input": {
+            "end": 16,
+            "start": 15,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 16,
+            "start": 15,
+            "text": "。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "software_version",
+      "category": "numeric",
+      "text": "软件版本为一点零点三。",
+      "expected_fragments": [
+        "1.0.3"
+      ],
+      "masked_text": "软件版本为__ENTITY_000__。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "一点零点三"
+        }
+      ],
+      "refiner_masked_output": "软件版本为__ENTITY_000__。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "软件版本为一点零点三。",
+      "itn_text": "软件版本为1.0.3。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "软件版本为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "软件版本为"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 5,
+            "text": "一点零点三"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 5,
+            "text": "1.0.3"
+          },
+          "provenance": {
+            "candidate_id": "zh-software-version-5-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.software_version",
+                "value": "spoken_dotted_version"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.software_version",
+                "value": "complete_version_components"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.software_version",
+                "value": "explicit_software_version_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1.0.3",
+            "reason": "standard_software_version",
+            "rule_id": "zh.identifier.software_version",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 10,
+              "start": 5,
+              "text": "一点零点三"
+            },
+            "semantic_type": "identifier",
+            "subtype": "software_version"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "duration",
+      "category": "numeric",
+      "text": "设备运行十六小时三十三分钟后停止。",
+      "expected_fragments": [
+        "16小时33分钟"
+      ],
+      "masked_text": "设备运行__ENTITY_000__后停止。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "十六小时三十三分钟"
+        }
+      ],
+      "refiner_masked_output": "设备运行__ENTITY_000__后停止。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "设备运行十六小时三十三分钟后停止。",
+      "itn_text": "设备运行16小时33分钟后停止。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "设备运行"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "设备运行"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 4,
+            "text": "十六小时三十三分钟"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 12,
+            "start": 4,
+            "text": "16小时33分钟"
+          },
+          "provenance": {
+            "candidate_id": "zh-compound-duration-4-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_compound_hour_minute",
+                "value": "spoken_hours_plus_minutes"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_compound_hour_minute",
+                "value": "complete_exact_compound_duration"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_compound_hour_minute",
+                "value": "explicit_hour_and_minute_units"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "16小时33分钟",
+            "reason": "explicit_compound_duration",
+            "rule_id": "zh.duration.explicit_compound_hour_minute",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 13,
+              "start": 4,
+              "text": "十六小时三十三分钟"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_compound_duration"
+          }
+        },
+        {
+          "input": {
+            "end": 17,
+            "start": 13,
+            "text": "后停止。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 16,
+            "start": 12,
+            "text": "后停止。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "large_unit_decimal",
+      "category": "numeric",
+      "text": "合计获配两千零二十四点九七万股。",
+      "expected_fragments": [
+        "2024.97万股"
+      ],
+      "masked_text": "合计获配__ENTITY_000__股。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "两千零二十四点九七万"
+        }
+      ],
+      "refiner_masked_output": "合计获配__ENTITY_000__股。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "合计获配两千零二十四点九七万股。",
+      "itn_text": "合计获配2024.97万股。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "合计获配"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "合计获配"
+          }
+        },
+        {
+          "input": {
+            "end": 15,
+            "start": 4,
+            "text": "两千零二十四点九七万股"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 13,
+            "start": 4,
+            "text": "2024.97万股"
+          },
+          "provenance": {
+            "candidate_id": "zh-decimal-measure-4-15",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_decimal",
+                "value": "spoken_decimal_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_decimal",
+                "value": "complete_decimal_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_decimal",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2024.97万股",
+            "reason": "explicit_decimal_measure",
+            "rule_id": "zh.measure.explicit_decimal",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 15,
+              "start": 4,
+              "text": "两千零二十四点九七万股"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_decimal_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 16,
+            "start": 15,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 14,
+            "start": 13,
+            "text": "。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "unanchored_count_preserved",
+      "category": "numeric",
+      "text": "我买了三本书。",
+      "expected_fragments": [
+        "三本书"
+      ],
+      "masked_text": "我买了__ENTITY_000__书。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "三本"
+        }
+      ],
+      "refiner_masked_output": "我买了__ENTITY_000__书。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "我买了三本书。",
+      "itn_text": "我买了三本书。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "我买了三本书。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "我买了三本书。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "idiom_preserved",
+      "category": "numeric",
+      "text": "我们一五一十地把经过说清楚。",
+      "expected_fragments": [
+        "一五一十"
+      ],
+      "masked_text": "我们__ENTITY_000__地把经过说清楚。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "一五一十"
+        }
+      ],
+      "refiner_masked_output": "我们__ENTITY_000__把经过说清楚。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "我们一五一十把经过说清楚。",
+      "itn_text": "我们一五一十把经过说清楚。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 13,
+            "start": 0,
+            "text": "我们一五一十把经过说清楚。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 13,
+            "start": 0,
+            "text": "我们一五一十把经过说清楚。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "ambiguous_quantity_preserved",
+      "category": "numeric",
+      "text": "大概二三十个人会来。",
+      "expected_fragments": [
+        "二三十个人"
+      ],
+      "masked_text": "大概__ENTITY_000__人会来。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "二三十个"
+        }
+      ],
+      "refiner_masked_output": "大概__ENTITY_000__人会来。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "大概二三十个人会来。",
+      "itn_text": "大概二三十个人会来。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "大概二三十个人会来。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "大概二三十个人会来。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "filler_repetition_with_number",
+      "category": "mixed",
+      "text": "呃，我我还需要十到十五分钟，后面再确认一下。",
+      "expected_fragments": [
+        "10到15分钟"
+      ],
+      "masked_text": "呃，我我还需要__ENTITY_000__，后面再确认一下。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "十到十五分钟"
+        }
+      ],
+      "refiner_masked_output": "我还需要__ENTITY_000__，后面再确认一下。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "我还需要十到十五分钟，后面再确认一下。",
+      "itn_text": "我还需要10到15分钟，后面再确认一下。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "我还需要"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "我还需要"
+          }
+        },
+        {
+          "input": {
+            "end": 5,
+            "start": 4,
+            "text": "十"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 4,
+            "text": "10"
+          },
+          "provenance": {
+            "candidate_id": "zh.duration.explicit_range-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10到15分钟",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.duration.explicit_range",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "十到十五分钟"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_duration_range"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 5,
+            "text": "到"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "到"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 6,
+            "text": "十五"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 7,
+            "text": "15"
+          },
+          "provenance": {
+            "candidate_id": "zh.duration.explicit_range-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10到15分钟",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.duration.explicit_range",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "十到十五分钟"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_duration_range"
+          }
+        },
+        {
+          "input": {
+            "end": 19,
+            "start": 8,
+            "text": "分钟，后面再确认一下。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 20,
+            "start": 9,
+            "text": "分钟，后面再确认一下。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "filler_with_percent",
+      "category": "mixed",
+      "text": "这份报告其实写得不错，呃，里面提到百分之三十七，结论还要核实。",
+      "expected_fragments": [
+        "37%"
+      ],
+      "masked_text": "这份报告其实写得不错，呃，里面提到__ENTITY_000__，结论还要核实。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "百分之三十七"
+        }
+      ],
+      "refiner_masked_output": "这份报告其实写得不错，里面提到__ENTITY_000__，结论还要核实。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "这份报告其实写得不错，里面提到百分之三十七，结论还要核实。",
+      "itn_text": "这份报告其实写得不错，里面提到37%，结论还要核实。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 15,
+            "start": 0,
+            "text": "这份报告其实写得不错，里面提到"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 15,
+            "start": 0,
+            "text": "这份报告其实写得不错，里面提到"
+          }
+        },
+        {
+          "input": {
+            "end": 21,
+            "start": 15,
+            "text": "百分之三十七"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 18,
+            "start": 15,
+            "text": "37%"
+          },
+          "provenance": {
+            "candidate_id": "zh-percentage-15-21",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.percentage.explicit",
+                "value": "percent_prefix_spoken_number"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.percentage.explicit",
+                "value": "complete_percentage"
+              },
+              {
+                "kind": "context",
+                "source": "zh.percentage.explicit",
+                "value": "explicit_percentage_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "37%",
+            "reason": "explicit_percentage",
+            "rule_id": "zh.percentage.explicit",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 21,
+              "start": 15,
+              "text": "百分之三十七"
+            },
+            "semantic_type": "percentage",
+            "subtype": "explicit_percentage"
+          }
+        },
+        {
+          "input": {
+            "end": 29,
+            "start": 21,
+            "text": "，结论还要核实。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 26,
+            "start": 18,
+            "text": "，结论还要核实。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "repetition_with_count",
+      "category": "mixed",
+      "text": "这个方案我们我们至少十五秒检查一遍，先按原计划推进。",
+      "expected_fragments": [
+        "至少15秒"
+      ],
+      "masked_text": "这个方案我们我们至少__ENTITY_000__检查一遍，先按原计划推进。",
+      "numeric_spans": [
+        {
+          "marker": "__ENTITY_000__",
+          "text": "十五秒"
+        }
+      ],
+      "refiner_masked_output": "这个方案我们至少__ENTITY_000__检查一遍，先按原计划推进。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": null,
+      "refiner_restored_text": "这个方案我们至少十五秒检查一遍，先按原计划推进。",
+      "itn_text": "这个方案我们至少15秒检查一遍，先按原计划推进。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这个方案我们至少"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这个方案我们至少"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 8,
+            "text": "十五秒"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 11,
+            "start": 8,
+            "text": "15秒"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-duration-threshold-8-11",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_integer_threshold",
+                "value": "spoken_integer_plus_duration_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_integer_threshold",
+                "value": "complete_threshold_integer_duration"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_integer_threshold",
+                "value": "explicit_chinese_duration_threshold"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "15秒",
+            "reason": "explicit_integer_duration_threshold",
+            "rule_id": "zh.duration.explicit_integer_threshold",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 11,
+              "start": 8,
+              "text": "十五秒"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_integer_duration_threshold"
+          }
+        },
+        {
+          "input": {
+            "end": 24,
+            "start": 11,
+            "text": "检查一遍，先按原计划推进。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 24,
+            "start": 11,
+            "text": "检查一遍，先按原计划推进。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": null,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "filler",
+      "category": "non_numeric_cleanup",
+      "text": "嗯，我觉得这个方案可以，呃，先按这个方向推进吧。",
+      "expected_fragments": [],
+      "masked_text": "嗯，我觉得这个方案可以，呃，先按这个方向推进吧。",
+      "numeric_spans": [],
+      "refiner_masked_output": "我觉得这个方案可以，先按这个方向推进吧。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "我觉得这个方案可以，先按这个方向推进吧。",
+      "refiner_restored_text": "我觉得这个方案可以，先按这个方向推进吧。",
+      "itn_text": "我觉得这个方案可以，先按这个方向推进吧。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 20,
+            "start": 0,
+            "text": "我觉得这个方案可以，先按这个方向推进吧。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 20,
+            "start": 0,
+            "text": "我觉得这个方案可以，先按这个方向推进吧。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "repetition",
+      "category": "non_numeric_cleanup",
+      "text": "这个问题我们我们已经讨论过了，先按原计划推进。",
+      "expected_fragments": [],
+      "masked_text": "这个问题我们我们已经讨论过了，先按原计划推进。",
+      "numeric_spans": [],
+      "refiner_masked_output": "这个问题我们已经讨论过了，先按原计划推进。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "这个问题我们已经讨论过了，先按原计划推进。",
+      "refiner_restored_text": "这个问题我们已经讨论过了，先按原计划推进。",
+      "itn_text": "这个问题我们已经讨论过了，先按原计划推进。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 21,
+            "start": 0,
+            "text": "这个问题我们已经讨论过了，先按原计划推进。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 21,
+            "start": 0,
+            "text": "这个问题我们已经讨论过了，先按原计划推进。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "self_correction",
+      "category": "non_numeric_cleanup",
+      "text": "我本来想把文件发给张伟，不对，应该发给李明。",
+      "expected_fragments": [],
+      "masked_text": "我本来想把文件发给张伟，不对，应该发给李明。",
+      "numeric_spans": [],
+      "refiner_masked_output": "我本来想把文件发给李明。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "我本来想把文件发给李明。",
+      "refiner_restored_text": "我本来想把文件发给李明。",
+      "itn_text": "我本来想把文件发给李明。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 12,
+            "start": 0,
+            "text": "我本来想把文件发给李明。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 0,
+            "text": "我本来想把文件发给李明。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": true
+    },
+    {
+      "case_id": "punctuation",
+      "category": "non_numeric_cleanup",
+      "text": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "expected_fragments": [],
+      "masked_text": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "numeric_spans": [],
+      "refiner_masked_output": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "refiner_restored_text": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "itn_text": "其实我觉得这个方案挺好只是细节还需要再确认",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 21,
+            "start": 0,
+            "text": "其实我觉得这个方案挺好只是细节还需要再确认"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 21,
+            "start": 0,
+            "text": "其实我觉得这个方案挺好只是细节还需要再确认"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "mixed_language",
+      "category": "non_numeric_cleanup",
+      "text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "expected_fragments": [],
+      "masked_text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "numeric_spans": [],
+      "refiner_masked_output": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "refiner_restored_text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "itn_text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 30,
+            "start": 0,
+            "text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 30,
+            "start": 0,
+            "text": "我用的是Qwen-ASR模型，它识别的文本还需要再整理一下。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": false
+    },
+    {
+      "case_id": "filler_and_false_start",
+      "category": "non_numeric_cleanup",
+      "text": "那个，我刚才想说，呃，我们先把重点说清楚。",
+      "expected_fragments": [],
+      "masked_text": "那个，我刚才想说，呃，我们先把重点说清楚。",
+      "numeric_spans": [],
+      "refiner_masked_output": "我刚才想说，我们先把重点说清楚。",
+      "refiner_placeholder_error": null,
+      "refiner_error": null,
+      "refiner_only_text": "我刚才想说，我们先把重点说清楚。",
+      "refiner_restored_text": "我刚才想说，我们先把重点说清楚。",
+      "itn_text": "我刚才想说，我们先把重点说清楚。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 16,
+            "start": 0,
+            "text": "我刚才想说，我们先把重点说清楚。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 16,
+            "start": 0,
+            "text": "我刚才想说，我们先把重点说清楚。"
+          }
+        }
+      ],
+      "expected_fragments_pass": true,
+      "missing_expected_fragments": [],
+      "same_as_refiner_only": true,
+      "refiner_changed_context": true
+    }
+  ]
+}

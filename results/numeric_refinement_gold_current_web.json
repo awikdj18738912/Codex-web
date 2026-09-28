@@ -1,0 +1,4299 @@
+{
+  "scope": "web_refine_update_final_text_offline",
+  "mode": {
+    "refinement_gate_mode": "tri_state",
+    "numeric_normalization": false,
+    "rule_protection": true,
+    "protect_numeric_spans": false,
+    "entity_db": null,
+    "asr_confidence": null
+  },
+  "cases": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/fixtures/numeric_refinement_gold.jsonl",
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "total": 115,
+  "exact_matches": 84,
+  "refiner_executed": 69,
+  "refiner_rejected": 16,
+  "by_category": {
+    "ambiguity_mixed": {
+      "total": 4,
+      "exact_matches": 1
+    },
+    "ambiguity_preserve": {
+      "total": 12,
+      "exact_matches": 12
+    },
+    "approximation": {
+      "total": 4,
+      "exact_matches": 4
+    },
+    "classifier": {
+      "total": 9,
+      "exact_matches": 7
+    },
+    "clock_time": {
+      "total": 6,
+      "exact_matches": 1
+    },
+    "date": {
+      "total": 5,
+      "exact_matches": 4
+    },
+    "decimal": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "digit_sequence": {
+      "total": 3,
+      "exact_matches": 0
+    },
+    "duration": {
+      "total": 4,
+      "exact_matches": 4
+    },
+    "fraction_ratio": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "identifier": {
+      "total": 3,
+      "exact_matches": 0
+    },
+    "integer": {
+      "total": 4,
+      "exact_matches": 4
+    },
+    "large_integer": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "measurement": {
+      "total": 5,
+      "exact_matches": 4
+    },
+    "mixed_numbers": {
+      "total": 3,
+      "exact_matches": 1
+    },
+    "money": {
+      "total": 5,
+      "exact_matches": 4
+    },
+    "non_numeric_regression": {
+      "total": 2,
+      "exact_matches": 2
+    },
+    "numeric_idiom": {
+      "total": 16,
+      "exact_matches": 16
+    },
+    "ordinal": {
+      "total": 3,
+      "exact_matches": 2
+    },
+    "percent": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "percentage_point": {
+      "total": 3,
+      "exact_matches": 1
+    },
+    "range": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "self_correction": {
+      "total": 3,
+      "exact_matches": 0
+    },
+    "signed_number": {
+      "total": 2,
+      "exact_matches": 0
+    },
+    "version_model": {
+      "total": 4,
+      "exact_matches": 2
+    }
+  },
+  "rows": [
+    {
+      "id": "num_001",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "现场有十二人。",
+      "expected": "现场有12人。",
+      "actual": "现场有12人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_002",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "库房有二十件设备。",
+      "expected": "库房有20件设备。",
+      "actual": "库房有20件设备。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_003",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "车队共有三十五辆车。",
+      "expected": "车队共有35辆车。",
+      "actual": "车队共有35辆车。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_004",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "这批货有一百零三箱。",
+      "expected": "这批货有103箱。",
+      "actual": "这批货有103箱。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_005",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "全程约一千公里。",
+      "expected": "全程约1000公里。",
+      "actual": "全程约1000公里。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_006",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "预算为两千万元。",
+      "expected": "预算为2000万元。",
+      "actual": "预算为2000万元。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "两千万",
+          "replacement": "2000万",
+          "kind": "number",
+          "start": 3,
+          "end": 6,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_007",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "参会人员有一万两千人。",
+      "expected": "参会人员有12000人。",
+      "actual": "参会人员有12000人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_008",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "编号是零零八。",
+      "expected": "编号是008。",
+      "actual": "编号是零零八。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_009",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "电话号码是幺三九九幺二六三七九七。",
+      "expected": "电话号码是13991263797。",
+      "actual": "电话号码是幺三九九幺二六三七九七。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 16,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_010",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "验证码是零三零八。",
+      "expected": "验证码是0308。",
+      "actual": "验证码是零三零八。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_011",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "距离约为一点五公里。",
+      "expected": "距离约为1.5公里。",
+      "actual": "距离约为1.5公里。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_012",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "测量值为零点三五毫米。",
+      "expected": "测量值为0.35毫米。",
+      "actual": "测量值为0.35毫米。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "零点三五毫米",
+          "replacement": "0.35毫米",
+          "kind": "measurement",
+          "start": 4,
+          "end": 10,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_013",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "温度为二十三点五摄氏度。",
+      "expected": "温度为23.5摄氏度。",
+      "actual": "温度为23.5摄氏度。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 11,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_014",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "气温零下十二摄氏度。",
+      "expected": "气温零下12摄氏度。",
+      "actual": "气温0下12摄氏度。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_015",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "计算结果是负三点二。",
+      "expected": "计算结果是-3.2。",
+      "actual": "计算结果是负三点二。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_016",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一个方案。",
+      "expected": "这里有一个方案。",
+      "actual": "这里有一个方案。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_017",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有两种方法。",
+      "expected": "这里有两种方法。",
+      "actual": "这里有两种方法。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_018",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有三个方案。",
+      "expected": "这里有三个方案。",
+      "actual": "这里有三个方案。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_019",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有十个方案。",
+      "expected": "这里有十个方案。",
+      "actual": "这里有十个方案。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_020",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一百种方法。",
+      "expected": "这里有一百种方法。",
+      "actual": "这里有100种方法。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_021",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十件衣服。",
+      "expected": "有10件衣服。",
+      "actual": "有十件衣服。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_022",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十二人参加。",
+      "expected": "有12人参加。",
+      "actual": "有12人参加。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_023",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有二十辆车。",
+      "expected": "有20辆车。",
+      "actual": "有20辆车。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_024",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有三十颗糖。",
+      "expected": "有30颗糖。",
+      "actual": "有30颗糖。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_025",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "路程为十二公里。",
+      "expected": "路程为12公里。",
+      "actual": "路程为12公里。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_026",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "重量为十公斤。",
+      "expected": "重量为10公斤。",
+      "actual": "重量为十公斤。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_027",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "面积为一百平方米。",
+      "expected": "面积为100平方米。",
+      "actual": "面积为100平方米。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_028",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "长度为十二米。",
+      "expected": "长度为12米。",
+      "actual": "长度为12米。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_029",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "容量为二百毫升。",
+      "expected": "容量为200毫升。",
+      "actual": "容量为200毫升。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_030",
+      "category": "money",
+      "behavior": "convert",
+      "input": "价格为十元。",
+      "expected": "价格为10元。",
+      "actual": "价格为十元。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_031",
+      "category": "money",
+      "behavior": "convert",
+      "input": "成本约为一百美元。",
+      "expected": "成本约为100美元。",
+      "actual": "成本约为100美元。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_032",
+      "category": "money",
+      "behavior": "convert",
+      "input": "合计两千万元。",
+      "expected": "合计2000万元。",
+      "actual": "合计2000万元。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "两千万",
+          "replacement": "2000万",
+          "kind": "number",
+          "start": 2,
+          "end": 5,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_033",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "十元。",
+      "expected": "十元。",
+      "actual": "十元。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 2,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_034",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "一块钱。",
+      "expected": "一块钱。",
+      "actual": "一块钱。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_035",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "增长百分之十。",
+      "expected": "增长10%。",
+      "actual": "增长10%。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_036",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "完成率为百分之九十九。",
+      "expected": "完成率为99%。",
+      "actual": "完成率为99%。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_037",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "占比为百分之十二点五。",
+      "expected": "占比为12.5%。",
+      "actual": "占比为12.5%。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_038",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高一个百分点。",
+      "expected": "提高一个百分点。",
+      "actual": "提高一个百分点。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_039",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高两个百分点。",
+      "expected": "提高两个百分点。",
+      "actual": "提高2个百分点。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch",
+        "segment_1:semantic_content_loss"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "两个",
+          "replacement": "2个",
+          "kind": "count",
+          "start": 2,
+          "end": 4,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch",
+            "semantic_content_loss"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_040",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高三个百分点。",
+      "expected": "提高三个百分点。",
+      "actual": "提高3个百分点。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_041",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "其中三分之一需要复查。",
+      "expected": "其中三分之一需要复查。",
+      "actual": "其中三分之一需要复查。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_042",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "两组人数之比是三比二。",
+      "expected": "两组人数之比是三比二。",
+      "actual": "两组人数之比是三比二。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_043",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "样品减少了四分之一。",
+      "expected": "样品减少了四分之一。",
+      "actual": "样品减少了四分之一。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_044",
+      "category": "range",
+      "behavior": "convert",
+      "input": "路程大约十到二十公里。",
+      "expected": "路程大约10到20公里。",
+      "actual": "路程大约10到20公里。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_045",
+      "category": "range",
+      "behavior": "convert",
+      "input": "价格在一百到两百元之间。",
+      "expected": "价格在100到200元之间。",
+      "actual": "价格在100到200元之间。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 11,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_046",
+      "category": "range",
+      "behavior": "convert",
+      "input": "需要三十至五十人。",
+      "expected": "需要30至50人。",
+      "actual": "需要30至50人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_047",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "现场有三十多人。",
+      "expected": "现场有30多人。",
+      "actual": "现场有30多人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_048",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "预算约为两千万元。",
+      "expected": "预算约为2000万元。",
+      "actual": "预算约为2000万元。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_049",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "大概有三五个人。",
+      "expected": "大概有三五个人。",
+      "actual": "大概有三五个人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_050",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "过一两天再说。",
+      "expected": "过一两天再说。",
+      "actual": "过一两天再说。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_051",
+      "category": "date",
+      "behavior": "convert",
+      "input": "会议定在二零二四年五月三日。",
+      "expected": "会议定在2024年5月3日。",
+      "actual": "会议定在2024年5月3日。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_052",
+      "category": "date",
+      "behavior": "convert",
+      "input": "截至二零二六年九月二十八日。",
+      "expected": "截至2026年9月28日。",
+      "actual": "截至2026年9月28日。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_053",
+      "category": "date",
+      "behavior": "convert",
+      "input": "从二零二五年六月到二零二六年七月。",
+      "expected": "从2025年6月到2026年7月。",
+      "actual": "从2025年6月到2026年7月。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 16,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_054",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "我们明天开会。",
+      "expected": "我们明天开会。",
+      "actual": "我们明天开会。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_055",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "二零二三年二月二十九日。",
+      "expected": "二零二三年二月二十九日。",
+      "actual": "2023年2月29日。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 11,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_056",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "actual": "会议在一点十分开始。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_057",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "下午一点十分开会。",
+      "expected": "下午1点10分开会。",
+      "actual": "下午一点十分开会。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_058",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "请在一点十分设置闹钟。",
+      "expected": "请在1点10分设置闹钟。",
+      "actual": "请在一点十分设置闹钟。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_059",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "我们一点十分出发。",
+      "expected": "我们1点10分出发。",
+      "actual": "我们一点十分出发。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_060",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在十二点十分结束。",
+      "expected": "会议在12点10分结束。",
+      "actual": "会议在12点10分结束。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "十二点十分",
+          "replacement": "12点10分",
+          "kind": "time",
+          "start": 3,
+          "end": 8,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_061",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "明天下午一点十分开会。",
+      "expected": "明天下午1点10分开会。",
+      "actual": "明天下午一点十分开会。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_062",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "会议持续十二分钟。",
+      "expected": "会议持续12分钟。",
+      "actual": "会议持续12分钟。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_063",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "需要十二分钟。",
+      "expected": "需要12分钟。",
+      "actual": "需要12分钟。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_064",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "工作了十二小时。",
+      "expected": "工作了12小时。",
+      "actual": "工作了12小时。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_065",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "任务耗时十二分钟。",
+      "expected": "任务耗时12分钟。",
+      "actual": "任务耗时12分钟。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_066",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "这是第二次讨论。",
+      "expected": "这是第二次讨论。",
+      "actual": "这是第二次讨论。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_067",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "请看第十二章。",
+      "expected": "请看第十二章。",
+      "actual": "请看第12章。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_068",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "今年读二年级。",
+      "expected": "今年读二年级。",
+      "actual": "今年读二年级。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_069",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "订单号是零零一二三。",
+      "expected": "订单号是00123。",
+      "actual": "订单号是零零一二三。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_070",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "工号是零七五。",
+      "expected": "工号是075。",
+      "actual": "工号是零七五。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_071",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "编号为二零二四零零八。",
+      "expected": "编号为2024008。",
+      "actual": "编号为二零二四零零八。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_072",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "软件版本是一点零点三。",
+      "expected": "软件版本是1.0.3。",
+      "actual": "软件版本是一点零点三。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_073",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "请升级到二点四版本。",
+      "expected": "请升级到2.4版本。",
+      "actual": "请升级到二点四版本。",
+      "exact_match": false,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_074",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "这是三体小说。",
+      "expected": "这是三体小说。",
+      "actual": "这是三体小说。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_075",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "请不要改动产品名称一加手机。",
+      "expected": "请不要改动产品名称一加手机。",
+      "actual": "请不要改动产品名称一加手机。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_076",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "需要十二，不对，十三件。",
+      "expected": "需要13件。",
+      "actual": "需要12，不对，13件。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 4,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 2,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "self_correction"
+          ]
+        },
+        {
+          "segment_index": 3,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_077",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "会议在一点，哦不，一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "actual": "会议在一点，哦不，一点十分开始。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 2,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 3,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_078",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "有三个，应该是四个方案。",
+      "expected": "有四个方案。",
+      "actual": "有三个，应该是四个方案。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "self_correction",
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_079",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事要三思而后行。",
+      "expected": "这件事要三思而后行。",
+      "actual": "这件事要三思而后行。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_080",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他做事一心一意。",
+      "expected": "他做事一心一意。",
+      "actual": "他做事一心一意。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_081",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这个安排一举两得。",
+      "expected": "这个安排一举两得。",
+      "actual": "这个安排一举两得。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_082",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不要三心二意。",
+      "expected": "不要三心二意。",
+      "actual": "不要三心二意。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_083",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他三番五次提醒我们。",
+      "expected": "他三番五次提醒我们。",
+      "actual": "他三番五次提醒我们。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_084",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家从四面八方赶来。",
+      "expected": "大家从四面八方赶来。",
+      "actual": "大家从四面八方赶来。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_085",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "看到结果他七上八下。",
+      "expected": "看到结果他七上八下。",
+      "actual": "看到结果他七上八下。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_086",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事十拿九稳。",
+      "expected": "这件事十拿九稳。",
+      "actual": "这件事十拿九稳。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_087",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他练到了百发百中。",
+      "expected": "他练到了百发百中。",
+      "actual": "他练到了百发百中。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_088",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "我们得千方百计解决。",
+      "expected": "我们得千方百计解决。",
+      "actual": "我们得千方百计解决。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_089",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这样才万无一失。",
+      "expected": "这样才万无一失。",
+      "actual": "这样才万无一失。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_090",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不能对所有情况一刀切。",
+      "expected": "不能对所有情况一刀切。",
+      "actual": "不能对所有情况一刀切。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_091",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他是这里的一把手。",
+      "expected": "他是这里的一把手。",
+      "actual": "他是这里的一把手。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_092",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家说得七嘴八舌。",
+      "expected": "大家说得七嘴八舌。",
+      "actual": "大家说得七嘴八舌。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_093",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他们说得五花八门。",
+      "expected": "他们说得五花八门。",
+      "actual": "他们说得五花八门。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:semantic_content_loss"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_094",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这事还得八九不离十。",
+      "expected": "这事还得八九不离十。",
+      "actual": "这事还得八九不离十。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_095",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要。",
+      "expected": "这一点十分重要。",
+      "actual": "这一点十分重要。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_096",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点，十分重要。",
+      "expected": "这一点，十分重要。",
+      "actual": "这一点，十分重要。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 4,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_097",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分重要。",
+      "expected": "一点十分重要。",
+      "actual": "一点十分重要。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_098",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分。",
+      "expected": "一点十分。",
+      "actual": "一点十分。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 4,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_099",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分的会议。",
+      "expected": "一点十分的会议。",
+      "actual": "一点十分的会议。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_100",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分值得注意。",
+      "expected": "这一点十分值得注意。",
+      "actual": "这一点十分值得注意。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_101",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我强调的一点十分关键。",
+      "expected": "我强调的一点十分关键。",
+      "actual": "我强调的一点十分关键。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_102",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要，不能忽略。",
+      "expected": "这一点十分重要，不能忽略。",
+      "actual": "这一点十分重要，不能忽略。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 4,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_103",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "他提出的一点十分有价值。",
+      "expected": "他提出的一点十分有价值。",
+      "actual": "他提出的一点十分有价值。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 11,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_104",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分明确。",
+      "expected": "这一点十分明确。",
+      "actual": "这一点十分明确。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_105",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分清楚。",
+      "expected": "这一点十分清楚。",
+      "actual": "这一点十分清楚。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_106",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我想说的一点十分简单。",
+      "expected": "我想说的一点十分简单。",
+      "actual": "我想说的一点十分简单。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 10,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_107",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分重要，会议在一点十分开始。",
+      "expected": "这一点十分重要，会议在1点10分开始。",
+      "actual": "这一点十分重要，会议在一点十分开始。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_108",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分关键，下午一点十分再讨论。",
+      "expected": "这一点十分关键，下午1点10分再讨论。",
+      "actual": "这一点十分关键，下午一点十分再讨论。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_109",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分明确，闹钟设在一点十分。",
+      "expected": "这一点十分明确，闹钟设在1点10分。",
+      "actual": "这一点十分明确，闹钟设在一点十分。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_110",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "会议一点十分开始，这一点十分重要。",
+      "expected": "会议1点10分开始，这一点十分重要。",
+      "actual": "会议1点10分开始，这一点十分重要。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "一点十分",
+          "replacement": "1点10分",
+          "kind": "time",
+          "start": 2,
+          "end": 6,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_111",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "二零二四年五月三日一点十分开会，出席十二人。",
+      "expected": "2024年5月3日1点10分开会，出席12人。",
+      "actual": "2024年5月3日1点10分开会，出席12人。",
+      "exact_match": true,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:severe_content_loss",
+        "segment_1:numeric_value_mismatch"
+      ],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 15,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [
+        {
+          "original": "二零二四年五月三日",
+          "replacement": "2024年5月3日",
+          "kind": "date",
+          "start": 0,
+          "end": 9,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch"
+          ]
+        },
+        {
+          "original": "一点十分",
+          "replacement": "1点10分",
+          "kind": "time",
+          "start": 9,
+          "end": 13,
+          "segment_index": 1,
+          "reason": "refiner_rejected",
+          "refiner_reject_reasons": [
+            "severe_content_loss",
+            "numeric_value_mismatch"
+          ]
+        }
+      ],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_112",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "这一点十分重要，预算一百元，下午一点十分开会。",
+      "expected": "这一点十分重要，预算100元，下午1点10分开会。",
+      "actual": "这一点十分重要，预算100元，下午一点十分开会。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "sentence_incomplete"
+          ],
+          "visible_chars": 7,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 5,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        },
+        {
+          "segment_index": 3,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_113",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "他三番五次说有十件设备，会议在一点十分开始。",
+      "expected": "他三番五次说有10件设备，会议在1点10分开始。",
+      "actual": "他三番五次说有10件设备，会议在一点十分开始。",
+      "exact_match": false,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 11,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        },
+        {
+          "segment_index": 2,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 9,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_114",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "我们明天继续讨论这个问题。",
+      "expected": "我们明天继续讨论这个问题。",
+      "actual": "我们明天继续讨论这个问题。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 12,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    },
+    {
+      "id": "num_115",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "这个方案还需要进一步核对。",
+      "expected": "这个方案还需要进一步核对。",
+      "actual": "这个方案还需要进一步核对。",
+      "exact_match": true,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 12,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "numeric_normalizations": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "placeholder_retry_count": 0
+    }
+  ]
+}

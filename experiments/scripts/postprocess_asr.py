@@ -87,18 +87,20 @@ def build_conversations(
     entity_hints: list[tuple[str, ...]] | None = None,
     *,
     strict_placeholders: bool = False,
+    system_prompt: str | None = None,
 ) -> list[Conversation]:
     hints_by_text = entity_hints or [() for _ in raw_texts]
     if len(hints_by_text) != len(raw_texts):
         raise ValueError("entity_hints must align with raw_texts")
+    base_prompt = SYSTEM_PROMPT if system_prompt is None else system_prompt
     return [
         [
             {
                 "role": "system",
                 "content": (
-                    f"{SYSTEM_PROMPT}{STRICT_PLACEHOLDER_PROMPT}"
+                    f"{base_prompt}{STRICT_PLACEHOLDER_PROMPT}"
                     if strict_placeholders
-                    else SYSTEM_PROMPT
+                    else base_prompt
                 ),
             },
             {
@@ -147,11 +149,13 @@ class TransformersPostprocessor:
         entity_hints: list[tuple[str, ...]] | None = None,
         *,
         strict_placeholders: bool = False,
+        system_prompt: str | None = None,
     ) -> tuple[list[str], float]:
         conversations = build_conversations(
             raw_texts,
             entity_hints,
             strict_placeholders=strict_placeholders,
+            system_prompt=system_prompt,
         )
         inputs = self._tokenizer.apply_chat_template(
             conversations,

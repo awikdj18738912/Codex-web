@@ -680,6 +680,151 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertIsNone(
             decide(source, candidate, "上下文：" + expected + "<br>remove 后片段：喂")
         )
+        focused = web_app._repetition_decision_from_candidate_response
+        self.assertEqual(focused(source, candidate, "KEEP")[0]["action"], "keep")
+        self.assertEqual(focused(source, candidate, "REMOVE")[0]["action"], "remove")
+        self.assertIsNone(focused(source, candidate, "REMOVE，因为我改写了整段"))
+
+    def test_local_review_asks_about_each_candidate_in_shared_context(self) -> None:
+        source = "现在开始，首首先谈人人性的问题，大家来讨论。"
+
+        class _FocusedRefiner(_IdentityRefiner):
+            calls: list[tuple[str, str, str, int]] = []
+
+            def __init__(self, *args, **kwargs) -> None:
+                type(self).calls = []
+
+            def review_repetition_candidate_with_status(
+                self, context: str, candidate: str, target: str, offset: int,
+            ) -> tuple[str, float, bool, float]:
+                type(self).calls.append((context, candidate, target, offset))
+                if candidate == "首首":
+                    return "REMOVE", 1.0, True, 0.9
+                return "KEEP", 1.0, True, -0.9
+
+        def stream_request(asr_url, endpoint, session_id=None, data=b"", params=None):
+            if endpoint == "/stream/start":
+                return {"session_id": "focused-repetition-session"}
+            if endpoint == "/stream/chunk":
+                return {
+                    "text": source,
+                    "language": "Chinese",
+                    "completed_segments": [
+                        {"segment_id": 1, "text": source, "vad_boundary": True}
+                    ],
+                }
+            if endpoint == "/stream/finish":
+                return {"text": source, "language": "Chinese"}
+            if endpoint == "/stream/cancel":
+                return {"cancelled": True}
+            raise AssertionError(endpoint)
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _FocusedRefiner),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+            patch.object(web_app, "_stream_request", stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None, refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=streaming") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_bytes(b"pcm")
+                    update = self._await_event(websocket, "update")
+                    self.assertEqual(
+                        update["clean_text"], "现在开始，首先谈人人性的问题，大家来讨论。",
+                        (update["repetition_reviews"], _FocusedRefiner.calls),
+                    )
+                    decisions = {
+                        item["source"]: item["decision"]
+                        for item in update["repetition_reviews"]
+                    }
+                    self.assertEqual(decisions["首首"], "remove")
+                    self.assertEqual(decisions["人人"], "keep")
+                    margins = {
+                        item["source"]: item["candidate_score_margin"]
+                        for item in update["repetition_reviews"]
+                    }
+                    self.assertEqual(margins, {"首首": 0.9, "人人": -0.9})
+
+        self.assertEqual(len(_FocusedRefiner.calls), 2)
+        self.assertEqual(_FocusedRefiner.calls[0][0], _FocusedRefiner.calls[1][0])
+        self.assertNotEqual(_FocusedRefiner.calls[0][3], _FocusedRefiner.calls[1][3])
+
+    def test_short_context_fallback_repairs_undecided_repeat_in_stream(self) -> None:
+        from system.repetition_plausibility import PlausibilityResult
+
+        source = "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，所以没有正义，强权即真理。"
+
+        class _UndecidedRefiner(_IdentityRefiner):
+            def review_repetition_candidate_with_status(
+                self, context: str, candidate: str, target: str, offset: int,
+            ) -> tuple[str, float, bool, float]:
+                if candidate == "利利":
+                    return "UNRESOLVED", 1.0, True, -0.0157
+                return "KEEP", 1.0, True, -0.8
+
+        class _LocalScorer:
+            calls: list[str] = []
+
+            def __init__(self, device: str) -> None:
+                type(self).calls = []
+
+            def decide(
+                self, text: str, start: int, end: int, target: str,
+            ) -> PlausibilityResult:
+                return PlausibilityResult("unresolved", 0.0966, "model_plausibility_uncertain")
+
+            def decide_short_context(
+                self, text: str, start: int, end: int, target: str,
+            ) -> PlausibilityResult:
+                type(self).calls.append(text[start:end])
+                return PlausibilityResult("remove", 0.3906, "local_model_plausibility_remove")
+
+        def stream_request(asr_url, endpoint, session_id=None, data=b"", params=None):
+            if endpoint == "/stream/start":
+                return {"session_id": "local-repeat-session"}
+            if endpoint == "/stream/chunk":
+                return {
+                    "text": source,
+                    "language": "Chinese",
+                    "completed_segments": [
+                        {"segment_id": 1, "text": source, "vad_boundary": True}
+                    ],
+                }
+            if endpoint == "/stream/finish":
+                return {"text": source, "language": "Chinese"}
+            if endpoint == "/stream/cancel":
+                return {"cancelled": True}
+            raise AssertionError(endpoint)
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _UndecidedRefiner),
+            patch.object(web_app, "RepetitionPlausibility", _LocalScorer),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+            patch.object(web_app, "_stream_request", stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None, refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=streaming") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_bytes(b"pcm")
+                    update = self._await_event(websocket, "update")
+                    self.assertEqual(
+                        update["clean_text"],
+                        "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利往，所以没有正义，强权即真理。",
+                    )
+                    review = next(item for item in update["repetition_reviews"]
+                                  if item["source"] == "利利")
+                    self.assertEqual(review["reason"], "local_model_plausibility_remove")
+                    self.assertEqual(review["local_plausibility_margin"], 0.3906)
+
+        self.assertEqual(_LocalScorer.calls, ["利利"])
 
     def test_local_repetition_review_projects_only_source_owned_deletion(self) -> None:
         from system.refinement_guard import find_repetition_review_candidates

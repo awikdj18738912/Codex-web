@@ -1,0 +1,6978 @@
+{
+  "scope": "experimental_refiner_diff_guard_then_zh_itn",
+  "protection": "source anchored numeric tokens and EntityProtector spans; no placeholders",
+  "cases": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/fixtures/numeric_refinement_gold.jsonl",
+  "itn_cli": "/tmp/zh-itn-codex-test-build/zh_itn",
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "total": 115,
+  "exact_matches": 105,
+  "merge_decisions": {
+    "accepted_non_numeric_edits": 108,
+    "numeric_surface_sequence_changed": 5,
+    "validated_explicit_correction": 2
+  },
+  "patch_blocked_edits": 112,
+  "by_category": {
+    "ambiguity_mixed": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "ambiguity_preserve": {
+      "total": 12,
+      "exact_matches": 12
+    },
+    "approximation": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "classifier": {
+      "total": 9,
+      "exact_matches": 9
+    },
+    "clock_time": {
+      "total": 6,
+      "exact_matches": 5
+    },
+    "date": {
+      "total": 5,
+      "exact_matches": 4
+    },
+    "decimal": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "digit_sequence": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "duration": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "fraction_ratio": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "identifier": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "integer": {
+      "total": 4,
+      "exact_matches": 4
+    },
+    "large_integer": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "measurement": {
+      "total": 5,
+      "exact_matches": 5
+    },
+    "mixed_numbers": {
+      "total": 3,
+      "exact_matches": 2
+    },
+    "money": {
+      "total": 5,
+      "exact_matches": 5
+    },
+    "non_numeric_regression": {
+      "total": 2,
+      "exact_matches": 2
+    },
+    "numeric_idiom": {
+      "total": 16,
+      "exact_matches": 16
+    },
+    "ordinal": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "percent": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "percentage_point": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "range": {
+      "total": 3,
+      "exact_matches": 2
+    },
+    "self_correction": {
+      "total": 3,
+      "exact_matches": 1
+    },
+    "signed_number": {
+      "total": 2,
+      "exact_matches": 1
+    },
+    "version_model": {
+      "total": 4,
+      "exact_matches": 4
+    }
+  },
+  "rows": [
+    {
+      "id": "num_001",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "现场有十二人。",
+      "expected": "现场有12人。",
+      "refiner_candidate": "现场有12人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "现场有十二人。",
+      "final_output": "现场有12人。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "现场有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "现场有"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "十二人"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "12人"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12人",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "十二人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_002",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "库房有二十件设备。",
+      "expected": "库房有20件设备。",
+      "refiner_candidate": "库房有20件设备。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "库房有二十件设备。",
+      "final_output": "库房有20件设备。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "库房有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "库房有"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "二十件"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "20件"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "20件",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "二十件"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 6,
+            "text": "设备。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 6,
+            "text": "设备。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_003",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "车队共有三十五辆车。",
+      "expected": "车队共有35辆车。",
+      "refiner_candidate": "车队共有35辆车。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "车队共有三十五辆车。",
+      "final_output": "车队共有35辆车。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "车队共有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "车队共有"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 4,
+            "text": "三十五辆"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 4,
+            "text": "35辆"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-4-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "35辆",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 8,
+              "start": 4,
+              "text": "三十五辆"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 8,
+            "text": "车。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 7,
+            "text": "车。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_004",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "这批货有一百零三箱。",
+      "expected": "这批货有103箱。",
+      "refiner_candidate": "这批货有103箱。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这批货有一百零三箱。",
+      "final_output": "这批货有103箱。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "这批货有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "这批货有"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 4,
+            "text": "一百零三箱"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 4,
+            "text": "103箱"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-4-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "103箱",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 9,
+              "start": 4,
+              "text": "一百零三箱"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_005",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "全程约一千公里。",
+      "expected": "全程约1000公里。",
+      "refiner_candidate": "全程约1000公里。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "全程约一千公里。",
+      "final_output": "全程约1000公里。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "全程约"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "全程约"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "一千公里"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 3,
+            "text": "1000公里"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-approximate-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer_approximate",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer_approximate",
+                "value": "complete_approximate_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer_approximate",
+                "value": "explicit_chinese_measure_approximation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1000公里",
+            "reason": "explicit_integer_measure_approximation",
+            "rule_id": "zh.measure.explicit_integer_approximate",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "一千公里"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure_approximation"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_006",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "预算为两千万元。",
+      "expected": "预算为2000万元。",
+      "refiner_candidate": "预算为2000万元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "预算为两千万元。",
+      "final_output": "预算为2000万元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "预算为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "预算为"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "两千万元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 3,
+            "text": "2000万元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer",
+                "value": "complete_exact_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer",
+                "value": "released_chinese_currency_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2000万元",
+            "reason": "explicit_integer_money",
+            "rule_id": "zh.money.explicit_integer",
+            "rule_version": "9",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "两千万元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_007",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "参会人员有一万两千人。",
+      "expected": "参会人员有12000人。",
+      "refiner_candidate": "参会人员有12000人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "参会人员有一万两千人。",
+      "final_output": "参会人员有12000人。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "参会人员有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "参会人员有"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 5,
+            "text": "一万两千人"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 11,
+            "start": 5,
+            "text": "12000人"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-5-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12000人",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 10,
+              "start": 5,
+              "text": "一万两千人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 11,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_008",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "编号是零零八。",
+      "expected": "编号是008。",
+      "refiner_candidate": "编号是008。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "编号是零零八。",
+      "final_output": "编号是008。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "编号是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "编号是"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "零零八"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "008"
+          },
+          "provenance": {
+            "candidate_id": "zh-explicit-identifier-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "complete_explicit_identifier"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "closed_identifier_anchor"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "008",
+            "reason": "standard_explicit_identifier",
+            "rule_id": "zh.identifier.explicit_digit_sequence",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "零零八"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_digit_sequence"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_009",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "电话号码是幺三九九幺二六三七九七。",
+      "expected": "电话号码是13991263797。",
+      "refiner_candidate": "电话号码是13992136779。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "电话号码是幺三九九幺二六三七九七。",
+      "final_output": "电话号码是13991263797。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "电话号码是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "电话号码是"
+          }
+        },
+        {
+          "input": {
+            "end": 16,
+            "start": 5,
+            "text": "幺三九九幺二六三七九七"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 16,
+            "start": 5,
+            "text": "13991263797"
+          },
+          "provenance": {
+            "candidate_id": "zh-telephone-number-5-16",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.telephone_number",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.telephone_number",
+                "value": "complete_telephone_number"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.telephone_number",
+                "value": "explicit_telephone_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "13991263797",
+            "reason": "standard_telephone_identifier",
+            "rule_id": "zh.identifier.telephone_number",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 16,
+              "start": 5,
+              "text": "幺三九九幺二六三七九七"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_telephone_number"
+          }
+        },
+        {
+          "input": {
+            "end": 17,
+            "start": 16,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 17,
+            "start": 16,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_010",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "验证码是零三零八。",
+      "expected": "验证码是0308。",
+      "refiner_candidate": "验证码是30308。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "验证码是零三零八。",
+      "final_output": "验证码是0308。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "验证码是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "验证码是"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 4,
+            "text": "零三零八"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 4,
+            "text": "0308"
+          },
+          "provenance": {
+            "candidate_id": "zh-explicit-identifier-4-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "complete_explicit_identifier"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "closed_identifier_anchor"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "0308",
+            "reason": "standard_explicit_identifier",
+            "rule_id": "zh.identifier.explicit_digit_sequence",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 8,
+              "start": 4,
+              "text": "零三零八"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_digit_sequence"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_011",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "距离约为一点五公里。",
+      "expected": "距离约为1.5公里。",
+      "refiner_candidate": "距离约为1.5公里。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "距离约为一点五公里。",
+      "final_output": "距离约为1.5公里。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "距离约为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "距离约为"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 4,
+            "text": "一点五公里"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 4,
+            "text": "1.5公里"
+          },
+          "provenance": {
+            "candidate_id": "zh-decimal-measure-approximate-4-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_decimal_approximate",
+                "value": "spoken_decimal_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_decimal_approximate",
+                "value": "complete_approximate_decimal_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_decimal_approximate",
+                "value": "explicit_chinese_measure_approximation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1.5公里",
+            "reason": "explicit_decimal_measure_approximation",
+            "rule_id": "zh.measure.explicit_decimal_approximate",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 9,
+              "start": 4,
+              "text": "一点五公里"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_decimal_measure_approximation"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_012",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "测量值为零点三五毫米。",
+      "expected": "测量值为0.35毫米。",
+      "refiner_candidate": "测量值为0.5毫米。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "测量值为零点三五毫米。",
+      "final_output": "测量值为0.35毫米。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "测量值为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "测量值为"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 4,
+            "text": "零点三五毫米"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 4,
+            "text": "0.35毫米"
+          },
+          "provenance": {
+            "candidate_id": "zh-decimal-measure-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_decimal",
+                "value": "spoken_decimal_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_decimal",
+                "value": "complete_decimal_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_decimal",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "0.35毫米",
+            "reason": "explicit_decimal_measure",
+            "rule_id": "zh.measure.explicit_decimal",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "零点三五毫米"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_decimal_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_013",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "温度为二十三点五摄氏度。",
+      "expected": "温度为23.5摄氏度。",
+      "refiner_candidate": "温度为23.5摄氏度。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "温度为二十三点五摄氏度。",
+      "final_output": "温度为23.5摄氏度。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "温度为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "温度为"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 3,
+            "text": "二十三点五摄氏度"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 3,
+            "text": "23.5摄氏度"
+          },
+          "provenance": {
+            "candidate_id": "zh-temperature-3-11",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_temperature",
+                "value": "spoken_number_with_explicit_temperature_marker"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_temperature",
+                "value": "complete_exact_temperature"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_temperature",
+                "value": "explicit_chinese_temperature_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "23.5摄氏度",
+            "reason": "explicit_temperature",
+            "rule_id": "zh.measure.explicit_temperature",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 11,
+              "start": 3,
+              "text": "二十三点五摄氏度"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_temperature"
+          }
+        },
+        {
+          "input": {
+            "end": 12,
+            "start": 11,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_014",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "气温零下十二摄氏度。",
+      "expected": "气温零下12摄氏度。",
+      "refiner_candidate": "气温0下12摄氏度。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "气温零下十二摄氏度。",
+      "final_output": "气温零下12摄氏度。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "气温"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "气温"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 2,
+            "text": "零下十二摄氏度"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 2,
+            "text": "零下12摄氏度"
+          },
+          "provenance": {
+            "candidate_id": "zh-temperature-2-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_temperature",
+                "value": "spoken_number_with_explicit_temperature_marker"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_temperature",
+                "value": "complete_exact_temperature"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_temperature",
+                "value": "explicit_chinese_temperature_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "零下12摄氏度",
+            "reason": "explicit_temperature",
+            "rule_id": "zh.measure.explicit_temperature",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 9,
+              "start": 2,
+              "text": "零下十二摄氏度"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_temperature"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_015",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "计算结果是负三点二。",
+      "expected": "计算结果是-3.2。",
+      "refiner_candidate": "计算结果是-3.2。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "计算结果是负三点二。",
+      "final_output": "计算结果是负三点二。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "计算结果是负三点二。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "计算结果是负三点二。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_016",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一个方案。",
+      "expected": "这里有一个方案。",
+      "refiner_candidate": "这里有一个方案。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这里有一个方案。",
+      "final_output": "这里有一个方案。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有一个方案。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有一个方案。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_017",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有两种方法。",
+      "expected": "这里有两种方法。",
+      "refiner_candidate": "这里有两种方法。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这里有两种方法。",
+      "final_output": "这里有两种方法。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有两种方法。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有两种方法。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_018",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有三个方案。",
+      "expected": "这里有三个方案。",
+      "refiner_candidate": "这里有三个方案。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这里有三个方案。",
+      "final_output": "这里有三个方案。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有三个方案。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有三个方案。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_019",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有十个方案。",
+      "expected": "这里有十个方案。",
+      "refiner_candidate": "这里有10个方案。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这里有十个方案。",
+      "final_output": "这里有十个方案。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有十个方案。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这里有十个方案。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_020",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一百种方法。",
+      "expected": "这里有一百种方法。",
+      "refiner_candidate": "这里有100种方法。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这里有一百种方法。",
+      "final_output": "这里有一百种方法。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "这里有一百种方法。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "这里有一百种方法。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_021",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十件衣服。",
+      "expected": "有10件衣服。",
+      "refiner_candidate": "有10件衣服。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "有十件衣服。",
+      "final_output": "有10件衣服。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          }
+        },
+        {
+          "input": {
+            "end": 3,
+            "start": 1,
+            "text": "十件"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 4,
+            "start": 1,
+            "text": "10件"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-1-3",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10件",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 3,
+              "start": 1,
+              "text": "十件"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "衣服。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 4,
+            "text": "衣服。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_022",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十二人参加。",
+      "expected": "有12人参加。",
+      "refiner_candidate": "有12人参加。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "有十二人参加。",
+      "final_output": "有12人参加。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          }
+        },
+        {
+          "input": {
+            "end": 4,
+            "start": 1,
+            "text": "十二人"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 4,
+            "start": 1,
+            "text": "12人"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-1-4",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12人",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 4,
+              "start": 1,
+              "text": "十二人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 4,
+            "text": "参加。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 4,
+            "text": "参加。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_023",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有二十辆车。",
+      "expected": "有20辆车。",
+      "refiner_candidate": "有20辆车。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "有二十辆车。",
+      "final_output": "有20辆车。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          }
+        },
+        {
+          "input": {
+            "end": 4,
+            "start": 1,
+            "text": "二十辆"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 4,
+            "start": 1,
+            "text": "20辆"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-1-4",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "20辆",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 4,
+              "start": 1,
+              "text": "二十辆"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 4,
+            "text": "车。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 6,
+            "start": 4,
+            "text": "车。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_024",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有三十颗糖。",
+      "expected": "有30颗糖。",
+      "refiner_candidate": "有30颗糖。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "有三十颗糖。",
+      "final_output": "有30颗糖。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 1,
+            "start": 0,
+            "text": "有"
+          }
+        },
+        {
+          "input": {
+            "end": 4,
+            "start": 1,
+            "text": "三十颗"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 4,
+            "start": 1,
+            "text": "30颗"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-1-4",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "30颗",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 4,
+              "start": 1,
+              "text": "三十颗"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 4,
+            "text": "糖。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 6,
+            "start": 4,
+            "text": "糖。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_025",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "路程为十二公里。",
+      "expected": "路程为12公里。",
+      "refiner_candidate": "路程为12公里。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "路程为十二公里。",
+      "final_output": "路程为12公里。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "路程为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "路程为"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "十二公里"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 3,
+            "text": "12公里"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12公里",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "十二公里"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_026",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "重量为十公斤。",
+      "expected": "重量为10公斤。",
+      "refiner_candidate": "重量为10kg。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "重量为十公斤。",
+      "final_output": "重量为10公斤。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "重量为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "重量为"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "十公斤"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 3,
+            "text": "10公斤"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10公斤",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "十公斤"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_027",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "面积为一百平方米。",
+      "expected": "面积为100平方米。",
+      "refiner_candidate": "面积为100平方米。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "面积为一百平方米。",
+      "final_output": "面积为100平方米。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "面积为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "面积为"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 3,
+            "text": "一百平方米"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 3,
+            "text": "100平方米"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "100平方米",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 8,
+              "start": 3,
+              "text": "一百平方米"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_028",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "长度为十二米。",
+      "expected": "长度为12米。",
+      "refiner_candidate": "长度为12米。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "长度为十二米。",
+      "final_output": "长度为12米。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "长度为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "长度为"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "十二米"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "12米"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12米",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "十二米"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_029",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "容量为二百毫升。",
+      "expected": "容量为200毫升。",
+      "refiner_candidate": "容量为200毫升。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "容量为二百毫升。",
+      "final_output": "容量为200毫升。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "容量为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "容量为"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "二百毫升"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 3,
+            "text": "200毫升"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "200毫升",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "二百毫升"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_030",
+      "category": "money",
+      "behavior": "convert",
+      "input": "价格为十元。",
+      "expected": "价格为10元。",
+      "refiner_candidate": "价格为10元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "价格为十元。",
+      "final_output": "价格为10元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "价格为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "价格为"
+          }
+        },
+        {
+          "input": {
+            "end": 5,
+            "start": 3,
+            "text": "十元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "10元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-3-5",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer",
+                "value": "complete_exact_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer",
+                "value": "released_chinese_currency_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10元",
+            "reason": "explicit_integer_money",
+            "rule_id": "zh.money.explicit_integer",
+            "rule_version": "9",
+            "semantic_source": {
+              "end": 5,
+              "start": 3,
+              "text": "十元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 5,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_031",
+      "category": "money",
+      "behavior": "convert",
+      "input": "成本约为一百美元。",
+      "expected": "成本约为100美元。",
+      "refiner_candidate": "成本约为100美元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "成本约为一百美元。",
+      "final_output": "成本约为100美元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "成本约为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "成本约为"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 4,
+            "text": "一百美元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 4,
+            "text": "100美元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-approximate-4-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "complete_approximate_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "explicit_chinese_money_approximation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "100美元",
+            "reason": "explicit_integer_money_approximation",
+            "rule_id": "zh.money.explicit_integer_approximate",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 8,
+              "start": 4,
+              "text": "一百美元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money_approximation"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_032",
+      "category": "money",
+      "behavior": "convert",
+      "input": "合计两千万元。",
+      "expected": "合计2000万元。",
+      "refiner_candidate": "合计2000万元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "合计两千万元。",
+      "final_output": "合计2000万元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "合计"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "合计"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 2,
+            "text": "两千万元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 2,
+            "text": "2000万元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-2-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer",
+                "value": "complete_exact_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer",
+                "value": "released_chinese_currency_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2000万元",
+            "reason": "explicit_integer_money",
+            "rule_id": "zh.money.explicit_integer",
+            "rule_version": "9",
+            "semantic_source": {
+              "end": 6,
+              "start": 2,
+              "text": "两千万元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_033",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "十元。",
+      "expected": "十元。",
+      "refiner_candidate": "10元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "十元。",
+      "final_output": "十元。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "十元。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "十元。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_034",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "一块钱。",
+      "expected": "一块钱。",
+      "refiner_candidate": "一块钱。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "一块钱。",
+      "final_output": "一块钱。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "一块钱。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "一块钱。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_035",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "增长百分之十。",
+      "expected": "增长10%。",
+      "refiner_candidate": "增长10%。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "增长百分之十。",
+      "final_output": "增长10%。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "增长"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "增长"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 2,
+            "text": "百分之十"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 5,
+            "start": 2,
+            "text": "10%"
+          },
+          "provenance": {
+            "candidate_id": "zh-percentage-2-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.percentage.explicit",
+                "value": "percent_prefix_spoken_number"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.percentage.explicit",
+                "value": "complete_percentage"
+              },
+              {
+                "kind": "context",
+                "source": "zh.percentage.explicit",
+                "value": "explicit_percentage_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10%",
+            "reason": "explicit_percentage",
+            "rule_id": "zh.percentage.explicit",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 6,
+              "start": 2,
+              "text": "百分之十"
+            },
+            "semantic_type": "percentage",
+            "subtype": "explicit_percentage"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 6,
+            "start": 5,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_036",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "完成率为百分之九十九。",
+      "expected": "完成率为99%。",
+      "refiner_candidate": "完成率为99%。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "完成率为百分之九十九。",
+      "final_output": "完成率为99%。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "完成率为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "完成率为"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 4,
+            "text": "百分之九十九"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 4,
+            "text": "99%"
+          },
+          "provenance": {
+            "candidate_id": "zh-percentage-4-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.percentage.explicit",
+                "value": "percent_prefix_spoken_number"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.percentage.explicit",
+                "value": "complete_percentage"
+              },
+              {
+                "kind": "context",
+                "source": "zh.percentage.explicit",
+                "value": "explicit_percentage_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "99%",
+            "reason": "explicit_percentage",
+            "rule_id": "zh.percentage.explicit",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 10,
+              "start": 4,
+              "text": "百分之九十九"
+            },
+            "semantic_type": "percentage",
+            "subtype": "explicit_percentage"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_037",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "占比为百分之十二点五。",
+      "expected": "占比为12.5%。",
+      "refiner_candidate": "占比为12.5%。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "占比为百分之十二点五。",
+      "final_output": "占比为12.5%。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "占比为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "占比为"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 3,
+            "text": "百分之十二点五"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 3,
+            "text": "12.5%"
+          },
+          "provenance": {
+            "candidate_id": "zh-percentage-3-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.percentage.explicit",
+                "value": "percent_prefix_spoken_number"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.percentage.explicit",
+                "value": "complete_percentage"
+              },
+              {
+                "kind": "context",
+                "source": "zh.percentage.explicit",
+                "value": "explicit_percentage_marker"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12.5%",
+            "reason": "explicit_percentage",
+            "rule_id": "zh.percentage.explicit",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 10,
+              "start": 3,
+              "text": "百分之十二点五"
+            },
+            "semantic_type": "percentage",
+            "subtype": "explicit_percentage"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_038",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高一个百分点。",
+      "expected": "提高一个百分点。",
+      "refiner_candidate": "提高一个百分点。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "提高一个百分点。",
+      "final_output": "提高一个百分点。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "提高一个百分点。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "提高一个百分点。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_039",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高两个百分点。",
+      "expected": "提高两个百分点。",
+      "refiner_candidate": "提高2%。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "提高两个百分点。",
+      "final_output": "提高两个百分点。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "提高两个百分点。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "提高两个百分点。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_040",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高三个百分点。",
+      "expected": "提高三个百分点。",
+      "refiner_candidate": "提高3个百分点。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "提高三个百分点。",
+      "final_output": "提高三个百分点。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "提高三个百分点。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "提高三个百分点。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_041",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "其中三分之一需要复查。",
+      "expected": "其中三分之一需要复查。",
+      "refiner_candidate": "其中1/3需要复查。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "其中三分之一需要复查。",
+      "final_output": "其中三分之一需要复查。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "其中三分之一需要复查。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "其中三分之一需要复查。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_042",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "两组人数之比是三比二。",
+      "expected": "两组人数之比是三比二。",
+      "refiner_candidate": "两组人数之比是3比2。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "两组人数之比是三比二。",
+      "final_output": "两组人数之比是三比二。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "两组人数之比是三比二。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "两组人数之比是三比二。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_043",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "样品减少了四分之一。",
+      "expected": "样品减少了四分之一。",
+      "refiner_candidate": "样品减少了4分之一。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "样品减少了四分之一。",
+      "final_output": "样品减少了四分之一。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "样品减少了四分之一。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "样品减少了四分之一。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_044",
+      "category": "range",
+      "behavior": "convert",
+      "input": "路程大约十到二十公里。",
+      "expected": "路程大约10到20公里。",
+      "refiner_candidate": "路程大约10到20公里。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "路程大约十到二十公里。",
+      "final_output": "路程大约十到二十公里。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "路程大约十到二十公里。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "路程大约十到二十公里。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_045",
+      "category": "range",
+      "behavior": "convert",
+      "input": "价格在一百到两百元之间。",
+      "expected": "价格在100到200元之间。",
+      "refiner_candidate": "价格在100到200元之间。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "价格在一百到两百元之间。",
+      "final_output": "价格在100到200元之间。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "价格在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "价格在"
+          }
+        },
+        {
+          "input": {
+            "end": 5,
+            "start": 3,
+            "text": "一百"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "100"
+          },
+          "provenance": {
+            "candidate_id": "zh.money.explicit_range-3-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "100到200元",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.money.explicit_range",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 9,
+              "start": 3,
+              "text": "一百到两百元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_money_range"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 5,
+            "text": "到"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "到"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 6,
+            "text": "两百"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 7,
+            "text": "200"
+          },
+          "provenance": {
+            "candidate_id": "zh.money.explicit_range-3-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "100到200元",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.money.explicit_range",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 9,
+              "start": 3,
+              "text": "一百到两百元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_money_range"
+          }
+        },
+        {
+          "input": {
+            "end": 12,
+            "start": 8,
+            "text": "元之间。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 14,
+            "start": 10,
+            "text": "元之间。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_046",
+      "category": "range",
+      "behavior": "convert",
+      "input": "需要三十至五十人。",
+      "expected": "需要30至50人。",
+      "refiner_candidate": "需要30至50人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "需要三十至五十人。",
+      "final_output": "需要30至50人。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "需要"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "需要"
+          }
+        },
+        {
+          "input": {
+            "end": 4,
+            "start": 2,
+            "text": "三十"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 4,
+            "start": 2,
+            "text": "30"
+          },
+          "provenance": {
+            "candidate_id": "zh.measure.explicit_range-2-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "30至50人",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.measure.explicit_range",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 8,
+              "start": 2,
+              "text": "三十至五十人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_measure_range"
+          }
+        },
+        {
+          "input": {
+            "end": 5,
+            "start": 4,
+            "text": "至"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 4,
+            "text": "至"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 5,
+            "text": "五十"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 5,
+            "text": "50"
+          },
+          "provenance": {
+            "candidate_id": "zh.measure.explicit_range-2-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_range",
+                "value": "two_spoken_numbers_with_explicit_unit_range"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_range",
+                "value": "complete_explicit_unit_range"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_range",
+                "value": "released_unit_and_range_relation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "30至50人",
+            "reason": "explicit_unit_range",
+            "rule_id": "zh.measure.explicit_range",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 8,
+              "start": 2,
+              "text": "三十至五十人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_measure_range"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 7,
+            "text": "人。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 7,
+            "text": "人。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_047",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "现场有三十多人。",
+      "expected": "现场有30多人。",
+      "refiner_candidate": "现场有30多人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "现场有三十多人。",
+      "final_output": "现场有三十多人。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "现场有三十多人。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "现场有三十多人。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_048",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "预算约为两千万元。",
+      "expected": "预算约为2000万元。",
+      "refiner_candidate": "预算约为2000万元。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "预算约为两千万元。",
+      "final_output": "预算约为2000万元。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "预算约为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "预算约为"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 4,
+            "text": "两千万元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 4,
+            "text": "2000万元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-approximate-4-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "complete_approximate_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer_approximate",
+                "value": "explicit_chinese_money_approximation"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2000万元",
+            "reason": "explicit_integer_money_approximation",
+            "rule_id": "zh.money.explicit_integer_approximate",
+            "rule_version": "1",
+            "semantic_source": {
+              "end": 8,
+              "start": 4,
+              "text": "两千万元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money_approximation"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_049",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "大概有三五个人。",
+      "expected": "大概有三五个人。",
+      "refiner_candidate": "大概有3-5个人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "大概有三五个人。",
+      "final_output": "大概有三五个人。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "大概有三五个人。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "大概有三五个人。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_050",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "过一两天再说。",
+      "expected": "过一两天再说。",
+      "refiner_candidate": "过一两天再说。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "过一两天再说。",
+      "final_output": "过一两天再说。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "过一两天再说。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "过一两天再说。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_051",
+      "category": "date",
+      "behavior": "convert",
+      "input": "会议定在二零二四年五月三日。",
+      "expected": "会议定在2024年5月3日。",
+      "refiner_candidate": "会议定在2024年5月3日。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 3,
+      "merged_before_itn": "会议定在二零二四年五月三日。",
+      "final_output": "会议定在2024年5月3日。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "会议定在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "会议定在"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 4,
+            "text": "二零二四年五月三日"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 13,
+            "start": 4,
+            "text": "2024年5月3日"
+          },
+          "provenance": {
+            "candidate_id": "zh-full-date-4-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.date.explicit_full_date",
+                "value": "four_digit_year_month_day"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.date.explicit_full_date",
+                "value": "complete_year_month_day"
+              },
+              {
+                "kind": "context",
+                "source": "zh.date.explicit_full_date",
+                "value": "explicit_date_units"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2024年5月3日",
+            "reason": "explicit_calendar_date",
+            "rule_id": "zh.date.explicit_full_date",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 13,
+              "start": 4,
+              "text": "二零二四年五月三日"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_full_date"
+          }
+        },
+        {
+          "input": {
+            "end": 14,
+            "start": 13,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 14,
+            "start": 13,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_052",
+      "category": "date",
+      "behavior": "convert",
+      "input": "截至二零二六年九月二十八日。",
+      "expected": "截至2026年9月28日。",
+      "refiner_candidate": "截至2026年9月28日。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 3,
+      "merged_before_itn": "截至二零二六年九月二十八日。",
+      "final_output": "截至2026年9月28日。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "截至"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "截至"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 2,
+            "text": "二零二六年九月二十八日"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 12,
+            "start": 2,
+            "text": "2026年9月28日"
+          },
+          "provenance": {
+            "candidate_id": "zh-full-date-2-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.date.explicit_full_date",
+                "value": "four_digit_year_month_day"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.date.explicit_full_date",
+                "value": "complete_year_month_day"
+              },
+              {
+                "kind": "context",
+                "source": "zh.date.explicit_full_date",
+                "value": "explicit_date_units"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2026年9月28日",
+            "reason": "explicit_calendar_date",
+            "rule_id": "zh.date.explicit_full_date",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 13,
+              "start": 2,
+              "text": "二零二六年九月二十八日"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_full_date"
+          }
+        },
+        {
+          "input": {
+            "end": 14,
+            "start": 13,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 13,
+            "start": 12,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_053",
+      "category": "date",
+      "behavior": "convert",
+      "input": "从二零二五年六月到二零二六年七月。",
+      "expected": "从2025年6月到2026年7月。",
+      "refiner_candidate": "从2025年6月到2026年7月。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 4,
+      "merged_before_itn": "从二零二五年六月到二零二六年七月。",
+      "final_output": "从二零二五年六月到二零二六年七月。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 17,
+            "start": 0,
+            "text": "从二零二五年六月到二零二六年七月。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 17,
+            "start": 0,
+            "text": "从二零二五年六月到二零二六年七月。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_054",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "我们明天开会。",
+      "expected": "我们明天开会。",
+      "refiner_candidate": "我们明天开会。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "我们明天开会。",
+      "final_output": "我们明天开会。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "我们明天开会。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "我们明天开会。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_055",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "二零二三年二月二十九日。",
+      "expected": "二零二三年二月二十九日。",
+      "refiner_candidate": "2023年2月29日。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 3,
+      "merged_before_itn": "二零二三年二月二十九日。",
+      "final_output": "二零二三年二月二十九日。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 12,
+            "start": 0,
+            "text": "二零二三年二月二十九日。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 0,
+            "text": "二零二三年二月二十九日。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_056",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "refiner_candidate": "会议在11:10开始。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "会议在一点十分开始。",
+      "final_output": "会议在1点10分开始。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "会议在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "会议在"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 3,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 7,
+            "text": "开始。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 8,
+            "text": "开始。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_057",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "下午一点十分开会。",
+      "expected": "下午1点10分开会。",
+      "refiner_candidate": "13:10开会。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "下午一点十分开会。",
+      "final_output": "下午1点10分开会。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 6,
+            "start": 0,
+            "text": "下午一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "下午1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-clock-time-0-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.explicit_clock_time",
+                "value": "period_spoken_clock_time"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.explicit_clock_time",
+                "value": "complete_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.explicit_clock_time",
+                "value": "explicit_chinese_period"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "下午1点10分",
+            "reason": "explicit_clock_time",
+            "rule_id": "zh.time.explicit_clock_time",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 6,
+              "start": 0,
+              "text": "下午一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 6,
+            "text": "开会。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 7,
+            "text": "开会。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_058",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "请在一点十分设置闹钟。",
+      "expected": "请在1点10分设置闹钟。",
+      "refiner_candidate": "请在10:10设置闹钟。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "请在一点十分设置闹钟。",
+      "final_output": "请在一点十分设置闹钟。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "请在一点十分设置闹钟。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "请在一点十分设置闹钟。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_059",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "我们一点十分出发。",
+      "expected": "我们1点10分出发。",
+      "refiner_candidate": "我们10分钟出发。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "我们一点十分出发。",
+      "final_output": "我们1点10分出发。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "我们"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "我们"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 2,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 2,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-2-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 6,
+              "start": 2,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 6,
+            "text": "出发。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 7,
+            "text": "出发。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_060",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在十二点十分结束。",
+      "expected": "会议在12点10分结束。",
+      "refiner_candidate": "会议在12:10结束。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "会议在十二点十分结束。",
+      "final_output": "会议在12点10分结束。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "会议在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "会议在"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 3,
+            "text": "十二点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 3,
+            "text": "12点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-3-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 8,
+              "start": 3,
+              "text": "十二点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 8,
+            "text": "结束。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 9,
+            "text": "结束。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_061",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "明天下午一点十分开会。",
+      "expected": "明天下午1点10分开会。",
+      "refiner_candidate": "明天13:10开会。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "明天下午一点十分开会。",
+      "final_output": "明天下午1点10分开会。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "明天"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "明天"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 2,
+            "text": "下午一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 2,
+            "text": "下午1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-clock-time-2-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.explicit_clock_time",
+                "value": "period_spoken_clock_time"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.explicit_clock_time",
+                "value": "complete_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.explicit_clock_time",
+                "value": "explicit_chinese_period"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "下午1点10分",
+            "reason": "explicit_clock_time",
+            "rule_id": "zh.time.explicit_clock_time",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 8,
+              "start": 2,
+              "text": "下午一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 8,
+            "text": "开会。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 9,
+            "text": "开会。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_062",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "会议持续十二分钟。",
+      "expected": "会议持续12分钟。",
+      "refiner_candidate": "会议持续12分钟。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "会议持续十二分钟。",
+      "final_output": "会议持续12分钟。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "会议持续"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "会议持续"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 4,
+            "text": "十二分钟"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 8,
+            "start": 4,
+            "text": "12分钟"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-duration-4-8",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_integer",
+                "value": "spoken_integer_plus_duration_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_integer",
+                "value": "complete_exact_integer_duration"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_integer",
+                "value": "released_chinese_duration_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12分钟",
+            "reason": "explicit_integer_duration",
+            "rule_id": "zh.duration.explicit_integer",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 8,
+              "start": 4,
+              "text": "十二分钟"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_integer_duration"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 8,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_063",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "需要十二分钟。",
+      "expected": "需要12分钟。",
+      "refiner_candidate": "需要12分钟。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "需要十二分钟。",
+      "final_output": "需要12分钟。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "需要"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "需要"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 2,
+            "text": "十二分钟"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 2,
+            "text": "12分钟"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-duration-2-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_integer",
+                "value": "spoken_integer_plus_duration_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_integer",
+                "value": "complete_exact_integer_duration"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_integer",
+                "value": "released_chinese_duration_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12分钟",
+            "reason": "explicit_integer_duration",
+            "rule_id": "zh.duration.explicit_integer",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 6,
+              "start": 2,
+              "text": "十二分钟"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_integer_duration"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_064",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "工作了十二小时。",
+      "expected": "工作了12小时。",
+      "refiner_candidate": "工作了12小时。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "工作了十二小时。",
+      "final_output": "工作了12小时。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "工作了"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "工作了"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 3,
+            "text": "十二小时"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 3,
+            "text": "12小时"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-duration-3-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.duration.explicit_integer",
+                "value": "spoken_integer_plus_duration_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.duration.explicit_integer",
+                "value": "complete_exact_integer_duration"
+              },
+              {
+                "kind": "context",
+                "source": "zh.duration.explicit_integer",
+                "value": "released_chinese_duration_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12小时",
+            "reason": "explicit_integer_duration",
+            "rule_id": "zh.duration.explicit_integer",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 7,
+              "start": 3,
+              "text": "十二小时"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_integer_duration"
+          }
+        },
+        {
+          "input": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 7,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_065",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "任务耗时十二分钟。",
+      "expected": "任务耗时12分钟。",
+      "refiner_candidate": "任务耗时12分钟。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "任务耗时十二分钟。",
+      "final_output": "任务耗时十二分钟。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "任务耗时十二分钟。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "任务耗时十二分钟。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_066",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "这是第二次讨论。",
+      "expected": "这是第二次讨论。",
+      "refiner_candidate": "这是第二次讨论。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这是第二次讨论。",
+      "final_output": "这是第二次讨论。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这是第二次讨论。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这是第二次讨论。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_067",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "请看第十二章。",
+      "expected": "请看第十二章。",
+      "refiner_candidate": "请看第12章。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "请看第十二章。",
+      "final_output": "请看第十二章。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "请看第十二章。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "请看第十二章。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_068",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "今年读二年级。",
+      "expected": "今年读二年级。",
+      "refiner_candidate": "今年读2年级。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "今年读二年级。",
+      "final_output": "今年读二年级。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "今年读二年级。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "今年读二年级。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_069",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "订单号是零零一二三。",
+      "expected": "订单号是00123。",
+      "refiner_candidate": "订单号是00123。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "订单号是零零一二三。",
+      "final_output": "订单号是00123。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "订单号是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "订单号是"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 4,
+            "text": "零零一二三"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 9,
+            "start": 4,
+            "text": "00123"
+          },
+          "provenance": {
+            "candidate_id": "zh-explicit-identifier-4-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "complete_explicit_identifier"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "closed_identifier_anchor"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "00123",
+            "reason": "standard_explicit_identifier",
+            "rule_id": "zh.identifier.explicit_digit_sequence",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 9,
+              "start": 4,
+              "text": "零零一二三"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_digit_sequence"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 9,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_070",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "工号是零七五。",
+      "expected": "工号是075。",
+      "refiner_candidate": "工号是075。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "工号是零七五。",
+      "final_output": "工号是075。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "工号是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "工号是"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 3,
+            "text": "零七五"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 6,
+            "start": 3,
+            "text": "075"
+          },
+          "provenance": {
+            "candidate_id": "zh-explicit-identifier-3-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "complete_explicit_identifier"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "closed_identifier_anchor"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "075",
+            "reason": "standard_explicit_identifier",
+            "rule_id": "zh.identifier.explicit_digit_sequence",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 6,
+              "start": 3,
+              "text": "零七五"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_digit_sequence"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 6,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_071",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "编号为二零二四零零八。",
+      "expected": "编号为2024008。",
+      "refiner_candidate": "编号为202408。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "编号为二零二四零零八。",
+      "final_output": "编号为2024008。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 3,
+            "start": 0,
+            "text": "编号为"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 3,
+            "start": 0,
+            "text": "编号为"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 3,
+            "text": "二零二四零零八"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 3,
+            "text": "2024008"
+          },
+          "provenance": {
+            "candidate_id": "zh-explicit-identifier-3-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "spoken_digit_sequence"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "complete_explicit_identifier"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.explicit_digit_sequence",
+                "value": "closed_identifier_anchor"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2024008",
+            "reason": "standard_explicit_identifier",
+            "rule_id": "zh.identifier.explicit_digit_sequence",
+            "rule_version": "8",
+            "semantic_source": {
+              "end": 10,
+              "start": 3,
+              "text": "二零二四零零八"
+            },
+            "semantic_type": "identifier",
+            "subtype": "explicit_digit_sequence"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_072",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "软件版本是一点零点三。",
+      "expected": "软件版本是1.0.3。",
+      "refiner_candidate": "软件版本是v1.3。<br><br><br><br><br><br><br><br><br><v1.3",
+      "refiner_error": null,
+      "merge_decision": "numeric_surface_sequence_changed",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "软件版本是一点零点三。",
+      "final_output": "软件版本是1.0.3。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "软件版本是"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "软件版本是"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 5,
+            "text": "一点零点三"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 5,
+            "text": "1.0.3"
+          },
+          "provenance": {
+            "candidate_id": "zh-software-version-5-10",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.software_version",
+                "value": "spoken_dotted_version"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.software_version",
+                "value": "complete_version_components"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.software_version",
+                "value": "explicit_software_version_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1.0.3",
+            "reason": "standard_software_version",
+            "rule_id": "zh.identifier.software_version",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 10,
+              "start": 5,
+              "text": "一点零点三"
+            },
+            "semantic_type": "identifier",
+            "subtype": "software_version"
+          }
+        },
+        {
+          "input": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 10,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_073",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "请升级到二点四版本。",
+      "expected": "请升级到2.4版本。",
+      "refiner_candidate": "请升级到v2.4版本。<br><br><br><br><br><br><br><br><br><br><br><br><br><br><v2.4版本<br><v2.4版本<br><v2.4版本<br><v2.4版本<br><v2.4版本<br><v2.4版本<br><v2.4版本<v2.4版本",
+      "refiner_error": null,
+      "merge_decision": "numeric_surface_sequence_changed",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "请升级到二点四版本。",
+      "final_output": "请升级到2.4版本。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 4,
+            "start": 0,
+            "text": "请升级到"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 4,
+            "start": 0,
+            "text": "请升级到"
+          }
+        },
+        {
+          "input": {
+            "end": 7,
+            "start": 4,
+            "text": "二点四"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 4,
+            "text": "2.4"
+          },
+          "provenance": {
+            "candidate_id": "zh-software-version-4-7",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.identifier.software_version",
+                "value": "spoken_dotted_version"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.identifier.software_version",
+                "value": "complete_version_components"
+              },
+              {
+                "kind": "context",
+                "source": "zh.identifier.software_version",
+                "value": "explicit_software_version_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "2.4",
+            "reason": "standard_software_version",
+            "rule_id": "zh.identifier.software_version",
+            "rule_version": "3",
+            "semantic_source": {
+              "end": 7,
+              "start": 4,
+              "text": "二点四"
+            },
+            "semantic_type": "identifier",
+            "subtype": "software_version"
+          }
+        },
+        {
+          "input": {
+            "end": 10,
+            "start": 7,
+            "text": "版本。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 7,
+            "text": "版本。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_074",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "这是三体小说。",
+      "expected": "这是三体小说。",
+      "refiner_candidate": "这是三体小说。<br>[三体小说]",
+      "refiner_error": null,
+      "merge_decision": "numeric_surface_sequence_changed",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这是三体小说。",
+      "final_output": "这是三体小说。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "这是三体小说。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "这是三体小说。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_075",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "请不要改动产品名称一加手机。",
+      "expected": "请不要改动产品名称一加手机。",
+      "refiner_candidate": "请不要改动产品名称1+手机。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "请不要改动产品名称一加手机。",
+      "final_output": "请不要改动产品名称一加手机。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 14,
+            "start": 0,
+            "text": "请不要改动产品名称一加手机。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 14,
+            "start": 0,
+            "text": "请不要改动产品名称一加手机。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_076",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "需要十二，不对，十三件。",
+      "expected": "需要13件。",
+      "refiner_candidate": "需要13件。",
+      "refiner_error": null,
+      "merge_decision": "validated_explicit_correction",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "需要13件。",
+      "final_output": "需要13件。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 6,
+            "start": 0,
+            "text": "需要13件。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 6,
+            "start": 0,
+            "text": "需要13件。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_077",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "会议在一点，哦不，一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "refiner_candidate": "会议在11:10开始。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "会议在一点，哦不，一点十分开始。",
+      "final_output": "会议在一点，哦不，1点10分开始。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "会议在一点，哦不，"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "会议在一点，哦不，"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 9,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 14,
+            "start": 9,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-9-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 13,
+              "start": 9,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 16,
+            "start": 13,
+            "text": "开始。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 17,
+            "start": 14,
+            "text": "开始。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_078",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "有三个，应该是四个方案。",
+      "expected": "有四个方案。",
+      "refiner_candidate": "应该是4个方案。",
+      "refiner_error": null,
+      "merge_decision": "validated_explicit_correction",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "应该是4个方案。",
+      "final_output": "应该是4个方案。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "应该是4个方案。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "应该是4个方案。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_079",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事要三思而后行。",
+      "expected": "这件事要三思而后行。",
+      "refiner_candidate": "这件事要三思而后行。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这件事要三思而后行。",
+      "final_output": "这件事要三思而后行。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "这件事要三思而后行。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "这件事要三思而后行。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_080",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他做事一心一意。",
+      "expected": "他做事一心一意。",
+      "refiner_candidate": "他做事一心一意。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "他做事一心一意。",
+      "final_output": "他做事一心一意。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "他做事一心一意。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "他做事一心一意。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_081",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这个安排一举两得。",
+      "expected": "这个安排一举两得。",
+      "refiner_candidate": "这个安排一举两得。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这个安排一举两得。",
+      "final_output": "这个安排一举两得。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "这个安排一举两得。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "这个安排一举两得。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_082",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不要三心二意。",
+      "expected": "不要三心二意。",
+      "refiner_candidate": "不要三心二意。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "不要三心二意。",
+      "final_output": "不要三心二意。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "不要三心二意。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "不要三心二意。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_083",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他三番五次提醒我们。",
+      "expected": "他三番五次提醒我们。",
+      "refiner_candidate": "他3番5次提醒我们。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "他三番五次提醒我们。",
+      "final_output": "他三番五次提醒我们。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "他三番五次提醒我们。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "他三番五次提醒我们。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_084",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家从四面八方赶来。",
+      "expected": "大家从四面八方赶来。",
+      "refiner_candidate": "大家从四面八方赶来。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "大家从四面八方赶来。",
+      "final_output": "大家从四面八方赶来。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "大家从四面八方赶来。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "大家从四面八方赶来。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_085",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "看到结果他七上八下。",
+      "expected": "看到结果他七上八下。",
+      "refiner_candidate": "看到结果他7上8下。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "看到结果他七上八下。",
+      "final_output": "看到结果他七上八下。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "看到结果他七上八下。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "看到结果他七上八下。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_086",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事十拿九稳。",
+      "expected": "这件事十拿九稳。",
+      "refiner_candidate": "这件事10拿9稳。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "这件事十拿九稳。",
+      "final_output": "这件事十拿九稳。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这件事十拿九稳。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这件事十拿九稳。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_087",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他练到了百发百中。",
+      "expected": "他练到了百发百中。",
+      "refiner_candidate": "他练到了百发百中。<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中<br/>百发百中练到了百发百中。<br/>百发百中练到了百发百中。<br/>百发百中练到了百发百中。<br/>百发百中练到了百发百中。<br/>百发百中练到了百发百中。<br/>百发百中练到了百发百中。练到了百发百中。<br/>百发百中练到了百发百中。练到了百发百中。练到了百发百中。练到了百",
+      "refiner_error": null,
+      "merge_decision": "numeric_surface_sequence_changed",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "他练到了百发百中。",
+      "final_output": "他练到了百发百中。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "他练到了百发百中。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "他练到了百发百中。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_088",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "我们得千方百计解决。",
+      "expected": "我们得千方百计解决。",
+      "refiner_candidate": "我们得千方百计解决。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "我们得千方百计解决。",
+      "final_output": "我们得千方百计解决。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "我们得千方百计解决。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "我们得千方百计解决。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_089",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这样才万无一失。",
+      "expected": "这样才万无一失。",
+      "refiner_candidate": "这样才万无一失。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这样才万无一失。",
+      "final_output": "这样才万无一失。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这样才万无一失。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这样才万无一失。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_090",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不能对所有情况一刀切。",
+      "expected": "不能对所有情况一刀切。",
+      "refiner_candidate": "不能对所有情况一刀切。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "不能对所有情况一刀切。",
+      "final_output": "不能对所有情况一刀切。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "不能对所有情况一刀切。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "不能对所有情况一刀切。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_091",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他是这里的一把手。",
+      "expected": "他是这里的一把手。",
+      "refiner_candidate": "他是这里的一把手。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "他是这里的一把手。",
+      "final_output": "他是这里的一把手。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "他是这里的一把手。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "他是这里的一把手。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_092",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家说得七嘴八舌。",
+      "expected": "大家说得七嘴八舌。",
+      "refiner_candidate": "大家说得七嘴八舌。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "大家说得七嘴八舌。",
+      "final_output": "大家说得七嘴八舌。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "大家说得七嘴八舌。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "大家说得七嘴八舌。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_093",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他们说得五花八门。",
+      "expected": "他们说得五花八门。",
+      "refiner_candidate": "他们说得五花八门。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "他们说得五花八门。",
+      "final_output": "他们说得五花八门。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "他们说得五花八门。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "他们说得五花八门。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_094",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这事还得八九不离十。",
+      "expected": "这事还得八九不离十。",
+      "refiner_candidate": "这事还得89%离10%。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "这事还得八九不离十。",
+      "final_output": "这事还得八九不离十。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "这事还得八九不离十。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "这事还得八九不离十。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_095",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要。",
+      "expected": "这一点十分重要。",
+      "refiner_candidate": "这一点十分重要。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这一点十分重要。",
+      "final_output": "这一点十分重要。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分重要。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分重要。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_096",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点，十分重要。",
+      "expected": "这一点，十分重要。",
+      "refiner_candidate": "这一点十分重要。",
+      "refiner_error": null,
+      "merge_decision": "numeric_surface_sequence_changed",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这一点，十分重要。",
+      "final_output": "这一点，十分重要。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "这一点，十分重要。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "这一点，十分重要。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_097",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分重要。",
+      "expected": "一点十分重要。",
+      "refiner_candidate": "一点十分重要。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "一点十分重要。",
+      "final_output": "一点十分重要。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "一点十分重要。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "一点十分重要。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_098",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分。",
+      "expected": "一点十分。",
+      "refiner_candidate": "一点十分。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "一点十分。",
+      "final_output": "一点十分。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 5,
+            "start": 0,
+            "text": "一点十分。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 5,
+            "start": 0,
+            "text": "一点十分。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_099",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分的会议。",
+      "expected": "一点十分的会议。",
+      "refiner_candidate": "1. 15分钟的会议。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "一点十分的会议。",
+      "final_output": "一点十分的会议。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "一点十分的会议。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "一点十分的会议。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_100",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分值得注意。",
+      "expected": "这一点十分值得注意。",
+      "refiner_candidate": "这一点十分值得注意。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这一点十分值得注意。",
+      "final_output": "这一点十分值得注意。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "这一点十分值得注意。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "这一点十分值得注意。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_101",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我强调的一点十分关键。",
+      "expected": "我强调的一点十分关键。",
+      "refiner_candidate": "我强调的一点十分关键。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "我强调的一点十分关键。",
+      "final_output": "我强调的一点十分关键。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "我强调的一点十分关键。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "我强调的一点十分关键。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_102",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要，不能忽略。",
+      "expected": "这一点十分重要，不能忽略。",
+      "refiner_candidate": "这一点十分重要，不能忽略。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这一点十分重要，不能忽略。",
+      "final_output": "这一点十分重要，不能忽略。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 13,
+            "start": 0,
+            "text": "这一点十分重要，不能忽略。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 13,
+            "start": 0,
+            "text": "这一点十分重要，不能忽略。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_103",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "他提出的一点十分有价值。",
+      "expected": "他提出的一点十分有价值。",
+      "refiner_candidate": "他提出的一点十分有价值。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "他提出的一点十分有价值。",
+      "final_output": "他提出的一点十分有价值。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 12,
+            "start": 0,
+            "text": "他提出的一点十分有价值。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 12,
+            "start": 0,
+            "text": "他提出的一点十分有价值。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_104",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分明确。",
+      "expected": "这一点十分明确。",
+      "refiner_candidate": "这一点十分明确。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这一点十分明确。",
+      "final_output": "这一点十分明确。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分明确。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分明确。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_105",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分清楚。",
+      "expected": "这一点十分清楚。",
+      "refiner_candidate": "这一点十分清楚。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这一点十分清楚。",
+      "final_output": "这一点十分清楚。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分清楚。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分清楚。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_106",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我想说的一点十分简单。",
+      "expected": "我想说的一点十分简单。",
+      "refiner_candidate": "我想说的一点十分简单。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "我想说的一点十分简单。",
+      "final_output": "我想说的一点十分简单。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "我想说的一点十分简单。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "我想说的一点十分简单。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_107",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分重要，会议在一点十分开始。",
+      "expected": "这一点十分重要，会议在1点10分开始。",
+      "refiner_candidate": "这一点十分重要，会议在11:10开始。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这一点十分重要，会议在一点十分开始。",
+      "final_output": "这一点十分重要，会议在1点10分开始。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 11,
+            "start": 0,
+            "text": "这一点十分重要，会议在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 11,
+            "start": 0,
+            "text": "这一点十分重要，会议在"
+          }
+        },
+        {
+          "input": {
+            "end": 15,
+            "start": 11,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 16,
+            "start": 11,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-11-15",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 15,
+              "start": 11,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 18,
+            "start": 15,
+            "text": "开始。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 19,
+            "start": 16,
+            "text": "开始。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_108",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分关键，下午一点十分再讨论。",
+      "expected": "这一点十分关键，下午1点10分再讨论。",
+      "refiner_candidate": "这一点十分关键，13:10再讨论。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这一点十分关键，下午一点十分再讨论。",
+      "final_output": "这一点十分关键，下午1点10分再讨论。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分关键，"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 8,
+            "start": 0,
+            "text": "这一点十分关键，"
+          }
+        },
+        {
+          "input": {
+            "end": 14,
+            "start": 8,
+            "text": "下午一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 15,
+            "start": 8,
+            "text": "下午1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-clock-time-8-14",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.explicit_clock_time",
+                "value": "period_spoken_clock_time"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.explicit_clock_time",
+                "value": "complete_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.explicit_clock_time",
+                "value": "explicit_chinese_period"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "下午1点10分",
+            "reason": "explicit_clock_time",
+            "rule_id": "zh.time.explicit_clock_time",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 14,
+              "start": 8,
+              "text": "下午一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 18,
+            "start": 14,
+            "text": "再讨论。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 19,
+            "start": 15,
+            "text": "再讨论。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_109",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分明确，闹钟设在一点十分。",
+      "expected": "这一点十分明确，闹钟设在1点10分。",
+      "refiner_candidate": "这一点十分明确，闹钟设在11:10。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "这一点十分明确，闹钟设在一点十分。",
+      "final_output": "这一点十分明确，闹钟设在一点十分。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 17,
+            "start": 0,
+            "text": "这一点十分明确，闹钟设在一点十分。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 17,
+            "start": 0,
+            "text": "这一点十分明确，闹钟设在一点十分。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_110",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "会议一点十分开始，这一点十分重要。",
+      "expected": "会议1点10分开始，这一点十分重要。",
+      "refiner_candidate": "会议13:10开始，这一点十分重要。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 1,
+      "merged_before_itn": "会议一点十分开始，这一点十分重要。",
+      "final_output": "会议1点10分开始，这一点十分重要。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 2,
+            "start": 0,
+            "text": "会议"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 2,
+            "start": 0,
+            "text": "会议"
+          }
+        },
+        {
+          "input": {
+            "end": 6,
+            "start": 2,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 7,
+            "start": 2,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-2-6",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 6,
+              "start": 2,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 17,
+            "start": 6,
+            "text": "开始，这一点十分重要。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 18,
+            "start": 7,
+            "text": "开始，这一点十分重要。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_111",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "二零二四年五月三日一点十分开会，出席十二人。",
+      "expected": "2024年5月3日1点10分开会，出席12人。",
+      "refiner_candidate": "2024年5月3日13:10开会，出席12人。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 5,
+      "merged_before_itn": "二零二四年五月三日一点十分开会，出席十二人。",
+      "final_output": "二零二四年五月三日1点10分开会，出席12人。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 9,
+            "start": 0,
+            "text": "二零二四年五月三日"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 9,
+            "start": 0,
+            "text": "二零二四年五月三日"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 9,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 14,
+            "start": 9,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-9-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 13,
+              "start": 9,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 18,
+            "start": 13,
+            "text": "开会，出席"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 19,
+            "start": 14,
+            "text": "开会，出席"
+          }
+        },
+        {
+          "input": {
+            "end": 21,
+            "start": 18,
+            "text": "十二人"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 22,
+            "start": 19,
+            "text": "12人"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-18-21",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "12人",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 21,
+              "start": 18,
+              "text": "十二人"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 22,
+            "start": 21,
+            "text": "。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 23,
+            "start": 22,
+            "text": "。"
+          }
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "id": "num_112",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "这一点十分重要，预算一百元，下午一点十分开会。",
+      "expected": "这一点十分重要，预算100元，下午1点10分开会。",
+      "refiner_candidate": "这一点十分重要，预算100元，13:10开会。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 2,
+      "merged_before_itn": "这一点十分重要，预算一百元，下午一点十分开会。",
+      "final_output": "这一点十分重要，预算100元，下午1点10分开会。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 10,
+            "start": 0,
+            "text": "这一点十分重要，预算"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 10,
+            "start": 0,
+            "text": "这一点十分重要，预算"
+          }
+        },
+        {
+          "input": {
+            "end": 13,
+            "start": 10,
+            "text": "一百元"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 14,
+            "start": 10,
+            "text": "100元"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-money-10-13",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.money.explicit_integer",
+                "value": "spoken_integer_plus_currency_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.money.explicit_integer",
+                "value": "complete_exact_integer_money"
+              },
+              {
+                "kind": "context",
+                "source": "zh.money.explicit_integer",
+                "value": "released_chinese_currency_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "100元",
+            "reason": "explicit_integer_money",
+            "rule_id": "zh.money.explicit_integer",
+            "rule_version": "9",
+            "semantic_source": {
+              "end": 13,
+              "start": 10,
+              "text": "一百元"
+            },
+            "semantic_type": "money",
+            "subtype": "explicit_integer_money"
+          }
+        },
+        {
+          "input": {
+            "end": 14,
+            "start": 13,
+            "text": "，"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 15,
+            "start": 14,
+            "text": "，"
+          }
+        },
+        {
+          "input": {
+            "end": 20,
+            "start": 14,
+            "text": "下午一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 22,
+            "start": 15,
+            "text": "下午1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-clock-time-14-20",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.explicit_clock_time",
+                "value": "period_spoken_clock_time"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.explicit_clock_time",
+                "value": "complete_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.explicit_clock_time",
+                "value": "explicit_chinese_period"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "下午1点10分",
+            "reason": "explicit_clock_time",
+            "rule_id": "zh.time.explicit_clock_time",
+            "rule_version": "2",
+            "semantic_source": {
+              "end": 20,
+              "start": 14,
+              "text": "下午一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "explicit_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 23,
+            "start": 20,
+            "text": "开会。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 25,
+            "start": 22,
+            "text": "开会。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_113",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "他三番五次说有十件设备，会议在一点十分开始。",
+      "expected": "他三番五次说有10件设备，会议在1点10分开始。",
+      "refiner_candidate": "他3番5次说有10件设备，会议在11:10开始。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 4,
+      "merged_before_itn": "他三番五次说有十件设备，会议在一点十分开始。",
+      "final_output": "他三番五次说有10件设备，会议在1点10分开始。",
+      "itn_status": "applied",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 7,
+            "start": 0,
+            "text": "他三番五次说有"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 7,
+            "start": 0,
+            "text": "他三番五次说有"
+          }
+        },
+        {
+          "input": {
+            "end": 9,
+            "start": 7,
+            "text": "十件"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 10,
+            "start": 7,
+            "text": "10件"
+          },
+          "provenance": {
+            "candidate_id": "zh-integer-measure-7-9",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.measure.explicit_integer",
+                "value": "spoken_integer_plus_measure_unit"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.measure.explicit_integer",
+                "value": "complete_exact_integer_measure"
+              },
+              {
+                "kind": "context",
+                "source": "zh.measure.explicit_integer",
+                "value": "released_chinese_measure_unit"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "10件",
+            "reason": "explicit_integer_measure",
+            "rule_id": "zh.measure.explicit_integer",
+            "rule_version": "16",
+            "semantic_source": {
+              "end": 9,
+              "start": 7,
+              "text": "十件"
+            },
+            "semantic_type": "measure",
+            "subtype": "explicit_integer_measure"
+          }
+        },
+        {
+          "input": {
+            "end": 15,
+            "start": 9,
+            "text": "设备，会议在"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 16,
+            "start": 10,
+            "text": "设备，会议在"
+          }
+        },
+        {
+          "input": {
+            "end": 19,
+            "start": 15,
+            "text": "一点十分"
+          },
+          "kind": "replace",
+          "output": {
+            "end": 21,
+            "start": 16,
+            "text": "1点10分"
+          },
+          "provenance": {
+            "candidate_id": "zh-contextual-clock-time-15-19",
+            "evidence": [
+              {
+                "kind": "shape",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "unperioded_spoken_clock_with_minute"
+              },
+              {
+                "kind": "boundary",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "complete_contextual_exact_clock_time"
+              },
+              {
+                "kind": "context",
+                "source": "zh.time.contextual_unperioded_clock_time",
+                "value": "explicit_clock_event_context"
+              }
+            ],
+            "locale": "zh-CN",
+            "parsed_value": "1点10分",
+            "reason": "contextual_exact_clock_time",
+            "rule_id": "zh.time.contextual_unperioded_clock_time",
+            "rule_version": "4",
+            "semantic_source": {
+              "end": 19,
+              "start": 15,
+              "text": "一点十分"
+            },
+            "semantic_type": "date_time",
+            "subtype": "contextual_unperioded_clock_time"
+          }
+        },
+        {
+          "input": {
+            "end": 22,
+            "start": 19,
+            "text": "开始。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 24,
+            "start": 21,
+            "text": "开始。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_114",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "我们明天继续讨论这个问题。",
+      "expected": "我们明天继续讨论这个问题。",
+      "refiner_candidate": "我们明天继续讨论这个问题。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "我们明天继续讨论这个问题。",
+      "final_output": "我们明天继续讨论这个问题。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 13,
+            "start": 0,
+            "text": "我们明天继续讨论这个问题。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 13,
+            "start": 0,
+            "text": "我们明天继续讨论这个问题。"
+          }
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "id": "num_115",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "这个方案还需要进一步核对。",
+      "expected": "这个方案还需要进一步核对。",
+      "refiner_candidate": "这个方案还需要进一步核对。",
+      "refiner_error": null,
+      "merge_decision": "accepted_non_numeric_edits",
+      "blocked_edit_count": 0,
+      "merged_before_itn": "这个方案还需要进一步核对。",
+      "final_output": "这个方案还需要进一步核对。",
+      "itn_status": "unchanged",
+      "itn_mappings": [
+        {
+          "input": {
+            "end": 13,
+            "start": 0,
+            "text": "这个方案还需要进一步核对。"
+          },
+          "kind": "equal",
+          "output": {
+            "end": 13,
+            "start": 0,
+            "text": "这个方案还需要进一步核对。"
+          }
+        }
+      ],
+      "exact_match": true
+    }
+  ]
+}

@@ -1,0 +1,1260 @@
+{
+  "scope": "zh_itn_rule_only",
+  "rule_pack": "zh-itn-strict-conservative-v84",
+  "total": 115,
+  "exact_matches": 104,
+  "by_category": {
+    "ambiguity_mixed": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "ambiguity_preserve": {
+      "total": 12,
+      "exact_matches": 12
+    },
+    "approximation": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "classifier": {
+      "total": 9,
+      "exact_matches": 9
+    },
+    "clock_time": {
+      "total": 6,
+      "exact_matches": 5
+    },
+    "date": {
+      "total": 5,
+      "exact_matches": 4
+    },
+    "decimal": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "digit_sequence": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "duration": {
+      "total": 4,
+      "exact_matches": 3
+    },
+    "fraction_ratio": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "identifier": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "integer": {
+      "total": 4,
+      "exact_matches": 4
+    },
+    "large_integer": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "measurement": {
+      "total": 5,
+      "exact_matches": 5
+    },
+    "mixed_numbers": {
+      "total": 3,
+      "exact_matches": 2
+    },
+    "money": {
+      "total": 5,
+      "exact_matches": 5
+    },
+    "non_numeric_regression": {
+      "total": 2,
+      "exact_matches": 2
+    },
+    "numeric_idiom": {
+      "total": 16,
+      "exact_matches": 16
+    },
+    "ordinal": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "percent": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "percentage_point": {
+      "total": 3,
+      "exact_matches": 3
+    },
+    "range": {
+      "total": 3,
+      "exact_matches": 2
+    },
+    "self_correction": {
+      "total": 3,
+      "exact_matches": 0
+    },
+    "signed_number": {
+      "total": 2,
+      "exact_matches": 1
+    },
+    "version_model": {
+      "total": 4,
+      "exact_matches": 4
+    }
+  },
+  "rows": [
+    {
+      "id": "num_001",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "现场有十二人。",
+      "expected": "现场有12人。",
+      "rule_output": "现场有12人。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_002",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "库房有二十件设备。",
+      "expected": "库房有20件设备。",
+      "rule_output": "库房有20件设备。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_003",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "车队共有三十五辆车。",
+      "expected": "车队共有35辆车。",
+      "rule_output": "车队共有35辆车。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_004",
+      "category": "integer",
+      "behavior": "convert",
+      "input": "这批货有一百零三箱。",
+      "expected": "这批货有103箱。",
+      "rule_output": "这批货有103箱。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_005",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "全程约一千公里。",
+      "expected": "全程约1000公里。",
+      "rule_output": "全程约1000公里。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_006",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "预算为两千万元。",
+      "expected": "预算为2000万元。",
+      "rule_output": "预算为2000万元。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_007",
+      "category": "large_integer",
+      "behavior": "convert",
+      "input": "参会人员有一万两千人。",
+      "expected": "参会人员有12000人。",
+      "rule_output": "参会人员有12000人。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_008",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "编号是零零八。",
+      "expected": "编号是008。",
+      "rule_output": "编号是008。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_009",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "电话号码是幺三九九幺二六三七九七。",
+      "expected": "电话号码是13991263797。",
+      "rule_output": "电话号码是13991263797。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_010",
+      "category": "digit_sequence",
+      "behavior": "convert",
+      "input": "验证码是零三零八。",
+      "expected": "验证码是0308。",
+      "rule_output": "验证码是0308。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_011",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "距离约为一点五公里。",
+      "expected": "距离约为1.5公里。",
+      "rule_output": "距离约为1.5公里。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_012",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "测量值为零点三五毫米。",
+      "expected": "测量值为0.35毫米。",
+      "rule_output": "测量值为0.35毫米。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_013",
+      "category": "decimal",
+      "behavior": "convert",
+      "input": "温度为二十三点五摄氏度。",
+      "expected": "温度为23.5摄氏度。",
+      "rule_output": "温度为23.5摄氏度。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_014",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "气温零下十二摄氏度。",
+      "expected": "气温零下12摄氏度。",
+      "rule_output": "气温零下12摄氏度。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_015",
+      "category": "signed_number",
+      "behavior": "convert",
+      "input": "计算结果是负三点二。",
+      "expected": "计算结果是-3.2。",
+      "rule_output": "计算结果是负三点二。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_016",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一个方案。",
+      "expected": "这里有一个方案。",
+      "rule_output": "这里有一个方案。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_017",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有两种方法。",
+      "expected": "这里有两种方法。",
+      "rule_output": "这里有两种方法。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_018",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有三个方案。",
+      "expected": "这里有三个方案。",
+      "rule_output": "这里有三个方案。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_019",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有十个方案。",
+      "expected": "这里有十个方案。",
+      "rule_output": "这里有十个方案。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_020",
+      "category": "classifier",
+      "behavior": "preserve",
+      "input": "这里有一百种方法。",
+      "expected": "这里有一百种方法。",
+      "rule_output": "这里有一百种方法。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_021",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十件衣服。",
+      "expected": "有10件衣服。",
+      "rule_output": "有10件衣服。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_022",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有十二人参加。",
+      "expected": "有12人参加。",
+      "rule_output": "有12人参加。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_023",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有二十辆车。",
+      "expected": "有20辆车。",
+      "rule_output": "有20辆车。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_024",
+      "category": "classifier",
+      "behavior": "convert",
+      "input": "有三十颗糖。",
+      "expected": "有30颗糖。",
+      "rule_output": "有30颗糖。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_025",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "路程为十二公里。",
+      "expected": "路程为12公里。",
+      "rule_output": "路程为12公里。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_026",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "重量为十公斤。",
+      "expected": "重量为10公斤。",
+      "rule_output": "重量为10公斤。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_027",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "面积为一百平方米。",
+      "expected": "面积为100平方米。",
+      "rule_output": "面积为100平方米。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_028",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "长度为十二米。",
+      "expected": "长度为12米。",
+      "rule_output": "长度为12米。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_029",
+      "category": "measurement",
+      "behavior": "convert",
+      "input": "容量为二百毫升。",
+      "expected": "容量为200毫升。",
+      "rule_output": "容量为200毫升。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_030",
+      "category": "money",
+      "behavior": "convert",
+      "input": "价格为十元。",
+      "expected": "价格为10元。",
+      "rule_output": "价格为10元。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_031",
+      "category": "money",
+      "behavior": "convert",
+      "input": "成本约为一百美元。",
+      "expected": "成本约为100美元。",
+      "rule_output": "成本约为100美元。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_032",
+      "category": "money",
+      "behavior": "convert",
+      "input": "合计两千万元。",
+      "expected": "合计2000万元。",
+      "rule_output": "合计2000万元。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_033",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "十元。",
+      "expected": "十元。",
+      "rule_output": "十元。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_034",
+      "category": "money",
+      "behavior": "preserve",
+      "input": "一块钱。",
+      "expected": "一块钱。",
+      "rule_output": "一块钱。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_035",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "增长百分之十。",
+      "expected": "增长10%。",
+      "rule_output": "增长10%。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_036",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "完成率为百分之九十九。",
+      "expected": "完成率为99%。",
+      "rule_output": "完成率为99%。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_037",
+      "category": "percent",
+      "behavior": "convert",
+      "input": "占比为百分之十二点五。",
+      "expected": "占比为12.5%。",
+      "rule_output": "占比为12.5%。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_038",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高一个百分点。",
+      "expected": "提高一个百分点。",
+      "rule_output": "提高一个百分点。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_039",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高两个百分点。",
+      "expected": "提高两个百分点。",
+      "rule_output": "提高两个百分点。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_040",
+      "category": "percentage_point",
+      "behavior": "preserve",
+      "input": "提高三个百分点。",
+      "expected": "提高三个百分点。",
+      "rule_output": "提高三个百分点。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_041",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "其中三分之一需要复查。",
+      "expected": "其中三分之一需要复查。",
+      "rule_output": "其中三分之一需要复查。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_042",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "两组人数之比是三比二。",
+      "expected": "两组人数之比是三比二。",
+      "rule_output": "两组人数之比是三比二。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_043",
+      "category": "fraction_ratio",
+      "behavior": "preserve",
+      "input": "样品减少了四分之一。",
+      "expected": "样品减少了四分之一。",
+      "rule_output": "样品减少了四分之一。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_044",
+      "category": "range",
+      "behavior": "convert",
+      "input": "路程大约十到二十公里。",
+      "expected": "路程大约10到20公里。",
+      "rule_output": "路程大约十到二十公里。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_045",
+      "category": "range",
+      "behavior": "convert",
+      "input": "价格在一百到两百元之间。",
+      "expected": "价格在100到200元之间。",
+      "rule_output": "价格在100到200元之间。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_046",
+      "category": "range",
+      "behavior": "convert",
+      "input": "需要三十至五十人。",
+      "expected": "需要30至50人。",
+      "rule_output": "需要30至50人。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_047",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "现场有三十多人。",
+      "expected": "现场有30多人。",
+      "rule_output": "现场有三十多人。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_048",
+      "category": "approximation",
+      "behavior": "convert",
+      "input": "预算约为两千万元。",
+      "expected": "预算约为2000万元。",
+      "rule_output": "预算约为2000万元。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_049",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "大概有三五个人。",
+      "expected": "大概有三五个人。",
+      "rule_output": "大概有三五个人。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_050",
+      "category": "approximation",
+      "behavior": "preserve",
+      "input": "过一两天再说。",
+      "expected": "过一两天再说。",
+      "rule_output": "过一两天再说。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_051",
+      "category": "date",
+      "behavior": "convert",
+      "input": "会议定在二零二四年五月三日。",
+      "expected": "会议定在2024年5月3日。",
+      "rule_output": "会议定在2024年5月3日。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_052",
+      "category": "date",
+      "behavior": "convert",
+      "input": "截至二零二六年九月二十八日。",
+      "expected": "截至2026年9月28日。",
+      "rule_output": "截至2026年9月28日。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_053",
+      "category": "date",
+      "behavior": "convert",
+      "input": "从二零二五年六月到二零二六年七月。",
+      "expected": "从2025年6月到2026年7月。",
+      "rule_output": "从二零二五年六月到二零二六年七月。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_054",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "我们明天开会。",
+      "expected": "我们明天开会。",
+      "rule_output": "我们明天开会。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_055",
+      "category": "date",
+      "behavior": "preserve",
+      "input": "二零二三年二月二十九日。",
+      "expected": "二零二三年二月二十九日。",
+      "rule_output": "二零二三年二月二十九日。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_056",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "rule_output": "会议在1点10分开始。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_057",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "下午一点十分开会。",
+      "expected": "下午1点10分开会。",
+      "rule_output": "下午1点10分开会。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_058",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "请在一点十分设置闹钟。",
+      "expected": "请在1点10分设置闹钟。",
+      "rule_output": "请在一点十分设置闹钟。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_059",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "我们一点十分出发。",
+      "expected": "我们1点10分出发。",
+      "rule_output": "我们1点10分出发。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_060",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "会议在十二点十分结束。",
+      "expected": "会议在12点10分结束。",
+      "rule_output": "会议在12点10分结束。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_061",
+      "category": "clock_time",
+      "behavior": "convert",
+      "input": "明天下午一点十分开会。",
+      "expected": "明天下午1点10分开会。",
+      "rule_output": "明天下午1点10分开会。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_062",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "会议持续十二分钟。",
+      "expected": "会议持续12分钟。",
+      "rule_output": "会议持续12分钟。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_063",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "需要十二分钟。",
+      "expected": "需要12分钟。",
+      "rule_output": "需要12分钟。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_064",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "工作了十二小时。",
+      "expected": "工作了12小时。",
+      "rule_output": "工作了12小时。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_065",
+      "category": "duration",
+      "behavior": "convert",
+      "input": "任务耗时十二分钟。",
+      "expected": "任务耗时12分钟。",
+      "rule_output": "任务耗时十二分钟。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_066",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "这是第二次讨论。",
+      "expected": "这是第二次讨论。",
+      "rule_output": "这是第二次讨论。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_067",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "请看第十二章。",
+      "expected": "请看第十二章。",
+      "rule_output": "请看第十二章。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_068",
+      "category": "ordinal",
+      "behavior": "preserve",
+      "input": "今年读二年级。",
+      "expected": "今年读二年级。",
+      "rule_output": "今年读二年级。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_069",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "订单号是零零一二三。",
+      "expected": "订单号是00123。",
+      "rule_output": "订单号是00123。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_070",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "工号是零七五。",
+      "expected": "工号是075。",
+      "rule_output": "工号是075。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_071",
+      "category": "identifier",
+      "behavior": "convert",
+      "input": "编号为二零二四零零八。",
+      "expected": "编号为2024008。",
+      "rule_output": "编号为2024008。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_072",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "软件版本是一点零点三。",
+      "expected": "软件版本是1.0.3。",
+      "rule_output": "软件版本是1.0.3。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_073",
+      "category": "version_model",
+      "behavior": "convert",
+      "input": "请升级到二点四版本。",
+      "expected": "请升级到2.4版本。",
+      "rule_output": "请升级到2.4版本。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_074",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "这是三体小说。",
+      "expected": "这是三体小说。",
+      "rule_output": "这是三体小说。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_075",
+      "category": "version_model",
+      "behavior": "preserve",
+      "input": "请不要改动产品名称一加手机。",
+      "expected": "请不要改动产品名称一加手机。",
+      "rule_output": "请不要改动产品名称一加手机。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_076",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "需要十二，不对，十三件。",
+      "expected": "需要13件。",
+      "rule_output": "需要十二，不对，13件。",
+      "rule_status": "applied",
+      "exact_match": false
+    },
+    {
+      "id": "num_077",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "会议在一点，哦不，一点十分开始。",
+      "expected": "会议在1点10分开始。",
+      "rule_output": "会议在一点，哦不，1点10分开始。",
+      "rule_status": "applied",
+      "exact_match": false
+    },
+    {
+      "id": "num_078",
+      "category": "self_correction",
+      "behavior": "cleanup",
+      "input": "有三个，应该是四个方案。",
+      "expected": "有四个方案。",
+      "rule_output": "有三个，应该是四个方案。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_079",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事要三思而后行。",
+      "expected": "这件事要三思而后行。",
+      "rule_output": "这件事要三思而后行。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_080",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他做事一心一意。",
+      "expected": "他做事一心一意。",
+      "rule_output": "他做事一心一意。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_081",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这个安排一举两得。",
+      "expected": "这个安排一举两得。",
+      "rule_output": "这个安排一举两得。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_082",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不要三心二意。",
+      "expected": "不要三心二意。",
+      "rule_output": "不要三心二意。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_083",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他三番五次提醒我们。",
+      "expected": "他三番五次提醒我们。",
+      "rule_output": "他三番五次提醒我们。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_084",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家从四面八方赶来。",
+      "expected": "大家从四面八方赶来。",
+      "rule_output": "大家从四面八方赶来。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_085",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "看到结果他七上八下。",
+      "expected": "看到结果他七上八下。",
+      "rule_output": "看到结果他七上八下。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_086",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这件事十拿九稳。",
+      "expected": "这件事十拿九稳。",
+      "rule_output": "这件事十拿九稳。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_087",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他练到了百发百中。",
+      "expected": "他练到了百发百中。",
+      "rule_output": "他练到了百发百中。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_088",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "我们得千方百计解决。",
+      "expected": "我们得千方百计解决。",
+      "rule_output": "我们得千方百计解决。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_089",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这样才万无一失。",
+      "expected": "这样才万无一失。",
+      "rule_output": "这样才万无一失。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_090",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "不能对所有情况一刀切。",
+      "expected": "不能对所有情况一刀切。",
+      "rule_output": "不能对所有情况一刀切。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_091",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他是这里的一把手。",
+      "expected": "他是这里的一把手。",
+      "rule_output": "他是这里的一把手。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_092",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "大家说得七嘴八舌。",
+      "expected": "大家说得七嘴八舌。",
+      "rule_output": "大家说得七嘴八舌。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_093",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "他们说得五花八门。",
+      "expected": "他们说得五花八门。",
+      "rule_output": "他们说得五花八门。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_094",
+      "category": "numeric_idiom",
+      "behavior": "preserve",
+      "input": "这事还得八九不离十。",
+      "expected": "这事还得八九不离十。",
+      "rule_output": "这事还得八九不离十。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_095",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要。",
+      "expected": "这一点十分重要。",
+      "rule_output": "这一点十分重要。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_096",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点，十分重要。",
+      "expected": "这一点，十分重要。",
+      "rule_output": "这一点，十分重要。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_097",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分重要。",
+      "expected": "一点十分重要。",
+      "rule_output": "一点十分重要。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_098",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分。",
+      "expected": "一点十分。",
+      "rule_output": "一点十分。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_099",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "一点十分的会议。",
+      "expected": "一点十分的会议。",
+      "rule_output": "一点十分的会议。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_100",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分值得注意。",
+      "expected": "这一点十分值得注意。",
+      "rule_output": "这一点十分值得注意。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_101",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我强调的一点十分关键。",
+      "expected": "我强调的一点十分关键。",
+      "rule_output": "我强调的一点十分关键。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_102",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分重要，不能忽略。",
+      "expected": "这一点十分重要，不能忽略。",
+      "rule_output": "这一点十分重要，不能忽略。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_103",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "他提出的一点十分有价值。",
+      "expected": "他提出的一点十分有价值。",
+      "rule_output": "他提出的一点十分有价值。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_104",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分明确。",
+      "expected": "这一点十分明确。",
+      "rule_output": "这一点十分明确。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_105",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "这一点十分清楚。",
+      "expected": "这一点十分清楚。",
+      "rule_output": "这一点十分清楚。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_106",
+      "category": "ambiguity_preserve",
+      "behavior": "preserve",
+      "input": "我想说的一点十分简单。",
+      "expected": "我想说的一点十分简单。",
+      "rule_output": "我想说的一点十分简单。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_107",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分重要，会议在一点十分开始。",
+      "expected": "这一点十分重要，会议在1点10分开始。",
+      "rule_output": "这一点十分重要，会议在1点10分开始。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_108",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分关键，下午一点十分再讨论。",
+      "expected": "这一点十分关键，下午1点10分再讨论。",
+      "rule_output": "这一点十分关键，下午1点10分再讨论。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_109",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "这一点十分明确，闹钟设在一点十分。",
+      "expected": "这一点十分明确，闹钟设在1点10分。",
+      "rule_output": "这一点十分明确，闹钟设在一点十分。",
+      "rule_status": "unchanged",
+      "exact_match": false
+    },
+    {
+      "id": "num_110",
+      "category": "ambiguity_mixed",
+      "behavior": "context",
+      "input": "会议一点十分开始，这一点十分重要。",
+      "expected": "会议1点10分开始，这一点十分重要。",
+      "rule_output": "会议1点10分开始，这一点十分重要。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_111",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "二零二四年五月三日一点十分开会，出席十二人。",
+      "expected": "2024年5月3日1点10分开会，出席12人。",
+      "rule_output": "二零二四年五月三日1点10分开会，出席12人。",
+      "rule_status": "applied",
+      "exact_match": false
+    },
+    {
+      "id": "num_112",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "这一点十分重要，预算一百元，下午一点十分开会。",
+      "expected": "这一点十分重要，预算100元，下午1点10分开会。",
+      "rule_output": "这一点十分重要，预算100元，下午1点10分开会。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_113",
+      "category": "mixed_numbers",
+      "behavior": "context",
+      "input": "他三番五次说有十件设备，会议在一点十分开始。",
+      "expected": "他三番五次说有10件设备，会议在1点10分开始。",
+      "rule_output": "他三番五次说有10件设备，会议在1点10分开始。",
+      "rule_status": "applied",
+      "exact_match": true
+    },
+    {
+      "id": "num_114",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "我们明天继续讨论这个问题。",
+      "expected": "我们明天继续讨论这个问题。",
+      "rule_output": "我们明天继续讨论这个问题。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    },
+    {
+      "id": "num_115",
+      "category": "non_numeric_regression",
+      "behavior": "preserve",
+      "input": "这个方案还需要进一步核对。",
+      "expected": "这个方案还需要进一步核对。",
+      "rule_output": "这个方案还需要进一步核对。",
+      "rule_status": "unchanged",
+      "exact_match": true
+    }
+  ]
+}

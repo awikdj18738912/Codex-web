@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>精修日志 · AgenticASR</title>
+  <style>
+    :root { font-family: Inter, "Noto Sans SC", sans-serif; color: #17201f; background: #f3f6f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    main { width: min(980px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 54px; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 22px; }
+    h1 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+    .subtitle { margin: 8px 0 0; color: #61706c; font-size: 13px; overflow-wrap: anywhere; }
+    a { color: #006b60; }
+    .toolbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; padding: 12px; border: 1px solid #d3ddda; border-radius: 10px; background: rgba(250, 252, 251, .96); box-shadow: 0 5px 18px rgba(23, 44, 38, .06); backdrop-filter: blur(8px); }
+    .page-controls { display: flex; align-items: center; gap: 8px; }
+    button, input { min-height: 38px; border: 1px solid #aebbb8; border-radius: 7px; background: #fff; color: #17201f; font: inherit; }
+    button { padding: 0 13px; cursor: pointer; font-weight: 650; }
+    button:hover:not(:disabled) { border-color: #006b60; background: #edf6f3; }
+    button:disabled { cursor: not-allowed; opacity: .45; }
+    input { width: 68px; padding: 0 8px; text-align: center; font-variant-numeric: tabular-nums; }
+    .page-label { color: #465550; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .log-card { overflow: hidden; border: 1px solid #d3ddda; border-radius: 12px; background: #fff; box-shadow: 0 7px 24px rgba(23, 44, 38, .05); }
+    .log-content { padding: clamp(18px, 4vw, 34px); }
+    .log-content h2 { margin: 0 0 22px; color: #134f46; font-size: 20px; line-height: 1.4; }
+    .log-content h3 { margin: 22px 0 10px; color: #34433f; font-size: 15px; }
+    .log-content p { margin: 10px 0; color: #374641; font-size: 14px; line-height: 1.75; overflow-wrap: anywhere; }
+    .log-content p:first-of-type { margin-top: 0; }
+    .log-content ul { margin: 8px 0 14px; padding-left: 22px; color: #374641; font-size: 14px; line-height: 1.75; }
+    .log-content li + li { margin-top: 4px; }
+    .log-content pre { overflow: auto; margin: 9px 0 16px; padding: 14px 16px; border: 1px solid #e1e8e5; border-radius: 8px; background: #f6f8f7; color: #1d2a27; font: 14px/1.75 ui-monospace, "SFMono-Regular", Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .log-content code { padding: 1px 5px; border-radius: 4px; background: #edf2f0; color: #155c51; font: 12px/1.6 ui-monospace, "SFMono-Regular", Consolas, monospace; overflow-wrap: anywhere; }
+    .log-content pre code { padding: 0; background: none; color: inherit; font-size: inherit; }
+    .log-content strong { color: #182723; }
+    .log-content hr { height: 1px; margin: 22px 0; border: 0; background: #e4eae8; }
+    .appendix { margin-top: 18px; border: 1px solid #d3ddda; border-radius: 10px; background: #fff; }
+    .appendix summary { padding: 14px 16px; color: #35514a; cursor: pointer; font-size: 13px; font-weight: 650; }
+    .appendix .log-content { padding-top: 0; }
+    .empty, .error { padding: 30px; color: #60706c; text-align: center; }
+    .error { color: #a62927; }
+    @media (max-width: 600px) {
+      main { width: min(100% - 20px, 980px); padding-top: 22px; }
+      header { flex-direction: column; }
+      .toolbar { align-items: stretch; flex-direction: column; }
+      .page-controls { justify-content: space-between; }
+      .log-content { padding: 18px; }
+      .log-content pre { padding: 11px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>精修日志</h1>
+        <p id="log-info" class="subtitle">正在读取最新日志…</p>
+      </div>
+      <a href="/" aria-label="返回转录页面">返回转录</a>
+    </header>
+    <nav class="toolbar" aria-label="日志翻页">
+      <div class="page-controls">
+        <button id="previous" type="button" disabled>← 上一窗口</button>
+        <span id="page-label" class="page-label">— / —</span>
+        <button id="next" type="button" disabled>下一窗口 →</button>
+      </div>
+      <form id="jump-form" class="page-controls">
+        <label class="page-label" for="jump-page">跳转到</label>
+        <input id="jump-page" type="number" min="1" value="1" disabled>
+        <button id="jump-button" type="submit" disabled>前往</button>
+      </form>
+    </nav>
+    <section id="log-card" class="log-card" aria-live="polite">
+      <div id="log-content" class="log-content"><p class="empty">正在读取…</p></div>
+    </section>
+    <details id="appendix" class="appendix" hidden>
+      <summary>查看本次全文、统计与未关联候选</summary>
+      <div id="appendix-content" class="log-content"></div>
+    </details>
+  </main>
+  <script>
+    const logInfo = document.querySelector('#log-info');
+    const logContent = document.querySelector('#log-content');
+    const previousButton = document.querySelector('#previous');
+    const nextButton = document.querySelector('#next');
+    const pageLabel = document.querySelector('#page-label');
+    const jumpForm = document.querySelector('#jump-form');
+    const jumpPage = document.querySelector('#jump-page');
+    const jumpButton = document.querySelector('#jump-button');
+    const appendix = document.querySelector('#appendix');
+    const appendixContent = document.querySelector('#appendix-content');
+    let pages = [];
+    let pageIndex = 0;
+
+    const codeLabels = new Map(Object.entries({
+      refine: '送入精修', keep: '保留', defer: '暂缓处理',
+      cleanup_signal_present: '检测到需要清理的文本信号',
+      stable_clean_segment: '文本稳定，门控跳过',
+      incomplete_fixed_group: '固定分组尚未完成',
+      disfluency: '不流畅或重复信号',
+      embedded_disfluency: '句中不流畅信号',
+      numeric_normalization: '数字规范化信号',
+      isolated_single_character_clause: '孤立单字句信号',
+      repeated_character: '连续叠字信号',
+      repeated_phrase: '短语重复信号',
+      numeric_value_mismatch: '数值不一致',
+      semantic_content_loss: '语义内容损失',
+      severe_content_loss: '严重内容损失',
+      model_candidate_decision: '模型已判断候选',
+      model_aligned_candidate_edit: '模型输出与候选修改一致',
+      model_plausibility_remove: '语言模型倾向删除',
+      model_plausibility_keep: '语言模型倾向保留',
+      model_plausibility_uncertain: '语言模型无法确定',
+      local_model_plausibility_remove: '局部语境支持删除',
+      local_model_plausibility_keep: '局部语境支持保留',
+      local_model_plausibility_uncertain: '局部语境仍无法确定',
+      model_uncertain: '模型无法确定',
+      invalid_response: '模型返回格式无效',
+      review_failed: '复核调用失败',
+      unresolved: '未判定',
+      accepted: '接受模型结果', rejected: '拒绝模型结果',
+      gate_skip: '门控跳过', remove: '删除候选',
+      True: '是', False: '否',
+    }));
+    const responseLabels = new Map([
+      ['UNRESOLVED', '未能判定'], ['KEEP', '保留'], ['REMOVE', '删除'],
+    ]);
+
+    function translateCode(value, context = '') {
+      if (value === 'keep' && context.includes('门控')) return '跳过精修，保留原文';
+      if (value === 'keep' && context.includes('决定')) return '保留候选';
+      const parts = value.split(/,\s*/);
+      if (parts.length > 1 && parts.every(part => codeLabels.has(part))) {
+        return parts.map(part => codeLabels.get(part)).join('、');
+      }
+      return codeLabels.get(value) || value;
+    }
+
+    function addInlineText(parent, text) {
+      const tokens = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g).filter(Boolean);
+      for (const token of tokens) {
+        if (token.startsWith('`') && token.endsWith('`')) {
+          const code = document.createElement('code');
+          const original = token.slice(1, -1);
+          code.textContent = translateCode(original, text);
+          if (code.textContent !== original) code.title = original;
+          parent.append(code);
+        } else if (token.startsWith('**') && token.endsWith('**')) {
+          const strong = document.createElement('strong');
+          strong.textContent = token.slice(2, -2);
+          parent.append(strong);
+        } else {
+          parent.append(document.createTextNode(token));
+        }
+      }
+    }
+
+    function renderMarkdown(source, target) {
+      target.replaceChildren();
+      const lines = source.split('\n');
+      for (let index = 0; index < lines.length;) {
+        const line = lines[index];
+        if (!line.trim()) { index += 1; continue; }
+        if (line.startsWith('```')) {
+          const codeLines = [];
+          index += 1;
+          while (index < lines.length && !lines[index].startsWith('```')) {
+            codeLines.push(lines[index++]);
+          }
+          if (index < lines.length) index += 1;
+          const pre = document.createElement('pre');
+          const code = document.createElement('code');
+          const original = codeLines.join('\n');
+          code.textContent = responseLabels.get(original) || original;
+          if (code.textContent !== original) code.title = original;
+          pre.append(code);
+          target.append(pre);
+          continue;
+        }
+        if (line.trim() === '---') {
+          target.append(document.createElement('hr'));
+          index += 1;
+          continue;
+        }
+        const heading = line.match(/^(#{2,4})\s+(.+)$/);
+        if (heading) {
+          const element = document.createElement(heading[1].length <= 2 ? 'h2' : 'h3');
+          addInlineText(element, heading[2]);
+          target.append(element);
+          index += 1;
+          continue;
+        }
+        if (/^\s*[-*]\s+/.test(line)) {
+          const list = document.createElement('ul');
+          while (index < lines.length && /^\s*[-*]\s+/.test(lines[index])) {
+            const item = document.createElement('li');
+            addInlineText(item, lines[index++].replace(/^\s*[-*]\s+/, ''));
+            list.append(item);
+          }
+          target.append(list);
+          continue;
+        }
+        const paragraphLines = [];
+        while (index < lines.length && lines[index].trim()
+          && !lines[index].startsWith('```')
+          && !/^#{2,4}\s+/.test(lines[index])
+          && !/^\s*[-*]\s+/.test(lines[index])
+          && lines[index].trim() !== '---') {
+          paragraphLines.push(lines[index++].trim());
+        }
+        const paragraph = document.createElement('p');
+        addInlineText(paragraph, paragraphLines.join(' '));
+        target.append(paragraph);
+      }
+    }
+
+    function showPage(nextIndex) {
+      if (!pages.length) return;
+      pageIndex = Math.max(0, Math.min(pages.length - 1, nextIndex));
+      renderMarkdown(pages[pageIndex], logContent);
+      pageLabel.textContent = `${pageIndex + 1} / ${pages.length}`;
+      jumpPage.value = String(pageIndex + 1);
+      previousButton.disabled = pageIndex === 0;
+      nextButton.disabled = pageIndex === pages.length - 1;
+    }
+
+    previousButton.addEventListener('click', () => showPage(pageIndex - 1));
+    nextButton.addEventListener('click', () => showPage(pageIndex + 1));
+    jumpForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const requested = Number(jumpPage.value);
+      if (Number.isInteger(requested)) showPage(requested - 1);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.key === 'ArrowLeft') showPage(pageIndex - 1);
+      if (event.key === 'ArrowRight') showPage(pageIndex + 1);
+    });
+
+    fetch('/api/refinement-log', { cache: 'no-store' })
+      .then(async response => {
+        if (!response.ok) throw new Error((await response.json()).detail || '读取日志失败');
+        return response.json();
+      })
+      .then(data => {
+        pages = data.pages || [];
+        if (!pages.length) throw new Error('日志中没有精修窗口');
+        const updated = new Date(data.updated_at).toLocaleString('zh-CN', { hour12: false });
+        logInfo.textContent = `日志：${data.name} · 更新于 ${updated} · 共 ${pages.length} 个窗口`;
+        jumpPage.disabled = false;
+        jumpButton.disabled = false;
+        if (data.appendix) {
+          appendix.hidden = false;
+          renderMarkdown(data.appendix, appendixContent);
+        }
+        showPage(0);
+      })
+      .catch(error => {
+        logInfo.textContent = '日志读取失败';
+        logContent.innerHTML = '';
+        const message = document.createElement('p');
+        message.className = 'error';
+        message.textContent = error.message;
+        logContent.append(message);
+      });
+  </script>
+</body>
+</html>

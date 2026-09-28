@@ -15,6 +15,8 @@ MODEL_ID = "hfl/chinese-roberta-wwm-ext"
 REMOVE_MARGIN = 0.7
 KEEP_MARGIN = -0.7
 MAX_SENTENCE_CHARS = 96
+LOCAL_CONTEXT_CHARS = 4
+LOCAL_REMOVE_MARGIN = 0.35
 
 
 @dataclass(frozen=True)
@@ -97,3 +99,24 @@ class RepetitionPlausibility:
         if margin <= KEEP_MARGIN:
             return PlausibilityResult("keep", round(margin, 4), "model_plausibility_keep")
         return PlausibilityResult("unresolved", round(margin, 4), "model_plausibility_uncertain")
+
+    def decide_short_context(
+        self, source: str, start: int, end: int, target: str,
+    ) -> PlausibilityResult:
+        """Recheck an undecided two-character repeat near its own source span."""
+
+        if (
+            start < 0 or end > len(source) or end - start != 2
+            or len(target) != 1 or source[start:end] != target * 2
+        ):
+            return PlausibilityResult("unresolved", None, "local_plausibility_not_applicable")
+        left = max(0, start - LOCAL_CONTEXT_CHARS)
+        right = min(len(source), end + LOCAL_CONTEXT_CHARS)
+        result = self.decide(source[left:right], start - left, end - left, target)
+        if result.margin is None:
+            return result
+        if result.margin >= LOCAL_REMOVE_MARGIN:
+            return PlausibilityResult("remove", result.margin, "local_model_plausibility_remove")
+        if result.margin <= KEEP_MARGIN:
+            return PlausibilityResult("keep", result.margin, "local_model_plausibility_keep")
+        return PlausibilityResult("unresolved", result.margin, "local_model_plausibility_uncertain")
