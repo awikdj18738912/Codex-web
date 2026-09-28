@@ -298,7 +298,20 @@ class ContextualNumericNormalizer:
             output = output[: change.start] + change.replacement + output[change.end :]
         return NumericNormalizationResult(output, changes)
 
-    def normalize(self, text: str) -> NumericNormalizationResult:
+    def normalize(
+        self,
+        text: str,
+        *,
+        preserve_single_one_counts: bool = False,
+    ) -> NumericNormalizationResult:
+        """Normalize explicit numeric contexts.
+
+        ``preserve_single_one_counts`` is for recovery paths that apply numeric
+        fallback after a rejected Refiner result. It leaves classifier counts
+        whose value is exactly one in spoken form (for example, ``一个``),
+        without changing other count values or numeric ranges. Normal
+        normalization remains unchanged unless callers opt into this policy.
+        """
         if not text:
             return NumericNormalizationResult(text, ())
 
@@ -447,6 +460,8 @@ class ContextualNumericNormalizer:
             if _ambiguous_number_token(token, text, match.end()):
                 continue
             value = chinese_number_to_decimal(token)
+            if preserve_single_one_counts and value == 1:
+                continue
             if value is not None:
                 add(
                     *match.span(),

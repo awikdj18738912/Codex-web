@@ -66,8 +66,8 @@ WEB_DIR = Path(__file__).resolve().parent / "web"
 # Refining the complete cumulative hypothesis for every streaming chunk is
 # expensive and can monopolize the single GPU-backed refiner when a long file
 # is uploaded (especially if the browser has more than one open connection).
-# Keep short early hypotheses responsive, then perform one complete refinement
-# when the client sends ``finish``.
+# Keep short early hypotheses responsive. On ``finish``, route the authoritative
+# ASR snapshot through the same streaming worker, then run final reconciliation.
 STREAMING_INTERMEDIATE_MAX_CHARS = 240
 # One refinement pass costs about half a second while a sentence window only
 # grows a few characters per ASR chunk, so retriggering it immediately mostly
@@ -659,14 +659,15 @@ def create_app(
         review_cache: dict[
             tuple[int, int, str, str, str], dict[str, object]
         ] | None = None,
-    ) -> tuple[str, list[dict[str, object]], float, bool]:
+        response_cache: dict[str, str] | None = None,
+    ) -> tuple[str, list[dict[str, object]], float, int, int]:
         """Review structural repetitions in a stable stream window or final text."""
 
         if (not final and not streaming) or not text:
-            return text, [], 0.0, False
+            return text, [], 0.0, 0, 0
         candidates = find_repetition_review_candidates(text, max_candidates=128)
         if not candidates:
-            return text, [], 0.0, False
+            return text, [], 0.0, 0, 0
 
         cached_decisions: list[dict[str, object]] = []
         pending_candidates: list[RepetitionReviewCandidate] = []
@@ -697,8 +698,8 @@ def create_app(
                 reviewed_text, applied_records = apply_repetition_review_decisions(
                     text, candidates, cached_decisions
                 )
-                return reviewed_text, list(applied_records), 0.0, False
-            return text, [], 0.0, False
+                return reviewed_text, list(applied_records), 0.0, 0, 0
+            return text, [], 0.0, 0, 0
 
         records: list[dict[str, object]] = []
         if not refiner_lock.acquire(timeout=REFINER_LOCK_TIMEOUT_SECONDS):
@@ -715,14 +716,21 @@ def create_app(
                     text, candidates, cached_decisions
                 )
                 records.extend(cached_records)
-            return text, records, 0.0, False
+            return text, records, 0.0, 0, 0
 
         total_latency_ms = 0.0
+        model_call_count = 0
+        response_cache_hit_count = 0
         decisions: list[dict[str, object]] = list(cached_decisions)
         model_responses: dict[int, str] = {}
+        response_cache_hits: set[int] = set()
+        batch_responses: dict[str, str] = {}
         plausibility_evidence: dict[int, dict[str, object]] = {}
         try:
             reviewer = getattr(refiner, "review_repetition", None)
+            reviewer_with_status = getattr(
+                refiner, "review_repetition_with_status", None
+            )
             if reviewer is None:
                 records = [
                     {
@@ -738,38 +746,77 @@ def create_app(
                         text, candidates, cached_decisions
                     )
                     records.extend(cached_records)
-                return reviewed_text, records, total_latency_ms, False
+                return reviewed_text, records, total_latency_ms, 0, 0
             for candidate in pending_candidates:
-                started_at = (
-                    call_stats.begin_call(final=final, retry=False)
-                    if call_stats is not None
-                    else time.perf_counter()
-                )
-                if started_at is None:
-                    records.append(
-                        {
-                            **candidate.public_dict(),
-                            "decision": "unresolved",
-                            "reason": "review_calls_closed",
-                        }
+                response = batch_responses.get(candidate.context)
+                if response is not None:
+                    response_cache_hit_count += 1
+                    response_cache_hits.add(candidate.index)
+                    response_latency_ms = 0.0
+                elif (
+                    response_cache is not None
+                    and candidate.context in response_cache
+                ):
+                    response = response_cache[candidate.context]
+                    batch_responses[candidate.context] = response
+                    response_cache_hit_count += 1
+                    response_cache_hits.add(candidate.index)
+                    response_latency_ms = 0.0
+                else:
+                    started_at = (
+                        call_stats.begin_call(final=final, retry=False)
+                        if call_stats is not None
+                        else time.perf_counter()
                     )
-                    continue
-                try:
-                    response, latency_ms = reviewer(candidate.context)
-                except BaseException:
+                    if started_at is None:
+                        records.append(
+                            {
+                                **candidate.public_dict(),
+                                "decision": "unresolved",
+                                "reason": "review_calls_closed",
+                            }
+                        )
+                        continue
+                    model_call_count += 1
+                    try:
+                        if callable(reviewer_with_status):
+                            response, response_latency_ms, completed = (
+                                reviewer_with_status(candidate.context)
+                            )
+                        else:
+                            # Keep test doubles and other Refiner adapters that
+                            # implement the original two-value API compatible.
+                            response, response_latency_ms = reviewer(
+                                candidate.context
+                            )
+                            completed = True
+                    except BaseException:
+                        if call_stats is not None:
+                            call_stats.finish_call(started_at, failed=True)
+                        records.append(
+                            {
+                                **candidate.public_dict(),
+                                "decision": "unresolved",
+                                "reason": "review_failed",
+                            }
+                        )
+                        continue
                     if call_stats is not None:
-                        call_stats.finish_call(started_at, failed=True)
-                    records.append(
-                        {
-                            **candidate.public_dict(),
-                            "decision": "unresolved",
-                            "reason": "review_failed",
-                        }
-                    )
-                    continue
-                if call_stats is not None:
-                    call_stats.finish_call(started_at, failed=False)
-                total_latency_ms += latency_ms
+                        call_stats.finish_call(started_at, failed=False)
+                    if not isinstance(response, str):
+                        response = str(response)
+                    batch_responses[candidate.context] = response
+                    if (
+                        completed is True
+                        and response.strip()
+                        and response_cache is not None
+                    ):
+                        response_cache[candidate.context] = response
+                        if len(response_cache) > 1024:
+                            for old_context in tuple(response_cache)[:256]:
+                                response_cache.pop(old_context, None)
+
+                total_latency_ms += response_latency_ms
                 model_responses[candidate.index] = response
                 decision = _repetition_decision_from_refined_context(
                     text, candidate, response
@@ -797,15 +844,16 @@ def create_app(
                                 "reason": plausibility.reason,
                             }]
                 if decision is None:
-                    records.append(
-                        {
-                            **candidate.public_dict(),
-                            "decision": "unresolved",
-                            "reason": "invalid_response",
-                            "model_response": response,
-                            **plausibility_evidence.get(candidate.index, {}),
-                        }
-                    )
+                    record = {
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": "invalid_response",
+                        "model_response": response,
+                        **plausibility_evidence.get(candidate.index, {}),
+                    }
+                    if candidate.index in response_cache_hits:
+                        record["model_response_cache_hit"] = True
+                    records.append(record)
                 else:
                     decisions.extend(decision)
             if decisions:
@@ -825,15 +873,17 @@ def create_app(
                 for item in cached_decisions
                 if int(item["index"]) in applied_by_index
             )
-            records.extend(
-                {
+            for candidate in pending_candidates:
+                if candidate.index not in applied_by_index:
+                    continue
+                record = {
                     **applied_by_index[candidate.index],
                     "model_response": model_responses[candidate.index],
                     **plausibility_evidence.get(candidate.index, {}),
                 }
-                for candidate in pending_candidates
-                if candidate.index in applied_by_index
-            )
+                if candidate.index in response_cache_hits:
+                    record["model_response_cache_hit"] = True
+                records.append(record)
             records.sort(key=lambda record: int(record["index"]))
 
             if review_cache is not None:
@@ -860,7 +910,13 @@ def create_app(
                 if len(review_cache) > 1024:
                     for key in tuple(review_cache)[:256]:
                         review_cache.pop(key, None)
-            return reviewed_text, records, total_latency_ms, True
+            return (
+                reviewed_text,
+                records,
+                total_latency_ms,
+                model_call_count,
+                response_cache_hit_count,
+            )
         finally:
             refiner_lock.release()
 
@@ -1124,7 +1180,10 @@ def create_app(
                 refiner_available = False
                 if call_stats is not None:
                     call_stats.record_busy_segment()
-                fallback = numeric_normalizer.normalize(prepared.baseline_text)
+                fallback = numeric_normalizer.normalize(
+                    prepared.baseline_text,
+                    preserve_single_one_counts=not numeric_normalization,
+                )
                 clean_segment = fallback.text
                 numeric_fallbacks.extend(
                     {
@@ -1268,7 +1327,10 @@ def create_app(
                         if salvaged_candidate is not None
                         else prepared.baseline_text
                     )
-                    fallback = numeric_normalizer.normalize(fallback_source)
+                    fallback = numeric_normalizer.normalize(
+                        fallback_source,
+                        preserve_single_one_counts=not numeric_normalization,
+                    )
                     clean_segment = fallback.text
                     numeric_fallbacks.extend(
                         {
@@ -1424,7 +1486,12 @@ def create_app(
             )
             protection = prepared.protection
             normalized = (
-                numeric_normalizer.normalize(prepared.baseline_text)
+                numeric_normalizer.normalize(
+                    prepared.baseline_text,
+                    preserve_single_one_counts=(
+                        apply_numeric_fallback and not numeric_normalization
+                    ),
+                )
                 if numeric_normalization or apply_numeric_fallback
                 else None
             )
@@ -1760,10 +1827,13 @@ def create_app(
         streaming_finish_requested = False
         latest_refinement_revision = 0
         last_refinement_started_at: float | None = None
+        last_streaming_group_signature: (
+            tuple[tuple[tuple[str, ...], ...], str] | None
+        ) = None
         vad_source_segments: list[str] = []
         seen_vad_segment_ids: set[int] = set()
-        # In tri_state, wait for three punctuation chunks and refine them as
-        # one source-owned group. Legacy modes retain rolling K=3 behavior.
+        # In tri_state, derive punctuation chunks only from ASR/VAD-completed
+        # source segments, then refine each complete K=3 group together.
         window_refinement = CumulativeWindowRefinement(
             session_refine_update,
             window_size=3,
@@ -1775,6 +1845,7 @@ def create_app(
         streaming_repetition_cache: dict[
             tuple[int, int, str, str, str], dict[str, object]
         ] = {}
+        streaming_repetition_response_cache: dict[str, str] = {}
         streaming_repetition_reviews: list[dict[str, object]] = []
 
         def consume_completed_segments(payload: dict[str, object]) -> int:
@@ -1903,6 +1974,12 @@ def create_app(
                     matcher_value,
                     confidence_metadata=confidence_metadata,
                 )
+            result["window_cache_partition"] = (
+                "vad_segments"
+                if source_segments
+                else "raw_text"
+            )
+            result["final_vad_source_segment_count"] = len(source_segments or ())
             result["asr_confidence"] = asr_confidence
             result["asr_confidence_metadata"] = dict(confidence_metadata)
             entity_result = fallback_update(
@@ -1957,12 +2034,19 @@ def create_app(
                 + float(entity_result["entity_matcher_latency_ms"]),
                 3,
             )
-            reviewed_text, review_records, review_latency_ms, review_executed = (
+            (
+                reviewed_text,
+                review_records,
+                review_latency_ms,
+                review_model_calls,
+                response_cache_hits,
+            ) = (
                 review_final_repetition_text(
                     str(result["clean_text"]),
                     final=final,
                     call_stats=refiner_session_stats,
                     review_cache=streaming_repetition_cache,
+                    response_cache=streaming_repetition_response_cache,
                 )
             )
             result["clean_text"] = clean_transcript_deterministically(
@@ -1977,8 +2061,10 @@ def create_app(
                 float(result.get("refiner_latency_ms", 0.0)) + review_latency_ms
             )
             result["refiner_executed"] = bool(
-                result.get("refiner_executed", False) or review_executed
+                result.get("refiner_executed", False) or review_model_calls
             )
+            result["repetition_review_model_calls"] = review_model_calls
+            result["repetition_response_cache_hits"] = response_cache_hits
             return result
 
         async def process_audio_chunk(audio: bytes) -> tuple[dict[str, object], int]:
@@ -2016,6 +2102,7 @@ def create_app(
         async def run_streaming_refiner() -> None:
             nonlocal pending_refinement, streaming_finish_requested
             nonlocal latest_refinement_revision, last_refinement_started_at
+            nonlocal last_streaming_group_signature
             while pending_refinement is not None:
                 # Refine only a bounded tail of the cumulative ASR hypothesis;
                 # committed results stay cached for finalization.
@@ -2098,13 +2185,15 @@ def create_app(
                         reviewed_text = before_review
                         review_records = []
                         review_latency_ms = 0.0
-                        review_executed = False
+                        review_model_calls = 0
+                        response_cache_hits = 0
                     else:
                         (
                             reviewed_text,
                             review_records,
                             review_latency_ms,
-                            review_executed,
+                            review_model_calls,
+                            response_cache_hits,
                         ) = await asyncio.to_thread(
                             review_final_repetition_text,
                             before_review,
@@ -2112,6 +2201,7 @@ def create_app(
                             streaming=True,
                             call_stats=refiner_session_stats,
                             review_cache=streaming_repetition_cache,
+                            response_cache=streaming_repetition_response_cache,
                         )
                     result["clean_text"] = clean_transcript_deterministically(
                         reviewed_text
@@ -2122,6 +2212,13 @@ def create_app(
                         str(result["clean_text"]),
                         review_records,
                     )
+                    reviewed_group_cache_updates = (
+                        window_refinement.remember_reviewed_source_spans(
+                            reviewed_spans
+                        )
+                        if reviewed_spans is not None
+                        else 0
+                    )
                     if reviewed_spans is not None:
                         result["refinement_source_spans"] = reviewed_spans
                     record_trace(
@@ -2129,6 +2226,9 @@ def create_app(
                         input=before_review, model_review_output=reviewed_text,
                         output=result["clean_text"], reviews=review_records,
                         source_spans_updated=reviewed_spans is not None,
+                        reviewed_group_cache_updates=reviewed_group_cache_updates,
+                        review_model_calls=review_model_calls,
+                        response_cache_hits=response_cache_hits,
                     )
                     result["repetition_reviews"] = [
                         *result.get("repetition_reviews", []),
@@ -2140,7 +2240,7 @@ def create_app(
                     )
                     result["refiner_executed"] = bool(
                         result.get("refiner_executed", False)
-                        or review_executed
+                        or review_model_calls
                     )
                     streaming_repetition_reviews.extend(review_records)
                     # A finish request may be waiting for this pass.  Publish
@@ -2180,6 +2280,8 @@ def create_app(
                         "pass_error", revision=revision,
                         error=type(error).__name__, detail=str(error),
                     )
+                    if revision == latest_refinement_revision:
+                        last_streaming_group_signature = None
                     if (
                         not streaming_finish_requested
                         and revision == latest_refinement_revision
@@ -2197,8 +2299,49 @@ def create_app(
             full_raw_value: str,
             tail_start: int,
             source_segments_value: tuple[str, ...] | None = None,
+            *,
+            force: bool = False,
         ) -> None:
             nonlocal pending_refinement, streaming_refiner_task
+            nonlocal last_streaming_group_signature
+            if use_punctuation_windows and not force:
+                effective_source_segments = source_segments_value or None
+                group_signature, pending_signature = (
+                    window_refinement.streaming_input_signature(
+                        full_raw_value,
+                        source_chunks=effective_source_segments,
+                    )
+                )
+                # An incomplete K-window still needs a lightweight pass so
+                # pending-text normalization can reach the live display. It
+                # does not invoke the Refiner; rerun it only when that pending
+                # source text changes. Once a complete group exists, its
+                # exact signature alone controls model-window scheduling.
+                queue_signature = (
+                    group_signature,
+                    pending_signature if not group_signature else "",
+                )
+                if not group_signature and not pending_signature:
+                    record_trace(
+                        "pass_skipped",
+                        reason="waiting_for_complete_group",
+                        raw_text=full_raw_value,
+                    )
+                    return
+                if queue_signature == last_streaming_group_signature:
+                    record_trace(
+                        "pass_skipped",
+                        reason=(
+                            "pending_text_unchanged"
+                            if not group_signature
+                            else "no_new_complete_group"
+                        ),
+                        complete_group_count=len(group_signature),
+                        pending_tail_present=bool(pending_signature),
+                        raw_text=full_raw_value,
+                    )
+                    return
+                last_streaming_group_signature = queue_signature
             # Enqueueing must not invalidate the pass that is already
             # running: the revision is claimed in run_streaming_refiner.
             revision = latest_refinement_revision + 1
@@ -2220,6 +2363,63 @@ def create_app(
             )
             if streaming_refiner_task is None or streaming_refiner_task.done():
                 streaming_refiner_task = asyncio.create_task(run_streaming_refiner())
+
+        async def drain_streaming_refinements() -> None:
+            """Wait until the active pass and newest queued snapshot are done."""
+
+            nonlocal streaming_refiner_task
+            started_at = time.perf_counter()
+            while True:
+                task = streaming_refiner_task
+                if task is None or task.done():
+                    if task is not None:
+                        try:
+                            task.result()
+                        except Exception as error:
+                            record_trace(
+                                "stream_worker_error",
+                                error=type(error).__name__,
+                                detail=str(error),
+                            )
+                    if pending_refinement is None:
+                        break
+                    streaming_refiner_task = asyncio.create_task(
+                        run_streaming_refiner()
+                    )
+                    task = streaming_refiner_task
+                try:
+                    await asyncio.wait_for(
+                        asyncio.shield(task),
+                        timeout=ASR_CHUNK_STATUS_INTERVAL_SECONDS,
+                    )
+                except asyncio.TimeoutError:
+                    await send_json(
+                        {
+                            "event": "status",
+                            "stage": "stream_refinement_drain",
+                            "elapsed_seconds": round(
+                                time.perf_counter() - started_at
+                            ),
+                        }
+                    )
+                except Exception as error:
+                    # Per-pass model failures are handled inside the worker.
+                    # Recover only if an unexpected worker-level failure left
+                    # a newer snapshot queued.
+                    record_trace(
+                        "stream_worker_error",
+                        error=type(error).__name__,
+                        detail=str(error),
+                    )
+                    if pending_refinement is None:
+                        break
+                    streaming_refiner_task = None
+            record_trace(
+                "stream_refinement_drain_complete",
+                elapsed_seconds=round(time.perf_counter() - started_at, 3),
+                revision=latest_refinement_revision,
+            )
+
         async def refine_final(
             raw_text: str,
             detected_language: str | None,
@@ -2305,33 +2505,6 @@ def create_app(
                     if command.get("event") != "finish":
                         continue
                     payload = await request_asr("/stream/finish", session_id)
-                    if requested_mode in {"online", "offline", "streaming"}:
-                        # Let the in-flight streaming pass publish before the
-                        # final pass starts.  Previously the finish command
-                        # invalidated it immediately, so a repetition found
-                        # by the streaming reviewer was discarded and only
-                        # the final Refiner could change the visible text.
-                        if (
-                            streaming_refiner_task is not None
-                            and not streaming_refiner_task.done()
-                        ):
-                            try:
-                                await asyncio.wait_for(
-                                    asyncio.shield(streaming_refiner_task),
-                                    timeout=REFINER_LOCK_TIMEOUT_SECONDS,
-                                )
-                            except asyncio.TimeoutError:
-                                # The final pass remains the safe fallback for
-                                # a slow streaming generation.  Invalidate its
-                                # revision so a late result cannot overwrite
-                                # the final text.
-                                latest_refinement_revision += 1
-                                streaming_finish_requested = True
-                            except Exception:
-                                streaming_finish_requested = True
-                        if not streaming_finish_requested:
-                            streaming_finish_requested = True
-                        pending_refinement = None
                     consume_completed_segments(payload)
                     asr_activity = {
                         key: payload.get(key)
@@ -2360,9 +2533,9 @@ def create_app(
                     asr_confidence = _optional_confidence(payload.get("confidence"))
                     confidence_metadata = _confidence_metadata(payload)
                     if final_raw:
-                        # Publish the complete ASR result before starting the
-                        # potentially slow neural pass. This keeps the raw
-                        # transcript available even while refinement is busy.
+                        # ASR completion does not end streaming refinement:
+                        # submit its authoritative snapshot to the same rolling
+                        # window worker before starting final reconciliation.
                         if not await send_json(
                             transcript_event(
                                 final_raw,
@@ -2378,6 +2551,30 @@ def create_app(
                         ):
                             finished = True
                             break
+                    if requested_mode in {"online", "offline", "streaming"}:
+                        # First finish work already admitted to the streaming
+                        # queue so the final ASR snapshot cannot replace it.
+                        await drain_streaming_refinements()
+                        if final_raw:
+                            queue_streaming_refinement(
+                                final_raw,
+                                detected_language
+                                if isinstance(detected_language, str)
+                                else None,
+                                asr_confidence,
+                                confidence_metadata,
+                                final_raw,
+                                0,
+                                final_source_segments,
+                                force=True,
+                            )
+                            # The authoritative final ASR text also traverses
+                            # the streaming path; only after it completes may
+                            # whole-transcript final reconciliation begin.
+                            await drain_streaming_refinements()
+                        streaming_finish_requested = True
+                        pending_refinement = None
+                    if final_raw:
                         refinement_started = time.perf_counter()
                         trace_context.update(phase="final", revision=latest_refinement_revision)
                         record_trace(
@@ -2430,6 +2627,22 @@ def create_app(
                             output=result.get("clean_text"),
                             reviews=result.get("repetition_reviews"),
                             reject_reasons=result.get("refiner_reject_reasons"),
+                            window_cache_partition=result.get("window_cache_partition"),
+                            window_cache_reused_group_count=result.get(
+                                "window_cache_reused_group_count", 0
+                            ),
+                            window_cache_reprocessed_group_count=result.get(
+                                "window_cache_reprocessed_group_count", 0
+                            ),
+                            window_cache_reprocess_reasons=result.get(
+                                "window_cache_reprocess_reasons", {}
+                            ),
+                            repetition_review_model_calls=result.get(
+                                "repetition_review_model_calls", 0
+                            ),
+                            repetition_response_cache_hits=result.get(
+                                "repetition_response_cache_hits", 0
+                            ),
                         )
                         if output is not None:
                             _append_record(
@@ -2621,22 +2834,18 @@ def create_app(
                                 tuple(vad_source_segments),
                             )
                             continue
-                        if (is_deferred or (
-                            gate_decision is not None
-                            and gate_decision.public_dict()["action"] == "keep"
-                        )) and not has_repetition_candidate:
-                            continue
-                        tail_start = max(
-                            0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                        record_trace(
+                            "pass_skipped",
+                            reason="waiting_for_asr_completed_segment",
+                            raw_text=raw_text,
+                            completed_source_segment_count=len(vad_source_segments),
+                            gate_action=(
+                                gate_decision.public_dict()["action"]
+                                if gate_decision is not None else None
+                            ),
+                            repetition_candidate=has_repetition_candidate,
                         )
-                        queue_streaming_refinement(
-                            raw_text[tail_start:],
-                            language_value,
-                            asr_confidence,
-                            confidence_metadata,
-                            raw_text,
-                            tail_start,
-                        )
+                        continue
                     continue
                 payload, chunk_index = await process_audio_chunk(audio)
                 completed_now = consume_completed_segments(payload)
@@ -2698,22 +2907,18 @@ def create_app(
                                 tuple(vad_source_segments),
                             )
                             continue
-                        if (is_deferred or (
-                            gate_decision is not None
-                            and gate_decision.public_dict()["action"] == "keep"
-                        )) and not has_repetition_candidate:
-                            continue
-                        tail_start = max(
-                            0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                        record_trace(
+                            "pass_skipped",
+                            reason="waiting_for_asr_completed_segment",
+                            raw_text=raw_text,
+                            completed_source_segment_count=len(vad_source_segments),
+                            gate_action=(
+                                gate_decision.public_dict()["action"]
+                                if gate_decision is not None else None
+                            ),
+                            repetition_candidate=has_repetition_candidate,
                         )
-                        queue_streaming_refinement(
-                            raw_text[tail_start:],
-                            language_value,
-                            asr_confidence,
-                            confidence_metadata,
-                            raw_text,
-                            tail_start,
-                        )
+                        continue
                     else:
                         if not await send_json(
                             attach_refiner_session_stats(

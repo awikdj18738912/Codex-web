@@ -683,11 +683,19 @@
             currentSocket.dispatchEvent(new Event('chunk-ack'));
             return;
           }
-          // Keep validated streaming refinements visible while the final pass
-          // runs. Only stale ASR hypotheses are suppressed after finish.
+          // Keep validated streaming refinements visible through stream drain
+          // and final reconciliation; suppress only stale ASR hypotheses.
           if (finishing && data.event === 'transcript' && data.refiner_deferred !== true) return;
           if (data.event === 'ready') return;
           if (data.event === 'error') { completeTranscription('识别服务错误：' + data.detail, true); return; }
+          if (data.event === 'status' && data.stage === 'stream_refinement_drain') {
+            refinerExecuted.textContent = 'ASR 已结束 · 流式精修收尾中';
+            refinerResult.textContent = '正在完成活动窗口和最终 ASR 文本的流式精修';
+            refinerResult.classList.remove('warning');
+            refinerType.textContent = '流式窗口精修';
+            setStatus('ASR 已完成，等待流式精修队列结束 · ' + (data.elapsed_seconds || 0) + ' 秒');
+            return;
+          }
           if (data.event === 'status' && data.stage === 'final_refinement') {
             refinerExecuted.textContent = '最终精修中 · ' + (data.elapsed_seconds || 0) + ' 秒';
             refinerResult.textContent = '正在处理完整转录，连接保持中';
@@ -722,15 +730,17 @@
               refinerType.textContent = 'tri_state · 实时假设路由';
               setStatus(gateAction === 'defer' ? '等待 ASR 假设稳定' : (gateAction === 'keep' ? '保留当前转写，跳过模型' : '已进入精修队列'));
             } else {
-              refinerExecuted.textContent = deferred ? '等待最终精修' : '后台精修排队中';
-              refinerResult.textContent = deferred ? '正在完成最后一个活动窗口' : '正在识别并更新活动窗口';
+              refinerExecuted.textContent = deferred ? '最终 ASR 已返回' : '后台精修排队中';
+              refinerResult.textContent = deferred
+                ? '完整文本将先进入流式精修，再进行最终精修'
+                : '正在识别并更新活动窗口';
               refinerResult.classList.remove('warning');
               refinerType.textContent = deferred
-                ? (selectedMode === 'offline' ? '离线最终精修' : '流式最终精修')
+                ? '流式窗口精修收尾中'
                 : '流式异步精修';
               setStatus(
                 deferred
-                  ? (selectedMode === 'offline' ? '完整转录已完成，正在最终精修' : '离线流式转录已完成，正在最终精修')
+                  ? 'ASR 已完成，继续流式精修'
                   : '离线流式转录中，精修异步跟进'
               );
             }
@@ -827,7 +837,7 @@
         await sendFileChunks(samples);
         if (socket && socket.readyState === WebSocket.OPEN) {
           finishing = true;
-          setStatus('正在等待最终精修');
+          setStatus('音频已发送，等待 ASR 最终结果；流式精修继续运行');
           socket.send(JSON.stringify({ event: 'finish' }));
           // A broken proxy or dropped WebSocket must not leave the timer running forever.
           finishWatchdog = setTimeout(() => {
@@ -876,7 +886,7 @@
 
     async function stop() {
       running = false; finishing = true; clearInterval(ticker); setButton(true, true);
-      setStatus(selectedMode === 'offline' ? '正在一次性识别和精修' : '正在完成最后一段精修');
+      setStatus('音频输入已结束，等待 ASR 最终结果；流式精修继续运行');
       await stopAudio();
       if (socket && socket.readyState === WebSocket.OPEN) {
         if (buffered.length) socket.send(buffered.buffer);

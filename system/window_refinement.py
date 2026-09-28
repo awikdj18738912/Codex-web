@@ -211,6 +211,7 @@ class CumulativeWindowRefinement:
         *,
         confidence_metadata=None,
         source_chunks=None,
+        preserve_cached_partition=False,
     ):
         with self.lock:
             if self.fixed_groups:
@@ -218,6 +219,7 @@ class CumulativeWindowRefinement:
                     text, language, final, protector, confidence, matcher,
                     confidence_metadata=confidence_metadata,
                     source_chunks=source_chunks,
+                    preserve_cached_partition=preserve_cached_partition,
                 )
             if source_chunks is None:
                 manager = ChunkManager(
@@ -402,13 +404,63 @@ class CumulativeWindowRefinement:
                 result["boundary_reviews"] = list(self.boundary_reviews)
             return result
 
-    def _update_fixed(
-        self, text, language, final, protector, confidence, matcher,
-        *, confidence_metadata, source_chunks,
-    ):
-        """Refine complete groups of K source chunks without splitting a group."""
+    def complete_group_signature(self, text, *, source_chunks=None):
+        """Return complete fixed groups without changing cache or model state."""
 
-        if source_chunks is None:
+        groups, _pending = self.streaming_input_signature(
+            text, source_chunks=source_chunks,
+        )
+        return groups
+
+    def streaming_input_signature(self, text, *, source_chunks=None):
+        """Return complete groups and the uncommitted tail for stream scheduling."""
+
+        chunks, _pending = self._fixed_chunks(
+            text,
+            source_chunks=source_chunks,
+            final=False,
+            preserve_cached_partition=False,
+        )
+        complete_count = len(chunks) // self.window_size * self.window_size
+        groups = tuple(
+            tuple(chunks[index:index + self.window_size])
+            for index in range(0, complete_count, self.window_size)
+        )
+        pending_text = join_refined_segments(
+            (*chunks[complete_count:], _pending)
+        )
+        return groups, pending_text
+
+    def remember_reviewed_source_spans(self, source_spans):
+        """Carry accepted review edits into exact matching fixed-group cache entries."""
+
+        if not self.fixed_groups or not isinstance(source_spans, (list, tuple)):
+            return 0
+        updated_count = 0
+        with self.lock:
+            updated = []
+            for (group, cached), span in zip(self.group_cache, source_spans):
+                if not isinstance(span, dict):
+                    updated.append((group, cached))
+                    continue
+                source = join_refined_segments(group)
+                reviewed = span.get("clean_text")
+                if (
+                    span.get("source_text") == source
+                    and isinstance(reviewed, str)
+                    and cached.get("refiner_accepted", True)
+                    and reviewed != cached.get("clean_text")
+                ):
+                    cached = {**cached, "clean_text": reviewed}
+                    updated_count += 1
+                updated.append((group, cached))
+            self.group_cache = updated
+        return updated_count
+
+    def _fixed_chunks(
+        self, text, *, source_chunks, final, preserve_cached_partition,
+    ):
+        if source_chunks is None or preserve_cached_partition:
             manager = ChunkManager(
                 max_chars=self.window_max_chars,
                 one_punctuation_window=self.one_punctuation_window,
@@ -444,6 +496,19 @@ class CumulativeWindowRefinement:
                     )
                 )
             pending = ""
+        return chunks, pending
+
+    def _update_fixed(
+        self, text, language, final, protector, confidence, matcher,
+        *, confidence_metadata, source_chunks, preserve_cached_partition,
+    ):
+        """Refine complete groups of K source chunks without splitting a group."""
+        chunks, pending = self._fixed_chunks(
+            text,
+            source_chunks=source_chunks,
+            final=final,
+            preserve_cached_partition=preserve_cached_partition,
+        )
 
         complete_count = len(chunks) // self.window_size * self.window_size
         if final:
@@ -455,6 +520,10 @@ class CumulativeWindowRefinement:
         previous = self.group_cache
         used_cache_indices: set[int] = set()
         updated = []
+        reused_group_count = 0
+        reused_gate_skip_group_count = 0
+        reprocessed_group_count = 0
+        reprocess_reasons: dict[str, int] = {}
         for index, group in enumerate(group_chunks):
             source = join_refined_segments(group)
             # Final ASR punctuation/VAD boundaries can regroup the same source
@@ -488,12 +557,25 @@ class CumulativeWindowRefinement:
             )
             if cache_index is not None:
                 used_cache_indices.add(cache_index)
-            if cached is None or (final and not cached.get("refiner_accepted", True)):
+            reprocess_reason = None
+            if cached is None:
+                reprocess_reason = "no_exact_source_group_match"
+            elif final and not cached.get("refiner_accepted", True):
+                reprocess_reason = "previous_result_rejected"
+            if reprocess_reason is not None:
+                reprocessed_group_count += 1
+                reprocess_reasons[reprocess_reason] = (
+                    reprocess_reasons.get(reprocess_reason, 0) + 1
+                )
                 cached = self.refine(
                     source, language, final, protector, confidence, matcher,
                     single_window=True,
                     confidence_metadata=confidence_metadata,
                 )
+            else:
+                reused_group_count += 1
+                if not cached.get("refiner_executed", True):
+                    reused_gate_skip_group_count += 1
             updated.append((group, cached))
         self.group_cache = updated
 
@@ -530,8 +612,14 @@ class CumulativeWindowRefinement:
         result["refinement_source_spans"] = self._source_spans(
             text, sources, len(updated), parts,
         )
-        if source_chunks is not None:
+        if source_chunks is not None and not preserve_cached_partition:
             result["boundary_reviews"] = list(self.boundary_reviews)
+        result["window_cache_reused_group_count"] = reused_group_count
+        result["window_cache_reused_gate_skip_group_count"] = (
+            reused_gate_skip_group_count
+        )
+        result["window_cache_reprocessed_group_count"] = reprocessed_group_count
+        result["window_cache_reprocess_reasons"] = reprocess_reasons
         return result
 
     @staticmethod
@@ -577,6 +665,7 @@ class CumulativeWindowRefinement:
         *,
         confidence_metadata=None,
         raw_text=None,
+        preserve_cached_partition=False,
     ):
         """Refine stable ASR/VAD source segments through one persistent K-window."""
 
@@ -597,6 +686,7 @@ class CumulativeWindowRefinement:
             matcher,
             confidence_metadata=confidence_metadata,
             source_chunks=source_chunks,
+            preserve_cached_partition=preserve_cached_partition,
         )
 
     def _aggregate(self, parts, raw_text, *, final, committed_chunks):

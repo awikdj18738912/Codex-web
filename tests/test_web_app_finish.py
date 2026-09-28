@@ -224,6 +224,17 @@ class _NumericRepairWithLossRefiner:
         return "你好，我有22200元。", 1.0
 
 
+class _DropsCountContentRefiner(_IdentityRefiner):
+    def refine(
+        self,
+        text: str,
+        *,
+        entity_hints: tuple[str, ...] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        return "我有7个梨。", 1.0
+
+
 def _fake_stream_request(
     asr_url: str,
     endpoint: str,
@@ -263,7 +274,16 @@ def _stable_stream_request(
 ) -> dict[str, object]:
     if endpoint == "/stream/start":
         return {"session_id": "stable-test-session"}
-    if endpoint in {"/stream/chunk", "/stream/finish"}:
+    if endpoint == "/stream/chunk":
+        text = "第一段原始文本。第二段原始文本。"
+        return {
+            "text": text,
+            "language": "Chinese",
+            "completed_segments": [
+                {"segment_id": 1, "text": text, "vad_boundary": True}
+            ],
+        }
+    if endpoint == "/stream/finish":
         return {"text": "第一段原始文本。第二段原始文本。", "language": "Chinese"}
     if endpoint == "/stream/cancel":
         return {"cancelled": True}
@@ -291,7 +311,26 @@ class _GrowingStreamRequest:
         if endpoint == "/stream/chunk":
             index = min(self.chunk_count, len(self.TRANSCRIPTS) - 1)
             self.chunk_count += 1
-            return {"text": self.TRANSCRIPTS[index], "language": "Chinese"}
+            payload: dict[str, object] = {
+                "text": self.TRANSCRIPTS[index], "language": "Chinese"
+            }
+            if index == 0:
+                payload["completed_segments"] = [
+                    {
+                        "segment_id": 1,
+                        "text": "第一句原始文本。",
+                        "vad_boundary": True,
+                    }
+                ]
+            elif index == 1 and self.chunk_count == 2:
+                payload["completed_segments"] = [
+                    {
+                        "segment_id": 2,
+                        "text": "第二句原始文本。",
+                        "vad_boundary": True,
+                    }
+                ]
+            return payload
         if endpoint == "/stream/finish":
             return {"text": self.TRANSCRIPTS[-1], "language": "Chinese"}
         if endpoint == "/stream/cancel":
@@ -350,7 +389,18 @@ def _entity_stream_request(
     if endpoint == "/stream/start":
         return {"session_id": "entity-test-session"}
     if endpoint in {"/stream/chunk", "/stream/finish"}:
-        return {"text": "鬼灵们是这个副本的入口。", "language": "Chinese"}
+        payload: dict[str, object] = {
+            "text": "鬼灵们是这个副本的入口。", "language": "Chinese"
+        }
+        if endpoint == "/stream/chunk":
+            payload["completed_segments"] = [
+                {
+                    "segment_id": 1,
+                    "text": "鬼灵们是这个副本的入口。",
+                    "vad_boundary": True,
+                }
+            ]
+        return payload
     if endpoint == "/stream/cancel":
         return {"cancelled": True}
     raise AssertionError(f"unexpected endpoint: {endpoint}")
@@ -449,6 +499,25 @@ def _numeric_stream_request(
         return {"session_id": "numeric-test-session"}
     if endpoint == "/stream/finish":
         return {"text": "你好，我有二万二千二百元。", "language": "Chinese"}
+    if endpoint == "/stream/cancel":
+        return {"cancelled": True}
+    raise AssertionError(f"unexpected endpoint: {endpoint}")
+
+
+def _count_fallback_stream_request(
+    asr_url: str,
+    endpoint: str,
+    session_id: str | None = None,
+    data: bytes = b"",
+    params: dict[str, str] | None = None,
+) -> dict[str, object]:
+    if endpoint == "/stream/start":
+        return {"session_id": "count-fallback-test-session"}
+    if endpoint == "/stream/finish":
+        return {
+            "text": "我有一个苹果、七个梨、一到两个人。",
+            "language": "Chinese",
+        }
     if endpoint == "/stream/cancel":
         return {"cancelled": True}
     raise AssertionError(f"unexpected endpoint: {endpoint}")
@@ -730,11 +799,20 @@ class WebAppFinishTest(unittest.TestCase):
                     return {"session_id": "truncated-review-session"}
                 if endpoint == "/stream/chunk":
                     self.chunks += 1
-                    ending = "天哪，" if self.chunks == 1 else "天哪！"
-                    return {
-                        "text": "模拟普通人接到警察电话：“喂，喂，是郭庆子是吧？我是警察。" + ending,
+                    stable_segment = "模拟普通人接到警察电话：“喂，喂，是郭庆子是吧？我是警察。"
+                    response = {
+                        "text": stable_segment + ("" if self.chunks == 1 else "天哪！"),
                         "language": "Chinese",
                     }
+                    if self.chunks == 1:
+                        response["completed_segments"] = [
+                            {
+                                "segment_id": 1,
+                                "text": stable_segment,
+                                "vad_boundary": True,
+                            }
+                        ]
+                    return response
                 if endpoint == "/stream/cancel":
                     return {"cancelled": True}
                 raise AssertionError(endpoint)
@@ -799,7 +877,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["clean_text"], "我这1000多公里了。一个人。")
         self.assertTrue(
@@ -829,7 +907,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertIn("你好，我有二万二千二百元。", _NumericItnRefiner.calls)
         self.assertTrue(
@@ -856,7 +934,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["clean_text"], "你好，我有22200元。")
         self.assertFalse(final["numeric_normalization_enabled"])
@@ -872,6 +950,49 @@ class WebAppFinishTest(unittest.TestCase):
             any(
                 "numeric_value_mismatch" in reason
                 for reason in final["refiner_reject_reasons"]
+            )
+        )
+
+    def test_rejected_numeric_fallback_preserves_single_count_one(self) -> None:
+        with (
+            patch.object(web_app, "TransformersRefiner", _DropsCountContentRefiner),
+            patch.object(web_app, "_stream_request", _count_fallback_stream_request),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"),
+                "cpu",
+                "http://fake-asr",
+                "Chinese",
+                32,
+                None,
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=online") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    self.assertEqual(websocket.receive_json()["event"], "transcript")
+                    final = self._await_event(websocket, "final")
+
+        self.assertEqual(final["clean_text"], "我有一个苹果、7个梨、1到2个人。")
+        self.assertFalse(final["refiner_accepted"])
+        self.assertFalse(
+            any(
+                change["original"] == "一个"
+                for change in final["numeric_fallbacks"]
+            )
+        )
+        self.assertTrue(
+            any(
+                change["original"] == "七个"
+                and change["replacement"] == "7个"
+                for change in final["numeric_fallbacks"]
+            )
+        )
+        self.assertTrue(
+            any(
+                change["original"] == "一到两个"
+                and change["replacement"] == "1到2个"
+                for change in final["numeric_fallbacks"]
             )
         )
 
@@ -893,7 +1014,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(
             final["clean_text"],
@@ -923,7 +1044,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertTrue(
             any("__ENTITY_000__" in value for value in _IdiomAndNumericRefiner.calls)
@@ -956,7 +1077,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
             self.assertEqual(final["clean_text"], "好。")
             self.assertTrue(final["refiner_executed"])
@@ -992,7 +1113,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     transcript = websocket.receive_json()
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(transcript["asr_confidence_metadata"]["scope"], "full_text")
         self.assertFalse(final["refiner_executed"])
@@ -1027,7 +1148,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     websocket.receive_json()
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertTrue(final["refiner_executed"])
         self.assertEqual(final["session_refiner_call_count"], 1)
@@ -1059,7 +1180,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
             self.assertTrue(final["refiner_executed"])
             self.assertEqual(final["refinement_gate_skipped_segments"], 0)
@@ -1262,10 +1383,23 @@ class WebAppFinishTest(unittest.TestCase):
         def stream_request(asr_url, endpoint, session_id=None, data=b"", params=None):
             if endpoint == "/stream/start":
                 return {"session_id": "review-audit-session"}
-            if endpoint in {"/stream/chunk", "/stream/finish"}:
+            if endpoint == "/stream/chunk":
                 return {
                     "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
                     "language": "Chinese",
+                    "completed_segments": [
+                        {
+                            "segment_id": 1,
+                            "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
+                            "vad_boundary": True,
+                        }
+                    ],
+                }
+            if endpoint == "/stream/finish":
+                return {
+                    "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
+                    "language": "Chinese",
+                    "completed_segments": [],
                 }
             if endpoint == "/stream/cancel":
                 return {"cancelled": True}
@@ -1293,12 +1427,112 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(review["reason"], "invalid_response")
                     self.assertEqual(review["model_response"], "无法确定，请保留原文。")
 
-    def test_punctuated_repetition_is_reviewed_without_chunk_vad_event(self) -> None:
-        """Streaming review must not wait for a backend-specific VAD event."""
+    def test_repetition_review_reuses_only_completed_identical_model_responses(self) -> None:
+        source = "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？我是警察。天哪。"
+        final_text = source + "请尽快配合。"
+
+        class _GrowingReviewStreamRequest:
+            def __init__(self) -> None:
+                self.chunk_count = 0
+
+            def __call__(self, asr_url, endpoint, session_id=None, data=b"", params=None):
+                if endpoint == "/stream/start":
+                    return {"session_id": "repetition-response-cache-session"}
+                if endpoint == "/stream/chunk":
+                    self.chunk_count += 1
+                    response = {
+                        "text": source if self.chunk_count == 1 else final_text,
+                        "language": "Chinese",
+                    }
+                    if self.chunk_count == 1:
+                        response["completed_segments"] = [
+                            {"segment_id": 1, "text": source, "vad_boundary": True}
+                        ]
+                    elif self.chunk_count == 2:
+                        response["completed_segments"] = [
+                            {
+                                "segment_id": 2,
+                                "text": "请尽快配合。",
+                                "vad_boundary": True,
+                            }
+                        ]
+                    return response
+                if endpoint == "/stream/finish":
+                    return {"text": final_text, "language": "Chinese"}
+                if endpoint == "/stream/cancel":
+                    return {"cancelled": True}
+                raise AssertionError(endpoint)
+
+        for completes, expected_calls in ((True, 1), (False, 3)):
+            with self.subTest(completes=completes):
+                class _StatusInvalidRefiner(_IdentityRefiner):
+                    review_calls: list[str] = []
+
+                    def __init__(self, *args, **kwargs) -> None:
+                        type(self).review_calls = []
+
+                    def review_repetition(self, context: str) -> tuple[str, float]:
+                        type(self).review_calls.append(context)
+                        return "无法确定，请保留原文。", 1.0
+
+                    def review_repetition_with_status(
+                        self, context: str,
+                    ) -> tuple[str, float, bool]:
+                        response, latency_ms = self.review_repetition(context)
+                        return response, latency_ms, completes
+
+                with (
+                    patch.object(web_app, "TransformersRefiner", _StatusInvalidRefiner),
+                    patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+                    patch.object(web_app, "_stream_request", _GrowingReviewStreamRequest()),
+                ):
+                    app = web_app.create_app(
+                        Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                        "Chinese", 32, None, refinement_gate_mode="tri_state",
+                    )
+                    with TestClient(app) as client:
+                        with client.websocket_connect(
+                            "/ws/stream?mode=streaming"
+                        ) as websocket:
+                            self.assertEqual(websocket.receive_json()["event"], "ready")
+                            websocket.send_bytes(b"pcm")
+                            first_update = self._await_event(websocket, "update")
+                            self.assertIn("喂，喂", first_update["clean_text"])
+
+                            websocket.send_bytes(b"pcm")
+                            second_transcript = self._await_event(
+                                websocket, "transcript"
+                            )
+                            self.assertIn("喂，喂", second_transcript["raw_text"])
+
+                            websocket.send_json({"event": "finish"})
+                            self._await_event(websocket, "transcript")
+                            final = self._await_event(websocket, "final")
+                            self.assertIn("喂，喂", final["clean_text"])
+
+                self.assertEqual(
+                    len(_StatusInvalidRefiner.review_calls), expected_calls
+                )
+                if completes:
+                    self.assertTrue(
+                        any(
+                            review.get("model_response_cache_hit") is True
+                            for review in final["repetition_reviews"]
+                        )
+                    )
+                else:
+                    self.assertFalse(
+                        any(
+                            review.get("model_response_cache_hit") is True
+                            for review in final["repetition_reviews"]
+                        )
+                    )
+
+    def test_unfinalized_punctuated_repetition_waits_until_finish(self) -> None:
+        """Punctuation alone must not authorize interim repetition review."""
 
         class _NoVadBoundaryStreamRequest:
-            # Keep at least the review-context width after the candidate so
-            # the second, longer hypothesis takes the cache-hit path.
+            # This backend deliberately omits explicit completed-segment events.
             text = (
                 "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？"
                 "我是警察。天哪，喂，我是所的警察。"
@@ -1352,30 +1586,17 @@ class WebAppFinishTest(unittest.TestCase):
                 ) as websocket:
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_bytes(b"pcm")
-                    update = self._await_event(websocket, "update")
-                    self.assertEqual(
-                        update["clean_text"],
-                        "模拟普通人接到警察电话：‘喂，是郭庆子是吧？"
-                        "我是警察。天哪，喂，我是所的警察。",
-                    )
-                    self.assertTrue(
-                        any(
-                            item["source"] == "喂，喂"
-                            and item["applied"] is True
-                            for item in update["repetition_reviews"]
-                        )
-                    )
-                    self.assertNotIn("喂，喂", update["display_refined_text"])
+                    self._await_event(websocket, "transcript")
+                    self.assertEqual(_StreamingRepetitionRefiner.review_calls, [])
 
-                    # The second pass reuses the earlier local-review
-                    # decision.  It must retain the source-span edit instead
-                    # of repainting the cached raw ASR span in the browser.
                     websocket.send_bytes(b"pcm")
-                    cached_update = self._await_event(websocket, "update")
-                    self.assertIn("请尽快配合", cached_update["clean_text"])
-                    self.assertNotIn(
-                        "喂，喂", cached_update["display_refined_text"]
-                    )
+                    self._await_event(websocket, "transcript")
+                    self.assertEqual(_StreamingRepetitionRefiner.review_calls, [])
+
+                    websocket.send_json({"event": "finish"})
+                    self._await_event(websocket, "transcript")
+                    final = self._await_event(websocket, "final")
+                    self.assertNotIn("喂，喂", final["clean_text"])
 
         self.assertEqual(len(_StreamingRepetitionRefiner.review_calls), 1)
 
@@ -1442,7 +1663,7 @@ class WebAppFinishTest(unittest.TestCase):
 
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
@@ -1455,9 +1676,12 @@ class WebAppFinishTest(unittest.TestCase):
                     )
                     self.assertEqual(
                         final["session_refiner_intermediate_call_count"],
+                        0,
+                    )
+                    self.assertEqual(
+                        final["session_refiner_final_call_count"],
                         calls_before_finish,
                     )
-                    self.assertEqual(final["session_refiner_final_call_count"], 0)
 
     def test_online_final_uses_sentence_bounded_window(self) -> None:
         with (
@@ -1479,7 +1703,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
             self.assertEqual(final["event"], "final")
             self.assertEqual(final["window_size"], 3)
@@ -1505,7 +1729,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["window_size"], 3)
         punctuation_counts = [
@@ -1515,7 +1739,7 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertTrue(all(count <= 3 for count in punctuation_counts))
         self.assertTrue(any(count >= 2 for count in punctuation_counts))
 
-    def test_tri_state_waits_for_three_punctuation_chunks_before_model(self) -> None:
+    def test_tri_state_requires_asr_completion_before_refining_three_chunks(self) -> None:
         class _ThreeChunkASR:
             def __init__(self) -> None:
                 self.chunks = 0
@@ -1525,12 +1749,25 @@ class WebAppFinishTest(unittest.TestCase):
                     return {"session_id": "fixed-three-session"}
                 if endpoint == "/stream/chunk":
                     self.chunks += 1
-                    return {
-                        "text": "甲，甲，" if self.chunks == 1 else "甲，甲，乙。",
+                    text = "甲，甲，乙。"
+                    if self.chunks == 3:
+                        text += "尾部还未完成"
+                    response = {
+                        "text": "甲，甲，" if self.chunks == 1 else text,
                         "language": "Chinese",
                     }
+                    if self.chunks == 3:
+                        response["completed_segments"] = [
+                            {"segment_id": 1, "text": "甲，", "vad_boundary": True},
+                            {"segment_id": 2, "text": "甲，", "vad_boundary": True},
+                            {"segment_id": 3, "text": "乙。", "vad_boundary": True},
+                        ]
+                    return response
                 if endpoint == "/stream/finish":
-                    return {"text": "甲，甲，乙。", "language": "Chinese"}
+                    return {
+                        "text": "甲，甲，乙。尾部还未完成",
+                        "language": "Chinese",
+                    }
                 if endpoint == "/stream/cancel":
                     return {"cancelled": True}
                 raise AssertionError(endpoint)
@@ -1548,14 +1785,20 @@ class WebAppFinishTest(unittest.TestCase):
                 with client.websocket_connect("/ws/stream?mode=streaming") as websocket:
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_bytes(b"pcm")
-                    first = self._await_event(websocket, "update")
-                    self.assertEqual(first["committed_chunks"], 0)
+                    self._await_event(websocket, "transcript")
                     self.assertEqual(_CountingRefiner.calls, [])
 
                     websocket.send_bytes(b"pcm")
-                    second = self._await_event(websocket, "update")
-                    self.assertEqual(second["committed_chunks"], 3)
+                    self._await_event(websocket, "transcript")
+                    self.assertEqual(_CountingRefiner.calls, [])
+
+                    websocket.send_bytes(b"pcm")
+                    completed = self._await_event(websocket, "update")
+                    self.assertEqual(completed["committed_chunks"], 3)
                     self.assertEqual(_CountingRefiner.calls, ["甲，甲，乙。"])
+
+                    websocket.send_json({"event": "finish"})
+                    self._await_event(websocket, "final")
 
     def test_numeric_only_refinement_keeps_terminal_sentence_mark(self) -> None:
         with (
@@ -1576,7 +1819,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["clean_text"], "第一段原始文本。第二段原始文本。")
 
@@ -1611,7 +1854,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["clean_text"], "开头开头原始文本。后面原始文本")
         self.assertEqual(final["refinement_gate_decisions"][0]["cleanup_signals"], ["repeated_phrase"])
@@ -1718,7 +1961,7 @@ class WebAppFinishTest(unittest.TestCase):
 
                         websocket.send_json({"event": "finish"})
                         self.assertEqual(websocket.receive_json()["event"], "transcript")
-                        final = websocket.receive_json()
+                        final = self._await_event(websocket, "final")
 
                         self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
                         self.assertEqual(
@@ -1794,7 +2037,7 @@ class WebAppFinishTest(unittest.TestCase):
 
                     websocket.send_json({"event": "finish"})
                     self.assertEqual(websocket.receive_json()["event"], "transcript")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
@@ -1824,7 +2067,7 @@ class WebAppFinishTest(unittest.TestCase):
                         websocket.receive_json()["raw_text"],
                         _LONG_COMPLETE_TRANSCRIPT,
                     )
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
                     self.assertEqual(final["clean_text"], _LONG_COMPLETE_TRANSCRIPT)
                     self.assertTrue(final["refiner_accepted"])
                     # Sentence-bounded finalization may retry each affected
@@ -1869,7 +2112,7 @@ class WebAppFinishTest(unittest.TestCase):
                         websocket.receive_json()["raw_text"],
                         _MULTI_STAGE_CORRECTION_TEXT,
                     )
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertTrue(final["refiner_accepted"], final["refiner_reject_reasons"])
         self.assertEqual(final["refiner_reject_reasons"], [])
@@ -1906,7 +2149,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_json({"event": "finish"})
                     websocket.receive_json()
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
 
         self.assertEqual(final["clean_text"], "你当我傻？")
         self.assertTrue(final["refiner_accepted"])
@@ -1947,7 +2190,7 @@ class WebAppFinishTest(unittest.TestCase):
                             websocket.receive_json()["raw_text"],
                             "鬼灵们是这个副本的入口。",
                         )
-                        final = websocket.receive_json()
+                        final = self._await_event(websocket, "final")
                         self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
                         self.assertTrue(final["refiner_accepted"])
                         self.assertEqual(final["placeholder_retry_count"], 1)
@@ -1989,7 +2232,7 @@ class WebAppFinishTest(unittest.TestCase):
                             websocket.receive_json()["raw_text"],
                             "鬼灵们是这个副本的入口。",
                         )
-                        final = websocket.receive_json()
+                        final = self._await_event(websocket, "final")
                         self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
                         self.assertEqual(
                             final["entity_candidates"][0]["decision"],
@@ -2034,6 +2277,7 @@ class WebAppFinishTest(unittest.TestCase):
         with (
             patch.object(web_app, "TransformersRefiner", _SlowRefiner),
             patch.object(web_app, "_stream_request", _fake_stream_request),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
         ):
             app = web_app.create_app(
                 Path("/tmp/fake-refiner"),
@@ -2056,17 +2300,33 @@ class WebAppFinishTest(unittest.TestCase):
                     )
 
                     websocket.send_json({"event": "finish"})
-                    pending = websocket.receive_json()
-                    intermediate_events = []
-                    while pending["event"] != "transcript":
-                        intermediate_events.append(pending["event"])
-                        pending = websocket.receive_json()
-                    self.assertIn("update", intermediate_events)
-                    self.assertEqual(pending["event"], "transcript")
-                    self.assertEqual(pending["raw_text"], "最终原始文本。")
-                    self.assertTrue(pending["refiner_deferred"])
+                    events = []
+                    while True:
+                        event = websocket.receive_json()
+                        events.append(event)
+                        if event["event"] == "final":
+                            break
 
-                    final = websocket.receive_json()
+                    final_transcript_index = next(
+                        index
+                        for index, event in enumerate(events)
+                        if event["event"] == "transcript"
+                        and event.get("raw_text") == "最终原始文本。"
+                    )
+                    final_snapshot_update_index = next(
+                        index
+                        for index, event in enumerate(events)
+                        if event["event"] == "update"
+                        and event.get("raw_text") == "最终原始文本。"
+                    )
+                    final = events[-1]
+                    self.assertFalse(any(
+                        event["event"] == "update"
+                        and event.get("raw_text") == "中间原始文本。"
+                        for event in events
+                    ))
+                    self.assertLess(final_transcript_index, final_snapshot_update_index)
+                    self.assertLess(final_snapshot_update_index, len(events) - 1)
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(final["clean_text"], "最终精修文本。")
 
@@ -2089,7 +2349,7 @@ class WebAppFinishTest(unittest.TestCase):
                     websocket.send_json({"event": "finish"})
                     pending = websocket.receive_json()
                     self.assertEqual(pending["raw_text"], "最终原始文本。")
-                    final = websocket.receive_json()
+                    final = self._await_event(websocket, "final")
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(final["clean_text"], "最终原始文本。")
                     self.assertFalse(final["refiner_accepted"])
@@ -2098,9 +2358,13 @@ class WebAppFinishTest(unittest.TestCase):
                         final["refiner_reject_reasons"],
                     )
                     stats = final["refiner_session_stats"]
-                    self.assertEqual(stats["call_count"], 1)
-                    self.assertEqual(stats["completed_call_count"], 1)
-                    self.assertEqual(stats["failed_call_count"], 1)
+                    # The final ASR snapshot is now run through the streaming
+                    # worker before the separate final-refinement stage.
+                    self.assertEqual(stats["call_count"], 2)
+                    self.assertEqual(stats["intermediate_call_count"], 1)
+                    self.assertEqual(stats["final_call_count"], 1)
+                    self.assertEqual(stats["completed_call_count"], 2)
+                    self.assertEqual(stats["failed_call_count"], 2)
                     self.assertEqual(stats["inflight_call_count"], 0)
                     self.assertTrue(stats["stats_complete"])
 

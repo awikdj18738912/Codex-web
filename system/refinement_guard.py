@@ -17,6 +17,7 @@ from .numeric_normalizer import (
     _FIXED_EXPRESSIONS,
     _MULTIPLIER_UNITS,
     _RANGE_RE,
+    chinese_number_to_decimal,
 )
 from .quantifiers import (
     LEXICAL_REDUPLICATIONS,
@@ -38,6 +39,17 @@ _PUNCTUATION_WINDOW_RE = re.compile(
     r"(?<!\d)\.(?!\d))+$"
 )
 _SENTENCE_RE = re.compile(r"[^。！？!?；;\n]+[。！？!?；;\n]?")
+_LIST_COUNT_TOKEN = r"(?:[零〇一二两三四五六七八九十百千万亿]+|[1-9]\d*)"
+_NUMBERED_ITEM_RE = re.compile(
+    r"^\s*(?P<ordinal>[1-9]\d*)[.．、)]\s*(?P<item>\S.*?)\s*$"
+)
+_SPOKEN_OPTION_MARKER_RE = re.compile(
+    rf"[，,；;]\s*(?P<count>{_LIST_COUNT_TOKEN})(?P<classifier>[\u3400-\u9fff])是"
+)
+_LIST_COUNT_RE = re.compile(
+    rf"(?<![零〇一二两三四五六七八九十百千万亿0-9])"
+    rf"(?P<count>{_LIST_COUNT_TOKEN})(?P<classifier>[\u3400-\u9fff])"
+)
 DEFAULT_REFINEMENT_MAX_CHARS = 80
 _SEVERE_LOSS_MIN_SOURCE_CHARS = 16
 _SHORT_SEGMENT_MIN_SIMILARITY = 0.35
@@ -728,6 +740,7 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
         return ("empty_refiner_output",)
 
     reasons: list[str] = []
+    equivalent_numbered_list = _equivalent_numbered_choice_rewrite(raw, refined)
     raw_sentences = _sentence_counts(raw)
     for sentence, count in _sentence_counts(refined).items():
         if len(sentence) >= 8 and count >= 3 and count > raw_sentences[sentence]:
@@ -752,6 +765,7 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
             length_ratio < _SEVERE_LOSS_MIN_LENGTH_RATIO
             and (len(raw) >= 24 or similarity < _SHORT_SEGMENT_MIN_SIMILARITY)
             and not numeric_surface_only
+            and not equivalent_numbered_list
             # A self-correction intentionally removes the false start.  If
             # the candidate retains the corrected tail, do not classify that
             # deliberate compression as whole-window content loss.
@@ -769,6 +783,7 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
             and refined not in raw
             and not _retains_correction_tail(raw, refined)
             and not numeric_surface_only
+            and not equivalent_numbered_list
         ):
             reasons.append("severe_content_loss")
 
@@ -793,7 +808,8 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
     # (``傻`` -> ``的``).  Inspect the aligned edits locally as a second line of
     # defense.  Numeric-only surface changes are handled by the numeric guard
     # above and are deliberately excluded here.
-    reasons.extend(_semantic_edit_reasons(raw, refined))
+    if not equivalent_numbered_list:
+        reasons.extend(_semantic_edit_reasons(raw, refined))
 
     source_complete = bool(raw) and raw[-1] in _SENTENCE_ENDINGS
     target_complete = bool(refined) and refined[-1] in _SENTENCE_ENDINGS
@@ -849,6 +865,85 @@ def _sentence_counts(text: str) -> Counter[str]:
         for value in _SENTENCE_RE.findall(text)
         if value.strip()
     )
+
+
+def _list_count_value(token: str) -> int | None:
+    value = Decimal(token) if token.isdecimal() else chinese_number_to_decimal(token)
+    return int(value) if value is not None and value == int(value) else None
+
+
+def _equivalent_numbered_choice_rewrite(raw: str, refined: str) -> bool:
+    """Verify a spoken choice list before exempting its layout edits.
+
+    Every option must survive verbatim and in order. The only permitted header
+    change removes one of two adjacent, equal-valued count expressions; its
+    classifier must be the one repeated in the spoken option markers. This
+    checks the list's structure without naming any particular choices.
+    """
+
+    if "\n" not in refined:
+        return False
+    lines = refined.splitlines()
+    if len(lines) < 3 or not lines[0].rstrip().endswith(("：", ":")):
+        return False
+    target_header = lines[0].rstrip()[:-1].strip()
+    if not target_header:
+        return False
+
+    items: list[str] = []
+    for ordinal, line in enumerate(lines[1:], 1):
+        match = _NUMBERED_ITEM_RE.fullmatch(line)
+        if match is None or int(match.group("ordinal")) != ordinal:
+            return False
+        items.append(match.group("item").strip())
+
+    markers = list(_SPOKEN_OPTION_MARKER_RE.finditer(raw))
+    if len(markers) != len(items):
+        return False
+    classifier = markers[0].group("classifier")
+    if any(
+        _list_count_value(marker.group("count")) != 1
+        or marker.group("classifier") != classifier
+        for marker in markers
+    ):
+        return False
+
+    source_header = raw[: markers[0].start()].strip()
+    if not source_header:
+        return False
+    for index, marker in enumerate(markers):
+        end = markers[index + 1].start() if index + 1 < len(markers) else len(raw)
+        source_item = raw[marker.end() : end].strip()
+        target_item = items[index]
+        if index == len(items) - 1:
+            source_item = source_item.removesuffix("。")
+            target_item = target_item.removesuffix("。")
+        if source_item != target_item:
+            return False
+
+    counts = list(_LIST_COUNT_RE.finditer(source_header))
+    if source_header == target_header:
+        return any(
+            _list_count_value(count.group("count")) == len(items)
+            for count in counts
+        )
+    for left, right in zip(counts, counts[1:]):
+        if left.end() != right.start():
+            continue
+        if any(
+            _list_count_value(count.group("count")) != len(items)
+            for count in (left, right)
+        ):
+            continue
+        for redundant in (left, right):
+            if redundant.group("classifier") != classifier:
+                continue
+            if (
+                source_header[: redundant.start()] + source_header[redundant.end() :]
+                == target_header
+            ):
+                return True
+    return False
 
 
 def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:

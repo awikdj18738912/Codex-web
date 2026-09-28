@@ -64,6 +64,23 @@ class ContextualNumericNormalizerTest(unittest.TestCase):
         )
         self.assertEqual(result.changes[0].kind, "count")
 
+    def test_fallback_can_preserve_single_one_counts_only(self) -> None:
+        source = "我有一个苹果、七个梨、一位同事、一到两个人、一米宽。"
+
+        result = self.normalizer.normalize(
+            source,
+            preserve_single_one_counts=True,
+        )
+
+        self.assertEqual(
+            result.text,
+            "我有一个苹果、7个梨、一位同事、1到2个人、1米宽。",
+        )
+        self.assertEqual(
+            self.normalizer.normalize("我有一个苹果").text,
+            "我有1个苹果",
+        )
+
     def test_idiom_does_not_block_real_amount_later(self) -> None:
         source = "他一五一十地说，一共花了二百元。"
 

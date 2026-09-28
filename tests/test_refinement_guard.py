@@ -178,6 +178,33 @@ class RefinementGuardTest(unittest.TestCase):
 
         self.assertIn("severe_content_loss", reject_reasons(raw, "你怎么拼？"))
 
+    def test_equivalent_numbered_choice_rewrite_is_accepted(self) -> None:
+        cases = (
+            (
+                "那我们就只有两个两种选择，一种是互利共赢，一种是你死我活。",
+                "那我们就只有两个选择：\n1. 互利共赢\n2. 你死我活",
+            ),
+            (
+                "我们有三个三类方案，一类是甲案，一类是乙案，一类是丙案。",
+                "我们有三个方案：\n1. 甲案\n2. 乙案\n3. 丙案",
+            ),
+        )
+        for raw, refined in cases:
+            with self.subTest(raw=raw):
+                self.assertEqual(reject_reasons(raw, refined), ())
+
+    def test_numbered_choice_rewrite_must_keep_every_option_in_order(self) -> None:
+        raw = "那我们就只有两个两种选择，一种是互利共赢，一种是你死我活。"
+        candidates = (
+            "那我们就只有两个选择：\n1. 互利共赢",
+            "那我们就只有两个选择：\n1. 你死我活\n2. 互利共赢",
+            "那我们就只有三个选择：\n1. 互利共赢\n2. 你死我活",
+            "那我们就只有两个选择：\n1. 互利共赢\n2. 共同退让",
+        )
+        for refined in candidates:
+            with self.subTest(refined=refined):
+                self.assertTrue(reject_reasons(raw, refined))
+
     def test_normal_refinement_is_accepted(self) -> None:
         self.assertEqual(
             reject_reasons("今天有一个苹果，不对，有一个梨。", "今天有一个梨。"),

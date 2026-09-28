@@ -112,22 +112,79 @@ class TransformersRefiner:
         inputs = inputs.to(device)
         started = time.perf_counter()
         with self._torch.inference_mode():
-            generated = self._model.generate(
-                **inputs,
-                max_new_tokens=self._max_new_tokens,
-                max_time=self.GENERATION_MAX_TIME_SECONDS,
-                do_sample=False
-            )
-        input_width = inputs["input_ids"].shape[1]
-        text = self._tokenizer.decode(
-            generated[0, input_width:], skip_special_tokens=True
-        ).strip()
+            generated = self._generate(inputs)
+        text = self._decode_generated(generated, inputs["input_ids"].shape[1])
         return text, (time.perf_counter() - started) * 1000
+
+    def _generate(self, inputs, *, return_completion: bool = False):
+        options = {
+            "max_new_tokens": self._max_new_tokens,
+            "max_time": self.GENERATION_MAX_TIME_SECONDS,
+            "do_sample": False,
+        }
+        if return_completion:
+            options["return_dict_in_generate"] = True
+        return self._model.generate(**inputs, **options)
+
+    def _decode_generated(self, generated, input_width: int) -> str:
+        sequences = getattr(generated, "sequences", generated)
+        return self._tokenizer.decode(
+            sequences[0, input_width:], skip_special_tokens=True
+        ).strip()
 
     def review_repetition(self, text: str) -> tuple[str, float]:
         """Refine only the candidate's local transcript context."""
 
-        return self.refine(text)
+        response, latency_ms, _completed = self.review_repetition_with_status(text)
+        return response, latency_ms
+
+    def review_repetition_with_status(
+        self, text: str,
+    ) -> tuple[str, float, bool]:
+        """Return whether generation ended naturally so callers can cache it."""
+
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": text},
+        ]
+        inputs = self._tokenizer.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_dict=True,
+            return_tensors="pt",
+            **self._template_kwargs,
+        )
+        device = self._model.get_input_embeddings().weight.device
+        inputs = inputs.to(device)
+        started = time.perf_counter()
+        with self._torch.inference_mode():
+            generated = self._generate(inputs, return_completion=True)
+        sequences = generated.sequences
+        input_width = inputs["input_ids"].shape[1]
+        generated_tokens = sequences[0, input_width:]
+        response = self._tokenizer.decode(
+            generated_tokens, skip_special_tokens=True
+        ).strip()
+        eos_token_ids = getattr(
+            getattr(self._model, "generation_config", None),
+            "eos_token_id",
+            None,
+        )
+        if eos_token_ids is None:
+            eos_token_ids = self._tokenizer.eos_token_id
+        if isinstance(eos_token_ids, (tuple, list, set)):
+            eos_token_ids = {int(token_id) for token_id in eos_token_ids}
+        elif eos_token_ids is None:
+            eos_token_ids = set()
+        else:
+            eos_token_ids = {int(eos_token_ids)}
+        completed = bool(
+            generated_tokens.numel()
+            and eos_token_ids
+            and int(generated_tokens[-1].item()) in eos_token_ids
+        )
+        return response, (time.perf_counter() - started) * 1000, completed
 
 
 def _sounddevice():

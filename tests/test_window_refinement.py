@@ -106,6 +106,61 @@ class WindowTest(unittest.TestCase):
         self.assertEqual(calls, [prefix, "是郭庆子是吧？"])
         self.assertEqual(final["clean_text"], extended["clean_text"])
 
+    def test_complete_group_signature_ignores_an_incomplete_tail(self):
+        session = CumulativeWindowRefinement(
+            self.session.refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source = "模拟普通人接到警察电话：“喂，"
+        self.assertEqual(session.complete_group_signature(source), ())
+
+        complete = source + "喂，是郭庆子是吧？我是警察。天哪。"
+        signature = session.complete_group_signature(complete)
+        self.assertGreaterEqual(len(signature), 1)
+        self.assertEqual(
+            session.complete_group_signature(complete + "还有未完的尾巴"),
+            signature,
+        )
+        complete_before_tail, pending_before_tail = (
+            session.streaming_input_signature(complete)
+        )
+        complete_after_tail, pending_after_tail = (
+            session.streaming_input_signature(complete + "还有未完的尾巴")
+        )
+        self.assertEqual(complete_before_tail, complete_after_tail)
+        self.assertNotEqual(pending_before_tail, pending_after_tail)
+
+    def test_reviewed_stream_result_is_reused_by_final_exact_group(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 1,
+                "refiner_executed": True,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source = "甲，乙。丙！"
+        session.update(source, "Chinese", False, None, None)
+        reviewed = source.replace("乙", "")
+
+        updated = session.remember_reviewed_source_spans([
+            {"source_text": source, "clean_text": reviewed, "state": "active"},
+        ])
+        final = session.update(source, "Chinese", True, None, None)
+
+        self.assertEqual(updated, 1)
+        self.assertEqual(final["clean_text"], reviewed)
+        self.assertEqual(calls, [source])
+
     def test_fixed_groups_reuse_exact_source_after_group_index_shift(self):
         calls = []
 
@@ -144,6 +199,178 @@ class WindowTest(unittest.TestCase):
             "新丁。新戊。新己。",
         ])
         self.assertIn("丁。戊。己。", result["clean_text"])
+
+    def test_final_vad_boundaries_preserve_cached_streaming_partition(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 1,
+                "refiner_executed": True,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source = "甲，乙丙！丁？戊己。庚！"
+        stream_result = session.update(
+            source, "Chinese", False, None, None,
+        )
+        self.assertEqual(calls, ["甲，乙丙！丁？"])
+        self.assertEqual(stream_result["clean_text"], source)
+
+        final = session.update_segments(
+            ("甲，乙", "丙！丁？戊", "己。庚！"),
+            "Chinese", True, None, None,
+            raw_text=source,
+            preserve_cached_partition=True,
+        )
+
+        self.assertEqual(calls, ["甲，乙丙！丁？", "戊己。庚！"])
+        self.assertEqual(final["clean_text"], source)
+        self.assertEqual(final["window_cache_reused_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocessed_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocess_reasons"], {
+            "no_exact_source_group_match": 1,
+        })
+
+    def test_final_reuses_groups_from_authoritative_vad_stream_snapshot(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 1,
+                "refiner_executed": True,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source_segments = ("甲。", "乙。", "丙。", "丁。")
+        source = "".join(source_segments)
+
+        # The finish snapshot enters the same streaming path, using VAD-owned
+        # chunks. Final reconciliation must retain that exact grouping.
+        streamed = session.update_segments(
+            source_segments, "Chinese", False, None, None,
+            raw_text=source,
+        )
+        self.assertEqual(calls, ["甲。乙。丙。"])
+        self.assertEqual(streamed["clean_text"], source)
+
+        final = session.update_segments(
+            source_segments, "Chinese", True, None, None,
+            raw_text=source,
+        )
+
+        self.assertEqual(calls, ["甲。乙。丙。", "丁。"])
+        self.assertEqual(final["clean_text"], source)
+        self.assertEqual(final["window_cache_reused_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocessed_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocess_reasons"], {
+            "no_exact_source_group_match": 1,
+        })
+
+    def test_final_reuses_exact_streaming_gate_skip(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 0,
+                "refiner_executed": False,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source = "甲。乙。丙。"
+        session.update(source, "Chinese", False, None, None)
+        self.assertEqual(calls, [source])
+
+        final = session.update_segments(
+            ("甲。乙", "。丙。"), "Chinese", True, None, None,
+            raw_text=source, preserve_cached_partition=True,
+        )
+
+        self.assertEqual(calls, [source])
+        self.assertEqual(final["window_cache_reused_group_count"], 1)
+        self.assertEqual(final["window_cache_reused_gate_skip_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocessed_group_count"], 0)
+
+    def test_final_reprocesses_exact_streaming_result_rejected_by_validator(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            accepted = len(calls) > 1
+            return {
+                "raw_text": text,
+                "clean_text": text,
+                "refiner_latency_ms": 1,
+                "refiner_executed": True,
+                "refiner_accepted": accepted,
+                "refiner_reject_reasons": [] if accepted else ["semantic_content_loss"],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine, window_size=3, one_punctuation_window=True,
+            fixed_groups=True,
+        )
+        source = "甲。乙。丙。"
+        session.update(source, "Chinese", False, None, None)
+        final = session.update_segments(
+            (source,), "Chinese", True, None, None,
+            raw_text=source, preserve_cached_partition=True,
+        )
+
+        self.assertEqual(calls, [source, source])
+        self.assertEqual(final["window_cache_reused_group_count"], 0)
+        self.assertEqual(final["window_cache_reprocessed_group_count"], 1)
+        self.assertEqual(final["window_cache_reprocess_reasons"], {
+            "previous_result_rejected": 1,
+        })
 
     def test_vad_segments_are_refined_as_one_cross_boundary_window(self):
         calls = []
