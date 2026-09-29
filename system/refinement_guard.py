@@ -135,8 +135,7 @@ _REPETITION_REVIEW_SENTENCE_ENDINGS = _SENTENCE_ENDINGS | frozenset("…")
 _REPETITION_REVIEW_CLOSING_QUOTES = frozenset("\"'”’」』】）)]〉》〕〗〙〛")
 
 
-def _repetition_review_context(text: str, start: int, end: int) -> str:
-    """Return the candidate sentence with one complete sentence on each side."""
+def _repetition_review_boundaries(text: str) -> list[int]:
     boundaries: list[int] = []
     index = 0
     while index < len(text):
@@ -152,19 +151,84 @@ def _repetition_review_context(text: str, start: int, end: int) -> str:
         ):
             index += 1
         boundaries.append(index)
+    return boundaries
+
+
+def _repetition_review_context(text: str, start: int, end: int) -> str:
+    """Return the candidate sentence with up to two complete sentences per side."""
+    boundaries = _repetition_review_boundaries(text)
 
     preceding_boundaries = [boundary for boundary in boundaries if boundary <= start]
-    context_start = preceding_boundaries[-2] if len(preceding_boundaries) >= 2 else 0
+    context_start = preceding_boundaries[-3] if len(preceding_boundaries) >= 3 else 0
 
     current_end = next((boundary for boundary in boundaries if boundary >= end), None)
     if current_end is None:
         return text[context_start:]
 
-    context_end = next(
-        (boundary for boundary in boundaries if boundary > current_end),
-        len(text),
-    )
+    following_boundaries = [boundary for boundary in boundaries if boundary > current_end]
+    context_end = following_boundaries[1] if len(following_boundaries) >= 2 else len(text)
     return text[context_start:context_end]
+
+
+def find_model_proposed_deletions(
+    source: str, model_text: str, *, max_candidates: int = 4,
+) -> tuple[RepetitionReviewCandidate, ...]:
+    """Find standalone punctuated spans the model deleted from a rejected edit.
+
+    These are proposals only. The caller must obtain an independent local
+    decision and validate the isolated edit before changing source text.
+    """
+
+    if not source or not model_text or max_candidates < 1:
+        return ()
+    candidates: list[RepetitionReviewCandidate] = []
+    for action, start, end, _, _ in SequenceMatcher(
+        None, source, model_text, autojunk=False,
+    ).get_opcodes():
+        if action != "delete" or end >= len(source):
+            continue
+        deleted = source[start:end]
+        if (
+            len(deleted) > 12
+            or not deleted.strip()
+            or deleted[-1] not in _PUNCTUATION_WINDOW_CHARS
+            or (start > 0 and source[start - 1] not in _PUNCTUATION_WINDOW_CHARS)
+            or any(char in _SENTENCE_ENDINGS for char in deleted)
+        ):
+            continue
+        candidates.append(RepetitionReviewCandidate(
+            index=len(candidates), start=start, end=end,
+            source=deleted, target="", kind="model_proposed_deletion",
+            context=_repetition_review_context(source, start, end),
+        ))
+        if len(candidates) >= max_candidates:
+            break
+    return tuple(candidates)
+
+
+def has_complete_repetition_review_context(
+    text: str,
+    candidate: RepetitionReviewCandidate,
+    *,
+    following_sentences: int = 2,
+) -> bool:
+    """Whether a streaming candidate has enough finalized following context.
+
+    The transcript start is a natural boundary, so fewer than two preceding
+    sentences are acceptable there.  During streaming, however, do not review
+    a candidate until its sentence and the requested number of following
+    sentences have completed.
+    """
+    if following_sentences < 0:
+        raise ValueError("following_sentences must be non-negative")
+    boundaries = _repetition_review_boundaries(text)
+    current_end = next(
+        (boundary for boundary in boundaries if boundary >= candidate.end),
+        None,
+    )
+    if current_end is None:
+        return False
+    return sum(boundary > current_end for boundary in boundaries) >= following_sentences
 
 
 @dataclass(frozen=True, slots=True)

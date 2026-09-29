@@ -158,7 +158,6 @@ class TransformersRefiner:
         local_end = local_start + len(source)
         if (
             local_start < 0 or context[local_start:local_end] != source
-            or not target
         ):
             return "UNRESOLVED", 0.0, True, None
 

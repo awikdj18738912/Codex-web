@@ -628,6 +628,126 @@ def _multi_stage_correction_stream_request(
 
 @unittest.skipIf(web_app is None, "FastAPI is not installed")
 class WebAppFinishTest(unittest.TestCase):
+    def test_rejected_window_can_salvage_only_model_approved_local_deletion(self) -> None:
+        source = "哎，春秋晚年晚期嘛，所以礼坏乐崩嘛，"
+
+        class _BroadEditRefiner(_IdentityRefiner):
+            decision = "REMOVE"
+
+            def refine(self, text, *, entity_hints=(), strict_placeholders=False):
+                return "春秋晚期嘛，所以礼崩嘛。", 1.0
+
+            def review_repetition_candidate_with_status(
+                self, context, candidate, target, local_start,
+            ):
+                self.asserted_candidate = (candidate, target)
+                return self.decision, 1.0, True, 0.5
+
+        def fake_asr(asr_url, endpoint, session_id=None, data=b"", params=None):
+            if endpoint == "/stream/start":
+                return {"session_id": "local-deletion-test"}
+            if endpoint == "/stream/finish":
+                return {"text": source, "language": "Chinese"}
+            return {"cancelled": True}
+
+        for decision, expected in (
+            ("REMOVE", source.replace("哎，", "", 1)),
+            ("KEEP", source),
+            ("UNRESOLVED", source),
+        ):
+            with self.subTest(decision=decision):
+                _BroadEditRefiner.decision = decision
+                with (
+                    patch.object(web_app, "TransformersRefiner", _BroadEditRefiner),
+                    patch.object(web_app, "_stream_request", fake_asr),
+                ):
+                    app = web_app.create_app(
+                        Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                        "Chinese", 32, None,
+                    )
+                    with TestClient(app) as client:
+                        with client.websocket_connect("/ws/stream?mode=offline") as ws:
+                            self.assertEqual(ws.receive_json()["event"], "ready")
+                            ws.send_json({"event": "finish"})
+                            final = self._await_event(ws, "final")
+                self.assertEqual(final["clean_text"], expected)
+                self.assertTrue(final["refiner_reject_reasons"])
+                reviews = final["local_deletion_reviews"]
+                self.assertEqual(len(reviews), 1)
+                self.assertEqual(reviews[0]["source"], "哎，")
+                self.assertEqual(reviews[0]["applied"], decision == "REMOVE")
+
+    def test_refinement_log_distinguishes_window_types(self) -> None:
+        report = web_app._render_refinement_log_report(
+            [
+                {
+                    "event": "window_result",
+                    "phase": "stream",
+                    "revision": 1,
+                    "segments": [
+                        {
+                            "source": "门控片段。",
+                            "window_kind": "complete_k3_window",
+                            "required_window_chunks": 3,
+                            "model_calls": [],
+                        },
+                        {
+                            "source": "待处理尾部含裸裸。",
+                            "window_kind": "pending_tail",
+                            "required_window_chunks": 3,
+                            "model_calls": [],
+                        },
+                        {
+                            "source": "Refiner 窗口。",
+                            "window_kind": "complete_k3_window",
+                            "required_window_chunks": 3,
+                            "model_calls": [
+                                {"input": "Refiner 窗口。", "output": "精修窗口。"}
+                            ],
+                        },
+                    ],
+                },
+                {
+                    "event": "stream_review",
+                    "phase": "stream",
+                    "revision": 1,
+                    "reviews": [
+                        {
+                            "start": 8,
+                            "end": 10,
+                            "source": "裸裸",
+                            "target": "裸",
+                            "decision": "deferred",
+                            "reason": "incomplete_k3_group",
+                        }
+                    ],
+                },
+                {
+                    "event": "final_result",
+                    "raw_text": "转录原文。",
+                    "output": "转录结果。",
+                    "reviews": [
+                        {
+                            "start": 8,
+                            "end": 10,
+                            "source": "裸裸",
+                            "target": "裸",
+                            "decision": "remove",
+                            "reason": "model_candidate_decision",
+                        }
+                    ],
+                },
+            ],
+            "streaming",
+            "test-trace",
+        )
+
+        self.assertIn("完整 K=3 片段（门控检查，未调用 Refiner）", report)
+        self.assertIn("未满 K=3 窗口的待处理尾部", report)
+        self.assertIn("完整 K=3 窗口的 Refiner 输入", report)
+        self.assertIn("所属 K=3 窗口未完成（未调用模型）", report)
+        self.assertIn("决定：`remove`", report)
+
     def test_local_repetition_review_accepts_only_the_candidate_edit(self) -> None:
         from system.refinement_guard import find_repetition_review_candidates
 
@@ -686,7 +806,10 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertIsNone(focused(source, candidate, "REMOVE，因为我改写了整段"))
 
     def test_local_review_asks_about_each_candidate_in_shared_context(self) -> None:
-        source = "现在开始，首首先谈人人性的问题，大家来讨论。"
+        source = (
+            "第一句。第二句。现在开始，首首先谈人人性的问题。"
+            "第五句补充背景。第六句继续说明。"
+        )
 
         class _FocusedRefiner(_IdentityRefiner):
             calls: list[tuple[str, str, str, int]] = []
@@ -734,7 +857,8 @@ class WebAppFinishTest(unittest.TestCase):
                     websocket.send_bytes(b"pcm")
                     update = self._await_event(websocket, "update")
                     self.assertEqual(
-                        update["clean_text"], "现在开始，首先谈人人性的问题，大家来讨论。",
+                        update["clean_text"],
+                        "第一句。第二句。现在开始，首先谈人人性的问题。第五句补充背景。第六句继续说明。",
                         (update["repetition_reviews"], _FocusedRefiner.calls),
                     )
                     decisions = {
@@ -756,7 +880,11 @@ class WebAppFinishTest(unittest.TestCase):
     def test_short_context_fallback_repairs_undecided_repeat_in_stream(self) -> None:
         from system.repetition_plausibility import PlausibilityResult
 
-        source = "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，所以没有正义，强权即真理。"
+        source = (
+            "第一句。第二句。所以不要去谈什么正义，天下熙熙皆为利来，"
+            "天下攘攘皆为利利往，所以没有正义，强权即真理。"
+            "第五句。第六句。"
+        )
 
         class _UndecidedRefiner(_IdentityRefiner):
             def review_repetition_candidate_with_status(
@@ -817,7 +945,8 @@ class WebAppFinishTest(unittest.TestCase):
                     update = self._await_event(websocket, "update")
                     self.assertEqual(
                         update["clean_text"],
-                        "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利往，所以没有正义，强权即真理。",
+                        "第一句。第二句。所以不要去谈什么正义，天下熙熙皆为利来，"
+                        "天下攘攘皆为利往，所以没有正义，强权即真理。第五句。第六句。",
                     )
                     review = next(item for item in update["repetition_reviews"]
                                   if item["source"] == "利利")
@@ -930,9 +1059,15 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertEqual(revised["display_refined_text"], "模拟来电：‘喂，")
         self.assertEqual(revised["pending_raw_text"], "是本人吧？")
 
-    def test_truncated_review_publishes_repair_before_finish(self) -> None:
+    def test_truncated_repetition_review_waits_for_stable_five_sentence_context(self) -> None:
         class _TruncatedReviewer(_IdentityRefiner):
+            review_calls: list[str] = []
+
+            def __init__(self, *args, **kwargs) -> None:
+                type(self).review_calls = []
+
             def review_repetition(self, context: str) -> tuple[str, float]:
+                type(self).review_calls.append(context)
                 return context.replace("喂，喂", "喂").split("天哪")[0] + "<KEY>[郭庆子]", 1.0
 
         class _RevisedTailASR:
@@ -976,14 +1111,18 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     websocket.send_bytes(b"pcm")
                     update = self._await_event(websocket, "update")
-                    self.assertNotIn("喂，喂", update["display_refined_text"])
+                    self.assertIn("喂，喂", update["display_refined_text"])
                     self.assertTrue(any(
-                        review["source"] == "喂，喂" and review["applied"] is True
+                        review["source"] == "喂，喂"
+                        and review["decision"] == "deferred"
+                        and review["reason"] == "awaiting_five_sentence_context"
                         for review in update["repetition_reviews"]
-                    ))
+                    ), update["repetition_reviews"])
+                    self.assertEqual(_TruncatedReviewer.review_calls, [])
                     websocket.send_bytes(b"pcm")
                     revised = self._await_event(websocket, "transcript")
-                    self.assertNotIn("喂，喂", revised["display_refined_text"])
+                    self.assertIn("喂，喂", revised["display_refined_text"])
+                    self.assertEqual(_TruncatedReviewer.review_calls, [])
 
     def test_model_omitted_approximation_is_fixed_in_streaming_update(self) -> None:
         with (
@@ -1498,16 +1637,14 @@ class WebAppFinishTest(unittest.TestCase):
                     update = self._await_event(websocket, "update")
                     self.assertEqual(
                         update["clean_text"],
-                        "模拟普通人接到警察电话：‘喂，是郭庆子是吧？’",
+                        "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
                     )
-                    self.assertTrue(
-                        any(
-                            item["source"] == "喂，喂"
-                            and item["applied"] is True
-                            and "喂，喂" not in item["model_response"]
-                            for item in update["repetition_reviews"]
-                        )
-                    )
+                    self.assertTrue(any(
+                        item["source"] == "喂，喂"
+                        and item["decision"] == "deferred"
+                        for item in update["repetition_reviews"]
+                    ))
+                    self.assertEqual(_StreamingRepetitionRefiner.review_calls, [])
 
                     websocket.send_json({"event": "finish"})
                     self._await_event(websocket, "transcript")
@@ -1521,6 +1658,11 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertNotIn("候选规则", _StreamingRepetitionRefiner.review_calls[0])
 
     def test_invalid_repetition_review_keeps_original_model_response(self) -> None:
+        source = (
+            "第一句。第二句。模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’"
+            "我是警察。天哪。第五句。"
+        )
+
         class _InvalidReviewRefiner(_IdentityRefiner):
             def review_repetition(self, prompt: str) -> tuple[str, float]:
                 return "无法确定，请保留原文。", 1.0
@@ -1530,19 +1672,19 @@ class WebAppFinishTest(unittest.TestCase):
                 return {"session_id": "review-audit-session"}
             if endpoint == "/stream/chunk":
                 return {
-                    "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
+                    "text": source,
                     "language": "Chinese",
                     "completed_segments": [
                         {
                             "segment_id": 1,
-                            "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
+                            "text": source,
                             "vad_boundary": True,
                         }
                     ],
                 }
             if endpoint == "/stream/finish":
                 return {
-                    "text": "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’",
+                    "text": source,
                     "language": "Chinese",
                     "completed_segments": [],
                 }
@@ -1571,6 +1713,92 @@ class WebAppFinishTest(unittest.TestCase):
                     )
                     self.assertEqual(review["reason"], "invalid_response")
                     self.assertEqual(review["model_response"], "无法确定，请保留原文。")
+
+    def test_local_repetition_review_waits_for_its_complete_k3_group(self) -> None:
+        first_four = "第一句。第二句。第三句。第四句出现裸裸的问题。"
+        full_text = first_four + "第五句补充背景。第六句继续说明。"
+
+        class _ReviewRecordingRefiner(_IdentityRefiner):
+            review_contexts: list[str] = []
+
+            def __init__(self, *args, **kwargs) -> None:
+                type(self).review_contexts = []
+
+            def review_repetition(self, context: str) -> tuple[str, float]:
+                type(self).review_contexts.append(context)
+                return "KEEP", 1.0
+
+        class _GrowingCompletedSegments:
+            def __init__(self) -> None:
+                self.chunk_count = 0
+
+            def __call__(self, asr_url, endpoint, session_id=None, data=b"", params=None):
+                if endpoint == "/stream/start":
+                    return {"session_id": "fixed-k3-repetition-review-session"}
+                if endpoint == "/stream/chunk":
+                    self.chunk_count += 1
+                    if self.chunk_count == 1:
+                        return {
+                            "text": first_four,
+                            "language": "Chinese",
+                            "completed_segments": [
+                                {"segment_id": 1, "text": first_four, "vad_boundary": True}
+                            ],
+                        }
+                    return {
+                        "text": full_text,
+                        "language": "Chinese",
+                        "completed_segments": [
+                            {
+                                "segment_id": 2,
+                                "text": "第五句补充背景。第六句继续说明。",
+                                "vad_boundary": True,
+                            }
+                        ],
+                    }
+                if endpoint == "/stream/finish":
+                    return {"text": full_text, "language": "Chinese"}
+                if endpoint == "/stream/cancel":
+                    return {"cancelled": True}
+                raise AssertionError(endpoint)
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _ReviewRecordingRefiner),
+            patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
+            patch.object(web_app, "_stream_request", _GrowingCompletedSegments()),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None, refinement_gate_mode="tri_state",
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=streaming") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_bytes(b"pcm")
+                    first_update = self._await_event(websocket, "update")
+                    deferred = next(
+                        item for item in first_update["repetition_reviews"]
+                        if item["source"] == "裸裸"
+                    )
+                    self.assertEqual(deferred["decision"], "deferred")
+                    self.assertEqual(deferred["reason"], "incomplete_k3_group")
+                    self.assertEqual(_ReviewRecordingRefiner.review_contexts, [])
+
+                    websocket.send_bytes(b"pcm")
+                    second_update = self._await_event(websocket, "update")
+                    reviewed = next(
+                        item for item in second_update["repetition_reviews"]
+                        if item["source"] == "裸裸"
+                    )
+                    self.assertEqual(reviewed["decision"], "keep")
+                    self.assertEqual(
+                        _ReviewRecordingRefiner.review_contexts,
+                        ["第二句。第三句。第四句出现裸裸的问题。第五句补充背景。第六句继续说明。"],
+                    )
+
+                    websocket.send_json({"event": "finish"})
+                    self._await_event(websocket, "transcript")
+                    self._await_event(websocket, "final")
 
     def test_repetition_review_reuses_only_completed_identical_model_responses(self) -> None:
         source = "模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？我是警察。天哪。"

@@ -13,6 +13,7 @@ WEB_GPU="${WEB_GPU:-1}"
 WEB_PORT="${WEB_PORT:-8081}"
 ENTITY_FUZZY_MODE="${ENTITY_FUZZY_MODE:-auto}"
 REFINEMENT_GATE_MODE="${REFINEMENT_GATE_MODE:-tri_state}"
+FINAL_REFINEMENT_MODE="${FINAL_REFINEMENT_MODE:-off}"
 OUTPUT_PATH="${OUTPUT_PATH:-${PROJECT_ROOT}/results/web/session.jsonl}"
 
 if curl --silent --show-error --fail --max-time 3 \
@@ -46,6 +47,7 @@ exec env CUDA_VISIBLE_DEVICES="${WEB_GPU}" "${CONDA_EXE}" run --no-capture-outpu
   --entity-db "${ENTITY_DB}" \
   --entity-fuzzy-mode "${ENTITY_FUZZY_MODE}" \
   --refinement-gate-mode "${REFINEMENT_GATE_MODE}" \
+  --final-refinement-mode "${FINAL_REFINEMENT_MODE}" \
   --output "${OUTPUT_PATH}" \
   --max-new-tokens "${MAX_NEW_TOKENS:-256}" \
   --port "${WEB_PORT}"

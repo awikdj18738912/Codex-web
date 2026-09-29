@@ -6,7 +6,9 @@ from system.numeric_normalizer import ContextualNumericNormalizer
 from system.refinement_guard import (
     apply_repetition_review_decisions,
     detect_boundary_anomalies,
+    find_model_proposed_deletions,
     find_repetition_review_candidates,
+    has_complete_repetition_review_context,
     join_refined_segments,
     preserve_terminal_punctuation,
     permits_self_correction_punctuation_repair,
@@ -21,6 +23,14 @@ from system.refinement_guard import (
 
 
 class RefinementGuardTest(unittest.TestCase):
+    def test_rejected_model_edit_exposes_only_standalone_deletion(self) -> None:
+        source = "呃，春秋晚年晚期嘛，所以礼坏乐崩嘛，"
+        proposed = "春秋晚期嘛，所以礼崩嘛。"
+        self.assertEqual(reject_reasons(source, proposed), ("semantic_content_loss",))
+        candidates = find_model_proposed_deletions(source, proposed)
+        self.assertEqual([(item.source, item.target) for item in candidates], [("呃，", "")])
+        self.assertEqual(find_model_proposed_deletions("这是一句完整的话。", "这是完整的话。"), ())
+
     def test_default_refinement_segments_are_at_most_eighty_characters(self) -> None:
         source = "这是一句需要完整保留的转录文本。" * 12
         parts = split_for_refinement(source)
@@ -412,6 +422,27 @@ class RefinementGuardTest(unittest.TestCase):
         )
         self.assertTrue(
             all(candidate.kind == "punctuated_run" for candidate in candidates)
+        )
+
+    def test_repetition_review_uses_five_sentences_and_waits_for_following_context(self) -> None:
+        complete = "第一句。第二句。候选人人性。第四句。第五句。第六句。"
+        candidate = next(
+            item for item in find_repetition_review_candidates(complete)
+            if item.source == "人人"
+        )
+        self.assertEqual(
+            candidate.context,
+            "第一句。第二句。候选人人性。第四句。第五句。",
+        )
+        self.assertTrue(has_complete_repetition_review_context(complete, candidate))
+
+        incomplete = "第一句。第二句。候选人人性。第四句。"
+        incomplete_candidate = next(
+            item for item in find_repetition_review_candidates(incomplete)
+            if item.source == candidate.source
+        )
+        self.assertFalse(
+            has_complete_repetition_review_context(incomplete, incomplete_candidate)
         )
 
     def test_punctuated_repetition_deletion_passes_local_guard(self) -> None:

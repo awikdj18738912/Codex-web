@@ -212,7 +212,10 @@ class CumulativeWindowRefinement:
         confidence_metadata=None,
         source_chunks=None,
         preserve_cached_partition=False,
+        reprocess_rejected=None,
     ):
+        if reprocess_rejected is None:
+            reprocess_rejected = final
         with self.lock:
             if self.fixed_groups:
                 return self._update_fixed(
@@ -220,6 +223,7 @@ class CumulativeWindowRefinement:
                     confidence_metadata=confidence_metadata,
                     source_chunks=source_chunks,
                     preserve_cached_partition=preserve_cached_partition,
+                    reprocess_rejected=reprocess_rejected,
                 )
             if source_chunks is None:
                 manager = ChunkManager(
@@ -277,7 +281,7 @@ class CumulativeWindowRefinement:
                 # result into the final transcript: give that source window a
                 # fresh final pass before deciding whether to fall back.
                 if result is None or (
-                    final and not result.get("refiner_accepted", True)
+                    reprocess_rejected and not result.get("refiner_accepted", True)
                 ):
                     result = self.refine(
                         chunk,
@@ -293,7 +297,7 @@ class CumulativeWindowRefinement:
             source = join_refined_segments(chunks[start:])
             active_needs_refresh = (
                 self.active is not None
-                and final
+                and reprocess_rejected
                 and self.active[0] == source
                 and not self.active[1].get("refiner_accepted", True)
             )
@@ -501,6 +505,7 @@ class CumulativeWindowRefinement:
     def _update_fixed(
         self, text, language, final, protector, confidence, matcher,
         *, confidence_metadata, source_chunks, preserve_cached_partition,
+        reprocess_rejected,
     ):
         """Refine complete groups of K source chunks without splitting a group."""
         chunks, pending = self._fixed_chunks(
@@ -560,7 +565,7 @@ class CumulativeWindowRefinement:
             reprocess_reason = None
             if cached is None:
                 reprocess_reason = "no_exact_source_group_match"
-            elif final and not cached.get("refiner_accepted", True):
+            elif reprocess_rejected and not cached.get("refiner_accepted", True):
                 reprocess_reason = "previous_result_rejected"
             if reprocess_reason is not None:
                 reprocessed_group_count += 1
@@ -571,6 +576,8 @@ class CumulativeWindowRefinement:
                     source, language, final, protector, confidence, matcher,
                     single_window=True,
                     confidence_metadata=confidence_metadata,
+                    _trace_window_chunks=len(group),
+                    _trace_required_chunks=self.window_size,
                 )
             else:
                 reused_group_count += 1
@@ -588,6 +595,8 @@ class CumulativeWindowRefinement:
                     pending_source, language, False, protector, confidence, matcher,
                     single_window=True,
                     confidence_metadata=confidence_metadata,
+                    _trace_window_chunks=max(0, len(chunks) - complete_count),
+                    _trace_required_chunks=self.window_size,
                 )
                 if self.prepare_pending is not None and pending_source
                 else self._unrefined_part(
@@ -646,6 +655,7 @@ class CumulativeWindowRefinement:
             "entity_refinement_hints", "entity_normalizations",
             "numeric_normalizations", "numeric_fallbacks",
             "safe_numeric_repairs", "safe_repetition_repairs",
+            "local_deletion_reviews",
             "repetition_reviews", "protected_entities", "entity_candidates",
             "refiner_masked_outputs", "refiner_retry_reasons",
             "refinement_gate_decisions", "structured_patch_audits",
@@ -666,6 +676,7 @@ class CumulativeWindowRefinement:
         confidence_metadata=None,
         raw_text=None,
         preserve_cached_partition=False,
+        reprocess_rejected=None,
     ):
         """Refine stable ASR/VAD source segments through one persistent K-window."""
 
@@ -687,6 +698,7 @@ class CumulativeWindowRefinement:
             confidence_metadata=confidence_metadata,
             source_chunks=source_chunks,
             preserve_cached_partition=preserve_cached_partition,
+            reprocess_rejected=reprocess_rejected,
         )
 
     def _aggregate(self, parts, raw_text, *, final, committed_chunks):
@@ -720,6 +732,7 @@ class CumulativeWindowRefinement:
             "numeric_fallbacks",
             "safe_numeric_repairs",
             "safe_repetition_repairs",
+            "local_deletion_reviews",
             "repetition_reviews",
             "protected_entities",
             "entity_candidates",

@@ -46,10 +46,13 @@ from .refinement_guard import (
     RepetitionReviewCandidate,
     apply_repetition_review_decisions,
     detect_boundary_anomalies,
+    find_model_proposed_deletions,
     find_repetition_review_candidates,
+    has_complete_repetition_review_context,
     join_refined_segments,
     preserve_safe_numeric_edits,
     preserve_safe_repetition_edits,
+    reject_reasons,
     split_for_refinement,
 )
 from .numeric_normalizer import ContextualNumericNormalizer
@@ -270,17 +273,15 @@ def _confidence_metadata(payload: dict[str, object]) -> dict[str, object]:
 
 
 def _repetition_review_cache_key(
-    candidate: RepetitionReviewCandidate, text: str,
+    candidate: RepetitionReviewCandidate,
 ) -> tuple[int, int, str, str, str]:
-    """Keep decisions when neighboring sentences change during streaming."""
-
-    sentence = _repetition_candidate_sentence(text, candidate, final=True)
+    """Reuse a decision only for the same candidate and five-sentence context."""
     return (
         candidate.start,
         candidate.end,
         candidate.source,
         candidate.target,
-        sentence[0] if sentence is not None else candidate.context,
+        candidate.context,
     )
 
 
@@ -560,11 +561,38 @@ def _reviewed_source_spans(
     ]
 
 
+def _committed_clean_prefix_length(
+    text: str, source_spans: object,
+) -> int:
+    """Map complete fixed-group outputs to a safe prefix in displayed text."""
+    if not isinstance(source_spans, (list, tuple)):
+        return 0
+    committed_parts: list[str] = []
+    prefix_length = 0
+    for span in source_spans:
+        if not isinstance(span, dict) or span.get("state") != "committed":
+            break
+        clean = span.get("clean_text")
+        if not isinstance(clean, str) or not clean:
+            break
+        committed_parts.append(clean)
+        committed_prefix = clean_transcript_deterministically(
+            join_refined_segments(committed_parts)
+        )
+        if not committed_prefix or not text.startswith(committed_prefix):
+            committed_parts.pop()
+            break
+        prefix_length = len(committed_prefix)
+    return prefix_length
+
+
 def _review_matches_window(review: dict[str, object], window_text: str) -> bool:
     candidate = str(review.get("source", ""))
     context = str(review.get("context", ""))
-    if not candidate or candidate not in window_text or not context:
+    if not candidate or candidate not in window_text:
         return False
+    if not context:
+        return review.get("decision") == "deferred"
     if window_text in context or context in window_text:
         return True
     overlap = SequenceMatcher(None, window_text, context, autojunk=False)
@@ -597,8 +625,29 @@ def _render_refinement_log_report(
     unique_reviews = sorted(
         review_map.values(), key=lambda item: (int(item.get("start", 0)), int(item.get("end", 0)))
     )
+    reviews_by_revision: dict[tuple[str, str], list[dict[str, object]]] = {}
+    review_event_revisions: set[tuple[str, str]] = set()
+    for item in records:
+        if item.get("event") != "stream_review":
+            continue
+        revision_key = (
+            str(item.get("phase", "stream")), str(item.get("revision", ""))
+        )
+        review_event_revisions.add(revision_key)
+        event_reviews = item.get("reviews")
+        if isinstance(event_reviews, list):
+            reviews_by_revision.setdefault(revision_key, []).extend(
+                review for review in event_reviews if isinstance(review, dict)
+            )
     attached_reviews: set[tuple[object, ...]] = set()
     pages: list[str] = []
+
+    def review_identity(review: dict[str, object]) -> tuple[object, ...]:
+        return (
+            review.get("start"), review.get("end"),
+            review.get("source"), review.get("target"),
+            review.get("decision"), review.get("reason"),
+        )
 
     def code_block(value: object) -> str:
         text = str(value) if value is not None else "（空）"
@@ -628,10 +677,36 @@ def _render_refinement_log_report(
             )
             revision = event.get("revision", "—")
             segment_index = segment.get("segment_index", "—")
+            calls = segment.get("model_calls")
+            window_kind = segment.get("window_kind")
+            required_window_chunks = segment.get("required_window_chunks")
+            window_label = (
+                f"K={required_window_chunks}"
+                if isinstance(required_window_chunks, int)
+                else "固定大小"
+            )
+            if window_kind == "pending_tail":
+                input_label = f"未满 {window_label} 窗口的待处理尾部："
+            elif window_kind == "complete_k3_window":
+                input_label = (
+                    f"完整 {window_label} 窗口的 Refiner 输入："
+                    if isinstance(calls, list) and calls
+                    else f"完整 {window_label} 片段（门控检查，未调用 Refiner）："
+                )
+            elif window_kind == "final_short_tail":
+                input_label = (
+                    f"结束阶段不足 {window_label} 的尾部 Refiner 输入："
+                    if isinstance(calls, list) and calls
+                    else f"结束阶段不足 {window_label} 的尾部片段（门控检查）："
+                )
+            elif isinstance(calls, list) and calls:
+                input_label = "Refiner 实际输入片段："
+            else:
+                input_label = "门控检查片段（非 Refiner 调用窗口）："
             body = [
                 f"## {page_number}. {timestamp(event.get('captured_at'))} · {phase} · 修订 {revision} · 片段 {segment_index}",
                 "",
-                "原始句子窗口：",
+                input_label,
                 "",
                 code_block(source),
                 "",
@@ -649,7 +724,6 @@ def _render_refinement_log_report(
                 )
                 body.append("")
 
-            calls = segment.get("model_calls")
             if isinstance(calls, list) and calls:
                 body.extend(["普通窗口精修调用：", ""])
                 for call_number, call in enumerate(calls, 1):
@@ -674,23 +748,48 @@ def _render_refinement_log_report(
                     "",
                 ])
             else:
-                body.extend(["本窗口没有调用 Refiner。", ""])
+                body.extend(["此片段没有调用 Refiner。", ""])
 
-            body.extend(["本窗口最终输出：", "", code_block(segment.get("output", segment.get("baseline", source))), ""])
+            body.extend(["此片段当前输出：", "", code_block(segment.get("output", segment.get("baseline", source))), ""])
+            revision_key = (
+                str(event.get("phase", "")), str(event.get("revision", ""))
+            )
+            window_reviews = (
+                reviews_by_revision.get(revision_key, [])
+                if revision_key in review_event_revisions
+                else unique_reviews
+            )
             local_reviews = [
-                review for review in unique_reviews
+                review for review in window_reviews
                 if _review_matches_window(review, source)
             ]
+            local_reviews.extend(
+                review for review in segment.get("local_deletion_reviews", [])
+                if isinstance(review, dict)
+            )
             if local_reviews:
-                body.extend(["本窗口关联的局部候选复核：", ""])
+                body.extend(["此片段关联的局部候选复核：", ""])
                 for review_number, review in enumerate(local_reviews, 1):
-                    key = (
-                        review.get("start"), review.get("end"),
-                        review.get("source"), review.get("target"),
-                    )
-                    attached_reviews.add(key)
+                    attached_reviews.add(review_identity(review))
+                    decision = str(review.get("decision", "unresolved"))
+                    reason = str(review.get("reason", "未知"))
+                    if decision == "deferred":
+                        deferred_reason = {
+                            "incomplete_k3_group": "所属 K=3 窗口未完成",
+                            "awaiting_five_sentence_context": "等待五句稳定上下文",
+                        }.get(reason, reason)
+                        body.append(
+                            f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；状态：待复核；原因：{deferred_reason}（未调用模型）。"
+                        )
+                        body.append("")
+                        continue
+                    decision_label = {
+                        "keep": "保留",
+                        "remove": "删除",
+                        "unresolved": "未判定",
+                    }.get(decision, decision)
                     body.extend([
-                        f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：`{review.get('decision', 'unresolved')}`；原因：`{review.get('reason', '未知')}`；已应用：`{review.get('applied', False)}`。",
+                        f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：{decision_label}；原因：`{reason}`；已应用：`{review.get('applied', False)}`。",
                     ])
                     if review.get("model_response"):
                         body.extend(["模型复核输出：", "", code_block(review["model_response"]), ""])
@@ -705,14 +804,14 @@ def _render_refinement_log_report(
                     if review.get("context"):
                         body.extend(["复核上下文：", "", code_block(review["context"]), ""])
             else:
-                body.extend(["本窗口没有关联到局部候选复核。", ""])
+                body.extend(["此片段没有关联到局部候选复核。", ""])
             pages.append("\n".join(body).rstrip())
 
     if not pages:
         pages.append(
-            "## 1. 转录窗口\n\n原始句子窗口：\n\n"
+            "## 1. 转录窗口\n\n转录片段：\n\n"
             + code_block(raw_text)
-            + "\n\n本窗口最终输出：\n\n"
+            + "\n\n转录输出：\n\n"
             + code_block(clean_text)
         )
 
@@ -723,6 +822,14 @@ def _render_refinement_log_report(
         "",
         f"完成时间：{timestamp(final_record.get('captured_at'))}；模式：`{mode}`；追踪编号：`{trace_id}`。",
     ]
+    if final_record.get("final_refinement_mode") in {"on", "off"}:
+        appendix.append(
+            "结束阶段全文重跑：{}；复用窗口：{}；重新处理窗口：{}。".format(
+                "启用" if final_record["final_refinement_mode"] == "on" else "关闭",
+                final_record.get("window_cache_reused_group_count", 0),
+                final_record.get("window_cache_reprocessed_group_count", 0),
+            )
+        )
     stats = final_record.get("refiner_session_stats")
     if isinstance(stats, dict):
         appendix.extend([
@@ -741,11 +848,7 @@ def _render_refinement_log_report(
     ])
     unassigned = []
     for review in unique_reviews:
-        key = (
-            review.get("start"), review.get("end"),
-            review.get("source"), review.get("target"),
-        )
-        if key in attached_reviews:
+        if review_identity(review) in attached_reviews:
             continue
         unassigned.append(review)
     if unassigned:
@@ -895,7 +998,11 @@ def create_app(
     rule_protection: bool = True,
     numeric_normalization: bool = False,
     asr_api_style: str = ASRApiStyle.CURRENT.value,
+    final_refinement_mode: str = "off",
 ) -> FastAPI:
+    final_refinement_mode = str(final_refinement_mode).strip().lower()
+    if final_refinement_mode not in {"on", "off"}:
+        raise ValueError("final_refinement_mode must be 'on' or 'off'")
     app = FastAPI(docs_url=None, redoc_url=None)
     print("Loading AgenticASR Refiner...", flush=True)
     refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens)
@@ -908,6 +1015,7 @@ def create_app(
         final: bool,
         call_stats: _RefinerSessionStats | None,
         streaming: bool = False,
+        eligible_prefix_length: int | None = None,
         review_cache: dict[
             tuple[int, int, str, str, str], dict[str, object]
         ] | None = None,
@@ -919,15 +1027,60 @@ def create_app(
 
         if (not final and not streaming) or not text:
             return text, [], 0.0, 0, 0
-        candidates = find_repetition_review_candidates(text, max_candidates=128)
-        if not candidates:
+        all_candidates = find_repetition_review_candidates(text, max_candidates=128)
+        if not all_candidates:
             return text, [], 0.0, 0, 0
 
+        deferred_records: list[dict[str, object]] = []
+        if final or eligible_prefix_length is None:
+            candidates = all_candidates
+        else:
+            stable_end = min(max(0, eligible_prefix_length), len(text))
+            stable_text = text[:stable_end]
+            candidates = list(
+                find_repetition_review_candidates(stable_text, max_candidates=128)
+            )
+            for candidate in all_candidates:
+                if candidate.end <= stable_end:
+                    continue
+                deferred_records.append({
+                    key: value
+                    for key, value in candidate.public_dict().items()
+                    if key != "context"
+                } | {
+                    "decision": "deferred",
+                    "reason": "incomplete_k3_group",
+                    "applied": False,
+                    "model_called": False,
+                })
+            ready_candidates: list[RepetitionReviewCandidate] = []
+            for candidate in candidates:
+                if has_complete_repetition_review_context(
+                    stable_text, candidate, following_sentences=2,
+                ):
+                    ready_candidates.append(candidate)
+                else:
+                    deferred_records.append({
+                        key: value
+                        for key, value in candidate.public_dict().items()
+                        if key != "context"
+                    } | {
+                        "decision": "deferred",
+                        "reason": "awaiting_five_sentence_context",
+                        "applied": False,
+                        "model_called": False,
+                    })
+            candidates = ready_candidates
+
+        if not candidates:
+            return text, deferred_records, 0.0, 0, 0
+
         cached_decisions: list[dict[str, object]] = []
+        cached_unresolved_records: list[dict[str, object]] = []
         pending_candidates: list[RepetitionReviewCandidate] = []
         for candidate in candidates:
             cached = (
-                review_cache.get(_repetition_review_cache_key(candidate, text))
+                review_cache.get(_repetition_review_cache_key(candidate))
                 if review_cache is not None
                 else None
             )
@@ -940,6 +1093,25 @@ def create_app(
                         "reason": str(cached.get("reason", "streaming_cache")),
                     }
                 )
+            elif action == "unresolved":
+                cached_unresolved_records.append({
+                    **candidate.public_dict(),
+                    "decision": "unresolved",
+                    "reason": str(cached.get("reason", "model_uncertain")),
+                    "model_response": str(cached.get("model_response", "")),
+                    "model_response_cache_hit": True,
+                    **{
+                        key: cached[key]
+                        for key in (
+                            "candidate_score_margin",
+                            "plausibility_margin",
+                            "plausibility_reason",
+                            "local_plausibility_margin",
+                            "local_plausibility_reason",
+                        )
+                        if key in cached
+                    },
+                })
             else:
                 pending_candidates.append(candidate)
 
@@ -952,19 +1124,27 @@ def create_app(
                 reviewed_text, applied_records = apply_repetition_review_decisions(
                     text, candidates, cached_decisions
                 )
-                return reviewed_text, list(applied_records), 0.0, 0, 0
-            return text, [], 0.0, 0, 0
+                return (
+                    reviewed_text,
+                    [*deferred_records, *cached_unresolved_records, *applied_records],
+                    0.0,
+                    0,
+                    0,
+                )
+            return text, [*deferred_records, *cached_unresolved_records], 0.0, 0, 0
 
-        records: list[dict[str, object]] = []
+        records: list[dict[str, object]] = [
+            *deferred_records, *cached_unresolved_records,
+        ]
         if not refiner_lock.acquire(timeout=REFINER_LOCK_TIMEOUT_SECONDS):
-            records = [
+            records.extend([
                 {
                     **candidate.public_dict(),
                     "decision": "unresolved",
                     "reason": "review_unavailable",
                 }
                 for candidate in pending_candidates
-            ]
+            ])
             if cached_decisions:
                 text, cached_records = apply_repetition_review_decisions(
                     text, candidates, cached_decisions
@@ -981,8 +1161,10 @@ def create_app(
         batch_responses: dict[
             tuple[str, int, str, str], tuple[str, float | None]
         ] = {}
+        batch_completion_status: dict[tuple[str, int, str, str], bool] = {}
         candidate_score_margins: dict[int, float] = {}
         plausibility_evidence: dict[int, dict[str, object]] = {}
+        model_completion_status: dict[int, bool] = {}
         try:
             reviewer = getattr(refiner, "review_repetition", None)
             reviewer_with_status = getattr(
@@ -994,14 +1176,14 @@ def create_app(
             if not any(callable(item) for item in (
                 reviewer, reviewer_with_status, candidate_reviewer
             )):
-                records = [
+                records.extend([
                     {
                         **candidate.public_dict(),
                         "decision": "unresolved",
                         "reason": "review_unavailable",
                     }
                     for candidate in pending_candidates
-                ]
+                ])
                 reviewed_text = text
                 if cached_decisions:
                     reviewed_text, cached_records = apply_repetition_review_decisions(
@@ -1021,9 +1203,11 @@ def create_app(
                 request_key = (
                     candidate.context, local_start, candidate.source, candidate.target
                 )
+                completed = False
                 cached_response = batch_responses.get(request_key)
                 if cached_response is not None:
                     response, score_margin = cached_response
+                    completed = batch_completion_status.get(request_key, False)
                     response_cache_hit_count += 1
                     response_cache_hits.add(candidate.index)
                     response_latency_ms = 0.0
@@ -1032,6 +1216,7 @@ def create_app(
                     and request_key in response_cache
                 ):
                     response, score_margin = response_cache[request_key]
+                    completed = True
                     batch_responses[request_key] = (response, score_margin)
                     response_cache_hit_count += 1
                     response_cache_hits.add(candidate.index)
@@ -1089,6 +1274,7 @@ def create_app(
                     if not isinstance(response, str):
                         response = str(response)
                     batch_responses[request_key] = (response, score_margin)
+                    batch_completion_status[request_key] = completed is True
                     if (
                         completed is True
                         and response.strip()
@@ -1101,6 +1287,7 @@ def create_app(
 
                 total_latency_ms += response_latency_ms
                 model_responses[candidate.index] = response
+                model_completion_status[candidate.index] = completed is True
                 if score_margin is not None:
                     candidate_score_margins[candidate.index] = float(score_margin)
                 decision = _repetition_decision_from_candidate_response(
@@ -1148,6 +1335,9 @@ def create_app(
                             else "invalid_response"
                         ),
                         "model_response": response,
+                        "model_completed": model_completion_status.get(
+                            candidate.index, False
+                        ),
                         **(
                             {"candidate_score_margin": candidate_score_margins[candidate.index]}
                             if candidate.index in candidate_score_margins else {}
@@ -1197,22 +1387,50 @@ def create_app(
                 decision_by_index = {
                     int(item["index"]): item for item in decisions
                 }
+                unresolved_by_index = {
+                    int(item["index"]): item
+                    for item in records
+                    if item.get("decision") == "unresolved"
+                }
                 for candidate in pending_candidates:
                     decision = decision_by_index.get(candidate.index)
-                    if decision is None:
-                        continue
-                    action = str(decision.get("action", "")).lower()
+                    unresolved = unresolved_by_index.get(candidate.index)
+                    action = (
+                        str(decision.get("action", "")).lower()
+                        if decision is not None
+                        else "unresolved"
+                        if unresolved is not None
+                        and unresolved.get("model_completed") is True
+                        else ""
+                    )
                     applied_record = applied_by_index.get(candidate.index)
                     if action == "keep" or (
                         action == "remove"
                         and isinstance(applied_record, dict)
                         and applied_record.get("applied") is True
                     ):
-                        review_cache[_repetition_review_cache_key(candidate, text)] = {
+                        review_cache[_repetition_review_cache_key(candidate)] = {
                             "action": action,
                             "reason": str(
                                 decision.get("reason", "streaming_cache")
                             ),
+                        }
+                    elif action == "unresolved" and unresolved is not None:
+                        review_cache[_repetition_review_cache_key(candidate)] = {
+                            "action": "unresolved",
+                            "reason": str(unresolved.get("reason", "model_uncertain")),
+                            **{
+                                key: unresolved[key]
+                                for key in (
+                                    "model_response",
+                                    "candidate_score_margin",
+                                    "plausibility_margin",
+                                    "plausibility_reason",
+                                    "local_plausibility_margin",
+                                    "local_plausibility_reason",
+                                )
+                                if key in unresolved
+                            },
                         }
                 if len(review_cache) > 1024:
                     for key in tuple(review_cache)[:256]:
@@ -1333,6 +1551,7 @@ def create_app(
         numeric_fallbacks: list[dict[str, object]] = []
         safe_numeric_repairs: list[dict[str, object]] = []
         safe_repetition_repairs: list[dict[str, object]] = []
+        local_deletion_reviews: list[dict[str, object]] = []
         repetition_reviews: list[dict[str, object]] = []
         entity_audit_issues: list[str] = []
         entity_candidates: list[dict[str, object]] = []
@@ -1513,6 +1732,7 @@ def create_app(
             else:
                 refiner_executed = True
                 candidate_for_numeric_salvage: str | None = None
+                rejected_model_text: str | None = None
                 try:
                     refined_candidate, latency_ms = invoke_refiner(
                         masked_text,
@@ -1586,6 +1806,9 @@ def create_app(
                         protection,
                     )
                     if restored_candidate.accepted:
+                        rejected_model_text = strip_refiner_key_suffix(
+                            restored_candidate.text
+                        ).strip()
                         repetition_salvaged = preserve_safe_repetition_edits(
                             prepared.baseline_text,
                             restored_candidate.text,
@@ -1675,6 +1898,94 @@ def create_app(
                     numeric_normalizations.extend(
                         change.public_dict() for change in segment_changes
                     )
+                if finalized.reject_reasons and rejected_model_text:
+                    reviewer = getattr(
+                        refiner, "review_repetition_candidate_with_status", None
+                    )
+                    for candidate in find_model_proposed_deletions(
+                        prepared.baseline_text, rejected_model_text,
+                    ):
+                        review_record: dict[str, object] = {
+                            **candidate.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "decision": "unresolved",
+                            "reason": "review_unavailable",
+                            "applied": False,
+                        }
+                        local_deletion_reviews.append(review_record)
+                        if not callable(reviewer):
+                            continue
+                        local_start = _repetition_candidate_context_offset(
+                            prepared.baseline_text, candidate,
+                        )
+                        if local_start is None:
+                            review_record["reason"] = "invalid_candidate_context"
+                            continue
+                        if not refiner_lock.acquire(
+                            timeout=REFINER_LOCK_TIMEOUT_SECONDS
+                        ):
+                            continue
+                        started_at = (
+                            call_stats.begin_call(final=final, retry=False)
+                            if call_stats is not None else time.perf_counter()
+                        )
+                        if started_at is None:
+                            refiner_lock.release()
+                            review_record["reason"] = "review_calls_closed"
+                            continue
+                        try:
+                            try:
+                                response, latency_ms, completed, *extra = reviewer(
+                                    candidate.context, candidate.source,
+                                    candidate.target, local_start,
+                                )
+                            except Exception:
+                                if call_stats is not None:
+                                    call_stats.finish_call(started_at, failed=True)
+                                review_record["reason"] = "review_failed"
+                                continue
+                            if call_stats is not None:
+                                call_stats.finish_call(started_at, failed=False)
+                        finally:
+                            refiner_lock.release()
+                        total_latency_ms += latency_ms
+                        review_record["model_response"] = str(response)
+                        review_record["model_completed"] = completed is True
+                        if extra and extra[0] is not None:
+                            review_record["candidate_score_margin"] = extra[0]
+                        decision = _repetition_decision_from_candidate_response(
+                            prepared.baseline_text, candidate, str(response),
+                        )
+                        if not decision:
+                            review_record["reason"] = "invalid_or_uncertain_response"
+                            continue
+                        action = decision[0]["action"]
+                        review_record["decision"] = action
+                        review_record["reason"] = "model_candidate_decision"
+                        if action != "remove" or completed is not True:
+                            continue
+                        # Locate the source span again after numeric fallback;
+                        # a normalization may have shifted its original offset.
+                        if clean_segment.count(candidate.source) != 1:
+                            review_record["reason"] = "source_not_unique_after_fallback"
+                            continue
+                        offset = clean_segment.index(candidate.source)
+                        edited = (
+                            clean_segment[:offset]
+                            + clean_segment[offset + len(candidate.source):]
+                        )
+                        failures = reject_reasons(clean_segment, edited)
+                        if failures:
+                            review_record["reason"] = "isolated_edit_rejected"
+                            review_record["reject_reasons"] = list(failures)
+                            continue
+                        clean_segment = edited
+                        review_record["applied"] = True
+                if trace_segment is not None:
+                    trace_segment["local_deletion_reviews"] = [
+                        dict(review) for review in local_deletion_reviews
+                        if review.get("segment_index") == segment_index + 1
+                    ]
                 if finalized.reject_reasons:
                     refiner_reject_reasons.extend(
                         f"segment_{segment_index + 1}:{reason}"
@@ -1727,6 +2038,7 @@ def create_app(
             "numeric_fallbacks": numeric_fallbacks,
             "safe_numeric_repairs": safe_numeric_repairs,
             "safe_repetition_repairs": safe_repetition_repairs,
+            "local_deletion_reviews": local_deletion_reviews,
             "repetition_reviews": repetition_reviews,
             "boundary_echo_repairs": [],
             "protected_entities": protected_entities,
@@ -1871,6 +2183,7 @@ def create_app(
             "numeric_fallbacks": numeric_fallbacks,
             "safe_numeric_repairs": [],
             "safe_repetition_repairs": [],
+            "local_deletion_reviews": [],
             "repetition_reviews": [],
             "boundary_echo_repairs": [],
             "protected_entities": protected_entities,
@@ -2082,7 +2395,7 @@ def create_app(
                 }
                 with trace_lock:
                     _append_record(trace_path, record)
-                    if event in {"window_result", "final_result"}:
+                    if event in {"window_result", "stream_review", "final_result"}:
                         refinement_log_records.append(record)
             except (OSError, TypeError, ValueError):
                 # Diagnostics must never change a transcription decision.
@@ -2116,6 +2429,10 @@ def create_app(
 
         def session_refine_update(*args, **kwargs) -> dict[str, object]:
             kwargs["call_stats"] = refiner_session_stats
+            window_chunk_count = kwargs.pop("_trace_window_chunks", None)
+            required_window_chunks = kwargs.pop("_trace_required_chunks", None)
+            pending_only = kwargs.get("pending_only", False)
+            is_final = bool(args[2]) if len(args) > 2 else bool(kwargs.get("final", False))
             segments: list[dict[str, object]] = []
             phase = trace_context["phase"]
             revision = trace_context["revision"]
@@ -2130,6 +2447,27 @@ def create_app(
                     error=type(error).__name__,
                 )
                 raise
+            if trace_path is not None:
+                if pending_only:
+                    window_kind = "pending_tail"
+                elif (
+                    isinstance(window_chunk_count, int)
+                    and isinstance(required_window_chunks, int)
+                    and window_chunk_count == required_window_chunks
+                ):
+                    window_kind = "complete_k3_window"
+                elif is_final and isinstance(window_chunk_count, int):
+                    window_kind = "final_short_tail"
+                elif isinstance(required_window_chunks, int):
+                    window_kind = "fixed_group"
+                else:
+                    window_kind = "gate_segment"
+                for segment in segments:
+                    segment["window_kind"] = window_kind
+                    if isinstance(window_chunk_count, int):
+                        segment["window_chunk_count"] = window_chunk_count
+                    if isinstance(required_window_chunks, int):
+                        segment["required_window_chunks"] = required_window_chunks
             record_trace(
                 "window_result", phase=phase, revision=revision,
                 input=args[0] if args else None, segments=segments,
@@ -2294,6 +2632,7 @@ def create_app(
             confidence_metadata: dict[str, object],
             matcher_value: EntityCandidateMatcher | None,
             source_segments: tuple[str, ...] | None = None,
+            reprocess_rejected: bool = True,
         ) -> dict[str, object]:
             """Reuse committed streaming refinements and finalize only the tail.
 
@@ -2317,6 +2656,7 @@ def create_app(
                     matcher_value,
                     confidence_metadata=confidence_metadata,
                     raw_text=raw_text,
+                    reprocess_rejected=reprocess_rejected,
                 )
             else:
                 result = window_refinement.update(
@@ -2327,6 +2667,7 @@ def create_app(
                     asr_confidence,
                     matcher_value,
                     confidence_metadata=confidence_metadata,
+                    reprocess_rejected=reprocess_rejected,
                 )
             result["window_cache_partition"] = (
                 "vad_segments"
@@ -2525,38 +2866,31 @@ def create_app(
                             matcher,
                             confidence_metadata=confidence_metadata_value,
                         )
-                    # Repetition review belongs to the streaming result, not
-                    # only to a VAD-finalized source segment.  Some ASR
-                    # backends expose VAD boundaries only on ``finish``; if
-                    # this remains conditional on ``source_segments_value``,
-                    # punctuation-separated repetitions stay visible until
-                    # the final pass even though the active window is ready.
                     before_review = str(result["clean_text"])
-                    if use_punctuation_windows and result["committed_chunks"] == 0:
-                        # The current ASR hypothesis has not produced a full
-                        # K=3 group.  Keep its source-owned text pending until
-                        # the third punctuation chunk is available.
-                        reviewed_text = before_review
-                        review_records = []
-                        review_latency_ms = 0.0
-                        review_model_calls = 0
-                        response_cache_hits = 0
-                    else:
-                        (
-                            reviewed_text,
-                            review_records,
-                            review_latency_ms,
-                            review_model_calls,
-                            response_cache_hits,
-                        ) = await asyncio.to_thread(
-                            review_final_repetition_text,
+                    eligible_prefix_length = (
+                        _committed_clean_prefix_length(
                             before_review,
-                            final=False,
-                            streaming=True,
-                            call_stats=refiner_session_stats,
-                            review_cache=streaming_repetition_cache,
-                            response_cache=streaming_repetition_response_cache,
+                            result.get("refinement_source_spans"),
                         )
+                        if use_punctuation_windows
+                        else None
+                    )
+                    (
+                        reviewed_text,
+                        review_records,
+                        review_latency_ms,
+                        review_model_calls,
+                        response_cache_hits,
+                    ) = await asyncio.to_thread(
+                        review_final_repetition_text,
+                        before_review,
+                        final=False,
+                        streaming=True,
+                        eligible_prefix_length=eligible_prefix_length,
+                        call_stats=refiner_session_stats,
+                        review_cache=streaming_repetition_cache,
+                        response_cache=streaming_repetition_response_cache,
+                    )
                     result["clean_text"] = clean_transcript_deterministically(
                         reviewed_text
                     )
@@ -2576,7 +2910,7 @@ def create_app(
                     if reviewed_spans is not None:
                         result["refinement_source_spans"] = reviewed_spans
                     record_trace(
-                        "stream_review", revision=revision,
+                        "stream_review", phase="stream", revision=revision,
                         input=before_review, model_review_output=reviewed_text,
                         output=result["clean_text"], reviews=review_records,
                         source_spans_updated=reviewed_spans is not None,
@@ -2797,6 +3131,7 @@ def create_app(
                     confidence_metadata,
                     matcher,
                     source_segments,
+                    final_refinement_mode == "on",
                 )
             )
             loop = asyncio.get_running_loop()
@@ -2935,6 +3270,7 @@ def create_app(
                             "final_started", revision=latest_refinement_revision,
                             raw_text=final_raw,
                             source_segments=final_source_segments,
+                            final_refinement_mode=final_refinement_mode,
                         )
                         try:
                             result = await refine_final(
@@ -2974,11 +3310,13 @@ def create_app(
                                 apply_numeric_fallback=True,
                             )
                         result["refinement_revision"] = latest_refinement_revision
+                        result["final_refinement_mode"] = final_refinement_mode
                         attach_refiner_session_stats(result, close=True)
                         record_trace(
                             "final_result", revision=latest_refinement_revision,
                             raw_text=final_raw,
                             output=result.get("clean_text"),
+                            final_refinement_mode=final_refinement_mode,
                             reviews=result.get("repetition_reviews"),
                             reject_reasons=result.get("refiner_reject_reasons"),
                             window_cache_partition=result.get("window_cache_partition"),
@@ -3032,6 +3370,9 @@ def create_app(
                                     "output": {
                                         "raw_text": result["raw_text"],
                                         "clean_text": result["clean_text"],
+                                        "final_refinement_mode": result.get(
+                                            "final_refinement_mode", final_refinement_mode
+                                        ),
                                         "refinement_revision": result.get(
                                             "refinement_revision"
                                         ),
@@ -3097,6 +3438,9 @@ def create_app(
                                         ),
                                         "repetition_reviews": result.get(
                                             "repetition_reviews", []
+                                        ),
+                                        "local_deletion_reviews": result.get(
+                                            "local_deletion_reviews", []
                                         ),
                                         "boundary_echo_repairs": result[
                                             "boundary_echo_repairs"
@@ -3368,6 +3712,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="off preserves the baseline; conservative uses two-state gating; tri_state emits KEEP/DEFER/REFINE",
     )
     parser.add_argument(
+        "--final-refinement-mode",
+        choices=("on", "off"),
+        default="off",
+        help=(
+            "on reruns previously rejected windows at finish; off reuses cached "
+            "window results and only processes changed source or the short tail"
+        ),
+    )
+    parser.add_argument(
         "--disable-rule-protection",
         action="store_true",
         help="disable automatic URL/email/date/time/number/identifier/acronym masking",
@@ -3405,6 +3758,7 @@ def main(argv: list[str] | None = None) -> int:
         not args.disable_rule_protection,
         args.enable_numeric_normalization and not args.disable_numeric_normalization,
         args.asr_api_style,
+        args.final_refinement_mode,
     )
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0
