@@ -559,6 +559,47 @@ class WindowTest(unittest.TestCase):
             any("我有一个苹果，不对，我有一个梨。" in call for call in calls)
         )
 
+    def test_rule_mode_groups_numeric_correction_across_source_segments(self):
+        calls = []
+
+        def refine(text, *args, **kwargs):
+            calls.append(text)
+            clean = text.replace(
+                "我今天11岁，不对，我今天12岁。", "我今天12岁。"
+            )
+            return {
+                "raw_text": text,
+                "clean_text": clean,
+                "refiner_latency_ms": 1,
+                "refiner_accepted": True,
+                "refiner_reject_reasons": [],
+                "entity_audit_issues": [],
+                "entity_refinement_hints": [],
+                "entity_normalizations": [],
+                "protected_entities": [],
+                "entity_candidates": [],
+                "numeric_rule_latency_ms": 0.0,
+                "entity_matcher_latency_ms": 0,
+            }
+
+        session = CumulativeWindowRefinement(
+            refine,
+            window_size=3,
+            one_punctuation_window=True,
+            fixed_groups=True,
+            group_numeric_self_corrections=True,
+        )
+        result = session.update_segments(
+            ("我今天11岁，", "不对，", "我今天12岁。"),
+            "Chinese",
+            True,
+            None,
+            None,
+        )
+
+        self.assertEqual(calls, ["我今天11岁，不对，我今天12岁。"])
+        self.assertEqual(result["clean_text"], "我今天12岁。")
+
     def test_self_correction_reopens_committed_antecedent_after_filler(self):
         calls = []
 

@@ -1,0 +1,65 @@
+{
+  "runs": {
+    "audiocpp": "AudioCpp server multipart transcription",
+    "vllm": "qwen-asr vLLM Python API"
+  },
+  "model": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+  "precision": "BF16",
+  "gpu": "physical GPU 0, NVIDIA GeForce RTX 3090, CUDA_VISIBLE_DEVICES=0",
+  "measured_audio_s": 2106.353875,
+  "chunk_count": 73,
+  "audiocpp_client_s": 58.92486862791702,
+  "audiocpp_server_wall_s": 58.5313826,
+  "vllm_call_s": 38.26850441796705,
+  "vllm_over_audiocpp_speed_ratio": 1.5397745358517803,
+  "vllm_latency_reduction_percent": 35.055426835798734,
+  "audiocpp_x_realtime": 35.74643311130041,
+  "vllm_x_realtime": 55.0414474523093,
+  "per_source": {
+    "test_1_16k_mono.wav": {
+      "audio_s": 40.848,
+      "audiocpp_client_s": 1.1610259441658854,
+      "audiocpp_server_wall_s": 1.122053,
+      "vllm_call_s": 0.775097174802795,
+      "speed_ratio": 1.4979101742452883,
+      "audiocpp_chars": 150,
+      "vllm_chars": 150
+    },
+    "test_2_16k_mono.wav": {
+      "audio_s": 175.1249375,
+      "audiocpp_client_s": 3.8161314909812063,
+      "audiocpp_server_wall_s": 3.784191,
+      "vllm_call_s": 2.404583403142169,
+      "speed_ratio": 1.5870239668104291,
+      "audiocpp_chars": 444,
+      "vllm_chars": 445
+    },
+    "test_3_16k_mono.wav": {
+      "audio_s": 322.68775,
+      "audiocpp_client_s": 9.461687588365749,
+      "audiocpp_server_wall_s": 9.407792,
+      "vllm_call_s": 6.124165947316214,
+      "speed_ratio": 1.5449757027750255,
+      "audiocpp_chars": 1133,
+      "vllm_chars": 618
+    },
+    "test_4_16k_mono.wav": {
+      "audio_s": 724.4373125,
+      "audiocpp_client_s": 19.538785067154095,
+      "audiocpp_server_wall_s": 19.4096576,
+      "vllm_call_s": 12.646235690219328,
+      "speed_ratio": 1.5450277494247164,
+      "audiocpp_chars": 3023,
+      "vllm_chars": 3024
+    },
+    "test_5_16k_mono.wav": {
+      "audio_s": 843.255875,
+      "audiocpp_client_s": 24.947238537250087,
+      "audiocpp_server_wall_s": 24.807689,
+      "vllm_call_s": 16.318422202486545,
+      "speed_ratio": 1.5287776126694843,
+      "audiocpp_chars": 3950,
+      "vllm_chars": 3946
+    }
+  }
+}

@@ -10,11 +10,13 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 from decimal import Decimal, InvalidOperation
+from functools import lru_cache
 
 from .numeric_normalizer import (
     ContextualNumericNormalizer,
     _COUNT_UNITS,
     _FIXED_EXPRESSIONS,
+    _MEASURE_UNITS,
     _MULTIPLIER_UNITS,
     _RANGE_RE,
     chinese_number_to_decimal,
@@ -63,6 +65,12 @@ _ARABIC_NUMERAL_RE = re.compile(r"[+-]?\d+(?:\.\d+)?")
 _CHINESE_NUMERIC_UNITS = frozenset("十百千万亿年月日号元块点")
 _CHINESE_COUNT_UNITS = frozenset(_COUNT_UNITS)
 _CHINESE_MULTIPLIER_UNITS = frozenset(_MULTIPLIER_UNITS)
+_NUMERIC_RANGE_RE = re.compile(
+    r"(?P<left>[零〇一二两三四五六七八九十百千万亿点]+|\d+(?:\.\d+)?)"
+    r"(?P<separator>到|至|[-~～])"
+    r"(?P<right>[零〇一二两三四五六七八九十百千万亿点]+|\d+(?:\.\d+)?)"
+    rf"(?P<unit>{'|'.join(sorted(map(re.escape, (*_MEASURE_UNITS, *_COUNT_UNITS)), key=len, reverse=True))})"
+)
 _CHINESE_DIGITS = {
     "零": 0,
     "〇": 0,
@@ -256,7 +264,8 @@ class RepetitionReviewCandidate:
 
 
 def find_repetition_review_candidates(
-    text: str, *, max_candidates: int = 24
+    text: str, *, max_candidates: int = 24,
+    numeric_rule_mode: bool = False,
 ) -> tuple[RepetitionReviewCandidate, ...]:
     """Find structural AA or adjacent phrase spans for model review.
 
@@ -343,13 +352,84 @@ def find_repetition_review_candidates(
                 context=_repetition_review_context(text, start, end),
             )
         )
+    if numeric_rule_mode:
+        for candidate in find_numeric_clause_repetition_candidates(
+            text, max_candidates=max_candidates
+        ):
+            if any(
+                candidate.start < existing.end
+                and candidate.end > existing.start
+                for existing in candidates
+            ):
+                continue
+            candidates.append(candidate)
+    candidates.sort(key=lambda candidate: (candidate.start, candidate.end))
+    candidates = [
+        RepetitionReviewCandidate(
+            index=index,
+            start=candidate.start,
+            end=candidate.end,
+            source=candidate.source,
+            target=candidate.target,
+            kind=candidate.kind,
+            context=candidate.context,
+        )
+        for index, candidate in enumerate(candidates[:max_candidates], 1)
+    ]
     return tuple(candidates)
+
+
+def has_repetition_review_candidate(
+    text: str, *, numeric_rule_mode: bool = False
+) -> bool:
+    """Cheap existence check for streaming diagnostics and gate hints.
+
+    Unlike ``find_repetition_review_candidates``, this does not collect spans,
+    resolve overlaps, sort candidates, or build contexts.  Callers that need
+    offsets and review context must continue to use the full finder.
+    """
+
+    if not text:
+        return False
+
+    for match in _REPEATED_CJK_RUN_RE.finditer(text):
+        start, end = match.span()
+        if end - start >= 2 and not (start > 0 and text[start - 1] == "一"):
+            return True
+
+    for match in _PUNCTUATED_REPETITION_RE.finditer(text):
+        start, _end = match.span()
+        if (
+            match.group("unit")
+            and _is_unicode_punctuation(match.group("separator"))
+            and not (start > 0 and text[start - 1] == "一")
+        ):
+            return True
+
+    max_width = min(12, len(text) // 2)
+    for width in range(max_width, 1, -1):
+        final_start = len(text) - (width * 2)
+        for start in range(final_start + 1):
+            unit = text[start : start + width]
+            if unit != text[start + width : start + (width * 2)]:
+                continue
+            if not re.fullmatch(r"[\u3400-\u9fff]+", unit):
+                continue
+            if len(set(unit)) == 1:
+                continue
+            if start > 0 and text[start - 1] == "一":
+                continue
+            return True
+
+    return numeric_rule_mode and has_numeric_clause_repetition(text)
 
 
 def apply_repetition_review_decisions(
     text: str,
     candidates: tuple[RepetitionReviewCandidate, ...],
     decisions: object,
+    *,
+    numeric_rule_mode: bool = False,
 ) -> tuple[str, tuple[dict[str, object], ...]]:
     """Apply only model-selected candidate deletions at source offsets."""
 
@@ -398,7 +478,11 @@ def apply_repetition_review_decisions(
         candidate_repaired = (
             repaired[:start] + candidate.target + repaired[end:]
         )
-        reasons = reject_reasons(repaired, candidate_repaired)
+        reasons = reject_reasons(
+            repaired,
+            candidate_repaired,
+            numeric_rule_mode=numeric_rule_mode,
+        )
         repeated_source = (
             bool(candidate.target)
             and len(candidate.source) % len(candidate.target) == 0
@@ -795,13 +879,26 @@ def preserve_terminal_punctuation(source_text: str, refined_text: str) -> str:
     return refined + source_suffix
 
 
-def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
+def reject_reasons(
+    raw_text: str,
+    refined_text: str,
+    *,
+    numeric_rule_mode: bool = False,
+) -> tuple[str, ...]:
     """Return deterministic reasons to fall back to a raw source segment."""
 
     raw = raw_text.strip()
     refined = refined_text.strip()
     if not refined:
         return ("empty_refiner_output",)
+
+    if numeric_rule_mode:
+        repetition_baseline = _numeric_repeat_collapse_baseline(raw, refined)
+        if repetition_baseline is not None:
+            repeated_reasons = list(reject_reasons(repetition_baseline, refined))
+            if not _numeric_rule_surface_is_preserved(raw, refined):
+                repeated_reasons.append("numeric_rule_surface_mismatch")
+            return tuple(dict.fromkeys(repeated_reasons))
 
     reasons: list[str] = []
     equivalent_numbered_list = _equivalent_numbered_choice_rewrite(raw, refined)
@@ -862,6 +959,9 @@ def reject_reasons(raw_text: str, refined_text: str) -> tuple[str, ...]:
         and not _retains_correction_tail(raw, refined)
     ):
         reasons.append("numeric_value_mismatch")
+
+    if numeric_rule_mode and not _numeric_rule_surface_is_preserved(raw, refined):
+        reasons.append("numeric_rule_surface_mismatch")
 
     if _partially_converted_numeric_range(raw, refined):
         reasons.append("partial_numeric_range_conversion")
@@ -1503,8 +1603,10 @@ def _is_intentional_correction_compression(
     return length_ratio >= 0.45 or _self_correction_count(raw) >= 2
 
 
-def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
-    """Extract ordered numeric values with a small amount of unit context.
+def _numeric_mentions(
+    text: str,
+) -> tuple[tuple[int, int, str, Decimal, str], ...]:
+    """Extract ordered numeric spans, surfaces, values, and unit context.
 
     Standalone Chinese ``一``/``两`` in ordinary classifier phrases is not
     treated as a numeric assertion unless it is followed by a number unit.
@@ -1531,6 +1633,30 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
     for expression in _FIXED_EXPRESSIONS:
         for match in re.finditer(re.escape(expression), text):
             occupied.append((match.start(), match.end()))
+
+    # A range's left endpoint has no adjacent unit of its own. Parse both
+    # endpoints together so a changed right (or left) value cannot pass as a
+    # harmless Chinese-to-Arabic surface conversion.
+    for match in _NUMERIC_RANGE_RE.finditer(text):
+        start, end = match.span()
+        if _overlaps(start, end, occupied):
+            continue
+        endpoints = []
+        for group in ("left", "right"):
+            token = match.group(group)
+            try:
+                value = Decimal(token) if token[0].isdigit() else _parse_chinese_number(token)
+            except InvalidOperation:
+                value = None
+            if value is None:
+                break
+            endpoints.append(value)
+        if len(endpoints) != 2:
+            continue
+        unit = _unit_for(match.group("unit"))
+        values.extend((match.start(group), match.end(group), value, unit)
+                      for group, value in zip(("left", "right"), endpoints))
+        occupied.append((start, end))
 
     # Chinese percentages may carry a decimal part (百分之十二点五 -> 12.5%).
     for match in re.finditer(
@@ -1559,7 +1685,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             continue
         hour_start = match.start(1)
         minute_start = match.start(2)
-        values.append((hour_start, hour_start + 1, hour, ""))
+        values.append((match.start(1), match.end(1), hour, ""))
         values.append((minute_start, match.end(2), minute, ""))
         occupied.append((start, end))
 
@@ -1581,7 +1707,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             continue
         multiplier = Decimal(_CHINESE_LARGE_UNITS[match.group(2)])
         values.append(
-            (start, end, coefficient * multiplier, _unit_for(text[end : end + 1]))
+            (start, end, coefficient * multiplier, _unit_after(text, end))
         )
         occupied.append((start, end))
 
@@ -1595,7 +1721,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             continue
         multiplier = Decimal(_CHINESE_LARGE_UNITS[match.group(2)])
         values.append(
-            (start, end, coefficient * multiplier, _unit_for(text[end : end + 1]))
+            (start, end, coefficient * multiplier, _unit_after(text, end))
         )
         occupied.append((start, end))
 
@@ -1605,7 +1731,7 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             continue
         token = match.group(0)
         suffix = text[end : end + 1]
-        unit = "percent" if suffix in {"%", "％"} else _unit_for(suffix)
+        unit = "percent" if suffix in {"%", "％"} else _unit_after(text, end)
         # Mirror the Chinese-numeral guard: a single bare Arabic digit that is
         # not part of an explicit numeric context (unit, percent, decimal,
         # sign, or a multi-digit run) is not treated as a numeric assertion.
@@ -1647,15 +1773,432 @@ def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
             and suffix not in _CHINESE_NUMERIC_UNITS
             and suffix not in _CHINESE_COUNT_UNITS
             and suffix not in _CHINESE_MULTIPLIER_UNITS
+            and not _unit_after(text, end)
         ):
             continue
         value = _parse_chinese_number(token)
         if value is None:
             continue
-        values.append((start, end, value, _unit_for(suffix)))
+        values.append((start, end, value, _unit_after(text, end)))
 
     values.sort(key=lambda item: item[0])
-    return tuple((value, unit) for _, _, value, unit in values)
+    return tuple(
+        (start, end, text[start:end], value, unit)
+        for start, end, value, unit in values
+    )
+
+
+def _numeric_values(text: str) -> tuple[tuple[Decimal, str], ...]:
+    """Return the value-only view used by the legacy integrity checks."""
+
+    return tuple(
+        (value, unit)
+        for _start, _end, _surface, value, unit in _numeric_mentions(text)
+    )
+
+
+def has_numeric_value_mention(text: str) -> bool:
+    """Whether text contains a numeric assertion recognized by the guard."""
+
+    return bool(_numeric_mentions(text))
+
+
+_NUMERIC_SURFACE_SUFFIXES = tuple(sorted(
+    set((*_COUNT_UNITS, *_MEASURE_UNITS, *_MULTIPLIER_UNITS, "年", "月", "日", "号", "%", "％")),
+    key=len,
+    reverse=True,
+))
+
+
+def _numeric_surface_signature(
+    text: str, mention: tuple[int, int, str, Decimal, str]
+) -> tuple[str, str, Decimal, str]:
+    _start, end, surface, value, unit = mention
+    suffix = next(
+        (item for item in _NUMERIC_SURFACE_SUFFIXES if text.startswith(item, end)),
+        "",
+    )
+    return surface, suffix, value, unit
+
+
+def _punctuation_clause_parts(text: str) -> tuple[tuple[int, int, int], ...]:
+    """Return nonempty clause spans as ``(start, content_end, end)``."""
+
+    parts: list[tuple[int, int, int]] = []
+    start = 0
+    for boundary in re.finditer(r"[，,。！？!?；;：:\n]+", text):
+        content_end = boundary.start()
+        if text[start:content_end].strip():
+            parts.append((start, content_end, boundary.end()))
+        start = boundary.end()
+    if text[start:].strip():
+        parts.append((start, len(text), len(text)))
+    return tuple(parts)
+
+
+def _numeric_clause_identity(
+    text: str,
+    start: int,
+    end: int,
+    *,
+    mentions: tuple[tuple[int, int, str, Decimal, str], ...] | None = None,
+) -> tuple[str, tuple[tuple[str, str, Decimal, str], ...]] | None:
+    mentions = [
+        mention for mention in (
+            _numeric_mentions(text) if mentions is None else mentions
+        )
+        if start <= mention[0] and mention[1] <= end
+    ]
+    if not mentions:
+        return None
+    value = text[start:end]
+    for mention in reversed(mentions):
+        local_start = mention[0] - start
+        local_end = mention[1] - start
+        value = value[:local_start] + "\ue000" + value[local_end:]
+    skeleton = "".join(
+        char for char in value
+        if not char.isspace() and not unicodedata.category(char).startswith("P")
+    )
+    lexical = skeleton.replace("\ue000", "")
+    if len(re.findall(r"[\u3400-\u9fffA-Za-z]", lexical)) < 2:
+        return None
+    signature = tuple(
+        _numeric_surface_signature(text, mention) for mention in mentions
+    )
+    return skeleton, signature
+
+
+def _numeric_clause_identities(
+    text: str, clauses: tuple[tuple[int, int, int], ...]
+) -> tuple[tuple[str, tuple[tuple[str, str, Decimal, str], ...]] | None, ...]:
+    """Parse numbers once and assign them to ordered, nonoverlapping clauses."""
+
+    if not clauses:
+        return ()
+    mentions = _numeric_mentions(text)
+    identities = []
+    cursor = 0
+    for start, content_end, _end in clauses:
+        while cursor < len(mentions) and mentions[cursor][0] < start:
+            cursor += 1
+        contained = []
+        while cursor < len(mentions) and mentions[cursor][0] < content_end:
+            mention = mentions[cursor]
+            if mention[1] <= content_end:
+                contained.append(mention)
+            cursor += 1
+        identities.append(_numeric_clause_identity(
+            text, start, content_end, mentions=tuple(contained)
+        ))
+    return tuple(identities)
+
+
+def _numeric_clause_repetition_spans(
+    text: str,
+) -> tuple[tuple[int, int, str, str, tuple[int, int], tuple[int, int], tuple], ...]:
+    """Find adjacent clauses that repeat the same wording and numeric values."""
+
+    clauses = _punctuation_clause_parts(text)
+    identities = _numeric_clause_identities(text, clauses)
+    found = []
+    for left, right, left_identity, right_identity in zip(
+        clauses, clauses[1:], identities, identities[1:]
+    ):
+        if left_identity is None or left_identity != right_identity:
+            continue
+        left_text = text[left[0]:left[1]]
+        right_suffix = text[right[1]:right[2]]
+        pair_start, pair_end = left[0], right[2]
+        source = text[pair_start:pair_end]
+        target = left_text + right_suffix
+        found.append((
+            pair_start,
+            pair_end,
+            source,
+            target,
+            (left[0], left[1]),
+            (right[0], right[1]),
+            left_identity,
+        ))
+    return tuple(found)
+
+
+def has_numeric_clause_repetition(text: str) -> bool:
+    """Whether text has adjacent clauses with the same numeric assertion."""
+
+    return bool(_numeric_clause_repetition_spans(text))
+
+
+def _numeric_clause_occurrence_count(
+    text: str, identity: tuple[str, tuple[tuple[str, str, Decimal, str], ...]]
+) -> int:
+    return sum(
+        item == identity
+        for item in _numeric_clause_identities(text, _punctuation_clause_parts(text))
+    )
+
+
+def find_numeric_clause_repetition_candidates(
+    text: str, *, max_candidates: int = 24
+) -> tuple[RepetitionReviewCandidate, ...]:
+    """Propose repeated clauses with identical numeric assertions for review."""
+
+    candidates = []
+    for index, (
+        start, end, source, target, _left_span, _right_span, _identity,
+    ) in enumerate(_numeric_clause_repetition_spans(text)[:max_candidates], 1):
+        candidates.append(RepetitionReviewCandidate(
+            index=index,
+            start=start,
+            end=end,
+            source=source,
+            target=target,
+            kind="numeric_clause_repetition",
+            context=_repetition_review_context(text, start, end),
+        ))
+    return tuple(candidates)
+
+
+def _correction_numeric_drop_spans(
+    raw: str, refined: str
+) -> tuple[tuple[int, int], ...]:
+    """Locate only the explicit false-start clauses replaced by a correction."""
+
+    if not _retains_correction_tail(raw, refined):
+        return ()
+    clauses = _punctuation_clause_parts(raw)
+    target_values = _numeric_values(refined)
+    dropped: list[tuple[int, int]] = []
+    for marker in reversed(tuple(_CORRECTION_MARKER_RE.finditer(raw))):
+        tail_start = marker.end()
+        while tail_start < len(raw) and (
+            raw[tail_start].isspace() or raw[tail_start] in "，,、:："
+        ):
+            tail_start += 1
+        tail_end = next(
+            (boundary.start() for boundary in re.finditer(
+                r"[，,。！？!?；;：:\n]", raw[tail_start:]
+            )),
+            len(raw) - tail_start,
+        ) + tail_start
+        tail = raw[tail_start:tail_end].strip()
+        if not tail:
+            continue
+        tail_mentions = _numeric_mentions(tail)
+        tail_values = tuple((mention[3], mention[4]) for mention in tail_mentions)
+        if tail not in refined and not (
+            tail_values and all(value in target_values for value in tail_values)
+        ):
+            continue
+
+        marker_clause = next(
+            (
+                index for index, (start, _content_end, end) in enumerate(clauses)
+                if start <= marker.start() < end
+            ),
+            None,
+        )
+        if marker_clause is None:
+            continue
+        clause_start, _clause_content_end, _clause_end = clauses[marker_clause]
+        prefix = raw[clause_start:marker.start()].strip()
+        if prefix:
+            antecedent_spans = ((clause_start, marker.start()),)
+        else:
+            antecedent = marker_clause - 1
+            while antecedent >= 0:
+                clause_text = raw[clauses[antecedent][0]:clauses[antecedent][1]]
+                compact = _strip_edit_punctuation(clause_text)
+                if compact not in _CORRECTION_FILLER_TOKENS:
+                    break
+                antecedent -= 1
+            antecedent_spans = (
+                ((clauses[antecedent][0], clauses[antecedent][1]),)
+                if antecedent >= 0 else ()
+            )
+        antecedent_mentions = [
+            mention for mention in _numeric_mentions(raw)
+            if any(
+                start <= mention[0] and mention[1] <= end
+                for start, end in antecedent_spans
+            )
+        ]
+        if not antecedent_mentions or not tail_mentions:
+            continue
+        tail_counts = Counter(mention[4] for mention in tail_mentions)
+        antecedent_counts = Counter(mention[4] for mention in antecedent_mentions)
+        for unit, count in tail_counts.items():
+            # When an antecedent clause contains several quantities with the
+            # same unit but the replacement mentions only one, their roles
+            # cannot be mapped safely from text alignment alone. Keep those
+            # numbers instead of granting the whole clause an exemption.
+            if antecedent_counts[unit] != count:
+                continue
+            dropped.extend(
+                (mention[0], mention[1])
+                for mention in antecedent_mentions
+                if mention[4] == unit
+            )
+    return tuple(dict.fromkeys(dropped))
+
+
+def _numeric_signature_sequence_matches(
+    raw: str,
+    refined: str,
+    allowed_drop_spans: tuple[tuple[int, int], ...],
+) -> bool:
+    source_mentions = _numeric_mentions(raw)
+    target_mentions = _numeric_mentions(refined)
+
+    def signature(text: str, mention: tuple[int, int, str, Decimal, str]):
+        return _numeric_surface_signature(text, mention)
+
+    @lru_cache(maxsize=None)
+    def match(source_index: int, target_index: int) -> bool:
+        if source_index == len(source_mentions):
+            return target_index == len(target_mentions)
+        source_mention = source_mentions[source_index]
+        if (
+            target_index < len(target_mentions)
+            and signature(raw, source_mention)
+            == signature(refined, target_mentions[target_index])
+            and match(source_index + 1, target_index + 1)
+        ):
+            return True
+        if any(
+            start <= source_mention[0] and source_mention[1] <= end
+            for start, end in allowed_drop_spans
+        ) and match(source_index + 1, target_index):
+            return True
+        return False
+
+    return match(0, 0)
+
+
+def _numeric_rule_allowed_drop_spans(
+    raw: str, refined: str
+) -> tuple[tuple[int, int], ...]:
+    spans = []
+    for (
+        _pair_start, _pair_end, _source, _target,
+        left_span, right_span, identity,
+    ) in _numeric_clause_repetition_spans(raw):
+        if _numeric_clause_occurrence_count(refined, identity) >= 1:
+            spans.extend((left_span, right_span))
+    spans.extend(_correction_numeric_drop_spans(raw, refined))
+    return tuple(spans)
+
+
+def _numeric_mention_alignment(
+    raw: str,
+    refined: str,
+    allowed_drop_spans: tuple[tuple[int, int], ...],
+    *,
+    require_surface: bool,
+) -> tuple[tuple[int, int], ...] | None:
+    source_mentions = _numeric_mentions(raw)
+    target_mentions = _numeric_mentions(refined)
+
+    def matches(
+        source_mention: tuple[int, int, str, Decimal, str],
+        target_mention: tuple[int, int, str, Decimal, str],
+    ) -> bool:
+        if require_surface:
+            return _numeric_surface_signature(raw, source_mention) == (
+                _numeric_surface_signature(refined, target_mention)
+            )
+        return (
+            source_mention[3], source_mention[4]
+        ) == (
+            target_mention[3], target_mention[4]
+        )
+
+    @lru_cache(maxsize=None)
+    def align(source_index: int, target_index: int):
+        if source_index == len(source_mentions):
+            return () if target_index == len(target_mentions) else None
+        source_mention = source_mentions[source_index]
+        if (
+            target_index < len(target_mentions)
+            and matches(source_mention, target_mentions[target_index])
+        ):
+            tail = align(source_index + 1, target_index + 1)
+            if tail is not None:
+                return ((source_index, target_index), *tail)
+        if any(
+            start <= source_mention[0] and source_mention[1] <= end
+            for start, end in allowed_drop_spans
+        ):
+            return align(source_index + 1, target_index)
+        return None
+
+    return align(0, 0)
+
+
+def restore_rule_numeric_surfaces(raw: str, refined: str) -> str | None:
+    """Put rule-owned number spellings back while retaining validated edits.
+
+    Only value/unit-aligned mentions can be repaired. A source number may be
+    omitted only inside an adjacent repeated clause or an explicit corrected
+    false start; arbitrary model insertions, deletions, and value changes have
+    no alignment and are left for the integrity guard to reject.
+    """
+
+    allowed = _numeric_rule_allowed_drop_spans(raw, refined)
+    alignment = _numeric_mention_alignment(
+        raw, refined, allowed, require_surface=True
+    )
+    if alignment is None:
+        alignment = _numeric_mention_alignment(
+            raw, refined, allowed, require_surface=False
+        )
+    if alignment is None:
+        return None
+
+    source_mentions = _numeric_mentions(raw)
+    target_mentions = _numeric_mentions(refined)
+    edits: list[tuple[int, int, str]] = []
+    for source_index, target_index in alignment:
+        source_mention = source_mentions[source_index]
+        target_mention = target_mentions[target_index]
+        source_surface, source_suffix, _value, _unit = _numeric_surface_signature(
+            raw, source_mention
+        )
+        target_surface, target_suffix, _value, _unit = _numeric_surface_signature(
+            refined, target_mention
+        )
+        replacement = source_surface + source_suffix
+        target_end = target_mention[1] + len(target_suffix)
+        if replacement != refined[target_mention[0]:target_end]:
+            edits.append((target_mention[0], target_end, replacement))
+    repaired = refined
+    for start, end, replacement in reversed(edits):
+        repaired = repaired[:start] + replacement + repaired[end:]
+    return repaired
+
+
+def _numeric_rule_surface_is_preserved(raw: str, refined: str) -> bool:
+    return _numeric_signature_sequence_matches(
+        raw, refined, _numeric_rule_allowed_drop_spans(raw, refined)
+    )
+
+
+def _numeric_repeat_collapse_baseline(raw: str, refined: str) -> str | None:
+    """Return the source with one model-confirmed duplicate clause removed."""
+
+    for (
+        pair_start, pair_end, _source, target,
+        _left_span, _right_span, identity,
+    ) in _numeric_clause_repetition_spans(raw):
+        if _numeric_clause_occurrence_count(refined, identity) < 1:
+            continue
+        expected = raw[:pair_start] + target + raw[pair_end:]
+        if not _numeric_signature_sequence_matches(expected, refined, ()):
+            continue
+        if not reject_reasons(expected, refined):
+            return expected
+    return None
 
 
 def _numeric_edit_is_equivalent(source: str, target: str) -> bool:
@@ -1735,7 +2278,9 @@ def preserve_safe_numeric_edits(raw: str, refined: str) -> str | None:
     return repaired
 
 
-def preserve_safe_repetition_edits(raw: str, refined: str) -> str | None:
+def preserve_safe_repetition_edits(
+    raw: str, refined: str, *, numeric_rule_mode: bool = False,
+) -> str | None:
     """Project independently provable adjacent repetition deletions.
 
     A rejected refinement can contain a valid stutter cleanup next to an
@@ -1803,7 +2348,9 @@ def preserve_safe_repetition_edits(raw: str, refined: str) -> str | None:
     repaired = source
     for start, end, replacement in reversed(edits):
         repaired = repaired[:start] + replacement + repaired[end:]
-    if repaired == source or reject_reasons(source, repaired):
+    if repaired == source or reject_reasons(
+        source, repaired, numeric_rule_mode=numeric_rule_mode
+    ):
         return None
     return repaired
 
@@ -1860,7 +2407,16 @@ def _unit_for(value: str) -> str:
         return "count"
     if value in _CHINESE_MULTIPLIER_UNITS:
         return "multiplier"
+    if value in _MEASURE_UNITS:
+        return f"measure:{value}"
     return ""
+
+
+def _unit_after(text: str, end: int) -> str:
+    for unit in sorted(_MEASURE_UNITS, key=len, reverse=True):
+        if text.startswith(unit, end):
+            return _unit_for(unit)
+    return _unit_for(text[end : end + 1])
 
 
 def _ambiguous_chinese_number(token: str, text: str, end: int) -> bool:

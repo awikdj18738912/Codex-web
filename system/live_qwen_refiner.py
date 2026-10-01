@@ -40,6 +40,8 @@ from .refinement_gate import RefinementGate, RefinementGateMode
 from .refinement_guard import preserve_safe_repetition_edits
 from .numeric_normalizer import ContextualNumericNormalizer
 from .refinement_protocol import (
+    NUMERIC_RULES_REFINER_SYSTEM_PROMPT,
+    NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT,
     REPETITION_REVIEW_SYSTEM_PROMPT,
     STRICT_PLACEHOLDER_PROMPT,
     STRUCTURED_REFINER_SYSTEM_PROMPT,
@@ -89,6 +91,39 @@ class TransformersRefiner:
         entity_hints: Iterable[str] = (),
         strict_placeholders: bool = False,
     ) -> tuple[str, float]:
+        return self._refine_with_system_prompt(
+            raw_text,
+            SYSTEM_PROMPT,
+            entity_hints=entity_hints,
+            strict_placeholders=strict_placeholders,
+        )
+
+    def refine_with_numeric_rules(
+        self,
+        raw_text: str,
+        *,
+        entity_hints: Iterable[str] = (),
+        strict_placeholders: bool = False,
+    ) -> tuple[str, float]:
+        """Refine language while leaving rule-normalized number surfaces intact."""
+
+        return self._refine_with_system_prompt(
+            raw_text,
+            NUMERIC_RULES_REFINER_SYSTEM_PROMPT,
+            entity_hints=entity_hints,
+            strict_placeholders=strict_placeholders,
+            strict_placeholder_prompt=NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT,
+        )
+
+    def _refine_with_system_prompt(
+        self,
+        raw_text: str,
+        system_prompt: str,
+        *,
+        entity_hints: Iterable[str],
+        strict_placeholders: bool,
+        strict_placeholder_prompt: str = STRICT_PLACEHOLDER_PROMPT,
+    ) -> tuple[str, float]:
         hints = tuple(dict.fromkeys(item.strip() for item in entity_hints if item.strip()))
         user_content = raw_text
         if hints:
@@ -97,9 +132,9 @@ class TransformersRefiner:
             {
                 "role": "system",
                 "content": (
-                    f"{SYSTEM_PROMPT}{STRICT_PLACEHOLDER_PROMPT}"
+                    f"{system_prompt}{strict_placeholder_prompt}"
                     if strict_placeholders
-                    else SYSTEM_PROMPT
+                    else system_prompt
                 ),
             },
             {"role": "user", "content": user_content},

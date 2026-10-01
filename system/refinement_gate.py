@@ -15,7 +15,10 @@ from enum import Enum
 from typing import Iterable
 
 from .numeric_normalizer import _COUNT_UNITS, _MEASURE_UNITS
-from .refinement_guard import detect_boundary_anomalies
+from .refinement_guard import (
+    detect_boundary_anomalies,
+    has_numeric_clause_repetition,
+)
 
 
 _SENTENCE_ENDINGS = frozenset("。！？!?；;")
@@ -149,10 +152,7 @@ class HypothesisTracker:
             self._unchanged_updates = 0
             self._changed_at = timestamp
         self._text = source
-        revision_ratio = (
-            1.0 - SequenceMatcher(None, previous, source, autojunk=False).ratio()
-            if previous else 0.0
-        )
+        revision_ratio = _hypothesis_revision_ratio(previous, source)
         tail_age_ms = max(0.0, (timestamp - self._changed_at) * 1000.0)
         sentence_complete = bool(source) and source[-1] in _SENTENCE_ENDINGS
         # Streaming ASR usually emits a cumulative prefix that grows by a
@@ -174,6 +174,49 @@ class HypothesisTracker:
             source, self._unchanged_updates, revision_ratio, tail_age_ms,
             sentence_complete, stable
         )
+
+
+def _hypothesis_revision_ratio(previous: str, source: str) -> float:
+    """Compute the existing SequenceMatcher ratio without rescanning stable text.
+
+    Cumulative ASR hypotheses usually append to, or revise only the tail of,
+    the previous hypothesis.  For prefix growth/shrink the exact ratio follows
+    directly from the matched prefix length.  When a long common prefix is
+    provably the longest matching block, compare only the remaining tails;
+    broad rewrites retain the original full-string SequenceMatcher path.
+    """
+
+    if not previous:
+        return 0.0
+    denominator = len(previous) + len(source)
+    if not denominator:
+        return 0.0
+    if source.startswith(previous) or previous.startswith(source):
+        return abs(len(previous) - len(source)) / denominator
+
+    common_prefix = 0
+    shared_length = min(len(previous), len(source))
+    while (
+        common_prefix < shared_length
+        and previous[common_prefix] == source[common_prefix]
+    ):
+        common_prefix += 1
+
+    previous_tail = previous[common_prefix:]
+    source_tail = source[common_prefix:]
+    if common_prefix >= max(len(previous_tail), len(source_tail)):
+        tail_matches = sum(
+            block.size
+            for block in SequenceMatcher(
+                None, previous_tail, source_tail, autojunk=False
+            ).get_matching_blocks()
+        )
+        matched = common_prefix + tail_matches
+        return 1.0 - (2.0 * matched / denominator)
+
+    return 1.0 - SequenceMatcher(
+        None, previous, source, autojunk=False
+    ).ratio()
 
 
 class RefinementGate:
@@ -228,10 +271,16 @@ class RefinementGate:
         cooldown_active: bool = False,
         same_as_last_refined: bool = False,
         numeric_refinement: bool = False,
+        numeric_rule_mode: bool = False,
+        numeric_rule_text: str | None = None,
     ) -> RefinementGateDecision:
         source = text.strip()
         visible_chars = len(_VISIBLE_RE.findall(source))
-        signals = _cleanup_signals(source)
+        signals = _cleanup_signals(
+            source,
+            numeric_rule_mode=numeric_rule_mode,
+            numeric_rule_text=numeric_rule_text,
+        )
         hints = tuple(item.strip() for item in entity_hints if item.strip())
 
         if self.mode is RefinementGateMode.TRI_STATE:
@@ -251,6 +300,7 @@ class RefinementGate:
                 cooldown_active=cooldown_active,
                 same_as_last_refined=same_as_last_refined,
                 numeric_refinement=numeric_refinement,
+                numeric_rule_mode=numeric_rule_mode,
             )
 
         if self.mode is RefinementGateMode.OFF:
@@ -270,10 +320,21 @@ class RefinementGate:
                 True, "entity_hint_present", visible_chars, asr_confidence,
                 calibrated, covers_segment, signals
             )
-        if signals:
+        model_signals = tuple(
+            signal
+            for signal in signals
+            if not numeric_rule_mode or signal != "numeric_normalization"
+        )
+        if model_signals:
             return self._decision(
                 True, "cleanup_signal_present", visible_chars, asr_confidence,
                 calibrated, covers_segment, signals
+            )
+        if numeric_rule_mode and "numeric_normalization" in signals:
+            return self._decision(
+                False, "numeric_handled_by_rule_pack", visible_chars,
+                asr_confidence, calibrated, covers_segment, signals,
+                action="keep",
             )
         if asr_confidence is None:
             return self._decision(
@@ -323,6 +384,7 @@ class RefinementGate:
         cooldown_active: bool,
         same_as_last_refined: bool,
         numeric_refinement: bool,
+        numeric_rule_mode: bool,
     ) -> RefinementGateDecision:
         """Route a cumulative hypothesis to keep, defer, or refine.
 
@@ -358,9 +420,8 @@ class RefinementGate:
             )
 
         # Entity hints and human disfluency signals are high-value reasons to
-        # spend a model call. In model-driven numeric mode, a numeric signal
-        # is also a reason to invoke the Refiner; in deterministic mode it is
-        # handled by the numeric normalizer instead.
+        # spend a model call. Numeric-only signals stay with the selected
+        # deterministic backend when model-driven numeric mode is disabled.
         model_signals = tuple(
             signal
             for signal in signals
@@ -375,6 +436,12 @@ class RefinementGate:
             return self._decision(
                 True, "cleanup_signal_present", visible_chars, asr_confidence,
                 calibrated, covers_segment, signals, action="refine"
+            )
+        if numeric_rule_mode and "numeric_normalization" in signals:
+            return self._decision(
+                False, "numeric_handled_by_rule_pack", visible_chars,
+                asr_confidence, calibrated, covers_segment, signals,
+                action="keep",
             )
         confidence_usable = (
             asr_confidence is not None and calibrated and covers_segment
@@ -458,7 +525,12 @@ class RefinementGate:
         )
 
 
-def _cleanup_signals(text: str) -> tuple[str, ...]:
+def _cleanup_signals(
+    text: str,
+    *,
+    numeric_rule_mode: bool = False,
+    numeric_rule_text: str | None = None,
+) -> tuple[str, ...]:
     signals: list[str] = []
     if _REPEATED_CJK_RE.search(text) or _REPEATED_SINGLE_RE.search(text):
         signals.append("repeated_character")
@@ -472,6 +544,10 @@ def _cleanup_signals(text: str) -> tuple[str, ...]:
         signals.append("self_correction")
     if _NUMERIC_NORMALIZATION_RE.search(text):
         signals.append("numeric_normalization")
+    if numeric_rule_mode and has_numeric_clause_repetition(
+        numeric_rule_text if numeric_rule_text is not None else text
+    ):
+        signals.append("numeric_clause_repetition")
     if "  " in text or "，，" in text or "。。" in text:
         signals.append("malformed_spacing_or_punctuation")
     if (

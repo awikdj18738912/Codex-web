@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
+from system import refinement_guard as guard
 from system.numeric_normalizer import ContextualNumericNormalizer
 from system.refinement_guard import (
     apply_repetition_review_decisions,
@@ -9,6 +11,7 @@ from system.refinement_guard import (
     find_model_proposed_deletions,
     find_repetition_review_candidates,
     has_complete_repetition_review_context,
+    has_repetition_review_candidate,
     join_refined_segments,
     preserve_terminal_punctuation,
     permits_self_correction_punctuation_repair,
@@ -16,6 +19,7 @@ from system.refinement_guard import (
     preserve_safe_repetition_edits,
     repetition_decisions_from_text_response,
     reject_reasons,
+    restore_rule_numeric_surfaces,
     source_punctuation_lost,
     split_for_refinement,
     validate_boundary_repair,
@@ -23,6 +27,60 @@ from system.refinement_guard import (
 
 
 class RefinementGuardTest(unittest.TestCase):
+    def test_batched_numeric_clause_identities_match_individual_parsing(self) -> None:
+        examples = (
+            "我是11，我是11。",
+            "我是11，我是12。",
+            "我有2000多个，我有2000多个。",
+            "我有两千多个，我有2000多个。",
+            "他有3万立方米；他有3万立方米！他有3万立方米。",
+            "金额为1,000元，金额为1,000元。",
+            "数值是3.5，数值是3.5。",
+            "比例为50%，比例为50%。",
+            "第一句没有数值，后面是11岁，后面是11岁。",
+            " ，；我有11个\n我有11个",
+            "普通文字。没有数值。",
+            "",
+        )
+        for source in examples:
+            with self.subTest(source=source):
+                clauses = guard._punctuation_clause_parts(source)
+                expected = tuple(
+                    guard._numeric_clause_identity(source, start, end)
+                    for start, end, _boundary in clauses
+                )
+                self.assertEqual(
+                    guard._numeric_clause_identities(source, clauses), expected
+                )
+                expected_pairs = [
+                    (left[0], right[2])
+                    for left, right, a, b in zip(
+                        clauses, clauses[1:], expected, expected[1:]
+                    )
+                    if a is not None and a == b
+                ]
+                self.assertEqual(
+                    [(span[0], span[1]) for span in guard._numeric_clause_repetition_spans(source)],
+                    expected_pairs,
+                )
+
+    def test_numeric_repetition_detection_parses_full_text_once(self) -> None:
+        source = "我有11个，我有11个。" * 40
+        with patch.object(
+            guard, "_numeric_mentions", wraps=guard._numeric_mentions
+        ) as parser:
+            self.assertTrue(guard.has_numeric_clause_repetition(source))
+        self.assertEqual(parser.call_count, 1)
+
+        identity = guard._numeric_clause_identity(source, 0, 5)
+        with patch.object(
+            guard, "_numeric_mentions", wraps=guard._numeric_mentions
+        ) as parser:
+            self.assertEqual(
+                guard._numeric_clause_occurrence_count(source, identity), 80
+            )
+        self.assertEqual(parser.call_count, 1)
+
     def test_rejected_model_edit_exposes_only_standalone_deletion(self) -> None:
         source = "呃，春秋晚年晚期嘛，所以礼坏乐崩嘛，"
         proposed = "春秋晚期嘛，所以礼崩嘛。"
@@ -250,6 +308,14 @@ class RefinementGuardTest(unittest.TestCase):
         )
         self.assertIn("numeric_value_mismatch", reasons)
 
+    def test_measured_range_keeps_both_endpoint_values(self) -> None:
+        source = "人们将大堤加高了一到两米。"
+        self.assertEqual(reject_reasons(source, "人们将大堤加高了1到2米。"), ())
+        self.assertIn(
+            "numeric_value_mismatch",
+            reject_reasons(source, "人们将大堤加高了1到3米。"),
+        )
+
     def test_classifier_quantity_normalization_is_accepted(self) -> None:
         self.assertEqual(
             reject_reasons("我有五个苹果。", "我有5个苹果。"),
@@ -411,6 +477,29 @@ class RefinementGuardTest(unittest.TestCase):
             [candidate.source for candidate in candidates],
             ["首首", "引引", "假假", "人人"],
         )
+
+    def test_fast_repetition_presence_check_matches_full_candidate_search(self) -> None:
+        examples = (
+            "首首先说明，引引入一个假假设，那人人性到底是什么？一首首歌。",
+            "模拟普通人接到警察电话：‘喂，喂，是郭庆子。你，你先听我说。啊！啊。’",
+            "我是11，我是11。",
+            "人人平等，今天讨论江河治理。",
+            "这是一段没有重复候选的普通转录文本。",
+        )
+        for source in examples:
+            for numeric_rule_mode in (False, True):
+                with self.subTest(
+                    source=source, numeric_rule_mode=numeric_rule_mode
+                ):
+                    expected = bool(find_repetition_review_candidates(
+                        source, numeric_rule_mode=numeric_rule_mode
+                    ))
+                    self.assertEqual(
+                        has_repetition_review_candidate(
+                            source, numeric_rule_mode=numeric_rule_mode
+                        ),
+                        expected,
+                    )
 
     def test_punctuated_repetition_review_candidates_are_structural(self) -> None:
         candidates = find_repetition_review_candidates(
@@ -725,6 +814,102 @@ class NumericSelfCorrectionTest(unittest.TestCase):
         )
         self.assertIn("semantic_content_loss", reasons)
 
+
+class NumericRuleModeGuardTest(unittest.TestCase):
+    def test_rule_mode_restores_number_surface_and_keeps_safe_repetition_edit(self) -> None:
+        source = "我们我们将六十多万条沟谷送入河。"
+        model_text = "我们将60多万条沟谷送入河。"
+
+        repaired = restore_rule_numeric_surfaces(source, model_text)
+
+        self.assertEqual(repaired, "我们将六十多万条沟谷送入河。")
+        self.assertEqual(
+            reject_reasons(source, repaired, numeric_rule_mode=True), ()
+        )
+
+    def test_rule_mode_restores_approximate_number_in_long_sentence_cleanup(self) -> None:
+        source = (
+            "在水流的冲刷下，超过10亿吨泥沙沿着六十多万条沟谷，"
+            "源源不断地汇入黄河，"
+        )
+        model_text = (
+            "在水流的冲刷下，超过10亿吨泥沙沿着60多万条沟谷，"
+            "源源不断地汇入黄河。"
+        )
+
+        repaired = restore_rule_numeric_surfaces(source, model_text)
+
+        self.assertEqual(
+            repaired,
+            "在水流的冲刷下，超过10亿吨泥沙沿着六十多万条沟谷，"
+            "源源不断地汇入黄河。",
+        )
+        self.assertEqual(
+            reject_reasons(source, repaired, numeric_rule_mode=True), ()
+        )
+
+    def test_rule_mode_does_not_restore_an_unmatched_numeric_value(self) -> None:
+        self.assertIsNone(
+            restore_rule_numeric_surfaces("我今年11岁。", "我今年12岁。")
+        )
+
+    def test_numeric_clause_repeat_can_be_removed_after_model_review(self) -> None:
+        source = "我是11，我是11。"
+        self.assertEqual(
+            find_repetition_review_candidates(source), ()
+        )
+        self.assertEqual(
+            find_repetition_review_candidates(source, numeric_rule_mode=True)[0].kind,
+            "numeric_clause_repetition",
+        )
+        revised, records = apply_repetition_review_decisions(
+            source,
+            find_repetition_review_candidates(source, numeric_rule_mode=True),
+            [{"index": 1, "action": "remove", "reason": "repeated_clause"}],
+            numeric_rule_mode=True,
+        )
+        self.assertEqual(revised, "我是11。")
+        self.assertTrue(records[0]["applied"])
+        self.assertEqual(reject_reasons(source, revised, numeric_rule_mode=True), ())
+
+    def test_numeric_clause_repeat_cannot_change_the_retained_value(self) -> None:
+        reasons = reject_reasons(
+            "我是11，我是11。", "我是12。", numeric_rule_mode=True
+        )
+        self.assertIn("numeric_value_mismatch", reasons)
+
+    def test_rule_mode_locks_number_surface_after_itn(self) -> None:
+        source = "我有5个苹果。"
+        target = "我有五个苹果。"
+        self.assertEqual(reject_reasons(source, target), ())
+        self.assertIn(
+            "numeric_rule_surface_mismatch",
+            reject_reasons(source, target, numeric_rule_mode=True),
+        )
+
+    def test_explicit_numeric_correction_drops_only_false_start(self) -> None:
+        source = "我今天11岁，不对，我今天12岁。"
+        self.assertEqual(
+            reject_reasons(source, "我今天12岁。", numeric_rule_mode=True),
+            (),
+        )
+        self.assertIn(
+            "numeric_rule_surface_mismatch",
+            reject_reasons(source, "我今天十二岁。", numeric_rule_mode=True),
+        )
+        self.assertIn(
+            "numeric_value_mismatch",
+            reject_reasons(source, "我今天13岁。", numeric_rule_mode=True),
+        )
+
+    def test_numeric_correction_does_not_authorize_an_unrelated_number_change(self) -> None:
+        source = "妈妈50岁，我今天11岁，不对，我今天12岁。"
+        target = "妈妈51岁，我今天12岁。"
+        reasons = reject_reasons(source, target, numeric_rule_mode=True)
+        self.assertTrue(
+            {"numeric_value_mismatch", "numeric_rule_surface_mismatch"} & set(reasons),
+            reasons,
+        )
 
 if __name__ == "__main__":
     unittest.main()

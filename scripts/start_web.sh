@@ -15,6 +15,8 @@ ENTITY_FUZZY_MODE="${ENTITY_FUZZY_MODE:-auto}"
 REFINEMENT_GATE_MODE="${REFINEMENT_GATE_MODE:-tri_state}"
 FINAL_REFINEMENT_MODE="${FINAL_REFINEMENT_MODE:-off}"
 OUTPUT_PATH="${OUTPUT_PATH:-${PROJECT_ROOT}/results/web/session.jsonl}"
+ZH_ITN_ENABLED="${ZH_ITN_ENABLED:-0}"
+ZH_ITN_LIBRARY="${ZH_ITN_LIBRARY:-${PROJECT_ROOT}/zh-itn/zh-itn/build/libzh_itn_bridge.so}"
 
 if curl --silent --show-error --fail --max-time 3 \
   "http://127.0.0.1:${WEB_PORT}/" >/dev/null 2>&1; then
@@ -36,6 +38,26 @@ if [[ ! -f "${ENTITY_DB}" ]]; then
   echo "Entity database not found: ${ENTITY_DB}" >&2
   exit 1
 fi
+ZH_ITN_ARGS=()
+case "${ZH_ITN_ENABLED,,}" in
+  1|true|yes|on)
+    if [[ ! -f "${ZH_ITN_LIBRARY}" ]]; then
+      if [[ "${ZH_ITN_LIBRARY}" == "${PROJECT_ROOT}/zh-itn/zh-itn/build/libzh_itn_bridge.so" ]]; then
+        bash "${SCRIPT_DIR}/build_zh_itn_bridge.sh"
+      else
+        echo "zh-itn library not found: ${ZH_ITN_LIBRARY}" >&2
+        exit 1
+      fi
+    fi
+    ZH_ITN_ARGS=(--enable-zh-itn --zh-itn-library "${ZH_ITN_LIBRARY}")
+    ;;
+  0|false|no|off)
+    ;;
+  *)
+    echo "ZH_ITN_ENABLED must be 0/1, false/true, no/yes, or off/on" >&2
+    exit 1
+    ;;
+esac
 
 exec env CUDA_VISIBLE_DEVICES="${WEB_GPU}" "${CONDA_EXE}" run --no-capture-output -n "${AGENTIC_ENV}" \
   python -m system.web_app \
@@ -48,6 +70,7 @@ exec env CUDA_VISIBLE_DEVICES="${WEB_GPU}" "${CONDA_EXE}" run --no-capture-outpu
   --entity-fuzzy-mode "${ENTITY_FUZZY_MODE}" \
   --refinement-gate-mode "${REFINEMENT_GATE_MODE}" \
   --final-refinement-mode "${FINAL_REFINEMENT_MODE}" \
+  "${ZH_ITN_ARGS[@]}" \
   --output "${OUTPUT_PATH}" \
   --max-new-tokens "${MAX_NEW_TOKENS:-256}" \
   --port "${WEB_PORT}"

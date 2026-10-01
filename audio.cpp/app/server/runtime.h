@@ -49,6 +49,8 @@ public:
     LiveIngestLimits live_ingest_limits(const HttpRequest & request) const override;
 
 private:
+    struct CompatASRSession;
+
     struct LoadedModel {
         struct RuntimeVoicePreset {
             std::optional<std::string> voice_id;
@@ -202,6 +204,10 @@ private:
         const engine::runtime::TaskRequest & request,
         std::optional<int> busy_timeout_ms = std::nullopt);
     HttpResponse handle_transcription_live(const HttpRequest & request);
+    HttpResponse handle_compat_asr_stream_start(const HttpRequest & request);
+    HttpResponse handle_compat_asr_stream_chunk(const HttpRequest & request);
+    HttpResponse handle_compat_asr_stream_finish(const HttpRequest & request);
+    HttpResponse handle_compat_asr_stream_cancel(const HttpRequest & request);
     HttpResponse handle_generic_run(const std::string & body_text);
     HttpResponse handle_generic_stream(const std::string & body_text);
     HttpResponse handle_voices(const HttpRequest & request) const;
@@ -227,6 +233,9 @@ private:
     std::filesystem::path upload_root_;
     std::mutex upload_root_mutex_;
     std::filesystem::path repository_root_;
+    std::mutex compat_asr_sessions_mutex_;
+    std::unordered_map<std::string, std::shared_ptr<CompatASRSession>> compat_asr_sessions_;
+    std::atomic<uint64_t> next_compat_asr_session_id_{1};
 #if defined(AUDIOCPP_HAS_NATIVE_MODEL_MANAGER)
     std::filesystem::path default_models_root_;
     std::filesystem::path models_root_;

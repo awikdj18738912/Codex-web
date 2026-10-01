@@ -1,0 +1,22 @@
+{
+  "host": "127.0.0.1",
+  "port": 38764,
+  "backend": "cuda",
+  "device": 0,
+  "threads": 8,
+  "lazy_load": true,
+  "max_loaded_models": 1,
+  "idle_unload_ms": 0,
+  "models": [
+    {
+      "id": "qwen3-asr-1.7b",
+      "family": "qwen3_asr",
+      "path": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+      "task": "asr",
+      "mode": "offline",
+      "default_request_options": {
+        "max_tokens": 512
+      }
+    }
+  ]
+}

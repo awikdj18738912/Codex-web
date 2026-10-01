@@ -23,6 +23,7 @@
 #include <cmath>
 #include <cctype>
 #include <cstdint>
+#include <cstring>
 #include <fstream>
 #include <functional>
 #include <iomanip>
@@ -1008,6 +1009,230 @@ std::optional<std::filesystem::path> find_from_roots(
 
 }  // namespace
 
+namespace {
+
+std::string trim_asr_text(std::string value) {
+    const auto is_space = [](unsigned char ch) {
+        return ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n';
+    };
+    while (!value.empty() && is_space(static_cast<unsigned char>(value.front()))) {
+        value.erase(value.begin());
+    }
+    while (!value.empty() && is_space(static_cast<unsigned char>(value.back()))) {
+        value.pop_back();
+    }
+    return value;
+}
+
+std::string join_asr_text(std::string prefix, std::string suffix) {
+    prefix = trim_asr_text(std::move(prefix));
+    suffix = trim_asr_text(std::move(suffix));
+    if (prefix.empty()) {
+        return suffix;
+    }
+    if (suffix.empty()) {
+        return prefix;
+    }
+    const auto prefix_last = static_cast<unsigned char>(prefix.back());
+    const auto suffix_first = static_cast<unsigned char>(suffix.front());
+    return prefix + ((prefix_last < 0x80 && suffix_first < 0x80) ? " " : "") + suffix;
+}
+
+int configured_compat_ms(
+    const std::unordered_map<std::string, std::string> & options,
+    const std::string & key,
+    int fallback) {
+    const auto it = options.find(key);
+    if (it == options.end()) {
+        return fallback;
+    }
+    size_t consumed = 0;
+    int value = 0;
+    try {
+        value = std::stoi(it->second, &consumed);
+    } catch (const std::exception &) {
+        throw std::runtime_error(key + " must be an integer number of milliseconds");
+    }
+    if (consumed != it->second.size() || value < 0) {
+        throw std::runtime_error(key + " must be a non-negative integer number of milliseconds");
+    }
+    return value;
+}
+
+std::vector<float> decode_float32le_pcm(const std::string & bytes) {
+    if (bytes.size() % sizeof(float) != 0) {
+        throw std::runtime_error("PCM payload must contain float32 samples");
+    }
+    std::vector<float> samples(bytes.size() / sizeof(float));
+    for (size_t i = 0; i < samples.size(); ++i) {
+        const auto offset = i * sizeof(float);
+        const uint32_t bits =
+            static_cast<uint32_t>(static_cast<unsigned char>(bytes[offset])) |
+            (static_cast<uint32_t>(static_cast<unsigned char>(bytes[offset + 1])) << 8) |
+            (static_cast<uint32_t>(static_cast<unsigned char>(bytes[offset + 2])) << 16) |
+            (static_cast<uint32_t>(static_cast<unsigned char>(bytes[offset + 3])) << 24);
+        std::memcpy(&samples[i], &bits, sizeof(float));
+        if (!std::isfinite(samples[i])) {
+            throw std::runtime_error("PCM payload contains a non-finite float32 sample");
+        }
+    }
+    return samples;
+}
+
+}  // namespace
+
+struct ServerState::CompatASRSession {
+    LoadedModel * asr_model = nullptr;
+    LoadedModel * vad_model = nullptr;
+    std::unique_ptr<engine::runtime::IVoiceTaskSession> asr_session;
+    std::unique_ptr<engine::runtime::IVoiceTaskSession> vad_session;
+    engine::runtime::IStreamingVoiceTaskSession * asr_stream = nullptr;
+    engine::runtime::IStreamingVoiceTaskSession * vad_stream = nullptr;
+    engine::runtime::TaskRequest asr_request;
+    engine::runtime::TaskRequest vad_request;
+    std::mutex mutex;
+    std::atomic<std::int64_t> last_seen_ms{0};
+    std::string language;
+    std::string committed_text;
+    std::string active_text;
+    std::vector<float> vad_pending;
+    std::vector<float> pre_roll;
+    std::vector<float> asr_pending;
+    size_t asr_send_chunk_samples = 8000;
+    int pre_roll_ms = 700;
+    int tail_pad_ms = 1000;
+    int64_t vad_sample_offset = 0;
+    int64_t asr_sample_offset = 0;
+    int asr_segment_count = 0;
+    int silence_skipped_chunks = 0;
+    int vad_skipped_chunks = 0;
+    bool speech_active = false;
+    bool asr_started = false;
+    bool vad_speech_detected = false;
+    bool closed = false;
+
+    std::vector<std::string> process_vad_frame(const std::vector<float> & frame) {
+        constexpr size_t vad_frame_samples = 512;
+        if (frame.size() != vad_frame_samples) {
+            throw std::runtime_error("Silero VAD requires 512-sample streaming frames");
+        }
+
+        const auto pre_roll_frames = std::max<int64_t>(
+            1, std::llround(static_cast<double>(pre_roll_ms) * 16000.0 /
+                            (1000.0 * static_cast<double>(vad_frame_samples))));
+        const size_t pre_roll_limit = static_cast<size_t>(pre_roll_frames) * vad_frame_samples;
+
+        auto vad_event = vad_stream->process_audio_chunk({16000, 1, vad_sample_offset, frame});
+        bool speech_start = false;
+        bool speech_end = false;
+        for (const auto & event : vad_event.voice_activity) {
+            speech_start = speech_start ||
+                event.kind == engine::runtime::VoiceActivityEvent::Kind::SpeechStart;
+            speech_end = speech_end ||
+                event.kind == engine::runtime::VoiceActivityEvent::Kind::SpeechEnd;
+        }
+
+        if (speech_start && !speech_active) {
+            speech_active = true;
+            start_asr_segment();
+            feed_asr_audio(pre_roll);
+            feed_asr_audio(frame);
+        } else if (speech_active) {
+            feed_asr_audio(frame);
+        }
+
+        std::vector<std::string> completed;
+        if (speech_end && speech_active) {
+            auto text = finish_asr_segment();
+            speech_active = false;
+            if (!text.empty()) {
+                completed.push_back(std::move(text));
+            }
+        }
+        pre_roll.insert(pre_roll.end(), frame.begin(), frame.end());
+        if (pre_roll.size() > pre_roll_limit) {
+            pre_roll.erase(pre_roll.begin(), pre_roll.end() - static_cast<std::ptrdiff_t>(pre_roll_limit));
+        }
+        vad_speech_detected = speech_active;
+        vad_sample_offset += static_cast<int64_t>(frame.size());
+        return completed;
+    }
+
+    void start_asr_segment() {
+        active_text.clear();
+        asr_sample_offset = 0;
+        asr_pending.clear();
+        asr_stream->start_stream(asr_request);
+        asr_started = true;
+    }
+
+    void feed_asr_audio(const std::vector<float> & samples) {
+        if (!asr_started || samples.empty()) {
+            return;
+        }
+        asr_pending.insert(asr_pending.end(), samples.begin(), samples.end());
+        size_t consumed = 0;
+        while (asr_pending.size() - consumed >= asr_send_chunk_samples) {
+            forward_asr_audio(std::vector<float>(
+                asr_pending.begin() + static_cast<std::ptrdiff_t>(consumed),
+                asr_pending.begin() + static_cast<std::ptrdiff_t>(consumed + asr_send_chunk_samples)));
+            consumed += asr_send_chunk_samples;
+        }
+        if (consumed != 0) {
+            asr_pending.erase(asr_pending.begin(), asr_pending.begin() + static_cast<std::ptrdiff_t>(consumed));
+        }
+    }
+
+    void forward_asr_audio(const std::vector<float> & samples) {
+        if (!asr_started || samples.empty()) {
+            return;
+        }
+        auto event = asr_stream->process_audio_chunk({
+            16000,
+            1,
+            asr_sample_offset,
+            samples,
+        });
+        asr_sample_offset += static_cast<int64_t>(samples.size());
+        if (const auto transcript = asr_stream->current_transcript()) {
+            active_text = trim_asr_text(transcript->text);
+        } else if (event.partial_text.has_value()) {
+            active_text = join_asr_text(std::move(active_text), event.partial_text->text);
+        }
+    }
+
+    std::string finish_asr_segment() {
+        if (!asr_started) {
+            return {};
+        }
+        if (!asr_pending.empty()) {
+            forward_asr_audio(asr_pending);
+            asr_pending.clear();
+        }
+        const auto tail_samples = static_cast<size_t>(
+            static_cast<int64_t>(16000) * static_cast<int64_t>(tail_pad_ms) / 1000);
+        if (tail_samples > 0) {
+            forward_asr_audio(std::vector<float>(tail_samples, 0.0f));
+        }
+        auto result = asr_stream->finish_stream();
+        asr_started = false;
+        active_text.clear();
+        asr_sample_offset = 0;
+        std::string text;
+        if (result.text_output.has_value()) {
+            text = trim_asr_text(result.text_output->text);
+            if (!result.text_output->language.empty()) {
+                language = result.text_output->language;
+            }
+        }
+        if (!text.empty()) {
+            committed_text = join_asr_text(std::move(committed_text), text);
+            ++asr_segment_count;
+        }
+        return text;
+    }
+};
+
 ServerState::ServerState(
     ServerConfig config,
     std::filesystem::path request_base,
@@ -1167,6 +1392,18 @@ HttpResponse ServerState::handle_request(const HttpRequest & request, bool use_f
     }
     else if (request.method == "POST" && request.path == "/v1/ui/upload") {
         response = handle_ui_upload(request);
+    }
+    else if (request.method == "POST" && request.path == "/stream/start") {
+        response = handle_compat_asr_stream_start(request);
+    }
+    else if (request.method == "POST" && request.path == "/stream/chunk") {
+        response = handle_compat_asr_stream_chunk(request);
+    }
+    else if (request.method == "POST" && request.path == "/stream/finish") {
+        response = handle_compat_asr_stream_finish(request);
+    }
+    else if (request.method == "POST" && request.path == "/stream/cancel") {
+        response = handle_compat_asr_stream_cancel(request);
     }
 #if defined(AUDIOCPP_HAS_NATIVE_MODEL_MANAGER)
     else if (request.method == "GET" && request.path == "/v1/ui/models-root") {
@@ -3071,6 +3308,302 @@ HttpResponse ServerState::handle_transcription_live(const HttpRequest & request)
                     "}");
             write_sse_done(writer);
         });
+}
+
+HttpResponse ServerState::handle_compat_asr_stream_start(const HttpRequest & request) {
+    LoadedModel * asr_model = nullptr;
+    LoadedModel * vad_model = nullptr;
+    for (const auto & candidate : models_) {
+        if (candidate->config.family == "qwen3_asr" &&
+            candidate->task.task == engine::runtime::VoiceTaskKind::Asr &&
+            candidate->task.mode == engine::runtime::RunMode::Streaming) {
+            asr_model = candidate.get();
+        } else if (candidate->config.family == "silero_vad" &&
+                   candidate->task.task == engine::runtime::VoiceTaskKind::Vad &&
+                   candidate->task.mode == engine::runtime::RunMode::Streaming) {
+            vad_model = candidate.get();
+        }
+    }
+    if (asr_model == nullptr || vad_model == nullptr) {
+        return error_response(
+            503,
+            "compatibility streaming requires streaming qwen3_asr and silero_vad models in server.json",
+            "asr_stream_models_unavailable");
+    }
+
+    auto state = std::make_shared<CompatASRSession>();
+    state->asr_model = asr_model;
+    state->vad_model = vad_model;
+    state->language = decoded_query_param(request.query, "language");
+
+    state->asr_request.audio_input = engine::runtime::AudioBuffer{16000, 1, {}};
+    if (!state->language.empty()) {
+        state->asr_request.options["language"] = state->language;
+        state->asr_request.text_input = engine::runtime::Transcript{"", state->language};
+    }
+    state->asr_request = apply_default_request_options(*asr_model, std::move(state->asr_request));
+    state->asr_request.options["qwen3_asr.streaming_redecode"] = "true";
+    state->vad_request.audio_input = engine::runtime::AudioBuffer{16000, 1, {}};
+    state->pre_roll_ms = configured_compat_ms(
+        vad_model->config.session_options, "asr_compat_preroll_ms", 700);
+    state->tail_pad_ms = configured_compat_ms(
+        vad_model->config.session_options, "asr_compat_tail_pad_ms", 1000);
+    const int send_chunk_ms = configured_compat_ms(
+        vad_model->config.session_options, "asr_compat_send_chunk_ms", 500);
+    if (send_chunk_ms == 0) {
+        return error_response(400, "asr_compat_send_chunk_ms must be positive", "invalid_asr_send_chunk_ms");
+    }
+    state->asr_send_chunk_samples = static_cast<size_t>(
+        static_cast<int64_t>(16000) * static_cast<int64_t>(send_chunk_ms) / 1000);
+    if (state->asr_send_chunk_samples == 0) {
+        return error_response(400, "asr_compat_send_chunk_ms is too small", "invalid_asr_send_chunk_ms");
+    }
+
+    const auto make_stream_session = [&](LoadedModel & model) {
+        auto model_lock = acquire_model_run(model, std::nullopt);
+        ensure_model_loaded_locked(model);
+        engine::runtime::SessionOptions options;
+        options.backend.type = config_.backend;
+        options.backend.device = config_.device;
+        options.backend.threads = config_.threads;
+        options.options = model.config.session_options;
+        auto session = model.model->create_task_session(model.task, options);
+        session->prepare(engine::runtime::build_preparation_request(
+            &model == asr_model ? state->asr_request : state->vad_request));
+        return session;
+    };
+
+    state->asr_session = make_stream_session(*asr_model);
+    state->asr_stream = dynamic_cast<engine::runtime::IStreamingVoiceTaskSession *>(
+        state->asr_session.get());
+    state->vad_session = make_stream_session(*vad_model);
+    state->vad_stream = dynamic_cast<engine::runtime::IStreamingVoiceTaskSession *>(
+        state->vad_session.get());
+    if (state->asr_stream == nullptr || state->vad_stream == nullptr) {
+        return error_response(
+            500,
+            "configured Qwen ASR or Silero VAD model does not provide streaming execution",
+            "asr_stream_configuration_error");
+    }
+    state->vad_stream->start_stream(state->vad_request);
+
+    const auto session_id = std::to_string(steady_now_ms()) + "-" +
+        std::to_string(next_compat_asr_session_id_.fetch_add(1));
+    state->last_seen_ms.store(steady_now_ms(), std::memory_order_relaxed);
+    {
+        std::lock_guard<std::mutex> lock(compat_asr_sessions_mutex_);
+        compat_asr_sessions_.emplace(session_id, std::move(state));
+    }
+    return json_response("{\"session_id\":" + json_quote(session_id) + "}");
+}
+
+HttpResponse ServerState::handle_compat_asr_stream_chunk(const HttpRequest & request) {
+    const std::string session_id = query_param(request.query, "session_id");
+    std::shared_ptr<CompatASRSession> state;
+    {
+        std::lock_guard<std::mutex> lock(compat_asr_sessions_mutex_);
+        const auto it = compat_asr_sessions_.find(session_id);
+        if (it == compat_asr_sessions_.end()) {
+            return error_response(400, "invalid session_id", "invalid_request_error");
+        }
+        state = it->second;
+        state->last_seen_ms.store(steady_now_ms(), std::memory_order_relaxed);
+    }
+
+    std::vector<float> samples;
+    try {
+        samples = decode_float32le_pcm(request.body);
+    } catch (const std::runtime_error & ex) {
+        return error_response(400, ex.what(), "invalid_request_error");
+    }
+
+    std::vector<std::pair<int, std::string>> completed_segments;
+    double sum_squares = 0.0;
+    double peak = 0.0;
+    for (const float sample : samples) {
+        const double value = static_cast<double>(sample);
+        sum_squares += value * value;
+        peak = std::max(peak, std::abs(value));
+    }
+    const double rms = samples.empty()
+        ? 0.0
+        : std::sqrt(sum_squares / static_cast<double>(samples.size()));
+    bool forwarded = false;
+    bool segment_ended = false;
+    {
+        std::lock_guard<std::mutex> session_lock(state->mutex);
+        if (state->closed) {
+            return error_response(409, "session is closed", "invalid_request_error");
+        }
+        auto asr_lock = acquire_model_run(*state->asr_model, std::nullopt);
+        auto vad_lock = acquire_model_run(*state->vad_model, std::nullopt);
+        ensure_model_loaded_locked(*state->asr_model);
+        ensure_model_loaded_locked(*state->vad_model);
+
+        state->vad_pending.insert(state->vad_pending.end(), samples.begin(), samples.end());
+        size_t consumed = 0;
+        constexpr size_t vad_frame_samples = 512;
+        while (state->vad_pending.size() - consumed >= vad_frame_samples) {
+            std::vector<float> frame(
+                state->vad_pending.begin() + static_cast<std::ptrdiff_t>(consumed),
+                state->vad_pending.begin() + static_cast<std::ptrdiff_t>(consumed + vad_frame_samples));
+            consumed += vad_frame_samples;
+            const bool was_speech_active = state->speech_active;
+            auto completed = state->process_vad_frame(frame);
+            forwarded = forwarded || was_speech_active || state->speech_active || !completed.empty();
+            if (!completed.empty()) {
+                segment_ended = true;
+                for (auto & text : completed) {
+                    completed_segments.emplace_back(state->asr_segment_count, std::move(text));
+                }
+            }
+        }
+        if (consumed > 0) {
+            state->vad_pending.erase(
+                state->vad_pending.begin(),
+                state->vad_pending.begin() + static_cast<std::ptrdiff_t>(consumed));
+        }
+        if (!forwarded) {
+            ++state->silence_skipped_chunks;
+            ++state->vad_skipped_chunks;
+        }
+    }
+
+    std::ostringstream events_json;
+    events_json << '[';
+    for (size_t i = 0; i < completed_segments.size(); ++i) {
+        if (i != 0) {
+            events_json << ',';
+        }
+        events_json << "{\"segment_id\":" << completed_segments[i].first
+                    << ",\"text\":" << json_quote(completed_segments[i].second)
+                    << ",\"vad_boundary\":true,\"confidence\":null"
+                    << ",\"confidence_metadata\":{\"calibrated\":false"
+                    << ",\"confidence_covers_full_text\":false"
+                    << ",\"scope\":\"unavailable\",\"source\":\"audio.cpp\"}}";
+    }
+    events_json << ']';
+
+    std::lock_guard<std::mutex> session_lock(state->mutex);
+    std::ostringstream response;
+    response << std::setprecision(8)
+             << "{\"language\":" << json_quote(state->language)
+             << ",\"text\":" << json_quote(join_asr_text(state->committed_text, state->active_text))
+             << ",\"audio_rms\":" << rms
+             << ",\"audio_peak\":" << peak
+             << ",\"silence_skipped\":" << (forwarded ? "false" : "true")
+             << ",\"silence_skipped_chunks\":" << state->silence_skipped_chunks
+             << ",\"vad\":\"silero\",\"vad_speech_detected\":"
+             << (state->vad_speech_detected ? "true" : "false")
+             << ",\"vad_segment_ended\":" << (segment_ended ? "true" : "false")
+             << ",\"vad_skipped_chunks\":" << state->vad_skipped_chunks
+             << ",\"asr_segment_count\":" << state->asr_segment_count
+             << ",\"segmentation_mode\":\"vad_finalize\""
+             << ",\"completed_segments\":" << events_json.str()
+             << ",\"active_segment\":" << json_quote(state->active_text)
+             << ",\"confidence\":null,\"confidence_calibrated\":false"
+             << ",\"confidence_covers_full_text\":false"
+             << ",\"confidence_scope\":\"unavailable\",\"confidence_source\":\"audio.cpp\""
+             << ",\"confidence_metadata\":{\"calibrated\":false"
+             << ",\"covers_full_text\":false,\"scope\":\"unavailable\",\"source\":\"audio.cpp\"}}";
+    return json_response(response.str());
+}
+
+HttpResponse ServerState::handle_compat_asr_stream_finish(const HttpRequest & request) {
+    const std::string session_id = query_param(request.query, "session_id");
+    std::shared_ptr<CompatASRSession> state;
+    {
+        std::lock_guard<std::mutex> lock(compat_asr_sessions_mutex_);
+        const auto it = compat_asr_sessions_.find(session_id);
+        if (it == compat_asr_sessions_.end()) {
+            return error_response(400, "invalid session_id", "invalid_request_error");
+        }
+        state = it->second;
+        compat_asr_sessions_.erase(it);
+    }
+
+    std::vector<std::pair<int, std::string>> completed_segments;
+    {
+        std::lock_guard<std::mutex> session_lock(state->mutex);
+        if (state->closed) {
+            return error_response(409, "session is closed", "invalid_request_error");
+        }
+        state->closed = true;
+        auto asr_lock = acquire_model_run(*state->asr_model, std::nullopt);
+        auto vad_lock = acquire_model_run(*state->vad_model, std::nullopt);
+        ensure_model_loaded_locked(*state->asr_model);
+        ensure_model_loaded_locked(*state->vad_model);
+
+        if (!state->vad_pending.empty()) {
+            std::vector<float> final_frame = state->vad_pending;
+            final_frame.resize(512, 0.0f);
+            auto completed = state->process_vad_frame(final_frame);
+            if (!completed.empty()) {
+                for (auto & text : completed) {
+                    completed_segments.emplace_back(state->asr_segment_count, std::move(text));
+                }
+            }
+            state->vad_pending.clear();
+        }
+        (void) state->vad_stream->finish_stream();
+        if (state->speech_active) {
+            auto text = state->finish_asr_segment();
+            state->speech_active = false;
+            state->vad_speech_detected = false;
+            if (!text.empty()) {
+                completed_segments.emplace_back(state->asr_segment_count, std::move(text));
+            }
+        }
+    }
+
+    std::ostringstream events_json;
+    events_json << '[';
+    for (size_t i = 0; i < completed_segments.size(); ++i) {
+        if (i != 0) {
+            events_json << ',';
+        }
+        events_json << "{\"segment_id\":" << completed_segments[i].first
+                    << ",\"text\":" << json_quote(completed_segments[i].second)
+                    << ",\"vad_boundary\":true,\"confidence\":null"
+                    << ",\"confidence_metadata\":{\"calibrated\":false"
+                    << ",\"confidence_covers_full_text\":false"
+                    << ",\"scope\":\"unavailable\",\"source\":\"audio.cpp\"}}";
+    }
+    events_json << ']';
+    std::lock_guard<std::mutex> session_lock(state->mutex);
+    return json_response(
+        "{\"language\":" + json_quote(state->language) +
+        ",\"text\":" + json_quote(state->committed_text) +
+        ",\"silence_skipped_chunks\":" + std::to_string(state->silence_skipped_chunks) +
+        ",\"vad\":\"silero\",\"vad_speech_detected\":false"
+        ",\"vad_segment_ended\":" + (completed_segments.empty() ? "false" : "true") +
+        ",\"vad_skipped_chunks\":" + std::to_string(state->vad_skipped_chunks) +
+        ",\"asr_segment_count\":" + std::to_string(state->asr_segment_count) +
+        ",\"segmentation_mode\":\"vad_finalize\",\"completed_segments\":" + events_json.str() +
+        ",\"active_segment\":\"\",\"confidence\":null"
+        ",\"confidence_calibrated\":false,\"confidence_covers_full_text\":false"
+        ",\"confidence_scope\":\"unavailable\",\"confidence_source\":\"audio.cpp\""
+        ",\"confidence_metadata\":{\"calibrated\":false"
+        ",\"covers_full_text\":false,\"scope\":\"unavailable\",\"source\":\"audio.cpp\"}}");
+}
+
+HttpResponse ServerState::handle_compat_asr_stream_cancel(const HttpRequest & request) {
+    const std::string session_id = query_param(request.query, "session_id");
+    std::shared_ptr<CompatASRSession> state;
+    {
+        std::lock_guard<std::mutex> lock(compat_asr_sessions_mutex_);
+        const auto it = compat_asr_sessions_.find(session_id);
+        if (it == compat_asr_sessions_.end()) {
+            return error_response(400, "invalid session_id", "invalid_request_error");
+        }
+        state = it->second;
+        compat_asr_sessions_.erase(it);
+    }
+    {
+        std::lock_guard<std::mutex> session_lock(state->mutex);
+        state->closed = true;
+    }
+    return json_response("{\"cancelled\":true}");
 }
 
 // /v1/tasks/run folds a top-level `language` into the option map, so the same

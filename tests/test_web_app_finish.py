@@ -1200,6 +1200,129 @@ class WebAppFinishTest(unittest.TestCase):
         self.assertEqual(final["clean_text"], "你好，我有22200元。")
         self.assertEqual(final["protected_entities"], [])
 
+    def test_zh_itn_runs_before_refiner_and_guard_keeps_its_value(self) -> None:
+        if not web_app.DEFAULT_ZH_ITN_LIBRARY.is_file():
+            self.skipTest("build the zh-itn bridge before this integration test")
+
+        class _WrongMeasureRefiner(_IdentityRefiner):
+            calls: list[str] = []
+
+            def refine(self, text, *, entity_hints=(), strict_placeholders=False):
+                type(self).calls.append(text)
+                return text.replace("45.22米", "45.2米"), 1.0
+
+        def fake_asr(asr_url, endpoint, session_id=None, data=b"", params=None):
+            if endpoint == "/stream/start":
+                return {"session_id": "zh-itn-test"}
+            if endpoint == "/stream/finish":
+                return {"text": "水深四十五点二二米。", "language": "Chinese"}
+            return {"cancelled": True}
+
+        with (
+            patch.object(web_app, "TransformersRefiner", _WrongMeasureRefiner),
+            patch.object(web_app, "_stream_request", fake_asr),
+        ):
+            app = web_app.create_app(
+                Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 32, None,
+                zh_itn_library=web_app.DEFAULT_ZH_ITN_LIBRARY,
+            )
+            with TestClient(app) as client:
+                with client.websocket_connect("/ws/stream?mode=offline") as websocket:
+                    self.assertEqual(websocket.receive_json()["event"], "ready")
+                    websocket.send_json({"event": "finish"})
+                    final = self._await_event(websocket, "final")
+
+        self.assertIn("水深45.22米。", _WrongMeasureRefiner.calls)
+        self.assertEqual(final["clean_text"], "水深45.22米。")
+        self.assertEqual(final["numeric_backend"], "zh-itn")
+        self.assertEqual(final["numeric_fallbacks"], [])
+        self.assertTrue(any("numeric_value_mismatch" in reason
+                            for reason in final["refiner_reject_reasons"]))
+
+    def test_zh_itn_branch_keeps_numeric_repeat_and_correction_cleanup(self) -> None:
+        if not web_app.DEFAULT_ZH_ITN_LIBRARY.is_file():
+            self.skipTest("build the zh-itn bridge before this integration test")
+
+        class _RuleAwareRefiner(_IdentityRefiner):
+            numeric_calls: list[str] = []
+            legacy_calls: list[str] = []
+
+            def __init__(self, *args, **kwargs):
+                type(self).numeric_calls = []
+                type(self).legacy_calls = []
+
+            def refine(self, text, *, entity_hints=(), strict_placeholders=False):
+                type(self).legacy_calls.append(text)
+                return text, 1.0
+
+            def refine_with_numeric_rules(
+                self, text, *, entity_hints=(), strict_placeholders=False
+            ):
+                type(self).numeric_calls.append(text)
+                if "我是11，我是11" in text:
+                    return "我是11。", 1.0
+                if "我今天11岁" in text and "不对" in text:
+                    return "我今天12岁。", 1.0
+                if "我们我们水深45.22米" in text:
+                    return "我们水深四十五点二二米。", 1.0
+                return text, 1.0
+
+        cases = (
+            (
+                "海外采购预算不少于两千万美元。",
+                "海外采购预算不少于2000万美元。",
+                False,
+            ),
+            ("我是11，我是11。", "我是11。", True),
+            ("我今天11岁，不对，我今天12岁。", "我今天12岁。", True),
+            (
+                "我们我们水深四十五点二二米。",
+                "我们水深45.22米。",
+                True,
+            ),
+        )
+        for index, (source, expected, model_expected) in enumerate(cases):
+            def fake_asr(
+                asr_url, endpoint, session_id=None, data=b"", params=None,
+                source=source, index=index,
+            ):
+                if endpoint == "/stream/start":
+                    return {"session_id": f"rule-branch-{index}"}
+                if endpoint == "/stream/finish":
+                    return {"text": source, "language": "Chinese"}
+                return {"cancelled": True}
+
+            with (
+                patch.object(web_app, "TransformersRefiner", _RuleAwareRefiner),
+                patch.object(web_app, "_stream_request", fake_asr),
+            ):
+                app = web_app.create_app(
+                    Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                    "Chinese", 32, None,
+                    refinement_gate_mode="tri_state",
+                    zh_itn_library=web_app.DEFAULT_ZH_ITN_LIBRARY,
+                )
+                with TestClient(app) as client:
+                    with client.websocket_connect("/ws/stream?mode=offline") as websocket:
+                        self.assertEqual(websocket.receive_json()["event"], "ready")
+                        websocket.send_json({"event": "finish"})
+                        final = self._await_event(websocket, "final")
+
+            with self.subTest(source=source):
+                self.assertEqual(final["clean_text"], expected)
+                self.assertEqual(
+                    bool(_RuleAwareRefiner.numeric_calls),
+                    model_expected,
+                    msg=json.dumps({
+                        "calls": _RuleAwareRefiner.numeric_calls,
+                        "gate": final.get("refinement_gate_decisions"),
+                    }, ensure_ascii=False),
+                )
+                self.assertEqual(_RuleAwareRefiner.legacy_calls, [])
+                self.assertEqual(final["numeric_backend"], "zh-itn")
+                self.assertEqual(final["numeric_fallbacks"], [])
+
     def test_wrong_model_number_falls_back_to_original_asr_value(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _WrongNumberRefiner),

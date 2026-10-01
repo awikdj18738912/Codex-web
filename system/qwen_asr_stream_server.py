@@ -102,6 +102,27 @@ def _should_rotate_segment(
     )
 
 
+def _vad_finalize_reason(
+    *,
+    vad_ended: bool,
+    text: str,
+    sample_count: int,
+    soft_limit_samples: int,
+    hard_limit_samples: int,
+) -> str | None:
+    """Return why a VAD-managed ASR state should be finalized, if at all."""
+
+    if vad_ended:
+        return "vad"
+    if sample_count >= hard_limit_samples:
+        return "max_duration"
+    if _should_rotate_segment(
+        text, sample_count, soft_limit_samples, hard_limit_samples
+    ):
+        return "soft_limit_sentence_end"
+    return None
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Serve local Qwen3-ASR streaming")
     parser.add_argument("--model", type=Path, required=True)
@@ -351,7 +372,11 @@ def main(argv: list[str] | None = None) -> int:
             ),
         )
 
-    def feed_speech(session: Session, samples: np.ndarray) -> None:
+    def feed_speech(
+        session: Session,
+        samples: np.ndarray,
+        timing: dict[str, float] | None = None,
+    ) -> None:
         """Buffer speech before sending it to Qwen in stable-sized batches."""
 
         chunk = np.asarray(samples, dtype=np.float32).reshape(-1)
@@ -360,9 +385,12 @@ def main(argv: list[str] | None = None) -> int:
         session.pending_pcm = np.concatenate((session.pending_pcm, chunk))
         session.segment_samples += chunk.size
         while session.pending_pcm.size >= asr_send_chunk_samples:
+            started_at = time.perf_counter()
             asr_runner.streaming_transcribe(
                 session.pending_pcm[:asr_send_chunk_samples], session.state
             )
+            if timing is not None:
+                timing["model_ms"] += (time.perf_counter() - started_at) * 1000.0
             session.pending_pcm = session.pending_pcm[asr_send_chunk_samples:]
 
     def has_active_audio(session: Session) -> bool:
@@ -373,18 +401,32 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     def finalize_segment(
-        session: Session, *, reset_state: bool = True
+        session: Session,
+        *,
+        reset_state: bool = True,
+        boundary_reason: str = "vad",
+        append_tail_pad: bool = True,
+        timing: dict[str, float] | None = None,
     ) -> dict[str, object] | None:
         """Finish one speech region and optionally prepare the next state."""
 
         if session.pending_pcm.size:
+            started_at = time.perf_counter()
             asr_runner.streaming_transcribe(session.pending_pcm, session.state)
+            if timing is not None:
+                timing["model_ms"] += (time.perf_counter() - started_at) * 1000.0
             session.pending_pcm = np.zeros(0, dtype=np.float32)
-        if vad_tail_pad_samples:
+        if append_tail_pad and vad_tail_pad_samples:
+            started_at = time.perf_counter()
             asr_runner.streaming_transcribe(
                 np.zeros(vad_tail_pad_samples, dtype=np.float32), session.state
             )
+            if timing is not None:
+                timing["model_ms"] += (time.perf_counter() - started_at) * 1000.0
+        started_at = time.perf_counter()
         asr_runner.finish_streaming_transcribe(session.state)
+        if timing is not None:
+            timing["model_ms"] += (time.perf_counter() - started_at) * 1000.0
         segment_text = str(getattr(session.state, "text", "") or "").strip()
         detected_language = getattr(session.state, "language", "") or ""
         if detected_language:
@@ -403,19 +445,23 @@ def main(argv: list[str] | None = None) -> int:
             completed_event = {
                 "segment_id": session.completed_segments,
                 "text": segment_text,
-                "vad_boundary": True,
+                "vad_boundary": boundary_reason == "vad",
+                "boundary_reason": boundary_reason,
                 "confidence": segment_confidence.get("confidence"),
                 "confidence_metadata": segment_confidence,
             }
         session.segment_samples = 0
-        session.vad_segment_ended = True
+        session.vad_segment_ended = boundary_reason == "vad"
         if reset_state:
+            started_at = time.perf_counter()
             session.state = new_state(
                 session.language,
                 chunk_size_seconds=session.chunk_size_seconds,
                 unfixed_chunk_num=session.unfixed_chunk_num,
                 unfixed_token_num=session.unfixed_token_num,
             )
+            if timing is not None:
+                timing["state_reset_ms"] += (time.perf_counter() - started_at) * 1000.0
         return completed_event
 
     def start_session(
@@ -485,6 +531,7 @@ def main(argv: list[str] | None = None) -> int:
         audio_peak: float = 0.0,
         silence_skipped: bool = False,
         completed_segment_events: list[dict[str, object]] | None = None,
+        asr_timing: dict[str, float] | None = None,
     ) -> dict[str, object]:
         response: dict[str, object] = {
             "language": session.detected_language,
@@ -507,6 +554,10 @@ def main(argv: list[str] | None = None) -> int:
                 getattr(session.state, "text", "") or ""
             ).strip(),
         }
+        if asr_timing is not None:
+            response["asr_timing"] = {
+                key: round(value, 3) for key, value in asr_timing.items()
+            }
         response.update(confidence_payload(session))
         return response
 
@@ -570,6 +621,7 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     def process_chunk(session_id: str):
+        request_started_at = time.perf_counter()
         session = get_session(session_id)
         if session is None:
             return jsonify(error="invalid session_id"), 400
@@ -582,8 +634,20 @@ def main(argv: list[str] | None = None) -> int:
         forwarded_pcm: np.ndarray | None = pcm16k
         vad_skipped = False
         completed_segment_events: list[dict[str, object]] = []
+        asr_timing = {
+            "lock_wait_ms": 0.0,
+            "lock_hold_ms": 0.0,
+            "vad_ms": 0.0,
+            "model_ms": 0.0,
+            "state_reset_ms": 0.0,
+        }
         session.vad_segment_ended = False
+        lock_wait_started_at = time.perf_counter()
         with model_lock:
+            lock_acquired_at = time.perf_counter()
+            asr_timing["lock_wait_ms"] = (
+                lock_acquired_at - lock_wait_started_at
+            ) * 1000.0
             # The browser may disconnect while this request waits behind a
             # long GPU call. Do not spend more GPU time on a session that was
             # cancelled in the meantime.
@@ -599,13 +663,29 @@ def main(argv: list[str] | None = None) -> int:
                 any_forwarded = False
                 for offset in range(0, pcm16k.size, VAD_WINDOW):
                     vad_window = pcm16k[offset : offset + VAD_WINDOW]
+                    vad_started_at = time.perf_counter()
                     decision = session.vad_gate.accept(vad_window)
+                    asr_timing["vad_ms"] += (
+                        time.perf_counter() - vad_started_at
+                    ) * 1000.0
                     session.vad_last_speech = decision.speech_detected
                     if decision.forward is not None and decision.forward.size:
                         any_forwarded = True
-                        feed_speech(session, decision.forward)
-                    if decision.ended:
-                        event = finalize_segment(session)
+                        feed_speech(session, decision.forward, asr_timing)
+                    boundary_reason = _vad_finalize_reason(
+                        vad_ended=decision.ended,
+                        text=str(getattr(session.state, "text", "") or ""),
+                        sample_count=session.segment_samples,
+                        soft_limit_samples=soft_limit_samples,
+                        hard_limit_samples=hard_limit_samples,
+                    )
+                    if boundary_reason is not None:
+                        event = finalize_segment(
+                            session,
+                            boundary_reason=boundary_reason,
+                            append_tail_pad=boundary_reason == "vad",
+                            timing=asr_timing,
+                        )
                         if event is not None:
                             completed_segment_events.append(event)
                 forwarded_pcm = pcm16k if any_forwarded else None
@@ -614,7 +694,11 @@ def main(argv: list[str] | None = None) -> int:
                     session.silence_skipped_chunks += 1
                     session.vad_skipped_chunks += 1
             elif session.vad_gate is not None:
+                vad_started_at = time.perf_counter()
                 decision = session.vad_gate.accept(pcm16k)
+                asr_timing["vad_ms"] += (
+                    time.perf_counter() - vad_started_at
+                ) * 1000.0
                 session.vad_last_speech = decision.speech_detected
                 forwarded_pcm = decision.forward
                 vad_skipped = forwarded_pcm is None
@@ -637,7 +721,11 @@ def main(argv: list[str] | None = None) -> int:
                 if session.vad_gate is not None:
                     session.vad_skipped_chunks += 1
             else:
+                model_started_at = time.perf_counter()
                 asr_runner.streaming_transcribe(forwarded_pcm, session.state)
+                asr_timing["model_ms"] += (
+                    time.perf_counter() - model_started_at
+                ) * 1000.0
                 session.segment_samples += forwarded_pcm.size
             segment_text = getattr(session.state, "text", "") or ""
             detected_language = getattr(session.state, "language", "") or ""
@@ -656,9 +744,12 @@ def main(argv: list[str] | None = None) -> int:
                     hard_limit_samples,
                 )
             ):
-                event = finalize_segment(session)
+                event = finalize_segment(session, timing=asr_timing)
                 if event is not None:
                     completed_segment_events.append(event)
+            asr_timing["lock_hold_ms"] = (
+                time.perf_counter() - lock_acquired_at
+            ) * 1000.0
         return jsonify(
             response_payload(
                 session,
@@ -666,6 +757,11 @@ def main(argv: list[str] | None = None) -> int:
                 audio_peak=audio_peak,
                 silence_skipped=vad_skipped,
                 completed_segment_events=completed_segment_events,
+                asr_timing={
+                    **asr_timing,
+                    "request_ms": (time.perf_counter() - request_started_at)
+                    * 1000.0,
+                },
             )
         )
 
@@ -685,7 +781,10 @@ def main(argv: list[str] | None = None) -> int:
         completed_segment_events: list[dict[str, object]] = []
         with model_lock:
             if has_active_audio(session):
-                event = finalize_segment(session)
+                event = finalize_segment(
+                    session,
+                    boundary_reason="session_finish",
+                )
                 if event is not None:
                     completed_segment_events.append(event)
         return jsonify(

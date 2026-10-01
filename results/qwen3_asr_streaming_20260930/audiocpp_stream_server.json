@@ -1,0 +1,25 @@
+{
+  "host": "127.0.0.1",
+  "port": 8768,
+  "backend": "cuda",
+  "device": 0,
+  "threads": 8,
+  "ui_enabled": false,
+  "lazy_load": false,
+  "models": [
+    {
+      "id": "qwen3-asr-f16-stream",
+      "family": "qwen3_asr",
+      "path": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B-GGUF/qwen3-asr-1.7b-f16.gguf",
+      "model_spec_override": "/tmp/audiocpp-upstream-benchmark/model_specs/qwen3_asr.json",
+      "task": "asr",
+      "mode": "streaming",
+      "default_request_options": {
+        "language": "Chinese",
+        "max_tokens": "512",
+        "audio_chunk_seconds": "30",
+        "audio_chunk_mode": "fixed"
+      }
+    }
+  ]
+}

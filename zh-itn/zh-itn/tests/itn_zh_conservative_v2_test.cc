@@ -2753,6 +2753,35 @@ int main() {
         );
     }
 
+    const std::vector<std::pair<std::string, std::string>> structural_quantity_cases = {
+        {"洪水以每秒超过六万立方米的流量涌来。",
+         "洪水以每秒超过6万立方米的流量涌来。"},
+        {"最大库容有四百五十亿立方米。", "最大库容有450亿立方米。"},
+        {"覆盖全流域的三万多个监测站点。", "覆盖全流域的3万多个监测站点。"},
+        {"足以装下三千多个湖泊。", "足以装下3000多个湖泊。"},
+        {"水位四十五点二二米。", "水位45.22米。"},
+        {"这里有四点五万条江河。", "这里有4.5万条江河。"},
+        {"蓄水能力相当于二点六个水库。", "蓄水能力相当于2.6个水库。"},
+        {"让一点七亿人口用上了水。", "让1.7亿人口用上了水。"},
+        {"人们将大堤加高了一到两米。", "人们将大堤加高了1到2米。"},
+        {"需要三到四个人。", "需要3到4个人。"},
+    };
+    for (const auto& [input, expected] : structural_quantity_cases) {
+        const auto result = normalize_zh_conservative_v2(request(input));
+        passed &= expect(result.valid && result.normalized.output == expected,
+            "structural quantity failed: " + input + " -> " + result.normalized.output
+                + " (" + result.decision_reason + ")");
+    }
+    for (const auto& text : std::vector<std::string>{
+            "这里有一个方案。", "他三番五次提醒我们。",
+            "一首首歌传遍大街小巷。", "万一有变化就通知我。",
+    }) {
+        const auto result = normalize_zh_conservative_v2(request(text));
+        passed &= expect(result.valid && result.normalized.output == text,
+            "structural quantity changed non-quantity: " + text + " -> "
+                + result.normalized.output);
+    }
+
     auto wrong_locale = request("二零二六年");
     wrong_locale.locale = "en-US";
     const auto locale_result = normalize_zh_conservative_v2(wrong_locale);

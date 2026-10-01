@@ -6,6 +6,7 @@ from system.qwen_asr_stream_server import (
     _join_transcripts,
     _scope_confidence_payload,
     _should_rotate_segment,
+    _vad_finalize_reason,
 )
 
 
@@ -16,6 +17,51 @@ class QwenStreamSegmentationTest(unittest.TestCase):
 
     def test_hard_limit_rotates_without_punctuation(self) -> None:
         self.assertTrue(_should_rotate_segment("还在说", 45, 30, 45))
+
+    def test_vad_endpoint_finishes_a_segment_before_duration_limits(self) -> None:
+        self.assertEqual(
+            _vad_finalize_reason(
+                vad_ended=True,
+                text="还在说",
+                sample_count=10,
+                soft_limit_samples=30,
+                hard_limit_samples=45,
+            ),
+            "vad",
+        )
+
+    def test_vad_mode_uses_soft_limit_only_at_sentence_boundary(self) -> None:
+        self.assertIsNone(
+            _vad_finalize_reason(
+                vad_ended=False,
+                text="还在说",
+                sample_count=30,
+                soft_limit_samples=30,
+                hard_limit_samples=45,
+            )
+        )
+        self.assertEqual(
+            _vad_finalize_reason(
+                vad_ended=False,
+                text="这句说完了。",
+                sample_count=30,
+                soft_limit_samples=30,
+                hard_limit_samples=45,
+            ),
+            "soft_limit_sentence_end",
+        )
+
+    def test_vad_mode_forces_a_cut_at_the_existing_hard_limit(self) -> None:
+        self.assertEqual(
+            _vad_finalize_reason(
+                vad_ended=False,
+                text="连续说话没有句末标点",
+                sample_count=45,
+                soft_limit_samples=30,
+                hard_limit_samples=45,
+            ),
+            "max_duration",
+        )
 
     def test_transcript_joining_preserves_chinese_and_english_spacing(self) -> None:
         self.assertEqual(_join_transcripts("第一段。", "第二段。"), "第一段。第二段。")

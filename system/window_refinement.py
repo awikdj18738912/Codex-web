@@ -8,6 +8,7 @@ tail on finalization.
 import re
 from threading import Lock
 from .chunking import (
+    Chunk,
     ChunkManager,
     merge_boundary_anomaly_chunks,
     merge_self_correction_chunks,
@@ -16,7 +17,7 @@ from .deterministic_cleanup import (
     clean_transcript_deterministically,
     detect_boundary_echo_repairs,
 )
-from .refinement_guard import join_refined_segments
+from .refinement_guard import has_numeric_value_mention, join_refined_segments
 
 
 _SELF_CORRECTION = re.compile(
@@ -176,6 +177,7 @@ class CumulativeWindowRefinement:
         *, one_punctuation_window: bool = False,
         fixed_groups: bool = False,
         prepare_pending=None,
+        group_numeric_self_corrections: bool = False,
     ):
         if window_size < 1:
             raise ValueError("window_size must be at least 1")
@@ -187,6 +189,7 @@ class CumulativeWindowRefinement:
         self.one_punctuation_window = one_punctuation_window
         self.fixed_groups = fixed_groups
         self.prepare_pending = prepare_pending
+        self.group_numeric_self_corrections = group_numeric_self_corrections
         self.committed = []
         self.active = None
         self.group_cache = []
@@ -310,6 +313,10 @@ class CumulativeWindowRefinement:
                 split_self_correction = (
                     len(active_chunks) > 1
                     and _SELF_CORRECTION.search(source) is not None
+                    and not (
+                        self.group_numeric_self_corrections
+                        and has_numeric_value_mention(source)
+                    )
                 )
                 if split_self_correction:
                     # Keep each complete self-correction clause together, but
@@ -500,6 +507,22 @@ class CumulativeWindowRefinement:
                     )
                 )
             pending = ""
+        if self.group_numeric_self_corrections and len(chunks) > 1:
+            chunks = [
+                chunk.text
+                for chunk in merge_self_correction_chunks(
+                    [
+                        Chunk(index=index, text=value)
+                        for index, value in enumerate(chunks)
+                    ],
+                    self.window_max_chars,
+                    allow_merge=(
+                        has_numeric_value_mention
+                        if self.group_numeric_self_corrections
+                        else None
+                    ),
+                )
+            ]
         return chunks, pending
 
     def _update_fixed(
@@ -643,6 +666,7 @@ class CumulativeWindowRefinement:
             asr_confidence=confidence,
             asr_confidence_metadata=dict(metadata or {}),
             refiner_latency_ms=0,
+            numeric_rule_latency_ms=0.0,
             refiner_executed=False,
             refiner_accepted=True,
             placeholder_retry_count=0,
@@ -653,7 +677,7 @@ class CumulativeWindowRefinement:
         for key in (
             "refiner_reject_reasons", "entity_audit_issues",
             "entity_refinement_hints", "entity_normalizations",
-            "numeric_normalizations", "numeric_fallbacks",
+            "numeric_normalizations", "numeric_rule_repairs", "numeric_fallbacks",
             "safe_numeric_repairs", "safe_repetition_repairs",
             "local_deletion_reviews",
             "repetition_reviews", "protected_entities", "entity_candidates",
@@ -712,6 +736,9 @@ class CumulativeWindowRefinement:
             refiner_accepted=all(p["refiner_accepted"] for p in parts),
             refiner_executed=any(p.get("refiner_executed", True) for p in parts),
             refiner_latency_ms=sum(p["refiner_latency_ms"] for p in parts),
+            numeric_rule_latency_ms=sum(
+                p.get("numeric_rule_latency_ms", 0.0) for p in parts
+            ),
             placeholder_retry_count=sum(
                 p.get("placeholder_retry_count", 0) for p in parts
             ),
@@ -729,6 +756,7 @@ class CumulativeWindowRefinement:
             "entity_refinement_hints",
             "entity_normalizations",
             "numeric_normalizations",
+            "numeric_rule_repairs",
             "numeric_fallbacks",
             "safe_numeric_repairs",
             "safe_repetition_repairs",

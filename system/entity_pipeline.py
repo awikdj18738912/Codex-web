@@ -122,6 +122,7 @@ def finalize_entity_segment(
     preserve_source_punctuation: bool = False,
     preserve_terminal_only: bool = False,
     allow_boundary_punctuation_repair: bool = False,
+    numeric_rule_mode: bool = False,
 ) -> FinalizedEntitySegment:
     restored = protector.restore(refined_masked_text, prepared.protection)
     if not restored.accepted:
@@ -148,7 +149,11 @@ def finalize_entity_segment(
     reasons = (
         *punctuation_reasons,
         *_introduced_hint_reasons(prepared, restored_text),
-        *reject_reasons(prepared.baseline_text, restored_text),
+        *reject_reasons(
+            prepared.baseline_text,
+            restored_text,
+            numeric_rule_mode=numeric_rule_mode,
+        ),
     )
     if reasons:
         return FinalizedEntitySegment(prepared.baseline_text, False, reasons)

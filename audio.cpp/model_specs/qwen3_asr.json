@@ -66,6 +66,37 @@
         "description": "Opt-in text output mode for timestamped chunked ASR: preserve ASR punctuation in text_output instead of rebuilding text from aligned words.",
         "required": false,
         "default": false
+      },
+      {
+        "name": "qwen3_asr.streaming_redecode",
+        "type": "bool",
+        "description": "For streaming ASR, re-decode the accumulated speech segment and publish a replaceable full-text hypothesis instead of concatenating independent audio windows.",
+        "required": false,
+        "default": false
+      },
+      {
+        "name": "qwen3_asr.streaming_update_seconds",
+        "type": "float",
+        "description": "Minimum newly received speech duration between rolling ASR updates.",
+        "required": false,
+        "min": 0.1,
+        "default": 1.0
+      },
+      {
+        "name": "qwen3_asr.streaming_unfixed_chunk_num",
+        "type": "int",
+        "description": "Number of initial streaming updates that do not reuse decoded text as a prompt prefix.",
+        "required": false,
+        "min": 0,
+        "default": 4
+      },
+      {
+        "name": "qwen3_asr.streaming_unfixed_token_num",
+        "type": "int",
+        "description": "Number of trailing tokenizer tokens rolled back before using prior streaming text as a prompt prefix.",
+        "required": false,
+        "min": 0,
+        "default": 5
       }
     ]
   },

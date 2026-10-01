@@ -1,0 +1,48 @@
+{
+  "title": "Qwen3-ASR 1.7B AudioCpp Q8_0 GGUF vs vLLM BF16",
+  "run_date": "2026-09-30",
+  "earlier_benchmark_outputs_used": false,
+  "comparison_is_same_precision": false,
+  "inputs": {
+    "chunks": 73,
+    "audio_duration_s": 2106.353875,
+    "format": "16 kHz mono PCM16 WAV, external non-overlapping chunks up to 30 seconds"
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "physical_gpu_index": 0,
+    "gpu_1_used_by_benchmark": false
+  },
+  "audiocpp": {
+    "weights": "/home/aim0/data/models/ASR/audiocpp-qwen3asr-q8-benchmark-20260929/qwen3-asr-1.7b-q8_0.gguf",
+    "precision": "Q8_0 GGUF",
+    "client_elapsed_s": 50.15357361687347,
+    "server_wall_s": 49.797597,
+    "rtf_client": 0.023810611413466066,
+    "speed_x_realtime_client": 41.99808155427924,
+    "warmup_client_s": 3.444764558924362,
+    "runtime": "AudioCpp CUDA server, 8 threads",
+    "source_commit": "30ef302"
+  },
+  "vllm": {
+    "weights": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+    "precision": "BF16 safetensors",
+    "call_elapsed_s": 37.76217188616283,
+    "rtf": 0.017927743450118435,
+    "speed_x_realtime": 55.77946844132209,
+    "model_load_s": 52.79530903394334,
+    "warmup_call_s": 5.0482530440203846,
+    "vllm_version": "0.14.0",
+    "qwen_asr_version": "0.0.6"
+  },
+  "relative_result": {
+    "vllm_faster_by_ratio": 1.328143247906014,
+    "vllm_less_elapsed_time_percent": 24.70691684977304
+  },
+  "notes": [
+    "AudioCpp used the recommended Q8_0 GGUF package.",
+    "The vLLM reference used BF16 safetensors because this Qwen-ASR vLLM path was loaded from the Hugging Face checkpoint; it did not load the audio.cpp GGUF file.",
+    "Model initialization and one warmup request per runtime were excluded.",
+    "Transcripts were not identical; recording 3 output lengths differ materially. This is a speed run, not an accuracy evaluation."
+  ]
+}

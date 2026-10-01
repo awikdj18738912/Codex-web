@@ -229,17 +229,17 @@ response and JSONL record includes `refiner_executed`,
 `refinement_gate_config`, `refinement_gate_decisions`, and
 `refinement_gate_skipped_segments`.
 
-Model-driven Chinese number normalization is enabled by default. The Refiner
-receives spoken numeric forms such as `三座三峡` and can render them as
-`3座三峡`; the output guard still checks numeric value and order and falls back
-to the original ASR text if the model changes them. Fixed expressions such as
-`一五一十` and `三番五次` are masked as `__ENTITY_NNN__` placeholders before
-the model and restored verbatim afterwards, so their Chinese numerals are not
-converted. Each result still records `numeric_normalizations` for compatibility,
-but it is empty in the default model-driven mode. Use
-`--enable-numeric-normalization` to opt into the legacy deterministic converter.
-Verified terms, acronyms, URLs, and fixed idioms remain eligible for
-placeholder protection.
+The default Web numeric path preserves the prior Refiner validation, safe
+numeric-edit salvage, and Python fallback behavior. To try the conservative
+zh-itn rule pack before Refiner, set `ZH_ITN_ENABLED=1` when starting
+`scripts/start_web.sh`; its native bridge is built with a C++17 compiler if
+needed. Set `ZH_ITN_LIBRARY` to use a custom library. Direct startup accepts
+`--enable-zh-itn` and `--zh-itn-library`. The response reports
+`zh_itn_enabled: true` and `numeric_backend: zh-itn` when enabled, and
+`numeric_normalizations` lists its replacements. Some spoken forms remain
+unchanged under this conservative rule pack. In zh-itn mode a rejected model result falls back to the zh-itn
+baseline. Fixed expressions such as `一五一十` and `三番五次` are protected
+from model edits, as are verified terms, acronyms and URLs.
 
 After sentence windows are joined, a deterministic repetition pass collapses
 two or more adjacent identical short utterances (up to eight visible

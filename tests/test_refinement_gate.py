@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import unittest
+from difflib import SequenceMatcher
+from unittest.mock import patch
 
 from system.refinement_gate import HypothesisTracker, RefinementGate
 
@@ -323,6 +325,56 @@ class RefinementGateTest(unittest.TestCase):
                 self.assertEqual(decision.reasons, ("cleanup_signal_present",))
                 self.assertIn("numeric_normalization", decision.cleanup_signals)
 
+    def test_zh_itn_mode_keeps_number_only_window_out_of_refiner(self) -> None:
+        decision = RefinementGate(
+            "tri_state", refine_on_unverified_confidence=False
+        ).decide(
+            "我今年十一岁。",
+            is_final=True,
+            numeric_refinement=False,
+            numeric_rule_mode=True,
+        )
+
+        self.assertFalse(decision.should_refine)
+        self.assertEqual(decision.reasons, ("numeric_handled_by_rule_pack",))
+        self.assertIn("numeric_normalization", decision.cleanup_signals)
+
+    def test_zh_itn_mode_still_routes_repeated_numeric_clause_to_refiner(self) -> None:
+        decision = RefinementGate(
+            "tri_state", refine_on_unverified_confidence=False
+        ).decide(
+            "我是11，我是11。",
+            is_final=True,
+            numeric_refinement=False,
+            numeric_rule_mode=True,
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertEqual(decision.reasons, ("cleanup_signal_present",))
+        self.assertIn("numeric_clause_repetition", decision.cleanup_signals)
+
+    def test_zh_itn_repetition_detection_uses_normalized_window_text(self) -> None:
+        decision = RefinementGate(
+            "tri_state", refine_on_unverified_confidence=False
+        ).decide(
+            "我是十一，我是11。",
+            is_final=True,
+            numeric_refinement=False,
+            numeric_rule_mode=True,
+            numeric_rule_text="我是11，我是11。",
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertIn("numeric_clause_repetition", decision.cleanup_signals)
+
+    def test_rule_mode_does_not_change_default_model_numeric_routing(self) -> None:
+        decision = RefinementGate(
+            "tri_state", refine_on_unverified_confidence=False
+        ).decide("我今年五十岁。", is_final=True, numeric_refinement=True)
+
+        self.assertTrue(decision.should_refine)
+        self.assertIn("numeric_normalization", decision.cleanup_signals)
+
     def test_tri_state_final_uncertainty_never_defers(self) -> None:
         decision = RefinementGate("tri_state").decide(
             "今天天气很好", is_final=True, stable=False
@@ -339,6 +391,41 @@ class RefinementGateTest(unittest.TestCase):
 
         self.assertTrue(grown.stable)
         self.assertLessEqual(grown.revision_ratio, 0.20)
+
+    def test_hypothesis_tracker_uses_exact_constant_work_ratio_for_prefix_growth(self) -> None:
+        previous = "天地玄黄宇宙洪荒" * 300
+        tracker = HypothesisTracker()
+        tracker.observe(previous)
+
+        with patch("system.refinement_gate.SequenceMatcher") as matcher:
+            grown = tracker.observe(previous + "新的尾部")
+
+        matcher.assert_not_called()
+        self.assertEqual(
+            grown.revision_ratio,
+            len("新的尾部") / (len(previous) + len(previous + "新的尾部")),
+        )
+
+    def test_hypothesis_tracker_compares_only_a_small_revised_tail(self) -> None:
+        prefix = "天地玄黄宇宙洪荒" * 300
+        previous = prefix + "旧的尾部"
+        revised = prefix + "新的尾部"
+        tracker = HypothesisTracker()
+        tracker.observe(previous)
+        expected = 1.0 - SequenceMatcher(
+            None, previous, revised, autojunk=False
+        ).ratio()
+
+        with patch(
+            "system.refinement_gate.SequenceMatcher",
+            wraps=SequenceMatcher,
+        ) as matcher:
+            result = tracker.observe(revised)
+
+        self.assertAlmostEqual(result.revision_ratio, expected)
+        self.assertEqual(matcher.call_count, 1)
+        self.assertEqual(matcher.call_args.args[1], "旧的尾部")
+        self.assertEqual(matcher.call_args.args[2], "新的尾部")
 
     def test_hypothesis_tracker_marks_repeated_tail_stable(self) -> None:
         tracker = HypothesisTracker(stable_updates=2)

@@ -1,0 +1,66 @@
+{
+  "title": "Qwen3-ASR 1.7B controlled BF16 server API audit",
+  "run_date": "2026-09-30",
+  "weights_same": true,
+  "weight_dtype": "bfloat16",
+  "model_path": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+  "gpu": "NVIDIA GeForce RTX 3090, physical GPU 0",
+  "input": {
+    "chunks_per_pass": 73,
+    "audio_seconds_per_pass": 2106.353875,
+    "format": "16 kHz mono PCM16 WAV, identical external chunks"
+  },
+  "protocol": {
+    "endpoint": "Both use POST /v1/audio/transcriptions with multipart uploads. Audio bytes are read before timing. One warmup request per runtime is excluded. Three full sequential measured passes per runtime. Chinese forced. Maximum output length 512 tokens."
+  },
+  "audiocpp": {
+    "client_passes_s": [
+      59.50644650636241,
+      59.818745038239285,
+      59.8440476146061
+    ],
+    "client_median_s": 59.818745038239285,
+    "server_wall_passes_s": [
+      59.236089,
+      59.5633269,
+      59.5863961
+    ],
+    "server_wall_median_s": 59.5633269,
+    "transcript_char_counts": [
+      8700,
+      8700,
+      8700
+    ],
+    "threads": 8,
+    "source_commit": "30ef302"
+  },
+  "vllm": {
+    "client_passes_s": [
+      40.86488649388775,
+      36.23657621606253,
+      36.21605716040358
+    ],
+    "client_median_s": 36.23657621606253,
+    "transcript_char_counts": [
+      9427,
+      8723,
+      8723
+    ],
+    "stable_pass_2_3_identical_per_chunk": true,
+    "vllm_version": "0.14.0",
+    "qwen_asr_version": "0.0.6",
+    "gpu_memory_utilization": 0.8,
+    "max_num_seqs": 1
+  },
+  "relative_result": {
+    "vllm_faster_by_median_ratio": 1.650783580699424,
+    "vllm_less_client_time_percent": 39.42270739230954,
+    "server_wall_vs_vllm_api_ratio": 1.6437349529064353
+  },
+  "notes": [
+    "This corrects the earlier Q8_0 GGUF vs BF16 mismatch: both runtimes here use the same local BF16 safetensors checkpoint.",
+    "This corrects the earlier different timing interfaces: both use the same multipart HTTP API route and client timer.",
+    "The first vLLM measured pass is slower and has a longer transcript; passes 2 and 3 are 36.24 s and 36.22 s with identical per-chunk outputs. The three-pass median is reported.",
+    "This is a speed measurement, not a transcription-accuracy benchmark."
+  ]
+}

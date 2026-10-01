@@ -282,6 +282,11 @@ public:
     }
     virtual void reset() = 0;
     virtual StreamEvent process_audio_chunk(const AudioChunk & chunk) = 0;
+    // Latest full provisional transcript, when the streaming backend supports
+    // revision-based hypotheses. Delta-only backends can leave this unset.
+    virtual std::optional<Transcript> current_transcript() const {
+        return std::nullopt;
+    }
     virtual TaskResult finalize() = 0;
 };
 

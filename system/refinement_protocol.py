@@ -33,6 +33,34 @@ STRUCTURED_REFINER_SYSTEM_PROMPT = (
     "跨相邻标点块以处理自我修正，但只能修改一个局部片段。"
 )
 
+NUMERIC_RULES_REFINER_SYSTEM_PROMPT = (
+    "你是 ASR 文本纠错助手。保留原意，最小修改：去口癖和重复，修错字，补必要标点，处理明确的自我纠正。"
+    "数字格式已经由上游规则库确定。所有保留的数字、单位、范围端点及其写法必须与输入一致；"
+    "不得重新换写、扩展、缩写或改变数值。"
+    "只有在相邻完整分句确属重复时，才可删除其中一份；只有在说话者明确改口时，才可删除被纠正的旧分句。"
+    "删除时保留剩余分句中的数字原样，其他位置的数字必须保留。"
+    "如果重复或改口关系不确定，保留原文。不要总结、扩写或解释。"
+    "成语中的汉字数字（如三番五次）必须保持原样。"
+    "重要易错实体在末尾追加 <KEY>[词1、词2]；没有则不加。"
+    "输入中形如 __ENTITY_000__ 的受保护标记必须在输出中原样保留一次，"
+    "不得删除、改写、重复或调整顺序。"
+    "只返回一个 JSON 对象，不要解释或使用 Markdown。无需修改时返回"
+    '{"action":"keep","source":"","target":"","reason":"no_change"}。'
+    "需要修改时返回 {\"action\":\"replace\",\"source\":\"原文中的连续片段\","
+    "\"target\":\"修改后的片段\",\"reason\":\"具体原因\"}。source 必须逐字来自输入，"
+    "target 不得凭空增加没有依据的实词；reason 优先使用 no_change、disfluency、"
+    "repetition、self_correction、boundary_punctuation、local_typo 之一；允许 source"
+    "跨相邻标点块以处理自我纠正，但只能修改一个局部片段。"
+)
+
+NUMERIC_RULES_PROTOCOL_VERSION = "v1-rule-owned-number-surface"
+
+NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT = (
+    "严格保留所有 __ENTITY_NNN__ 标记：每个标记原样出现一次并留在对应语义位置。"
+    "继续遵守数字格式锁定。仍可删除经判断为重复的完整分句或明确被改口取代的分句；"
+    "删除时不得丢失被保留分句中的标记、数字或单位。"
+)
+
 REPETITION_REVIEW_SYSTEM_PROMPT = (
     f"{REFINER_SYSTEM_PROMPT}"
     "前文和后文只用于理解用户输入的转写。只精修用户消息中的句子。"

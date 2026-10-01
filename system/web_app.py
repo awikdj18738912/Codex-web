@@ -48,20 +48,24 @@ from .refinement_guard import (
     detect_boundary_anomalies,
     find_model_proposed_deletions,
     find_repetition_review_candidates,
+    has_repetition_review_candidate,
     has_complete_repetition_review_context,
     join_refined_segments,
     preserve_safe_numeric_edits,
     preserve_safe_repetition_edits,
     reject_reasons,
+    restore_rule_numeric_surfaces,
     split_for_refinement,
 )
 from .numeric_normalizer import ContextualNumericNormalizer
+from .zh_itn_bridge import DEFAULT_LIBRARY as DEFAULT_ZH_ITN_LIBRARY, ZhITNNormalizer
 from .window_refinement import (
     CumulativeWindowRefinement,
     StreamingRefinementDisplay,
 )
 from .session_memory import SessionEntityMemory
 from .refinement_protocol import (
+    NUMERIC_RULES_PROTOCOL_VERSION,
     apply_structured_patch,
 )
 from .repetition_plausibility import RepetitionPlausibility
@@ -999,10 +1003,14 @@ def create_app(
     numeric_normalization: bool = False,
     asr_api_style: str = ASRApiStyle.CURRENT.value,
     final_refinement_mode: str = "off",
+    zh_itn_library: Path | None = None,
 ) -> FastAPI:
     final_refinement_mode = str(final_refinement_mode).strip().lower()
     if final_refinement_mode not in {"on", "off"}:
         raise ValueError("final_refinement_mode must be 'on' or 'off'")
+    zh_itn = ZhITNNormalizer(zh_itn_library) if zh_itn_library is not None else None
+    if zh_itn is not None and numeric_normalization:
+        raise ValueError("zh-itn and legacy numeric normalization cannot both be enabled")
     app = FastAPI(docs_url=None, redoc_url=None)
     print("Loading AgenticASR Refiner...", flush=True)
     refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens)
@@ -1027,7 +1035,11 @@ def create_app(
 
         if (not final and not streaming) or not text:
             return text, [], 0.0, 0, 0
-        all_candidates = find_repetition_review_candidates(text, max_candidates=128)
+        all_candidates = find_repetition_review_candidates(
+            text,
+            max_candidates=128,
+            numeric_rule_mode=zh_itn is not None,
+        )
         if not all_candidates:
             return text, [], 0.0, 0, 0
 
@@ -1038,7 +1050,11 @@ def create_app(
             stable_end = min(max(0, eligible_prefix_length), len(text))
             stable_text = text[:stable_end]
             candidates = list(
-                find_repetition_review_candidates(stable_text, max_candidates=128)
+                find_repetition_review_candidates(
+                    stable_text,
+                    max_candidates=128,
+                    numeric_rule_mode=zh_itn is not None,
+                )
             )
             for candidate in all_candidates:
                 if candidate.end <= stable_end:
@@ -1122,7 +1138,10 @@ def create_app(
                 # its source-owned spans.  Dropping them here left the text
                 # clean while the spans reverted to raw ASR on the next pass.
                 reviewed_text, applied_records = apply_repetition_review_decisions(
-                    text, candidates, cached_decisions
+                    text,
+                    candidates,
+                    cached_decisions,
+                    numeric_rule_mode=zh_itn is not None,
                 )
                 return (
                     reviewed_text,
@@ -1147,7 +1166,10 @@ def create_app(
             ])
             if cached_decisions:
                 text, cached_records = apply_repetition_review_decisions(
-                    text, candidates, cached_decisions
+                    text,
+                    candidates,
+                    cached_decisions,
+                    numeric_rule_mode=zh_itn is not None,
                 )
                 records.extend(cached_records)
             return text, records, 0.0, 0, 0
@@ -1187,7 +1209,10 @@ def create_app(
                 reviewed_text = text
                 if cached_decisions:
                     reviewed_text, cached_records = apply_repetition_review_decisions(
-                        text, candidates, cached_decisions
+                        text,
+                        candidates,
+                        cached_decisions,
+                        numeric_rule_mode=zh_itn is not None,
                     )
                     records.extend(cached_records)
                 return reviewed_text, records, total_latency_ms, 0, 0
@@ -1351,7 +1376,10 @@ def create_app(
                     decisions.extend(decision)
             if decisions:
                 reviewed_text, applied_records = apply_repetition_review_decisions(
-                    text, candidates, decisions
+                    text,
+                    candidates,
+                    decisions,
+                    numeric_rule_mode=zh_itn is not None,
                 )
             else:
                 reviewed_text, applied_records = text, ()
@@ -1520,15 +1548,31 @@ def create_app(
                     "refiner calls are closed for this WebSocket session"
                 )
             try:
-                result = refiner.refine(
-                    text,
-                    entity_hints=hints,
-                    strict_placeholders=strict_placeholders,
+                numeric_rules_refine = (
+                    getattr(refiner, "refine_with_numeric_rules", None)
+                    if zh_itn is not None
+                    else None
                 )
+                if callable(numeric_rules_refine):
+                    result = numeric_rules_refine(
+                        text,
+                        entity_hints=hints,
+                        strict_placeholders=strict_placeholders,
+                    )
+                else:
+                    result = refiner.refine(
+                        text,
+                        entity_hints=hints,
+                        strict_placeholders=strict_placeholders,
+                    )
             except BaseException as error:
                 if trace_segment is not None:
                     trace_segment.setdefault("model_calls", []).append(
                         {"input": text, "strict_placeholders": strict_placeholders,
+                         "numeric_policy": (
+                             "zh-itn-surface-locked" if zh_itn is not None
+                             else "model-driven"
+                         ),
                          "error": type(error).__name__}
                     )
                 if call_stats is not None:
@@ -1537,7 +1581,11 @@ def create_app(
             if trace_segment is not None:
                 trace_segment.setdefault("model_calls", []).append(
                     {"input": text, "output": result[0],
-                     "strict_placeholders": strict_placeholders}
+                     "strict_placeholders": strict_placeholders,
+                     "numeric_policy": (
+                         "zh-itn-surface-locked" if zh_itn is not None
+                         else "model-driven"
+                     )}
                 )
             if call_stats is not None:
                 call_stats.finish_call(started_at, failed=False)
@@ -1548,6 +1596,7 @@ def create_app(
         entity_hints: list[str] = []
         entity_normalizations: list[dict[str, str]] = []
         numeric_normalizations: list[dict[str, object]] = []
+        numeric_rule_repairs: list[dict[str, object]] = []
         numeric_fallbacks: list[dict[str, object]] = []
         safe_numeric_repairs: list[dict[str, object]] = []
         safe_repetition_repairs: list[dict[str, object]] = []
@@ -1566,15 +1615,46 @@ def create_app(
         refinement_gate_skipped_segments = 0
         refiner_executed = False
         total_latency_ms = 0.0
+        numeric_rule_latency_ms = 0.0
         matcher_latency_ms = 0.0
         refiner_available = True
+
+        def restore_rule_numeric_surface(
+            source: str, candidate: str, segment_index: int,
+        ) -> str:
+            if zh_itn is None:
+                return candidate
+            candidate_without_key = strip_refiner_key_suffix(candidate).strip()
+            repaired = restore_rule_numeric_surfaces(
+                source, candidate_without_key
+            )
+            if repaired is None:
+                return candidate
+            if repaired != candidate_without_key:
+                numeric_rule_repairs.append({
+                    "segment_index": segment_index,
+                    "source_text": source,
+                    "model_text": candidate_without_key,
+                    "restored_text": repaired,
+                    "reason": "rule_owned_numeric_surface_restored",
+                })
+            return repaired
 
         segments = (raw_text,) if single_window and raw_text else split_for_refinement(
             raw_text, one_punctuation_window=use_punctuation_windows
         )
         for segment_index, segment in enumerate(segments):
+            # Normalize a completed ASR window once, before entity masking and
+            # model inference. An unfinished K=3 tail remains raw for now.
+            zh_result = None
+            if zh_itn is not None and not pending_only:
+                numeric_started_at = time.perf_counter()
+                zh_result = zh_itn.normalize(segment)
+                numeric_rule_latency_ms += (
+                    time.perf_counter() - numeric_started_at
+                ) * 1000
             prepared = prepare_entity_segment(
-                segment,
+                zh_result.text if zh_result is not None else segment,
                 protector,
                 matcher,
                 # Apply high-confidence, low-risk fuzzy normalization in every
@@ -1590,7 +1670,7 @@ def create_app(
             hints = prepared.hints
             normalized_baseline = (
                 numeric_normalizer.normalize(prepared.baseline_text)
-                if numeric_normalization
+                if numeric_normalization and zh_itn is None
                 else None
             )
             baseline_text = (
@@ -1607,11 +1687,11 @@ def create_app(
             )
             masked_text = (
                 numeric_normalizer.normalize(protection.masked_text).text
-                if numeric_normalization
+                if numeric_normalization and zh_itn is None
                 else protection.masked_text
             )
             gate_decision = refinement_gate.decide(
-                baseline_text,
+                segment if zh_result is not None else baseline_text,
                 asr_confidence=asr_confidence,
                 calibrated=(
                     confidence_metadata.get("calibrated") is True
@@ -1621,7 +1701,11 @@ def create_app(
                 ),
                 entity_hints=hints,
                 is_final=final,
-                numeric_refinement=not numeric_normalization,
+                numeric_refinement=(
+                    not numeric_normalization and zh_itn is None
+                ),
+                numeric_rule_mode=zh_itn is not None,
+                numeric_rule_text=baseline_text if zh_result is not None else None,
             )
             if pending_only and gate_decision.should_refine:
                 gate_decision = RefinementGateDecision(
@@ -1656,12 +1740,22 @@ def create_app(
             )
             if trace_segment is not None:
                 trace_segments.append(trace_segment)
+            if zh_result is not None:
+                numeric_normalizations.extend(
+                    {
+                        **change.public_dict(),
+                        "segment_index": segment_index + 1,
+                        "engine": "zh-itn",
+                        "rule_pack": zh_itn.rule_pack,
+                    }
+                    for change in zh_result.changes
+                )
             if not gate_decision.should_refine:
                 refinement_gate_skipped_segments += 1
                 if call_stats is not None:
                     call_stats.record_gate_skip()
                 clean_segment = baseline_text
-                if not numeric_normalization:
+                if not numeric_normalization and zh_itn is None:
                     approximate_fallback = numeric_normalizer.normalize_approximate(
                         clean_segment
                     )
@@ -1706,19 +1800,22 @@ def create_app(
                 refiner_available = False
                 if call_stats is not None:
                     call_stats.record_busy_segment()
-                fallback = numeric_normalizer.normalize(
-                    prepared.baseline_text,
-                    preserve_single_one_counts=not numeric_normalization,
-                )
-                clean_segment = fallback.text
-                numeric_fallbacks.extend(
-                    {
-                        **change.public_dict(),
-                        "segment_index": segment_index + 1,
-                        "reason": "refiner_unavailable",
-                    }
-                    for change in fallback.changes
-                )
+                if zh_itn is not None:
+                    clean_segment = baseline_text
+                else:
+                    fallback = numeric_normalizer.normalize(
+                        prepared.baseline_text,
+                        preserve_single_one_counts=not numeric_normalization,
+                    )
+                    clean_segment = fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "refiner_unavailable",
+                        }
+                        for change in fallback.changes
+                    )
                 changes = list(prepared.normalizations)
                 if normalized_baseline is not None:
                     numeric_normalizations.extend(
@@ -1753,12 +1850,16 @@ def create_app(
                             (structured_issue,),
                         )
                     else:
+                        structured_candidate = restore_rule_numeric_surface(
+                            masked_text, structured_candidate, segment_index + 1
+                        )
                         candidate_for_numeric_salvage = structured_candidate
                         finalized = finalize_entity_segment(
                             structured_candidate,
                             prepared,
                             protector,
                             preserve_terminal_only=preserve_numeric_boundary,
+                            numeric_rule_mode=zh_itn is not None,
                         )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
                         initial_reasons = finalized.reject_reasons
@@ -1790,11 +1891,16 @@ def create_app(
                                 (structured_retry_issue,),
                             )
                         else:
+                            structured_retry = restore_rule_numeric_surface(
+                                masked_text, structured_retry, segment_index + 1
+                            )
+                            candidate_for_numeric_salvage = structured_retry
                             finalized = finalize_entity_segment(
                                 structured_retry,
                                 prepared,
                                 protector,
                                 preserve_terminal_only=preserve_numeric_boundary,
+                                numeric_rule_mode=zh_itn is not None,
                             )
                 finally:
                     refiner_lock.release()
@@ -1812,6 +1918,7 @@ def create_app(
                         repetition_salvaged = preserve_safe_repetition_edits(
                             prepared.baseline_text,
                             restored_candidate.text,
+                            numeric_rule_mode=zh_itn is not None,
                         )
                         if repetition_salvaged is not None:
                             safe_repetition_repairs.append(
@@ -1821,9 +1928,11 @@ def create_app(
                                     "reason": "safe_adjacent_repetition_after_integrity_fallback",
                                 }
                             )
-                        numeric_salvaged = preserve_safe_numeric_edits(
-                            prepared.baseline_text,
-                            restored_candidate.text,
+                        numeric_salvaged = (
+                            preserve_safe_numeric_edits(
+                                prepared.baseline_text,
+                                restored_candidate.text,
+                            ) if zh_itn is None else None
                         )
                         if numeric_salvaged is not None:
                             safe_numeric_repairs.append(
@@ -1840,40 +1949,39 @@ def create_app(
                                     restored_candidate.text,
                                 )
                                 or repetition_salvaged
-                            )
+                            ) if zh_itn is None else repetition_salvaged
                             salvaged_candidate = combined
                         elif numeric_salvaged is not None:
                             salvaged_candidate = numeric_salvaged
                 if finalized.reject_reasons:
-                    # A rejected model result may contain both a wrong value
-                    # and a valid conversion elsewhere in the same window.
-                    # Use the source-owned text as the authority and run the
-                    # deterministic numeric rules over it. If an equivalent
-                    # model-only numeric edit was safely salvaged above, use
-                    # that as an additional input; no other model edits enter
-                    # the fallback result.
+                    # In zh-itn mode, the already-normalized source is the
+                    # fallback authority. The legacy mode retains its old
+                    # post-Refiner Python conversion for direct callers.
                     fallback_source = (
                         salvaged_candidate
                         if salvaged_candidate is not None
                         else prepared.baseline_text
                     )
-                    fallback = numeric_normalizer.normalize(
-                        fallback_source,
-                        preserve_single_one_counts=not numeric_normalization,
-                    )
-                    clean_segment = fallback.text
-                    numeric_fallbacks.extend(
-                        {
-                            **change.public_dict(),
-                            "segment_index": segment_index + 1,
-                            "reason": "refiner_rejected",
-                            "refiner_reject_reasons": list(
-                                finalized.reject_reasons
-                            ),
-                        }
-                        for change in fallback.changes
-                    )
-                elif not numeric_normalization:
+                    if zh_itn is not None:
+                        clean_segment = fallback_source
+                    else:
+                        fallback = numeric_normalizer.normalize(
+                            fallback_source,
+                            preserve_single_one_counts=not numeric_normalization,
+                        )
+                        clean_segment = fallback.text
+                        numeric_fallbacks.extend(
+                            {
+                                **change.public_dict(),
+                                "segment_index": segment_index + 1,
+                                "reason": "refiner_rejected",
+                                "refiner_reject_reasons": list(
+                                    finalized.reject_reasons
+                                ),
+                            }
+                            for change in fallback.changes
+                        )
+                elif not numeric_normalization and zh_itn is None:
                     approximate_fallback = numeric_normalizer.normalize_approximate(
                         clean_segment
                     )
@@ -1887,7 +1995,7 @@ def create_app(
                         for change in approximate_fallback.changes
                     )
                 changes = list(prepared.normalizations)
-                if numeric_normalization:
+                if numeric_normalization and zh_itn is None:
                     normalized_output = numeric_normalizer.normalize(clean_segment)
                     clean_segment = normalized_output.text
                     segment_changes = (
@@ -1974,7 +2082,11 @@ def create_app(
                             clean_segment[:offset]
                             + clean_segment[offset + len(candidate.source):]
                         )
-                        failures = reject_reasons(clean_segment, edited)
+                        failures = reject_reasons(
+                            clean_segment,
+                            edited,
+                            numeric_rule_mode=zh_itn is not None,
+                        )
                         if failures:
                             review_record["reason"] = "isolated_edit_rejected"
                             review_record["reject_reasons"] = list(failures)
@@ -2017,6 +2129,7 @@ def create_app(
             "asr_confidence": asr_confidence,
             "asr_confidence_metadata": confidence_metadata,
             "refiner_latency_ms": round(total_latency_ms),
+            "numeric_rule_latency_ms": round(numeric_rule_latency_ms, 3),
             "refiner_executed": refiner_executed,
             "refiner_accepted": not refiner_reject_reasons,
             "refiner_reject_reasons": refiner_reject_reasons,
@@ -2035,6 +2148,7 @@ def create_app(
             "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
             "entity_normalizations": entity_normalizations,
             "numeric_normalizations": numeric_normalizations,
+            "numeric_rule_repairs": numeric_rule_repairs,
             "numeric_fallbacks": numeric_fallbacks,
             "safe_numeric_repairs": safe_numeric_repairs,
             "safe_repetition_repairs": safe_repetition_repairs,
@@ -2049,7 +2163,12 @@ def create_app(
                 matcher.config.version if matcher is not None else None
             ),
             "rule_protection_enabled": rule_protection,
-            "numeric_normalization_enabled": numeric_normalization,
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
         }
 
     def _patch_audit(
@@ -2081,6 +2200,7 @@ def create_app(
         started_at: float,
         confidence_metadata: dict[str, object] | None = None,
         apply_numeric_fallback: bool = False,
+        apply_zh_itn: bool = True,
     ) -> dict[str, object]:
         # Preserve the complete ASR text and still apply deterministic entity
         # normalization when the neural Refiner exceeds the final deadline.
@@ -2089,15 +2209,24 @@ def create_app(
         entity_hints: list[str] = []
         entity_normalizations: list[dict[str, str]] = []
         numeric_normalizations: list[dict[str, object]] = []
+        numeric_rule_repairs: list[dict[str, object]] = []
         numeric_fallbacks: list[dict[str, object]] = []
         entity_audit_issues: list[str] = []
         entity_candidates: list[dict[str, object]] = []
         matcher_latency_ms = 0.0
+        numeric_rule_latency_ms = 0.0
         for segment in split_for_refinement(
             raw_text, one_punctuation_window=use_punctuation_windows
         ):
+            zh_result = None
+            if zh_itn is not None and apply_zh_itn:
+                numeric_started_at = time.perf_counter()
+                zh_result = zh_itn.normalize(segment)
+                numeric_rule_latency_ms += (
+                    time.perf_counter() - numeric_started_at
+                ) * 1000
             prepared = prepare_entity_segment(
-                segment,
+                zh_result.text if zh_result is not None else segment,
                 protector,
                 matcher,
                 allow_auto=True,
@@ -2111,7 +2240,7 @@ def create_app(
                         apply_numeric_fallback and not numeric_normalization
                     ),
                 )
-                if numeric_normalization or apply_numeric_fallback
+                if zh_itn is None and (numeric_normalization or apply_numeric_fallback)
                 else None
             )
             clean_parts.append(
@@ -2130,6 +2259,15 @@ def create_app(
                         }
                         for change in normalized.changes
                     )
+            if zh_result is not None:
+                numeric_normalizations.extend(
+                    {
+                        **change.public_dict(),
+                        "engine": "zh-itn",
+                        "rule_pack": zh_itn.rule_pack,
+                    }
+                    for change in zh_result.changes
+                )
             protected_entities.extend(span.public_dict() for span in protection.spans)
             entity_hints.extend(prepared.hints)
             entity_normalizations.extend(prepared.normalizations)
@@ -2180,6 +2318,7 @@ def create_app(
             "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
             "entity_normalizations": entity_normalizations,
             "numeric_normalizations": numeric_normalizations,
+            "numeric_rule_repairs": numeric_rule_repairs,
             "numeric_fallbacks": numeric_fallbacks,
             "safe_numeric_repairs": [],
             "safe_repetition_repairs": [],
@@ -2194,7 +2333,13 @@ def create_app(
                 matcher.config.version if matcher is not None else None
             ),
             "rule_protection_enabled": rule_protection,
-            "numeric_normalization_enabled": numeric_normalization,
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "numeric_rule_latency_ms": round(numeric_rule_latency_ms, 3),
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
         }
 
     @app.get("/")
@@ -2252,7 +2397,13 @@ def create_app(
             "entity_db": entity_store is not None,
             "refinement_gate_mode": refinement_gate.mode.value,
             "asr_api_style": selected_asr_api_style.value,
-            "numeric_normalization_enabled": numeric_normalization,
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "zh_itn_rule_pack": zh_itn.rule_pack if zh_itn is not None else None,
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
         }
 
     @app.get("/api/entities")
@@ -2530,6 +2681,7 @@ def create_app(
             one_punctuation_window=use_punctuation_windows,
             fixed_groups=use_punctuation_windows,
             prepare_pending=session_prepare_pending if use_punctuation_windows else None,
+            group_numeric_self_corrections=zh_itn is not None,
         )
         refinement_display = StreamingRefinementDisplay()
         streaming_repetition_cache: dict[
@@ -2620,6 +2772,10 @@ def create_app(
                 tail_age_ms=stability.tail_age_ms,
                 revision_ratio=stability.revision_ratio,
                 unchanged_updates=stability.unchanged_updates,
+                numeric_refinement=(
+                    not numeric_normalization and zh_itn is None
+                ),
+                numeric_rule_mode=zh_itn is not None,
             )
             return stability, decision
 
@@ -2686,6 +2842,7 @@ def create_app(
                 "streaming_final_entity_normalization",
                 time.perf_counter(),
                 confidence_metadata,
+                apply_zh_itn=False,
             )
             result["clean_text"] = entity_result["clean_text"]
             result["entity_audit_issues"] = list(
@@ -2777,6 +2934,14 @@ def create_app(
                     payload = await asyncio.wait_for(
                         asyncio.shield(task),
                         timeout=ASR_CHUNK_STATUS_INTERVAL_SECONDS,
+                    )
+                    record_trace(
+                        "asr_chunk_timing",
+                        chunk_index=chunk_index,
+                        web_round_trip_ms=round(
+                            (time.perf_counter() - started_at) * 1000.0, 3
+                        ),
+                        server_timing=payload.get("asr_timing"),
                     )
                     return payload, chunk_index
                 except asyncio.TimeoutError:
@@ -3427,6 +3592,16 @@ def create_app(
                                         "numeric_normalizations": result[
                                             "numeric_normalizations"
                                         ],
+                                        "numeric_rule_repairs": result.get(
+                                            "numeric_rule_repairs", []
+                                        ),
+                                        "numeric_backend": result.get("numeric_backend"),
+                                        "numeric_rule_latency_ms": result.get(
+                                            "numeric_rule_latency_ms", 0.0
+                                        ),
+                                        "numeric_rule_protocol_version": result.get(
+                                            "numeric_rule_protocol_version"
+                                        ),
                                         "numeric_fallbacks": result[
                                             "numeric_fallbacks"
                                         ],
@@ -3513,8 +3688,9 @@ def create_app(
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "defer"
                         )
-                        has_repetition_candidate = bool(
-                            find_repetition_review_candidates(raw_text, max_candidates=1)
+                        has_repetition_candidate = has_repetition_review_candidate(
+                            raw_text,
+                            numeric_rule_mode=zh_itn is not None,
                         )
                         record_trace(
                             "asr_hypothesis", mode=requested_mode,
@@ -3586,8 +3762,9 @@ def create_app(
                             gate_decision is not None
                             and gate_decision.public_dict()["action"] == "defer"
                         )
-                        has_repetition_candidate = bool(
-                            find_repetition_review_candidates(raw_text, max_candidates=1)
+                        has_repetition_candidate = has_repetition_review_candidate(
+                            raw_text,
+                            numeric_rule_mode=zh_itn is not None,
                         )
                         record_trace(
                             "asr_hypothesis", mode=requested_mode,
@@ -3735,11 +3912,26 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="enable legacy deterministic context-bound Chinese number normalization",
     )
+    parser.add_argument(
+        "--enable-zh-itn",
+        action="store_true",
+        help="run the conservative zh-itn rule library once before Refiner",
+    )
+    parser.add_argument(
+        "--zh-itn-library", type=Path, default=DEFAULT_ZH_ITN_LIBRARY,
+        help="shared library path used with --enable-zh-itn",
+    )
     args = parser.parse_args(argv)
     if not args.refiner_model.exists():
         parser.error(f"Refiner model not found: {args.refiner_model}")
     if args.max_new_tokens < 1 or not 1 <= args.port <= 65535:
         parser.error("--max-new-tokens must be positive and --port must be valid")
+    if (
+        args.enable_zh_itn
+        and args.enable_numeric_normalization
+        and not args.disable_numeric_normalization
+    ):
+        parser.error("--enable-zh-itn cannot be combined with --enable-numeric-normalization")
     return args
 
 
@@ -3759,6 +3951,7 @@ def main(argv: list[str] | None = None) -> int:
         args.enable_numeric_normalization and not args.disable_numeric_normalization,
         args.asr_api_style,
         args.final_refinement_mode,
+        args.zh_itn_library.resolve() if args.enable_zh_itn else None,
     )
     uvicorn.run(app, host=args.host, port=args.port, log_level="info")
     return 0

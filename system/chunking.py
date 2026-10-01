@@ -207,7 +207,7 @@ class ChunkManager:
 
 
 def merge_self_correction_chunks(
-    chunks: list[Chunk], max_chars: int = 80
+    chunks: list[Chunk], max_chars: int = 80, *, allow_merge=None
 ) -> list[Chunk]:
     """Keep a self-correction clause in one source-owned chunk.
 
@@ -259,6 +259,9 @@ def merge_self_correction_chunks(
             # Marker-only chunks are still useful context, but do not consume
             # a following clause when doing so would exceed the recovery cap.
             group_end = marker_index + 1
+        if allow_merge is not None and not allow_merge(group_text):
+            cursor += 1
+            continue
         if antecedent >= consumed_end and len(group_text) <= max(
             max_chars, SELF_CORRECTION_MAX_WINDOW_CHARS
         ):

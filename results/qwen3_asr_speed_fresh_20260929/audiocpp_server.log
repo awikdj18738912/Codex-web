@@ -1,0 +1,2336 @@
+[SERVER_HTTP_DEBUG] http.headers method=GET path=/health content_length=<none> transfer_encoding=<none> incremental=false prefetched_body_bytes=0
+[SERVER_HTTP_DEBUG] http.body_ready path=/health body_bytes=0
+[SERVER_HTTP_DEBUG] http.headers method=GET path=/v1/models content_length=<none> transfer_encoding=<none> incremental=false prefetched_body_bytes=0
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/models body_bytes=0
+[SERVER_HTTP_DEBUG] http.headers method=GET path=/health content_length=<none> transfer_encoding=<none> incremental=false prefetched_body_bytes=0
+[SERVER_HTTP_DEBUG] http.body_ready path=/health body_bytes=0
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchbfa67a80153b46f0a0f1451593389832 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TRACE ts=20260929-234239] server.model.id qwen3-asr-1.7b
+[TRACE ts=20260929-234239] server.model.path /home/aim0/data/models/ASR/Qwen3-ASR-1.7B
+[TRACE ts=20260929-234239] server.model.family qwen3_asr
+[TRACE ts=20260929-234239] server.model.task asr
+[TRACE ts=20260929-234239] server.model.mode offline
+[TRACE ts=20260929-234239] server.model.backend cuda
+[TRACE ts=20260929-234239] server.model.device 0
+[TRACE ts=20260929-234239] server.model.threads 8
+[TRACE ts=20260929-234239] server.model.session_option_count 0
+[SERVER_HTTP_DEBUG] http.error model spec not found for family 'qwen3_asr' (provide --model-spec-override, embed it in the GGUF, enable AUDIOCPP_DEPLOYMENT_BUILD, or install model_specs/qwen3_asr.json)
+[SERVER_HTTP_DEBUG] http.headers method=GET path=/health content_length=<none> transfer_encoding=<none> incremental=false prefetched_body_bytes=0
+[SERVER_HTTP_DEBUG] http.body_ready path=/health body_bytes=0
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench5dd08781e7294722a94f9430e4040933 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TRACE ts=20260929-234300] server.model.id qwen3-asr-1.7b
+[TRACE ts=20260929-234300] server.model.path /home/aim0/data/models/ASR/Qwen3-ASR-1.7B
+[TRACE ts=20260929-234300] server.model.family qwen3_asr
+[TRACE ts=20260929-234300] server.model.task asr
+[TRACE ts=20260929-234300] server.model.mode offline
+[TRACE ts=20260929-234300] server.model.backend cuda
+[TRACE ts=20260929-234300] server.model.device 0
+[TRACE ts=20260929-234300] server.model.threads 8
+[TRACE ts=20260929-234300] server.model.session_option_count 0
+[TRACE ts=20260929-234300] runtime.model.family qwen3_asr
+[TRACE ts=20260929-234300] runtime.model.variant qwen3_asr
+[TRACE ts=20260929-234300] runtime.model.root /home/aim0/data/models/ASR/Qwen3-ASR-1.7B
+[TRACE ts=20260929-234300] runtime.model.discovered_config_count 7
+[TRACE ts=20260929-234300] runtime.model.discovered_weight_count 1
+[TRACE ts=20260929-234300] runtime.model.task_count 1
+[TRACE ts=20260929-234300] runtime.model.language_count 31
+[TRACE ts=20260929-234300] runtime.model.supports_speaker_reference 0
+[TRACE ts=20260929-234300] runtime.model.supports_style_condition 0
+[TRACE ts=20260929-234300] runtime.model.supports_timestamps 0
+[TIMING ts=20260929-234302] qwen3_asr.frontend.normalize_ms 2.002986
+[TIMING ts=20260929-234302] qwen3_asr.frontend.log_mel_ms 25.234302
+[TIMING ts=20260929-234302] qwen3_asr.audio_encoder.graph.build_ms 1.699808
+[TRACE ts=20260929-234302] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234302] qwen3_asr.audio_encoder.input_upload_ms 0.208358
+[TIMING ts=20260929-234302] qwen3_asr.audio_encoder.graph.compute_ms 193.180998
+[TIMING ts=20260929-234302] qwen3_asr.audio_encoder.output_read_ms 0.458147
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prompt_prepare_ms 0.00087
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prefill.graph.build_ms 2.322693
+[TRACE ts=20260929-234302] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prefill_input_upload_ms 0.466258
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prefill.graph.compute_ms 51.613325
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prefill_output_read_ms 51.850654
+[TIMING ts=20260929-234302] qwen3_asr.thinker.prefill_total_ms 104.408235
+[TIMING ts=20260929-234302] qwen3_asr.thinker.decode.graph.build_ms 89.829266
+[TRACE ts=20260929-234302] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234303] qwen3_asr.thinker.decode_total_ms 642.174482
+[TIMING ts=20260929-234303] qwen3_asr.frontend_ms 27.504836
+[TIMING ts=20260929-234303] qwen3_asr.prompt_ms 1.745257
+[TIMING ts=20260929-234303] qwen3_asr.audio_encoder_ms 197.732387
+[TIMING ts=20260929-234303] qwen3_asr.thinker_ms 883.094233
+[TIMING ts=20260929-234303] qwen3_asr.postprocess_ms 0.097309
+[TRACE ts=20260929-234303] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234303] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234303] session.wall_ms 1110.174712
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=369
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchff5c5ba49ab442719b505d18a8514f23 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234341] qwen3_asr.frontend.normalize_ms 2.494872
+[TIMING ts=20260929-234341] qwen3_asr.frontend.log_mel_ms 21.895046
+[TIMING ts=20260929-234341] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234341] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234341] qwen3_asr.audio_encoder.input_upload_ms 13.338505
+[TIMING ts=20260929-234341] qwen3_asr.audio_encoder.graph.compute_ms 38.11347
+[TIMING ts=20260929-234341] qwen3_asr.audio_encoder.output_read_ms 0.398707
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prompt_prepare_ms 0.00077
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234341] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prefill_input_upload_ms 0.383078
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prefill.graph.compute_ms 49.226753
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prefill_output_read_ms 50.761182
+[TIMING ts=20260929-234341] qwen3_asr.thinker.prefill_total_ms 100.539001
+[TIMING ts=20260929-234341] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234341] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode_total_ms 637.188127
+[TIMING ts=20260929-234342] qwen3_asr.frontend_ms 24.474448
+[TIMING ts=20260929-234342] qwen3_asr.prompt_ms 0.128859
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder_ms 53.437212
+[TIMING ts=20260929-234342] qwen3_asr.thinker_ms 780.594267
+[TIMING ts=20260929-234342] qwen3_asr.postprocess_ms 0.053959
+[TRACE ts=20260929-234342] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234342] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234342] session.wall_ms 858.689355
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=369
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=347831 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=347831
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench71b41e530cd94344b7e8f306185e1ff4 body_bytes=347831
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=347831
+[TIMING ts=20260929-234342] qwen3_asr.frontend.normalize_ms 0.393307
+[TIMING ts=20260929-234342] qwen3_asr.frontend.log_mel_ms 8.013314
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.build_ms 4.034622
+[TRACE ts=20260929-234342] qwen3_asr.audio_encoder.frames 1084
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.input_upload_ms 2.025456
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.compute_ms 14.22973
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.output_read_ms 0.196678
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prompt_prepare_ms 0.00131
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.build_ms 1.862747
+[TRACE ts=20260929-234342] qwen3_asr.thinker.prefill_prompt_steps 159
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_input_upload_ms 0.963874
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.compute_ms 16.87606
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_output_read_ms 9.379124
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_total_ms 27.317678
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234342] qwen3_asr.thinker.decode_cache_steps 671
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode_total_ms 163.856385
+[TIMING ts=20260929-234342] qwen3_asr.frontend_ms 8.47499
+[TIMING ts=20260929-234342] qwen3_asr.prompt_ms 0.148489
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder_ms 21.555148
+[TIMING ts=20260929-234342] qwen3_asr.thinker_ms 232.041934
+[TIMING ts=20260929-234342] qwen3_asr.postprocess_ms 0.02318
+[TRACE ts=20260929-234342] qwen3_asr.prompt_tokens 159
+[TRACE ts=20260929-234342] qwen3_asr.audio_frames 1084
+[TIMING ts=20260929-234342] session.wall_ms 262.244511
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=173568 keep_start=0 keep_end=173568 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=173568 max_word_end=0 text_chars=81
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchc69515ef9f884c09a5dd085a5423e820 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234342] qwen3_asr.frontend.normalize_ms 1.029832
+[TIMING ts=20260929-234342] qwen3_asr.frontend.log_mel_ms 14.752936
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.build_ms 4.037522
+[TRACE ts=20260929-234342] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.input_upload_ms 0.514516
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.compute_ms 19.95973
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.output_read_ms 0.416627
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prompt_prepare_ms 0.00144
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.build_ms 1.745618
+[TRACE ts=20260929-234342] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_input_upload_ms 0.424976
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.compute_ms 40.523405
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_output_read_ms 30.448135
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_total_ms 71.537525
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234342] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode_total_ms 334.213533
+[TIMING ts=20260929-234342] qwen3_asr.frontend_ms 15.860908
+[TIMING ts=20260929-234342] qwen3_asr.prompt_ms 0.129109
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder_ms 26.650422
+[TIMING ts=20260929-234342] qwen3_asr.thinker_ms 453.590502
+[TIMING ts=20260929-234342] qwen3_asr.postprocess_ms 0.0391
+[TRACE ts=20260929-234342] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234342] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234342] session.wall_ms 496.270851
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=192
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchc4f250ea169945c3971f39e35065389f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234342] qwen3_asr.frontend.normalize_ms 1.308821
+[TIMING ts=20260929-234342] qwen3_asr.frontend.log_mel_ms 26.667282
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234342] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.input_upload_ms 0.371207
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.graph.compute_ms 34.886695
+[TIMING ts=20260929-234342] qwen3_asr.audio_encoder.output_read_ms 0.442538
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prompt_prepare_ms 0.00092
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234342] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_input_upload_ms 0.439946
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill.graph.compute_ms 50.104157
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_output_read_ms 39.987718
+[TIMING ts=20260929-234342] qwen3_asr.thinker.prefill_total_ms 90.743109
+[TIMING ts=20260929-234342] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234342] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234343] qwen3_asr.thinker.decode_total_ms 721.117705
+[TIMING ts=20260929-234343] qwen3_asr.frontend_ms 28.058082
+[TIMING ts=20260929-234343] qwen3_asr.prompt_ms 0.147729
+[TIMING ts=20260929-234343] qwen3_asr.audio_encoder_ms 36.592273
+[TIMING ts=20260929-234343] qwen3_asr.thinker_ms 862.283569
+[TIMING ts=20260929-234343] qwen3_asr.postprocess_ms 0.05604
+[TRACE ts=20260929-234343] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234343] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234343] session.wall_ms 927.138383
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=333
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench31b49fb2bd884babb208fceac447737f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234343] qwen3_asr.frontend.normalize_ms 0.836424
+[TIMING ts=20260929-234343] qwen3_asr.frontend.log_mel_ms 24.662256
+[TIMING ts=20260929-234343] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234343] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234343] qwen3_asr.audio_encoder.input_upload_ms 0.379608
+[TIMING ts=20260929-234343] qwen3_asr.audio_encoder.graph.compute_ms 19.195514
+[TIMING ts=20260929-234343] qwen3_asr.audio_encoder.output_read_ms 0.380648
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prompt_prepare_ms 0.00045
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234343] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prefill_input_upload_ms 0.395137
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prefill.graph.compute_ms 39.908899
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prefill_output_read_ms 41.663386
+[TIMING ts=20260929-234343] qwen3_asr.thinker.prefill_total_ms 82.140822
+[TIMING ts=20260929-234343] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234343] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234344] qwen3_asr.thinker.decode_total_ms 545.93585
+[TIMING ts=20260929-234344] qwen3_asr.frontend_ms 25.584829
+[TIMING ts=20260929-234344] qwen3_asr.prompt_ms 0.14836
+[TIMING ts=20260929-234344] qwen3_asr.audio_encoder_ms 20.991712
+[TIMING ts=20260929-234344] qwen3_asr.thinker_ms 674.98159
+[TIMING ts=20260929-234344] qwen3_asr.postprocess_ms 0.05153
+[TRACE ts=20260929-234344] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234344] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234344] session.wall_ms 721.759041
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=273
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench967a829c458745f798ce198f8584dbb9 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234344] qwen3_asr.frontend.normalize_ms 0.838493
+[TIMING ts=20260929-234344] qwen3_asr.frontend.log_mel_ms 14.22778
+[TIMING ts=20260929-234344] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234344] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234344] qwen3_asr.audio_encoder.input_upload_ms 0.391907
+[TIMING ts=20260929-234344] qwen3_asr.audio_encoder.graph.compute_ms 19.247024
+[TIMING ts=20260929-234344] qwen3_asr.audio_encoder.output_read_ms 0.380097
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prompt_prepare_ms 0.00073
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234344] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prefill_input_upload_ms 0.395958
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prefill.graph.compute_ms 39.905328
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prefill_output_read_ms 39.209654
+[TIMING ts=20260929-234344] qwen3_asr.thinker.prefill_total_ms 79.664688
+[TIMING ts=20260929-234344] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234344] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234345] qwen3_asr.thinker.decode_total_ms 456.322642
+[TIMING ts=20260929-234345] qwen3_asr.frontend_ms 15.145173
+[TIMING ts=20260929-234345] qwen3_asr.prompt_ms 0.137798
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder_ms 21.033362
+[TIMING ts=20260929-234345] qwen3_asr.thinker_ms 584.953215
+[TIMING ts=20260929-234345] qwen3_asr.postprocess_ms 0.05176
+[TRACE ts=20260929-234345] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234345] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234345] session.wall_ms 621.322698
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=213
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchbd7824b5fe8b4b1e94563a017f87bc21 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234345] qwen3_asr.frontend.normalize_ms 1.012002
+[TIMING ts=20260929-234345] qwen3_asr.frontend.log_mel_ms 18.673279
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234345] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.input_upload_ms 0.387118
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.graph.compute_ms 19.193255
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.output_read_ms 0.373737
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prompt_prepare_ms 0.00043
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234345] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_input_upload_ms 0.375238
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill.graph.compute_ms 40.641693
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_output_read_ms 37.565405
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_total_ms 78.721855
+[TIMING ts=20260929-234345] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234345] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234345] qwen3_asr.thinker.decode_total_ms 410.638875
+[TIMING ts=20260929-234345] qwen3_asr.frontend_ms 19.77332
+[TIMING ts=20260929-234345] qwen3_asr.prompt_ms 0.133119
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder_ms 20.941933
+[TIMING ts=20260929-234345] qwen3_asr.thinker_ms 537.221612
+[TIMING ts=20260929-234345] qwen3_asr.postprocess_ms 0.046789
+[TRACE ts=20260929-234345] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234345] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234345] session.wall_ms 578.117873
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=195
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=804693 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=804693
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchdeadaf86ad5b40c6aad7906c9c3b4f12 body_bytes=804693
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=804693
+[TIMING ts=20260929-234345] qwen3_asr.frontend.normalize_ms 0.691815
+[TIMING ts=20260929-234345] qwen3_asr.frontend.log_mel_ms 14.553877
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.graph.build_ms 4.041332
+[TRACE ts=20260929-234345] qwen3_asr.audio_encoder.frames 2512
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.input_upload_ms 1.895347
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.graph.compute_ms 18.3505
+[TIMING ts=20260929-234345] qwen3_asr.audio_encoder.output_read_ms 0.379557
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prompt_prepare_ms 0.00043
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill.graph.build_ms 3.010078
+[TRACE ts=20260929-234345] qwen3_asr.thinker.prefill_prompt_steps 345
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_input_upload_ms 1.580849
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill.graph.compute_ms 31.318779
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_output_read_ms 30.584595
+[TIMING ts=20260929-234345] qwen3_asr.thinker.prefill_total_ms 63.640932
+[TIMING ts=20260929-234345] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234345] qwen3_asr.thinker.decode_cache_steps 857
+[TIMING ts=20260929-234346] qwen3_asr.thinker.decode_total_ms 277.105676
+[TIMING ts=20260929-234346] qwen3_asr.frontend_ms 15.289772
+[TIMING ts=20260929-234346] qwen3_asr.prompt_ms 0.131939
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder_ms 27.787054
+[TIMING ts=20260929-234346] qwen3_asr.thinker_ms 393.093778
+[TIMING ts=20260929-234346] qwen3_asr.postprocess_ms 0.0364
+[TRACE ts=20260929-234346] qwen3_asr.prompt_tokens 345
+[TRACE ts=20260929-234346] qwen3_asr.audio_frames 2512
+[TIMING ts=20260929-234346] session.wall_ms 436.339883
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=401999 keep_start=0 keep_end=401999 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=401999 max_word_end=0 text_chars=126
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench6587bc11089645c682a495f24d3a6802 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234346] qwen3_asr.frontend.normalize_ms 0.944003
+[TIMING ts=20260929-234346] qwen3_asr.frontend.log_mel_ms 13.407835
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder.graph.build_ms 4.044901
+[TRACE ts=20260929-234346] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder.input_upload_ms 1.931317
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder.graph.compute_ms 20.138658
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder.output_read_ms 0.382377
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prompt_prepare_ms 0.00117
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prefill.graph.build_ms 3.028308
+[TRACE ts=20260929-234346] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prefill_input_upload_ms 0.921403
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prefill.graph.compute_ms 40.596844
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prefill_output_read_ms 38.655097
+[TIMING ts=20260929-234346] qwen3_asr.thinker.prefill_total_ms 80.307104
+[TIMING ts=20260929-234346] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234346] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234346] qwen3_asr.thinker.decode_total_ms 677.589272
+[TIMING ts=20260929-234346] qwen3_asr.frontend_ms 14.437898
+[TIMING ts=20260929-234346] qwen3_asr.prompt_ms 0.141289
+[TIMING ts=20260929-234346] qwen3_asr.audio_encoder_ms 28.234321
+[TIMING ts=20260929-234346] qwen3_asr.thinker_ms 810.103418
+[TIMING ts=20260929-234346] qwen3_asr.postprocess_ms 0.071549
+[TRACE ts=20260929-234346] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234346] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234346] session.wall_ms 852.990075
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=360
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchd45beaa7b5a24487b1ba551bc3d2b873 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234347] qwen3_asr.frontend.normalize_ms 0.837654
+[TIMING ts=20260929-234347] qwen3_asr.frontend.log_mel_ms 24.791255
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.input_upload_ms 0.372817
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.graph.compute_ms 27.987313
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.output_read_ms 0.371748
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prompt_prepare_ms 0.00149
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_input_upload_ms 0.396967
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill.graph.compute_ms 51.252118
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_output_read_ms 38.887916
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_total_ms 90.747279
+[TIMING ts=20260929-234347] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234347] qwen3_asr.thinker.decode_total_ms 662.915825
+[TIMING ts=20260929-234347] qwen3_asr.frontend_ms 25.727708
+[TIMING ts=20260929-234347] qwen3_asr.prompt_ms 0.16265
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder_ms 29.579341
+[TIMING ts=20260929-234347] qwen3_asr.thinker_ms 800.896323
+[TIMING ts=20260929-234347] qwen3_asr.postprocess_ms 0.056579
+[TRACE ts=20260929-234347] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234347] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234347] session.wall_ms 856.423291
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=339
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchf0261c91aaa747ba9370136ca06db195 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234347] qwen3_asr.frontend.normalize_ms 0.831204
+[TIMING ts=20260929-234347] qwen3_asr.frontend.log_mel_ms 15.735529
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.input_upload_ms 0.371127
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.graph.compute_ms 19.193425
+[TIMING ts=20260929-234347] qwen3_asr.audio_encoder.output_read_ms 0.362739
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prompt_prepare_ms 0.0006
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_input_upload_ms 0.402087
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill.graph.compute_ms 40.023999
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_output_read_ms 39.859529
+[TIMING ts=20260929-234347] qwen3_asr.thinker.prefill_total_ms 80.411384
+[TIMING ts=20260929-234347] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234347] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234348] qwen3_asr.thinker.decode_total_ms 648.216028
+[TIMING ts=20260929-234348] qwen3_asr.frontend_ms 16.650542
+[TIMING ts=20260929-234348] qwen3_asr.prompt_ms 0.151009
+[TIMING ts=20260929-234348] qwen3_asr.audio_encoder_ms 20.554135
+[TIMING ts=20260929-234348] qwen3_asr.thinker_ms 778.894559
+[TIMING ts=20260929-234348] qwen3_asr.postprocess_ms 0.056939
+[TRACE ts=20260929-234348] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234348] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234348] session.wall_ms 816.308154
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=348
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchdff1e22477114919800086f71fea0e29 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234348] qwen3_asr.frontend.normalize_ms 1.007543
+[TIMING ts=20260929-234348] qwen3_asr.frontend.log_mel_ms 16.132275
+[TIMING ts=20260929-234348] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234348] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234348] qwen3_asr.audio_encoder.input_upload_ms 0.382568
+[TIMING ts=20260929-234348] qwen3_asr.audio_encoder.graph.compute_ms 19.190975
+[TIMING ts=20260929-234348] qwen3_asr.audio_encoder.output_read_ms 0.368508
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prompt_prepare_ms 0.00065
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234348] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prefill_input_upload_ms 0.406476
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prefill.graph.compute_ms 40.026878
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prefill_output_read_ms 39.87172
+[TIMING ts=20260929-234348] qwen3_asr.thinker.prefill_total_ms 80.431383
+[TIMING ts=20260929-234348] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234348] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234349] qwen3_asr.thinker.decode_total_ms 290.980298
+[TIMING ts=20260929-234349] qwen3_asr.frontend_ms 17.238248
+[TIMING ts=20260929-234349] qwen3_asr.prompt_ms 0.140659
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder_ms 20.769794
+[TIMING ts=20260929-234349] qwen3_asr.thinker_ms 421.360288
+[TIMING ts=20260929-234349] qwen3_asr.postprocess_ms 0.03677
+[TRACE ts=20260929-234349] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234349] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234349] session.wall_ms 459.546959
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=150
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbencha9eca3b67b1e491083c51546a5336e50 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234349] qwen3_asr.frontend.normalize_ms 0.882954
+[TIMING ts=20260929-234349] qwen3_asr.frontend.log_mel_ms 15.259073
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.input_upload_ms 0.377828
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.graph.compute_ms 19.156455
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.output_read_ms 0.362497
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prompt_prepare_ms 0.00053
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_input_upload_ms 0.401077
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill.graph.compute_ms 40.172417
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_output_read_ms 40.621883
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_total_ms 81.334397
+[TIMING ts=20260929-234349] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234349] qwen3_asr.thinker.decode_total_ms 268.555587
+[TIMING ts=20260929-234349] qwen3_asr.frontend_ms 16.227586
+[TIMING ts=20260929-234349] qwen3_asr.prompt_ms 0.153659
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder_ms 20.901282
+[TIMING ts=20260929-234349] qwen3_asr.thinker_ms 400.823354
+[TIMING ts=20260929-234349] qwen3_asr.postprocess_ms 0.03622
+[TRACE ts=20260929-234349] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234349] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234349] session.wall_ms 438.143401
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=111
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench72ede42a727f441d91e6a4cafbaaa2a2 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234349] qwen3_asr.frontend.normalize_ms 0.888223
+[TIMING ts=20260929-234349] qwen3_asr.frontend.log_mel_ms 15.295583
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.input_upload_ms 0.414696
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.graph.compute_ms 19.179305
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.output_read_ms 0.382267
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prompt_prepare_ms 0.00057
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_input_upload_ms 0.413427
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill.graph.compute_ms 40.670134
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_output_read_ms 40.318986
+[TIMING ts=20260929-234349] qwen3_asr.thinker.prefill_total_ms 81.527096
+[TIMING ts=20260929-234349] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234349] qwen3_asr.thinker.decode_total_ms 223.627624
+[TIMING ts=20260929-234349] qwen3_asr.frontend_ms 17.02196
+[TIMING ts=20260929-234349] qwen3_asr.prompt_ms 0.180928
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder_ms 21.007592
+[TIMING ts=20260929-234349] qwen3_asr.thinker_ms 356.828344
+[TIMING ts=20260929-234349] qwen3_asr.postprocess_ms 0.03109
+[TRACE ts=20260929-234349] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234349] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234349] session.wall_ms 395.071284
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=105
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchf4b5a02452804b1b88c68dba92ace4af body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234349] qwen3_asr.frontend.normalize_ms 0.852484
+[TIMING ts=20260929-234349] qwen3_asr.frontend.log_mel_ms 15.794478
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234349] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234349] qwen3_asr.audio_encoder.input_upload_ms 0.371658
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.graph.compute_ms 19.136815
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.output_read_ms 0.404338
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prompt_prepare_ms 0.00114
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_input_upload_ms 0.508026
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.compute_ms 40.604584
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_output_read_ms 40.041168
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_total_ms 81.311616
+[TIMING ts=20260929-234350] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234350] qwen3_asr.thinker.decode_total_ms 316.856546
+[TIMING ts=20260929-234350] qwen3_asr.frontend_ms 16.730072
+[TIMING ts=20260929-234350] qwen3_asr.prompt_ms 0.155239
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder_ms 20.654774
+[TIMING ts=20260929-234350] qwen3_asr.thinker_ms 449.667449
+[TIMING ts=20260929-234350] qwen3_asr.postprocess_ms 0.04022
+[TRACE ts=20260929-234350] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234350] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234350] session.wall_ms 487.248834
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=162
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenche1431a2ad2a3496cace729ae0344522b body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234350] qwen3_asr.frontend.normalize_ms 0.845254
+[TIMING ts=20260929-234350] qwen3_asr.frontend.log_mel_ms 22.851649
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.input_upload_ms 0.884234
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.graph.compute_ms 19.590291
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.output_read_ms 0.363947
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prompt_prepare_ms 0.00074
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_input_upload_ms 0.390108
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.compute_ms 40.611743
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_output_read_ms 40.472404
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_total_ms 81.635215
+[TIMING ts=20260929-234350] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234350] qwen3_asr.thinker.decode_total_ms 238.952814
+[TIMING ts=20260929-234350] qwen3_asr.frontend_ms 23.788262
+[TIMING ts=20260929-234350] qwen3_asr.prompt_ms 0.156049
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder_ms 21.888666
+[TIMING ts=20260929-234350] qwen3_asr.thinker_ms 370.700916
+[TIMING ts=20260929-234350] qwen3_asr.postprocess_ms 0.03018
+[TRACE ts=20260929-234350] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234350] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234350] session.wall_ms 416.565093
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=102
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchd5d52639c9854e0185479298156ffe93 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234350] qwen3_asr.frontend.normalize_ms 0.894625
+[TIMING ts=20260929-234350] qwen3_asr.frontend.log_mel_ms 16.828951
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.input_upload_ms 0.415906
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.graph.compute_ms 19.228455
+[TIMING ts=20260929-234350] qwen3_asr.audio_encoder.output_read_ms 0.371877
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prompt_prepare_ms 0.00066
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234350] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill_input_upload_ms 0.384827
+[TIMING ts=20260929-234350] qwen3_asr.thinker.prefill.graph.compute_ms 40.210416
+[TIMING ts=20260929-234351] qwen3_asr.thinker.prefill_output_read_ms 40.915471
+[TIMING ts=20260929-234351] qwen3_asr.thinker.prefill_total_ms 81.665255
+[TIMING ts=20260929-234351] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234351] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234354] qwen3_asr.thinker.decode_total_ms 3845.767703
+[TIMING ts=20260929-234354] qwen3_asr.frontend_ms 17.812065
+[TIMING ts=20260929-234354] qwen3_asr.prompt_ms 0.150469
+[TIMING ts=20260929-234354] qwen3_asr.audio_encoder_ms 20.886443
+[TIMING ts=20260929-234354] qwen3_asr.thinker_ms 3974.827273
+[TIMING ts=20260929-234354] qwen3_asr.postprocess_ms 0.095579
+[TRACE ts=20260929-234354] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234354] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234354] session.wall_ms 4013.772829
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=1536
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchae4e3457e8944b0da302b6d18ecf400f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234354] qwen3_asr.frontend.normalize_ms 0.838244
+[TIMING ts=20260929-234354] qwen3_asr.frontend.log_mel_ms 16.374395
+[TIMING ts=20260929-234354] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234354] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234354] qwen3_asr.audio_encoder.input_upload_ms 0.409847
+[TIMING ts=20260929-234354] qwen3_asr.audio_encoder.graph.compute_ms 19.173245
+[TIMING ts=20260929-234354] qwen3_asr.audio_encoder.output_read_ms 0.485586
+[TIMING ts=20260929-234354] qwen3_asr.thinker.prompt_prepare_ms 0.00054
+[TIMING ts=20260929-234354] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234354] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234354] qwen3_asr.thinker.prefill_input_upload_ms 0.550116
+[TIMING ts=20260929-234354] qwen3_asr.thinker.prefill.graph.compute_ms 40.124567
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_output_read_ms 40.959921
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_total_ms 81.779894
+[TIMING ts=20260929-234355] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234355] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234355] qwen3_asr.thinker.decode_total_ms 44.838574
+[TIMING ts=20260929-234355] qwen3_asr.frontend_ms 17.299838
+[TIMING ts=20260929-234355] qwen3_asr.prompt_ms 0.149679
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder_ms 20.979372
+[TIMING ts=20260929-234355] qwen3_asr.thinker_ms 176.290168
+[TIMING ts=20260929-234355] qwen3_asr.postprocess_ms 0.013069
+[TRACE ts=20260929-234355] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234355] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234355] session.wall_ms 214.733196
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=18
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=726703 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=726703
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench98ce01d787474cf5b9039d80acfdcf8c body_bytes=726703
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=726703
+[TIMING ts=20260929-234355] qwen3_asr.frontend.normalize_ms 0.816374
+[TIMING ts=20260929-234355] qwen3_asr.frontend.log_mel_ms 29.81597
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.graph.build_ms 3.980852
+[TRACE ts=20260929-234355] qwen3_asr.audio_encoder.frames 2268
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.input_upload_ms 1.902796
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.graph.compute_ms 15.792148
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.output_read_ms 0.295017
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prompt_prepare_ms 0.001
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill.graph.build_ms 3.059728
+[TRACE ts=20260929-234355] qwen3_asr.thinker.prefill_prompt_steps 313
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_input_upload_ms 1.50939
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill.graph.compute_ms 29.263384
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_output_read_ms 27.764784
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_total_ms 58.664687
+[TIMING ts=20260929-234355] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234355] qwen3_asr.thinker.decode_cache_steps 825
+[TIMING ts=20260929-234355] qwen3_asr.thinker.decode_total_ms 282.797737
+[TIMING ts=20260929-234355] qwen3_asr.frontend_ms 30.715944
+[TIMING ts=20260929-234355] qwen3_asr.prompt_ms 0.131908
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder_ms 25.020804
+[TIMING ts=20260929-234355] qwen3_asr.thinker_ms 391.594849
+[TIMING ts=20260929-234355] qwen3_asr.postprocess_ms 0.03543
+[TRACE ts=20260929-234355] qwen3_asr.prompt_tokens 313
+[TRACE ts=20260929-234355] qwen3_asr.audio_frames 2268
+[TIMING ts=20260929-234355] session.wall_ms 447.500425
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=363004 keep_start=0 keep_end=363004 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=363004 max_word_end=0 text_chars=162
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench26fea986b38d47c0b4434971591f3e17 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234355] qwen3_asr.frontend.normalize_ms 0.937764
+[TIMING ts=20260929-234355] qwen3_asr.frontend.log_mel_ms 20.067688
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.graph.build_ms 4.159601
+[TRACE ts=20260929-234355] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.input_upload_ms 1.819317
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.graph.compute_ms 19.84715
+[TIMING ts=20260929-234355] qwen3_asr.audio_encoder.output_read_ms 0.365947
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prompt_prepare_ms 0.00104
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill.graph.build_ms 3.048879
+[TRACE ts=20260929-234355] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_input_upload_ms 0.514416
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill.graph.compute_ms 41.18758
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_output_read_ms 38.34706
+[TIMING ts=20260929-234355] qwen3_asr.thinker.prefill_total_ms 80.197364
+[TIMING ts=20260929-234355] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234355] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234356] qwen3_asr.thinker.decode_total_ms 696.863316
+[TIMING ts=20260929-234356] qwen3_asr.frontend_ms 21.082032
+[TIMING ts=20260929-234356] qwen3_asr.prompt_ms 0.153068
+[TIMING ts=20260929-234356] qwen3_asr.audio_encoder_ms 29.058625
+[TIMING ts=20260929-234356] qwen3_asr.thinker_ms 835.669168
+[TIMING ts=20260929-234356] qwen3_asr.postprocess_ms 0.06311
+[TRACE ts=20260929-234356] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234356] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234356] session.wall_ms 886.027203
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench0e8d674db7ef4e768755dc82187c11f4 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234356] qwen3_asr.frontend.normalize_ms 0.927573
+[TIMING ts=20260929-234356] qwen3_asr.frontend.log_mel_ms 31.32565
+[TIMING ts=20260929-234356] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234356] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234356] qwen3_asr.audio_encoder.input_upload_ms 0.388547
+[TIMING ts=20260929-234356] qwen3_asr.audio_encoder.graph.compute_ms 27.189908
+[TIMING ts=20260929-234356] qwen3_asr.audio_encoder.output_read_ms 0.388857
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prompt_prepare_ms 0.00137
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234356] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prefill_input_upload_ms 0.389598
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prefill.graph.compute_ms 50.660222
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prefill_output_read_ms 41.809056
+[TIMING ts=20260929-234356] qwen3_asr.thinker.prefill_total_ms 93.065264
+[TIMING ts=20260929-234356] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234356] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234357] qwen3_asr.thinker.decode_total_ms 625.315311
+[TIMING ts=20260929-234357] qwen3_asr.frontend_ms 32.336972
+[TIMING ts=20260929-234357] qwen3_asr.prompt_ms 0.145679
+[TIMING ts=20260929-234357] qwen3_asr.audio_encoder_ms 28.876146
+[TIMING ts=20260929-234357] qwen3_asr.thinker_ms 765.496102
+[TIMING ts=20260929-234357] qwen3_asr.postprocess_ms 0.061541
+[TRACE ts=20260929-234357] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234357] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234357] session.wall_ms 826.91732
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchcb7a969bcc0c46d98cc138ffc28fe40f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234357] qwen3_asr.frontend.normalize_ms 0.901694
+[TIMING ts=20260929-234357] qwen3_asr.frontend.log_mel_ms 16.836742
+[TIMING ts=20260929-234357] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234357] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234357] qwen3_asr.audio_encoder.input_upload_ms 0.432778
+[TIMING ts=20260929-234357] qwen3_asr.audio_encoder.graph.compute_ms 19.058845
+[TIMING ts=20260929-234357] qwen3_asr.audio_encoder.output_read_ms 0.385227
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prompt_prepare_ms 0.00089
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234357] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prefill_input_upload_ms 0.430288
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prefill.graph.compute_ms 40.193156
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prefill_output_read_ms 39.525252
+[TIMING ts=20260929-234357] qwen3_asr.thinker.prefill_total_ms 80.278145
+[TIMING ts=20260929-234357] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234357] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234358] qwen3_asr.thinker.decode_total_ms 566.429216
+[TIMING ts=20260929-234358] qwen3_asr.frontend_ms 17.822355
+[TIMING ts=20260929-234358] qwen3_asr.prompt_ms 0.137999
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder_ms 20.788404
+[TIMING ts=20260929-234358] qwen3_asr.thinker_ms 694.177055
+[TIMING ts=20260929-234358] qwen3_asr.postprocess_ms 0.060109
+[TRACE ts=20260929-234358] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234358] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234358] session.wall_ms 732.987452
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=363
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchc2b4d39463fc4b8293e7b96f910422e5 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234358] qwen3_asr.frontend.normalize_ms 0.891064
+[TIMING ts=20260929-234358] qwen3_asr.frontend.log_mel_ms 18.900237
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.input_upload_ms 0.374527
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.graph.compute_ms 19.107235
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.output_read_ms 0.367807
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prompt_prepare_ms 0.00077
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_input_upload_ms 0.388808
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill.graph.compute_ms 40.324316
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_output_read_ms 39.263104
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_total_ms 80.128655
+[TIMING ts=20260929-234358] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234358] qwen3_asr.thinker.decode_total_ms 647.122056
+[TIMING ts=20260929-234358] qwen3_asr.frontend_ms 19.871
+[TIMING ts=20260929-234358] qwen3_asr.prompt_ms 0.134839
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder_ms 20.719174
+[TIMING ts=20260929-234358] qwen3_asr.thinker_ms 773.613185
+[TIMING ts=20260929-234358] qwen3_asr.postprocess_ms 0.06221
+[TRACE ts=20260929-234358] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234358] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234358] session.wall_ms 814.401108
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=390
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench14722602cae84e97b50ceab3863e088b body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234358] qwen3_asr.frontend.normalize_ms 0.934863
+[TIMING ts=20260929-234358] qwen3_asr.frontend.log_mel_ms 14.895656
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.input_upload_ms 0.380048
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.graph.compute_ms 19.162005
+[TIMING ts=20260929-234358] qwen3_asr.audio_encoder.output_read_ms 0.377208
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prompt_prepare_ms 0.0007
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_input_upload_ms 0.413906
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill.graph.compute_ms 39.80438
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_output_read_ms 39.272774
+[TIMING ts=20260929-234358] qwen3_asr.thinker.prefill_total_ms 79.629118
+[TIMING ts=20260929-234358] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234358] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234359] qwen3_asr.thinker.decode_total_ms 746.125468
+[TIMING ts=20260929-234359] qwen3_asr.frontend_ms 15.918998
+[TIMING ts=20260929-234359] qwen3_asr.prompt_ms 0.141749
+[TIMING ts=20260929-234359] qwen3_asr.audio_encoder_ms 20.863223
+[TIMING ts=20260929-234359] qwen3_asr.thinker_ms 875.932754
+[TIMING ts=20260929-234359] qwen3_asr.postprocess_ms 0.071489
+[TRACE ts=20260929-234359] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234359] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234359] session.wall_ms 912.929683
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=432
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbencha3a6a44d08714d8eb759edcdd76ff538 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234359] qwen3_asr.frontend.normalize_ms 1.063493
+[TIMING ts=20260929-234359] qwen3_asr.frontend.log_mel_ms 14.938104
+[TIMING ts=20260929-234359] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234359] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234359] qwen3_asr.audio_encoder.input_upload_ms 0.380337
+[TIMING ts=20260929-234359] qwen3_asr.audio_encoder.graph.compute_ms 19.159725
+[TIMING ts=20260929-234359] qwen3_asr.audio_encoder.output_read_ms 0.365427
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prompt_prepare_ms 0.00083
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234359] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prefill_input_upload_ms 0.416898
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prefill.graph.compute_ms 39.911799
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prefill_output_read_ms 39.076135
+[TIMING ts=20260929-234359] qwen3_asr.thinker.prefill_total_ms 79.537969
+[TIMING ts=20260929-234359] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234359] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234400] qwen3_asr.thinker.decode_total_ms 671.962972
+[TIMING ts=20260929-234400] qwen3_asr.frontend_ms 16.085747
+[TIMING ts=20260929-234400] qwen3_asr.prompt_ms 0.140029
+[TIMING ts=20260929-234400] qwen3_asr.audio_encoder_ms 20.788123
+[TIMING ts=20260929-234400] qwen3_asr.thinker_ms 799.409404
+[TIMING ts=20260929-234400] qwen3_asr.postprocess_ms 0.073059
+[TRACE ts=20260929-234400] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234400] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234400] session.wall_ms 836.497202
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=375
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench6ab1dc9e30de472dbbb93fec1d182ef7 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234400] qwen3_asr.frontend.normalize_ms 0.944914
+[TIMING ts=20260929-234400] qwen3_asr.frontend.log_mel_ms 18.468439
+[TIMING ts=20260929-234400] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234400] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234400] qwen3_asr.audio_encoder.input_upload_ms 0.373556
+[TIMING ts=20260929-234400] qwen3_asr.audio_encoder.graph.compute_ms 19.057586
+[TIMING ts=20260929-234400] qwen3_asr.audio_encoder.output_read_ms 0.359508
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prompt_prepare_ms 0.00078
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234400] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prefill_input_upload_ms 0.398477
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prefill.graph.compute_ms 40.292746
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prefill_output_read_ms 38.234651
+[TIMING ts=20260929-234400] qwen3_asr.thinker.prefill_total_ms 79.055172
+[TIMING ts=20260929-234400] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234400] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234401] qwen3_asr.thinker.decode_total_ms 722.387917
+[TIMING ts=20260929-234401] qwen3_asr.frontend_ms 19.511713
+[TIMING ts=20260929-234401] qwen3_asr.prompt_ms 0.151849
+[TIMING ts=20260929-234401] qwen3_asr.audio_encoder_ms 20.706294
+[TIMING ts=20260929-234401] qwen3_asr.thinker_ms 848.308108
+[TIMING ts=20260929-234401] qwen3_asr.postprocess_ms 0.066149
+[TRACE ts=20260929-234401] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234401] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234401] session.wall_ms 888.745373
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=438
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenche55f8fd386e04f19bc908212ae4d486f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234401] qwen3_asr.frontend.normalize_ms 0.959463
+[TIMING ts=20260929-234401] qwen3_asr.frontend.log_mel_ms 11.828116
+[TIMING ts=20260929-234401] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234401] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234401] qwen3_asr.audio_encoder.input_upload_ms 0.386717
+[TIMING ts=20260929-234401] qwen3_asr.audio_encoder.graph.compute_ms 19.207585
+[TIMING ts=20260929-234401] qwen3_asr.audio_encoder.output_read_ms 0.367738
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prompt_prepare_ms 0.00059
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234401] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prefill_input_upload_ms 0.396257
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prefill.graph.compute_ms 39.862809
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prefill_output_read_ms 38.640598
+[TIMING ts=20260929-234401] qwen3_asr.thinker.prefill_total_ms 79.028813
+[TIMING ts=20260929-234401] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234401] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234402] qwen3_asr.thinker.decode_total_ms 663.384482
+[TIMING ts=20260929-234402] qwen3_asr.frontend_ms 12.870519
+[TIMING ts=20260929-234402] qwen3_asr.prompt_ms 0.137159
+[TIMING ts=20260929-234402] qwen3_asr.audio_encoder_ms 20.876283
+[TIMING ts=20260929-234402] qwen3_asr.thinker_ms 790.824843
+[TIMING ts=20260929-234402] qwen3_asr.postprocess_ms 0.06862
+[TRACE ts=20260929-234402] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234402] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234402] session.wall_ms 824.778584
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=420
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench82801083d9e34d7b9513dac555854a75 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234402] qwen3_asr.frontend.normalize_ms 0.915903
+[TIMING ts=20260929-234402] qwen3_asr.frontend.log_mel_ms 14.895235
+[TIMING ts=20260929-234402] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234402] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234402] qwen3_asr.audio_encoder.input_upload_ms 0.374377
+[TIMING ts=20260929-234402] qwen3_asr.audio_encoder.graph.compute_ms 19.131985
+[TIMING ts=20260929-234402] qwen3_asr.audio_encoder.output_read_ms 0.458747
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prompt_prepare_ms 0.00053
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234402] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prefill_input_upload_ms 0.458217
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prefill.graph.compute_ms 40.474565
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prefill_output_read_ms 40.071397
+[TIMING ts=20260929-234402] qwen3_asr.thinker.prefill_total_ms 81.137598
+[TIMING ts=20260929-234402] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234402] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234403] qwen3_asr.thinker.decode_total_ms 723.043892
+[TIMING ts=20260929-234403] qwen3_asr.frontend_ms 15.908027
+[TIMING ts=20260929-234403] qwen3_asr.prompt_ms 0.138679
+[TIMING ts=20260929-234403] qwen3_asr.audio_encoder_ms 20.879733
+[TIMING ts=20260929-234403] qwen3_asr.thinker_ms 852.478229
+[TIMING ts=20260929-234403] qwen3_asr.postprocess_ms 0.071169
+[TRACE ts=20260929-234403] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234403] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234403] session.wall_ms 889.476797
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=396
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchc40276f5ae694a87846c6d60c8b18239 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234403] qwen3_asr.frontend.normalize_ms 0.947883
+[TIMING ts=20260929-234403] qwen3_asr.frontend.log_mel_ms 12.78929
+[TIMING ts=20260929-234403] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234403] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234403] qwen3_asr.audio_encoder.input_upload_ms 0.372348
+[TIMING ts=20260929-234403] qwen3_asr.audio_encoder.graph.compute_ms 19.140065
+[TIMING ts=20260929-234403] qwen3_asr.audio_encoder.output_read_ms 0.385257
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prompt_prepare_ms 0.00077
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234403] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prefill_input_upload_ms 0.392508
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prefill.graph.compute_ms 39.950928
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prefill_output_read_ms 37.960553
+[TIMING ts=20260929-234403] qwen3_asr.thinker.prefill_total_ms 78.455847
+[TIMING ts=20260929-234403] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234403] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234404] qwen3_asr.thinker.decode_total_ms 663.800579
+[TIMING ts=20260929-234404] qwen3_asr.frontend_ms 13.818822
+[TIMING ts=20260929-234404] qwen3_asr.prompt_ms 0.137949
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder_ms 20.741094
+[TIMING ts=20260929-234404] qwen3_asr.thinker_ms 789.617052
+[TIMING ts=20260929-234404] qwen3_asr.postprocess_ms 0.06474
+[TRACE ts=20260929-234404] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234404] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234404] session.wall_ms 824.380487
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=426
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench8ac5fb6102fa407c909232e41a3e5d57 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234404] qwen3_asr.frontend.normalize_ms 0.921824
+[TIMING ts=20260929-234404] qwen3_asr.frontend.log_mel_ms 14.899044
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234404] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.input_upload_ms 0.377757
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.graph.compute_ms 19.117595
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.output_read_ms 0.376307
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prompt_prepare_ms 0.00074
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234404] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prefill_input_upload_ms 0.397078
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prefill.graph.compute_ms 40.069247
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prefill_output_read_ms 38.180701
+[TIMING ts=20260929-234404] qwen3_asr.thinker.prefill_total_ms 78.785035
+[TIMING ts=20260929-234404] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234404] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234404] qwen3_asr.thinker.decode_total_ms 715.797413
+[TIMING ts=20260929-234404] qwen3_asr.frontend_ms 15.905398
+[TIMING ts=20260929-234404] qwen3_asr.prompt_ms 0.135419
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder_ms 20.768273
+[TIMING ts=20260929-234404] qwen3_asr.thinker_ms 841.585296
+[TIMING ts=20260929-234404] qwen3_asr.postprocess_ms 0.064069
+[TRACE ts=20260929-234404] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234404] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234404] session.wall_ms 878.459496
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=432
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench9fb72789a8fe43978c6a874998fa87c5 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234404] qwen3_asr.frontend.normalize_ms 1.118983
+[TIMING ts=20260929-234404] qwen3_asr.frontend.log_mel_ms 24.963673
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234404] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234404] qwen3_asr.audio_encoder.input_upload_ms 0.403968
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.graph.compute_ms 19.149305
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.output_read_ms 0.392548
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prompt_prepare_ms 0.00089
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234405] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_input_upload_ms 0.401246
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill.graph.compute_ms 40.584474
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_output_read_ms 38.553958
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_total_ms 79.675938
+[TIMING ts=20260929-234405] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234405] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234405] qwen3_asr.thinker.decode_total_ms 641.036571
+[TIMING ts=20260929-234405] qwen3_asr.frontend_ms 26.166195
+[TIMING ts=20260929-234405] qwen3_asr.prompt_ms 0.14845
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder_ms 20.888273
+[TIMING ts=20260929-234405] qwen3_asr.thinker_ms 768.401501
+[TIMING ts=20260929-234405] qwen3_asr.postprocess_ms 0.063509
+[TRACE ts=20260929-234405] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234405] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234405] session.wall_ms 815.668968
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=372
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchcf1718951926471fba000f1f3c1db446 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234405] qwen3_asr.frontend.normalize_ms 1.124592
+[TIMING ts=20260929-234405] qwen3_asr.frontend.log_mel_ms 32.815659
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234405] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.input_upload_ms 0.398106
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.graph.compute_ms 19.129705
+[TIMING ts=20260929-234405] qwen3_asr.audio_encoder.output_read_ms 0.415506
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prompt_prepare_ms 0.00088
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234405] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_input_upload_ms 0.408967
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill.graph.compute_ms 39.853649
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_output_read_ms 39.967438
+[TIMING ts=20260929-234405] qwen3_asr.thinker.prefill_total_ms 80.364323
+[TIMING ts=20260929-234405] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234405] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234406] qwen3_asr.thinker.decode_total_ms 716.529328
+[TIMING ts=20260929-234406] qwen3_asr.frontend_ms 34.02374
+[TIMING ts=20260929-234406] qwen3_asr.prompt_ms 0.141729
+[TIMING ts=20260929-234406] qwen3_asr.audio_encoder_ms 20.856693
+[TIMING ts=20260929-234406] qwen3_asr.thinker_ms 846.404262
+[TIMING ts=20260929-234406] qwen3_asr.postprocess_ms 0.06513
+[TRACE ts=20260929-234406] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234406] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234406] session.wall_ms 901.492474
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=417
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench12fae51622b64a909bdf50e590704e86 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234406] qwen3_asr.frontend.normalize_ms 1.276371
+[TIMING ts=20260929-234406] qwen3_asr.frontend.log_mel_ms 16.387174
+[TIMING ts=20260929-234406] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234406] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234406] qwen3_asr.audio_encoder.input_upload_ms 0.409278
+[TIMING ts=20260929-234406] qwen3_asr.audio_encoder.graph.compute_ms 19.155815
+[TIMING ts=20260929-234406] qwen3_asr.audio_encoder.output_read_ms 0.496597
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prompt_prepare_ms 0.00125
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234406] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prefill_input_upload_ms 0.384867
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prefill.graph.compute_ms 40.357096
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prefill_output_read_ms 39.305823
+[TIMING ts=20260929-234406] qwen3_asr.thinker.prefill_total_ms 80.176126
+[TIMING ts=20260929-234406] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234406] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234407] qwen3_asr.thinker.decode_total_ms 680.444012
+[TIMING ts=20260929-234407] qwen3_asr.frontend_ms 17.751675
+[TIMING ts=20260929-234407] qwen3_asr.prompt_ms 0.157869
+[TIMING ts=20260929-234407] qwen3_asr.audio_encoder_ms 20.993822
+[TIMING ts=20260929-234407] qwen3_asr.thinker_ms 809.544931
+[TIMING ts=20260929-234407] qwen3_asr.postprocess_ms 0.075
+[TRACE ts=20260929-234407] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234407] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234407] session.wall_ms 848.524827
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=396
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench0bb54560c6ad485db3c94c66289b380c body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234407] qwen3_asr.frontend.normalize_ms 0.883373
+[TIMING ts=20260929-234407] qwen3_asr.frontend.log_mel_ms 26.188855
+[TIMING ts=20260929-234407] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234407] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234407] qwen3_asr.audio_encoder.input_upload_ms 0.414716
+[TIMING ts=20260929-234407] qwen3_asr.audio_encoder.graph.compute_ms 19.197205
+[TIMING ts=20260929-234407] qwen3_asr.audio_encoder.output_read_ms 0.389148
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prompt_prepare_ms 0.00065
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234407] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prefill_input_upload_ms 0.403416
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prefill.graph.compute_ms 39.969848
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prefill_output_read_ms 40.085998
+[TIMING ts=20260929-234407] qwen3_asr.thinker.prefill_total_ms 80.603421
+[TIMING ts=20260929-234407] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234407] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234408] qwen3_asr.thinker.decode_total_ms 724.014085
+[TIMING ts=20260929-234408] qwen3_asr.frontend_ms 27.158338
+[TIMING ts=20260929-234408] qwen3_asr.prompt_ms 0.159368
+[TIMING ts=20260929-234408] qwen3_asr.audio_encoder_ms 20.950374
+[TIMING ts=20260929-234408] qwen3_asr.thinker_ms 853.904898
+[TIMING ts=20260929-234408] qwen3_asr.postprocess_ms 0.07087
+[TRACE ts=20260929-234408] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234408] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234408] session.wall_ms 902.245028
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench279e409634f743c5865d5e57c9bf6bb6 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234408] qwen3_asr.frontend.normalize_ms 0.890634
+[TIMING ts=20260929-234408] qwen3_asr.frontend.log_mel_ms 13.949191
+[TIMING ts=20260929-234408] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234408] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234408] qwen3_asr.audio_encoder.input_upload_ms 0.635786
+[TIMING ts=20260929-234408] qwen3_asr.audio_encoder.graph.compute_ms 19.273134
+[TIMING ts=20260929-234408] qwen3_asr.audio_encoder.output_read_ms 0.354827
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prompt_prepare_ms 0.00078
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234408] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prefill_input_upload_ms 0.387068
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prefill.graph.compute_ms 40.406774
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prefill_output_read_ms 39.600231
+[TIMING ts=20260929-234408] qwen3_asr.thinker.prefill_total_ms 80.563842
+[TIMING ts=20260929-234408] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234408] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234409] qwen3_asr.thinker.decode_total_ms 726.415547
+[TIMING ts=20260929-234409] qwen3_asr.frontend_ms 14.929605
+[TIMING ts=20260929-234409] qwen3_asr.prompt_ms 0.167169
+[TIMING ts=20260929-234409] qwen3_asr.audio_encoder_ms 21.22621
+[TIMING ts=20260929-234409] qwen3_asr.thinker_ms 855.800156
+[TIMING ts=20260929-234409] qwen3_asr.postprocess_ms 0.07276
+[TRACE ts=20260929-234409] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234409] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234409] session.wall_ms 892.19741
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=429
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench0cb01f20f4144139a813eac680d29d4e body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234409] qwen3_asr.frontend.normalize_ms 0.893974
+[TIMING ts=20260929-234409] qwen3_asr.frontend.log_mel_ms 31.935805
+[TIMING ts=20260929-234409] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234409] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234409] qwen3_asr.audio_encoder.input_upload_ms 0.413827
+[TIMING ts=20260929-234409] qwen3_asr.audio_encoder.graph.compute_ms 19.195454
+[TIMING ts=20260929-234409] qwen3_asr.audio_encoder.output_read_ms 0.372677
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prompt_prepare_ms 0.00063
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234409] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prefill_input_upload_ms 0.389118
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prefill.graph.compute_ms 40.575334
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prefill_output_read_ms 39.173264
+[TIMING ts=20260929-234409] qwen3_asr.thinker.prefill_total_ms 80.269495
+[TIMING ts=20260929-234409] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234409] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234410] qwen3_asr.thinker.decode_total_ms 568.590381
+[TIMING ts=20260929-234410] qwen3_asr.frontend_ms 32.910018
+[TIMING ts=20260929-234410] qwen3_asr.prompt_ms 0.152239
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder_ms 20.778293
+[TIMING ts=20260929-234410] qwen3_asr.thinker_ms 697.659721
+[TIMING ts=20260929-234410] qwen3_asr.postprocess_ms 0.058119
+[TRACE ts=20260929-234410] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234410] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234410] session.wall_ms 751.55933
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=348
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbencha2c41d79833f4cb28ec8f548f85af459 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234410] qwen3_asr.frontend.normalize_ms 1.054152
+[TIMING ts=20260929-234410] qwen3_asr.frontend.log_mel_ms 25.404892
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234410] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.input_upload_ms 0.419678
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.graph.compute_ms 19.352133
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.output_read_ms 0.364037
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prompt_prepare_ms 0.00076
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234410] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prefill_input_upload_ms 0.395158
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prefill.graph.compute_ms 40.091777
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prefill_output_read_ms 40.192696
+[TIMING ts=20260929-234410] qwen3_asr.thinker.prefill_total_ms 80.83719
+[TIMING ts=20260929-234410] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234410] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234410] qwen3_asr.thinker.decode_total_ms 644.071338
+[TIMING ts=20260929-234410] qwen3_asr.frontend_ms 26.546863
+[TIMING ts=20260929-234410] qwen3_asr.prompt_ms 0.167938
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder_ms 21.092951
+[TIMING ts=20260929-234410] qwen3_asr.thinker_ms 774.45947
+[TIMING ts=20260929-234410] qwen3_asr.postprocess_ms 0.085099
+[TRACE ts=20260929-234410] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234410] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234410] session.wall_ms 822.353431
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=384
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchd11c24e40b144ba0bc97287deb8c7509 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234410] qwen3_asr.frontend.normalize_ms 1.044312
+[TIMING ts=20260929-234410] qwen3_asr.frontend.log_mel_ms 40.504835
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234410] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.input_upload_ms 0.374918
+[TIMING ts=20260929-234410] qwen3_asr.audio_encoder.graph.compute_ms 19.171245
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder.output_read_ms 0.349837
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prompt_prepare_ms 0.00094
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234411] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_input_upload_ms 0.374307
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill.graph.compute_ms 40.246507
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_output_read_ms 40.284855
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_total_ms 81.071558
+[TIMING ts=20260929-234411] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234411] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234411] qwen3_asr.thinker.decode_total_ms 709.347718
+[TIMING ts=20260929-234411] qwen3_asr.frontend_ms 41.634306
+[TIMING ts=20260929-234411] qwen3_asr.prompt_ms 0.140729
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder_ms 20.848283
+[TIMING ts=20260929-234411] qwen3_asr.thinker_ms 839.63135
+[TIMING ts=20260929-234411] qwen3_asr.postprocess_ms 0.064479
+[TRACE ts=20260929-234411] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234411] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234411] session.wall_ms 902.320017
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbencha3c1f4b54614480c89d31f5f02909df5 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234411] qwen3_asr.frontend.normalize_ms 0.935253
+[TIMING ts=20260929-234411] qwen3_asr.frontend.log_mel_ms 13.065088
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234411] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder.input_upload_ms 0.383077
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder.graph.compute_ms 19.252505
+[TIMING ts=20260929-234411] qwen3_asr.audio_encoder.output_read_ms 0.378468
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prompt_prepare_ms 0.00055
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234411] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_input_upload_ms 0.423106
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill.graph.compute_ms 40.440086
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_output_read_ms 41.00417
+[TIMING ts=20260929-234411] qwen3_asr.thinker.prefill_total_ms 82.001841
+[TIMING ts=20260929-234411] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234411] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234412] qwen3_asr.thinker.decode_total_ms 545.537803
+[TIMING ts=20260929-234412] qwen3_asr.frontend_ms 14.10373
+[TIMING ts=20260929-234412] qwen3_asr.prompt_ms 0.15183
+[TIMING ts=20260929-234412] qwen3_asr.audio_encoder_ms 20.948192
+[TIMING ts=20260929-234412] qwen3_asr.thinker_ms 680.050274
+[TIMING ts=20260929-234412] qwen3_asr.postprocess_ms 0.066581
+[TRACE ts=20260929-234412] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234412] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234412] session.wall_ms 715.321687
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=354
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchc1d83d089bb1452598297478e22e1ad8 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234412] qwen3_asr.frontend.normalize_ms 1.117852
+[TIMING ts=20260929-234412] qwen3_asr.frontend.log_mel_ms 14.760846
+[TIMING ts=20260929-234412] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234412] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234412] qwen3_asr.audio_encoder.input_upload_ms 0.372018
+[TIMING ts=20260929-234412] qwen3_asr.audio_encoder.graph.compute_ms 19.240394
+[TIMING ts=20260929-234412] qwen3_asr.audio_encoder.output_read_ms 0.374837
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prompt_prepare_ms 0.00065
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234412] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prefill_input_upload_ms 0.410578
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prefill.graph.compute_ms 40.630853
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prefill_output_read_ms 40.545984
+[TIMING ts=20260929-234412] qwen3_asr.thinker.prefill_total_ms 81.733905
+[TIMING ts=20260929-234412] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234412] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234413] qwen3_asr.thinker.decode_total_ms 657.92155
+[TIMING ts=20260929-234413] qwen3_asr.frontend_ms 15.961847
+[TIMING ts=20260929-234413] qwen3_asr.prompt_ms 0.140059
+[TIMING ts=20260929-234413] qwen3_asr.audio_encoder_ms 20.931122
+[TIMING ts=20260929-234413] qwen3_asr.thinker_ms 788.462181
+[TIMING ts=20260929-234413] qwen3_asr.postprocess_ms 0.064529
+[TRACE ts=20260929-234413] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234413] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234413] session.wall_ms 825.560858
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=390
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench1a1df40cc7e348899b9b05d3f7935be6 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234413] qwen3_asr.frontend.normalize_ms 1.119232
+[TIMING ts=20260929-234413] qwen3_asr.frontend.log_mel_ms 24.662825
+[TIMING ts=20260929-234413] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234413] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234413] qwen3_asr.audio_encoder.input_upload_ms 0.397786
+[TIMING ts=20260929-234413] qwen3_asr.audio_encoder.graph.compute_ms 21.071782
+[TIMING ts=20260929-234413] qwen3_asr.audio_encoder.output_read_ms 0.405107
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prompt_prepare_ms 0.00093
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234413] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prefill_input_upload_ms 0.483497
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prefill.graph.compute_ms 40.619323
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prefill_output_read_ms 39.387262
+[TIMING ts=20260929-234413] qwen3_asr.thinker.prefill_total_ms 80.621211
+[TIMING ts=20260929-234413] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234413] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234414] qwen3_asr.thinker.decode_total_ms 627.917442
+[TIMING ts=20260929-234414] qwen3_asr.frontend_ms 25.879676
+[TIMING ts=20260929-234414] qwen3_asr.prompt_ms 0.16526
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder_ms 22.914348
+[TIMING ts=20260929-234414] qwen3_asr.thinker_ms 757.132302
+[TIMING ts=20260929-234414] qwen3_asr.postprocess_ms 0.063489
+[TRACE ts=20260929-234414] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234414] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234414] session.wall_ms 806.156435
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=372
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchda8f97bf5a514070894234f5429df777 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234414] qwen3_asr.frontend.normalize_ms 1.41955
+[TIMING ts=20260929-234414] qwen3_asr.frontend.log_mel_ms 17.229478
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.input_upload_ms 0.391437
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.graph.compute_ms 19.239575
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.output_read_ms 0.361887
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prompt_prepare_ms 0.00078
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_input_upload_ms 0.403647
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill.graph.compute_ms 40.031008
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_output_read_ms 38.078721
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_total_ms 78.648325
+[TIMING ts=20260929-234414] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234414] qwen3_asr.thinker.decode_total_ms 456.367372
+[TIMING ts=20260929-234414] qwen3_asr.frontend_ms 18.733227
+[TIMING ts=20260929-234414] qwen3_asr.prompt_ms 0.145299
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder_ms 20.923873
+[TIMING ts=20260929-234414] qwen3_asr.thinker_ms 582.493783
+[TIMING ts=20260929-234414] qwen3_asr.postprocess_ms 0.04732
+[TRACE ts=20260929-234414] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234414] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234414] session.wall_ms 622.344652
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=291
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench92da1384b13b4833b7ebb254dc3e2cb6 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234414] qwen3_asr.frontend.normalize_ms 0.884714
+[TIMING ts=20260929-234414] qwen3_asr.frontend.log_mel_ms 15.383882
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.input_upload_ms 0.366058
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.graph.compute_ms 19.260844
+[TIMING ts=20260929-234414] qwen3_asr.audio_encoder.output_read_ms 0.337907
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prompt_prepare_ms 0.0005
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_input_upload_ms 0.353287
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill.graph.compute_ms 40.168187
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_output_read_ms 39.74639
+[TIMING ts=20260929-234414] qwen3_asr.thinker.prefill_total_ms 80.412873
+[TIMING ts=20260929-234414] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234414] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234415] qwen3_asr.thinker.decode_total_ms 15.374642
+[TIMING ts=20260929-234415] qwen3_asr.frontend_ms 16.350325
+[TIMING ts=20260929-234415] qwen3_asr.prompt_ms 0.139599
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder_ms 20.727074
+[TIMING ts=20260929-234415] qwen3_asr.thinker_ms 144.460201
+[TIMING ts=20260929-234415] qwen3_asr.postprocess_ms 0.01077
+[TRACE ts=20260929-234415] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234415] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234415] session.wall_ms 181.689419
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=6
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=142689 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=142689
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench4225bbc097e84004b512d90cd24dd515 body_bytes=142689
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=142689
+[TIMING ts=20260929-234415] qwen3_asr.frontend.normalize_ms 0.161958
+[TIMING ts=20260929-234415] qwen3_asr.frontend.log_mel_ms 5.470941
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.graph.build_ms 3.087768
+[TRACE ts=20260929-234415] qwen3_asr.audio_encoder.frames 443
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.input_upload_ms 0.849914
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.graph.compute_ms 8.57327
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.output_read_ms 0.097659
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prompt_prepare_ms 0.00037
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill.graph.build_ms 2.006466
+[TRACE ts=20260929-234415] qwen3_asr.thinker.prefill_prompt_steps 76
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_input_upload_ms 0.902514
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill.graph.compute_ms 13.028348
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_output_read_ms 4.22379
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_total_ms 18.280721
+[TIMING ts=20260929-234415] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234415] qwen3_asr.thinker.decode_cache_steps 588
+[TIMING ts=20260929-234415] qwen3_asr.thinker.decode_total_ms 15.296042
+[TIMING ts=20260929-234415] qwen3_asr.frontend_ms 5.665819
+[TIMING ts=20260929-234415] qwen3_asr.prompt_ms 0.124099
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder_ms 14.969064
+[TIMING ts=20260929-234415] qwen3_asr.thinker_ms 73.977139
+[TIMING ts=20260929-234415] qwen3_asr.postprocess_ms 0.01122
+[TRACE ts=20260929-234415] qwen3_asr.prompt_tokens 76
+[TRACE ts=20260929-234415] qwen3_asr.audio_frames 443
+[TIMING ts=20260929-234415] session.wall_ms 94.748121
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=70997 keep_start=0 keep_end=70997 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=70997 max_word_end=0 text_chars=6
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchb694082e73064b9894424455d3ac41e8 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234415] qwen3_asr.frontend.normalize_ms 0.899373
+[TIMING ts=20260929-234415] qwen3_asr.frontend.log_mel_ms 33.283325
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.graph.build_ms 3.739043
+[TRACE ts=20260929-234415] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.input_upload_ms 0.211238
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.graph.compute_ms 20.035899
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder.output_read_ms 0.349317
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prompt_prepare_ms 0.00113
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill.graph.build_ms 1.923436
+[TRACE ts=20260929-234415] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_input_upload_ms 0.428718
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill.graph.compute_ms 40.924221
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_output_read_ms 39.525072
+[TIMING ts=20260929-234415] qwen3_asr.thinker.prefill_total_ms 81.024059
+[TIMING ts=20260929-234415] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234415] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234415] qwen3_asr.thinker.decode_total_ms 678.852764
+[TIMING ts=20260929-234415] qwen3_asr.frontend_ms 34.257848
+[TIMING ts=20260929-234415] qwen3_asr.prompt_ms 0.151018
+[TIMING ts=20260929-234415] qwen3_asr.audio_encoder_ms 25.879148
+[TIMING ts=20260929-234415] qwen3_asr.thinker_ms 811.751866
+[TIMING ts=20260929-234415] qwen3_asr.postprocess_ms 0.08348
+[TRACE ts=20260929-234415] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234415] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234415] session.wall_ms 872.12503
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=423
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchb1f5828d02064c0488c1a0812963c4c2 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234416] qwen3_asr.frontend.normalize_ms 0.873573
+[TIMING ts=20260929-234416] qwen3_asr.frontend.log_mel_ms 27.995154
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234416] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.input_upload_ms 0.346788
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.graph.compute_ms 28.064952
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.output_read_ms 0.418126
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prompt_prepare_ms 0.00095
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234416] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill_input_upload_ms 0.377758
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill.graph.compute_ms 50.560293
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill_output_read_ms 39.963498
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill_total_ms 91.092819
+[TIMING ts=20260929-234416] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234416] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234416] qwen3_asr.thinker.decode_total_ms 715.448074
+[TIMING ts=20260929-234416] qwen3_asr.frontend_ms 28.939366
+[TIMING ts=20260929-234416] qwen3_asr.prompt_ms 0.153569
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder_ms 29.937858
+[TIMING ts=20260929-234416] qwen3_asr.thinker_ms 853.266984
+[TIMING ts=20260929-234416] qwen3_asr.postprocess_ms 0.06168
+[TRACE ts=20260929-234416] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234416] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234416] session.wall_ms 912.360667
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=411
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchec3e8a7375904c1797ffe87e9ecc8e54 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234416] qwen3_asr.frontend.normalize_ms 0.824334
+[TIMING ts=20260929-234416] qwen3_asr.frontend.log_mel_ms 24.467497
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234416] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.input_upload_ms 0.392667
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.graph.compute_ms 19.298493
+[TIMING ts=20260929-234416] qwen3_asr.audio_encoder.output_read_ms 0.360837
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prompt_prepare_ms 0.00085
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234416] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234416] qwen3_asr.thinker.prefill_input_upload_ms 0.373987
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill.graph.compute_ms 40.093797
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill_output_read_ms 39.908188
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill_total_ms 80.519152
+[TIMING ts=20260929-234417] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234417] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234417] qwen3_asr.thinker.decode_total_ms 643.369983
+[TIMING ts=20260929-234417] qwen3_asr.frontend_ms 25.3815
+[TIMING ts=20260929-234417] qwen3_asr.prompt_ms 0.246749
+[TIMING ts=20260929-234417] qwen3_asr.audio_encoder_ms 21.408849
+[TIMING ts=20260929-234417] qwen3_asr.thinker_ms 775.83943
+[TIMING ts=20260929-234417] qwen3_asr.postprocess_ms 0.067889
+[TRACE ts=20260929-234417] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234417] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234417] session.wall_ms 822.945457
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench9b1f9758a92d4a1b8c6eb79aee316005 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234417] qwen3_asr.frontend.normalize_ms 0.859794
+[TIMING ts=20260929-234417] qwen3_asr.frontend.log_mel_ms 12.538171
+[TIMING ts=20260929-234417] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234417] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234417] qwen3_asr.audio_encoder.input_upload_ms 0.391858
+[TIMING ts=20260929-234417] qwen3_asr.audio_encoder.graph.compute_ms 19.205684
+[TIMING ts=20260929-234417] qwen3_asr.audio_encoder.output_read_ms 0.385377
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prompt_prepare_ms 0.00068
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234417] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill_input_upload_ms 0.400387
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill.graph.compute_ms 40.583994
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill_output_read_ms 41.028231
+[TIMING ts=20260929-234417] qwen3_asr.thinker.prefill_total_ms 82.11213
+[TIMING ts=20260929-234417] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234417] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234418] qwen3_asr.thinker.decode_total_ms 670.75637
+[TIMING ts=20260929-234418] qwen3_asr.frontend_ms 13.492964
+[TIMING ts=20260929-234418] qwen3_asr.prompt_ms 0.14268
+[TIMING ts=20260929-234418] qwen3_asr.audio_encoder_ms 20.921272
+[TIMING ts=20260929-234418] qwen3_asr.thinker_ms 801.682197
+[TIMING ts=20260929-234418] qwen3_asr.postprocess_ms 0.06424
+[TRACE ts=20260929-234418] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234418] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234418] session.wall_ms 836.304843
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=387
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchf342199253724e3cb8fde36ce9aca542 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234418] qwen3_asr.frontend.normalize_ms 0.833614
+[TIMING ts=20260929-234418] qwen3_asr.frontend.log_mel_ms 14.016901
+[TIMING ts=20260929-234418] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234418] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234418] qwen3_asr.audio_encoder.input_upload_ms 0.374497
+[TIMING ts=20260929-234418] qwen3_asr.audio_encoder.graph.compute_ms 19.203185
+[TIMING ts=20260929-234418] qwen3_asr.audio_encoder.output_read_ms 0.391357
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prompt_prepare_ms 0.0006
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234418] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prefill_input_upload_ms 0.410867
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prefill.graph.compute_ms 40.032228
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prefill_output_read_ms 38.154931
+[TIMING ts=20260929-234418] qwen3_asr.thinker.prefill_total_ms 78.691805
+[TIMING ts=20260929-234418] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234418] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234419] qwen3_asr.thinker.decode_total_ms 812.65035
+[TIMING ts=20260929-234419] qwen3_asr.frontend_ms 14.935004
+[TIMING ts=20260929-234419] qwen3_asr.prompt_ms 0.142809
+[TIMING ts=20260929-234419] qwen3_asr.audio_encoder_ms 21.037052
+[TIMING ts=20260929-234419] qwen3_asr.thinker_ms 940.668018
+[TIMING ts=20260929-234419] qwen3_asr.postprocess_ms 0.068709
+[TRACE ts=20260929-234419] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234419] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234419] session.wall_ms 976.852232
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=456
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench40bdcc2b7c8948c39c89ff9b35993f14 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234419] qwen3_asr.frontend.normalize_ms 0.850564
+[TIMING ts=20260929-234419] qwen3_asr.frontend.log_mel_ms 16.734642
+[TIMING ts=20260929-234419] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234419] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234419] qwen3_asr.audio_encoder.input_upload_ms 0.356368
+[TIMING ts=20260929-234419] qwen3_asr.audio_encoder.graph.compute_ms 19.272454
+[TIMING ts=20260929-234419] qwen3_asr.audio_encoder.output_read_ms 0.362918
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prompt_prepare_ms 0.00078
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234419] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prefill_input_upload_ms 0.390497
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prefill.graph.compute_ms 40.062507
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prefill_output_read_ms 38.524629
+[TIMING ts=20260929-234419] qwen3_asr.thinker.prefill_total_ms 79.120462
+[TIMING ts=20260929-234419] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234419] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234420] qwen3_asr.thinker.decode_total_ms 804.961494
+[TIMING ts=20260929-234420] qwen3_asr.frontend_ms 17.666805
+[TIMING ts=20260929-234420] qwen3_asr.prompt_ms 0.138119
+[TIMING ts=20260929-234420] qwen3_asr.audio_encoder_ms 21.111732
+[TIMING ts=20260929-234420] qwen3_asr.thinker_ms 932.059417
+[TIMING ts=20260929-234420] qwen3_asr.postprocess_ms 0.064729
+[TRACE ts=20260929-234420] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234420] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234420] session.wall_ms 971.041782
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=426
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench7c2f99986b0d40c3bcf55cf6dd50bca1 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234420] qwen3_asr.frontend.normalize_ms 0.990373
+[TIMING ts=20260929-234420] qwen3_asr.frontend.log_mel_ms 14.461588
+[TIMING ts=20260929-234420] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234420] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234420] qwen3_asr.audio_encoder.input_upload_ms 0.369268
+[TIMING ts=20260929-234420] qwen3_asr.audio_encoder.graph.compute_ms 19.208184
+[TIMING ts=20260929-234420] qwen3_asr.audio_encoder.output_read_ms 0.368757
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prompt_prepare_ms 0.00086
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234420] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prefill_input_upload_ms 0.393248
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prefill.graph.compute_ms 40.208096
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prefill_output_read_ms 38.35827
+[TIMING ts=20260929-234420] qwen3_asr.thinker.prefill_total_ms 79.081762
+[TIMING ts=20260929-234420] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234420] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234421] qwen3_asr.thinker.decode_total_ms 573.901273
+[TIMING ts=20260929-234421] qwen3_asr.frontend_ms 15.53193
+[TIMING ts=20260929-234421] qwen3_asr.prompt_ms 0.138149
+[TIMING ts=20260929-234421] qwen3_asr.audio_encoder_ms 20.976372
+[TIMING ts=20260929-234421] qwen3_asr.thinker_ms 700.65296
+[TIMING ts=20260929-234421] qwen3_asr.postprocess_ms 0.05331
+[TRACE ts=20260929-234421] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234421] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234421] session.wall_ms 737.353821
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=312
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench3b6ba1c548d24965aa354b3f707fa316 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234421] qwen3_asr.frontend.normalize_ms 0.846924
+[TIMING ts=20260929-234421] qwen3_asr.frontend.log_mel_ms 40.697513
+[TIMING ts=20260929-234421] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234421] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234421] qwen3_asr.audio_encoder.input_upload_ms 0.382497
+[TIMING ts=20260929-234421] qwen3_asr.audio_encoder.graph.compute_ms 19.207334
+[TIMING ts=20260929-234421] qwen3_asr.audio_encoder.output_read_ms 0.400697
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prompt_prepare_ms 0.001071
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234421] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prefill_input_upload_ms 0.389807
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prefill.graph.compute_ms 40.178926
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prefill_output_read_ms 40.839382
+[TIMING ts=20260929-234421] qwen3_asr.thinker.prefill_total_ms 81.672714
+[TIMING ts=20260929-234421] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234421] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234422] qwen3_asr.thinker.decode_total_ms 734.360421
+[TIMING ts=20260929-234422] qwen3_asr.frontend_ms 41.645626
+[TIMING ts=20260929-234422] qwen3_asr.prompt_ms 0.144049
+[TIMING ts=20260929-234422] qwen3_asr.audio_encoder_ms 21.15974
+[TIMING ts=20260929-234422] qwen3_asr.thinker_ms 866.261753
+[TIMING ts=20260929-234422] qwen3_asr.postprocess_ms 0.074379
+[TRACE ts=20260929-234422] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234422] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234422] session.wall_ms 929.287457
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=399
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench3b762943b1a0402987a23452bcb24e82 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234422] qwen3_asr.frontend.normalize_ms 0.824334
+[TIMING ts=20260929-234422] qwen3_asr.frontend.log_mel_ms 22.609941
+[TIMING ts=20260929-234422] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234422] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234422] qwen3_asr.audio_encoder.input_upload_ms 2.351094
+[TIMING ts=20260929-234422] qwen3_asr.audio_encoder.graph.compute_ms 19.279463
+[TIMING ts=20260929-234422] qwen3_asr.audio_encoder.output_read_ms 0.404077
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prompt_prepare_ms 0.00083
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234422] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prefill_input_upload_ms 0.388017
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prefill.graph.compute_ms 40.136837
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prefill_output_read_ms 39.510602
+[TIMING ts=20260929-234422] qwen3_asr.thinker.prefill_total_ms 80.158284
+[TIMING ts=20260929-234422] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234422] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234423] qwen3_asr.thinker.decode_total_ms 760.615356
+[TIMING ts=20260929-234423] qwen3_asr.frontend_ms 23.519865
+[TIMING ts=20260929-234423] qwen3_asr.prompt_ms 0.155669
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder_ms 23.224176
+[TIMING ts=20260929-234423] qwen3_asr.thinker_ms 889.855575
+[TIMING ts=20260929-234423] qwen3_asr.postprocess_ms 0.060609
+[TRACE ts=20260929-234423] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234423] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234423] session.wall_ms 936.817184
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=408
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenche2f61c8e6bbf449fb12cfec0c06dd387 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234423] qwen3_asr.frontend.normalize_ms 0.826844
+[TIMING ts=20260929-234423] qwen3_asr.frontend.log_mel_ms 23.538265
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234423] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.input_upload_ms 0.361018
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.graph.compute_ms 19.287874
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.output_read_ms 0.374347
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prompt_prepare_ms 0.00082
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234423] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prefill_input_upload_ms 0.392078
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prefill.graph.compute_ms 40.428034
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prefill_output_read_ms 40.810553
+[TIMING ts=20260929-234423] qwen3_asr.thinker.prefill_total_ms 81.796464
+[TIMING ts=20260929-234423] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234423] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234423] qwen3_asr.thinker.decode_total_ms 619.545711
+[TIMING ts=20260929-234423] qwen3_asr.frontend_ms 24.435518
+[TIMING ts=20260929-234423] qwen3_asr.prompt_ms 0.152879
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder_ms 21.169681
+[TIMING ts=20260929-234423] qwen3_asr.thinker_ms 751.68003
+[TIMING ts=20260929-234423] qwen3_asr.postprocess_ms 0.069589
+[TRACE ts=20260929-234423] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234423] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234423] session.wall_ms 797.509077
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=411
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench5e55071778fa4c978bf1aea7d632da3f body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234423] qwen3_asr.frontend.normalize_ms 0.833544
+[TIMING ts=20260929-234423] qwen3_asr.frontend.log_mel_ms 18.768847
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234423] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234423] qwen3_asr.audio_encoder.input_upload_ms 0.376978
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.graph.compute_ms 19.377993
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.output_read_ms 0.374697
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prompt_prepare_ms 0.00052
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234424] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_input_upload_ms 0.388138
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill.graph.compute_ms 40.345915
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_output_read_ms 40.018659
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_total_ms 80.864381
+[TIMING ts=20260929-234424] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234424] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234424] qwen3_asr.thinker.decode_total_ms 648.680776
+[TIMING ts=20260929-234424] qwen3_asr.frontend_ms 19.684962
+[TIMING ts=20260929-234424] qwen3_asr.prompt_ms 0.162298
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder_ms 21.21698
+[TIMING ts=20260929-234424] qwen3_asr.thinker_ms 779.144316
+[TIMING ts=20260929-234424] qwen3_asr.postprocess_ms 0.0617
+[TRACE ts=20260929-234424] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234424] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234424] session.wall_ms 820.271216
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=360
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench1e312bfc713643118d55f93f612305fe body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234424] qwen3_asr.frontend.normalize_ms 0.824404
+[TIMING ts=20260929-234424] qwen3_asr.frontend.log_mel_ms 13.866612
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234424] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.input_upload_ms 0.380867
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.graph.compute_ms 19.286475
+[TIMING ts=20260929-234424] qwen3_asr.audio_encoder.output_read_ms 0.388727
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prompt_prepare_ms 0.00071
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234424] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_input_upload_ms 0.424667
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill.graph.compute_ms 40.744052
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_output_read_ms 40.593984
+[TIMING ts=20260929-234424] qwen3_asr.thinker.prefill_total_ms 81.884062
+[TIMING ts=20260929-234424] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234424] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234425] qwen3_asr.thinker.decode_total_ms 574.212822
+[TIMING ts=20260929-234425] qwen3_asr.frontend_ms 14.775126
+[TIMING ts=20260929-234425] qwen3_asr.prompt_ms 0.144389
+[TIMING ts=20260929-234425] qwen3_asr.audio_encoder_ms 20.994272
+[TIMING ts=20260929-234425] qwen3_asr.thinker_ms 706.120061
+[TIMING ts=20260929-234425] qwen3_asr.postprocess_ms 0.058189
+[TRACE ts=20260929-234425] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234425] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234425] session.wall_ms 742.093357
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=372
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench15e949d176534f9499b9640fa1fc20dc body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234425] qwen3_asr.frontend.normalize_ms 0.826504
+[TIMING ts=20260929-234425] qwen3_asr.frontend.log_mel_ms 13.930182
+[TIMING ts=20260929-234425] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234425] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234425] qwen3_asr.audio_encoder.input_upload_ms 0.375928
+[TIMING ts=20260929-234425] qwen3_asr.audio_encoder.graph.compute_ms 19.355683
+[TIMING ts=20260929-234425] qwen3_asr.audio_encoder.output_read_ms 0.378767
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prompt_prepare_ms 0.00061
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234425] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prefill_input_upload_ms 0.395587
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prefill.graph.compute_ms 40.354716
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prefill_output_read_ms 38.249391
+[TIMING ts=20260929-234425] qwen3_asr.thinker.prefill_total_ms 79.108882
+[TIMING ts=20260929-234425] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234425] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234426] qwen3_asr.thinker.decode_total_ms 567.819206
+[TIMING ts=20260929-234426] qwen3_asr.frontend_ms 14.840925
+[TIMING ts=20260929-234426] qwen3_asr.prompt_ms 0.16803
+[TIMING ts=20260929-234426] qwen3_asr.audio_encoder_ms 20.995741
+[TIMING ts=20260929-234426] qwen3_asr.thinker_ms 696.008393
+[TIMING ts=20260929-234426] qwen3_asr.postprocess_ms 0.061509
+[TRACE ts=20260929-234426] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234426] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234426] session.wall_ms 732.075628
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=372
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench123cf49ed8f84a7f85703abcbdd677a8 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234426] qwen3_asr.frontend.normalize_ms 1.046483
+[TIMING ts=20260929-234426] qwen3_asr.frontend.log_mel_ms 15.368332
+[TIMING ts=20260929-234426] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234426] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234426] qwen3_asr.audio_encoder.input_upload_ms 0.388987
+[TIMING ts=20260929-234426] qwen3_asr.audio_encoder.graph.compute_ms 19.380093
+[TIMING ts=20260929-234426] qwen3_asr.audio_encoder.output_read_ms 0.387817
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prompt_prepare_ms 0.00074
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234426] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prefill_input_upload_ms 0.429987
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prefill.graph.compute_ms 40.633394
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prefill_output_read_ms 39.80104
+[TIMING ts=20260929-234426] qwen3_asr.thinker.prefill_total_ms 80.990739
+[TIMING ts=20260929-234426] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234426] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234427] qwen3_asr.thinker.decode_total_ms 777.540797
+[TIMING ts=20260929-234427] qwen3_asr.frontend_ms 16.499754
+[TIMING ts=20260929-234427] qwen3_asr.prompt_ms 0.160749
+[TIMING ts=20260929-234427] qwen3_asr.audio_encoder_ms 21.18384
+[TIMING ts=20260929-234427] qwen3_asr.thinker_ms 908.638493
+[TIMING ts=20260929-234427] qwen3_asr.postprocess_ms 0.06962
+[TRACE ts=20260929-234427] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234427] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234427] session.wall_ms 946.553496
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=477
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench7589ad72a1f64f9c81ed36e975f1074a body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234427] qwen3_asr.frontend.normalize_ms 0.844405
+[TIMING ts=20260929-234427] qwen3_asr.frontend.log_mel_ms 18.38797
+[TIMING ts=20260929-234427] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234427] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234427] qwen3_asr.audio_encoder.input_upload_ms 0.454826
+[TIMING ts=20260929-234427] qwen3_asr.audio_encoder.graph.compute_ms 19.555413
+[TIMING ts=20260929-234427] qwen3_asr.audio_encoder.output_read_ms 0.368937
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prompt_prepare_ms 0.00077
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234427] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prefill_input_upload_ms 0.391647
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prefill.graph.compute_ms 40.952732
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prefill_output_read_ms 38.698437
+[TIMING ts=20260929-234427] qwen3_asr.thinker.prefill_total_ms 80.158015
+[TIMING ts=20260929-234427] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234427] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234428] qwen3_asr.thinker.decode_total_ms 828.865766
+[TIMING ts=20260929-234428] qwen3_asr.frontend_ms 19.316104
+[TIMING ts=20260929-234428] qwen3_asr.prompt_ms 0.140729
+[TIMING ts=20260929-234428] qwen3_asr.audio_encoder_ms 21.388969
+[TIMING ts=20260929-234428] qwen3_asr.thinker_ms 957.518309
+[TIMING ts=20260929-234428] qwen3_asr.postprocess_ms 0.067829
+[TRACE ts=20260929-234428] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234428] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234428] session.wall_ms 998.43281
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=477
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench6b7a1fff6d60434aa932fe64ecdac5f8 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234428] qwen3_asr.frontend.normalize_ms 1.028632
+[TIMING ts=20260929-234428] qwen3_asr.frontend.log_mel_ms 13.537115
+[TIMING ts=20260929-234428] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234428] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234428] qwen3_asr.audio_encoder.input_upload_ms 0.392067
+[TIMING ts=20260929-234428] qwen3_asr.audio_encoder.graph.compute_ms 19.304674
+[TIMING ts=20260929-234428] qwen3_asr.audio_encoder.output_read_ms 0.380857
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prompt_prepare_ms 0.00061
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234428] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prefill_input_upload_ms 0.388298
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prefill.graph.compute_ms 40.956281
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prefill_output_read_ms 39.68295
+[TIMING ts=20260929-234428] qwen3_asr.thinker.prefill_total_ms 81.184338
+[TIMING ts=20260929-234428] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234428] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234429] qwen3_asr.thinker.decode_total_ms 771.52358
+[TIMING ts=20260929-234429] qwen3_asr.frontend_ms 14.668316
+[TIMING ts=20260929-234429] qwen3_asr.prompt_ms 0.139269
+[TIMING ts=20260929-234429] qwen3_asr.audio_encoder_ms 21.001572
+[TIMING ts=20260929-234429] qwen3_asr.thinker_ms 901.647273
+[TIMING ts=20260929-234429] qwen3_asr.postprocess_ms 0.074999
+[TRACE ts=20260929-234429] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234429] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234429] session.wall_ms 937.532669
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=495
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench960c2238e1314b84bf3f83d0a3ae4829 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234429] qwen3_asr.frontend.normalize_ms 0.990793
+[TIMING ts=20260929-234429] qwen3_asr.frontend.log_mel_ms 25.730998
+[TIMING ts=20260929-234429] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234429] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234429] qwen3_asr.audio_encoder.input_upload_ms 0.370398
+[TIMING ts=20260929-234429] qwen3_asr.audio_encoder.graph.compute_ms 19.305854
+[TIMING ts=20260929-234429] qwen3_asr.audio_encoder.output_read_ms 0.368397
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prompt_prepare_ms 0.00071
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234429] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prefill_input_upload_ms 0.391217
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prefill.graph.compute_ms 40.507684
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prefill_output_read_ms 38.850816
+[TIMING ts=20260929-234429] qwen3_asr.thinker.prefill_total_ms 79.869406
+[TIMING ts=20260929-234429] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234429] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234430] qwen3_asr.thinker.decode_total_ms 754.793228
+[TIMING ts=20260929-234430] qwen3_asr.frontend_ms 26.811601
+[TIMING ts=20260929-234430] qwen3_asr.prompt_ms 0.145359
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder_ms 21.127581
+[TIMING ts=20260929-234430] qwen3_asr.thinker_ms 882.956244
+[TIMING ts=20260929-234430] qwen3_asr.postprocess_ms 0.06353
+[TRACE ts=20260929-234430] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234430] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234430] session.wall_ms 931.105105
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=456
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbencheee42231adc14644bb7ca97b1353c703 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234430] qwen3_asr.frontend.normalize_ms 0.842594
+[TIMING ts=20260929-234430] qwen3_asr.frontend.log_mel_ms 13.362845
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234430] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder.input_upload_ms 0.370917
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder.graph.compute_ms 19.323744
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder.output_read_ms 0.428587
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prompt_prepare_ms 0.00076
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234430] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prefill_input_upload_ms 0.407277
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prefill.graph.compute_ms 41.18713
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prefill_output_read_ms 40.031158
+[TIMING ts=20260929-234430] qwen3_asr.thinker.prefill_total_ms 81.729343
+[TIMING ts=20260929-234430] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234430] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234430] qwen3_asr.thinker.decode_total_ms 702.459467
+[TIMING ts=20260929-234430] qwen3_asr.frontend_ms 14.290249
+[TIMING ts=20260929-234430] qwen3_asr.prompt_ms 0.164398
+[TIMING ts=20260929-234430] qwen3_asr.audio_encoder_ms 21.131302
+[TIMING ts=20260929-234430] qwen3_asr.thinker_ms 834.042489
+[TIMING ts=20260929-234430] qwen3_asr.postprocess_ms 0.070389
+[TRACE ts=20260929-234430] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234430] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234430] session.wall_ms 869.700217
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=429
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench9c4ec6f7f3ef4c34b23753f2c274b08a body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234431] qwen3_asr.frontend.normalize_ms 1.027933
+[TIMING ts=20260929-234431] qwen3_asr.frontend.log_mel_ms 12.64972
+[TIMING ts=20260929-234431] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234431] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234431] qwen3_asr.audio_encoder.input_upload_ms 0.382408
+[TIMING ts=20260929-234431] qwen3_asr.audio_encoder.graph.compute_ms 19.359703
+[TIMING ts=20260929-234431] qwen3_asr.audio_encoder.output_read_ms 0.389758
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prompt_prepare_ms 0.00083
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234431] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prefill_input_upload_ms 0.409506
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prefill.graph.compute_ms 40.412916
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prefill_output_read_ms 38.360469
+[TIMING ts=20260929-234431] qwen3_asr.thinker.prefill_total_ms 79.374081
+[TIMING ts=20260929-234431] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234431] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234432] qwen3_asr.thinker.decode_total_ms 866.644619
+[TIMING ts=20260929-234432] qwen3_asr.frontend_ms 13.759542
+[TIMING ts=20260929-234432] qwen3_asr.prompt_ms 0.15694
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder_ms 21.084471
+[TIMING ts=20260929-234432] qwen3_asr.thinker_ms 992.65881
+[TIMING ts=20260929-234432] qwen3_asr.postprocess_ms 0.06624
+[TRACE ts=20260929-234432] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234432] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234432] session.wall_ms 1027.726683
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=477
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench23558a89bd824fe3ada86577b25c5d8e body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234432] qwen3_asr.frontend.normalize_ms 0.844304
+[TIMING ts=20260929-234432] qwen3_asr.frontend.log_mel_ms 12.142755
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234432] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder.input_upload_ms 0.398947
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder.graph.compute_ms 19.360303
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder.output_read_ms 0.363997
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prompt_prepare_ms 0.00082
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234432] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prefill_input_upload_ms 0.386978
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prefill.graph.compute_ms 40.593464
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prefill_output_read_ms 39.035894
+[TIMING ts=20260929-234432] qwen3_asr.thinker.prefill_total_ms 80.127066
+[TIMING ts=20260929-234432] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234432] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234432] qwen3_asr.thinker.decode_total_ms 777.572347
+[TIMING ts=20260929-234432] qwen3_asr.frontend_ms 13.197107
+[TIMING ts=20260929-234432] qwen3_asr.prompt_ms 0.178768
+[TIMING ts=20260929-234432] qwen3_asr.audio_encoder_ms 32.282623
+[TIMING ts=20260929-234432] qwen3_asr.thinker_ms 906.673387
+[TIMING ts=20260929-234432] qwen3_asr.postprocess_ms 0.06978
+[TRACE ts=20260929-234432] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234432] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234432] session.wall_ms 952.402565
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=456
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench8d6669b5b397412cb6ca9d682e0acdd0 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234433] qwen3_asr.frontend.normalize_ms 1.002233
+[TIMING ts=20260929-234433] qwen3_asr.frontend.log_mel_ms 15.406361
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.input_upload_ms 0.369108
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.graph.compute_ms 19.298714
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.output_read_ms 0.379597
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prompt_prepare_ms 0.00076
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_input_upload_ms 0.396477
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill.graph.compute_ms 40.263857
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_output_read_ms 39.206093
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_total_ms 79.980806
+[TIMING ts=20260929-234433] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234433] qwen3_asr.thinker.decode_total_ms 575.467013
+[TIMING ts=20260929-234433] qwen3_asr.frontend_ms 16.491964
+[TIMING ts=20260929-234433] qwen3_asr.prompt_ms 0.143029
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder_ms 21.041141
+[TIMING ts=20260929-234433] qwen3_asr.thinker_ms 703.262051
+[TIMING ts=20260929-234433] qwen3_asr.postprocess_ms 0.055371
+[TRACE ts=20260929-234433] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234433] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234433] session.wall_ms 740.994756
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=354
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench5b0ce7d80b5644e8a750a5de17936ee5 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234433] qwen3_asr.frontend.normalize_ms 0.910073
+[TIMING ts=20260929-234433] qwen3_asr.frontend.log_mel_ms 15.58887
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.input_upload_ms 0.387007
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.graph.compute_ms 19.387772
+[TIMING ts=20260929-234433] qwen3_asr.audio_encoder.output_read_ms 0.374407
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prompt_prepare_ms 0.00085
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_input_upload_ms 0.394978
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill.graph.compute_ms 40.335625
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_output_read_ms 38.256591
+[TIMING ts=20260929-234433] qwen3_asr.thinker.prefill_total_ms 79.095213
+[TIMING ts=20260929-234433] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234433] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234434] qwen3_asr.thinker.decode_total_ms 769.366755
+[TIMING ts=20260929-234434] qwen3_asr.frontend_ms 16.582473
+[TIMING ts=20260929-234434] qwen3_asr.prompt_ms 0.136218
+[TIMING ts=20260929-234434] qwen3_asr.audio_encoder_ms 21.121261
+[TIMING ts=20260929-234434] qwen3_asr.thinker_ms 896.215981
+[TIMING ts=20260929-234434] qwen3_asr.postprocess_ms 0.06844
+[TRACE ts=20260929-234434] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234434] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234434] session.wall_ms 934.125493
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=489
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench7ee339c18f0443f98f7a595a1494d531 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234434] qwen3_asr.frontend.normalize_ms 0.802145
+[TIMING ts=20260929-234434] qwen3_asr.frontend.log_mel_ms 12.920649
+[TIMING ts=20260929-234434] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234434] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234434] qwen3_asr.audio_encoder.input_upload_ms 0.368358
+[TIMING ts=20260929-234434] qwen3_asr.audio_encoder.graph.compute_ms 19.365043
+[TIMING ts=20260929-234434] qwen3_asr.audio_encoder.output_read_ms 0.420527
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prompt_prepare_ms 0.00069
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234434] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prefill_input_upload_ms 0.398087
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prefill.graph.compute_ms 40.307196
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prefill_output_read_ms 37.500826
+[TIMING ts=20260929-234434] qwen3_asr.thinker.prefill_total_ms 78.316218
+[TIMING ts=20260929-234434] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234434] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234435] qwen3_asr.thinker.decode_total_ms 597.851034
+[TIMING ts=20260929-234435] qwen3_asr.frontend_ms 13.804303
+[TIMING ts=20260929-234435] qwen3_asr.prompt_ms 0.157119
+[TIMING ts=20260929-234435] qwen3_asr.audio_encoder_ms 21.092301
+[TIMING ts=20260929-234435] qwen3_asr.thinker_ms 724.291893
+[TIMING ts=20260929-234435] qwen3_asr.postprocess_ms 0.063359
+[TRACE ts=20260929-234435] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234435] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234435] session.wall_ms 759.410175
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=357
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchd6fd1501a25142288d7f359be6dfc3ee body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234435] qwen3_asr.frontend.normalize_ms 0.838204
+[TIMING ts=20260929-234435] qwen3_asr.frontend.log_mel_ms 23.564813
+[TIMING ts=20260929-234435] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234435] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234435] qwen3_asr.audio_encoder.input_upload_ms 0.367217
+[TIMING ts=20260929-234435] qwen3_asr.audio_encoder.graph.compute_ms 19.303944
+[TIMING ts=20260929-234435] qwen3_asr.audio_encoder.output_read_ms 0.371227
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prompt_prepare_ms 0.00068
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234435] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prefill_input_upload_ms 0.386767
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prefill.graph.compute_ms 40.298736
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prefill_output_read_ms 40.022537
+[TIMING ts=20260929-234435] qwen3_asr.thinker.prefill_total_ms 80.82275
+[TIMING ts=20260929-234435] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234435] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234436] qwen3_asr.thinker.decode_total_ms 590.625005
+[TIMING ts=20260929-234436] qwen3_asr.frontend_ms 24.494007
+[TIMING ts=20260929-234436] qwen3_asr.prompt_ms 0.153868
+[TIMING ts=20260929-234436] qwen3_asr.audio_encoder_ms 21.202941
+[TIMING ts=20260929-234436] qwen3_asr.thinker_ms 721.799181
+[TIMING ts=20260929-234436] qwen3_asr.postprocess_ms 0.061349
+[TRACE ts=20260929-234436] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234436] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234436] session.wall_ms 767.712646
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=411
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench94d042e2b23b410cb184b47a24aabcaf body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234436] qwen3_asr.frontend.normalize_ms 1.016632
+[TIMING ts=20260929-234436] qwen3_asr.frontend.log_mel_ms 25.690269
+[TIMING ts=20260929-234436] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234436] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234436] qwen3_asr.audio_encoder.input_upload_ms 0.361568
+[TIMING ts=20260929-234436] qwen3_asr.audio_encoder.graph.compute_ms 19.307613
+[TIMING ts=20260929-234436] qwen3_asr.audio_encoder.output_read_ms 0.377057
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prompt_prepare_ms 0.00087
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234436] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prefill_input_upload_ms 0.401618
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prefill.graph.compute_ms 41.173369
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prefill_output_read_ms 40.390146
+[TIMING ts=20260929-234436] qwen3_asr.thinker.prefill_total_ms 82.094071
+[TIMING ts=20260929-234436] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234436] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234437] qwen3_asr.thinker.decode_total_ms 672.906715
+[TIMING ts=20260929-234437] qwen3_asr.frontend_ms 26.789991
+[TIMING ts=20260929-234437] qwen3_asr.prompt_ms 0.170608
+[TIMING ts=20260929-234437] qwen3_asr.audio_encoder_ms 21.135121
+[TIMING ts=20260929-234437] qwen3_asr.thinker_ms 809.356593
+[TIMING ts=20260929-234437] qwen3_asr.postprocess_ms 0.06502
+[TRACE ts=20260929-234437] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234437] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234437] session.wall_ms 857.518373
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=402
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench2ab2350c8ffe473e8e9da3ae1d2e2d77 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234437] qwen3_asr.frontend.normalize_ms 0.833744
+[TIMING ts=20260929-234437] qwen3_asr.frontend.log_mel_ms 14.456098
+[TIMING ts=20260929-234437] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234437] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234437] qwen3_asr.audio_encoder.input_upload_ms 0.370407
+[TIMING ts=20260929-234437] qwen3_asr.audio_encoder.graph.compute_ms 19.346464
+[TIMING ts=20260929-234437] qwen3_asr.audio_encoder.output_read_ms 0.369488
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prompt_prepare_ms 0.00109
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234437] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prefill_input_upload_ms 0.398537
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prefill.graph.compute_ms 40.383586
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prefill_output_read_ms 40.350365
+[TIMING ts=20260929-234437] qwen3_asr.thinker.prefill_total_ms 81.296576
+[TIMING ts=20260929-234437] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234437] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234438] qwen3_asr.thinker.decode_total_ms 953.08837
+[TIMING ts=20260929-234438] qwen3_asr.frontend_ms 15.373841
+[TIMING ts=20260929-234438] qwen3_asr.prompt_ms 0.139399
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder_ms 21.076502
+[TIMING ts=20260929-234438] qwen3_asr.thinker_ms 1084.511643
+[TIMING ts=20260929-234438] qwen3_asr.postprocess_ms 0.075409
+[TRACE ts=20260929-234438] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234438] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234438] session.wall_ms 1121.178084
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=519
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbenchac630f83e6e243f388726cd4929019f6 body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234438] qwen3_asr.frontend.normalize_ms 0.808844
+[TIMING ts=20260929-234438] qwen3_asr.frontend.log_mel_ms 12.235104
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234438] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder.input_upload_ms 0.397148
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder.graph.compute_ms 19.289173
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder.output_read_ms 0.372037
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prompt_prepare_ms 0.00078
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234438] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prefill_input_upload_ms 0.387527
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prefill.graph.compute_ms 40.750503
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prefill_output_read_ms 38.831316
+[TIMING ts=20260929-234438] qwen3_asr.thinker.prefill_total_ms 80.080585
+[TIMING ts=20260929-234438] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234438] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234438] qwen3_asr.thinker.decode_total_ms 627.697013
+[TIMING ts=20260929-234438] qwen3_asr.frontend_ms 13.126888
+[TIMING ts=20260929-234438] qwen3_asr.prompt_ms 0.139759
+[TIMING ts=20260929-234438] qwen3_asr.audio_encoder_ms 21.000931
+[TIMING ts=20260929-234438] qwen3_asr.thinker_ms 755.375985
+[TIMING ts=20260929-234438] qwen3_asr.postprocess_ms 0.067359
+[TRACE ts=20260929-234438] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234438] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234438] session.wall_ms 789.712132
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=423
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=960695 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench377c4ea0d4a74aa4b831a508ab300d3b body_bytes=960695
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=960695
+[TIMING ts=20260929-234439] qwen3_asr.frontend.normalize_ms 0.846874
+[TIMING ts=20260929-234439] qwen3_asr.frontend.log_mel_ms 25.244701
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.graph.build_ms 0
+[TRACE ts=20260929-234439] qwen3_asr.audio_encoder.frames 3000
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.input_upload_ms 0.367247
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.graph.compute_ms 19.300684
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.output_read_ms 0.484416
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prompt_prepare_ms 0.00104
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill.graph.build_ms 0
+[TRACE ts=20260929-234439] qwen3_asr.thinker.prefill_prompt_steps 408
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_input_upload_ms 0.390197
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill.graph.compute_ms 40.266496
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_output_read_ms 40.369175
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_total_ms 81.121847
+[TIMING ts=20260929-234439] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234439] qwen3_asr.thinker.decode_cache_steps 920
+[TIMING ts=20260929-234439] qwen3_asr.thinker.decode_total_ms 695.394746
+[TIMING ts=20260929-234439] qwen3_asr.frontend_ms 26.188585
+[TIMING ts=20260929-234439] qwen3_asr.prompt_ms 0.152358
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder_ms 21.272071
+[TIMING ts=20260929-234439] qwen3_asr.thinker_ms 827.726893
+[TIMING ts=20260929-234439] qwen3_asr.postprocess_ms 0.07883
+[TRACE ts=20260929-234439] qwen3_asr.prompt_tokens 408
+[TRACE ts=20260929-234439] qwen3_asr.audio_frames 3000
+[TIMING ts=20260929-234439] session.wall_ms 875.420177
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=480000 keep_start=0 keep_end=480000 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=480000 max_word_end=0 text_chars=417
+[SERVER_HTTP_DEBUG] http.headers method=POST path=/v1/audio/transcriptions content_length=104883 transfer_encoding=<none> incremental=false prefetched_body_bytes=7933
+[SERVER_HTTP_DEBUG] http.body_ready path=/v1/audio/transcriptions body_bytes=104883
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.enter content_type=multipart/form-data; boundary=----codexbench5fec61de0da64a1c80e5083f9c7045bd body_bytes=104883
+[SERVER_TRANSCRIPTION_DEBUG] core.transcription.route multipart
+[SERVER_TRANSCRIPTION_DEBUG] core.multipart.parts count=5 body_bytes=104883
+[TIMING ts=20260929-234439] qwen3_asr.frontend.normalize_ms 0.11382
+[TIMING ts=20260929-234439] qwen3_asr.frontend.log_mel_ms 5.449882
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.graph.build_ms 2.050206
+[TRACE ts=20260929-234439] qwen3_asr.audio_encoder.frames 325
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.input_upload_ms 0.816955
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.graph.compute_ms 10.478676
+[TIMING ts=20260929-234439] qwen3_asr.audio_encoder.output_read_ms 0.077349
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prompt_prepare_ms 0.00014
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill.graph.build_ms 1.978606
+[TRACE ts=20260929-234439] qwen3_asr.thinker.prefill_prompt_steps 61
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_input_upload_ms 0.893963
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill.graph.compute_ms 10.519286
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_output_read_ms 3.866453
+[TIMING ts=20260929-234439] qwen3_asr.thinker.prefill_total_ms 15.390831
+[TIMING ts=20260929-234439] qwen3_asr.thinker.decode.graph.build_ms 0
+[TRACE ts=20260929-234439] qwen3_asr.thinker.decode_cache_steps 573
+[TIMING ts=20260929-234440] qwen3_asr.thinker.decode_total_ms 112.18513
+[TIMING ts=20260929-234440] qwen3_asr.frontend_ms 5.614501
+[TIMING ts=20260929-234440] qwen3_asr.prompt_ms 0.125589
+[TIMING ts=20260929-234440] qwen3_asr.audio_encoder_ms 17.309798
+[TIMING ts=20260929-234440] qwen3_asr.thinker_ms 167.994826
+[TIMING ts=20260929-234440] qwen3_asr.postprocess_ms 0.02062
+[TRACE ts=20260929-234440] qwen3_asr.prompt_tokens 61
+[TRACE ts=20260929-234440] qwen3_asr.audio_frames 325
+[TIMING ts=20260929-234440] session.wall_ms 191.066004
+[info][qwen3_asr] qwen3_asr.words_chunk index=0 count=1 source_start=0 source_end=52094 keep_start=0 keep_end=52094 source_sample_rate=16000 timestamp_sample_rate=16000 raw_words=0 merged_delta=0 outside_words=0 source_samples=52094 max_word_end=0 text_chars=66

@@ -1,0 +1,49 @@
+{
+  "runtime": "vllm",
+  "endpoint": "http://127.0.0.1:38765/v1/audio/transcriptions",
+  "model": "qwen3-asr-1.7b",
+  "weight_dtype": "BF16 safetensors",
+  "vllm_api": true,
+  "repeats": 3,
+  "measured_chunks_per_pass": 73,
+  "total_audio_s_per_pass": 2106.353875,
+  "warmup": {
+    "file": "test_1_16k_mono_chunk_000.wav",
+    "client_elapsed_s": 0.6542308370117098,
+    "server_wall_ms": null,
+    "text": "今天是二零一五年十二月五日，我有百分之三十七的概率获得一百二十三万七千八百五十一元。我叫厉飞羽，来自鬼灵门。然后我有一箱苹果，嗯，不对，我有一箱梨。然后我觉得今天的天气过得还好，大概有三十七度。然后哈哈哈，我一五一十的告诉你，你觉得我这个人怎么？"
+  },
+  "per_pass": [
+    {
+      "run": 1,
+      "chunks": 73,
+      "audio_s": 2106.353875,
+      "client_elapsed_s": 40.86488649388775,
+      "server_wall_s": 0.0,
+      "client_rtf": 0.01940076972768299,
+      "transcript_chars": 9427
+    },
+    {
+      "run": 2,
+      "chunks": 73,
+      "audio_s": 2106.353875,
+      "client_elapsed_s": 36.23657621606253,
+      "server_wall_s": 0.0,
+      "client_rtf": 0.01720346075089711,
+      "transcript_chars": 8723
+    },
+    {
+      "run": 3,
+      "chunks": 73,
+      "audio_s": 2106.353875,
+      "client_elapsed_s": 36.21605716040358,
+      "server_wall_s": 0.0,
+      "client_rtf": 0.01719371924644124,
+      "transcript_chars": 8723
+    }
+  ],
+  "client_elapsed_mean_s": 37.772506623451285,
+  "client_elapsed_median_s": 36.23657621606253,
+  "server_wall_mean_s": 0.0,
+  "rtf_client_median": 0.01720346075089711
+}

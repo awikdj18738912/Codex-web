@@ -25,7 +25,12 @@ add_library(zh_itn_core STATIC
   src/itn_safe.cc
   src/itn_zh_conservative_v2.cc
 )
+set_target_properties(zh_itn_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_include_directories(zh_itn_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+add_library(zh_itn_bridge SHARED src/zh_itn_bridge.cc)
+target_link_libraries(zh_itn_bridge PRIVATE zh_itn_core)
+target_include_directories(zh_itn_bridge PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_executable(zh_itn src/zh_itn_cli.cc)
 target_link_libraries(zh_itn PRIVATE zh_itn_core nlohmann_json::nlohmann_json)

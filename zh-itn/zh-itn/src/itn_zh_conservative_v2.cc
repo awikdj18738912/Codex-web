@@ -2836,7 +2836,7 @@ std::optional<std::pair<size_t, std::string>> decimal_measure_unit(
             "赫兹", "公里", "厘米", "毫米", "毫升", "毫克", "兆帕", "百帕",
             "伏特", "安培", "瓦特",
             "毫安", "千伏", "千瓦", "兆瓦", "比特", "字节", "米", "吨", "瓦", "伏",
-            "个ppm", "个ppb", "分贝", "帧", "倍", "斤",
+            "个ppm", "个ppb", "分贝", "帧", "倍", "斤", "个", "万", "亿",
         }) {
         const auto unit_boundaries = unicode_scalar_boundaries(unit);
         if (!unit_boundaries.has_value()) continue;
@@ -3263,7 +3263,7 @@ std::optional<std::pair<size_t, std::string>> explicit_integer_measure_unit(
             "赫兹", "多公里", "公里", "千米", "厘米", "毫米", "毫升", "毫克", "兆帕", "百帕",
             "只私募产品", "个代表团", "个基点", "基点", "伏特", "安培", "瓦特",
             "毫安", "千伏", "千瓦", "兆瓦", "比特", "字节", "欧姆", "站台", "吨", "瓦", "伏", "安", "米",
-            "名观众", "人次", "辆", "颗", "件", "批", "人", "箱", "股", "帧", "转", "斤", "步",
+            "名观众", "人次", "个人", "辆", "颗", "件", "批", "人", "箱", "股", "帧", "转", "斤", "步", "多个",
             "个ppm", "个ppb", "分贝", "度", "倍", "例", "届", "角", "点", "亿",
         }) {
         const auto unit_boundaries = unicode_scalar_boundaries(unit);
@@ -3329,6 +3329,19 @@ std::optional<std::string> parse_explicit_integer_measure(
         }
         return std::to_string(*integer)
             + (approximate_people ? "多人" : unit->second);
+    }
+    const std::string number = unicode_scalar_substring(
+        input, boundaries, start, unit->first
+    );
+    if (number.find("亿") != std::string::npos) {
+        const auto integer = parse_spoken_large_count_integer(
+            input, boundaries, start, unit->first
+        );
+        const auto formatted = format_spoken_large_count_integer(
+            input, boundaries, start, unit->first
+        );
+        if (!integer.has_value() || !formatted.has_value()) return std::nullopt;
+        return *formatted + measure_output_unit(unit->second);
     }
     const auto integer = parse_spoken_money_integer(input, boundaries, start, unit->first);
     if (!integer.has_value() || *integer > 99999999) {
@@ -4688,6 +4701,11 @@ RuleApproval approve_explicit_integer_measure(
         || unit->second == "名观众";
     const std::string left = left_clause_context(input, *boundaries, range.start, 16);
     const std::string right = right_clause_context(input, *boundaries, range.end, 8);
+    if (unit->second == "多个" && !contains_any(
+            unicode_scalar_substring(input, *boundaries, range.start, unit->first),
+            {"千", "万", "亿"})) {
+        return {RuleDecision::preserve, "", {}, {}, "unanchored_approximate_count"};
+    }
     const bool approximate_person_count = unit->second == "人"
         && unit->first > range.start
         && unicode_scalar_substring(
@@ -10627,15 +10645,19 @@ std::vector<TransformationCandidate> detect_explicit_decimal_measures(
             continue;
         }
         size_t number_end = start;
+        bool seen_decimal_mark = false;
         while (number_end < length) {
             const std::string scalar = unicode_scalar_substring(
                 input, *boundaries, number_end, number_end + 1
             );
-            const bool unit_prefix = scalar == "万" && number_end + 1 < length
-                && unicode_scalar_substring(
-                    input, *boundaries, number_end + 1, number_end + 2
-                ) == "股";
+            const bool unit_prefix = ((scalar == "万" || scalar == "亿")
+                    && seen_decimal_mark)
+                || (scalar == "万" && number_end + 1 < length
+                    && unicode_scalar_substring(
+                        input, *boundaries, number_end + 1, number_end + 2
+                    ) == "股");
             if (!decimal_measure_number_scalar(scalar) || unit_prefix) break;
+            if (scalar == "点") seen_decimal_mark = true;
             ++number_end;
         }
         size_t end = number_end;
@@ -10648,6 +10670,16 @@ std::vector<TransformationCandidate> detect_explicit_decimal_measures(
         if (number_end > start && unicode_scalar_substring(
                 input, *boundaries, number_end - 1, number_end
             ) == "百") {
+            unit_starts.push_back(number_end - 1);
+        }
+        if (number_end > start && unicode_scalar_substring(
+            input, *boundaries, number_end - 1, number_end
+            ) == "万") {
+            unit_starts.push_back(number_end - 1);
+        }
+        if (number_end > start && unicode_scalar_substring(
+            input, *boundaries, number_end - 1, number_end
+            ) == "亿") {
             unit_starts.push_back(number_end - 1);
         }
         unit_starts.push_back(number_end);
@@ -10683,6 +10715,21 @@ std::vector<TransformationCandidate> detect_explicit_decimal_measures(
                 }
             }
             if (end != number_end) break;
+        }
+        if (end == number_end) {
+            for (const size_t unit_start : unit_starts) {
+                for (const size_t unit_length : {size_t{6}, size_t{5}, size_t{4}, size_t{3}, size_t{2}, size_t{1}}) {
+                    if (unit_start + unit_length > length) continue;
+                    const auto unit = decimal_measure_unit(
+                        input, *boundaries, start, unit_start + unit_length
+                    );
+                    if (unit.has_value() && unit->first == unit_start) {
+                        end = unit_start + unit_length;
+                        break;
+                    }
+                }
+                if (end != number_end) break;
+            }
         }
         if (end == number_end || !parse_explicit_decimal_measure(
                 input, *boundaries, start, end
@@ -11317,6 +11364,11 @@ std::vector<TransformationCandidate> detect_explicit_integer_measures(
     const size_t length = boundaries->size() - 1;
     std::vector<TransformationCandidate> candidates;
     for (size_t start = 0; start < length; ++start) {
+        if (start > 0 && contains_any(
+                unicode_scalar_substring(input, *boundaries, start - 1, start),
+                {"点", "."})) {
+            continue;
+        }
         const std::string first = unicode_scalar_substring(
             input, *boundaries, start, start + 1
         );
@@ -11398,6 +11450,19 @@ std::vector<TransformationCandidate> detect_explicit_integer_measures(
             }
             if (end != number_end) break;
         }
+        if (detected_unit.empty()) {
+            for (const size_t unit_length : {size_t{6}, size_t{5}, size_t{4}, size_t{3}, size_t{2}, size_t{1}}) {
+                if (number_end + unit_length > length) continue;
+                const auto unit = explicit_integer_measure_unit(
+                    input, *boundaries, start, number_end + unit_length
+                );
+                if (unit.has_value() && unit->first == number_end) {
+                    end = number_end + unit_length;
+                    detected_unit = unit->second;
+                    break;
+                }
+            }
+        }
         if (detected_unit.empty() && number_end + 2 <= length
             && unicode_scalar_substring(
                 input, *boundaries, number_end, number_end + 2
@@ -11454,9 +11519,17 @@ std::vector<TransformationCandidate> detect_explicit_integer_measures(
         const std::string number = unicode_scalar_substring(
             input, *boundaries, start, number_end
         );
+        const bool range_bound_meter = detected_unit == "米" && start >= 2
+            && range_connector(unicode_scalar_substring(
+                input, *boundaries, start - 1, start
+            ))
+            && decimal_money_number_scalar(unicode_scalar_substring(
+                input, *boundaries, start - 2, start - 1
+            ));
         const bool strongly_anchored_meter = detected_unit == "米"
             && !threshold && !periodic
-            && explicit_integer_meter_context(input, *boundaries, start, end, number);
+            && (range_bound_meter
+                || explicit_integer_meter_context(input, *boundaries, start, end, number));
         const bool periodic_only_unit = detected_unit == "克" || detected_unit == "升"
             || (detected_unit == "米" && !strongly_anchored_meter);
         const bool unsupported_degree = detected_unit == "度"
@@ -12054,7 +12127,9 @@ RuleApproval approve_explicit_unit_range(
         )))) {
         return {RuleDecision::preserve, "", {}, {}, "chained_explicit_unit_range"};
     }
-    const bool released_single_digit_range = contains_any(left, {
+    const bool released_single_digit_range = (kind == ExplicitUnitRangeKind::measure
+            && (match->unit == "米" || match->unit == "个人"))
+        || contains_any(left, {
         "距地铁站", "距离", "补贴金额", "成交额", "交易额",
     });
     if (!released_single_digit_range && (natural_single_digit_range_endpoint(
