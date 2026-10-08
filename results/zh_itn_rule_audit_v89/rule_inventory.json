@@ -1,0 +1,4748 @@
+{
+  "date": "2026-10-02",
+  "rule_pack": "zh-itn-strict-conservative-v89",
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/src/itn_zh_conservative_v2.cc",
+  "source_sha256": "baae64c9b9feb8a7cb9b4d45efe1901d1c5e20174cf3c10e997d2425debe7285",
+  "registered_rule_count": 99,
+  "unique_approver_count": 80,
+  "source_function_count": 331,
+  "rules": [
+    {
+      "rule_id": "zh.quantity.structural_count_or_approximation",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "quantity",
+      "subtype": "structural_quantity",
+      "approver": {
+        "name": "approve_structural_quantity",
+        "return_type": "RuleApproval",
+        "start_line": 11555,
+        "end_line": 11570,
+        "preserve_reasons": [
+          "uncertain_structural_quantity"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.quantity.structural_range",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "quantity",
+      "subtype": "structural_quantity_range",
+      "approver": {
+        "name": "approve_structural_quantity_range",
+        "return_type": "RuleApproval",
+        "start_line": 11580,
+        "end_line": 11607,
+        "preserve_reasons": [
+          "uncertain_structural_range"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.spoken_cardinal_decade",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "spoken_cardinal_decade",
+      "approver": {
+        "name": "approve_spoken_decade",
+        "return_type": "RuleApproval",
+        "start_line": 14643,
+        "end_line": 14679,
+        "preserve_reasons": [
+          "not_complete_spoken_decade",
+          "spoken_decade_continues_left",
+          "spoken_decade_continues_right",
+          "not_two_digit_decade"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_four_digit_year",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_four_digit_year",
+      "approver": {
+        "name": "approve_explicit_year",
+        "return_type": "RuleApproval",
+        "start_line": 1005,
+        "end_line": 1084,
+        "preserve_reasons": [
+          "not_explicit_calendar_year",
+          "numeric_run_left_boundary",
+          "not_spoken_digit_year",
+          "year_out_of_strict_range",
+          "year_outside_modern_context"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_year_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_year_range",
+      "approver": {
+        "name": "approve_year_range",
+        "return_type": "RuleApproval",
+        "start_line": 1381,
+        "end_line": 1460,
+        "preserve_reasons": [
+          "not_complete_year_range",
+          "year_range_continues_left",
+          "year_range_continues_right",
+          "invalid_year_range_shape",
+          "invalid_year_range_year",
+          "year_range_out_of_range"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_full_date_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_full_date_range",
+      "approver": {
+        "name": "approve_full_date_range",
+        "return_type": "RuleApproval",
+        "start_line": 1468,
+        "end_line": 1560,
+        "preserve_reasons": [
+          "not_complete_full_date_range",
+          "full_date_range_continues_left",
+          "full_date_range_continues_right",
+          "multiple_date_range_connectors",
+          "missing_full_date_range_endpoint",
+          "invalid_full_date_range_endpoint"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_shared_year_date_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_shared_year_date_range",
+      "approver": {
+        "name": "approve_shared_year_date_range",
+        "return_type": "RuleApproval",
+        "start_line": 2258,
+        "end_line": 2406,
+        "preserve_reasons": [
+          "not_complete_shared_year_date_range",
+          "shared_year_date_range_continues_left",
+          "shared_year_date_range_continues_right",
+          "multiple_shared_year_date_range_connectors",
+          "missing_shared_year_date_range_endpoint",
+          "invalid_shared_year_date_range_endpoint",
+          "invalid_shared_year_date_range_year",
+          "shared_year_date_range_not_strictly_ascending"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_shared_month_date_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_shared_month_date_range",
+      "approver": {
+        "name": "approve_shared_month_date_range",
+        "return_type": "RuleApproval",
+        "start_line": 2408,
+        "end_line": 2531,
+        "preserve_reasons": [
+          "not_complete_shared_month_date_range",
+          "shared_month_date_range_continues_left",
+          "shared_month_date_range_continues_right",
+          "invalid_shared_month_date_range_month",
+          "multiple_shared_month_date_range_connectors",
+          "missing_shared_month_date_range_endpoint",
+          "invalid_shared_month_date_range_suffix",
+          "invalid_shared_month_date_range_value"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_full_date_shared_month_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_full_date_shared_month_range",
+      "approver": {
+        "name": "approve_full_date_shared_month_range",
+        "return_type": "RuleApproval",
+        "start_line": 2533,
+        "end_line": 2687,
+        "preserve_reasons": [
+          "not_complete_full_date_shared_month_range",
+          "full_date_shared_month_range_continues_left",
+          "full_date_shared_month_range_continues_right",
+          "multiple_full_date_shared_month_range_connectors",
+          "missing_full_date_shared_month_range_endpoint",
+          "invalid_full_date_shared_month_range_endpoint",
+          "invalid_full_date_shared_month_range_shape",
+          "invalid_full_date_shared_month_range_year",
+          "invalid_full_date_shared_month_range_value"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_year_month",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_year_month",
+      "approver": {
+        "name": "approve_year_month",
+        "return_type": "RuleApproval",
+        "start_line": 1086,
+        "end_line": 1187,
+        "preserve_reasons": [
+          "not_complete_year_month",
+          "invalid_year_month_shape",
+          "invalid_year_month_year",
+          "year_month_year_out_of_range",
+          "invalid_year_month_month",
+          "year_month_continues_left",
+          "year_month_continues_right",
+          "invalid_cross_segment_context",
+          "cross_segment_year_month_continuation"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.contextual_cross_segment_month",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "contextual_cross_segment_month",
+      "approver": {
+        "name": "approve_cross_segment_month",
+        "return_type": "RuleApproval",
+        "start_line": 1189,
+        "end_line": 1232,
+        "preserve_reasons": [
+          "uncertain_cross_segment_month",
+          "invalid_cross_segment_month"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_year_month_range",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_year_month_range",
+      "approver": {
+        "name": "approve_year_month_range",
+        "return_type": "RuleApproval",
+        "start_line": 1234,
+        "end_line": 1379,
+        "preserve_reasons": [
+          "not_complete_year_month_range",
+          "year_month_range_continues_left",
+          "year_month_range_continues_right",
+          "invalid_year_month_range_shape",
+          "invalid_year_month_range_year",
+          "year_month_range_year_out_of_range",
+          "invalid_first_range_month",
+          "missing_second_range_month",
+          "invalid_year_month_range_connector",
+          "invalid_second_range_year",
+          "invalid_year_month_range_month"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_full_date",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_full_date",
+      "approver": {
+        "name": "approve_full_date",
+        "return_type": "RuleApproval",
+        "start_line": 1562,
+        "end_line": 1692,
+        "preserve_reasons": [
+          "not_complete_calendar_date",
+          "invalid_full_date_year",
+          "full_date_year_out_of_range",
+          "invalid_full_date_month",
+          "invalid_full_date_suffix",
+          "invalid_full_date_day",
+          "numeric_run_left_boundary",
+          "shared_month_date_sequence",
+          "date_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_month_day",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_month_day",
+      "approver": {
+        "name": "approve_month_day",
+        "return_type": "RuleApproval",
+        "start_line": 1694,
+        "end_line": 1808,
+        "preserve_reasons": [
+          "not_complete_month_day",
+          "invalid_month",
+          "invalid_month_day",
+          "month_day_continues_left",
+          "shared_month_date_sequence",
+          "month_day_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_month_period",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_month_period",
+      "approver": {
+        "name": "approve_month_period",
+        "return_type": "RuleApproval",
+        "start_line": 1810,
+        "end_line": 1880,
+        "preserve_reasons": [
+          "not_complete_month_period",
+          "invalid_month_period_shape",
+          "invalid_month_period_value",
+          "month_period_continues_left",
+          "month_period_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_month_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_month_range",
+      "approver": {
+        "name": "approve_month_range",
+        "return_type": "RuleApproval",
+        "start_line": 1882,
+        "end_line": 1959,
+        "preserve_reasons": [
+          "invalid_month_range",
+          "invalid_month_range_shape",
+          "invalid_month_range_connector",
+          "invalid_month_range_value",
+          "month_range_continues_left",
+          "month_range_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_relative_year_month",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_relative_year_month",
+      "approver": {
+        "name": "approve_relative_year_month",
+        "return_type": "RuleApproval",
+        "start_line": 2082,
+        "end_line": 2142,
+        "preserve_reasons": [
+          "not_complete_relative_year_month",
+          "invalid_relative_year_month_shape",
+          "invalid_relative_year_month_value",
+          "relative_year_month_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.contextual_followup_month",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "contextual_followup_month",
+      "approver": {
+        "name": "approve_contextual_followup_month",
+        "return_type": "RuleApproval",
+        "start_line": 2032,
+        "end_line": 2080,
+        "preserve_reasons": [
+          "uncertain_followup_month",
+          "followup_month_continues_right",
+          "invalid_followup_month"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_recurring_cross_year_month_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_recurring_cross_year_month_range",
+      "approver": {
+        "name": "approve_recurring_cross_year_month_range",
+        "return_type": "RuleApproval",
+        "start_line": 2144,
+        "end_line": 2256,
+        "preserve_reasons": [
+          "not_complete_recurring_cross_year_month_range",
+          "invalid_first_recurring_month",
+          "missing_next_year_month",
+          "invalid_recurring_range_bridge",
+          "invalid_second_recurring_month",
+          "invalid_recurring_month_value",
+          "recurring_month_range_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.percentage.explicit",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "percentage",
+      "subtype": "explicit_percentage",
+      "approver": {
+        "name": "approve_percentage",
+        "return_type": "RuleApproval",
+        "start_line": 2718,
+        "end_line": 2792,
+        "preserve_reasons": [
+          "not_explicit_percentage",
+          "fraction_prefix_overlap",
+          "percentage_continues_right",
+          "invalid_percentage_value"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.percentage.explicit_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "percentage",
+      "subtype": "explicit_percentage_range",
+      "approver": {
+        "name": "approve_percentage_range",
+        "return_type": "RuleApproval",
+        "start_line": 10367,
+        "end_line": 10467,
+        "preserve_reasons": [
+          "invalid_percentage_range_members",
+          "invalid_percentage_range_bridge",
+          "invalid_percentage_range_endpoint"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.percentage.shared_prefix_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "percentage",
+      "subtype": "shared_prefix_percentage_range",
+      "approver": {
+        "name": "approve_shared_prefix_percentage_range",
+        "return_type": "RuleApproval",
+        "start_line": 10516,
+        "end_line": 10606,
+        "preserve_reasons": [
+          "invalid_shared_prefix_percentage_range",
+          "missing_shared_prefix_percentage_endpoint",
+          "invalid_shared_prefix_percentage_bridge",
+          "shared_prefix_percentage_range_continues_right",
+          "invalid_shared_prefix_percentage_endpoint"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.isolated_digit_g",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "isolated_digit_g",
+      "approver": {
+        "name": "approve_isolated_digit_g",
+        "return_type": "RuleApproval",
+        "start_line": 5534,
+        "end_line": 5594,
+        "preserve_reasons": [
+          "not_isolated_digit_g",
+          "invalid_isolated_digit_g",
+          "identifier_continues_left",
+          "identifier_continues_right",
+          "ambiguous_digit_g_quantity_context"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.respirator_standard_n95",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "respirator_standard_n95",
+      "approver": {
+        "name": "approve_respirator_standard",
+        "return_type": "RuleApproval",
+        "start_line": 5601,
+        "end_line": 5651,
+        "preserve_reasons": [
+          "invalid_respirator_identifier",
+          "missing_respirator_context",
+          "identifier_continues_left",
+          "identifier_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.automotive_4s_store",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "automotive_4s_store",
+      "approver": {
+        "name": "approve_automotive_store",
+        "return_type": "RuleApproval",
+        "start_line": 5653,
+        "end_line": 5695,
+        "preserve_reasons": [
+          "invalid_automotive_store_identifier",
+          "identifier_continues_left",
+          "identifier_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.playstation_model",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "playstation_model",
+      "approver": {
+        "name": "approve_playstation_model",
+        "return_type": "RuleApproval",
+        "start_line": 5714,
+        "end_line": 5768,
+        "preserve_reasons": [
+          "invalid_playstation_identifier",
+          "identifier_continues_left",
+          "identifier_continues_right",
+          "ambiguous_numeric_suffix"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.closed_product_model",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "closed_product_model",
+      "approver": {
+        "name": "approve_closed_product_model",
+        "return_type": "RuleApproval",
+        "start_line": 5786,
+        "end_line": 5818,
+        "preserve_reasons": [
+          "invalid_closed_product_model",
+          "unsupported_closed_product_model"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.contextual_product_model",
+      "version": "5",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "contextual_product_model",
+      "approver": {
+        "name": "approve_contextual_product_model",
+        "return_type": "RuleApproval",
+        "start_line": 5938,
+        "end_line": 5995,
+        "preserve_reasons": [
+          "uncertain_product_model_context",
+          "product_model_continues_left",
+          "product_model_continues_right",
+          "invalid_product_model"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.contextual_land_parcel",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "contextual_land_parcel",
+      "approver": {
+        "name": "approve_land_parcel_identifier",
+        "return_type": "RuleApproval",
+        "start_line": 6061,
+        "end_line": 6100,
+        "preserve_reasons": [
+          "uncertain_land_parcel_identifier",
+          "land_parcel_continues_left"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.display_resolution",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "display_resolution",
+      "approver": {
+        "name": "approve_display_resolution",
+        "return_type": "RuleApproval",
+        "start_line": 6150,
+        "end_line": 6194,
+        "preserve_reasons": [
+          "uncertain_display_resolution_context",
+          "display_resolution_continues_right",
+          "invalid_display_resolution"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.ratio.explicit_contextual",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "ratio",
+      "subtype": "explicit_contextual_ratio",
+      "approver": {
+        "name": "approve_explicit_contextual_ratio",
+        "return_type": "RuleApproval",
+        "start_line": 6238,
+        "end_line": 6275,
+        "preserve_reasons": [
+          "invalid_contextual_ratio"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.ratio.contextual_scalar",
+      "version": "4",
+      "locale": "zh-CN",
+      "domain": "ratio",
+      "subtype": "contextual_scalar",
+      "approver": {
+        "name": "approve_contextual_scalar_ratio",
+        "return_type": "RuleApproval",
+        "start_line": 6328,
+        "end_line": 6368,
+        "preserve_reasons": [
+          "uncertain_contextual_scalar_ratio",
+          "scalar_ratio_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.number.contextual_setting_value",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "number",
+      "subtype": "contextual_setting_value",
+      "approver": {
+        "name": "approve_contextual_setting_value",
+        "return_type": "RuleApproval",
+        "start_line": 6381,
+        "end_line": 6422,
+        "preserve_reasons": [
+          "uncertain_contextual_setting_value",
+          "setting_value_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.score.explicit_contextual",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "number",
+      "subtype": "contextual_score",
+      "approver": {
+        "name": "approve_contextual_score",
+        "return_type": "RuleApproval",
+        "start_line": 6439,
+        "end_line": 6486,
+        "preserve_reasons": [
+          "uncertain_contextual_score",
+          "score_unit_continues_right",
+          "score_outside_conservative_range"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.ordinal.contextual_rank",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "ordinal",
+      "subtype": "contextual_rank",
+      "approver": {
+        "name": "approve_contextual_rank",
+        "return_type": "RuleApproval",
+        "start_line": 6499,
+        "end_line": 6535,
+        "preserve_reasons": [
+          "uncertain_contextual_rank"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.ordinal.contextual_document_page",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "ordinal",
+      "subtype": "contextual_document_page",
+      "approver": {
+        "name": "approve_contextual_document_page",
+        "return_type": "RuleApproval",
+        "start_line": 6550,
+        "end_line": 6586,
+        "preserve_reasons": [
+          "uncertain_contextual_document_page"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.ordinal.contextual_structured_reference",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "ordinal",
+      "subtype": "contextual_structured_reference",
+      "approver": {
+        "name": "approve_contextual_structured_ordinal",
+        "return_type": "RuleApproval",
+        "start_line": 6613,
+        "end_line": 6655,
+        "preserve_reasons": [
+          "uncertain_structured_ordinal"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.number.contextual_anchored_cardinal",
+      "version": "4",
+      "locale": "zh-CN",
+      "domain": "number",
+      "subtype": "contextual_anchored_cardinal",
+      "approver": {
+        "name": "approve_contextual_anchored_cardinal",
+        "return_type": "RuleApproval",
+        "start_line": 6657,
+        "end_line": 6742,
+        "preserve_reasons": [
+          "uncertain_anchored_cardinal",
+          "natural_single_digit_cardinal"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.contextual_technical_notation",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "contextual_technical_notation",
+      "approver": {
+        "name": "approve_technical_identifier",
+        "return_type": "RuleApproval",
+        "start_line": 6744,
+        "end_line": 6834,
+        "preserve_reasons": [
+          "invalid_technical_identifier",
+          "missing_technical_version_context",
+          "unsupported_technical_identifier"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.structured_spoken_locator",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "structured_spoken_locator",
+      "approver": {
+        "name": "approve_structured_spoken_identifier",
+        "return_type": "RuleApproval",
+        "start_line": 7025,
+        "end_line": 7072,
+        "preserve_reasons": [
+          "invalid_structured_locator",
+          "unsupported_structured_locator"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_geographic_coordinate",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_geographic_coordinate",
+      "approver": {
+        "name": "approve_explicit_geographic_coordinate",
+        "return_type": "RuleApproval",
+        "start_line": 7124,
+        "end_line": 7162,
+        "preserve_reasons": [
+          "invalid_geographic_coordinate"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.software_version",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "software_version",
+      "approver": {
+        "name": "approve_software_version",
+        "return_type": "RuleApproval",
+        "start_line": 7248,
+        "end_line": 7303,
+        "preserve_reasons": [
+          "invalid_software_version",
+          "missing_software_version_context",
+          "version_continues_left",
+          "version_continues_right",
+          "invalid_version_components"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.telephone_number",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "explicit_telephone_number",
+      "approver": {
+        "name": "approve_telephone_number",
+        "return_type": "RuleApproval",
+        "start_line": 7526,
+        "end_line": 7585,
+        "preserve_reasons": [
+          "invalid_telephone_context",
+          "telephone_continues_left",
+          "telephone_continues_right",
+          "invalid_telephone_digits",
+          "unsupported_telephone_shape"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.telephone_number_list",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "explicit_telephone_number_list",
+      "approver": {
+        "name": "approve_telephone_number_list",
+        "return_type": "RuleApproval",
+        "start_line": 7761,
+        "end_line": 7801,
+        "preserve_reasons": [
+          "invalid_telephone_list_context",
+          "invalid_telephone_list_shape"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.contextual_public_service_number",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "contextual_public_service_number",
+      "approver": {
+        "name": "approve_contextual_public_service_number",
+        "return_type": "RuleApproval",
+        "start_line": 7633,
+        "end_line": 7686,
+        "preserve_reasons": [
+          "invalid_public_service_number",
+          "service_number_continues_left",
+          "service_number_continues_right"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.explicit_digit_sequence",
+      "version": "8",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "explicit_digit_sequence",
+      "approver": {
+        "name": "approve_explicit_identifier",
+        "return_type": "RuleApproval",
+        "start_line": 7923,
+        "end_line": 7979,
+        "preserve_reasons": [
+          "invalid_explicit_identifier"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.train_number",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "train_number",
+      "approver": {
+        "name": "approve_train_number",
+        "return_type": "RuleApproval",
+        "start_line": 8020,
+        "end_line": 8055,
+        "preserve_reasons": [
+          "invalid_train_number"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.flight_number",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "flight_number",
+      "approver": {
+        "name": "approve_flight_number",
+        "return_type": "RuleApproval",
+        "start_line": 8107,
+        "end_line": 8143,
+        "preserve_reasons": [
+          "invalid_flight_number"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.ipv4_address",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "ipv4_address",
+      "approver": {
+        "name": "approve_ipv4_address",
+        "return_type": "RuleApproval",
+        "start_line": 8206,
+        "end_line": 8239,
+        "preserve_reasons": [
+          "invalid_ipv4_address"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.identifier.network_port",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "identifier",
+      "subtype": "network_port",
+      "approver": {
+        "name": "approve_network_port",
+        "return_type": "RuleApproval",
+        "start_line": 8276,
+        "end_line": 8317,
+        "preserve_reasons": [
+          "invalid_network_port"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.date.explicit_century",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_century",
+      "approver": {
+        "name": "approve_explicit_century",
+        "return_type": "RuleApproval",
+        "start_line": 8319,
+        "end_line": 8356,
+        "preserve_reasons": [
+          "invalid_explicit_century",
+          "unsupported_century"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_clock_time",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_clock_time",
+      "approver": {
+        "name": "approve_explicit_clock_time",
+        "return_type": "RuleApproval",
+        "start_line": 8731,
+        "end_line": 8770,
+        "preserve_reasons": [
+          "uncertain_clock_time_context",
+          "invalid_clock_time"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_clock_time_range",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_clock_time_range",
+      "approver": {
+        "name": "approve_explicit_clock_time_range",
+        "return_type": "RuleApproval",
+        "start_line": 8665,
+        "end_line": 8701,
+        "preserve_reasons": [
+          "invalid_clock_time_range"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.contextual_unperioded_clock_time",
+      "version": "5",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "contextual_unperioded_clock_time",
+      "approver": {
+        "name": "approve_contextual_clock_time",
+        "return_type": "RuleApproval",
+        "start_line": 8822,
+        "end_line": 8864,
+        "preserve_reasons": [
+          "uncertain_contextual_clock_time",
+          "invalid_contextual_clock_time"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.contextual_approximate_unperioded_clock_time",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "contextual_approximate_unperioded_clock_time",
+      "approver": {
+        "name": "approve_contextual_approximate_clock_time",
+        "return_type": "RuleApproval",
+        "start_line": 8866,
+        "end_line": 8918,
+        "preserve_reasons": [
+          "uncertain_contextual_approximate_clock_time",
+          "contextual_approximate_clock_continues_left",
+          "invalid_contextual_approximate_clock_time"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_video_timecode",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_video_timecode",
+      "approver": {
+        "name": "approve_explicit_video_timecode",
+        "return_type": "RuleApproval",
+        "start_line": 7357,
+        "end_line": 7390,
+        "preserve_reasons": [
+          "uncertain_video_timecode"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.number.explicit_clinical_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "number",
+      "subtype": "explicit_clinical_threshold",
+      "approver": {
+        "name": "approve_clinical_threshold",
+        "return_type": "RuleApproval",
+        "start_line": 7392,
+        "end_line": 7425,
+        "preserve_reasons": [
+          "uncertain_clinical_threshold"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.number.explicit_signed_number",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "number",
+      "subtype": "explicit_signed_number",
+      "approver": {
+        "name": "approve_explicit_signed_number",
+        "return_type": "RuleApproval",
+        "start_line": 11233,
+        "end_line": 11278,
+        "preserve_reasons": [
+          "uncertain_signed_number_context",
+          "signed_number_continues_right",
+          "invalid_signed_number"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_calendar_timestamp",
+      "version": "6",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_calendar_timestamp",
+      "approver": {
+        "name": "approve_explicit_calendar_timestamp",
+        "return_type": "RuleApproval",
+        "start_line": 8920,
+        "end_line": 9035,
+        "preserve_reasons": [
+          "invalid_calendar_timestamp",
+          "calendar_timestamp_continues_left",
+          "missing_calendar_clock_time",
+          "invalid_calendar_timestamp_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_calendar_timestamp_range",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_calendar_timestamp_range",
+      "approver": {
+        "name": "approve_explicit_calendar_timestamp_range",
+        "return_type": "RuleApproval",
+        "start_line": 9037,
+        "end_line": 9181,
+        "preserve_reasons": [
+          "invalid_calendar_timestamp_range",
+          "ambiguous_calendar_timestamp_range_connector",
+          "missing_calendar_timestamp_range_connector",
+          "invalid_contextual_timestamp_component",
+          "invalid_clock_timestamp_component",
+          "invalid_calendar_timestamp_range_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_approximate_calendar_timestamp",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_approximate_calendar_timestamp",
+      "approver": {
+        "name": "approve_explicit_approximate_calendar_timestamp",
+        "return_type": "RuleApproval",
+        "start_line": 9183,
+        "end_line": 9259,
+        "preserve_reasons": [
+          "invalid_approximate_calendar_timestamp",
+          "approximate_calendar_timestamp_range_boundary",
+          "unsupported_calendar_timestamp_approximation",
+          "invalid_approximate_calendar_timestamp_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_contextual_month_day_timestamp",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_contextual_month_day_timestamp",
+      "approver": {
+        "name": "approve_contextual_month_day_timestamp",
+        "return_type": "RuleApproval",
+        "start_line": 9261,
+        "end_line": 9332,
+        "preserve_reasons": [
+          "uncertain_contextual_timestamp_context",
+          "missing_contextual_timestamp_date",
+          "invalid_contextual_timestamp_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_contextual_full_date_timestamp",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_contextual_full_date_timestamp",
+      "approver": {
+        "name": "approve_contextual_full_date_timestamp",
+        "return_type": "RuleApproval",
+        "start_line": 9334,
+        "end_line": 9399,
+        "preserve_reasons": [
+          "uncertain_contextual_full_date_timestamp_context",
+          "missing_contextual_full_date_timestamp_date",
+          "invalid_contextual_full_date_timestamp_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.time.explicit_contextual_approximate_month_day_timestamp",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_contextual_approximate_month_day_timestamp",
+      "approver": {
+        "name": "approve_contextual_approximate_month_day_timestamp",
+        "return_type": "RuleApproval",
+        "start_line": 9401,
+        "end_line": 9484,
+        "preserve_reasons": [
+          "uncertain_contextual_approximate_timestamp_context",
+          "missing_contextual_approximate_timestamp_date",
+          "invalid_contextual_approximate_timestamp_component"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_decimal",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_decimal_duration",
+      "approver": {
+        "name": "approve_explicit_decimal_duration",
+        "return_type": "RuleApproval",
+        "start_line": 3639,
+        "end_line": 3736,
+        "preserve_reasons": [
+          "uncertain_decimal_duration_context",
+          "uncertain_decimal_duration_approximation",
+          "uncertain_decimal_duration_threshold",
+          "duration_continues_left",
+          "duration_continues_right",
+          "invalid_decimal_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_decimal_approximate",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_decimal_duration_approximation",
+      "approver": {
+        "name": "approve_explicit_decimal_duration",
+        "return_type": "RuleApproval",
+        "start_line": 3639,
+        "end_line": 3736,
+        "preserve_reasons": [
+          "uncertain_decimal_duration_context",
+          "uncertain_decimal_duration_approximation",
+          "uncertain_decimal_duration_threshold",
+          "duration_continues_left",
+          "duration_continues_right",
+          "invalid_decimal_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_decimal_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_decimal_duration_threshold",
+      "approver": {
+        "name": "approve_explicit_decimal_duration",
+        "return_type": "RuleApproval",
+        "start_line": 3639,
+        "end_line": 3736,
+        "preserve_reasons": [
+          "uncertain_decimal_duration_context",
+          "uncertain_decimal_duration_approximation",
+          "uncertain_decimal_duration_threshold",
+          "duration_continues_left",
+          "duration_continues_right",
+          "invalid_decimal_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_decimal",
+      "version": "8",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_decimal_measure",
+      "approver": {
+        "name": "approve_explicit_decimal_measure",
+        "return_type": "RuleApproval",
+        "start_line": 3738,
+        "end_line": 3849,
+        "preserve_reasons": [
+          "uncertain_decimal_measure_context",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_decimal_measure_approximation",
+          "uncertain_decimal_measure_threshold",
+          "measure_continues_left",
+          "measure_continues_right",
+          "invalid_decimal_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_decimal_approximate",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_decimal_measure_approximation",
+      "approver": {
+        "name": "approve_explicit_decimal_measure",
+        "return_type": "RuleApproval",
+        "start_line": 3738,
+        "end_line": 3849,
+        "preserve_reasons": [
+          "uncertain_decimal_measure_context",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_decimal_measure_approximation",
+          "uncertain_decimal_measure_threshold",
+          "measure_continues_left",
+          "measure_continues_right",
+          "invalid_decimal_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_decimal_threshold",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_decimal_measure_threshold",
+      "approver": {
+        "name": "approve_explicit_decimal_measure",
+        "return_type": "RuleApproval",
+        "start_line": 3738,
+        "end_line": 3849,
+        "preserve_reasons": [
+          "uncertain_decimal_measure_context",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_decimal_measure_approximation",
+          "uncertain_decimal_measure_threshold",
+          "measure_continues_left",
+          "measure_continues_right",
+          "invalid_decimal_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_decimal",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_decimal_money",
+      "approver": {
+        "name": "approve_explicit_decimal_money",
+        "return_type": "RuleApproval",
+        "start_line": 3851,
+        "end_line": 3964,
+        "preserve_reasons": [
+          "uncertain_decimal_money_context",
+          "uncertain_decimal_money_approximation",
+          "uncertain_decimal_money_threshold",
+          "money_continues_left",
+          "conflicting_currency_context",
+          "money_continues_right",
+          "invalid_decimal_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_decimal_approximate",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_decimal_money_approximation",
+      "approver": {
+        "name": "approve_explicit_decimal_money",
+        "return_type": "RuleApproval",
+        "start_line": 3851,
+        "end_line": 3964,
+        "preserve_reasons": [
+          "uncertain_decimal_money_context",
+          "uncertain_decimal_money_approximation",
+          "uncertain_decimal_money_threshold",
+          "money_continues_left",
+          "conflicting_currency_context",
+          "money_continues_right",
+          "invalid_decimal_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_decimal_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_decimal_money_threshold",
+      "approver": {
+        "name": "approve_explicit_decimal_money",
+        "return_type": "RuleApproval",
+        "start_line": 3851,
+        "end_line": 3964,
+        "preserve_reasons": [
+          "uncertain_decimal_money_context",
+          "uncertain_decimal_money_approximation",
+          "uncertain_decimal_money_threshold",
+          "money_continues_left",
+          "conflicting_currency_context",
+          "money_continues_right",
+          "invalid_decimal_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.contextual_stock_price",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "contextual_stock_price",
+      "approver": {
+        "name": "approve_contextual_stock_price",
+        "return_type": "RuleApproval",
+        "start_line": 3973,
+        "end_line": 4020,
+        "preserve_reasons": [
+          "uncertain_stock_price_context",
+          "stock_price_continues_left",
+          "stock_price_continues_right",
+          "invalid_stock_price"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_temperature",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_temperature",
+      "approver": {
+        "name": "approve_explicit_temperature",
+        "return_type": "RuleApproval",
+        "start_line": 4093,
+        "end_line": 4200,
+        "preserve_reasons": [
+          "uncertain_temperature_context",
+          "missing_bare_degree_temperature_anchor",
+          "uncertain_temperature_approximation",
+          "uncertain_temperature_threshold",
+          "temperature_continues_left",
+          "temperature_continues_right",
+          "invalid_explicit_temperature",
+          "natural_single_digit_integer"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_temperature_approximate",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_temperature_approximation",
+      "approver": {
+        "name": "approve_explicit_temperature",
+        "return_type": "RuleApproval",
+        "start_line": 4093,
+        "end_line": 4200,
+        "preserve_reasons": [
+          "uncertain_temperature_context",
+          "missing_bare_degree_temperature_anchor",
+          "uncertain_temperature_approximation",
+          "uncertain_temperature_threshold",
+          "temperature_continues_left",
+          "temperature_continues_right",
+          "invalid_explicit_temperature",
+          "natural_single_digit_integer"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_temperature_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_temperature_threshold",
+      "approver": {
+        "name": "approve_explicit_temperature",
+        "return_type": "RuleApproval",
+        "start_line": 4093,
+        "end_line": 4200,
+        "preserve_reasons": [
+          "uncertain_temperature_context",
+          "missing_bare_degree_temperature_anchor",
+          "uncertain_temperature_approximation",
+          "uncertain_temperature_threshold",
+          "temperature_continues_left",
+          "temperature_continues_right",
+          "invalid_explicit_temperature",
+          "natural_single_digit_integer"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_temperature_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_temperature_range",
+      "approver": {
+        "name": "approve_explicit_temperature_range",
+        "return_type": "RuleApproval",
+        "start_line": 4260,
+        "end_line": 4329,
+        "preserve_reasons": [
+          "uncertain_temperature_range_context",
+          "missing_bare_degree_temperature_anchor",
+          "temperature_range_continues_left",
+          "temperature_range_continues_right",
+          "invalid_temperature_range"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_integer",
+      "version": "9",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_integer_money",
+      "approver": {
+        "name": "approve_explicit_integer_money",
+        "return_type": "RuleApproval",
+        "start_line": 4557,
+        "end_line": 4715,
+        "preserve_reasons": [
+          "uncertain_integer_money_context",
+          "uncertain_integer_money_approximation",
+          "uncertain_integer_money_threshold",
+          "integer_money_continues_left",
+          "conflicting_currency_context",
+          "integer_money_continues_right",
+          "uncertain_integer_money_suffix",
+          "non_money_yuan_lexeme",
+          "repeated_money_rate_context",
+          "natural_single_digit_integer",
+          "invalid_integer_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_integer_threshold",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_integer_money_threshold",
+      "approver": {
+        "name": "approve_explicit_integer_money",
+        "return_type": "RuleApproval",
+        "start_line": 4557,
+        "end_line": 4715,
+        "preserve_reasons": [
+          "uncertain_integer_money_context",
+          "uncertain_integer_money_approximation",
+          "uncertain_integer_money_threshold",
+          "integer_money_continues_left",
+          "conflicting_currency_context",
+          "integer_money_continues_right",
+          "uncertain_integer_money_suffix",
+          "non_money_yuan_lexeme",
+          "repeated_money_rate_context",
+          "natural_single_digit_integer",
+          "invalid_integer_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_integer_approximate",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_integer_money_approximation",
+      "approver": {
+        "name": "approve_explicit_integer_money",
+        "return_type": "RuleApproval",
+        "start_line": 4557,
+        "end_line": 4715,
+        "preserve_reasons": [
+          "uncertain_integer_money_context",
+          "uncertain_integer_money_approximation",
+          "uncertain_integer_money_threshold",
+          "integer_money_continues_left",
+          "conflicting_currency_context",
+          "integer_money_continues_right",
+          "uncertain_integer_money_suffix",
+          "non_money_yuan_lexeme",
+          "repeated_money_rate_context",
+          "natural_single_digit_integer",
+          "invalid_integer_money"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_integer",
+      "version": "16",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_integer_measure",
+      "approver": {
+        "name": "approve_explicit_integer_measure",
+        "return_type": "RuleApproval",
+        "start_line": 4717,
+        "end_line": 4996,
+        "preserve_reasons": [
+          "uncertain_integer_measure_context",
+          "unanchored_approximate_count",
+          "unanchored_approximate_person_count",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_integer_measure_threshold",
+          "uncertain_approximate_rate_distance",
+          "uncertain_infix_distance_approximation",
+          "uncertain_integer_measure_approximation",
+          "uncertain_integer_measure_period",
+          "integer_measure_continues_left",
+          "uncertain_money_fraction_context",
+          "non_money_angle_lexeme",
+          "uncertain_statistical_case_context",
+          "uncertain_ordinal_session_context",
+          "uncertain_market_index_context",
+          "uncertain_electric_current_context",
+          "uncertain_capacity_degree_context",
+          "uncertain_integer_meter_context",
+          "fixed_last_mile_expression",
+          "uncertain_integer_multiple_context",
+          "integer_measure_continues_right",
+          "non_count_case_lexeme",
+          "incomplete_compound_measure_unit",
+          "natural_single_digit_integer",
+          "invalid_integer_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_integer_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_integer_measure_threshold",
+      "approver": {
+        "name": "approve_explicit_integer_measure",
+        "return_type": "RuleApproval",
+        "start_line": 4717,
+        "end_line": 4996,
+        "preserve_reasons": [
+          "uncertain_integer_measure_context",
+          "unanchored_approximate_count",
+          "unanchored_approximate_person_count",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_integer_measure_threshold",
+          "uncertain_approximate_rate_distance",
+          "uncertain_infix_distance_approximation",
+          "uncertain_integer_measure_approximation",
+          "uncertain_integer_measure_period",
+          "integer_measure_continues_left",
+          "uncertain_money_fraction_context",
+          "non_money_angle_lexeme",
+          "uncertain_statistical_case_context",
+          "uncertain_ordinal_session_context",
+          "uncertain_market_index_context",
+          "uncertain_electric_current_context",
+          "uncertain_capacity_degree_context",
+          "uncertain_integer_meter_context",
+          "fixed_last_mile_expression",
+          "uncertain_integer_multiple_context",
+          "integer_measure_continues_right",
+          "non_count_case_lexeme",
+          "incomplete_compound_measure_unit",
+          "natural_single_digit_integer",
+          "invalid_integer_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_integer_approximate",
+      "version": "3",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_integer_measure_approximation",
+      "approver": {
+        "name": "approve_explicit_integer_measure",
+        "return_type": "RuleApproval",
+        "start_line": 4717,
+        "end_line": 4996,
+        "preserve_reasons": [
+          "uncertain_integer_measure_context",
+          "unanchored_approximate_count",
+          "unanchored_approximate_person_count",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_integer_measure_threshold",
+          "uncertain_approximate_rate_distance",
+          "uncertain_infix_distance_approximation",
+          "uncertain_integer_measure_approximation",
+          "uncertain_integer_measure_period",
+          "integer_measure_continues_left",
+          "uncertain_money_fraction_context",
+          "non_money_angle_lexeme",
+          "uncertain_statistical_case_context",
+          "uncertain_ordinal_session_context",
+          "uncertain_market_index_context",
+          "uncertain_electric_current_context",
+          "uncertain_capacity_degree_context",
+          "uncertain_integer_meter_context",
+          "fixed_last_mile_expression",
+          "uncertain_integer_multiple_context",
+          "integer_measure_continues_right",
+          "non_count_case_lexeme",
+          "incomplete_compound_measure_unit",
+          "natural_single_digit_integer",
+          "invalid_integer_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.contextual_approximate_rate_distance",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "contextual_approximate_rate_distance",
+      "approver": {
+        "name": "approve_explicit_integer_measure",
+        "return_type": "RuleApproval",
+        "start_line": 4717,
+        "end_line": 4996,
+        "preserve_reasons": [
+          "uncertain_integer_measure_context",
+          "unanchored_approximate_count",
+          "unanchored_approximate_person_count",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_integer_measure_threshold",
+          "uncertain_approximate_rate_distance",
+          "uncertain_infix_distance_approximation",
+          "uncertain_integer_measure_approximation",
+          "uncertain_integer_measure_period",
+          "integer_measure_continues_left",
+          "uncertain_money_fraction_context",
+          "non_money_angle_lexeme",
+          "uncertain_statistical_case_context",
+          "uncertain_ordinal_session_context",
+          "uncertain_market_index_context",
+          "uncertain_electric_current_context",
+          "uncertain_capacity_degree_context",
+          "uncertain_integer_meter_context",
+          "fixed_last_mile_expression",
+          "uncertain_integer_multiple_context",
+          "integer_measure_continues_right",
+          "non_count_case_lexeme",
+          "incomplete_compound_measure_unit",
+          "natural_single_digit_integer",
+          "invalid_integer_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_integer_periodic",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_integer_measure_periodic",
+      "approver": {
+        "name": "approve_explicit_integer_measure",
+        "return_type": "RuleApproval",
+        "start_line": 4717,
+        "end_line": 4996,
+        "preserve_reasons": [
+          "uncertain_integer_measure_context",
+          "unanchored_approximate_count",
+          "unanchored_approximate_person_count",
+          "natural_approximate_blood_pressure_measure",
+          "uncertain_integer_measure_threshold",
+          "uncertain_approximate_rate_distance",
+          "uncertain_infix_distance_approximation",
+          "uncertain_integer_measure_approximation",
+          "uncertain_integer_measure_period",
+          "integer_measure_continues_left",
+          "uncertain_money_fraction_context",
+          "non_money_angle_lexeme",
+          "uncertain_statistical_case_context",
+          "uncertain_ordinal_session_context",
+          "uncertain_market_index_context",
+          "uncertain_electric_current_context",
+          "uncertain_capacity_degree_context",
+          "uncertain_integer_meter_context",
+          "fixed_last_mile_expression",
+          "uncertain_integer_multiple_context",
+          "integer_measure_continues_right",
+          "non_count_case_lexeme",
+          "incomplete_compound_measure_unit",
+          "natural_single_digit_integer",
+          "invalid_integer_measure"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_integer",
+      "version": "4",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_integer_duration",
+      "approver": {
+        "name": "approve_explicit_integer_duration",
+        "return_type": "RuleApproval",
+        "start_line": 4998,
+        "end_line": 5131,
+        "preserve_reasons": [
+          "uncertain_integer_duration_context",
+          "uncertain_integer_duration_threshold",
+          "uncertain_integer_duration_approximation",
+          "uncertain_integer_duration_period",
+          "integer_duration_continues_left",
+          "integer_duration_continues_right",
+          "natural_single_digit_integer",
+          "invalid_integer_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_integer_threshold",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_integer_duration_threshold",
+      "approver": {
+        "name": "approve_explicit_integer_duration",
+        "return_type": "RuleApproval",
+        "start_line": 4998,
+        "end_line": 5131,
+        "preserve_reasons": [
+          "uncertain_integer_duration_context",
+          "uncertain_integer_duration_threshold",
+          "uncertain_integer_duration_approximation",
+          "uncertain_integer_duration_period",
+          "integer_duration_continues_left",
+          "integer_duration_continues_right",
+          "natural_single_digit_integer",
+          "invalid_integer_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_integer_approximate",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_integer_duration_approximation",
+      "approver": {
+        "name": "approve_explicit_integer_duration",
+        "return_type": "RuleApproval",
+        "start_line": 4998,
+        "end_line": 5131,
+        "preserve_reasons": [
+          "uncertain_integer_duration_context",
+          "uncertain_integer_duration_threshold",
+          "uncertain_integer_duration_approximation",
+          "uncertain_integer_duration_period",
+          "integer_duration_continues_left",
+          "integer_duration_continues_right",
+          "natural_single_digit_integer",
+          "invalid_integer_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_integer_periodic",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_integer_duration_periodic",
+      "approver": {
+        "name": "approve_explicit_integer_duration",
+        "return_type": "RuleApproval",
+        "start_line": 4998,
+        "end_line": 5131,
+        "preserve_reasons": [
+          "uncertain_integer_duration_context",
+          "uncertain_integer_duration_threshold",
+          "uncertain_integer_duration_approximation",
+          "uncertain_integer_duration_period",
+          "integer_duration_continues_left",
+          "integer_duration_continues_right",
+          "natural_single_digit_integer",
+          "invalid_integer_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_lock_period_months",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_lock_period_months",
+      "approver": {
+        "name": "approve_explicit_lock_period_months",
+        "return_type": "RuleApproval",
+        "start_line": 5133,
+        "end_line": 5177,
+        "preserve_reasons": [
+          "uncertain_lock_period_months",
+          "lock_period_months_continues_right",
+          "invalid_lock_period_months"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_large_approximate_year_span",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_large_approximate_year_span",
+      "approver": {
+        "name": "approve_large_approximate_year_span",
+        "return_type": "RuleApproval",
+        "start_line": 5179,
+        "end_line": 5245,
+        "preserve_reasons": [
+          "uncertain_large_year_span_context",
+          "large_year_span_continues_left",
+          "large_year_span_continues_right",
+          "invalid_large_approximate_year_span"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_validity_years",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_validity_years",
+      "approver": {
+        "name": "approve_explicit_anchored_year_or_day_duration",
+        "return_type": "RuleApproval",
+        "start_line": 5247,
+        "end_line": 5316,
+        "preserve_reasons": [
+          "uncertain_anchored_year_or_day_duration",
+          "anchored_duration_continues_left",
+          "anchored_duration_continues_right",
+          "invalid_anchored_year_or_day_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_renewal_approximate_days",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_renewal_approximate_days",
+      "approver": {
+        "name": "approve_explicit_anchored_year_or_day_duration",
+        "return_type": "RuleApproval",
+        "start_line": 5247,
+        "end_line": 5316,
+        "preserve_reasons": [
+          "uncertain_anchored_year_or_day_duration",
+          "anchored_duration_continues_left",
+          "anchored_duration_continues_right",
+          "invalid_anchored_year_or_day_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_compound_hour_minute",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_compound_duration",
+      "approver": {
+        "name": "approve_explicit_compound_duration",
+        "return_type": "RuleApproval",
+        "start_line": 5318,
+        "end_line": 5405,
+        "preserve_reasons": [
+          "uncertain_compound_duration_context",
+          "compound_duration_continues_left",
+          "compound_duration_continues_right",
+          "invalid_compound_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_compound_minute_second",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_compound_duration",
+      "approver": {
+        "name": "approve_explicit_compound_duration",
+        "return_type": "RuleApproval",
+        "start_line": 5318,
+        "end_line": 5405,
+        "preserve_reasons": [
+          "uncertain_compound_duration_context",
+          "compound_duration_continues_left",
+          "compound_duration_continues_right",
+          "invalid_compound_duration"
+        ]
+      }
+    },
+    {
+      "rule_id": "zh.money.explicit_range",
+      "version": "2",
+      "locale": "zh-CN",
+      "domain": "money",
+      "subtype": "explicit_money_range",
+      "approver": {
+        "name": "approve_explicit_money_range",
+        "return_type": "RuleApproval",
+        "start_line": 12461,
+        "end_line": 12469,
+        "preserve_reasons": []
+      }
+    },
+    {
+      "rule_id": "zh.measure.explicit_range",
+      "version": "4",
+      "locale": "zh-CN",
+      "domain": "measure",
+      "subtype": "explicit_measure_range",
+      "approver": {
+        "name": "approve_explicit_measure_range",
+        "return_type": "RuleApproval",
+        "start_line": 12471,
+        "end_line": 12479,
+        "preserve_reasons": []
+      }
+    },
+    {
+      "rule_id": "zh.duration.explicit_range",
+      "version": "1",
+      "locale": "zh-CN",
+      "domain": "date_time",
+      "subtype": "explicit_duration_range",
+      "approver": {
+        "name": "approve_explicit_duration_range",
+        "return_type": "RuleApproval",
+        "start_line": 12481,
+        "end_line": 12489,
+        "preserve_reasons": []
+      }
+    }
+  ],
+  "functions": [
+    {
+      "name": "spoken_year_digit",
+      "return_type": "std::optional<int>",
+      "start_line": 284,
+      "end_line": 296,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spoken_cardinal_digit",
+      "return_type": "std::optional<int>",
+      "start_line": 298,
+      "end_line": 303,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spoken_small_unit",
+      "return_type": "std::optional<int>",
+      "start_line": 305,
+      "end_line": 310,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_cardinal",
+      "return_type": "std::optional<int>",
+      "start_line": 312,
+      "end_line": 359,
+      "preserve_reasons": []
+    },
+    {
+      "name": "valid_calendar_day",
+      "return_type": "bool",
+      "start_line": 361,
+      "end_line": 370,
+      "preserve_reasons": []
+    },
+    {
+      "name": "canonical_spoken_calendar_component",
+      "return_type": "std::string",
+      "start_line": 372,
+      "end_line": 382,
+      "preserve_reasons": []
+    },
+    {
+      "name": "canonical_spoken_calendar_component",
+      "return_type": "bool",
+      "start_line": 384,
+      "end_line": 393,
+      "preserve_reasons": []
+    },
+    {
+      "name": "shared_month_day_continuation",
+      "return_type": "bool",
+      "start_line": 395,
+      "end_line": 445,
+      "preserve_reasons": []
+    },
+    {
+      "name": "overlaps",
+      "return_type": "bool",
+      "start_line": 447,
+      "end_line": 449,
+      "preserve_reasons": []
+    },
+    {
+      "name": "ends_with_any",
+      "return_type": "bool",
+      "start_line": 451,
+      "end_line": 459,
+      "preserve_reasons": []
+    },
+    {
+      "name": "closing_delimiter",
+      "return_type": "std::optional<std::string>",
+      "start_line": 461,
+      "end_line": 482,
+      "preserve_reasons": []
+    },
+    {
+      "name": "direct_speech_quote_opener",
+      "return_type": "bool",
+      "start_line": 484,
+      "end_line": 508,
+      "preserve_reasons": []
+    },
+    {
+      "name": "inside_protected_delimiters",
+      "return_type": "bool",
+      "start_line": 510,
+      "end_line": 529,
+      "preserve_reasons": []
+    },
+    {
+      "name": "starts_with_any",
+      "return_type": "bool",
+      "start_line": 531,
+      "end_line": 536,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contains_any",
+      "return_type": "bool",
+      "start_line": 538,
+      "end_line": 543,
+      "preserve_reasons": []
+    },
+    {
+      "name": "context_window",
+      "return_type": "std::string",
+      "start_line": 545,
+      "end_line": 555,
+      "preserve_reasons": []
+    },
+    {
+      "name": "clause_boundary_scalar",
+      "return_type": "bool",
+      "start_line": 557,
+      "end_line": 559,
+      "preserve_reasons": []
+    },
+    {
+      "name": "left_clause_context",
+      "return_type": "std::string",
+      "start_line": 561,
+      "end_line": 577,
+      "preserve_reasons": []
+    },
+    {
+      "name": "right_clause_context",
+      "return_type": "std::string",
+      "start_line": 579,
+      "end_line": 596,
+      "preserve_reasons": []
+    },
+    {
+      "name": "inline_space_scalar",
+      "return_type": "bool",
+      "start_line": 598,
+      "end_line": 600,
+      "preserve_reasons": []
+    },
+    {
+      "name": "skip_limited_inline_spaces",
+      "return_type": "std::optional<size_t>",
+      "start_line": 602,
+      "end_line": 617,
+      "preserve_reasons": []
+    },
+    {
+      "name": "previous_non_space_scalar",
+      "return_type": "std::string",
+      "start_line": 619,
+      "end_line": 632,
+      "preserve_reasons": []
+    },
+    {
+      "name": "next_non_space_scalar",
+      "return_type": "std::string",
+      "start_line": 634,
+      "end_line": 648,
+      "preserve_reasons": []
+    },
+    {
+      "name": "structured_identifier_candidate_start",
+      "return_type": "size_t",
+      "start_line": 650,
+      "end_line": 670,
+      "preserve_reasons": []
+    },
+    {
+      "name": "structured_identifier_shape_start",
+      "return_type": "std::optional<size_t>",
+      "start_line": 672,
+      "end_line": 679,
+      "preserve_reasons": []
+    },
+    {
+      "name": "literal_scope_before_year",
+      "return_type": "bool",
+      "start_line": 681,
+      "end_line": 732,
+      "preserve_reasons": []
+    },
+    {
+      "name": "numeric_scalar",
+      "return_type": "bool",
+      "start_line": 734,
+      "end_line": 740,
+      "preserve_reasons": []
+    },
+    {
+      "name": "range_connector",
+      "return_type": "bool",
+      "start_line": 742,
+      "end_line": 745,
+      "preserve_reasons": []
+    },
+    {
+      "name": "number_continuation",
+      "return_type": "bool",
+      "start_line": 747,
+      "end_line": 755,
+      "preserve_reasons": []
+    },
+    {
+      "name": "date_or_number_continuation",
+      "return_type": "bool",
+      "start_line": 757,
+      "end_line": 760,
+      "preserve_reasons": []
+    },
+    {
+      "name": "incomplete_cross_segment_span",
+      "return_type": "bool",
+      "start_line": 762,
+      "end_line": 810,
+      "preserve_reasons": []
+    },
+    {
+      "name": "prior_numeric_year_in_range_scope",
+      "return_type": "bool",
+      "start_line": 812,
+      "end_line": 846,
+      "preserve_reasons": []
+    },
+    {
+      "name": "incomplete_temporal_span",
+      "return_type": "bool",
+      "start_line": 848,
+      "end_line": 942,
+      "preserve_reasons": []
+    },
+    {
+      "name": "released_cross_segment_year_context",
+      "return_type": "bool",
+      "start_line": 944,
+      "end_line": 1003,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_year",
+      "return_type": "RuleApproval",
+      "start_line": 1005,
+      "end_line": 1084,
+      "preserve_reasons": [
+        "not_explicit_calendar_year",
+        "numeric_run_left_boundary",
+        "not_spoken_digit_year",
+        "year_out_of_strict_range",
+        "year_outside_modern_context"
+      ]
+    },
+    {
+      "name": "approve_year_month",
+      "return_type": "RuleApproval",
+      "start_line": 1086,
+      "end_line": 1187,
+      "preserve_reasons": [
+        "not_complete_year_month",
+        "invalid_year_month_shape",
+        "invalid_year_month_year",
+        "year_month_year_out_of_range",
+        "invalid_year_month_month",
+        "year_month_continues_left",
+        "year_month_continues_right",
+        "invalid_cross_segment_context",
+        "cross_segment_year_month_continuation"
+      ]
+    },
+    {
+      "name": "approve_cross_segment_month",
+      "return_type": "RuleApproval",
+      "start_line": 1189,
+      "end_line": 1232,
+      "preserve_reasons": [
+        "uncertain_cross_segment_month",
+        "invalid_cross_segment_month"
+      ]
+    },
+    {
+      "name": "approve_year_month_range",
+      "return_type": "RuleApproval",
+      "start_line": 1234,
+      "end_line": 1379,
+      "preserve_reasons": [
+        "not_complete_year_month_range",
+        "year_month_range_continues_left",
+        "year_month_range_continues_right",
+        "invalid_year_month_range_shape",
+        "invalid_year_month_range_year",
+        "year_month_range_year_out_of_range",
+        "invalid_first_range_month",
+        "missing_second_range_month",
+        "invalid_year_month_range_connector",
+        "invalid_second_range_year",
+        "invalid_year_month_range_month"
+      ]
+    },
+    {
+      "name": "approve_year_range",
+      "return_type": "RuleApproval",
+      "start_line": 1381,
+      "end_line": 1460,
+      "preserve_reasons": [
+        "not_complete_year_range",
+        "year_range_continues_left",
+        "year_range_continues_right",
+        "invalid_year_range_shape",
+        "invalid_year_range_year",
+        "year_range_out_of_range"
+      ]
+    },
+    {
+      "name": "approve_full_date_range",
+      "return_type": "RuleApproval",
+      "start_line": 1468,
+      "end_line": 1560,
+      "preserve_reasons": [
+        "not_complete_full_date_range",
+        "full_date_range_continues_left",
+        "full_date_range_continues_right",
+        "multiple_date_range_connectors",
+        "missing_full_date_range_endpoint",
+        "invalid_full_date_range_endpoint"
+      ]
+    },
+    {
+      "name": "approve_full_date",
+      "return_type": "RuleApproval",
+      "start_line": 1562,
+      "end_line": 1692,
+      "preserve_reasons": [
+        "not_complete_calendar_date",
+        "invalid_full_date_year",
+        "full_date_year_out_of_range",
+        "invalid_full_date_month",
+        "invalid_full_date_suffix",
+        "invalid_full_date_day",
+        "numeric_run_left_boundary",
+        "shared_month_date_sequence",
+        "date_continues_right"
+      ]
+    },
+    {
+      "name": "approve_month_day",
+      "return_type": "RuleApproval",
+      "start_line": 1694,
+      "end_line": 1808,
+      "preserve_reasons": [
+        "not_complete_month_day",
+        "invalid_month",
+        "invalid_month_day",
+        "month_day_continues_left",
+        "shared_month_date_sequence",
+        "month_day_continues_right"
+      ]
+    },
+    {
+      "name": "approve_month_period",
+      "return_type": "RuleApproval",
+      "start_line": 1810,
+      "end_line": 1880,
+      "preserve_reasons": [
+        "not_complete_month_period",
+        "invalid_month_period_shape",
+        "invalid_month_period_value",
+        "month_period_continues_left",
+        "month_period_continues_right"
+      ]
+    },
+    {
+      "name": "approve_month_range",
+      "return_type": "RuleApproval",
+      "start_line": 1882,
+      "end_line": 1959,
+      "preserve_reasons": [
+        "invalid_month_range",
+        "invalid_month_range_shape",
+        "invalid_month_range_connector",
+        "invalid_month_range_value",
+        "month_range_continues_left",
+        "month_range_continues_right"
+      ]
+    },
+    {
+      "name": "relative_year_anchor",
+      "return_type": "std::optional<std::string>",
+      "start_line": 1961,
+      "end_line": 1968,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_followup_month_applies",
+      "return_type": "bool",
+      "start_line": 1970,
+      "end_line": 2030,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_followup_month",
+      "return_type": "RuleApproval",
+      "start_line": 2032,
+      "end_line": 2080,
+      "preserve_reasons": [
+        "uncertain_followup_month",
+        "followup_month_continues_right",
+        "invalid_followup_month"
+      ]
+    },
+    {
+      "name": "approve_relative_year_month",
+      "return_type": "RuleApproval",
+      "start_line": 2082,
+      "end_line": 2142,
+      "preserve_reasons": [
+        "not_complete_relative_year_month",
+        "invalid_relative_year_month_shape",
+        "invalid_relative_year_month_value",
+        "relative_year_month_continues_right"
+      ]
+    },
+    {
+      "name": "approve_recurring_cross_year_month_range",
+      "return_type": "RuleApproval",
+      "start_line": 2144,
+      "end_line": 2256,
+      "preserve_reasons": [
+        "not_complete_recurring_cross_year_month_range",
+        "invalid_first_recurring_month",
+        "missing_next_year_month",
+        "invalid_recurring_range_bridge",
+        "invalid_second_recurring_month",
+        "invalid_recurring_month_value",
+        "recurring_month_range_continues_right"
+      ]
+    },
+    {
+      "name": "approve_shared_year_date_range",
+      "return_type": "RuleApproval",
+      "start_line": 2258,
+      "end_line": 2406,
+      "preserve_reasons": [
+        "not_complete_shared_year_date_range",
+        "shared_year_date_range_continues_left",
+        "shared_year_date_range_continues_right",
+        "multiple_shared_year_date_range_connectors",
+        "missing_shared_year_date_range_endpoint",
+        "invalid_shared_year_date_range_endpoint",
+        "invalid_shared_year_date_range_year",
+        "shared_year_date_range_not_strictly_ascending"
+      ]
+    },
+    {
+      "name": "approve_shared_month_date_range",
+      "return_type": "RuleApproval",
+      "start_line": 2408,
+      "end_line": 2531,
+      "preserve_reasons": [
+        "not_complete_shared_month_date_range",
+        "shared_month_date_range_continues_left",
+        "shared_month_date_range_continues_right",
+        "invalid_shared_month_date_range_month",
+        "multiple_shared_month_date_range_connectors",
+        "missing_shared_month_date_range_endpoint",
+        "invalid_shared_month_date_range_suffix",
+        "invalid_shared_month_date_range_value"
+      ]
+    },
+    {
+      "name": "approve_full_date_shared_month_range",
+      "return_type": "RuleApproval",
+      "start_line": 2533,
+      "end_line": 2687,
+      "preserve_reasons": [
+        "not_complete_full_date_shared_month_range",
+        "full_date_shared_month_range_continues_left",
+        "full_date_shared_month_range_continues_right",
+        "multiple_full_date_shared_month_range_connectors",
+        "missing_full_date_shared_month_range_endpoint",
+        "invalid_full_date_shared_month_range_endpoint",
+        "invalid_full_date_shared_month_range_shape",
+        "invalid_full_date_shared_month_range_year",
+        "invalid_full_date_shared_month_range_value"
+      ]
+    },
+    {
+      "name": "parse_percentage_value",
+      "return_type": "std::optional<std::string>",
+      "start_line": 2689,
+      "end_line": 2716,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_percentage",
+      "return_type": "RuleApproval",
+      "start_line": 2718,
+      "end_line": 2792,
+      "preserve_reasons": [
+        "not_explicit_percentage",
+        "fraction_prefix_overlap",
+        "percentage_continues_right",
+        "invalid_percentage_value"
+      ]
+    },
+    {
+      "name": "decimal_duration_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 2794,
+      "end_line": 2808,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_decimal_duration",
+      "return_type": "std::optional<std::string>",
+      "start_line": 2810,
+      "end_line": 2840,
+      "preserve_reasons": []
+    },
+    {
+      "name": "decimal_measure_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 2842,
+      "end_line": 2868,
+      "preserve_reasons": []
+    },
+    {
+      "name": "structural_classifier_unit",
+      "return_type": "bool",
+      "start_line": 2870,
+      "end_line": 2877,
+      "preserve_reasons": []
+    },
+    {
+      "name": "classifier_followed_by_numbered_noun",
+      "return_type": "bool",
+      "start_line": 2879,
+      "end_line": 2898,
+      "preserve_reasons": []
+    },
+    {
+      "name": "measure_output_unit",
+      "return_type": "std::string",
+      "start_line": 2900,
+      "end_line": 2906,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_decimal_measure",
+      "return_type": "std::optional<std::string>",
+      "start_line": 2915,
+      "end_line": 2949,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_large_count_integer",
+      "return_type": "std::optional<int64_t>",
+      "start_line": 2951,
+      "end_line": 3008,
+      "preserve_reasons": []
+    },
+    {
+      "name": "format_spoken_large_count_integer",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3010,
+      "end_line": 3062,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_money_integer",
+      "return_type": "std::optional<int>",
+      "start_line": 3064,
+      "end_line": 3090,
+      "preserve_reasons": []
+    },
+    {
+      "name": "format_spoken_money_integer",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3092,
+      "end_line": 3123,
+      "preserve_reasons": []
+    },
+    {
+      "name": "decimal_money_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 3125,
+      "end_line": 3142,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_decimal_money",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3144,
+      "end_line": 3176,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_contextual_stock_price",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3178,
+      "end_line": 3246,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_integer_money",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3248,
+      "end_line": 3298,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_integer_measure_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 3300,
+      "end_line": 3326,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_integer_measure",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3328,
+      "end_line": 3411,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_periodic_integer_measure_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 3413,
+      "end_line": 3428,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_periodic_integer_measure",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3430,
+      "end_line": 3449,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_integer_duration_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 3451,
+      "end_line": 3465,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_integer_duration",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3467,
+      "end_line": 3486,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_lock_period_months",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3488,
+      "end_line": 3509,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_anchored_year_or_day_duration",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3511,
+      "end_line": 3530,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_compound_duration",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3532,
+      "end_line": 3573,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_minute_second_duration",
+      "return_type": "std::optional<std::string>",
+      "start_line": 3575,
+      "end_line": 3623,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_decimal_duration",
+      "return_type": "RuleApproval",
+      "start_line": 3639,
+      "end_line": 3736,
+      "preserve_reasons": [
+        "uncertain_decimal_duration_context",
+        "uncertain_decimal_duration_approximation",
+        "uncertain_decimal_duration_threshold",
+        "duration_continues_left",
+        "duration_continues_right",
+        "invalid_decimal_duration"
+      ]
+    },
+    {
+      "name": "approve_explicit_decimal_measure",
+      "return_type": "RuleApproval",
+      "start_line": 3738,
+      "end_line": 3849,
+      "preserve_reasons": [
+        "uncertain_decimal_measure_context",
+        "natural_approximate_blood_pressure_measure",
+        "uncertain_decimal_measure_approximation",
+        "uncertain_decimal_measure_threshold",
+        "measure_continues_left",
+        "measure_continues_right",
+        "invalid_decimal_measure"
+      ]
+    },
+    {
+      "name": "approve_explicit_decimal_money",
+      "return_type": "RuleApproval",
+      "start_line": 3851,
+      "end_line": 3964,
+      "preserve_reasons": [
+        "uncertain_decimal_money_context",
+        "uncertain_decimal_money_approximation",
+        "uncertain_decimal_money_threshold",
+        "money_continues_left",
+        "conflicting_currency_context",
+        "money_continues_right",
+        "invalid_decimal_money"
+      ]
+    },
+    {
+      "name": "contextual_stock_price_anchor",
+      "return_type": "bool",
+      "start_line": 3966,
+      "end_line": 3971,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_stock_price",
+      "return_type": "RuleApproval",
+      "start_line": 3973,
+      "end_line": 4020,
+      "preserve_reasons": [
+        "uncertain_stock_price_context",
+        "stock_price_continues_left",
+        "stock_price_continues_right",
+        "invalid_stock_price"
+      ]
+    },
+    {
+      "name": "parse_explicit_temperature",
+      "return_type": "std::optional<std::string>",
+      "start_line": 4022,
+      "end_line": 4091,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_temperature",
+      "return_type": "RuleApproval",
+      "start_line": 4093,
+      "end_line": 4200,
+      "preserve_reasons": [
+        "uncertain_temperature_context",
+        "missing_bare_degree_temperature_anchor",
+        "uncertain_temperature_approximation",
+        "uncertain_temperature_threshold",
+        "temperature_continues_left",
+        "temperature_continues_right",
+        "invalid_explicit_temperature",
+        "natural_single_digit_integer"
+      ]
+    },
+    {
+      "name": "parse_explicit_temperature_range",
+      "return_type": "std::optional<std::string>",
+      "start_line": 4202,
+      "end_line": 4258,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_temperature_range",
+      "return_type": "RuleApproval",
+      "start_line": 4260,
+      "end_line": 4329,
+      "preserve_reasons": [
+        "uncertain_temperature_range_context",
+        "missing_bare_degree_temperature_anchor",
+        "temperature_range_continues_left",
+        "temperature_range_continues_right",
+        "invalid_temperature_range"
+      ]
+    },
+    {
+      "name": "explicit_integer_money_context",
+      "return_type": "bool",
+      "start_line": 4331,
+      "end_line": 4353,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_integer_meter_context",
+      "return_type": "bool",
+      "start_line": 4355,
+      "end_line": 4374,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_money_constraint_applies",
+      "return_type": "bool",
+      "start_line": 4376,
+      "end_line": 4388,
+      "preserve_reasons": []
+    },
+    {
+      "name": "money_threshold_applies",
+      "return_type": "bool",
+      "start_line": 4390,
+      "end_line": 4416,
+      "preserve_reasons": []
+    },
+    {
+      "name": "money_approximation_applies",
+      "return_type": "bool",
+      "start_line": 4418,
+      "end_line": 4421,
+      "preserve_reasons": []
+    },
+    {
+      "name": "money_non_threshold_uncertainty_applies",
+      "return_type": "bool",
+      "start_line": 4423,
+      "end_line": 4432,
+      "preserve_reasons": []
+    },
+    {
+      "name": "money_predicate_connector_applies",
+      "return_type": "bool",
+      "start_line": 4434,
+      "end_line": 4439,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_unit_threshold_applies",
+      "return_type": "bool",
+      "start_line": 4441,
+      "end_line": 4450,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_measure_constraint_applies",
+      "return_type": "bool",
+      "start_line": 4452,
+      "end_line": 4463,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_unit_threshold_uncertainty_applies",
+      "return_type": "bool",
+      "start_line": 4465,
+      "end_line": 4486,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_unit_approximation_applies",
+      "return_type": "bool",
+      "start_line": 4488,
+      "end_line": 4502,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_infix_distance_approximation",
+      "return_type": "bool",
+      "start_line": 4504,
+      "end_line": 4511,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_approximate_rate_distance",
+      "return_type": "bool",
+      "start_line": 4513,
+      "end_line": 4531,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_battery_capacity_degree",
+      "return_type": "bool",
+      "start_line": 4533,
+      "end_line": 4540,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_periodic_unit_applies",
+      "return_type": "bool",
+      "start_line": 4542,
+      "end_line": 4544,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_periodic_unit_is_uncertain",
+      "return_type": "bool",
+      "start_line": 4546,
+      "end_line": 4555,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_integer_money",
+      "return_type": "RuleApproval",
+      "start_line": 4557,
+      "end_line": 4715,
+      "preserve_reasons": [
+        "uncertain_integer_money_context",
+        "uncertain_integer_money_approximation",
+        "uncertain_integer_money_threshold",
+        "integer_money_continues_left",
+        "conflicting_currency_context",
+        "integer_money_continues_right",
+        "uncertain_integer_money_suffix",
+        "non_money_yuan_lexeme",
+        "repeated_money_rate_context",
+        "natural_single_digit_integer",
+        "invalid_integer_money"
+      ]
+    },
+    {
+      "name": "approve_explicit_integer_measure",
+      "return_type": "RuleApproval",
+      "start_line": 4717,
+      "end_line": 4996,
+      "preserve_reasons": [
+        "uncertain_integer_measure_context",
+        "unanchored_approximate_count",
+        "unanchored_approximate_person_count",
+        "natural_approximate_blood_pressure_measure",
+        "uncertain_integer_measure_threshold",
+        "uncertain_approximate_rate_distance",
+        "uncertain_infix_distance_approximation",
+        "uncertain_integer_measure_approximation",
+        "uncertain_integer_measure_period",
+        "integer_measure_continues_left",
+        "uncertain_money_fraction_context",
+        "non_money_angle_lexeme",
+        "uncertain_statistical_case_context",
+        "uncertain_ordinal_session_context",
+        "uncertain_market_index_context",
+        "uncertain_electric_current_context",
+        "uncertain_capacity_degree_context",
+        "uncertain_integer_meter_context",
+        "fixed_last_mile_expression",
+        "uncertain_integer_multiple_context",
+        "integer_measure_continues_right",
+        "non_count_case_lexeme",
+        "incomplete_compound_measure_unit",
+        "natural_single_digit_integer",
+        "invalid_integer_measure"
+      ]
+    },
+    {
+      "name": "approve_explicit_integer_duration",
+      "return_type": "RuleApproval",
+      "start_line": 4998,
+      "end_line": 5131,
+      "preserve_reasons": [
+        "uncertain_integer_duration_context",
+        "uncertain_integer_duration_threshold",
+        "uncertain_integer_duration_approximation",
+        "uncertain_integer_duration_period",
+        "integer_duration_continues_left",
+        "integer_duration_continues_right",
+        "natural_single_digit_integer",
+        "invalid_integer_duration"
+      ]
+    },
+    {
+      "name": "approve_explicit_lock_period_months",
+      "return_type": "RuleApproval",
+      "start_line": 5133,
+      "end_line": 5177,
+      "preserve_reasons": [
+        "uncertain_lock_period_months",
+        "lock_period_months_continues_right",
+        "invalid_lock_period_months"
+      ]
+    },
+    {
+      "name": "approve_large_approximate_year_span",
+      "return_type": "RuleApproval",
+      "start_line": 5179,
+      "end_line": 5245,
+      "preserve_reasons": [
+        "uncertain_large_year_span_context",
+        "large_year_span_continues_left",
+        "large_year_span_continues_right",
+        "invalid_large_approximate_year_span"
+      ]
+    },
+    {
+      "name": "approve_explicit_anchored_year_or_day_duration",
+      "return_type": "RuleApproval",
+      "start_line": 5247,
+      "end_line": 5316,
+      "preserve_reasons": [
+        "uncertain_anchored_year_or_day_duration",
+        "anchored_duration_continues_left",
+        "anchored_duration_continues_right",
+        "invalid_anchored_year_or_day_duration"
+      ]
+    },
+    {
+      "name": "approve_explicit_compound_duration",
+      "return_type": "RuleApproval",
+      "start_line": 5318,
+      "end_line": 5405,
+      "preserve_reasons": [
+        "uncertain_compound_duration_context",
+        "compound_duration_continues_left",
+        "compound_duration_continues_right",
+        "invalid_compound_duration"
+      ]
+    },
+    {
+      "name": "ambiguous_digit_g_quantity_context",
+      "return_type": "bool",
+      "start_line": 5407,
+      "end_line": 5424,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spaced_digit_g_end",
+      "return_type": "std::optional<size_t>",
+      "start_line": 5426,
+      "end_line": 5446,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spaced_respirator_end",
+      "return_type": "std::optional<size_t>",
+      "start_line": 5448,
+      "end_line": 5474,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spaced_automotive_store_end",
+      "return_type": "std::optional<size_t>",
+      "start_line": 5476,
+      "end_line": 5503,
+      "preserve_reasons": []
+    },
+    {
+      "name": "spaced_playstation_end",
+      "return_type": "std::optional<size_t>",
+      "start_line": 5505,
+      "end_line": 5532,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_isolated_digit_g",
+      "return_type": "RuleApproval",
+      "start_line": 5534,
+      "end_line": 5594,
+      "preserve_reasons": [
+        "not_isolated_digit_g",
+        "invalid_isolated_digit_g",
+        "identifier_continues_left",
+        "identifier_continues_right",
+        "ambiguous_digit_g_quantity_context"
+      ]
+    },
+    {
+      "name": "ascii_alnum_scalar",
+      "return_type": "bool",
+      "start_line": 5596,
+      "end_line": 5599,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_respirator_standard",
+      "return_type": "RuleApproval",
+      "start_line": 5601,
+      "end_line": 5651,
+      "preserve_reasons": [
+        "invalid_respirator_identifier",
+        "missing_respirator_context",
+        "identifier_continues_left",
+        "identifier_continues_right"
+      ]
+    },
+    {
+      "name": "approve_automotive_store",
+      "return_type": "RuleApproval",
+      "start_line": 5653,
+      "end_line": 5695,
+      "preserve_reasons": [
+        "invalid_automotive_store_identifier",
+        "identifier_continues_left",
+        "identifier_continues_right"
+      ]
+    },
+    {
+      "name": "playstation_context",
+      "return_type": "bool",
+      "start_line": 5697,
+      "end_line": 5712,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_playstation_model",
+      "return_type": "RuleApproval",
+      "start_line": 5714,
+      "end_line": 5768,
+      "preserve_reasons": [
+        "invalid_playstation_identifier",
+        "identifier_continues_left",
+        "identifier_continues_right",
+        "ambiguous_numeric_suffix"
+      ]
+    },
+    {
+      "name": "closed_product_model_replacement",
+      "return_type": "std::optional<std::string>",
+      "start_line": 5770,
+      "end_line": 5784,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_closed_product_model",
+      "return_type": "RuleApproval",
+      "start_line": 5786,
+      "end_line": 5818,
+      "preserve_reasons": [
+        "invalid_closed_product_model",
+        "unsupported_closed_product_model"
+      ]
+    },
+    {
+      "name": "contextual_product_model_replacement",
+      "return_type": "std::optional<std::string>",
+      "start_line": 5822,
+      "end_line": 5904,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_product_model_applies",
+      "return_type": "bool",
+      "start_line": 5906,
+      "end_line": 5936,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_product_model",
+      "return_type": "RuleApproval",
+      "start_line": 5938,
+      "end_line": 5995,
+      "preserve_reasons": [
+        "uncertain_product_model_context",
+        "product_model_continues_left",
+        "product_model_continues_right",
+        "invalid_product_model"
+      ]
+    },
+    {
+      "name": "land_parcel_identifier_replacement",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6007,
+      "end_line": 6048,
+      "preserve_reasons": []
+    },
+    {
+      "name": "land_parcel_identifier_applies",
+      "return_type": "bool",
+      "start_line": 6050,
+      "end_line": 6059,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_land_parcel_identifier",
+      "return_type": "RuleApproval",
+      "start_line": 6061,
+      "end_line": 6100,
+      "preserve_reasons": [
+        "uncertain_land_parcel_identifier",
+        "land_parcel_continues_left"
+      ]
+    },
+    {
+      "name": "explicit_display_resolution_context",
+      "return_type": "bool",
+      "start_line": 6102,
+      "end_line": 6112,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_display_resolution",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6114,
+      "end_line": 6148,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_display_resolution",
+      "return_type": "RuleApproval",
+      "start_line": 6150,
+      "end_line": 6194,
+      "preserve_reasons": [
+        "uncertain_display_resolution_context",
+        "display_resolution_continues_right",
+        "invalid_display_resolution"
+      ]
+    },
+    {
+      "name": "spoken_decimal_scalar",
+      "return_type": "bool",
+      "start_line": 6196,
+      "end_line": 6199,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_ratio_anchor",
+      "return_type": "bool",
+      "start_line": 6201,
+      "end_line": 6217,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_contextual_ratio",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6219,
+      "end_line": 6236,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_contextual_ratio",
+      "return_type": "RuleApproval",
+      "start_line": 6238,
+      "end_line": 6275,
+      "preserve_reasons": [
+        "invalid_contextual_ratio"
+      ]
+    },
+    {
+      "name": "contextual_scalar_ratio_anchor",
+      "return_type": "bool",
+      "start_line": 6277,
+      "end_line": 6294,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_contextual_scalar_value",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6296,
+      "end_line": 6326,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_scalar_ratio",
+      "return_type": "RuleApproval",
+      "start_line": 6328,
+      "end_line": 6368,
+      "preserve_reasons": [
+        "uncertain_contextual_scalar_ratio",
+        "scalar_ratio_continues_right"
+      ]
+    },
+    {
+      "name": "contextual_setting_value_anchor",
+      "return_type": "bool",
+      "start_line": 6370,
+      "end_line": 6379,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_setting_value",
+      "return_type": "RuleApproval",
+      "start_line": 6381,
+      "end_line": 6422,
+      "preserve_reasons": [
+        "uncertain_contextual_setting_value",
+        "setting_value_continues_right"
+      ]
+    },
+    {
+      "name": "contextual_score_anchor",
+      "return_type": "bool",
+      "start_line": 6424,
+      "end_line": 6437,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_score",
+      "return_type": "RuleApproval",
+      "start_line": 6439,
+      "end_line": 6486,
+      "preserve_reasons": [
+        "uncertain_contextual_score",
+        "score_unit_continues_right",
+        "score_outside_conservative_range"
+      ]
+    },
+    {
+      "name": "contextual_rank_anchor",
+      "return_type": "bool",
+      "start_line": 6488,
+      "end_line": 6497,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_rank",
+      "return_type": "RuleApproval",
+      "start_line": 6499,
+      "end_line": 6535,
+      "preserve_reasons": [
+        "uncertain_contextual_rank"
+      ]
+    },
+    {
+      "name": "contextual_document_page_anchor",
+      "return_type": "bool",
+      "start_line": 6537,
+      "end_line": 6548,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_document_page",
+      "return_type": "RuleApproval",
+      "start_line": 6550,
+      "end_line": 6586,
+      "preserve_reasons": [
+        "uncertain_contextual_document_page"
+      ]
+    },
+    {
+      "name": "contextual_structured_ordinal_anchor",
+      "return_type": "bool",
+      "start_line": 6588,
+      "end_line": 6611,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_structured_ordinal",
+      "return_type": "RuleApproval",
+      "start_line": 6613,
+      "end_line": 6655,
+      "preserve_reasons": [
+        "uncertain_structured_ordinal"
+      ]
+    },
+    {
+      "name": "approve_contextual_anchored_cardinal",
+      "return_type": "RuleApproval",
+      "start_line": 6657,
+      "end_line": 6742,
+      "preserve_reasons": [
+        "uncertain_anchored_cardinal",
+        "natural_single_digit_cardinal"
+      ]
+    },
+    {
+      "name": "approve_technical_identifier",
+      "return_type": "RuleApproval",
+      "start_line": 6744,
+      "end_line": 6834,
+      "preserve_reasons": [
+        "invalid_technical_identifier",
+        "missing_technical_version_context",
+        "unsupported_technical_identifier"
+      ]
+    },
+    {
+      "name": "structured_identifier_digit",
+      "return_type": "std::optional<char>",
+      "start_line": 6836,
+      "end_line": 6849,
+      "preserve_reasons": []
+    },
+    {
+      "name": "lowercase_ascii",
+      "return_type": "char",
+      "start_line": 6851,
+      "end_line": 6853,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_domain",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6855,
+      "end_line": 6893,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_url",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6895,
+      "end_line": 6947,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_spoken_windows_path",
+      "return_type": "std::optional<std::string>",
+      "start_line": 6949,
+      "end_line": 7023,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_structured_spoken_identifier",
+      "return_type": "RuleApproval",
+      "start_line": 7025,
+      "end_line": 7072,
+      "preserve_reasons": [
+        "invalid_structured_locator",
+        "unsupported_structured_locator"
+      ]
+    },
+    {
+      "name": "parse_explicit_geographic_coordinate",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7074,
+      "end_line": 7122,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_geographic_coordinate",
+      "return_type": "RuleApproval",
+      "start_line": 7124,
+      "end_line": 7162,
+      "preserve_reasons": [
+        "invalid_geographic_coordinate"
+      ]
+    },
+    {
+      "name": "version_component_scalar",
+      "return_type": "bool",
+      "start_line": 7164,
+      "end_line": 7166,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_version_component",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7168,
+      "end_line": 7191,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_software_version",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7193,
+      "end_line": 7221,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_software_version_context",
+      "return_type": "bool",
+      "start_line": 7223,
+      "end_line": 7246,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_software_version",
+      "return_type": "RuleApproval",
+      "start_line": 7248,
+      "end_line": 7303,
+      "preserve_reasons": [
+        "invalid_software_version",
+        "missing_software_version_context",
+        "version_continues_left",
+        "version_continues_right",
+        "invalid_version_components"
+      ]
+    },
+    {
+      "name": "parse_explicit_video_timecode",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7305,
+      "end_line": 7355,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_video_timecode",
+      "return_type": "RuleApproval",
+      "start_line": 7357,
+      "end_line": 7390,
+      "preserve_reasons": [
+        "uncertain_video_timecode"
+      ]
+    },
+    {
+      "name": "approve_clinical_threshold",
+      "return_type": "RuleApproval",
+      "start_line": 7392,
+      "end_line": 7425,
+      "preserve_reasons": [
+        "uncertain_clinical_threshold"
+      ]
+    },
+    {
+      "name": "spoken_telephone_digit",
+      "return_type": "std::optional<int>",
+      "start_line": 7427,
+      "end_line": 7435,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_telephone_context",
+      "return_type": "bool",
+      "start_line": 7437,
+      "end_line": 7460,
+      "preserve_reasons": []
+    },
+    {
+      "name": "valid_domestic_telephone_shape",
+      "return_type": "bool",
+      "start_line": 7462,
+      "end_line": 7471,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_telephone_candidate_digits",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7473,
+      "end_line": 7502,
+      "preserve_reasons": []
+    },
+    {
+      "name": "telephone_list_continues_right",
+      "return_type": "bool",
+      "start_line": 7504,
+      "end_line": 7524,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_telephone_number",
+      "return_type": "RuleApproval",
+      "start_line": 7526,
+      "end_line": 7585,
+      "preserve_reasons": [
+        "invalid_telephone_context",
+        "telephone_continues_left",
+        "telephone_continues_right",
+        "invalid_telephone_digits",
+        "unsupported_telephone_shape"
+      ]
+    },
+    {
+      "name": "contextual_public_service_number",
+      "return_type": "bool",
+      "start_line": 7587,
+      "end_line": 7631,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_public_service_number",
+      "return_type": "RuleApproval",
+      "start_line": 7633,
+      "end_line": 7686,
+      "preserve_reasons": [
+        "invalid_public_service_number",
+        "service_number_continues_left",
+        "service_number_continues_right"
+      ]
+    },
+    {
+      "name": "parse_telephone_number_list",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7688,
+      "end_line": 7748,
+      "preserve_reasons": []
+    },
+    {
+      "name": "emergency_telephone_list_context",
+      "return_type": "bool",
+      "start_line": 7750,
+      "end_line": 7759,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_telephone_number_list",
+      "return_type": "RuleApproval",
+      "start_line": 7761,
+      "end_line": 7801,
+      "preserve_reasons": [
+        "invalid_telephone_list_context",
+        "invalid_telephone_list_shape"
+      ]
+    },
+    {
+      "name": "parse_spoken_identifier_digits",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7803,
+      "end_line": 7823,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_identifier_anchor",
+      "return_type": "bool",
+      "start_line": 7825,
+      "end_line": 7842,
+      "preserve_reasons": []
+    },
+    {
+      "name": "room_identifier_anchor",
+      "return_type": "bool",
+      "start_line": 7844,
+      "end_line": 7865,
+      "preserve_reasons": []
+    },
+    {
+      "name": "street_number_anchor",
+      "return_type": "bool",
+      "start_line": 7867,
+      "end_line": 7882,
+      "preserve_reasons": []
+    },
+    {
+      "name": "facility_number_anchor",
+      "return_type": "bool",
+      "start_line": 7884,
+      "end_line": 7896,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_technical_model_number_anchor",
+      "return_type": "bool",
+      "start_line": 7898,
+      "end_line": 7921,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_identifier",
+      "return_type": "RuleApproval",
+      "start_line": 7923,
+      "end_line": 7979,
+      "preserve_reasons": [
+        "invalid_explicit_identifier"
+      ]
+    },
+    {
+      "name": "train_number_replacement",
+      "return_type": "std::optional<std::string>",
+      "start_line": 7981,
+      "end_line": 8018,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_train_number",
+      "return_type": "RuleApproval",
+      "start_line": 8020,
+      "end_line": 8055,
+      "preserve_reasons": [
+        "invalid_train_number"
+      ]
+    },
+    {
+      "name": "flight_prefix_scalar",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8057,
+      "end_line": 8065,
+      "preserve_reasons": []
+    },
+    {
+      "name": "flight_number_replacement",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8067,
+      "end_line": 8093,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_flight_number_context",
+      "return_type": "bool",
+      "start_line": 8095,
+      "end_line": 8105,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_flight_number",
+      "return_type": "RuleApproval",
+      "start_line": 8107,
+      "end_line": 8143,
+      "preserve_reasons": [
+        "invalid_flight_number"
+      ]
+    },
+    {
+      "name": "parse_ipv4_component",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8145,
+      "end_line": 8163,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_ipv4_address",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8165,
+      "end_line": 8189,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_ipv4_anchor",
+      "return_type": "bool",
+      "start_line": 8191,
+      "end_line": 8204,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_ipv4_address",
+      "return_type": "RuleApproval",
+      "start_line": 8206,
+      "end_line": 8239,
+      "preserve_reasons": [
+        "invalid_ipv4_address"
+      ]
+    },
+    {
+      "name": "parse_network_port",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8241,
+      "end_line": 8259,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_network_port_anchor",
+      "return_type": "bool",
+      "start_line": 8261,
+      "end_line": 8274,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_network_port",
+      "return_type": "RuleApproval",
+      "start_line": 8276,
+      "end_line": 8317,
+      "preserve_reasons": [
+        "invalid_network_port"
+      ]
+    },
+    {
+      "name": "approve_explicit_century",
+      "return_type": "RuleApproval",
+      "start_line": 8319,
+      "end_line": 8356,
+      "preserve_reasons": [
+        "invalid_explicit_century",
+        "unsupported_century"
+      ]
+    },
+    {
+      "name": "clock_period_at",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8358,
+      "end_line": 8373,
+      "preserve_reasons": []
+    },
+    {
+      "name": "date_continues_into_minute_clock",
+      "return_type": "bool",
+      "start_line": 8375,
+      "end_line": 8412,
+      "preserve_reasons": []
+    },
+    {
+      "name": "clock_number_scalar",
+      "return_type": "bool",
+      "start_line": 8414,
+      "end_line": 8416,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_clock_number",
+      "return_type": "std::optional<std::pair<int, std::string>>",
+      "start_line": 8418,
+      "end_line": 8435,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_clock_time",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8437,
+      "end_line": 8502,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_unperioded_exact_clock_time",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8504,
+      "end_line": 8571,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_clock_range_endpoint",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8573,
+      "end_line": 8623,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_clock_time_range",
+      "return_type": "std::optional<std::string>",
+      "start_line": 8625,
+      "end_line": 8663,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_clock_time_range",
+      "return_type": "RuleApproval",
+      "start_line": 8665,
+      "end_line": 8701,
+      "preserve_reasons": [
+        "invalid_clock_time_range"
+      ]
+    },
+    {
+      "name": "clock_boundary_is_uncertain",
+      "return_type": "bool",
+      "start_line": 8703,
+      "end_line": 8729,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_clock_time",
+      "return_type": "RuleApproval",
+      "start_line": 8731,
+      "end_line": 8770,
+      "preserve_reasons": [
+        "uncertain_clock_time_context",
+        "invalid_clock_time"
+      ]
+    },
+    {
+      "name": "contextual_clock_anchor_applies",
+      "return_type": "bool",
+      "start_line": 8772,
+      "end_line": 8793,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contextual_approximate_clock_anchor_applies",
+      "return_type": "bool",
+      "start_line": 8795,
+      "end_line": 8820,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_contextual_clock_time",
+      "return_type": "RuleApproval",
+      "start_line": 8822,
+      "end_line": 8864,
+      "preserve_reasons": [
+        "uncertain_contextual_clock_time",
+        "invalid_contextual_clock_time"
+      ]
+    },
+    {
+      "name": "approve_contextual_approximate_clock_time",
+      "return_type": "RuleApproval",
+      "start_line": 8866,
+      "end_line": 8918,
+      "preserve_reasons": [
+        "uncertain_contextual_approximate_clock_time",
+        "contextual_approximate_clock_continues_left",
+        "invalid_contextual_approximate_clock_time"
+      ]
+    },
+    {
+      "name": "approve_explicit_calendar_timestamp",
+      "return_type": "RuleApproval",
+      "start_line": 8920,
+      "end_line": 9035,
+      "preserve_reasons": [
+        "invalid_calendar_timestamp",
+        "calendar_timestamp_continues_left",
+        "missing_calendar_clock_time",
+        "invalid_calendar_timestamp_component"
+      ]
+    },
+    {
+      "name": "approve_explicit_calendar_timestamp_range",
+      "return_type": "RuleApproval",
+      "start_line": 9037,
+      "end_line": 9181,
+      "preserve_reasons": [
+        "invalid_calendar_timestamp_range",
+        "ambiguous_calendar_timestamp_range_connector",
+        "missing_calendar_timestamp_range_connector",
+        "invalid_contextual_timestamp_component",
+        "invalid_clock_timestamp_component",
+        "invalid_calendar_timestamp_range_component"
+      ]
+    },
+    {
+      "name": "approve_explicit_approximate_calendar_timestamp",
+      "return_type": "RuleApproval",
+      "start_line": 9183,
+      "end_line": 9259,
+      "preserve_reasons": [
+        "invalid_approximate_calendar_timestamp",
+        "approximate_calendar_timestamp_range_boundary",
+        "unsupported_calendar_timestamp_approximation",
+        "invalid_approximate_calendar_timestamp_component"
+      ]
+    },
+    {
+      "name": "approve_contextual_month_day_timestamp",
+      "return_type": "RuleApproval",
+      "start_line": 9261,
+      "end_line": 9332,
+      "preserve_reasons": [
+        "uncertain_contextual_timestamp_context",
+        "missing_contextual_timestamp_date",
+        "invalid_contextual_timestamp_component"
+      ]
+    },
+    {
+      "name": "approve_contextual_full_date_timestamp",
+      "return_type": "RuleApproval",
+      "start_line": 9334,
+      "end_line": 9399,
+      "preserve_reasons": [
+        "uncertain_contextual_full_date_timestamp_context",
+        "missing_contextual_full_date_timestamp_date",
+        "invalid_contextual_full_date_timestamp_component"
+      ]
+    },
+    {
+      "name": "approve_contextual_approximate_month_day_timestamp",
+      "return_type": "RuleApproval",
+      "start_line": 9401,
+      "end_line": 9484,
+      "preserve_reasons": [
+        "uncertain_contextual_approximate_timestamp_context",
+        "missing_contextual_approximate_timestamp_date",
+        "invalid_contextual_approximate_timestamp_component"
+      ]
+    },
+    {
+      "name": "detect_full_dates",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9486,
+      "end_line": 9548,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_full_date_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9550,
+      "end_line": 9578,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_year_months",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9580,
+      "end_line": 9645,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_cross_segment_month",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9647,
+      "end_line": 9685,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_year_month_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9687,
+      "end_line": 9772,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_year_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9774,
+      "end_line": 9807,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_month_days",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9809,
+      "end_line": 9862,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_month_periods",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9864,
+      "end_line": 9921,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_month_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9923,
+      "end_line": 9975,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_recurring_cross_year_month_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 9977,
+      "end_line": 10049,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_relative_year_months",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10051,
+      "end_line": 10118,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_followup_months",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10120,
+      "end_line": 10165,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_shared_year_date_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10167,
+      "end_line": 10203,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_shared_month_date_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10205,
+      "end_line": 10248,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_full_date_shared_month_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10250,
+      "end_line": 10293,
+      "preserve_reasons": []
+    },
+    {
+      "name": "percentage_number_scalar",
+      "return_type": "bool",
+      "start_line": 10295,
+      "end_line": 10298,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_percentages",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10300,
+      "end_line": 10325,
+      "preserve_reasons": []
+    },
+    {
+      "name": "percentage_range_bridge",
+      "return_type": "bool",
+      "start_line": 10327,
+      "end_line": 10335,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_percentage_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10337,
+      "end_line": 10365,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_percentage_range",
+      "return_type": "RuleApproval",
+      "start_line": 10367,
+      "end_line": 10467,
+      "preserve_reasons": [
+        "invalid_percentage_range_members",
+        "invalid_percentage_range_bridge",
+        "invalid_percentage_range_endpoint"
+      ]
+    },
+    {
+      "name": "shared_prefix_percentage_range_bridge",
+      "return_type": "bool",
+      "start_line": 10469,
+      "end_line": 10472,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_shared_prefix_percentage_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10474,
+      "end_line": 10514,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_shared_prefix_percentage_range",
+      "return_type": "RuleApproval",
+      "start_line": 10516,
+      "end_line": 10606,
+      "preserve_reasons": [
+        "invalid_shared_prefix_percentage_range",
+        "missing_shared_prefix_percentage_endpoint",
+        "invalid_shared_prefix_percentage_bridge",
+        "shared_prefix_percentage_range_continues_right",
+        "invalid_shared_prefix_percentage_endpoint"
+      ]
+    },
+    {
+      "name": "decimal_duration_number_scalar",
+      "return_type": "bool",
+      "start_line": 10608,
+      "end_line": 10611,
+      "preserve_reasons": []
+    },
+    {
+      "name": "decimal_measure_number_scalar",
+      "return_type": "bool",
+      "start_line": 10613,
+      "end_line": 10615,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_decimal_durations",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10617,
+      "end_line": 10681,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_decimal_measures",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10683,
+      "end_line": 10814,
+      "preserve_reasons": []
+    },
+    {
+      "name": "decimal_money_number_scalar",
+      "return_type": "bool",
+      "start_line": 10816,
+      "end_line": 10818,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_decimal_money",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10820,
+      "end_line": 10896,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_stock_prices",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10898,
+      "end_line": 10950,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_temperatures",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 10952,
+      "end_line": 11062,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_temperature_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11064,
+      "end_line": 11172,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_money_number_scalar",
+      "return_type": "bool",
+      "start_line": 11174,
+      "end_line": 11177,
+      "preserve_reasons": []
+    },
+    {
+      "name": "integer_measure_number_scalar",
+      "return_type": "bool",
+      "start_line": 11179,
+      "end_line": 11181,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_signed_number_anchor_applies",
+      "return_type": "bool",
+      "start_line": 11183,
+      "end_line": 11189,
+      "preserve_reasons": []
+    },
+    {
+      "name": "parse_explicit_signed_number",
+      "return_type": "std::optional<std::string>",
+      "start_line": 11191,
+      "end_line": 11231,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_signed_number",
+      "return_type": "RuleApproval",
+      "start_line": 11233,
+      "end_line": 11278,
+      "preserve_reasons": [
+        "uncertain_signed_number_context",
+        "signed_number_continues_right",
+        "invalid_signed_number"
+      ]
+    },
+    {
+      "name": "detect_explicit_signed_numbers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11280,
+      "end_line": 11332,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_integer_money",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11334,
+      "end_line": 11408,
+      "preserve_reasons": []
+    },
+    {
+      "name": "structural_quantity",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 11417,
+      "end_line": 11553,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_structural_quantity",
+      "return_type": "RuleApproval",
+      "start_line": 11555,
+      "end_line": 11570,
+      "preserve_reasons": [
+        "uncertain_structural_quantity"
+      ]
+    },
+    {
+      "name": "structural_quantity_bridge",
+      "return_type": "bool",
+      "start_line": 11574,
+      "end_line": 11578,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_structural_quantity_range",
+      "return_type": "RuleApproval",
+      "start_line": 11580,
+      "end_line": 11607,
+      "preserve_reasons": [
+        "uncertain_structural_range"
+      ]
+    },
+    {
+      "name": "detect_structural_quantities",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11609,
+      "end_line": 11639,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_integer_measures",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11641,
+      "end_line": 11861,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_integer_durations",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11863,
+      "end_line": 11939,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_lock_period_months",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11941,
+      "end_line": 11977,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_large_approximate_year_spans",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 11979,
+      "end_line": 12022,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_anchored_year_or_day_durations",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12024,
+      "end_line": 12087,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_compound_durations",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12089,
+      "end_line": 12128,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_range_unit",
+      "return_type": "std::optional<std::pair<size_t, std::string>>",
+      "start_line": 12149,
+      "end_line": 12163,
+      "preserve_reasons": []
+    },
+    {
+      "name": "format_explicit_range_number",
+      "return_type": "std::optional<std::string>",
+      "start_line": 12165,
+      "end_line": 12198,
+      "preserve_reasons": []
+    },
+    {
+      "name": "natural_single_digit_range_endpoint",
+      "return_type": "bool",
+      "start_line": 12200,
+      "end_line": 12213,
+      "preserve_reasons": []
+    },
+    {
+      "name": "explicit_range_endpoints",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12215,
+      "end_line": 12250,
+      "preserve_reasons": []
+    },
+    {
+      "name": "find_explicit_unit_ranges",
+      "return_type": "std::vector<ExplicitUnitRangeMatch>",
+      "start_line": 12252,
+      "end_line": 12336,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_unit_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12338,
+      "end_line": 12362,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_unit_range",
+      "return_type": "RuleApproval",
+      "start_line": 12364,
+      "end_line": 12459,
+      "preserve_reasons": [
+        "uncertain_explicit_unit_range",
+        "approximate_explicit_unit_range",
+        "chained_explicit_unit_range",
+        "natural_single_digit_range_endpoint"
+      ]
+    },
+    {
+      "name": "approve_explicit_money_range",
+      "return_type": "RuleApproval",
+      "start_line": 12461,
+      "end_line": 12469,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_measure_range",
+      "return_type": "RuleApproval",
+      "start_line": 12471,
+      "end_line": 12479,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_explicit_duration_range",
+      "return_type": "RuleApproval",
+      "start_line": 12481,
+      "end_line": 12489,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_isolated_digit_g_identifiers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12491,
+      "end_line": 12534,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_respirator_standards",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12536,
+      "end_line": 12561,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_automotive_stores",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12563,
+      "end_line": 12590,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_playstation_models",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12592,
+      "end_line": 12617,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_closed_product_models",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12619,
+      "end_line": 12656,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_product_models",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12658,
+      "end_line": 12758,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_land_parcel_identifiers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12760,
+      "end_line": 12810,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_display_resolutions",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12812,
+      "end_line": 12857,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_train_numbers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12859,
+      "end_line": 12909,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_flight_numbers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12911,
+      "end_line": 12962,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_contextual_ratios",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 12964,
+      "end_line": 13006,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_scalar_ratios",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13008,
+      "end_line": 13048,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_setting_values",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13050,
+      "end_line": 13082,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_scores",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13084,
+      "end_line": 13117,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_ranks",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13119,
+      "end_line": 13156,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_document_pages",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13158,
+      "end_line": 13198,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_structured_ordinals",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13200,
+      "end_line": 13247,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_anchored_cardinals",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13249,
+      "end_line": 13294,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_technical_identifiers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13296,
+      "end_line": 13368,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_structured_spoken_identifiers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13370,
+      "end_line": 13440,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_geographic_coordinates",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13442,
+      "end_line": 13512,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_software_versions",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13514,
+      "end_line": 13570,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_video_timecodes",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13572,
+      "end_line": 13612,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_clinical_thresholds",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13614,
+      "end_line": 13645,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_telephone_numbers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13647,
+      "end_line": 13726,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_public_service_numbers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13728,
+      "end_line": 13782,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_telephone_number_lists",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13784,
+      "end_line": 13861,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_identifiers",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13863,
+      "end_line": 13931,
+      "preserve_reasons": []
+    },
+    {
+      "name": "ipv4_number_scalar",
+      "return_type": "bool",
+      "start_line": 13933,
+      "end_line": 13936,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_ipv4_addresses",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13938,
+      "end_line": 13970,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_network_ports",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 13972,
+      "end_line": 14009,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_centuries",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14011,
+      "end_line": 14050,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_clock_time_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14052,
+      "end_line": 14085,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_clock_times",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14087,
+      "end_line": 14172,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_clock_times",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14174,
+      "end_line": 14266,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_calendar_timestamps",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14268,
+      "end_line": 14291,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_calendar_timestamp_ranges",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14293,
+      "end_line": 14429,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_approximate_calendar_timestamps",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14431,
+      "end_line": 14462,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_contextual_month_day_timestamps",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14464,
+      "end_line": 14588,
+      "preserve_reasons": []
+    },
+    {
+      "name": "detect_explicit_years",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14590,
+      "end_line": 14641,
+      "preserve_reasons": []
+    },
+    {
+      "name": "approve_spoken_decade",
+      "return_type": "RuleApproval",
+      "start_line": 14643,
+      "end_line": 14679,
+      "preserve_reasons": [
+        "not_complete_spoken_decade",
+        "spoken_decade_continues_left",
+        "spoken_decade_continues_right",
+        "not_two_digit_decade"
+      ]
+    },
+    {
+      "name": "detect_spoken_decades",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 14681,
+      "end_line": 14711,
+      "preserve_reasons": []
+    },
+    {
+      "name": "released_rules",
+      "return_type": "const std::vector<ReleasedRule>&",
+      "start_line": 14713,
+      "end_line": 15171,
+      "preserve_reasons": []
+    },
+    {
+      "name": "semantic_candidate_priority",
+      "return_type": "int",
+      "start_line": 15173,
+      "end_line": 15225,
+      "preserve_reasons": []
+    },
+    {
+      "name": "contains_candidate",
+      "return_type": "bool",
+      "start_line": 15227,
+      "end_line": 15233,
+      "preserve_reasons": []
+    },
+    {
+      "name": "add_unreleased_composite_blockers",
+      "return_type": "void",
+      "start_line": 15235,
+      "end_line": 15393,
+      "preserve_reasons": []
+    },
+    {
+      "name": "resolve_complete_semantic_candidates",
+      "return_type": "std::vector<TransformationCandidate>",
+      "start_line": 15395,
+      "end_line": 15450,
+      "preserve_reasons": []
+    },
+    {
+      "name": "normalize_zh_conservative_v2_impl",
+      "return_type": "static SafeNormalizationResult",
+      "start_line": 15454,
+      "end_line": 15854,
+      "preserve_reasons": []
+    },
+    {
+      "name": "normalize_zh_conservative_v2",
+      "return_type": "SafeNormalizationResult",
+      "start_line": 15856,
+      "end_line": 15858,
+      "preserve_reasons": []
+    },
+    {
+      "name": "normalize_zh_conservative_v2_shadow_atomic",
+      "return_type": "SafeNormalizationResult",
+      "start_line": 15860,
+      "end_line": 15868,
+      "preserve_reasons": []
+    }
+  ]
+}

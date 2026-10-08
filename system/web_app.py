@@ -16,6 +16,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from enum import Enum
+from math import isfinite
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
@@ -25,9 +26,11 @@ import uvicorn
 
 from .live_qwen_refiner import TransformersRefiner, _append_record
 from .entity_store import EntityDefinition, EntityStore
+from .entity_asr_context import build_entity_asr_context
 from .deterministic_cleanup import clean_transcript_deterministically
 from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
 from .entity_pipeline import (
+    fallback_entity_segment,
     FinalizedEntitySegment,
     finalize_entity_segment,
     has_placeholder_failure,
@@ -1004,6 +1007,7 @@ def create_app(
     asr_api_style: str = ASRApiStyle.CURRENT.value,
     final_refinement_mode: str = "off",
     zh_itn_library: Path | None = None,
+    entity_asr_context: bool = False,
 ) -> FastAPI:
     final_refinement_mode = str(final_refinement_mode).strip().lower()
     if final_refinement_mode not in {"on", "off"}:
@@ -1554,17 +1558,13 @@ def create_app(
                     else None
                 )
                 if callable(numeric_rules_refine):
-                    result = numeric_rules_refine(
-                        text,
-                        entity_hints=hints,
-                        strict_placeholders=strict_placeholders,
-                    )
+                    refine_method = numeric_rules_refine
                 else:
-                    result = refiner.refine(
-                        text,
-                        entity_hints=hints,
-                        strict_placeholders=strict_placeholders,
-                    )
+                    refine_method = refiner.refine
+                refine_kwargs = dict(entity_hints=hints,strict_placeholders=strict_placeholders)
+                if getattr(refiner,"supports_entity_candidates",False):
+                    refine_kwargs["entity_candidates"] = prepared.refiner_candidates
+                result = refine_method(text,**refine_kwargs)
             except BaseException as error:
                 if trace_segment is not None:
                     trace_segment.setdefault("model_calls", []).append(
@@ -1739,6 +1739,13 @@ def create_app(
                 if trace_segments is not None else None
             )
             if trace_segment is not None:
+                if zh_result is not None:
+                    trace_segment["numeric_rule"] = {
+                        "rule_pack": zh_itn.rule_pack,
+                        "decision_reason": getattr(zh_result, "decision_reason", ""),
+                        "candidate_count": getattr(zh_result, "candidate_count", 0),
+                        "changes": [change.public_dict() for change in zh_result.changes],
+                    }
                 trace_segments.append(trace_segment)
             if zh_result is not None:
                 numeric_normalizations.extend(
@@ -1844,11 +1851,7 @@ def create_app(
                         _patch_audit(patch_payload, structured_issue)
                     )
                     if structured_issue:
-                        finalized = FinalizedEntitySegment(
-                            prepared.baseline_text,
-                            False,
-                            (structured_issue,),
-                        )
+                        finalized = fallback_entity_segment(prepared,(structured_issue,))
                     else:
                         structured_candidate = restore_rule_numeric_surface(
                             masked_text, structured_candidate, segment_index + 1
@@ -1860,6 +1863,7 @@ def create_app(
                             protector,
                             preserve_terminal_only=preserve_numeric_boundary,
                             numeric_rule_mode=zh_itn is not None,
+                            entity_patch=patch_payload,
                         )
                     if has_retryable_integrity_failure(finalized.reject_reasons):
                         initial_reasons = finalized.reject_reasons
@@ -1885,11 +1889,7 @@ def create_app(
                             _patch_audit(retry_payload, structured_retry_issue)
                         )
                         if structured_retry_issue:
-                            finalized = FinalizedEntitySegment(
-                                prepared.baseline_text,
-                                False,
-                                (structured_retry_issue,),
-                            )
+                            finalized = fallback_entity_segment(prepared,(structured_retry_issue,))
                         else:
                             structured_retry = restore_rule_numeric_surface(
                                 masked_text, structured_retry, segment_index + 1
@@ -1901,6 +1901,7 @@ def create_app(
                                 protector,
                                 preserve_terminal_only=preserve_numeric_boundary,
                                 numeric_rule_mode=zh_itn is not None,
+                                entity_patch=retry_payload,
                             )
                 finally:
                     refiner_lock.release()
@@ -1994,7 +1995,7 @@ def create_app(
                         }
                         for change in approximate_fallback.changes
                     )
-                changes = list(prepared.normalizations)
+                changes = list(finalized.normalizations)
                 if numeric_normalization and zh_itn is None:
                     normalized_output = numeric_normalizer.normalize(clean_segment)
                     clean_segment = normalized_output.text
@@ -2395,6 +2396,7 @@ def create_app(
         return {
             "ok": True,
             "entity_db": entity_store is not None,
+            "entity_asr_context_enabled": entity_asr_context,
             "refinement_gate_mode": refinement_gate.mode.value,
             "asr_api_style": selected_asr_api_style.value,
             "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
@@ -2511,6 +2513,27 @@ def create_app(
         requested_language = websocket.query_params.get("language") or language
         requested_mode = (websocket.query_params.get("mode") or "online").lower()
         requested_domain = (websocket.query_params.get("domain") or "general").strip() or "general"
+        context_option=websocket.query_params.get("entity_asr_context")
+        if context_option is not None and context_option not in {"0","1"}:
+            await send_json({"event":"error","detail":"entity_asr_context must be 0 or 1"})
+            await websocket.close()
+            return
+        context_enabled = context_option=="1" if context_option is not None else entity_asr_context
+        asr_entity_context_applied=False
+        requested_chunk_seconds = websocket.query_params.get("asr_chunk_seconds")
+        if requested_chunk_seconds is not None:
+            try:
+                chunk_seconds = float(requested_chunk_seconds)
+                valid_chunk_seconds = isfinite(chunk_seconds) and chunk_seconds > 0
+            except (TypeError, ValueError):
+                valid_chunk_seconds = False
+            if not valid_chunk_seconds:
+                await send_json({
+                    "event": "error",
+                    "detail": "asr_chunk_seconds must be a positive finite number",
+                })
+                await websocket.close()
+                return
         if requested_mode not in {"online", "offline", "streaming"}:
             await send_json(
                 {"event": "error", "detail": "mode must be online, offline, or streaming"}
@@ -2576,6 +2599,8 @@ def create_app(
             result["session_gate_skipped_segment_count"] = snapshot[
                 "gate_skipped_segment_count"
             ]
+            result["entity_asr_context_requested"] = context_enabled
+            result["entity_asr_context_applied"] = asr_entity_context_applied
             return result
 
         def session_refine_update(*args, **kwargs) -> dict[str, object]:
@@ -2636,6 +2661,7 @@ def create_app(
             if entity_store is not None
             else ()
         )
+        session_asr_context = build_entity_asr_context(definitions,requested_domain) if context_enabled else None
         protector = EntityProtector(
             definitions,
             session_memory=session_memory,
@@ -3342,12 +3368,31 @@ def create_app(
                     )
 
         try:
+            start_params = (
+                {"language": requested_language} if requested_language else {}
+            )
+            if requested_chunk_seconds is not None:
+                start_params["chunk_seconds"] = requested_chunk_seconds
+            if session_asr_context is not None and session_asr_context.text:
+                start_params["context"] = session_asr_context.text
             start = await request_asr(
                 "/stream/start",
-                params={"language": requested_language} if requested_language else None,
+                params=start_params or None,
             )
             session_id = str(start["session_id"])
-            await send_json({"event": "ready"})
+            asr_entity_context_applied = start.get("context_applied") is True
+            record_trace(
+                "asr_session_started", mode=requested_mode,
+                asr_chunk_seconds=start.get("chunk_seconds"),
+            )
+            await send_json({
+                "event": "ready", "trace_id": trace_id,
+                "asr_chunk_seconds": start.get("chunk_seconds"),
+                "entity_asr_context_requested": context_enabled,
+                "entity_asr_context_applied": asr_entity_context_applied,
+                "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
+                "entity_asr_context_digest": start.get("context_digest"),
+            })
             while True:
                 message = await websocket.receive()
                 if message.get("type") == "websocket.disconnect":
@@ -3476,6 +3521,9 @@ def create_app(
                             )
                         result["refinement_revision"] = latest_refinement_revision
                         result["final_refinement_mode"] = final_refinement_mode
+                        result["entity_asr_context_requested"] = context_enabled
+                        result["entity_asr_context_applied"] = asr_entity_context_applied
+                        result["entity_asr_context_term_count"] = len(session_asr_context.terms) if session_asr_context else 0
                         attach_refiner_session_stats(result, close=True)
                         record_trace(
                             "final_result", revision=latest_refinement_revision,
@@ -3526,6 +3574,9 @@ def create_app(
                                     "refinement_log_file": refinement_log_file,
                                     "mode": requested_mode,
                                     "entity_domain": requested_domain,
+                                    "entity_asr_context_requested": context_enabled,
+                                    "entity_asr_context_applied": asr_entity_context_applied,
+                                    "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
                                     "asr_language": result["asr_language"],
                                     "asr_confidence": result["asr_confidence"],
                                     "asr_confidence_metadata": result[
@@ -3880,8 +3931,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--entity-fuzzy-mode",
         choices=[mode.value for mode in EntityFuzzyMode],
         default="shadow",
-        help="off, shadow, hint, or final-only automatic entity normalization",
+        help="off, shadow, hint, or guarded normalization with confirmation for phonetic edits",
     )
+    parser.add_argument("--enable-entity-asr-context",action="store_true",
+                        help="default new sessions to bounded canonical ASR context; browser can opt out")
     parser.add_argument(
         "--refinement-gate-mode",
         choices=[mode.value for mode in RefinementGateMode],
@@ -3952,8 +4005,12 @@ def main(argv: list[str] | None = None) -> int:
         args.asr_api_style,
         args.final_refinement_mode,
         args.zh_itn_library.resolve() if args.enable_zh_itn else None,
+        args.enable_entity_asr_context,
     )
-    uvicorn.run(app, host=args.host, port=args.port, log_level="info")
+    # Float32 audio gains little from deflate, while compressing each PCM
+    # frame adds CPU work to the file-streaming critical path.
+    uvicorn.run(app, host=args.host, port=args.port, log_level="info",
+                ws_per_message_deflate=False)
     return 0
 
 

@@ -199,10 +199,28 @@ python -m system.manage_entities --db data/entities.db list
 `preserve` keeps the exact matched surface. `normalize` restores the verified
 canonical spelling when an explicit alias is matched. Fuzzy matching has four
 server modes: `off`, `shadow`, `hint`, and `auto`. The default is `shadow`,
-which records candidates without changing output. `auto` only normalizes
-high-confidence `TERM`, `PROJECT`, and `MODEL` matches in a completed
-transcript; streaming intermediate updates and high-risk `PERSON`/`ORG`
-matches are never fuzzy-auto-replaced.
+which records candidates without changing output. Matching config v2 checks
+independent Chinese token boundaries and Latin word boundaries. `auto` applies
+only harmless width/spacing/case variants directly. Phonetic substitutions
+remain unmasked candidates: the Web Refiner receives observed/canonical pairs,
+and a substitution requires a unique, bounded JSON patch with the exact pair.
+Short Chinese homophones and boundary-conflicting spans stay raw. Verified
+aliases still normalize deterministically. Failed candidate edits fall back
+to the trusted-alias baseline, and their rejected normalizations are not logged
+as applied. `PERSON`/`ORG` candidates require verified aliases.
+
+The browser also offers **词库辅助识别**. It defaults off; selecting it sends
+up to 16 canonical names from the selected domain to Qwen's streaming
+`context`. General-domain entries are not added to other domains' audio prompts.
+The backend acknowledges application and retains the context across VAD/state
+rotation; unsupported backends continue transcription and show that the prompt
+was not applied. This is an optional contextual prompt, not a hard decoding
+constraint. Its impact needs paired real-audio testing.
+
+Use `--enable-entity-asr-context` or `ENTITY_ASR_CONTEXT_ENABLED=1` to default
+new sessions to enabled; the browser toggle can opt out. The context accepts
+only canonical spellings, is bounded to 1024 characters from the Web (2048 at
+the ASR API), and does not include observed spelling errors or transcripts.
 
 Enable the database in the browser frontend:
 
@@ -305,8 +323,8 @@ python -m system.live_qwen_refiner \
 ```
 
 After reviewing shadow candidates in the JSONL output, use
-`--entity-fuzzy-mode auto` to enable deterministic final-utterance
-normalization. Candidate scores, decisions, reasons, matcher latency, and
+`--entity-fuzzy-mode auto` for guarded formatting and candidate handling.
+Unconfirmed phonetic substitutions are retained as source text. Candidate scores, decisions, reasons, matcher latency, and
 applied normalizations are included in each output record.
 
 The client uses local energy VAD and submits one completed utterance after a

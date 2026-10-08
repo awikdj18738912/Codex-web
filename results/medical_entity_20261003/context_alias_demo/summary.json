@@ -1,0 +1,1087 @@
+{
+  "raw_asr": {
+    "raw_asr": {
+      "clean": {
+        "samples": 1,
+        "cer_errors": 8,
+        "reference_characters": 35,
+        "cer_percent": 22.857142857142858,
+        "itn_cer_errors": 8,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 22.857142857142858,
+        "recovered_entities": 0,
+        "total_entities": 1,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 1,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "noise": {
+        "samples": 1,
+        "cer_errors": 9,
+        "reference_characters": 35,
+        "cer_percent": 25.714285714285715,
+        "itn_cer_errors": 9,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 25.714285714285715,
+        "recovered_entities": 0,
+        "total_entities": 1,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 1,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "both": {
+        "samples": 2,
+        "cer_errors": 17,
+        "reference_characters": 70,
+        "cer_percent": 24.285714285714285,
+        "itn_cer_errors": 17,
+        "itn_reference_characters": 70,
+        "itn_cer_percent": 24.285714285714285,
+        "recovered_entities": 0,
+        "total_entities": 2,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 2,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 2,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "by_group": {
+        "covered_entity": {
+          "samples": 2,
+          "cer_errors": 17,
+          "reference_characters": 70,
+          "cer_percent": 24.285714285714285,
+          "itn_cer_errors": 17,
+          "itn_reference_characters": 70,
+          "itn_cer_percent": 24.285714285714285,
+          "recovered_entities": 0,
+          "total_entities": 2,
+          "entity_recall_percent": 0.0,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 2,
+          "covered_entity_recall_percent": 0.0,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 2,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": 0.0,
+          "matcher_latency_p95_ms": 0.0,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "uncovered_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "no_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        }
+      }
+    }
+  },
+  "entity_only": {},
+  "web_offline": {
+    "no_dictionary": {
+      "clean": {
+        "samples": 1,
+        "cer_errors": 9,
+        "reference_characters": 35,
+        "cer_percent": 25.714285714285715,
+        "itn_cer_errors": 8,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 22.857142857142858,
+        "recovered_entities": 0,
+        "total_entities": 1,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 1,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "noise": {
+        "samples": 1,
+        "cer_errors": 10,
+        "reference_characters": 35,
+        "cer_percent": 28.571428571428573,
+        "itn_cer_errors": 9,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 25.714285714285715,
+        "recovered_entities": 0,
+        "total_entities": 1,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 1,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "both": {
+        "samples": 2,
+        "cer_errors": 19,
+        "reference_characters": 70,
+        "cer_percent": 27.142857142857142,
+        "itn_cer_errors": 17,
+        "itn_reference_characters": 70,
+        "itn_cer_percent": 24.285714285714285,
+        "recovered_entities": 0,
+        "total_entities": 2,
+        "entity_recall_percent": 0.0,
+        "recovered_covered_entities": 0,
+        "total_covered_entities": 2,
+        "covered_entity_recall_percent": 0.0,
+        "improved_samples": 0,
+        "worsened_samples": 0,
+        "equal_samples": 2,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 0,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 0,
+        "refiner_calls": 0,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          0.0,
+          0.0
+        ],
+        "examples": []
+      },
+      "by_group": {
+        "covered_entity": {
+          "samples": 2,
+          "cer_errors": 19,
+          "reference_characters": 70,
+          "cer_percent": 27.142857142857142,
+          "itn_cer_errors": 17,
+          "itn_reference_characters": 70,
+          "itn_cer_percent": 24.285714285714285,
+          "recovered_entities": 0,
+          "total_entities": 2,
+          "entity_recall_percent": 0.0,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 2,
+          "covered_entity_recall_percent": 0.0,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 2,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": 0.0,
+          "matcher_latency_p95_ms": 0.0,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "uncovered_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "no_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        }
+      }
+    },
+    "context_off": {
+      "clean": {
+        "samples": 1,
+        "cer_errors": 5,
+        "reference_characters": 35,
+        "cer_percent": 14.285714285714286,
+        "itn_cer_errors": 4,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 11.428571428571429,
+        "recovered_entities": 1,
+        "total_entities": 1,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 1,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 1,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 1,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 1,
+        "refiner_calls": 1,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "clean",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯比手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "noise": {
+        "samples": 1,
+        "cer_errors": 6,
+        "reference_characters": 35,
+        "cer_percent": 17.142857142857142,
+        "itn_cer_errors": 5,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 14.285714285714286,
+        "recovered_entities": 1,
+        "total_entities": 1,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 1,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 1,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 1,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 1,
+        "refiner_calls": 1,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "noise",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯蒂手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "both": {
+        "samples": 2,
+        "cer_errors": 11,
+        "reference_characters": 70,
+        "cer_percent": 15.714285714285714,
+        "itn_cer_errors": 9,
+        "itn_reference_characters": 70,
+        "itn_cer_percent": 12.857142857142858,
+        "recovered_entities": 2,
+        "total_entities": 2,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 2,
+        "total_covered_entities": 2,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 2,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 2,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 2,
+        "refiner_calls": 2,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 0.0,
+        "matcher_latency_p95_ms": 0.0,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "clean",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯比手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          },
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "noise",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯蒂手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "by_group": {
+        "covered_entity": {
+          "samples": 2,
+          "cer_errors": 11,
+          "reference_characters": 70,
+          "cer_percent": 15.714285714285714,
+          "itn_cer_errors": 9,
+          "itn_reference_characters": 70,
+          "itn_cer_percent": 12.857142857142858,
+          "recovered_entities": 2,
+          "total_entities": 2,
+          "entity_recall_percent": 100.0,
+          "recovered_covered_entities": 2,
+          "total_covered_entities": 2,
+          "covered_entity_recall_percent": 100.0,
+          "improved_samples": 2,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 2,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 2,
+          "refiner_calls": 2,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": 0.0,
+          "matcher_latency_p95_ms": 0.0,
+          "paired_delta_itn_cer_95ci_pp": [
+            -11.428571428571429,
+            -11.428571428571429
+          ],
+          "examples": [
+            {
+              "id": "MultiMed_Chinese_eval_0003",
+              "variant": "clean",
+              "group": "covered_entity",
+              "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+              "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "delta_itn_errors": -4,
+              "normalizations": [
+                {
+                  "observed": "凯比手术",
+                  "canonical": "TAVI手术",
+                  "entity_type": "TERM",
+                  "entity_id": 1,
+                  "match_type": "EXACT_ALIAS",
+                  "match_score": 1.0
+                }
+              ],
+              "hints": [
+                "TAVI手术"
+              ],
+              "rejections": []
+            },
+            {
+              "id": "MultiMed_Chinese_eval_0003",
+              "variant": "noise",
+              "group": "covered_entity",
+              "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+              "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "delta_itn_errors": -4,
+              "normalizations": [
+                {
+                  "observed": "凯蒂手术",
+                  "canonical": "TAVI手术",
+                  "entity_type": "TERM",
+                  "entity_id": 1,
+                  "match_type": "EXACT_ALIAS",
+                  "match_score": 1.0
+                }
+              ],
+              "hints": [
+                "TAVI手术"
+              ],
+              "rejections": []
+            }
+          ]
+        },
+        "uncovered_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "no_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        }
+      }
+    },
+    "context_auto": {
+      "clean": {
+        "samples": 1,
+        "cer_errors": 5,
+        "reference_characters": 35,
+        "cer_percent": 14.285714285714286,
+        "itn_cer_errors": 4,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 11.428571428571429,
+        "recovered_entities": 1,
+        "total_entities": 1,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 1,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 1,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 1,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 1,
+        "refiner_calls": 1,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 1.936,
+        "matcher_latency_p95_ms": 1.936,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "clean",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯比手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "noise": {
+        "samples": 1,
+        "cer_errors": 6,
+        "reference_characters": 35,
+        "cer_percent": 17.142857142857142,
+        "itn_cer_errors": 5,
+        "itn_reference_characters": 35,
+        "itn_cer_percent": 14.285714285714286,
+        "recovered_entities": 1,
+        "total_entities": 1,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 1,
+        "total_covered_entities": 1,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 1,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 1,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 1,
+        "refiner_calls": 1,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 1.48,
+        "matcher_latency_p95_ms": 1.48,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "noise",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯蒂手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "both": {
+        "samples": 2,
+        "cer_errors": 11,
+        "reference_characters": 70,
+        "cer_percent": 15.714285714285714,
+        "itn_cer_errors": 9,
+        "itn_reference_characters": 70,
+        "itn_cer_percent": 12.857142857142858,
+        "recovered_entities": 2,
+        "total_entities": 2,
+        "entity_recall_percent": 100.0,
+        "recovered_covered_entities": 2,
+        "total_covered_entities": 2,
+        "covered_entity_recall_percent": 100.0,
+        "improved_samples": 2,
+        "worsened_samples": 0,
+        "equal_samples": 0,
+        "originally_correct_damaged": 0,
+        "exact_samples": 0,
+        "normalizations": 2,
+        "unsupported_canonical_normalizations": 0,
+        "hints": 2,
+        "refiner_calls": 2,
+        "samples_with_rejections": 0,
+        "matcher_latency_p50_ms": 1.708,
+        "matcher_latency_p95_ms": 1.936,
+        "paired_delta_itn_cer_95ci_pp": [
+          -11.428571428571429,
+          -11.428571428571429
+        ],
+        "examples": [
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "clean",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯比手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          },
+          {
+            "id": "MultiMed_Chinese_eval_0003",
+            "variant": "noise",
+            "group": "covered_entity",
+            "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+            "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+            "delta_itn_errors": -4,
+            "normalizations": [
+              {
+                "observed": "凯蒂手术",
+                "canonical": "TAVI手术",
+                "entity_type": "TERM",
+                "entity_id": 1,
+                "match_type": "EXACT_ALIAS",
+                "match_score": 1.0
+              }
+            ],
+            "hints": [
+              "TAVI手术"
+            ],
+            "rejections": []
+          }
+        ]
+      },
+      "by_group": {
+        "covered_entity": {
+          "samples": 2,
+          "cer_errors": 11,
+          "reference_characters": 70,
+          "cer_percent": 15.714285714285714,
+          "itn_cer_errors": 9,
+          "itn_reference_characters": 70,
+          "itn_cer_percent": 12.857142857142858,
+          "recovered_entities": 2,
+          "total_entities": 2,
+          "entity_recall_percent": 100.0,
+          "recovered_covered_entities": 2,
+          "total_covered_entities": 2,
+          "covered_entity_recall_percent": 100.0,
+          "improved_samples": 2,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 2,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 2,
+          "refiner_calls": 2,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": 1.708,
+          "matcher_latency_p95_ms": 1.936,
+          "paired_delta_itn_cer_95ci_pp": [
+            -11.428571428571429,
+            -11.428571428571429
+          ],
+          "examples": [
+            {
+              "id": "MultiMed_Chinese_eval_0003",
+              "variant": "clean",
+              "group": "covered_entity",
+              "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+              "raw": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "baseline": "2个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "output": "2个多星期前完成TAVI手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+              "delta_itn_errors": -4,
+              "normalizations": [
+                {
+                  "observed": "凯比手术",
+                  "canonical": "TAVI手术",
+                  "entity_type": "TERM",
+                  "entity_id": 1,
+                  "match_type": "EXACT_ALIAS",
+                  "match_score": 1.0
+                }
+              ],
+              "hints": [
+                "TAVI手术"
+              ],
+              "rejections": []
+            },
+            {
+              "id": "MultiMed_Chinese_eval_0003",
+              "variant": "noise",
+              "group": "covered_entity",
+              "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+              "raw": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "baseline": "2个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "output": "2个多星期前完成TAVI手术的郑有信，这天回来国家心脏中心进行复诊。",
+              "delta_itn_errors": -4,
+              "normalizations": [
+                {
+                  "observed": "凯蒂手术",
+                  "canonical": "TAVI手术",
+                  "entity_type": "TERM",
+                  "entity_id": 1,
+                  "match_type": "EXACT_ALIAS",
+                  "match_score": 1.0
+                }
+              ],
+              "hints": [
+                "TAVI手术"
+              ],
+              "rejections": []
+            }
+          ]
+        },
+        "uncovered_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        },
+        "no_entity": {
+          "samples": 0,
+          "cer_errors": 0,
+          "reference_characters": 0,
+          "cer_percent": null,
+          "itn_cer_errors": 0,
+          "itn_reference_characters": 0,
+          "itn_cer_percent": null,
+          "recovered_entities": 0,
+          "total_entities": 0,
+          "entity_recall_percent": null,
+          "recovered_covered_entities": 0,
+          "total_covered_entities": 0,
+          "covered_entity_recall_percent": null,
+          "improved_samples": 0,
+          "worsened_samples": 0,
+          "equal_samples": 0,
+          "originally_correct_damaged": 0,
+          "exact_samples": 0,
+          "normalizations": 0,
+          "unsupported_canonical_normalizations": 0,
+          "hints": 0,
+          "refiner_calls": 0,
+          "samples_with_rejections": 0,
+          "matcher_latency_p50_ms": null,
+          "matcher_latency_p95_ms": null,
+          "paired_delta_itn_cer_95ci_pp": [
+            0.0,
+            0.0
+          ],
+          "examples": []
+        }
+      }
+    }
+  }
+}

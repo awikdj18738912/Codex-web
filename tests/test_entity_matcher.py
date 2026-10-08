@@ -37,7 +37,7 @@ def _definition(
 
 
 class EntityCandidateMatcherTest(unittest.TestCase):
-    def test_same_pinyin_single_character_error_can_auto_normalize(self) -> None:
+    def test_same_pinyin_error_requires_context_confirmation(self) -> None:
         entity = _definition("鬼灵门")
         matcher = EntityCandidateMatcher(
             (entity,), selected_domain="game", mode=EntityFuzzyMode.AUTO
@@ -45,8 +45,9 @@ class EntityCandidateMatcherTest(unittest.TestCase):
 
         report = matcher.match("鬼灵们是副本入口。", allow_auto=True)
 
-        self.assertEqual(len(report.auto_matches), 1)
-        match = report.auto_matches[0]
+        self.assertEqual(report.auto_matches, ())
+        match = report.matches[0]
+        self.assertEqual(match.decision, EntityDecision.HINT_ONLY)
         self.assertEqual(match.observed, "鬼灵们")
         self.assertEqual(match.canonical, "鬼灵门")
         self.assertGreaterEqual(match.pinyin_score, 0.99)
@@ -61,7 +62,7 @@ class EntityCandidateMatcherTest(unittest.TestCase):
 
         self.assertEqual(report.auto_matches, ())
         self.assertEqual(report.matches[0].decision, EntityDecision.KEEP_RAW)
-        self.assertIn("shadow_would_auto_normalize", report.matches[0].reasons)
+        self.assertIn("context_confirmation_required", report.matches[0].reasons)
 
     def test_ascii_spacing_variant_can_be_normalized(self) -> None:
         entity = _definition("AgenticASR", entity_type="PROJECT")
@@ -109,8 +110,8 @@ class EntityCandidateMatcherTest(unittest.TestCase):
 
         report = matcher.match("李飞鱼", allow_auto=True)
 
-        self.assertEqual(report.auto_matches[0].canonical, "厉飞羽")
-        self.assertAlmostEqual(report.auto_matches[0].char_score, 1 / 3)
+        self.assertEqual(report.matches[0].canonical, "厉飞羽")
+        self.assertAlmostEqual(report.matches[0].char_score, 1 / 3)
 
     def test_ambiguous_homophones_are_downgraded(self) -> None:
         matcher = EntityCandidateMatcher(
@@ -165,7 +166,7 @@ class EntityPipelineTest(unittest.TestCase):
         self.assertTrue(finalized.accepted)
         self.assertEqual(finalized.text, "第一段")
 
-    def test_auto_match_is_masked_and_restored_to_canonical(self) -> None:
+    def test_fuzzy_candidate_stays_unmasked_until_confirmed(self) -> None:
         entity = _definition("鬼灵门")
         protector = EntityProtector((entity,))
         matcher = EntityCandidateMatcher(
@@ -179,16 +180,16 @@ class EntityPipelineTest(unittest.TestCase):
             allow_auto=True,
         )
 
-        self.assertNotIn("鬼灵们", prepared.protection.masked_text)
-        self.assertEqual(prepared.baseline_text, "鬼灵门是副本入口。")
+        self.assertIn("鬼灵们", prepared.protection.masked_text)
+        self.assertEqual(prepared.baseline_text, "鬼灵们是副本入口。")
         finalized = finalize_entity_segment(
             prepared.protection.masked_text, prepared, protector
         )
         self.assertTrue(finalized.accepted)
-        self.assertEqual(finalized.text, "鬼灵门是副本入口。")
+        self.assertEqual(finalized.text, "鬼灵们是副本入口。")
 
     def test_broken_placeholder_falls_back_to_deterministic_baseline(self) -> None:
-        entity = _definition("鬼灵门")
+        entity = _definition("鬼灵门", aliases=("鬼灵们",))
         protector = EntityProtector((entity,))
         matcher = EntityCandidateMatcher(
             (entity,), selected_domain="game", mode="auto"
@@ -244,7 +245,7 @@ class EntityPipelineTest(unittest.TestCase):
             "鬼灵们是入口", protector, matcher, allow_auto=True
         )
 
-        finalized = finalize_entity_segment("鬼灵门是入口", prepared, protector)
+        finalized = finalize_entity_segment("鬼灵门是入口", prepared, protector, entity_patch={"action":"replace","source":"鬼灵们","target":"鬼灵门","reason":"entity_correction"})
 
         self.assertTrue(finalized.accepted)
         self.assertEqual(finalized.text, "鬼灵门是入口")

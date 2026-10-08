@@ -1,0 +1,224 @@
+{
+  "role": "Constructed text functional checks, separate from all audio metrics",
+  "results": [
+    {
+      "case": "existing_alias",
+      "library": "current_library",
+      "source": "医生安排凯比手术。",
+      "expected": "医生安排TAVI手术。",
+      "output": "医生安排TAVI手术。",
+      "passed": true,
+      "normalizations": [
+        {
+          "observed": "凯比手术",
+          "canonical": "TAVI手术",
+          "entity_type": "TERM",
+          "entity_id": 12,
+          "match_type": "EXACT_ALIAS",
+          "match_score": 1.0
+        }
+      ],
+      "hints": [
+        "TAVI手术"
+      ],
+      "candidates": []
+    },
+    {
+      "case": "existing_alias_noise",
+      "library": "current_library",
+      "source": "患者完成凯蒂手术。",
+      "expected": "患者完成TAVI手术。",
+      "output": "患者完成TAVI手术。",
+      "passed": true,
+      "normalizations": [
+        {
+          "observed": "凯蒂手术",
+          "canonical": "TAVI手术",
+          "entity_type": "TERM",
+          "entity_id": 12,
+          "match_type": "EXACT_ALIAS",
+          "match_score": 1.0
+        }
+      ],
+      "hints": [
+        "TAVI手术"
+      ],
+      "candidates": []
+    },
+    {
+      "case": "preserve_correct",
+      "library": "current_library",
+      "source": "患者完成TAVI手术。",
+      "expected": "患者完成TAVI手术。",
+      "output": "患者完成TAVI手术。",
+      "passed": true,
+      "normalizations": [],
+      "hints": [],
+      "candidates": []
+    },
+    {
+      "case": "preserve_dose",
+      "library": "current_library",
+      "source": "完成凯比手术后服药20毫克，每天2次。",
+      "expected": "完成TAVI手术后服药20毫克，每天2次。",
+      "output": "完成TAVI手术后服药20毫克，每天2次。",
+      "passed": true,
+      "normalizations": [
+        {
+          "observed": "凯比手术",
+          "canonical": "TAVI手术",
+          "entity_type": "TERM",
+          "entity_id": 12,
+          "match_type": "EXACT_ALIAS",
+          "match_score": 1.0
+        }
+      ],
+      "hints": [
+        "TAVI手术"
+      ],
+      "candidates": []
+    },
+    {
+      "case": "whole_homophone_context",
+      "library": "orthopedics",
+      "source": "患者患有骨质书松症，医生建议补钙。",
+      "expected": "患者患有骨质疏松症，医生建议补钙。",
+      "output": "患者患有骨质疏松症，医生建议补钙。",
+      "passed": true,
+      "normalizations": [
+        {
+          "observed": "骨质书松症",
+          "canonical": "骨质疏松症",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_PINYIN",
+          "match_score": 0.945
+        }
+      ],
+      "hints": [],
+      "candidates": [
+        {
+          "start": 4,
+          "end": 9,
+          "observed": "骨质书松症",
+          "entity_id": 1,
+          "canonical": "骨质疏松症",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "骨质疏松症",
+          "match_type": "CONTEXT_PINYIN",
+          "char_score": 0.8,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.75,
+          "final_score": 0.945,
+          "runner_up_score": 0.764,
+          "margin": 0.181,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "registered_pronunciation_context",
+            "context:补钙",
+            "context:医生"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "different_valid_disease",
+      "library": "orthopedics",
+      "source": "患者患有骨质增生，医生建议检查。",
+      "expected": "患者患有骨质增生，医生建议检查。",
+      "output": "患者患有骨质增生，医生建议检查。",
+      "passed": true,
+      "normalizations": [],
+      "hints": [],
+      "candidates": []
+    },
+    {
+      "case": "missing_character_current_limitation",
+      "library": "orthopedics",
+      "source": "患者有骨疏松症，医生建议补钙。",
+      "expected": "患者有骨疏松症，医生建议补钙。",
+      "output": "患者有骨疏松症，医生建议补钙。",
+      "passed": true,
+      "normalizations": [],
+      "hints": [
+        "骨质疏松症"
+      ],
+      "candidates": [
+        {
+          "start": 3,
+          "end": 7,
+          "observed": "骨疏松症",
+          "entity_id": 1,
+          "canonical": "骨质疏松症",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "骨质疏松症",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.8,
+          "pinyin_score": 0.8,
+          "length_score": 0.8,
+          "domain_score": 1.0,
+          "priority_score": 0.75,
+          "final_score": 0.815,
+          "runner_up_score": 0.594,
+          "margin": 0.221,
+          "decision": "HINT_ONLY",
+          "reasons": [
+            "pinyin_score_below_threshold"
+          ]
+        }
+      ]
+    },
+    {
+      "case": "ordinary_word",
+      "library": "orthopedics",
+      "source": "患者曾经系统学习了急救。",
+      "expected": "患者曾经系统学习了急救。",
+      "output": "患者曾经系统学习了急救。",
+      "passed": true,
+      "normalizations": [],
+      "hints": [],
+      "candidates": []
+    },
+    {
+      "case": "latin_word_boundary",
+      "library": "cardiopulmonary",
+      "source": "myTAVIcode是文件名。",
+      "expected": "myTAVIcode是文件名。",
+      "output": "myTAVIcode是文件名。",
+      "passed": true,
+      "normalizations": [],
+      "hints": [],
+      "candidates": [
+        {
+          "start": 1,
+          "end": 6,
+          "observed": "yTAVI",
+          "entity_id": 1,
+          "canonical": "TAVI",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "TAVI",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.8,
+          "pinyin_score": 0.8,
+          "length_score": 0.8,
+          "domain_score": 1.0,
+          "priority_score": 0.75,
+          "final_score": 0.815,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "KEEP_RAW",
+          "reasons": [
+            "latin_word_boundary_conflict"
+          ]
+        }
+      ]
+    }
+  ],
+  "passed": 9,
+  "total": 9
+}

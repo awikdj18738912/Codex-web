@@ -17,8 +17,9 @@
     .log-link:hover { background: #edf2f0; }
     h1 { margin: 0; font-size: 28px; font-weight: 680; letter-spacing: 0; }
     .status { margin: 9px 0 0; color: #53615f; font-size: 14px; }
-    .control { display: flex; align-items: center; gap: 16px; padding: 28px 0; border-bottom: 1px solid #c9d1cf; }
-    .mode { display: inline-flex; align-items: center; gap: 8px; color: #53615f; font-size: 14px; }
+    .control { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 28px 0; border-bottom: 1px solid #c9d1cf; }
+    .mode { display: inline-flex; flex-wrap: wrap; flex-shrink: 0; max-width: 100%; align-items: center; gap: 8px; color: #53615f; font-size: 14px; white-space: nowrap; }
+    .control select { max-width: 100%; }
     select { height: 40px; border: 1px solid #aebbb8; border-radius: 6px; background: #fff; color: #17201f; padding: 0 10px; font: inherit; }
     select:disabled { opacity: .6; }
     button { min-width: 168px; height: 44px; border: 1px solid #006b60; border-radius: 6px; background: #006b60; color: #fff; font: inherit; font-weight: 650; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
@@ -128,6 +129,7 @@
           <option value="streaming">离线流式（文件）：按块转录与精修</option>
         </select>
       </label>
+      <label class="mode"><input id="entity-asr-context" type="checkbox">词库辅助识别 <small id="entity-context-status"></small></label>
       <label class="mode" for="transcription-domain">术语领域
         <select id="transcription-domain">
           <option value="general">通用</option><option value="medical">医疗</option><option value="legal">法律</option><option value="education">教育</option><option value="finance">金融</option><option value="technology">科技</option>
@@ -213,6 +215,14 @@
     const audioFileInput = document.querySelector('#audio-file');
     const modeSelect = document.querySelector('#mode');
     const transcriptionDomain = document.querySelector('#transcription-domain');
+    const entityAsrContext = document.querySelector('#entity-asr-context');
+    let entityContextTouched = false;
+    entityAsrContext.addEventListener('change', () => { entityContextTouched = true; });
+    fetch('/health').then(response => response.json()).then(data => {
+      if (!entityContextTouched && !running && !finishing) {
+        entityAsrContext.checked = data.entity_asr_context_enabled === true;
+      }
+    }).catch(() => {});
     const status = document.querySelector('#status');
     const timer = document.querySelector('#timer');
     const raw = document.querySelector('#raw');
@@ -604,7 +614,7 @@
       ticker = null;
       finishWatchdog = null;
       modeSelect.disabled = false;
-      transcriptionDomain.disabled = false;
+      transcriptionDomain.disabled = false; entityAsrContext.disabled = false;
       setButton(false);
       setStatus(status, isError);
       if (socket && socket.readyState !== WebSocket.CLOSED) socket.close();
@@ -654,14 +664,15 @@
       return output;
     }
 
-    function websocketUrl() {
+    function websocketUrl(asrChunkSeconds) {
       const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
-      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value);
+      const decodeInterval = asrChunkSeconds === undefined ? '' : '&asr_chunk_seconds=' + encodeURIComponent(asrChunkSeconds);
+      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + '&entity_asr_context=' + (entityAsrContext.checked ? '1' : '0') + decodeInterval;
     }
 
-    function connectSocket() {
+    function connectSocket(asrChunkSeconds) {
       return new Promise((resolve, reject) => {
-        socket = new WebSocket(websocketUrl());
+        socket = new WebSocket(websocketUrl(asrChunkSeconds));
         const currentSocket = socket;
         socket.binaryType = 'arraybuffer';
         const timeout = setTimeout(() => reject(new Error('连接超时')), 10000);
@@ -692,7 +703,13 @@
           // Keep validated streaming refinements visible through stream drain
           // and final reconciliation; suppress only stale ASR hypotheses.
           if (finishing && data.event === 'transcript' && data.refiner_deferred !== true) return;
-          if (data.event === 'ready') return;
+          if (data.event === 'ready') {
+            document.querySelector('#entity-context-status').textContent = data.entity_asr_context_applied
+              ? `已使用 ${data.entity_asr_context_term_count || 0} 项术语`
+              : (data.entity_asr_context_requested
+                 ? (data.entity_asr_context_term_count ? '当前后端未应用术语提示' : '该领域暂无适合辅助识别的术语') : '');
+            return;
+          }
           if (data.event === 'error') { completeTranscription('识别服务错误：' + data.detail, true); return; }
           if (data.event === 'status' && data.stage === 'stream_refinement_drain') {
             refinerExecuted.textContent = 'ASR 已结束 · 流式精修收尾中';
@@ -828,10 +845,12 @@
       try {
         finishing = false;
         clearTimeout(finishWatchdog);
-        modeSelect.disabled = true; transcriptionDomain.disabled = true;
+        modeSelect.disabled = true; transcriptionDomain.disabled = true; entityAsrContext.disabled = true;
         setButton(false, true); setStatus(`正在读取文件：${file.name}`);
         const samples = await decodeAudioFile(file);
-        await connectSocket();
+        // File uploads decode every two audio seconds; transport stays at one
+        // second per block. Microphone sessions retain the server default.
+        await connectSocket(2);
         raw.textContent = ''; clean.textContent = ''; latestRefinedText = ''; lastAppliedRefinementRevision = 0; resetRefinerStatus(); resetRefinementHistory();
         running = true; startedAt = Date.now(); ticker = setInterval(updateTimer, 250); updateTimer();
         setButton(false, true);
@@ -857,7 +876,7 @@
           }, FINISH_WATCHDOG_MS);
         }
       } catch (error) {
-        running = false; finishing = false; clearInterval(ticker); clearTimeout(finishWatchdog); modeSelect.disabled = false; transcriptionDomain.disabled = false; setButton(false);
+        running = false; finishing = false; clearInterval(ticker); clearTimeout(finishWatchdog); modeSelect.disabled = false; transcriptionDomain.disabled = false; entityAsrContext.disabled = false; setButton(false);
         setStatus('文件处理失败：' + error.message, true);
         if (socket) socket.close(); socket = null;
       }
@@ -868,7 +887,7 @@
         finishing = false;
         clearTimeout(finishWatchdog);
         selectedMode = modeSelect.value;
-        modeSelect.disabled = true; transcriptionDomain.disabled = true;
+        modeSelect.disabled = true; transcriptionDomain.disabled = true; entityAsrContext.disabled = true;
         setButton(false, true); setStatus('正在连接识别服务');
         await connectSocket();
         stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
@@ -885,7 +904,7 @@
         running = true; startedAt = Date.now(); ticker = setInterval(updateTimer, 250); updateTimer();
         setButton(true); setStatus('实时识别中');
       } catch (error) {
-        running = false; finishing = false; clearTimeout(finishWatchdog); modeSelect.disabled = false; transcriptionDomain.disabled = false; setButton(false); setStatus('启动失败：' + error.message, true);
+        running = false; finishing = false; clearTimeout(finishWatchdog); modeSelect.disabled = false; transcriptionDomain.disabled = false; entityAsrContext.disabled = false; setButton(false); setStatus('启动失败：' + error.message, true);
         if (socket) socket.close(); socket = null; await stopAudio();
       }
     }

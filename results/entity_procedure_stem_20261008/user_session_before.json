@@ -1,0 +1,178 @@
+{
+  "captured_at": "2026-10-08T05:15:31.256995+00:00",
+  "trace_id": "383e1715f45648adb4af6a283613cfc6",
+  "refinement_log_file": "refinement_windows_grouped_20261008_051531_256585_383e1715f45648adb4af6a283613cfc6.md",
+  "mode": "streaming",
+  "entity_domain": "medical",
+  "entity_asr_context_requested": false,
+  "entity_asr_context_applied": false,
+  "entity_asr_context_term_count": 0,
+  "asr_language": "Chinese",
+  "asr_confidence": 0.9835731799960902,
+  "asr_confidence_metadata": {
+    "calibrated": false,
+    "covers_full_text": false,
+    "scope": "current_state",
+    "source": "qwen_vllm_token_logprob",
+    "token_count": 8,
+    "min_probability": 0.9339092254536749
+  },
+  "asr_activity": {
+    "vad": "silero",
+    "vad_speech_detected": true,
+    "vad_segment_ended": false,
+    "vad_skipped_chunks": 0,
+    "silence_skipped_chunks": 0,
+    "asr_segment_count": 2,
+    "segmentation_mode": "vad_finalize"
+  },
+  "output": {
+    "raw_text": "麻醉后，医生马上为他展开预计长达七个小时的手术。以十二指肠切除术。",
+    "clean_text": "麻醉后，医生马上为他展开预计长达7个小时的手术。以十二指肠切除术。",
+    "final_refinement_mode": "off",
+    "refinement_revision": 2,
+    "llm_latency_ms": 638,
+    "refiner_executed": true,
+    "refiner_accepted": true,
+    "refiner_reject_reasons": [],
+    "placeholder_retry_count": 0,
+    "refiner_retry_count": 0,
+    "refiner_retry_reasons": [],
+    "refiner_masked_outputs": [
+      "麻醉后，医生马上为他展开预计长达7个小时的手术。以十二指肠切除术。<KEY>[十二指肠]"
+    ],
+    "structured_patch_audits": [
+      {
+        "format": "legacy_text",
+        "accepted": true,
+        "issue": null
+      }
+    ],
+    "boundary_anomalies": [],
+    "boundary_reviews": [],
+    "refinement_gate_mode": "tri_state",
+    "refinement_gate_config": {
+      "mode": "tri_state",
+      "high_confidence": 0.92,
+      "refine_on_unverified_confidence": false
+    },
+    "refinement_gate_decisions": [
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "refine",
+        "state": "REFINE",
+        "reasons": [
+          "entity_hint_present"
+        ],
+        "visible_chars": 30,
+        "asr_confidence": 0.9835731799960902,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": [
+          "numeric_normalization"
+        ]
+      }
+    ],
+    "refinement_gate_skipped_segments": 0,
+    "entity_audit_issues": [],
+    "entity_refinement_hints": [
+      "胰十二指肠"
+    ],
+    "entity_normalizations": [],
+    "numeric_normalizations": [
+      {
+        "original": "七个小时",
+        "replacement": "7个小时",
+        "kind": "zh.number.complete_numeric_object",
+        "start": 16,
+        "end": 20,
+        "segment_index": 1,
+        "engine": "zh-itn",
+        "rule_pack": "zh-itn-strict-conservative-v90"
+      }
+    ],
+    "numeric_rule_repairs": [],
+    "numeric_backend": "zh-itn",
+    "numeric_rule_latency_ms": 3.819,
+    "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+    "numeric_fallbacks": [],
+    "safe_numeric_repairs": [],
+    "safe_repetition_repairs": [],
+    "repetition_reviews": [],
+    "local_deletion_reviews": [],
+    "boundary_echo_repairs": [],
+    "protected_entities": [],
+    "entity_candidates": [
+      {
+        "start": 0,
+        "end": 5,
+        "observed": "以十二指肠",
+        "entity_id": 13,
+        "canonical": "胰十二指肠",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "胰十二指肠",
+        "match_type": "PINYIN_FUZZY",
+        "char_score": 0.8,
+        "pinyin_score": 1.0,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.93,
+        "runner_up_score": null,
+        "margin": 1.0,
+        "decision": "HINT_ONLY",
+        "reasons": [
+          "context_confirmation_required"
+        ]
+      },
+      {
+        "start": 24,
+        "end": 29,
+        "observed": "以十二指肠",
+        "entity_id": 13,
+        "canonical": "胰十二指肠",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "胰十二指肠",
+        "match_type": "PINYIN_FUZZY",
+        "char_score": 0.8,
+        "pinyin_score": 1.0,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.93,
+        "runner_up_score": null,
+        "margin": 1.0,
+        "decision": "HINT_ONLY",
+        "reasons": [
+          "context_confirmation_required"
+        ]
+      }
+    ],
+    "entity_matcher_latency_ms": 4.639,
+    "entity_fuzzy_mode": "auto",
+    "entity_matching_config_version": 2,
+    "rule_protection_enabled": true,
+    "numeric_normalization_enabled": true,
+    "refiner_session_stats": {
+      "schema_version": 1,
+      "call_count": 1,
+      "initial_call_count": 1,
+      "retry_call_count": 0,
+      "intermediate_call_count": 1,
+      "final_call_count": 0,
+      "completed_call_count": 1,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 643.965,
+      "gate_skipped_segment_count": 1,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 2,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    }
+  }
+}

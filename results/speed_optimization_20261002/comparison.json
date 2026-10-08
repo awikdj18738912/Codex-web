@@ -1,0 +1,914 @@
+{
+  "rows": [
+    {
+      "audio": 4,
+      "variant": "baseline",
+      "runs": [
+        {
+          "label": "baseline_a1",
+          "elapsed_s": 57.332,
+          "feed_s": 55.712,
+          "finish_s": 1.62,
+          "first_text_s": 0.254,
+          "first_refined_s": 1.884,
+          "refiner_wall_s": 4.037832,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "baseline_a2",
+          "elapsed_s": 58.366,
+          "feed_s": 57.088,
+          "finish_s": 1.279,
+          "first_text_s": 0.227,
+          "first_refined_s": 1.888,
+          "refiner_wall_s": 4.010057,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 57.849000000000004,
+      "mean_finish_s": 1.4495,
+      "mean_refiner_wall_s": 4.0239445,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 4,
+      "variant": "transport",
+      "runs": [
+        {
+          "label": "transport_b1",
+          "elapsed_s": 57.212,
+          "feed_s": 55.562,
+          "finish_s": 1.65,
+          "first_text_s": 0.27,
+          "first_refined_s": 1.899,
+          "refiner_wall_s": 3.967332,
+          "refiner_calls": 16,
+          "raw_equal": false,
+          "clean_equal": false,
+          "raw_differences": [
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "水",
+              "source_context": "更大的风险。与此同时，这些被拦截的洪水。能通过控制泄洪时间，分先后进入下游，从而",
+              "target_context": "更大的风险。与此同时，这些被拦截的洪水。水能通过控制泄洪时间，分先后进入下游，从而"
+            },
+            {
+              "kind": "replace",
+              "source": "1998",
+              "target": "一九九八",
+              "source_context": "下游前被削减。也让湖北荆江的最高水位线比1998年还要更低两米。不过，这并不意味着万无一",
+              "target_context": "下游前被削减。也让湖北荆江的最高水位线比一九九八年还要更低两米。不过，这并不意味着万无一"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "之时，数百公里外的华北平原却一度无水可用。为此，人们只能创造新的江河。这里是太行山",
+              "target_context": "之时，数百公里外的华北平原却一度无水可用，为此，人们只能创造新的江河。这里是太行山"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "、",
+              "source_context": "中。一旦决口，便会迅速淹没地势低洼的村庄城镇，人称“地上悬河”。而这些泥沙大多来",
+              "target_context": "中。一旦决口，便会迅速淹没地势低洼的村庄、城镇，人称“地上悬河”。而这些泥沙大多来"
+            }
+          ],
+          "clean_differences": [
+            {
+              "kind": "delete",
+              "source": "。",
+              "target": "",
+              "source_context": "生更大的风险。与此同时，这些被拦截的洪水。能通过控制泄洪时间，分先后进入下游，从而",
+              "target_context": "生更大的风险。与此同时，这些被拦截的洪水能通过控制泄洪时间，分先后进入下游，从而"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "之时，数百公里外的华北平原却一度无水可用。为此，人们只能创造新的江河。这里是太行山",
+              "target_context": "之时，数百公里外的华北平原却一度无水可用，为此，人们只能创造新的江河。这里是太行山"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "、",
+              "source_context": "中。一旦决口，便会迅速淹没地势低洼的村庄城镇，人称“地上悬河”。而这些泥沙大多来",
+              "target_context": "中。一旦决口，便会迅速淹没地势低洼的村庄、城镇，人称“地上悬河”。而这些泥沙大多来"
+            }
+          ],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 57.212,
+      "mean_finish_s": 1.65,
+      "mean_refiner_wall_s": 3.967332,
+      "all_raw_equal": false,
+      "all_clean_equal": false,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 4,
+      "variant": "batch",
+      "runs": [
+        {
+          "label": "scoring_b1",
+          "elapsed_s": 57.914,
+          "feed_s": 56.31,
+          "finish_s": 1.604,
+          "first_text_s": 0.22,
+          "first_refined_s": 1.906,
+          "refiner_wall_s": 3.72374,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "scoring_b2",
+          "elapsed_s": 57.432,
+          "feed_s": 55.834,
+          "finish_s": 1.598,
+          "first_text_s": 0.216,
+          "first_refined_s": 1.847,
+          "refiner_wall_s": 3.773281,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 57.673,
+      "mean_finish_s": 1.601,
+      "mean_refiner_wall_s": 3.7485105,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 4,
+      "variant": "crop_cache",
+      "runs": [
+        {
+          "label": "crop_c1",
+          "elapsed_s": 57.348,
+          "feed_s": 55.731,
+          "finish_s": 1.617,
+          "first_text_s": 0.213,
+          "first_refined_s": 1.829,
+          "refiner_wall_s": 3.760223,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "crop_c2",
+          "elapsed_s": 57.5,
+          "feed_s": 55.891,
+          "finish_s": 1.609,
+          "first_text_s": 0.225,
+          "first_refined_s": 1.844,
+          "refiner_wall_s": 3.3410729999999997,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 57.424,
+      "mean_finish_s": 1.613,
+      "mean_refiner_wall_s": 3.550648,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 4,
+      "variant": "uncompressed",
+      "runs": [
+        {
+          "label": "uncompressed_d1",
+          "elapsed_s": 54.701,
+          "feed_s": 52.813,
+          "finish_s": 1.888,
+          "first_text_s": 0.234,
+          "first_refined_s": 1.799,
+          "refiner_wall_s": 3.96149,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "uncompressed_d2",
+          "elapsed_s": 54.703,
+          "feed_s": 52.791,
+          "finish_s": 1.912,
+          "first_text_s": 0.217,
+          "first_refined_s": 1.776,
+          "refiner_wall_s": 3.95194,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 54.702,
+      "mean_finish_s": 1.9,
+      "mean_refiner_wall_s": 3.956715,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 4,
+      "variant": "deployed",
+      "runs": [
+        {
+          "label": "deployed_e1",
+          "elapsed_s": 54.277,
+          "feed_s": 52.331,
+          "finish_s": 1.946,
+          "first_text_s": 0.176,
+          "first_refined_s": 1.72,
+          "refiner_wall_s": 3.9469279999999998,
+          "refiner_calls": 16,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 54.277,
+      "mean_finish_s": 1.946,
+      "mean_refiner_wall_s": 3.9469279999999998,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "baseline",
+      "runs": [
+        {
+          "label": "baseline_a1",
+          "elapsed_s": 86.853,
+          "feed_s": 77.24,
+          "finish_s": 9.613,
+          "first_text_s": 0.181,
+          "first_refined_s": 4.956,
+          "refiner_wall_s": 43.004478999999996,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "baseline_a2",
+          "elapsed_s": 87.742,
+          "feed_s": 78.309,
+          "finish_s": 9.433,
+          "first_text_s": 0.188,
+          "first_refined_s": 4.754,
+          "refiner_wall_s": 42.418431,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 87.2975,
+      "mean_finish_s": 9.523,
+      "mean_refiner_wall_s": 42.711455,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "transport",
+      "runs": [
+        {
+          "label": "transport_b1",
+          "elapsed_s": 84.816,
+          "feed_s": 73.611,
+          "finish_s": 11.204,
+          "first_text_s": 0.196,
+          "first_refined_s": 4.755,
+          "refiner_wall_s": 46.183643,
+          "refiner_calls": 169,
+          "raw_equal": false,
+          "clean_equal": false,
+          "raw_differences": [
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "利益追求的。回到我们今天的话题，还是一样。这个人的批语很明显，他不是儒家的立场，他",
+              "target_context": "利益追求的。回到我们今天的话题，还是一样，这个人的批语很明显，他不是儒家的立场，他"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "啊",
+              "source_context": "就是儒家的大师教唆了一个最大的法家的学生，啊对，对对，但是他这个他这个变化呢，他",
+              "target_context": "就是儒家的大师教唆了一个最大的法家的学生啊，对，对对，但是他这个他这个变化呢，他是"
+            },
+            {
+              "kind": "delete",
+              "source": "啊",
+              "target": "",
+              "source_context": "是儒家的大师教唆了一个最大的法家的学生，啊对，对对，但是他这个他这个变化呢，他是有",
+              "target_context": "儒家的大师教唆了一个最大的法家的学生啊，对，对对，但是他这个他这个变化呢，他是有"
+            },
+            {
+              "kind": "replace",
+              "source": "所以",
+              "target": "说",
+              "source_context": "因为在孔子的时代呢，呃，春秋晚年晚期嘛，所以礼坏乐崩嘛，对，虽然礼坏乐崩了，礼乐还在",
+              "target_context": "因为在孔子的时代呢，呃，春秋晚年晚期嘛，说礼坏乐崩嘛，对，虽然礼坏乐崩了，礼乐还在"
+            },
+            {
+              "kind": "replace",
+              "source": "不",
+              "target": "部",
+              "source_context": "题在于什么呢？就是经验性的观察，它一定是不分的人类经验。或者说，经验性的观察永远是",
+              "target_context": "题在于什么呢？就是经验性的观察，它一定是部分的人类经验。或者说，经验性的观察永远是"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "，",
+              "source_context": "一样，它结论可以一样。嗯哼，那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所",
+              "target_context": "一样，它结论可以一样。嗯哼，那我们现在来，来做一个推推演啊。嗯哼，我们我们就假设所"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "的",
+              "source_context": "与人方愚蠢的方法是他妈的，我宁可我得不到利，我也不让你得利。我让通通的人都没有利",
+              "target_context": "与人方愚蠢的方法是他妈的，我宁可我得不到的利，我也不让你得利。我让通通的人都没有利"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "让通通的人都没有利益。对，那叫愚蠢的选择，就两个极端哈。对，当然我们大量的是中间地",
+              "target_context": "让通通的人都没有利益。对，那叫愚蠢的选择。就两个极端哈。对，当然我们大量的是中间地"
+            },
+            {
+              "kind": "delete",
+              "source": "出",
+              "target": "",
+              "source_context": "，我们是不是该建立一个法律啊？对，因此。出发点从利出发。未必导致恶果。您刚才说的，",
+              "target_context": "，我们是不是该建立一个法律啊？对，因此。发点从利出发。未必导致恶果。您刚才说的，"
+            },
+            {
+              "kind": "replace",
+              "source": "干脆",
+              "target": "刚才",
+              "source_context": "敌，呃，这个不太好，这个大家都会毁灭了。干脆大家坐下来聊一聊。对，坐下来聊一聊，我们",
+              "target_context": "敌，呃，这个不太好，这个大家都会毁灭了。刚才大家坐下来聊一聊。对，坐下来聊一聊，我们"
+            },
+            {
+              "kind": "replace",
+              "source": "嗯",
+              "target": "对",
+              "source_context": "社会共同体，对，也可以保护我们每一个人，嗯，但这里面有一个巨大的逻辑问题在于，嗯，",
+              "target_context": "社会共同体，对，也可以保护我们每一个人，对，但这里面有一个巨大的逻辑问题在于，嗯，"
+            },
+            {
+              "kind": "replace",
+              "source": "要",
+              "target": "讲",
+              "source_context": "但是儒家又认为法家太现实。呃，不是，我我要法法家太残忍或者太太堕落。对对，所以在某",
+              "target_context": "但是儒家又认为法家太现实。呃，不是，我我讲法法家太残忍或者太太堕落。对对。所以在某"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "是，我我要法法家太残忍或者太太堕落。对对，所以在某种意义上，他最后只好整个历史就是",
+              "target_context": "是，我我讲法法家太残忍或者太太堕落。对对。所以在某种意义上，他最后只好整个历史就是"
+            },
+            {
+              "kind": "replace",
+              "source": "他只好摆",
+              "target": "内法外儒",
+              "source_context": "个历史就是在他。他们两家之间摆嘛，对啊，他只好摆嘛，他只好摆嘛，嗯，他只好摆来摆去，他没",
+              "target_context": "个历史就是在他。他们两家之间摆嘛，对啊，内法外儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "这",
+              "source_context": "摆嘛，他只好摆嘛，嗯，他只好摆来摆去，他没办法，对，嗯，非常有意思。今天跟易老师",
+              "target_context": "儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，嗯，非常有意思啊，今天跟易"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "有",
+              "source_context": "嘛，他只好摆嘛，嗯，他只好摆来摆去，他没办法，对，嗯，非常有意思。今天跟易老师学",
+              "target_context": "，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，嗯，非常有意思啊，今天跟易老师"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "啊，",
+              "source_context": "好摆来摆去，他没办法，对，嗯，非常有意思。今天跟易老师学了很多很多，尤其关于这个中",
+              "target_context": "来摆去，他这没有办法，对，嗯，非常有意思啊，今天跟易老师学了很多很多啊，尤其关于这个"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "啊",
+              "source_context": "嗯，非常有意思。今天跟易老师学了很多很多，尤其关于这个中国古代的义利之争，儒家跟",
+              "target_context": "，非常有意思啊，今天跟易老师学了很多很多啊，尤其关于这个中国古代的义利之争，儒家跟"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "的",
+              "source_context": "利之争，儒家跟法家的争论啊，我们今天讨论问题，可能也没有结论啊，但是确实我。受益",
+              "target_context": "利之争，儒家跟法家的争论啊，我们今天讨论的问题，可能也没有结论啊，但是确实我。受益"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "：",
+              "source_context": "老师，呃，其实我最想告诉大家的一句话就是，没有结论就是最好的结论，呃，为什么要进行",
+              "target_context": "老师，呃，其实我最想告诉大家的一句话就是：没有结论就是最好的结论。呃，为什么要进行"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "大家的一句话就是，没有结论就是最好的结论，呃，为什么要进行这样一些讨论？是甚至我们",
+              "target_context": "大家的一句话就是：没有结论就是最好的结论。呃，为什么要进行这样一些讨论？是甚至我们"
+            }
+          ],
+          "clean_differences": [
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "利益追求的。回到我们今天的话题，还是一样。这个人的批语很明显，他不是儒家的立场，他",
+              "target_context": "利益追求的。回到我们今天的话题，还是一样，这个人的批语很明显，他不是儒家的立场，他"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "啊",
+              "source_context": "就是儒家的大师教唆了一个最大的法家的学生，啊对，对对，但是他这个变化呢，他是有他",
+              "target_context": "就是儒家的大师教唆了一个最大的法家的学生啊，对，但是他这个变化呢，他是有他的历史原"
+            },
+            {
+              "kind": "delete",
+              "source": "啊对，对",
+              "target": "",
+              "source_context": "是儒家的大师教唆了一个最大的法家的学生，啊对，对对，但是他这个变化呢，他是有他的历史原因",
+              "target_context": "儒家的大师教唆了一个最大的法家的学生啊，对，但是他这个变化呢，他是有他的历史原因"
+            },
+            {
+              "kind": "replace",
+              "source": "所以",
+              "target": "说",
+              "source_context": "对，因为在孔子的时代呢，春秋晚年晚期嘛，所以礼坏乐崩嘛，对，虽然礼坏乐崩了，礼乐还在",
+              "target_context": "对，因为在孔子的时代呢，春秋晚年晚期嘛，说礼坏乐崩嘛，对，虽然礼坏乐崩了，礼乐还在"
+            },
+            {
+              "kind": "replace",
+              "source": "不",
+              "target": "部",
+              "source_context": "题在于什么呢？就是经验性的观察，它一定是不分的人类经验。或者说，经验性的观察永远是",
+              "target_context": "题在于什么呢？就是经验性的观察，它一定是部分的人类经验。或者说，经验性的观察永远是"
+            },
+            {
+              "kind": "delete",
+              "source": "我们",
+              "target": "",
+              "source_context": "，那我们现在来做一个推推演啊。嗯哼，我们我们就假设所有人都是。为了他的，那他就要明白",
+              "target_context": "，那我们现在来做一个推推演啊。嗯哼，我们就假设所有人都是。为了利的，那他就要明白"
+            },
+            {
+              "kind": "replace",
+              "source": "他",
+              "target": "利",
+              "source_context": "啊。嗯哼，我们我们就假设所有人都是。为了他的，那他就要明白一个道理：我是为了利的，",
+              "target_context": "推演啊。嗯哼，我们就假设所有人都是。为了利的，那他就要明白一个道理：我是为了利的，"
+            },
+            {
+              "kind": "delete",
+              "source": "，",
+              "target": "",
+              "source_context": "要从利这个出发，这2个选择都是可能的。对，存在吧？嗯哼，那么怎么选呢？嗯哼，就不能",
+              "target_context": "要从利这个出发，这2个选择都是可能的。对存在吧？嗯哼，那么怎么选呢？嗯哼，就不能"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "嗯哼，又从利义的角度选，你违背初心嘛？对。初心是为了利嘛？你对，你不能引入一个义的",
+              "target_context": "嗯哼，又从利义的角度选，你违背初心嘛？对，初心是为了利嘛？对。你不能引入一个义的概"
+            },
+            {
+              "kind": "delete",
+              "source": "你",
+              "target": "",
+              "source_context": "度选，你违背初心嘛？对。初心是为了利嘛？你对，你不能引入一个义的概念来选。嗯哼，那",
+              "target_context": "度选，你违背初心嘛？对，初心是为了利嘛？对。你不能引入一个义的概念来选。嗯哼，那"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "，你违背初心嘛？对。初心是为了利嘛？你对，你不能引入一个义的概念来选。嗯哼，那引入",
+              "target_context": "选，你违背初心嘛？对，初心是为了利嘛？对。你不能引入一个义的概念来选。嗯哼，那引入"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "的",
+              "source_context": "与人方愚蠢的方法是他妈的，我宁可我得不到利，我也不让你得利。我让通通的人都没有利",
+              "target_context": "与人方愚蠢的方法是他妈的，我宁可我得不到的利，我也不让你得利。我让通通的人都没有利"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "让通通的人都没有利益。对，那叫愚蠢的选择，就2个极端哈。对，当然我们大量的是中间地",
+              "target_context": "让通通的人都没有利益。对，那叫愚蠢的选择。就2个极端哈。对，当然我们大量的是中间地"
+            },
+            {
+              "kind": "delete",
+              "source": "出",
+              "target": "",
+              "source_context": "，我们是不是该建立一个法律啊？对，因此。出发点从利出发。未必导致恶果。您刚才说的，",
+              "target_context": "，我们是不是该建立一个法律啊？对，因此。发点从利出发。未必导致恶果。您刚才说的，"
+            },
+            {
+              "kind": "delete",
+              "source": "，",
+              "target": "",
+              "source_context": "呀，这个现在你打我，我打你，人类彼此为敌，这个比较好。这个大家都会毁灭了。干脆大家",
+              "target_context": "呀，这个现在你打我，我打你，人类彼此为敌这个不太好，这个大家都会毁灭了。刚才大家"
+            },
+            {
+              "kind": "replace",
+              "source": "比较",
+              "target": "不太",
+              "source_context": "个现在你打我，我打你，人类彼此为敌，这个比较好。这个大家都会毁灭了。干脆大家坐下来聊",
+              "target_context": "这个现在你打我，我打你，人类彼此为敌这个不太好，这个大家都会毁灭了。刚才大家坐下来聊"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "你打我，我打你，人类彼此为敌，这个比较好。这个大家都会毁灭了。干脆大家坐下来聊一聊",
+              "target_context": "在你打我，我打你，人类彼此为敌这个不太好，这个大家都会毁灭了。刚才大家坐下来聊一聊"
+            },
+            {
+              "kind": "replace",
+              "source": "干脆",
+              "target": "刚才",
+              "source_context": "此为敌，这个比较好。这个大家都会毁灭了。干脆大家坐下来聊一聊。对，坐下来聊一聊，我们",
+              "target_context": "彼此为敌这个不太好，这个大家都会毁灭了。刚才大家坐下来聊一聊。对，坐下来聊一聊，我们"
+            },
+            {
+              "kind": "delete",
+              "source": "让",
+              "target": "",
+              "source_context": "大家坐下来聊一聊。对，坐下来聊一聊，我们让让渡一部分的利益，对，这样成立了一个社会",
+              "target_context": "大家坐下来聊一聊。对，坐下来聊一聊，我们让渡一部分的利益，对，这样成立了一个社会"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "，对",
+              "source_context": "个社会共同体，对，也可以保护我们每一个人，但这里面有一个巨大的逻辑问题在于，这依",
+              "target_context": "个社会共同体，对，也可以保护我们每一个人，对，但这里面有一个巨大的逻辑问题在于，这依"
+            },
+            {
+              "kind": "delete",
+              "source": "骗",
+              "target": "",
+              "source_context": "一大堆的伪君子，是会有伪君子，然后互相骗骗到最后骗不下去为止，最后骗不下去就是谁的",
+              "target_context": "一大堆的伪君子，是会有伪君子，然后互相骗到最后骗不下去为止，最后骗不下去就是谁的"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "谁是老大。所以法家一直认为儒家太虚伪，对，但是儒家又认为法家太现实。不是，我要法法",
+              "target_context": "谁是老大。所以法家一直认为儒家太虚伪，对。但是儒家又认为法家太现实。呃，不是，我讲"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "呃，",
+              "source_context": "家太虚伪，对，但是儒家又认为法家太现实。不是，我要法法家太残忍或者太堕落。对，所",
+              "target_context": "家太虚伪，对。但是儒家又认为法家太现实。呃，不是，我讲法法家太残忍或者太堕落。对。所"
+            },
+            {
+              "kind": "replace",
+              "source": "要",
+              "target": "讲",
+              "source_context": "，对，但是儒家又认为法家太现实。不是，我要法法家太残忍或者太堕落。对，所以在某种意",
+              "target_context": "。但是儒家又认为法家太现实。呃，不是，我讲法法家太残忍或者太堕落。对。所以在某种意"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "。",
+              "source_context": "实。不是，我要法法家太残忍或者太堕落。对，所以在某种意义上，他最后只好整个历史就是",
+              "target_context": "呃，不是，我讲法法家太残忍或者太堕落。对。所以在某种意义上，他最后只好整个历史就是"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "内法外儒嘛，",
+              "source_context": "好整个历史就是在他们2家之间摆嘛，对啊，他只好摆嘛，他只好摆来摆去。他没办法，对",
+              "target_context": "好整个历史就是在他们2家之间摆嘛，对啊，内法外儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这没有"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "，嗯",
+              "source_context": "就是在他们2家之间摆嘛，对啊，他只好摆嘛，他只好摆来摆去。他没办法，对，嗯，非常",
+              "target_context": "家之间摆嘛，对啊，内法外儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，非常"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "间摆嘛，对啊，他只好摆嘛，他只好摆来摆去。他没办法，对，嗯，非常有意思。今天跟易老",
+              "target_context": "法外儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，非常有意思啊，今天跟易"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "这",
+              "source_context": "嘛，对啊，他只好摆嘛，他只好摆来摆去。他没办法，对，嗯，非常有意思。今天跟易老师",
+              "target_context": "儒嘛，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，非常有意思啊，今天跟易老师"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "有",
+              "source_context": "，对啊，他只好摆嘛，他只好摆来摆去。他没办法，对，嗯，非常有意思。今天跟易老师学",
+              "target_context": "，他只好摆嘛，嗯，他只好摆来摆去，他这没有办法，对，非常有意思啊，今天跟易老师学了"
+            },
+            {
+              "kind": "delete",
+              "source": "，嗯",
+              "target": "",
+              "source_context": "他只好摆嘛，他只好摆来摆去。他没办法，对，嗯，非常有意思。今天跟易老师学了很多，尤其",
+              "target_context": "嘛，嗯，他只好摆来摆去，他这没有办法，对，非常有意思啊，今天跟易老师学了很多很多"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "啊，",
+              "source_context": "好摆来摆去。他没办法，对，嗯，非常有意思。今天跟易老师学了很多，尤其关于这个中国古",
+              "target_context": "好摆来摆去，他这没有办法，对，非常有意思啊，今天跟易老师学了很多很多啊尤其关于这个中"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "很多啊",
+              "source_context": "对，嗯，非常有意思。今天跟易老师学了很多，尤其关于这个中国古代的义利之争儒家跟法家",
+              "target_context": "，对，非常有意思啊，今天跟易老师学了很多很多啊尤其关于这个中国古代的义利之争，儒家跟法"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "，",
+              "source_context": "学了很多，尤其关于这个中国古代的义利之争儒家跟法家的争论啊，我们今天讨论问题，可",
+              "target_context": "很多很多啊尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，"
+            },
+            {
+              "kind": "insert",
+              "source": "",
+              "target": "的",
+              "source_context": "义利之争儒家跟法家的争论啊，我们今天讨论问题，可能也没有结论啊，但是确实我。受益",
+              "target_context": "利之争，儒家跟法家的争论啊，我们今天讨论的问题，可能也没有结论啊，但是确实我。受益"
+            },
+            {
+              "kind": "replace",
+              "source": "。",
+              "target": "，",
+              "source_context": "论啊，但是确实我。受益匪浅啊！谢谢罗老师。其实我最想告诉大家的一句话就是，没有结论",
+              "target_context": "论啊，但是确实我。受益匪浅啊！谢谢罗老师，其实我最想告诉大家的一句话就是：没有结论"
+            },
+            {
+              "kind": "replace",
+              "source": "，",
+              "target": "：",
+              "source_context": "谢罗老师。其实我最想告诉大家的一句话就是，没有结论就是最好的结论。为什么要进行这样",
+              "target_context": "谢罗老师，其实我最想告诉大家的一句话就是：没有结论就是最好的结论。为什么要进行这样"
+            },
+            {
+              "kind": "delete",
+              "source": "啊，",
+              "target": "",
+              "source_context": "这个对话能够。帮能够帮助大家磨磨刀子吧，啊，但这个刀子不用来刑事犯罪啊，我们可以用来",
+              "target_context": "这个对话能够。帮能够帮助大家磨磨刀子吧，但这个刀子不用来刑事犯罪啊，我们可以用来"
+            }
+          ],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 84.816,
+      "mean_finish_s": 11.204,
+      "mean_refiner_wall_s": 46.183643,
+      "all_raw_equal": false,
+      "all_clean_equal": false,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "batch",
+      "runs": [
+        {
+          "label": "scoring_b1",
+          "elapsed_s": 88.501,
+          "feed_s": 77.444,
+          "finish_s": 11.057,
+          "first_text_s": 0.183,
+          "first_refined_s": 4.74,
+          "refiner_wall_s": 41.182469,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "scoring_b2",
+          "elapsed_s": 87.429,
+          "feed_s": 77.052,
+          "finish_s": 10.376,
+          "first_text_s": 0.183,
+          "first_refined_s": 4.738,
+          "refiner_wall_s": 40.757485,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 87.965,
+      "mean_finish_s": 10.7165,
+      "mean_refiner_wall_s": 40.969977,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "crop_cache",
+      "runs": [
+        {
+          "label": "crop_c1",
+          "elapsed_s": 86.732,
+          "feed_s": 77.552,
+          "finish_s": 9.181,
+          "first_text_s": 0.19,
+          "first_refined_s": 4.974,
+          "refiner_wall_s": 41.047444999999996,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "crop_c2",
+          "elapsed_s": 88.037,
+          "feed_s": 77.791,
+          "finish_s": 10.246,
+          "first_text_s": 0.185,
+          "first_refined_s": 4.73,
+          "refiner_wall_s": 38.792204,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 87.3845,
+      "mean_finish_s": 9.7135,
+      "mean_refiner_wall_s": 39.9198245,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "uncompressed",
+      "runs": [
+        {
+          "label": "uncompressed_d1",
+          "elapsed_s": 81.376,
+          "feed_s": 71.554,
+          "finish_s": 9.822,
+          "first_text_s": 0.191,
+          "first_refined_s": 4.694,
+          "refiner_wall_s": 42.516392999999994,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        },
+        {
+          "label": "uncompressed_d2",
+          "elapsed_s": 80.52,
+          "feed_s": 70.885,
+          "finish_s": 9.635,
+          "first_text_s": 0.15,
+          "first_refined_s": 4.603,
+          "refiner_wall_s": 42.023427000000005,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 80.94800000000001,
+      "mean_finish_s": 9.7285,
+      "mean_refiner_wall_s": 42.269909999999996,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    },
+    {
+      "audio": 5,
+      "variant": "deployed",
+      "runs": [
+        {
+          "label": "deployed_e1",
+          "elapsed_s": 81.156,
+          "feed_s": 70.754,
+          "finish_s": 10.403,
+          "first_text_s": 0.143,
+          "first_refined_s": 4.735,
+          "refiner_wall_s": 42.548173000000006,
+          "refiner_calls": 158,
+          "raw_equal": true,
+          "clean_equal": true,
+          "raw_differences": [],
+          "clean_differences": [],
+          "rules_unchanged": true
+        }
+      ],
+      "mean_elapsed_s": 81.156,
+      "mean_finish_s": 10.403,
+      "mean_refiner_wall_s": 42.548173000000006,
+      "all_raw_equal": true,
+      "all_clean_equal": true,
+      "all_rules_unchanged": true
+    }
+  ]
+}

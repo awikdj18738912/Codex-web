@@ -49,6 +49,16 @@ const char* zh_itn_result_error(const void* handle) {
         : static_cast<const ResultHandle*>(handle)->value.failure_reason.c_str();
 }
 
+const char* zh_itn_result_decision_reason(const void* handle) {
+    return handle == nullptr ? "missing_result"
+        : static_cast<const ResultHandle*>(handle)->value.decision_reason.c_str();
+}
+
+size_t zh_itn_result_candidate_count(const void* handle) {
+    return handle == nullptr ? 0
+        : static_cast<const ResultHandle*>(handle)->value.audit_total_candidate_count;
+}
+
 size_t zh_itn_result_mapping_count(const void* handle) {
     return handle == nullptr ? 0
         : static_cast<const ResultHandle*>(handle)->value.normalized.mappings.size();

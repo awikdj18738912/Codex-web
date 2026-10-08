@@ -1,0 +1,31 @@
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:26,  8.25it/s]Loading weights:   1%|          | 2/219 [00:00<00:26,  8.22it/s]Loading weights:  22%|██▏       | 49/219 [00:00<00:00, 196.59it/s]Loading weights:  47%|████▋     | 103/219 [00:00<00:00, 321.54it/s]Loading weights:  72%|███████▏  | 157/219 [00:00<00:00, 391.41it/s]Loading weights:  97%|█████████▋| 212/219 [00:00<00:00, 437.51it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 330.83it/s]
+Loading AgenticASR Refiner...
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+MultiMed_Chinese_train_0991 clean baseline 到现在17年的时间，他做了数十例艾克姆手术，从来没有一刻像在雷神山医院这样纠结。我们做这个东西从来没把握。
+MultiMed_Chinese_train_0991 clean proposed 到现在17年的时间，他做了数十例ECMO手术，从来没有一刻像在雷神山医院这样纠结。我们做这个东西从来没把握。
+MultiMed_Chinese_train_1005 clean baseline 红色的管路把十五床的生命和埃克姆机器连接了起来。老粉，咱们开始啦，几点钟啊？六点。
+MultiMed_Chinese_train_1005 clean proposed 红色的管路把十五床的生命和ECMO机器连接了起来。老粉，咱们开始啦，几点钟啊？六点。
+MultiMed_Chinese_train_1005 noise baseline 红色的管路把食物虫的生命和艾克姆的机器连接了起来。老师，咱们开始了，几点钟？对。
+MultiMed_Chinese_train_1005 noise proposed 红色的管路把食物虫的生命和ECMO的机器连接了起来。老师，咱们开始了，几点钟？对。
+MultiMed_Chinese_train_0974 clean baseline 还能挺到第2台埃克姆的到来。挨上了以后，没有什么其他的途径，没什么钱，没什么其他的风险吧，就是赢。
+MultiMed_Chinese_train_0974 clean proposed 还能挺到第2台ECMO的到来。挨上了以后，没有什么其他的途径，没什么钱，没什么其他的风险吧，就是赢。
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 16461.93it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+MultiMed_Chinese_train_1026 clean baseline 像我去年嘞，赛季都没打，到那下谁头都快就去了，去了就空着嘞。从成功拼装出第1台ECMO，到决定先给十五床上机，再到今天用埃克莫。
+MultiMed_Chinese_train_1026 clean proposed 像我去年嘞，赛季都没打，到那下谁头都快就去了，去了就空着嘞。从成功拼装出第1台ECMO，到决定先给十五床上机，再到今天用埃克莫。
+MultiMed_Chinese_train_1021 clean baseline 要不我在这外头装，不要到里，不要到里厢。装了以后，到时我还寻物事又寻不着，我物事在等在外头准备好。知道吗？第2台爱克牧的耗材终于配齐了。
+MultiMed_Chinese_train_1021 clean proposed 要不我在这外头装，不要到里，不要到里厢。装了以后，到时我还寻物事又寻不着，我物事在等在外头准备好。知道吗？第2台ECMO的耗材终于配齐了。
+MultiMed_Chinese_train_0945 clean baseline 如果五床和十五床继续恶化下去，能救他们的只有王卫军的埃克莫了。你给我压住啊！我压住了，不会动。去吧。
+MultiMed_Chinese_train_0945 clean proposed 如果五床和十五床继续恶化下去，能救他们的只有王卫军的埃克莫了。你给我压住啊！我压住了，不会动。去吧。
+MultiMed_Chinese_train_0945 noise baseline 如果五床和十五床继续恶化下去，能救他们的只有王卫军和艾克曼。你回家去啊！回家去，我给你送。
+MultiMed_Chinese_train_0945 noise proposed 如果五床和十五床继续恶化下去，能救他们的只有王卫军和艾克曼。你回家去啊！回家去，我给你送。

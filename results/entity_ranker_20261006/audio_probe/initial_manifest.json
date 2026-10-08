@@ -1,0 +1,39 @@
+{
+  "samples": [
+    {
+      "id": "MultiMed_Chinese_eval_0056",
+      "variant": "clean",
+      "source": "做了手术之后，对对这个性功能会不会有影响嘞？通常对性功能多多少少会有影响了，最大的问题就是操作性功能曾经。",
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_ranker_20261006/audio_probe/initial.pcm",
+      "pcm_sha256": "283847d79e289da858408dcfc72e4f25d06584db6e67ef02ca08b4579a111daf",
+      "candidates": [
+        {
+          "start": 50,
+          "end": 52,
+          "observed": "曾经",
+          "canonical": "神经",
+          "entity_id": 46,
+          "entity_type": "TERM",
+          "phonetic_score": 0.60625,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.635,
+          "boundary_issue": "short_chinese_span_requires_alias"
+        },
+        {
+          "start": 50,
+          "end": 52,
+          "observed": "曾经",
+          "canonical": "胃镜",
+          "entity_id": 73,
+          "entity_type": "TERM",
+          "phonetic_score": 0.60625,
+          "character_score": 0.0,
+          "length_score": 1.0,
+          "retrieval_score": 0.585,
+          "boundary_issue": "short_chinese_span_requires_alias"
+        }
+      ]
+    }
+  ]
+}

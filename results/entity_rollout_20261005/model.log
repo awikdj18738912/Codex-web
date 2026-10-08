@@ -1,0 +1,68 @@
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:29,  7.37it/s]Loading weights:   1%|          | 2/219 [00:00<00:30,  7.03it/s]Loading weights:  23%|██▎       | 50/219 [00:00<00:00, 179.39it/s]Loading weights:  48%|████▊     | 105/219 [00:00<00:00, 305.90it/s]Loading weights:  74%|███████▍  | 162/219 [00:00<00:00, 391.18it/s]Loading weights:  99%|█████████▊| 216/219 [00:00<00:00, 436.81it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 316.17it/s]
+1 / 630 MultiMed_Chinese_test_0000 clean no_candidates None
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+29 / 630 MultiMed_Chinese_test_0015 clean invalid_fallback {"domain": "medical", "source": "帮助的，所以我们必须给他们更多的资料，坏或者是手术失败的可能性其实是非常低的。", "groups": [{"start": 24, "end": 27, "observed": "手术失", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "24:27:0", "description": "科室"}]}]
+30 / 630 MultiMed_Chinese_test_0015 noise invalid_fallback {"domain": "medical", "source": "帮助的，所以我们必须给他们更多的资料，瘫痪或者是手术失败的可能性其实是非常低的。", "groups": [{"start": 24, "end": 27, "observed": "手术失", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "24:27:0", "description": "科室"}]}]
+51 / 630 MultiMed_Chinese_test_0028 clean no_candidates None
+89 / 630 MultiMed_Chinese_test_0048 clean invalid_fallback {"domain": "medical", "source": "虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。", "groups": [{"start": 3, "end": 6, "observed": "手术是", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "3:6:0", "description": "科室"}]}]
+90 / 630 MultiMed_Chinese_test_0048 noise invalid_fallback {"domain": "medical", "source": "虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。", "groups": [{"start": 3, "end": 6, "observed": "手术是", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "3:6:0", "description": "科室"}]}]
+101 / 630 MultiMed_Chinese_test_0055 clean no_candidates None
+151 / 630 MultiMed_Chinese_test_0080 clean no_candidates None
+191 / 630 MultiMed_Chinese_test_0101 clean invalid_fallback {"domain": "medical", "source": "好好，这个就是续断，就是断了的东西才能够接回去，这个叫做骨碎补啊，骨碎了之后还能够补回去。", "groups": [{"start": 28, "end": 30, "observed": "骨碎", "candidates": [{"entity_id": 13, "canonical": "骨髓", "type": "TERM", "score": 0.855, "choice": "28:30:0", "description": "身体部位或组织"}]}, {"start": 33, "end": 35, "observed": "骨碎
+192 / 630 MultiMed_Chinese_test_0101 noise invalid_fallback {"domain": "medical", "source": "好好，这个就是续断，就是断了的东西，它能够接回去，这个叫做骨碎补啊。骨碎了之后，能够补回去。", "groups": [{"start": 29, "end": 31, "observed": "骨碎", "candidates": [{"entity_id": 13, "canonical": "骨髓", "type": "TERM", "score": 0.855, "choice": "29:31:0", "description": "身体部位或组织"}]}, {"start": 34, "end": 36, "observed": "骨
+201 / 630 MultiMed_Chinese_test_0106 clean no_candidates None
+223 / 630 MultiMed_Chinese_test_0118 clean invalid_fallback {"domain": "medical", "source": "穿戴无菌的手术衣跟手术手套哦，这样子才能够保持这个手术视野里面的菌落量在最低的数目。", "groups": [{"start": 25, "end": 28, "observed": "手术视", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "25:28:0", "description": "科室"}]}]
+224 / 630 MultiMed_Chinese_test_0118 noise invalid_fallback {"domain": "medical", "source": "穿戴无菌的手术医", "groups": [{"start": 25, "end": 28, "observed": "手术视", "candidates": [{"entity_id": 142, "canonical": "手术室", "type": "TERM", "score": 0.8966666666666667, "choice": "25:28:0", "description": "科室"}]}]
+251 / 630 MultiMed_Chinese_test_0132 clean no_candidates None
+301 / 630 MultiMed_Chinese_test_0157 clean no_candidates None
+351 / 630 MultiMed_Chinese_test_0183 clean no_candidates None
+355 / 630 MultiMed_Chinese_test_0185 clean invalid_fallback {"domain": "medical", "source": "您的精神气质可以呀，我记得毛主任跟我说过，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得的。", "groups": [{"start": 5, "end": 7, "observed": "神精", "candidates": [{"entity_id": 46, "canonical": "神经", "type": "TERM", "score": 0.855, "choice": "5:7:0", "description": "身体部位或组织"}]}]}
+401 / 630 MultiMed_Chinese_test_0209 clean no_candidates None
+451 / 630 BAC009S0767W0194 clean no_candidates None
+469 / 630 BAC009S0907W0403 clean invalid_fallback {"domain": "general", "source": "文本报记者刘爱林。", "groups": [{"start": 5, "end": 8, "observed": "刘爱林", "candidates": [{"entity_id": 473, "canonical": "刘艾林", "type": "PERSON", "score": 0.8966666666666667, "choice": "5:8:0", "description": "人名"}]}]
+470 / 630 BAC009S0907W0403 noise invalid_fallback {"domain": "general", "source": "文本报记者刘爱林。", "groups": [{"start": 5, "end": 8, "observed": "刘爱林", "candidates": [{"entity_id": 473, "canonical": "刘艾林", "type": "PERSON", "score": 0.8966666666666667, "choice": "5:8:0", "description": "人名"}]}]
+471 / 630 BAC009S0905W0412 clean invalid_fallback {"domain": "general", "source": "搜狐娱乐讯", "groups": [{"start": 6, "end": 9, "observed": "北京时", "candidates": [{"entity_id": 35, "canonical": "北京市", "type": "LOC", "score": 0.8966666666666667, "choice": "6:9:0", "description": "地名"}]}]
+472 / 630 BAC009S0905W0412 noise invalid_fallback {"domain": "general", "source": "搜狐娱乐讯", "groups": [{"start": 6, "end": 9, "observed": "北京时", "candidates": [{"entity_id": 35, "canonical": "北京市", "type": "LOC", "score": 0.8966666666666667, "choice": "6:9:0", "description": "地名"}]}]
+501 / 630 BAC009S0769W0125 clean no_candidates None
+517 / 630 BAC009S0904W0350 clean invalid_fallback {"domain": "general", "source": "新队长曾春雷揭秘了角色转变前后的幕后故事。", "groups": [{"start": 3, "end": 6, "observed": "曾春雷", "candidates": [{"entity_id": 426, "canonical": "曾春蕾", "type": "PERSON", "score": 0.8966666666666667, "choice": "3:6:0", "description": "人名"}]}]
+543 / 630 BAC009S0902W0430 clean invalid_fallback {"domain": "general", "source": "搜狐娱乐讯", "groups": [{"start": 6, "end": 9, "observed": "北京时", "candidates": [{"entity_id": 35, "canonical": "北京市", "type": "LOC", "score": 0.8966666666666667, "choice": "6:9:0", "description": "地名"}]}]
+544 / 630 BAC009S0902W0430 noise invalid_fallback {"domain": "general", "source": "综合娱乐讯", "groups": [{"start": 6, "end": 9, "observed": "北京时", "candidates": [{"entity_id": 35, "canonical": "北京市", "type": "LOC", "score": 0.8966666666666667, "choice": "6:9:0", "description": "地名"}]}]
+549 / 630 BAC009S0907W0388 clean invalid_fallback {"domain": "general", "source": "吕慧慧在全场观众的加油助威声中爆发。", "groups": [{"start": 0, "end": 3, "observed": "吕慧慧", "candidates": [{"entity_id": 71, "canonical": "吕会会", "type": "PERSON", "score": 0.8133333333333334, "choice": "0:3:0", "description": "人名"}]}]
+550 / 630 BAC009S0907W0388 noise invalid_fallback {"domain": "general", "source": "吕慧慧在全场观众的加油助威声中爆发。", "groups": [{"start": 0, "end": 3, "observed": "吕慧慧", "candidates": [{"entity_id": 71, "canonical": "吕会会", "type": "PERSON", "score": 0.8133333333333334, "choice": "0:3:0", "description": "人名"}]}]
+551 / 630 BAC009S0765W0488 clean no_candidates None
+601 / 630 BAC009S0902W0208 clean no_candidates None
+{
+  "medical": {
+    "samples": 430,
+    "current_errors": 5168,
+    "proposed_errors": 5168,
+    "reference_chars": 15662,
+    "improved": 0,
+    "worsened": 0,
+    "no_candidates": 421,
+    "changed_samples": 0,
+    "expected_entities": 124,
+    "current_recovered": 109,
+    "proposed_recovered": 109,
+    "entity_losses": 0,
+    "invalid_fallback": 9,
+    "retention_gate_passed": 0
+  },
+  "general": {
+    "samples": 200,
+    "current_errors": 101,
+    "proposed_errors": 101,
+    "reference_chars": 3072,
+    "improved": 0,
+    "worsened": 0,
+    "no_candidates": 191,
+    "changed_samples": 0,
+    "expected_entities": 254,
+    "current_recovered": 218,
+    "proposed_recovered": 218,
+    "entity_losses": 0,
+    "invalid_fallback": 9,
+    "retention_gate_passed": 0
+  }
+}

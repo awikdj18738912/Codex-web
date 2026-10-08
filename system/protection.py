@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Iterable
 
 from .entity_store import EntityDefinition
+from .entity_boundaries import latin_boundaries_valid
 from .numeric_normalizer import ContextualNumericNormalizer, _FIXED_EXPRESSIONS
 from .session_memory import SessionEntityMemory
 
@@ -17,7 +18,7 @@ if TYPE_CHECKING:
 
 _PLACEHOLDER_RE = re.compile(r"__ENTITY_\d{3}__")
 _BARE_PLACEHOLDER_RE = re.compile(
-    r"(?<![A-Za-z0-9])_*ENTITY_(\d{3})_*(?![A-Za-z0-9])"
+    r"__ENTITY_\d{3}__|(?<![A-Za-z0-9_])_*ENTITY_(\d{3})_*(?![A-Za-z0-9_])"
 )
 _SENTENCE_BOUNDARY_RE = re.compile(r"[。！？!?；;\n]")
 _REFINER_KEY_SUFFIX_RE = re.compile(r"\s*<KEY>\[[^\]]*\]\s*$")
@@ -357,7 +358,8 @@ class EntityProtector:
                     protection.original_text, False, ("ambiguous_literal_placeholder",)
                 )
             output = _BARE_PLACEHOLDER_RE.sub(
-                lambda match: f"__ENTITY_{match.group(1)}__", output
+                lambda match: (f"__ENTITY_{match.group(1)}__"
+                               if match.group(1) is not None else match.group()), output
             )
         remainder = _PLACEHOLDER_RE.sub("", output)
         if "__ENTITY_" in remainder:
@@ -475,6 +477,7 @@ def _literal_matches(text: str, surface: str) -> list[tuple[int, int, str]]:
     return [
         (match.start(), match.end(), match.group())
         for match in re.finditer(re.escape(surface), text, flags=flags)
+        if latin_boundaries_valid(text,match.start(),match.end())
     ]
 
 

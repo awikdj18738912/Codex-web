@@ -1,0 +1,1576 @@
+{
+  "seed": 20261003,
+  "noise_snr_db": 10.0,
+  "sample_count": 88,
+  "split": "eval",
+  "samples": [
+    {
+      "id": "MultiMed_Chinese_eval_0000",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0000.wav",
+      "reference": "在获知不好的消息后， 王医生很快就恢复状态， 重新披上手术衣 为伍振玮进行右上肺叶切除术。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 0,
+      "original_audio_path": "1045000.0000_1058000.0000.ogg",
+      "original_audio_sha256": "1245a5622281a3f308d1652bfcc0c7d2d5739c2c372c7b2e556fa64b9585cd9f",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0001",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0001.wav",
+      "reference": "王医生沿着肺门上缘打开纵隔胸膜， 并向后下方延伸至中间支气管位置。 接着 在游离肺动脉前进行解剖",
+      "entities": [
+        {
+          "text": "肺门",
+          "entity_type": "TERM",
+          "start": 5,
+          "end": 7,
+          "covered": true
+        },
+        {
+          "text": "纵隔",
+          "entity_type": "TERM",
+          "start": 11,
+          "end": 13,
+          "covered": true
+        },
+        {
+          "text": "胸膜",
+          "entity_type": "TERM",
+          "start": 13,
+          "end": 15,
+          "covered": true
+        },
+        {
+          "text": "支气管",
+          "entity_type": "TERM",
+          "start": 25,
+          "end": 28,
+          "covered": true
+        },
+        {
+          "text": "动脉",
+          "entity_type": "TERM",
+          "start": 36,
+          "end": 38,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 1,
+      "original_audio_path": "1058000.0000_1070000.0000.ogg",
+      "original_audio_sha256": "e681d9237af103f3d276c035d618a0dc37ce51c7ceb86fd3071d003202a3fe9e",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0003",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0003.wav",
+      "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+      "entities": [
+        {
+          "text": "TAVI",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 12,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 3,
+      "original_audio_path": "1101000.0000_1110000.0000.ogg",
+      "original_audio_sha256": "1fbafb0bf773ab9327b00d0ba4a11233147249fd5f375d9e58df7b64d30656cc",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0004",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0004.wav",
+      "reference": "今早 自Royston踏进手术室后 他的妻子就一直在手术室外 静静地守候着。",
+      "entities": [
+        {
+          "text": "手术室",
+          "entity_type": "TERM",
+          "start": 12,
+          "end": 15,
+          "covered": true
+        },
+        {
+          "text": "手术室",
+          "entity_type": "TERM",
+          "start": 24,
+          "end": 27,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 4,
+      "original_audio_path": "1068000.0000_1097000.0000.ogg",
+      "original_audio_sha256": "cee6b047b28b41113af94454ea0e5c258e593c218c60969272babcc3951eda33",
+      "actual_duration_seconds": 29.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0005",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0005.wav",
+      "reference": "通过团队的努力 取出的肌腱准备好移植到膝关节里了。",
+      "entities": [
+        {
+          "text": "肌腱",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 12,
+          "covered": true
+        },
+        {
+          "text": "膝关节",
+          "entity_type": "TERM",
+          "start": 18,
+          "end": 21,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 5,
+      "original_audio_path": "1097000.0000_1118000.0000.ogg",
+      "original_audio_sha256": "23170accbb686cdb666b770268baad8f0f0f13af3f7061ae807e143d3e4e0180",
+      "actual_duration_seconds": 21.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0006",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0006.wav",
+      "reference": "手术团队为手术部位进行清洗 缝合 并且装上支架后， 不到两个小时",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 6,
+      "original_audio_path": "1118000.0000_1125000.0000.ogg",
+      "original_audio_sha256": "c933ab2b0d41a5aeb872501c7ae7a53b0d39be2454459a3284357a7c9b7ed502",
+      "actual_duration_seconds": 7.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0007",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0007.wav",
+      "reference": "Afendi再次穿过手术室大门。 不过 这只是他康复过程的一个开始。 一般来说 要恢复到能够进行。",
+      "entities": [
+        {
+          "text": "手术室",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 13,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 7,
+      "original_audio_path": "1125000.0000_1136000.0000.ogg",
+      "original_audio_sha256": "6e22a301181b03bac0277cf61bfe2094145034d8c38a53fb99317cd22a32f936",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0008",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0008.wav",
+      "reference": "经过两个小时的努力 凸出的组织仍然还未推回腹腔。 正当Wijerathne医生决定改变策略 做一个更大的切口时",
+      "entities": [
+        {
+          "text": "腹腔",
+          "entity_type": "TERM",
+          "start": 20,
+          "end": 22,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 8,
+      "original_audio_path": "1093000.0000_1103000.0000.ogg",
+      "original_audio_sha256": "256f3c0d6c0e7b48ba256c14ae8b2342c6468197bb1860f9ba9bcb37e1ad5bfc",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0009",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0009.wav",
+      "reference": "手术终于有了突破。 Wijerathne医生和团队",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 9,
+      "original_audio_path": "1103000.0000_1116000.0000.ogg",
+      "original_audio_sha256": "0792dd65102040c43a03c4d5af9a3fb7fd9cf517bae810926c7576cf7f881edf",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0010",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0010.wav",
+      "reference": "终于露出难得的笑容。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 10,
+      "original_audio_path": "1116000.0000_1132000.0000.ogg",
+      "original_audio_sha256": "8a807992e9bfce817e3f291f6a6fdc80be7d43d711cc1c346b2716ce25aaa994",
+      "actual_duration_seconds": 16.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0011",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0011.wav",
+      "reference": "手术的下一个关键环节 就是修补薄弱或缺损的部位 以防止问题复发。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 11,
+      "original_audio_path": "1132000.0000_1154000.0000.ogg",
+      "original_audio_sha256": "1d99e4cc3b1d44211d5e7da2df5206b5b8167015ae6179f966e9b5560663e023",
+      "actual_duration_seconds": 22.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0012",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0012.wav",
+      "reference": "这种修补方式 是Wijerathne医生和医疗团队 近几年在亚历山大医院研发的 修补方式取得良好效果",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 12,
+      "original_audio_path": "1154000.0000_1163000.0000.ogg",
+      "original_audio_sha256": "b151f314d55501d485851a84460f931eca79e3f9e1b91ee7d0287b9904ebe18c",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0013",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0013.wav",
+      "reference": "在进行像整型式乳癌切除手术 这样的手术时 伍医生和许医生之间的合作 协调 非常重要。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 13,
+      "original_audio_path": "1064000.0000_1073000.0000.ogg",
+      "original_audio_sha256": "4e8e93e37715de6226841e631ff96f9eb2fc246bef314808af98d2e5d8b995ba",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0014",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0014.wav",
+      "reference": "还有痛吗。 很好了。 在确认移植皮瓣的健康状况后 手术可以说是顺利完成了。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 14,
+      "original_audio_path": "1091000.0000_1100000.0000.ogg",
+      "original_audio_sha256": "ae25a26e7513ff71f234ec2d8e966d71d16d9330b85625e1ee69ff432efc2f7f",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0015",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0015.wav",
+      "reference": "不过这时 林凤留的挑战才真正开始。 你好 Mdm Lin。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 15,
+      "original_audio_path": "1100000.0000_1112000.0000.ogg",
+      "original_audio_sha256": "4830e71aba3fc1087b03d8d374b3e14701efb3f8217e318192b231d8a1785029",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0016",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0016.wav",
+      "reference": "尤其是在一些比较小的地方。 因为没有那么多人 这些医生呢虽然理论知识不错 但是却没有那么多的实践经验",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 16,
+      "original_audio_path": "1186000.0000_1196000.0000.ogg",
+      "original_audio_sha256": "d48415301dc030079b45a7d768361dbc8f1af2c34e71dbd046d55a83479527e3",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0017",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0017.wav",
+      "reference": "所以说就会造成了这种贻误病情 的案例出现。 然后我们再说说中国这个。中国的优点 就是看病真的是非常的快",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 17,
+      "original_audio_path": "1196000.0000_1205000.0000.ogg",
+      "original_audio_sha256": "845354f13e29848071878eb6e84e8f42fb0ec4f637cfd217395040f14cb51597",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0018",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0018.wav",
+      "reference": "当然这个经验只是来自在中国 儿童医院 北京儿童医院国际部就是新世纪 儿童医院里的经验",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 18,
+      "original_audio_path": "1205000.0000_1212000.0000.ogg",
+      "original_audio_sha256": "d8a9ae1771065c044020605f74b472dc17c33ccc5ebc81a0d5cc9dbb974c40c5",
+      "actual_duration_seconds": 7.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0019",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0019.wav",
+      "reference": "我也听到我的朋友跟我讲 说在中国其他地方一样 可是要等很长时间的。 那么另外一个优点 这是我个人感觉就是全面的检查",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 19,
+      "original_audio_path": "1212000.0000_1221000.0000.ogg",
+      "original_audio_sha256": "950b340de67e7c507e7575fba67b04ed369e1e477077842f39aaf615629b599a",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0020",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0020.wav",
+      "reference": "咱先不说这个医院不是为了盈利 或者说是减少自己的这种责任 承担风险这些责任 但这种全面的检查确实是能让",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 20,
+      "original_audio_path": "1221000.0000_1231000.0000.ogg",
+      "original_audio_sha256": "ed376da5b08760c992a88d86baab33bd76cd962fb9d1136cd48897408d133bef",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0021",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0021.wav",
+      "reference": "家长非常放心 而且确实也能够减少判断失误或 贻误病情的几率 而且中国的医护人员的办事效率",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 21,
+      "original_audio_path": "1231000.0000_1239000.0000.ogg",
+      "original_audio_sha256": "d60c3ebced5a6d37761a1beb8d89a2f7036d3fdf52e0d718b2eb80006244e053",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0022",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0022.wav",
+      "reference": "真的是非常的高啊。 那么缺点肯定也是有的 当然每个人和每个人经历不同 我只说一下我个人的两个感受啊。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 22,
+      "original_audio_path": "1239000.0000_1248000.0000.ogg",
+      "original_audio_sha256": "87688228dd684518683f362b8ab082b65abc262bd19563a41211de264c55ffb7",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0023",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0023.wav",
+      "reference": "那么第一个感受就是在中国给 孩子动不动就输液。 这个真的是太危险了。 中国安全注射联盟曾经统计过",
+      "entities": [
+        {
+          "text": "输液",
+          "entity_type": "TERM",
+          "start": 19,
+          "end": 21,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 23,
+      "original_audio_path": "1248000.0000_1257000.0000.ogg",
+      "original_audio_sha256": "3f4d259d237ab7b7b2c3277f4c243bb9713b834a64b1a932454012f5f4452390",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0024",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0024.wav",
+      "reference": "一个数字。 说在中国70%输液病例其实是 根本不需要输液的。 而且有一个医学研究者曾经解剖",
+      "entities": [
+        {
+          "text": "输液",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 12,
+          "covered": true
+        },
+        {
+          "text": "输液",
+          "entity_type": "TERM",
+          "start": 22,
+          "end": 24,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 24,
+      "original_audio_path": "1257000.0000_1265000.0000.ogg",
+      "original_audio_sha256": "e864059a73019f79eba2c584aa4f49b32229b525de56e464463aab8bc31664d3",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0025",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0025.wav",
+      "reference": "那其实我们之前也有 公会也有向这个我们的 这个 指挥中心去提出。 不过因为那时候我们国内 的病例很少嘛。 大部分都是集中在医院 他们就可以承受",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 25,
+      "original_audio_path": "2712000.0000_2723000.0000.ogg",
+      "original_audio_sha256": "398f0592dd7c2ca8aa31c2a49e5de300b314d4155cf99a7cc9e61344bd9b2ebc",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0026",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0026.wav",
+      "reference": "所以那个东西建议到现在 不了了之。 不过我觉得刚才主持人还讲到一个就是说 除了筛检出来以后 我们怎么样去做 一个投入。 刚才潘小姐是在新北市",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 26,
+      "original_audio_path": "2723000.0000_2735000.0000.ogg",
+      "original_audio_sha256": "312b16f033f5baf66508ae269bdb4c83853e912f841cb9b541d16feae74f1b75",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0027",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0027.wav",
+      "reference": "跟台北市有点类似 就是说在4月中旬 的时候 指挥中心就说 你轻症无症状 的人 符合一定条件可以做居家照护。 这个是一个名词 就要收个案有人来照护了哈。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 27,
+      "original_audio_path": "2735000.0000_2749000.0000.ogg",
+      "original_audio_sha256": "b0cf4f962f1851abcff4dc0e20ade2ab6ff21598ea56dd2cf58953080c33f3bd",
+      "actual_duration_seconds": 14.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0028",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0028.wav",
+      "reference": "那其实在高雄 在花莲 他们卫生单位都分给 基层医师去做 而且也做得不错。 那 因为在台北跟新北 他是给医院做 那医院 现在都已经是火烧屁股了哈。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 28,
+      "original_audio_path": "2749000.0000_2761000.0000.ogg",
+      "original_audio_sha256": "66cb5957417db2cf24fbfe37614fe53350b585540ab59a438111156d4abfe93c",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0029",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0029.wav",
+      "reference": "所以才会有潘小姐这样的一个 case 就是说 没有人 好像没有人去主动地去跟他 做一些联系 在台北市 我最近也是遇到很多 就是他 他就看视讯诊察 就主动来找我。 而不是说卫生单位派案的。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 29,
+      "original_audio_path": "2761000.0000_2774000.0000.ogg",
+      "original_audio_sha256": "7ef881db68f390a7a27436518c45ef0254da2ba5682e80440b8af4869516f360",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0030",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0030.wav",
+      "reference": "那我们这几天 这几天已经 因为指挥中心已经定调下来 一个很好 的SOP。 那我们已经跟卫生局 已经有开过几次会议 明天会再开 最后 一次会议 要做一个定调。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 30,
+      "original_audio_path": "2774000.0000_2787000.0000.ogg",
+      "original_audio_sha256": "e4714e78650babe8dda0e228c03caad44547eb3d46503834367fd917fac41976",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0031",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0031.wav",
+      "reference": "这是我们明天要开会里面的内容。 就是说我们台北市的防疫的战略 刚刚我们讲过确诊者他会去三个地方嘛。 那有一些就是要到医院 这中重症 那有一些就是虽然他是轻症 但是他的条件 比如说他年纪",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 31,
+      "original_audio_path": "2787000.0000_2801000.0000.ogg",
+      "original_audio_sha256": "0a42f0cfb0f1d384996c56f7296510fd6e6c818ac1744fd674e3e04940263f74",
+      "actual_duration_seconds": 14.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0032",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0032.wav",
+      "reference": "比较大还是有些 他会在专责旅馆。 那再来就是有一些 刚才 我们讲的居家照护 就像潘小姐 这样的一个case。 我们就做居家照护 那 但是又这个专责旅馆作为备援 保留",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 32,
+      "original_audio_path": "2801000.0000_2813000.0000.ogg",
+      "original_audio_sha256": "14c00acf527787f8977734abbc222c83605f781fdc75b2b5a399faa3b73e33c9",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0033",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0033.wav",
+      "reference": "医院的量能。 那症状减轻的话 他可以用下转到 防疫专责旅馆。 是。 才不会像刚才像副院长 讲 大家不愿意去离开 这是我们明天要讨论 这是明天要讨论",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 33,
+      "original_audio_path": "2813000.0000_2826000.0000.ogg",
+      "original_audio_sha256": "bdd841c8a69c2808d9ccdaee80149638901cd6bdda1595a5e5322882c8a51297",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0034",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0034.wav",
+      "reference": "的power point 我先拿出来给大家看 我们就是 要定调这样做。 然后居家照护的流程 就像说如果我们现在居家照护。 假设卫生局 他把这个案子派给我们 他分为两个部分。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 34,
+      "original_audio_path": "2826000.0000_2838000.0000.ogg",
+      "original_audio_sha256": "e26baf1fc318d754aca5b20f2a10fc942d1b81efaa015755ebc598af9900b1e6",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0035",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0035.wav",
+      "reference": "所以健康服务中心 他会派案给我们。 那我们可能就是一开始 会在几个区 就比较热心的 像我们中山区 我可能就找10 几家诊所就开始先做。 派案给我们的时候",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 35,
+      "original_audio_path": "2851000.0000_2863000.0000.ogg",
+      "original_audio_sha256": "90e8a07680726108bcd2fad0071fc3eea9177f0f800ea173c6d8cd13cf63822a",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0036",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0036.wav",
+      "reference": "我们要做什么呢。 第一个我们 就是要在派案以后 赶快跟这个 居家照护的 居家照护的这个case来做 联络。 我们做一个初步的评估",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 36,
+      "original_audio_path": "2863000.0000_2875000.0000.ogg",
+      "original_audio_sha256": "98f3fbe5baa6f964f4d5b8473f5085f45c21124be3df093a44b97a9ef4c5dc03",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0037",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0037.wav",
+      "reference": "就是健康状况的 他现在的状况是怎么样 危险因子是怎么样 再给他做一些适度的 卫教。 因为有时候他 发到这边来 结果我们觉得不对劲这个 应该住院",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 37,
+      "original_audio_path": "2875000.0000_2886000.0000.ogg",
+      "original_audio_sha256": "a72678c9317a68153aedff13cc0f90fe4106a5329d100267c615eb8117c11d37",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0038",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0038.wav",
+      "reference": "所以我们不大怎么担心。 到了四十岁以后， 那个破骨细胞就比成骨细胞更活跃。 所以导致我们的骨质流失。",
+      "entities": [
+        {
+          "text": "破骨细胞",
+          "entity_type": "TERM",
+          "start": 19,
+          "end": 23,
+          "covered": true
+        },
+        {
+          "text": "成骨细胞",
+          "entity_type": "TERM",
+          "start": 25,
+          "end": 29,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 38,
+      "original_audio_path": "1039000.0000_1049000.0000.ogg",
+      "original_audio_sha256": "0dc53b9c9efecbd102dc243103fa3c2b67714ab93d06c2dcc56511187ba72d14",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0039",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0039.wav",
+      "reference": "所以那个药物呢 第一 first choice 通常我们是针对破骨细胞。 叫bisphosphonates。 服用的？ 啊 服用。",
+      "entities": [
+        {
+          "text": "破骨细胞",
+          "entity_type": "TERM",
+          "start": 27,
+          "end": 31,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 39,
+      "original_audio_path": "1049000.0000_1056000.0000.ogg",
+      "original_audio_sha256": "aba49ef69e5df23e122021614c047178b8503a730066760c7695c3771d15dd04",
+      "actual_duration_seconds": 7.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0040",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0040.wav",
+      "reference": "可是呢这个药我们可以吃大概五年左右。 不然的话 我们的骨头会变得太硬。 就好像一块大理石一样",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 40,
+      "original_audio_path": "1056000.0000_1064000.0000.ogg",
+      "original_audio_sha256": "569e9ea508bf476c1ad3a57b02e7487a176af4030efe76433f914e521f478339",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0041",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0041.wav",
+      "reference": "你一跌倒它整个就会碎掉。 另外一个药物 就是针对成骨细胞。 Forteo Teriparatide。",
+      "entities": [
+        {
+          "text": "成骨细胞",
+          "entity_type": "TERM",
+          "start": 21,
+          "end": 25,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 41,
+      "original_audio_path": "1064000.0000_1072000.0000.ogg",
+      "original_audio_sha256": "1e8bf7413009afb57bd5d4df16feefe7c4f07b10aa42d2394a265d1fbc89fb6a",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0042",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0042.wav",
+      "reference": "注射。注射在你的脂肪。 可以用大概两年左右。 如果用超过两年呢 我们怕产生骨癌。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 42,
+      "original_audio_path": "1072000.0000_1080000.0000.ogg",
+      "original_audio_sha256": "0560db7d025ce37a79f7f1028354f2854de08f01276353d3f8db377af11ca233",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0043",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0043.wav",
+      "reference": "所以那些有骨癌的病人 不可以服食这个药。 可是骨质疏松可以逆转的吗？ 可以啊 当然是可以。",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "entity_type": "TERM",
+          "start": 20,
+          "end": 24,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 43,
+      "original_audio_path": "1080000.0000_1088000.0000.ogg",
+      "original_audio_sha256": "859262e7a4216959b46dae309fa8b2d970bf8a707b23e2c470ca3933c483859b",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0044",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0044.wav",
+      "reference": "就是好像某些risk factors 就好像刚才提到的抽烟 戒掉是以缓和的。",
+      "entities": [
+        {
+          "text": "CT",
+          "entity_type": "TERM",
+          "start": 12,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 44,
+      "original_audio_path": "1088000.0000_1097000.0000.ogg",
+      "original_audio_sha256": "51d092b7b782a0a7f4650a064e9314d64aa3bbaad24ac31e690e65043c2e8eec",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0045",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0045.wav",
+      "reference": "所以先从改善生活开始。 跟饮食这一块。 那王医师 中医怎么样治疗。 一般上是以调理为主",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 45,
+      "original_audio_path": "1097000.0000_1105000.0000.ogg",
+      "original_audio_sha256": "516fcb3ea1908ddd7fb98ee21ec17abd7fd3693195fab5cbeaa5b5ae49423782",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0046",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0046.wav",
+      "reference": "面对急诊的高级，北京协和医院很多教授主任们也都赶来增援，铺在一线抢救患者。 我们的教授主人们都跑到一线来跟我们一起来并肩作战。这对我们来说也是一个很好的鼓舞，也告诉我们就是身为大夫 不管你是什么样的职称和职位，只要有病人需要 哪里需要我们 我们就去哪里。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 46,
+      "original_audio_path": "261000.0000_286000.0000.ogg",
+      "original_audio_sha256": "510822b4db10b11a6179488ee8c23620f4fced7f88aab7cfc20b4d84bfaa0506",
+      "actual_duration_seconds": 25.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0047",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0047.wav",
+      "reference": "无菌这个部分， 讲的都是感染上面的感控。 手术本身的视野必须是一个无菌的， 那除非你是在真空的环境里面",
+      "entities": [
+        {
+          "text": "感染",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 12,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 47,
+      "original_audio_path": "351000.0000_359000.0000.ogg",
+      "original_audio_sha256": "2600a705e57c5bf743ae65351afb37123eb0a5e3fc86f0b67cb86dbd78237061",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0048",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0048.wav",
+      "reference": "你很难完全保持这个环境跟空气里面 是完全无菌的。 那正压的环境其实它要强调的 并不是什么压力的问题，",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 48,
+      "original_audio_path": "359000.0000_368000.0000.ogg",
+      "original_audio_sha256": "336b82cba7e5fda3742966de1408ba15f76f26e4c1ad4787b0b5a3cbfcf43183",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0049",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0049.wav",
+      "reference": "它强调的是细菌的菌落数被控制在 我们可以被控制的低菌落数范围内啊。 刷手台是更重要的一环",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 49,
+      "original_audio_path": "368000.0000_377000.0000.ogg",
+      "original_audio_sha256": "267d1b06da2a0e77041cab73ff1ba573092e9948167e85e82c4288502e1efcf4",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0050",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0050.wav",
+      "reference": "跟我进行交流，他们在不断地释放自己的压力 让他们会感受到一份温暖，一份温情。 很多人会潸然泪下，",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 50,
+      "original_audio_path": "226000.0000_237000.0000.ogg",
+      "original_audio_sha256": "9aed51402ea7d6327528ab5f38d9274edd4751039f7e8254541acae85703f159",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0051",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0051.wav",
+      "reference": "但最后会感谢我。 我是一名医生，我不能怂。 我会在他们最脆弱的时候提供一个最果断的治疗方法。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 51,
+      "original_audio_path": "237000.0000_251000.0000.ogg",
+      "original_audio_sha256": "226344fcc1300d72381e2d90cd43d621b8f2f9c50004de11f706022f70aa9a8a",
+      "actual_duration_seconds": 14.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0052",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0052.wav",
+      "reference": "所以近几年来 绝大多数的前列腺手术 都是用那个机器人辅助了。 它结合了开放式手术，",
+      "entities": [
+        {
+          "text": "前列腺",
+          "entity_type": "TERM",
+          "start": 11,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 52,
+      "original_audio_path": "1064000.0000_1072000.0000.ogg",
+      "original_audio_sha256": "b241bc8d3f1c84740bd138818bc770daa0f56695c452b4f27ca418c9a063fd53",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0053",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0053.wav",
+      "reference": "还有传统腹腔镜手术的优点。 也就是说通过小的伤口。 可以把机器人的手放进体内。",
+      "entities": [
+        {
+          "text": "腹腔镜",
+          "entity_type": "TERM",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 53,
+      "original_audio_path": "1072000.0000_1082000.0000.ogg",
+      "original_audio_sha256": "d77862107a067f96d157ba1d1f14aa3b969a5719e5b1d1babe48b2d291ad5252",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0054",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0054.wav",
+      "reference": "那个影像也是3D的。 这个机器人的手其实非常灵活， 也就是说可以缝得比较密， 看得比较精准。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 54,
+      "original_audio_path": "1082000.0000_1088000.0000.ogg",
+      "original_audio_sha256": "02e01628a8719abd128495078bac296ce0c4ebc69576fa3b16311316860f9c52",
+      "actual_duration_seconds": 6.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0055",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0055.wav",
+      "reference": "对前列腺患者的治疗 复原 也有好处。 如果说做了手术之后",
+      "entities": [
+        {
+          "text": "前列腺",
+          "entity_type": "TERM",
+          "start": 1,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 55,
+      "original_audio_path": "1088000.0000_1098000.0000.ogg",
+      "original_audio_sha256": "90397a7c369eb371444dfededd70a8e5b156e591d776473b099a0b3740b6a2be",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0056",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0056.wav",
+      "reference": "对性功能会不会有影响？ 通常对性功能多多少少会有影响。 最大的问题就是操作性功能的神经线。",
+      "entities": [
+        {
+          "text": "神经",
+          "entity_type": "TERM",
+          "start": 37,
+          "end": 39,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 56,
+      "original_audio_path": "1098000.0000_1107000.0000.ogg",
+      "original_audio_sha256": "50883f15fac4cf4201a67635f0f7667062b2caec4bbf424b92eb2e3998f964c5",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0057",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0057.wav",
+      "reference": "它的位置非常靠近前列腺。 动了手术过后 他还有生育能力吗？ 切除了这个前列腺过后。 你要自然生育的话 这样就没有可能",
+      "entities": [
+        {
+          "text": "前列腺",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 11,
+          "covered": true
+        },
+        {
+          "text": "前列腺",
+          "entity_type": "TERM",
+          "start": 30,
+          "end": 33,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 57,
+      "original_audio_path": "1107000.0000_1118000.0000.ogg",
+      "original_audio_sha256": "158ce92ffa7555c8bef3f07bf12675d585d0dc5a396a0e459969ed93b165a7a2",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0058",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0058.wav",
+      "reference": "因为前列腺已经拿出来了。 不过因为精子是由睾丸制造的 所以还可以通过人工受孕",
+      "entities": [
+        {
+          "text": "前列腺",
+          "entity_type": "TERM",
+          "start": 2,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 58,
+      "original_audio_path": "1118000.0000_1126000.0000.ogg",
+      "original_audio_sha256": "d6d247b2772717b46a861625aa936bb36e2384d4afe8b1e81a7195cbb3038723",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0059",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0059.wav",
+      "reference": "来传宗接代。 那有没有药物的一种治疗法？ 如果要用药物治疗 通常已经算是末期。",
+      "entities": [
+        {
+          "text": "药物治疗",
+          "entity_type": "TERM",
+          "start": 21,
+          "end": 25,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 59,
+      "original_audio_path": "1126000.0000_1133000.0000.ogg",
+      "original_audio_sha256": "7b4b34f033b509f145fb6aa96789686c03f77956c2839c89ae4e15d46f958093",
+      "actual_duration_seconds": 7.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0060",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0060.wav",
+      "reference": "医院这个地方真的不能够常来。 本来今天很开心的是吧 知道这个肺部变好消息其实很开心。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 60,
+      "original_audio_path": "955000.0000_966000.0000.ogg",
+      "original_audio_sha256": "6b5280efa9a98b49e925fa0f4f318f09166ad56fe38ee5b26a8ff1a622777aa3",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0061",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0061.wav",
+      "reference": "然后呢就接着打针。 然后就看到了刚才的那一幕。 一个和我年龄相当的应该比我",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 61,
+      "original_audio_path": "966000.0000_976000.0000.ogg",
+      "original_audio_sha256": "97a159044fe3ced9b68aa80559f7a6301db50680da90bc633652238131139dad",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0062",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0062.wav",
+      "reference": "应该和我年龄相当的。 嗯。 他的父亲应该是脑瘫。 行动不便。 然后也是因为这个病刚才有点发牢骚。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 62,
+      "original_audio_path": "976000.0000_987000.0000.ogg",
+      "original_audio_sha256": "82d0337c75d808b53dcdc1a69e6beaee2ac9149cf5115e46bac555c92639e950",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0063",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0063.wav",
+      "reference": "每天来打针每天来打针。 一待好几个小时。 今天好像是刚刚才挂上针吗。 已经下午现在1点半了吗。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 63,
+      "original_audio_path": "987000.0000_996000.0000.ogg",
+      "original_audio_sha256": "e8c340e8e514495119c4739a1a38dcb1128fd18be0681ea22b310afa57fd7676",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0064",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0064.wav",
+      "reference": "然后他打完针回去都五六点钟了。 他就说 这样搞他哪有时间上班呢。 不上班了我不上班了。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 64,
+      "original_audio_path": "996000.0000_1005000.0000.ogg",
+      "original_audio_sha256": "8fb189629c525bd5221c0cc3cf8b0369ac1cd0989e0777c0448c2cd5ff8b04f3",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0065",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0065.wav",
+      "reference": "多少说话带点气吧。 看得出来他父亲也是 脑瘫已经很久了。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 65,
+      "original_audio_path": "1005000.0000_1013000.0000.ogg",
+      "original_audio_sha256": "52f60fb7b820e84dc5b32670c152b4dd92de7366836f85e42a59a47b73120da7",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0066",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0066.wav",
+      "reference": "别人说 久病床前无孝子。 哎呀然后又看到旁边的那一床 两个儿子在那精心的照顾自己的父亲。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 66,
+      "original_audio_path": "1013000.0000_1025000.0000.ogg",
+      "original_audio_sha256": "b07df9586ac01e12f6b7c7a96bea67825ffed35607b5d52ede8282468e26ab87",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0067",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0067.wav",
+      "reference": "那些逝去的人们 会让我们更加懂得 生的珍贵。 所以 接下来的日子里，王维俊要和同事们带着15床 一关关地闯。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 67,
+      "original_audio_path": "2050000.0000_2065000.0000.ogg",
+      "original_audio_sha256": "f09d6784a8b864f2bbf79338b1cf8144953c9e0b85af41aa7b63224797d90e9a",
+      "actual_duration_seconds": 15.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0068",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0068.wav",
+      "reference": "白天我要下去一趟。今天我要下去一趟。坐在15床旁边。看看能调到多少。 感染了另外一个细菌。张院长 不管怎么样",
+      "entities": [
+        {
+          "text": "感染",
+          "entity_type": "TERM",
+          "start": 30,
+          "end": 32,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 68,
+      "original_audio_path": "2065000.0000_2080000.0000.ogg",
+      "original_audio_sha256": "6d7ac87218799e1422bc4d5c2c45708a5e3fe8a32ecfb4b06651905ae13b3c4c",
+      "actual_duration_seconds": 15.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0069",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0069.wav",
+      "reference": "我进去 带上三级防护 去查 他这个原因。你想这个心率这么快 肯定有原因的。 病人烦躁。所以说我在外面跟你们讲。补液容量跟进 跟进。 但是你们每个小时都不给我跟进。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 69,
+      "original_audio_path": "2080000.0000_2093000.0000.ogg",
+      "original_audio_sha256": "6a3ff47f90531ca51dbfd0a55bd39f36433fcfe1677c20d0493f8d813ce9ad50",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0070",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0070.wav",
+      "reference": "原来3400 现在去掉1650 还有1800。 我觉得补液量太多了。 要不然真的一会就要吊。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 70,
+      "original_audio_path": "2093000.0000_2112000.0000.ogg",
+      "original_audio_sha256": "a475ef369dc216114aa270e61ed0f1011e077b3aa5b5d158256160254a42ad30",
+      "actual_duration_seconds": 19.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0071",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0071.wav",
+      "reference": "他的感染控制得蛮好了。他的心脏功能没有问题。肺的胸片 核酸的检测 看起来他都很好。 那么这个时候要做一些关节的屈 伸。一二三。对。",
+      "entities": [
+        {
+          "text": "感染",
+          "entity_type": "TERM",
+          "start": 2,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 71,
+      "original_audio_path": "2112000.0000_2132000.0000.ogg",
+      "original_audio_sha256": "357491eec77dc6c6218b73f100dfd2f064ecdc5894e406fa47391484d21e466a",
+      "actual_duration_seconds": 20.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0072",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0072.wav",
+      "reference": "拉直。二。 讲话。发声音。咳嗽有声音了 对吧？",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 72,
+      "original_audio_path": "2132000.0000_2154000.0000.ogg",
+      "original_audio_sha256": "142083bf56e8645644165fc0815e6a6ded4ee2c2ec2b122f498317ea4f05ed78",
+      "actual_duration_seconds": 22.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0073",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0073.wav",
+      "reference": "你看到吗？你现在最想做的是什么事情？我们要赶快好起来。对不对？好。 你说一句话。你说 想家 想回去。说一句给我听。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 73,
+      "original_audio_path": "2154000.0000_2165000.0000.ogg",
+      "original_audio_sha256": "bb12d3c55e945c96a67c095f887a9cd2626d7d5b4502e4d1e24fdcb3fbe45a5e",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0074",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0074.wav",
+      "reference": "想回去。想回去。对 好有声音的。 我们成功。好。可以。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 74,
+      "original_audio_path": "2165000.0000_2177000.0000.ogg",
+      "original_audio_sha256": "c6ccdd80edb73509aae47af7bd545701635e69652140474819680b53f7e80f5b",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0075",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0075.wav",
+      "reference": "肠胃穿孔又称为肠道破裂， 有可能会引发败血症， 并带来一系列包含心跳过速，",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 75,
+      "original_audio_path": "1061000.0000_1070000.0000.ogg",
+      "original_audio_sha256": "7051f6d312827602ba658841c0130b6f22b8fb1af704fa133ce55e99b88bab2f",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0076",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0076.wav",
+      "reference": "呼吸急促 发烧和意识不清等症状。 这是为什么汤医生必须立即 为Seetharam进行手术。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 76,
+      "original_audio_path": "1070000.0000_1082000.0000.ogg",
+      "original_audio_sha256": "1aa10fa6e74d79207fcb49b4f9b9550a62307798ca9895d567362050cb83c4d6",
+      "actual_duration_seconds": 12.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0077",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0077.wav",
+      "reference": "这位太太呢体弱多病 所以时间长 她的风险也是跟着会提升 有机会心脏病啊 中风啊 细菌感染啊。",
+      "entities": [
+        {
+          "text": "心脏病",
+          "entity_type": "TERM",
+          "start": 28,
+          "end": 31,
+          "covered": true
+        },
+        {
+          "text": "细菌感染",
+          "entity_type": "TERM",
+          "start": 35,
+          "end": 39,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 77,
+      "original_audio_path": "1082000.0000_1095000.0000.ogg",
+      "original_audio_sha256": "027a25f1ff55cd947ab3666728ea181dbd5fe79cbeb66f7d9f749c0a82eafd33",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0078",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0078.wav",
+      "reference": "所以我们要赶紧把手术做完。 因为有了可以避免大切口的微创手术 开放性的手术在现代医学界",
+      "entities": [
+        {
+          "text": "微创手术",
+          "entity_type": "TERM",
+          "start": 24,
+          "end": 28,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 78,
+      "original_audio_path": "1095000.0000_1104000.0000.ogg",
+      "original_audio_sha256": "a04878f61a9b20a82c8ba2bf50330101273c909d9448fae80cf2e4d55cacf273",
+      "actual_duration_seconds": 9.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0079",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0079.wav",
+      "reference": "已经渐渐式微。 但对Seetharam的病况来说 开放性手术能给医生带来更好的视野， 能更精准地将小肠切除。",
+      "entities": [
+        {
+          "text": "肠切除",
+          "entity_type": "TERM",
+          "start": 45,
+          "end": 48,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 79,
+      "original_audio_path": "1104000.0000_1115000.0000.ogg",
+      "original_audio_sha256": "f68e03ec112f8ce9999a2aaafc42cf3bef03593217b523275faa3ae23021d833",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0080",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0080.wav",
+      "reference": "首先就是要找出小肠 因为小肠有5 to 6 centimeters。 所以首先要找出它打结的地方。 然后要帮它松解起来。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 80,
+      "original_audio_path": "1115000.0000_1134000.0000.ogg",
+      "original_audio_sha256": "1e22ca1e40ac96ddfd858931c95fe5122affaa105d8d1698d68a6f57b6613431",
+      "actual_duration_seconds": 19.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0081",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0081.wav",
+      "reference": "而最末端的胆管是穿过胰头 才连接到十二指肠的。 因此手术时",
+      "entities": [
+        {
+          "text": "十二指肠",
+          "entity_type": "TERM",
+          "start": 16,
+          "end": 20,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 81,
+      "original_audio_path": "1036000.0000_1044000.0000.ogg",
+      "original_audio_sha256": "ced0beb8db0a7e18ee9cbedb64eae4fbfebf2258bf8f37f23030ce367534f3ea",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0082",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0082.wav",
+      "reference": "也必须将总胆管和胆囊切除。 汤医生已经连续工作近五个小时，",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 82,
+      "original_audio_path": "1044000.0000_1055000.0000.ogg",
+      "original_audio_sha256": "c8a3ea4e04ef0091206f5a83e086cdcd94b68c069c7b91618d3d1d9aaec7a129",
+      "actual_duration_seconds": 11.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0083",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0083.wav",
+      "reference": "但他依然全神贯注地投入手术中。 因为胰脏周边 环绕着许多复杂的大血管。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 83,
+      "original_audio_path": "1055000.0000_1063000.0000.ogg",
+      "original_audio_sha256": "c5b697832b12c1669840f7c2eb878254b23e7d439bb8ad1be1efdba224c0cd5c",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0084",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0084.wav",
+      "reference": "手术时 如果角度或距离 拿捏不够精准 随时都可能发生大出血。",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 84,
+      "original_audio_path": "1063000.0000_1076000.0000.ogg",
+      "original_audio_sha256": "41542a2805b97ce73bc312a64b754f86ed3faf4767d5abbe272d9868d6eba54f",
+      "actual_duration_seconds": 13.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0085",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0085.wav",
+      "reference": "终于 汤医生在手术进入 第六个小时后 成功地切除了所有的肿瘤。",
+      "entities": [
+        {
+          "text": "肿瘤",
+          "entity_type": "TERM",
+          "start": 25,
+          "end": 27,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 85,
+      "original_audio_path": "1076000.0000_1086000.0000.ogg",
+      "original_audio_sha256": "e2814585e30eb7174658c0db328bb95f3787237c689544345b549387ccac98c1",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0086",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0086.wav",
+      "reference": "这是胰脏 这是十二指肠 这个是病人的胆囊 所以癌症的地方大概是在这里",
+      "entities": [
+        {
+          "text": "十二指肠",
+          "entity_type": "TERM",
+          "start": 6,
+          "end": 10,
+          "covered": true
+        },
+        {
+          "text": "癌症",
+          "entity_type": "TERM",
+          "start": 20,
+          "end": 22,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 86,
+      "original_audio_path": "1086000.0000_1096000.0000.ogg",
+      "original_audio_sha256": "ea5e9b06ea2244e78fc0a3753e64b90daca99ef27be7a6240f3c79cedff29aac",
+      "actual_duration_seconds": 10.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0087",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0087.wav",
+      "reference": "我们已经把全部癌症拿出来了。 这个手术大概有六 七个小时 是比较难做的手术。",
+      "entities": [
+        {
+          "text": "癌症",
+          "entity_type": "TERM",
+          "start": 7,
+          "end": 9,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 87,
+      "original_audio_path": "1096000.0000_1104000.0000.ogg",
+      "original_audio_sha256": "02dc949448465cf2dda84a7c11c0fd748acfeaca42597ff4c1e50cb3dd414549",
+      "actual_duration_seconds": 8.0
+    },
+    {
+      "id": "MultiMed_Chinese_eval_0089",
+      "speaker": "MultiMed_unknown_speaker",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/development/audio/MultiMed_Chinese_eval_0089.wav",
+      "reference": "这时 Siddique已经开始 渐渐恢复精神。 陈医生早前已吩咐医疗团队",
+      "entities": [],
+      "group": "no_entity",
+      "dataset": "MultiMed Chinese",
+      "split": "eval",
+      "parquet_row": 89,
+      "original_audio_path": "1072000.0000_1086000.0000.ogg",
+      "original_audio_sha256": "ba69323468ecfd4f673e08baf8076780796ca2584cff8bb2ee5c392f5445ca13",
+      "actual_duration_seconds": 14.0
+    }
+  ],
+  "excluded": [
+    {
+      "index": 2,
+      "duration": 31.0,
+      "reason": "predeclared duration limit >30 seconds"
+    },
+    {
+      "index": 88,
+      "duration": 41.0,
+      "reason": "predeclared duration limit >30 seconds"
+    },
+    {
+      "index": 90,
+      "duration": 43.0,
+      "reason": "predeclared duration limit >30 seconds"
+    }
+  ],
+  "vocabulary_source": "CMeEE train + MultiMed train only; no test ASR or test-derived aliases",
+  "lexicon_occurrence_definition": "Longest non-overlapping canonical occurrences in supplied transcripts; not manually annotated NER"
+}

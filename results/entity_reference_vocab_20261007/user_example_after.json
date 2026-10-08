@@ -1,0 +1,127 @@
+{
+  "role": "User-specified text example; not medical audio proof",
+  "entities": [
+    {
+      "canonical_text": "截肢手术",
+      "aliases": []
+    }
+  ],
+  "results": [
+    {
+      "source": "介质手书",
+      "output": "截肢手术",
+      "normalizations": [
+        {
+          "observed": "介质手书",
+          "canonical": "截肢手术",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_PINYIN",
+          "match_score": 0.7925
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "介质手书",
+          "entity_id": 1,
+          "canonical": "截肢手术",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "截肢手术",
+          "match_type": "CONTEXT_PINYIN",
+          "char_score": 0.25,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.7925,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "registered_pronunciation_context",
+            "context:medical_procedure_role"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "患者需要接受介质手书",
+      "output": "患者需要接受截肢手术",
+      "normalizations": [
+        {
+          "observed": "介质手书",
+          "canonical": "截肢手术",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_PINYIN",
+          "match_score": 0.7925
+        }
+      ],
+      "candidates": [
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "介质手书",
+          "entity_id": 1,
+          "canonical": "截肢手术",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "截肢手术",
+          "match_type": "CONTEXT_PINYIN",
+          "char_score": 0.25,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.7925,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "registered_pronunciation_context",
+            "context:medical_procedure_role"
+          ]
+        }
+      ]
+    },
+    {
+      "source": "医生拿到了介质手书。",
+      "output": "医生拿到了介质手书。",
+      "normalizations": [],
+      "candidates": []
+    },
+    {
+      "source": "患者需要接受截指手书。",
+      "output": "患者需要接受截指手书。",
+      "normalizations": [],
+      "candidates": [
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "截指手书",
+          "entity_id": 1,
+          "canonical": "截肢手术",
+          "entity_type": "TERM",
+          "domain": "medical",
+          "matched_surface": "截肢手术",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.5,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.855,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "HINT_ONLY",
+          "reasons": [
+            "context_confirmation_required"
+          ]
+        }
+      ]
+    }
+  ]
+}

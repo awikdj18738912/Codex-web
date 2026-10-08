@@ -1,0 +1,24 @@
+{
+  "variants": [
+    "current",
+    "near_distance2",
+    "near_length4",
+    "near_multi_glyph",
+    "ignore_word_interior",
+    "official_alias_exact",
+    "official_alias_sound"
+  ],
+  "aliases": {
+    "ECMO": [
+      "艾克膜"
+    ],
+    "ECMO手术": [
+      "艾克膜手术"
+    ]
+  },
+  "alias_source": "https://tb.chinacdc.cn/jkjyzyk/twl/202103/W020210321669295949344.pdf",
+  "selection_sha256": "ac1d0622ac190ab8ff5fae06ee99a0a5c0f542f9538e81b65acc1b9426a8482d",
+  "rule_script_sha256": "a899c066f183120d258cf6d7528bd5cbecb4ac7d27ba7e3b8cd262d43eee483f",
+  "criterion": "Reject new text/audio regressions or invalid edits; among survivors choose most entity fixes, then fewer edits",
+  "reference_at_inference": false
+}

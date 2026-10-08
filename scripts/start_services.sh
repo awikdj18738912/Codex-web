@@ -49,8 +49,8 @@ start_qwen_if_missing() {
     echo "Qwen ASR port ${QWEN_PORT} is occupied but health check failed; refusing to replace it" >&2
     return 1
   fi
-  echo "Starting Qwen ASR in the background..."
-  QWEN_PORT="${QWEN_PORT}" nohup bash "${SCRIPT_DIR}/start_qwen_asr.sh" \
+  echo "Starting Qwen ASR in an independent background session..."
+  QWEN_PORT="${QWEN_PORT}" setsid nohup bash "${SCRIPT_DIR}/start_qwen_asr.sh" \
     >"${RUNTIME_DIR}/qwen-asr.log" 2>&1 < /dev/null &
   echo $! >"${RUNTIME_DIR}/qwen-asr.pid"
   wait_for_health "${ASR_URL}/health" "qwen-asr"
@@ -65,8 +65,8 @@ start_web_if_missing() {
     echo "Web port ${WEB_PORT} is occupied but health check failed; refusing to replace it" >&2
     return 1
   fi
-  echo "Starting Refiner/Web in the background..."
-  WEB_PORT="${WEB_PORT}" ENTITY_DB="${ENTITY_DB}" nohup bash "${SCRIPT_DIR}/start_web.sh" \
+  echo "Starting Refiner/Web in an independent background session..."
+  WEB_PORT="${WEB_PORT}" ENTITY_DB="${ENTITY_DB}" setsid nohup bash "${SCRIPT_DIR}/start_web.sh" \
     >"${RUNTIME_DIR}/refiner-web.log" 2>&1 < /dev/null &
   echo $! >"${RUNTIME_DIR}/refiner-web.pid"
   wait_for_health "${WEB_URL}/" "refiner-web"

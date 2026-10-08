@@ -1,0 +1,438 @@
+{
+  "seed": 20261005,
+  "noise_snr_db": 10.0,
+  "medical_originals": 32,
+  "ordinary_originals": 8,
+  "excluded_prior_regressions": [
+    "MultiMed_Chinese_test_0013",
+    "MultiMed_Chinese_test_0015",
+    "MultiMed_Chinese_test_0048",
+    "MultiMed_Chinese_test_0101",
+    "MultiMed_Chinese_test_0118",
+    "MultiMed_Chinese_test_0185",
+    "MultiMed_Chinese_test_0216"
+  ],
+  "static_terms": [
+    "血小板",
+    "抗生素",
+    "高血压",
+    "呼吸机",
+    "神经系统",
+    "呼吸道",
+    "胃肠道",
+    "ICU",
+    "ARDS",
+    "主动脉",
+    "蛋白质",
+    "呼吸困难",
+    "中枢神经系统",
+    "十二指肠",
+    "MRI",
+    "支气管"
+  ],
+  "dictionary_source": "Frozen CMeEE + MultiMed train vocabulary, no new test aliases",
+  "dynamic_input": "Fresh off-arm ASR only; references never passed to prompt builder",
+  "retention": "Positive entity gain, zero entity losses and zero worsened samples; otherwise reject",
+  "sample_ids": [
+    {
+      "id": "MultiMed_Chinese_test_0006",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0006",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0012",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0012",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0014",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0014",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0020",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0020",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0038",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0038",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0050",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0050",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0054",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0054",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0056",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0056",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0063",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0063",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0076",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0076",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0083",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0083",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0088",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0088",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0097",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0097",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0098",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0098",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0106",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0106",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0107",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0107",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0112",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0112",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0115",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0115",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0117",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0117",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0119",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0119",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0126",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0126",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0134",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0134",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0137",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0137",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0146",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0146",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0149",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0149",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0168",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0168",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0177",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0177",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0187",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0187",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0189",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0189",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0201",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0201",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0215",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0215",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0222",
+      "variant": "clean",
+      "domain": "medical"
+    },
+    {
+      "id": "MultiMed_Chinese_test_0222",
+      "variant": "noise",
+      "domain": "medical"
+    },
+    {
+      "id": "BAC009S0916W0227",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0916W0227",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0908W0330",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0908W0330",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0907W0259",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0907W0259",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0912W0183",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0912W0183",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0913W0228",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0913W0228",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0769W0166",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0769W0166",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0914W0467",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0914W0467",
+      "variant": "noise",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0915W0150",
+      "variant": "clean",
+      "domain": "general_control"
+    },
+    {
+      "id": "BAC009S0915W0150",
+      "variant": "noise",
+      "domain": "general_control"
+    }
+  ]
+}

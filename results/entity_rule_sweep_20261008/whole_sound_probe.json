@@ -1,0 +1,58 @@
+{
+  "role": "Additional development-only probe after heldout inspection; rejected if any counterexample regresses",
+  "counts": {
+    "development": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "negative_controls": {
+      "samples": 2,
+      "changed": 2,
+      "improved": 0,
+      "regressed": 2,
+      "error_delta": 8
+    }
+  },
+  "changes": [
+    {
+      "label": "negative_controls",
+      "id": "ordinary_roleplay",
+      "variant": "constructed_text",
+      "reference": "医生让孩子假装螃蟹练习动作。",
+      "baseline": "医生让孩子假装螃蟹练习动作。",
+      "output": "医生让孩子甲状旁腺练习动作。",
+      "edits": [
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "假装螃蟹",
+          "canonical": "甲状旁腺",
+          "rule": "sound_distance2_relaxed"
+        }
+      ],
+      "error_delta": 4
+    },
+    {
+      "label": "negative_controls",
+      "id": "ordinary_speech_example",
+      "variant": "constructed_text",
+      "reference": "医生用假装螃蟹这个例子说明表演技巧。",
+      "baseline": "医生用假装螃蟹这个例子说明表演技巧。",
+      "output": "医生用甲状旁腺这个例子说明表演技巧。",
+      "edits": [
+        {
+          "start": 3,
+          "end": 7,
+          "observed": "假装螃蟹",
+          "canonical": "甲状旁腺",
+          "rule": "sound_distance2_relaxed"
+        }
+      ],
+      "error_delta": 4
+    }
+  ],
+  "rule_body": "def whole_sound(text,ds):\n    edits=[];blocked=EntityProtector(ds,protect_numeric_spans=False).protect(text).spans\n    for d in ds:\n        c=d.canonical_text;p=d.spelling_context\n        if not p or not re.fullmatch(r'[\\u3400-\\u9fff]{4,16}',c):continue\n        target=' '.join(pronunciation_signature(c))\n        for run in re.finditer(r'[\\u3400-\\u9fff]+',text):\n            for offset in range(len(run.group())-len(c)+1):\n                start=run.start()+offset;end=start+len(c);s=text[start:end]\n                if s==c or sum(a!=b for a,b in zip(s,c))>4:continue\n                if any(start<p.end and p.start<end for p in blocked):continue\n                if candidate_boundary_issue(text,start,end) or medical_person_slot(text,start,end):continue\n                if Levenshtein.distance(' '.join(pronunciation_signature(s)),target)>2:continue\n                if not _context_terms(text,start,end,p):continue\n                edits.append(dict(start=start,end=end,observed=s,canonical=c,rule='sound_distance2_relaxed'))\n    return render(text,edits)\n"
+}

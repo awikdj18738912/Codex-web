@@ -1,0 +1,16 @@
+{
+  "qwen": {
+    "pid": 3334414,
+    "cmdline": "python -m system.qwen_asr_stream_server --model /home/aim0/data/models/ASR/Qwen3-ASR-1.7B --gpu-memory-utilization 0.55 --max-model-len 32768 --confidence-logprobs 5 --segmentation-mode vad_finalize --asr-send-chunk-seconds 0.5 --vad silero --vad-model /home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx --vad-energy-threshold 0.02 --vad-min-silence 0.7 --vad-min-speech 0.25 --vad-preroll 0.7 --vad-tail-pad 1.0 --silence-rms-threshold 0.002 --port 8766 ",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "0"
+    }
+  },
+  "web": {
+    "pid": 3438002,
+    "cmdline": "python -m system.web_app --refiner-model /home/aim0/data/models/ASR/AgenticASR-Refiner --refiner-device cuda:0 --asr-url http://127.0.0.1:8766 --asr-api-style current --language Chinese --entity-db /home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db --entity-fuzzy-mode auto --refinement-gate-mode tri_state --final-refinement-mode off --enable-zh-itn --zh-itn-library /home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so --output /home/aim0/桌面/tan/ASR/Codex-web/results/web/session.jsonl --max-new-tokens 256 --port 8081 ",
+    "env": {
+      "CUDA_VISIBLE_DEVICES": "1"
+    }
+  }
+}

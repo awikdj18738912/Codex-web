@@ -1,0 +1,747 @@
+{
+  "seed": 20261006,
+  "method": "All 19 unused test utterances covered by the frozen medical glossary + 40 seeded ordinary negatives",
+  "excluded_ids": [
+    "BAC009S0764W0127",
+    "BAC009S0764W0145",
+    "BAC009S0764W0411",
+    "BAC009S0764W0440",
+    "BAC009S0764W0495",
+    "BAC009S0765W0419",
+    "BAC009S0765W0436",
+    "BAC009S0765W0446",
+    "BAC009S0765W0487",
+    "BAC009S0765W0488",
+    "BAC009S0766W0239",
+    "BAC009S0766W0342",
+    "BAC009S0766W0353",
+    "BAC009S0766W0362",
+    "BAC009S0766W0419",
+    "BAC009S0767W0194",
+    "BAC009S0767W0380",
+    "BAC009S0767W0415",
+    "BAC009S0767W0426",
+    "BAC009S0767W0491",
+    "BAC009S0768W0128",
+    "BAC009S0768W0369",
+    "BAC009S0768W0430",
+    "BAC009S0768W0442",
+    "BAC009S0768W0465",
+    "BAC009S0769W0125",
+    "BAC009S0769W0137",
+    "BAC009S0769W0166",
+    "BAC009S0769W0264",
+    "BAC009S0769W0283",
+    "BAC009S0770W0154",
+    "BAC009S0770W0335",
+    "BAC009S0770W0381",
+    "BAC009S0770W0471",
+    "BAC009S0770W0493",
+    "BAC009S0901W0157",
+    "BAC009S0901W0284",
+    "BAC009S0901W0420",
+    "BAC009S0901W0426",
+    "BAC009S0901W0446",
+    "BAC009S0902W0208",
+    "BAC009S0902W0379",
+    "BAC009S0902W0409",
+    "BAC009S0902W0414",
+    "BAC009S0902W0430",
+    "BAC009S0903W0194",
+    "BAC009S0903W0352",
+    "BAC009S0903W0373",
+    "BAC009S0903W0390",
+    "BAC009S0903W0416",
+    "BAC009S0904W0165",
+    "BAC009S0904W0214",
+    "BAC009S0904W0350",
+    "BAC009S0904W0394",
+    "BAC009S0904W0488",
+    "BAC009S0905W0289",
+    "BAC009S0905W0350",
+    "BAC009S0905W0398",
+    "BAC009S0905W0412",
+    "BAC009S0905W0484",
+    "BAC009S0906W0183",
+    "BAC009S0906W0391",
+    "BAC009S0906W0397",
+    "BAC009S0906W0412",
+    "BAC009S0906W0474",
+    "BAC009S0907W0128",
+    "BAC009S0907W0259",
+    "BAC009S0907W0388",
+    "BAC009S0907W0403",
+    "BAC009S0907W0430",
+    "BAC009S0908W0152",
+    "BAC009S0908W0330",
+    "BAC009S0908W0426",
+    "BAC009S0908W0433",
+    "BAC009S0908W0456",
+    "BAC009S0912W0177",
+    "BAC009S0912W0183",
+    "BAC009S0912W0365",
+    "BAC009S0912W0449",
+    "BAC009S0912W0494",
+    "BAC009S0913W0228",
+    "BAC009S0913W0335",
+    "BAC009S0913W0399",
+    "BAC009S0913W0409",
+    "BAC009S0913W0425",
+    "BAC009S0914W0348",
+    "BAC009S0914W0425",
+    "BAC009S0914W0434",
+    "BAC009S0914W0435",
+    "BAC009S0914W0467",
+    "BAC009S0915W0150",
+    "BAC009S0915W0375",
+    "BAC009S0915W0416",
+    "BAC009S0915W0418",
+    "BAC009S0915W0442",
+    "BAC009S0916W0227",
+    "BAC009S0916W0339",
+    "BAC009S0916W0358",
+    "BAC009S0916W0456",
+    "BAC009S0916W0462"
+  ],
+  "dictionary_source": "CMeEE + MultiMed training glossary; no new aliases",
+  "samples": [
+    {
+      "id": "BAC009S0768W0372",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0372.wav",
+      "reference": "哈特灵今年饱受十字韧带伤势困扰",
+      "entities": [
+        {
+          "text": "韧带",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 11,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0261",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0261.wav",
+      "reference": "这种技术很适合用来治疗胃溃疡等胃部疾病",
+      "entities": [
+        {
+          "text": "胃溃疡",
+          "entity_type": "TERM",
+          "start": 11,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0365",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0365.wav",
+      "reference": "专家会诊之后认为孙杨存在心肌缺血情况",
+      "entities": [
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 12,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0366",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0366.wav",
+      "reference": "与感冒病毒感染损伤心肌有关",
+      "entities": [
+        {
+          "text": "感染",
+          "entity_type": "TERM",
+          "start": 5,
+          "end": 7,
+          "covered": true
+        },
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 11,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0367",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0367.wav",
+      "reference": "予服用处方药以治疗心肌缺血保护心肌",
+      "entities": [
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 11,
+          "covered": true
+        },
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 15,
+          "end": 17,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0368",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0368.wav",
+      "reference": "孙杨的心肌损伤是在感冒后引发的",
+      "entities": [
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 3,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0769W0369",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0369.wav",
+      "reference": "心肌同位素扫描显示局部灌注差",
+      "entities": [
+        {
+          "text": "心肌",
+          "entity_type": "TERM",
+          "start": 0,
+          "end": 2,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0901W0338",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0338.wav",
+      "reference": "医生此次将对惠若琪的心脏进行微创手术",
+      "entities": [
+        {
+          "text": "微创手术",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 18,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0901W0340",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0340.wav",
+      "reference": "惠若琪将在微创手术后回到南京调养",
+      "entities": [
+        {
+          "text": "微创手术",
+          "entity_type": "TERM",
+          "start": 5,
+          "end": 9,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0901W0355",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0355.wav",
+      "reference": "连身上的痛觉神经都进行了更换",
+      "entities": [
+        {
+          "text": "神经",
+          "entity_type": "TERM",
+          "start": 6,
+          "end": 8,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0901W0361",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0361.wav",
+      "reference": "普鲁申科被诊断患上了一种新的脊椎疾病",
+      "entities": [
+        {
+          "text": "脊椎",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 16,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0905W0452",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0452.wav",
+      "reference": "温州女婴打疫苗后口吐白沫抽搐昏迷",
+      "entities": [
+        {
+          "text": "口吐白沫",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 12,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0906W0344",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0344.wav",
+      "reference": "无疑是擂台上最能引爆肾上腺素的震撼一幕",
+      "entities": [
+        {
+          "text": "肾上腺素",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0906W0376",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0376.wav",
+      "reference": "浑身是血的播求由于头部三处动脉破裂失血过多",
+      "entities": [
+        {
+          "text": "动脉",
+          "entity_type": "TERM",
+          "start": 13,
+          "end": 15,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0907W0464",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0464.wav",
+      "reference": "港媒关注浙江暖男医生手术室播动画片哄小女孩",
+      "entities": [
+        {
+          "text": "手术室",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 13,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0912W0171",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0171.wav",
+      "reference": "房价的一涨一跌都牵动着购房者的神经",
+      "entities": [
+        {
+          "text": "神经",
+          "entity_type": "TERM",
+          "start": 15,
+          "end": 17,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0912W0466",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0466.wav",
+      "reference": "送医后被查出颈部脊髓损伤",
+      "entities": [
+        {
+          "text": "脊髓",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 10,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0914W0447",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0447.wav",
+      "reference": "游客晋吉岛乘船颠骨折诉旅社索赔二零馀万元",
+      "entities": [
+        {
+          "text": "骨折",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 10,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0914W0452",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0452.wav",
+      "reference": "回国后被确诊为腰部骨折",
+      "entities": [
+        {
+          "text": "骨折",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 11,
+          "covered": true
+        }
+      ],
+      "group": "medical"
+    },
+    {
+      "id": "BAC009S0767W0436",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0436.wav",
+      "reference": "登上歌王宝座的概率是不是会要大很多倍呢",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0770W0163",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0163.wav",
+      "reference": "开发商均面临不均衡的复苏前景",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0906W0159",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0159.wav",
+      "reference": "各城市库存压力正在减小",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0230",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0230.wav",
+      "reference": "着力提高粮食综合生产能力",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0179",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0179.wav",
+      "reference": "但目前还未出现大面积提取行为",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0770W0483",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0483.wav",
+      "reference": "他的义举感动了四里八乡",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0450",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0450.wav",
+      "reference": "清华附小昨迎百年校庆校长诠释成志教育理念",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0767W0180",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0180.wav",
+      "reference": "今年一线城市宅地成交的溢价率不高",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0915W0360",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0360.wav",
+      "reference": "当时身披八号战袍的她身高达到了一米九五公分",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0913W0288",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0288.wav",
+      "reference": "就足以让专家们恶心七七四十九天了",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0765W0147",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0147.wav",
+      "reference": "但您和您的儿女能自由支配",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0913W0190",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0190.wav",
+      "reference": "国务院国资委力挺国企",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0914W0257",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0257.wav",
+      "reference": "证明他们真得没有手机用户信息",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0767W0234",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0234.wav",
+      "reference": "使地方政府的债务融资规模控制在安全范围内",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0765W0393",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0393.wav",
+      "reference": "而哈萨克斯坦则是第十六位",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0770W0476",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0476.wav",
+      "reference": "村民为多拿补偿在拆迁前突击装修全用劣质建材",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0907W0485",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0485.wav",
+      "reference": "高仿沉香多以化学香精等制成",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0764W0420",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0420.wav",
+      "reference": "今年三月底惊爆分手",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0904W0406",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0406.wav",
+      "reference": "皮克斯终于有了拍摄玩具总动员四的计划",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0404",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0404.wav",
+      "reference": "瓦尔兹将精心演绎这个著名角色",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0141",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0141.wav",
+      "reference": "美丽北京大型绿色公益品牌项目",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0906W0139",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0139.wav",
+      "reference": "再次申请公积金贷款购房的",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0905W0206",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0206.wav",
+      "reference": "加快推进该区域现代农业建设",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0488",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0488.wav",
+      "reference": "又能探测获取我海军舰队活动动向",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0905W0365",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0365.wav",
+      "reference": "大家回去之后将马上投入到对日本的准备中",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0765W0466",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0466.wav",
+      "reference": "在朝阳区百子湾阳光嘉园小区遇害",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0764W0317",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0317.wav",
+      "reference": "同比减少约百分之四十六亏损额为五百九十三二万港元",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0902W0226",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0226.wav",
+      "reference": "提高脱毒种薯供给能力",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0901W0342",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0342.wav",
+      "reference": "成就了中国女排五连冠伟业",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0904W0461",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0461.wav",
+      "reference": "一辆宝马和一辆奔驰四次相撞",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0906W0291",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0291.wav",
+      "reference": "管理层眼光得再高一点",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0767W0386",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0386.wav",
+      "reference": "那就是姑娘们高举起惠若琪徐云丽和杨方旭的球衣",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0907W0477",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0477.wav",
+      "reference": "参考消息网七月二九日报道港媒称",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0904W0190",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0190.wav",
+      "reference": "推动农产品生产加工和流通企业建立诚信制度",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0913W0316",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0316.wav",
+      "reference": "美的集团公关部的相关人士告诉第一财经日报记者",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0766W0153",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0153.wav",
+      "reference": "在大数据上的技术优势无可匹敌",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0905W0209",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0209.wav",
+      "reference": "调动各方发展粮食生产积极性",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0906W0483",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0483.wav",
+      "reference": "白花花的大米洒了一地",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0906W0199",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0199.wav",
+      "reference": "转变畜牧业发展方式",
+      "entities": [],
+      "group": "ordinary"
+    },
+    {
+      "id": "BAC009S0916W0480",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0480.wav",
+      "reference": "湖北一中学班长失踪坠亡教学楼四小时去向成谜",
+      "entities": [],
+      "group": "ordinary"
+    }
+  ]
+}

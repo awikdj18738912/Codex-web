@@ -1,0 +1,20 @@
+{
+  "role": "Development probe, not independent acceptance",
+  "counts": {
+    "samples": 1381,
+    "changed": 1,
+    "improved": 1,
+    "regressed": 0,
+    "error_delta": -4
+  },
+  "changes": [
+    {
+      "id": "MultiMed_Chinese_train_0136",
+      "variant": "clean",
+      "reference": "原来有个大肿块。 而且早在十年前就出现了。 腹股沟疝是一种相当常见的疾病",
+      "baseline": "区原来有个大肿块，而且早在十年前就出现了。这是那个，那个。复古钩扇是一种相当常见的疾病。",
+      "output": "区原来有个大肿块，而且早在十年前就出现了。这是那个，那个。腹股沟疝是一种相当常见的疾病。",
+      "error_delta": -4
+    }
+  ]
+}

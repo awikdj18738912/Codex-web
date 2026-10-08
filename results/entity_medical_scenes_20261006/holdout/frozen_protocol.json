@@ -1,0 +1,34 @@
+{
+  "hashes": {
+    "selection.json": "a93f5ea2bf741acc9237f9f5fab3d41559bdc379ad15e4c7a03d01af95d0a2c8",
+    "glossaries.json": "8a89e67831675725f887e23d13d2e60b1fba3920d8f05c19f0ae961eaa6ebf62",
+    "cardiopulmonary.db": "8c9d64712cd9867b9c40d9c9981345cb04bbe0ecc2ad4b844453aa001734f927",
+    "orthopedics.db": "d2a53a82a84eb72be7a46c24afa7f0d37bcf19e97dd3a09ef714921a2f183b02",
+    "urology.db": "fd7ad93f4b07bc525ae8efc0ae7b9fa91a889923d59f436c83e2729f31a21a3d"
+  },
+  "arms": [
+    "raw",
+    "plain_entity",
+    "context_entity",
+    "scene_prompt",
+    "bounded_copy",
+    "restricted_copy"
+  ],
+  "retain": "Positive entity gain, zero lost correct mentions, zero regressed samples; otherwise reject",
+  "inference_inputs": "PCM and predeclared specialty only; no reference or gold entities",
+  "production_changes": false,
+  "bounded_copy_development": "Designed after reviewing the initial 48-recording pilot; new holdout recordings excluded from that pilot",
+  "bounded_copy_inputs": "Existing raw and scene-primed ASR on identical PCM plus declared glossary/anchors; no gold transcript",
+  "additional_hashes": {
+    "experiments/scripts/evaluate_entity_medical_scenes.py": "25357e5aa58ea48e08d4048121f0903e1ad41122c8fa81acdcfdc49cd1704b59",
+    "results/entity_context_20261006/expanded_vocabulary.json": "0542c4bf723b9cf22b7bfe088f0f267002b9c0e77011b25605f6de0c0f6bf79c"
+  },
+  "bounded_anchor_extension": [
+    "患者",
+    "病患"
+  ],
+  "mention_counting": "Longest non-overlapping canonical occurrences; repeated gold names scored by ordinal",
+  "filter_freeze": "Both extraction filters frozen before reading or scoring this new holdout; raw/scene_prompt decoding underway independently",
+  "restricted_copy": "Chinese target >=4 chars, same first character and final two characters, no Chinese-to-ASCII copy; same base hard checks",
+  "pilot_safety_failure": "Broad gate replaces valid 曾经系统学习 with 神经系统学习; restricted gate must abstain"
+}

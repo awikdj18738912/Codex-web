@@ -1,0 +1,97 @@
+{
+  "summaries": {
+    "development": {
+      "samples": 1128,
+      "changed": 3,
+      "prototype_mismatches": 0,
+      "baseline_recovered": 112,
+      "new_recovered": 115,
+      "expected_mentions": 162,
+      "audio_versions": 128
+    },
+    "holdout": {
+      "samples": 80,
+      "changed": 1,
+      "prototype_mismatches": 0,
+      "baseline_recovered": 43,
+      "new_recovered": 44,
+      "expected_mentions": 80,
+      "audio_versions": 80
+    }
+  },
+  "changes": [
+    {
+      "label": "development",
+      "id": "MultiMed_Chinese_train_0993",
+      "variant": "clean",
+      "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+      "baseline": "急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。",
+      "output": "急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。",
+      "normalizations": [
+        {
+          "observed": "埃克莫",
+          "canonical": "ECMO",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_ALIAS_PINYIN",
+          "match_score": 0.8133333333333334
+        }
+      ]
+    },
+    {
+      "label": "development",
+      "id": "MultiMed_Chinese_train_0996",
+      "variant": "clean",
+      "reference": "他可能会错过做ECMO手术的最佳窗口期。 明天会怎么样 谁都吃不准。新冠病人和以前的病人不一样的。 好像外面成功率总的成功率只有百分之十几。这百分之十几还要看",
+      "baseline": "他可能会错过做埃克莫手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+      "output": "他可能会错过做ECMO手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+      "normalizations": [
+        {
+          "observed": "埃克莫手术",
+          "canonical": "ECMO手术",
+          "entity_type": "TERM",
+          "entity_id": 2,
+          "match_type": "CONTEXT_ALIAS_PINYIN",
+          "match_score": 0.88
+        }
+      ]
+    },
+    {
+      "label": "development",
+      "id": "MultiMed_Chinese_train_0987",
+      "variant": "clean",
+      "reference": "但拼到一半 王维俊才发现 第二台ECMO不但没有套包耗材， 连水箱管路都有了问题。",
+      "baseline": "但拼到一半，王维军才发现，第二台埃克莫不但没有套包耗材，连水箱管路都有了问题。哦。",
+      "output": "但拼到一半，王维军才发现，第二台ECMO不但没有套包耗材，连水箱管路都有了问题。哦。",
+      "normalizations": [
+        {
+          "observed": "埃克莫",
+          "canonical": "ECMO",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_ALIAS_PINYIN",
+          "match_score": 0.8133333333333334
+        }
+      ]
+    },
+    {
+      "label": "holdout",
+      "id": "MultiMed_Chinese_train_1026",
+      "variant": "clean",
+      "reference": "我昨天夜里11点不到睡的。到今天早上3点就醒了。醒了就睡不着了。 从成功拼装出第一台ECMO到决定先给15床上机，再到今天用ECMO",
+      "baseline": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台埃克莫，到决定先给十五床上机，再到今天用埃克莫。",
+      "output": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台ECMO，到决定先给十五床上机，再到今天用埃克莫。",
+      "normalizations": [
+        {
+          "observed": "埃克莫",
+          "canonical": "ECMO",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_ALIAS_PINYIN",
+          "match_score": 0.8133333333333334
+        }
+      ]
+    }
+  ],
+  "prototype_mismatches": []
+}

@@ -1,0 +1,23 @@
+Loading AgenticASR Refiner...
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:49,  4.39it/s]Loading weights:  23%|██▎       | 50/219 [00:00<00:00, 189.74it/s]Loading weights:  48%|████▊     | 105/219 [00:00<00:00, 313.22it/s]Loading weights:  76%|███████▌  | 166/219 [00:00<00:00, 406.08it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 344.48it/s]
+INFO:     Started server process [3545985]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8082 (Press CTRL+C to quit)
+INFO:     127.0.0.1:37222 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43912 - "WebSocket /ws/stream?mode=offline&domain=general&language=Chinese&entity_asr_context=0" [accepted]
+INFO:     connection open
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+INFO:     127.0.0.1:53698 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36144 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36144 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36144 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53766 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53766 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33876 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56050 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3545985]

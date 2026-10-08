@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "pairs": 6,
+    "improved": 1,
+    "regressed": 0,
+    "changed": 1
+  },
+  "changes": [
+    {
+      "id": "MultiMed_Chinese_train_0579",
+      "variant": "clean",
+      "baseline": "帮他们开刀过后，人发现他们其实有骨疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+      "output": "帮他们开刀过后，人发现他们其实有骨质疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+      "normalizations": [
+        {
+          "observed": "骨疏松症",
+          "canonical": "骨质疏松症",
+          "entity_type": "TERM",
+          "entity_id": 1,
+          "match_type": "CONTEXT_OMISSION",
+          "match_score": 0.8150000000000002
+        }
+      ]
+    }
+  ],
+  "real_asr_decodes": 6,
+  "model_calls": 19,
+  "web_sessions": 12
+}

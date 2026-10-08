@@ -1,0 +1,44 @@
+....F................................................                    [100%]
+=================================== FAILURES ===================================
+_______ test_ambiguity_policies_modes_and_boundaries_remain_hard_guards ________
+
+    def test_ambiguity_policies_modes_and_boundaries_remain_hard_guards():
+        text='患者需要接受介质手书。'
+        for ds in [(definition(),definition('截指手术',2)),
+                   (replace(definition(),spelling_context=None),),
+                   (replace(definition(),normalization_policy='preserve'),),
+                   (replace(definition(),enabled=False),)]:
+>           assert prepare(text,ds).baseline_text==text
+E           AssertionError: assert '患者需要接受截肢手术。' == '患者需要接受介质手书。'
+E             - 患者需要接受介质手书。
+E             + 患者需要接受截肢手术。
+
+tests/test_entity_low_character.py:56: AssertionError
+=============================== warnings summary ===============================
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+  /home/aim0/anaconda3/lib/python3.12/site-packages/jieba/_compat.py:18: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('google')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_low_character.py::test_user_example_is_recalled_without_a_misspelling_alias
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('zope')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_entity_low_character.py::test_ambiguity_policies_modes_and_boundaries_remain_hard_guards
+1 failed, 52 passed, 8 warnings in 2.93s

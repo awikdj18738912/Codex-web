@@ -16,6 +16,7 @@ REFINEMENT_GATE_MODE="${REFINEMENT_GATE_MODE:-tri_state}"
 FINAL_REFINEMENT_MODE="${FINAL_REFINEMENT_MODE:-off}"
 OUTPUT_PATH="${OUTPUT_PATH:-${PROJECT_ROOT}/results/web/session.jsonl}"
 ZH_ITN_ENABLED="${ZH_ITN_ENABLED:-0}"
+ENTITY_ASR_CONTEXT_ENABLED="${ENTITY_ASR_CONTEXT_ENABLED:-0}"
 ZH_ITN_LIBRARY="${ZH_ITN_LIBRARY:-${PROJECT_ROOT}/zh-itn/zh-itn/build/libzh_itn_bridge.so}"
 
 if curl --silent --show-error --fail --max-time 3 \
@@ -39,6 +40,12 @@ if [[ ! -f "${ENTITY_DB}" ]]; then
   exit 1
 fi
 ZH_ITN_ARGS=()
+ENTITY_CONTEXT_ARGS=()
+case "${ENTITY_ASR_CONTEXT_ENABLED,,}" in
+  1|true|yes|on) ENTITY_CONTEXT_ARGS=(--enable-entity-asr-context) ;;
+  0|false|no|off) ;;
+  *) echo "ENTITY_ASR_CONTEXT_ENABLED must be a boolean value" >&2; exit 1 ;;
+esac
 case "${ZH_ITN_ENABLED,,}" in
   1|true|yes|on)
     if [[ ! -f "${ZH_ITN_LIBRARY}" ]]; then
@@ -71,6 +78,7 @@ exec env CUDA_VISIBLE_DEVICES="${WEB_GPU}" "${CONDA_EXE}" run --no-capture-outpu
   --refinement-gate-mode "${REFINEMENT_GATE_MODE}" \
   --final-refinement-mode "${FINAL_REFINEMENT_MODE}" \
   "${ZH_ITN_ARGS[@]}" \
+  "${ENTITY_CONTEXT_ARGS[@]}" \
   --output "${OUTPUT_PATH}" \
   --max-new-tokens "${MAX_NEW_TOKENS:-256}" \
   --port "${WEB_PORT}"

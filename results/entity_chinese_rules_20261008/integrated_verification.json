@@ -1,0 +1,22 @@
+{
+  "samples": 1381,
+  "mismatches": [],
+  "changes": [
+    {
+      "id": "MultiMed_Chinese_train_0136",
+      "variant": "clean",
+      "baseline": "区原来有个大肿块，而且早在十年前就出现了。这是那个，那个。复古钩扇是一种相当常见的疾病。",
+      "output": "区原来有个大肿块，而且早在十年前就出现了。这是那个，那个。腹股沟疝是一种相当常见的疾病。",
+      "normalizations": [
+        {
+          "observed": "复古钩扇",
+          "canonical": "腹股沟疝",
+          "entity_type": "TERM",
+          "entity_id": 71,
+          "match_type": "CONTEXT_PINYIN",
+          "match_score": 0.73
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "MultiMed_Chinese_train_0961",
+    "variant": "clean",
+    "condition": "with_context",
+    "source": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。",
+    "reference": "5床患有恶性肿瘤 抵抗力低下 氧合指数正在持续下降。 15床已经插了两周的呼吸机 仍然持续高烧，二氧化碳潴留 潮气量很高。",
+    "output": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。",
+    "normalizations": [
+      {
+        "observed": "二氧化碳储留",
+        "canonical": "二氧化碳潴留",
+        "entity_type": "TERM",
+        "entity_id": 5,
+        "match_type": "CONTEXT_NEAR_PINYIN",
+        "match_score": 0.8466666666666667
+      }
+    ],
+    "hints": [],
+    "candidates": [
+      {
+        "start": 47,
+        "end": 53,
+        "observed": "二氧化碳储留",
+        "entity_id": 5,
+        "canonical": "二氧化碳潴留",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "二氧化碳潴留",
+        "match_type": "CONTEXT_NEAR_PINYIN",
+        "char_score": 0.8333,
+        "pinyin_score": 0.8333,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.8467,
+        "runner_up_score": 0.7133,
+        "margin": 0.1333,
+        "decision": "AUTO_NORMALIZE",
+        "reasons": [
+          "registered_single_character_near_context",
+          "context:呼吸机",
+          "context:潮气量"
+        ]
+      }
+    ],
+    "baseline": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。"
+  },
+  {
+    "id": "MultiMed_Chinese_train_0961",
+    "variant": "noise",
+    "condition": "with_context",
+    "source": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。",
+    "reference": "5床患有恶性肿瘤 抵抗力低下 氧合指数正在持续下降。 15床已经插了两周的呼吸机 仍然持续高烧，二氧化碳潴留 潮气量很高。",
+    "output": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。",
+    "normalizations": [
+      {
+        "observed": "二氧化碳储留",
+        "canonical": "二氧化碳潴留",
+        "entity_type": "TERM",
+        "entity_id": 5,
+        "match_type": "CONTEXT_NEAR_PINYIN",
+        "match_score": 0.8466666666666667
+      }
+    ],
+    "hints": [],
+    "candidates": [
+      {
+        "start": 47,
+        "end": 53,
+        "observed": "二氧化碳储留",
+        "entity_id": 5,
+        "canonical": "二氧化碳潴留",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "二氧化碳潴留",
+        "match_type": "CONTEXT_NEAR_PINYIN",
+        "char_score": 0.8333,
+        "pinyin_score": 0.8333,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.8467,
+        "runner_up_score": 0.7133,
+        "margin": 0.1333,
+        "decision": "AUTO_NORMALIZE",
+        "reasons": [
+          "registered_single_character_near_context",
+          "context:呼吸机",
+          "context:潮气量"
+        ]
+      }
+    ],
+    "baseline": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。"
+  }
+]

@@ -1,0 +1,148 @@
+{
+  "counts": {
+    "current": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_distance2": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_length4": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_multi_glyph": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "ignore_word_interior": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_exact": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_sound": {
+      "samples": 80,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -4
+    },
+    "alias_nested_guarded": {
+      "samples": 80,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -4
+    },
+    "alias_device_boundary": {
+      "samples": 80,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -4
+    },
+    "sound_distance2_relaxed": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "component_bridge": {
+      "samples": 80,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    }
+  },
+  "changes": {
+    "current": [],
+    "near_distance2": [],
+    "near_length4": [],
+    "near_multi_glyph": [],
+    "ignore_word_interior": [],
+    "official_alias_exact": [],
+    "official_alias_sound": [
+      {
+        "id": "MultiMed_Chinese_train_1026",
+        "variant": "clean",
+        "reference": "我昨天夜里11点不到睡的。到今天早上3点就醒了。醒了就睡不着了。 从成功拼装出第一台ECMO到决定先给15床上机，再到今天用ECMO",
+        "baseline": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台埃克莫，到决定先给十五床上机，再到今天用埃克莫。",
+        "output": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台ECMO，到决定先给十五床上机，再到今天用埃克莫。",
+        "edits": [
+          {
+            "start": 40,
+            "end": 43,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "registered_alias_sound"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "alias_nested_guarded": [
+      {
+        "id": "MultiMed_Chinese_train_1026",
+        "variant": "clean",
+        "reference": "我昨天夜里11点不到睡的。到今天早上3点就醒了。醒了就睡不着了。 从成功拼装出第一台ECMO到决定先给15床上机，再到今天用ECMO",
+        "baseline": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台埃克莫，到决定先给十五床上机，再到今天用埃克莫。",
+        "output": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台ECMO，到决定先给十五床上机，再到今天用埃克莫。",
+        "edits": [
+          {
+            "start": 40,
+            "end": 43,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "alias_nested_guarded"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "alias_device_boundary": [
+      {
+        "id": "MultiMed_Chinese_train_1026",
+        "variant": "clean",
+        "reference": "我昨天夜里11点不到睡的。到今天早上3点就醒了。醒了就睡不着了。 从成功拼装出第一台ECMO到决定先给15床上机，再到今天用ECMO",
+        "baseline": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台埃克莫，到决定先给十五床上机，再到今天用埃克莫。",
+        "output": "像我去年嘞，赛季都没打，到到那下谁头都快就去了，去了就空着嘞。从成功拼装出第一台ECMO，到决定先给十五床上机，再到今天用埃克莫。",
+        "edits": [
+          {
+            "start": 40,
+            "end": 43,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "alias_device_boundary"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "sound_distance2_relaxed": [],
+    "component_bridge": []
+  }
+}

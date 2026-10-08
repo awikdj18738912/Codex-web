@@ -1,0 +1,548 @@
+{
+  "event": "final",
+  "raw_text": "今天是二零一五年十二月五日，我有百分之三十七的概率获得一百二十三万七千八百五十一元。我叫厉飞羽，来自鬼灵门。然后我有一箱苹果，嗯，不对我有一箱梨。然后我觉得今天的天气过得还好，大概有三十七度。然后哈哈哈，我一无一失的告诉你，你觉得我这个人怎么样？但是三番五次的提醒就不太好了。嗯，嗯，你嗯觉得呢？",
+  "clean_text": "今天是2015年12月5日，我有37%的概率获得123万7851元。我叫厉飞宇，来自鬼灵门。然后我有一箱梨。然后我觉得今天的天气过得还好。大概有三十七度。然后哈哈哈，我一无一失的告诉你，你觉得我这个人怎么样？但是三番五次的提醒就不太好了。你觉得呢？",
+  "asr_language": "Chinese",
+  "asr_confidence": 0.9204306546351061,
+  "asr_confidence_metadata": {
+    "calibrated": false,
+    "covers_full_text": false,
+    "scope": "current_state",
+    "source": "qwen_vllm_token_logprob",
+    "token_count": 10,
+    "min_probability": 0.6220730750853898
+  },
+  "refiner_latency_ms": 2604,
+  "numeric_rule_latency_ms": 22.349,
+  "refiner_executed": true,
+  "refiner_accepted": false,
+  "refiner_reject_reasons": [
+    "segment_1:semantic_content_loss"
+  ],
+  "placeholder_retry_count": 0,
+  "refiner_retry_count": 1,
+  "refiner_retry_reasons": [
+    "segment_1:semantic_content_loss"
+  ],
+  "refiner_masked_outputs": [
+    "来自__ENTITY_000__。然后我有一箱梨。然后我觉得今天的天气过得还好。<KEY>[ENTITY_000]",
+    "大概有37度。然后我一无失的告诉你。",
+    "大概有37度。然后我一无失的告诉你。",
+    "你觉得我这个人怎么样？但是__ENTITY_000__的提醒就不太好了。<KEY>[ENTITY_000__]",
+    "你觉得呢？"
+  ],
+  "structured_patch_audits": [
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null
+    }
+  ],
+  "boundary_anomalies": [],
+  "boundary_reviews": [],
+  "refinement_gate_mode": "tri_state",
+  "refinement_gate_config": {
+    "mode": "tri_state",
+    "high_confidence": 0.92,
+    "refine_on_unverified_confidence": false
+  },
+  "refinement_gate_decisions": [
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 45,
+      "asr_confidence": 0.948491683748392,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 35,
+      "asr_confidence": 0.9204306546351061,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "self_correction",
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 21,
+      "asr_confidence": 0.9204306546351061,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 25,
+      "asr_confidence": 0.9204306546351061,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 6,
+      "asr_confidence": 0.9204306546351061,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    }
+  ],
+  "refinement_gate_skipped_segments": 1,
+  "entity_audit_issues": [],
+  "entity_refinement_hints": [],
+  "entity_normalizations": [
+    {
+      "observed": "厉飞羽",
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667
+    }
+  ],
+  "numeric_normalizations": [
+    {
+      "original": "二零一五年十二月五日",
+      "replacement": "2015年12月5日",
+      "kind": "zh.date.explicit_full_date",
+      "start": 3,
+      "end": 13,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    },
+    {
+      "original": "百分之三十七",
+      "replacement": "37%",
+      "kind": "zh.percentage.explicit",
+      "start": 16,
+      "end": 22,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    },
+    {
+      "original": "一百二十三万七千八百五十一元",
+      "replacement": "123万7851元",
+      "kind": "zh.money.explicit_integer",
+      "start": 27,
+      "end": 41,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    }
+  ],
+  "numeric_rule_repairs": [
+    {
+      "segment_index": 1,
+      "source_text": "大概有三十七度。然后哈哈哈，我一无一失的告诉你，",
+      "model_text": "大概有37度。然后我一无失的告诉你。",
+      "restored_text": "大概有三十七度。然后我一无失的告诉你。",
+      "reason": "rule_owned_numeric_surface_restored"
+    },
+    {
+      "segment_index": 1,
+      "source_text": "大概有三十七度。然后哈哈哈，我一无一失的告诉你，",
+      "model_text": "大概有37度。然后我一无失的告诉你。",
+      "restored_text": "大概有三十七度。然后我一无失的告诉你。",
+      "reason": "rule_owned_numeric_surface_restored"
+    }
+  ],
+  "numeric_fallbacks": [],
+  "safe_numeric_repairs": [],
+  "safe_repetition_repairs": [],
+  "local_deletion_reviews": [],
+  "repetition_reviews": [
+    {
+      "index": 1,
+      "start": 79,
+      "end": 82,
+      "source": "哈哈哈",
+      "target": "哈",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 2,
+      "start": 91,
+      "end": 94,
+      "source": "你，你",
+      "target": "你",
+      "kind": "punctuated_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 79,
+      "end": 82,
+      "source": "哈哈哈",
+      "target": "哈",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 2,
+      "start": 91,
+      "end": 94,
+      "source": "你，你",
+      "target": "你",
+      "kind": "punctuated_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 79,
+      "end": 82,
+      "source": "哈哈哈",
+      "target": "哈",
+      "kind": "character_run",
+      "context": "然后我觉得今天的天气过得还好。大概有三十七度。然后哈哈哈，我一无一失的告诉你，你觉得我这个人怎么样？但是三番五次的提醒就不太好了。你觉得呢？",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -0.3835
+    },
+    {
+      "index": 2,
+      "start": 91,
+      "end": 94,
+      "source": "你，你",
+      "target": "你",
+      "kind": "punctuated_run",
+      "context": "然后我觉得今天的天气过得还好。大概有三十七度。然后哈哈哈，我一无一失的告诉你，你觉得我这个人怎么样？但是三番五次的提醒就不太好了。你觉得呢？",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -1.1364
+    }
+  ],
+  "boundary_echo_repairs": [],
+  "protected_entities": [
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "厉飞羽",
+      "replacement": "厉飞宇",
+      "entity_type": "TERM",
+      "source": "fuzzy:general",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667,
+      "decision": "AUTO_NORMALIZE"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1.0,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "三番五次",
+      "replacement": "三番五次",
+      "entity_type": "IDIOM",
+      "source": "rule",
+      "entity_id": null,
+      "match_type": "FIXED_IDIOM",
+      "match_score": null,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "厉飞宇",
+      "replacement": "厉飞宇",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 9,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1.0,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1.0,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "三番五次",
+      "replacement": "三番五次",
+      "entity_type": "IDIOM",
+      "source": "rule",
+      "entity_id": null,
+      "match_type": "FIXED_IDIOM",
+      "match_score": null,
+      "decision": "EXACT"
+    }
+  ],
+  "entity_candidates": [
+    {
+      "start": 36,
+      "end": 39,
+      "observed": "厉飞羽",
+      "entity_id": 9,
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "domain": "general",
+      "matched_surface": "厉飞宇",
+      "match_type": "PINYIN_FUZZY",
+      "char_score": 0.6667,
+      "pinyin_score": 1.0,
+      "length_score": 1.0,
+      "domain_score": 1.0,
+      "priority_score": 0.0,
+      "final_score": 0.8967,
+      "runner_up_score": null,
+      "margin": 1.0,
+      "decision": "AUTO_NORMALIZE",
+      "reasons": [
+        "score_pass",
+        "margin_pass",
+        "final_event"
+      ]
+    }
+  ],
+  "entity_matcher_latency_ms": 17.385,
+  "entity_fuzzy_mode": "auto",
+  "entity_matching_config_version": 1,
+  "rule_protection_enabled": true,
+  "numeric_normalization_enabled": true,
+  "numeric_backend": "zh-itn",
+  "zh_itn_enabled": true,
+  "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+  "window_size": 3,
+  "window_max_chars": 80,
+  "committed_chunks": 14,
+  "pending_refinement_chunks": 0,
+  "refinement_batch_size": 3,
+  "refinement_state": "window_refined",
+  "refinement_source_spans": [
+    {
+      "source_text": "今天是二零一五年十二月五日，我有百分之三十七的概率获得一百二十三万七千八百五十一元。我叫厉飞羽，",
+      "clean_text": "今天是2015年12月5日，我有37%的概率获得123万7851元。我叫厉飞宇，",
+      "state": "committed"
+    },
+    {
+      "source_text": "来自鬼灵门。然后我有一箱苹果，嗯，不对我有一箱梨。然后我觉得今天的天气过得还好，",
+      "clean_text": "来自鬼灵门。然后我有一箱梨。然后我觉得今天的天气过得还好。",
+      "state": "committed"
+    },
+    {
+      "source_text": "大概有三十七度。然后哈哈哈，我一无一失的告诉你，",
+      "clean_text": "大概有三十七度。然后哈哈哈，我一无一失的告诉你，",
+      "state": "committed"
+    },
+    {
+      "source_text": "你觉得我这个人怎么样？但是三番五次的提醒就不太好了。嗯，",
+      "clean_text": "你觉得我这个人怎么样？但是三番五次的提醒就不太好了。",
+      "state": "committed"
+    },
+    {
+      "source_text": "嗯，你嗯觉得呢？",
+      "clean_text": "你觉得呢？",
+      "state": "committed"
+    }
+  ],
+  "window_cache_reused_group_count": 4,
+  "window_cache_reused_gate_skip_group_count": 1,
+  "window_cache_reprocessed_group_count": 1,
+  "window_cache_reprocess_reasons": {
+    "no_exact_source_group_match": 1
+  },
+  "window_cache_partition": "vad_segments",
+  "final_vad_source_segment_count": 5,
+  "repetition_review_model_calls": 2,
+  "repetition_response_cache_hits": 0,
+  "refinement_revision": 4,
+  "final_refinement_mode": "off",
+  "refiner_session_stats": {
+    "schema_version": 1,
+    "call_count": 7,
+    "initial_call_count": 6,
+    "retry_call_count": 1,
+    "intermediate_call_count": 4,
+    "final_call_count": 3,
+    "completed_call_count": 7,
+    "failed_call_count": 0,
+    "inflight_call_count": 0,
+    "completed_wall_latency_ms": 2712.685,
+    "gate_skipped_segment_count": 5,
+    "busy_segment_count": 0,
+    "closed_call_rejection_count": 0,
+    "observed_initial_opportunity_count": 11,
+    "accepting_new_calls": false,
+    "stats_complete": true
+  },
+  "session_refiner_call_count": 7,
+  "session_refiner_initial_call_count": 6,
+  "session_refiner_retry_call_count": 1,
+  "session_refiner_intermediate_call_count": 4,
+  "session_refiner_final_call_count": 3,
+  "session_gate_skipped_segment_count": 5,
+  "_speed_benchmark": {
+    "trace_id": "0b588557d29f46908859a53ce7ad0cd4",
+    "audio": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频1.mp3",
+    "captured_at": "2026-10-03T11:28:19.882403+08:00",
+    "audio_duration_s": 40.848,
+    "transport_interval_s": 1,
+    "decode_interval_s": 2,
+    "elapsed_s": 5.861,
+    "feed_s": 2.981,
+    "finish_s": 2.88,
+    "first_text_s": 0.452,
+    "first_refined_s": 1.09,
+    "chunks": 41,
+    "events": {
+      "chunk_ack": 41,
+      "transcript": 21,
+      "update": 4,
+      "final": 1
+    },
+    "configuration": {
+      "health": {
+        "ok": true,
+        "entity_db": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "hashes": {
+        "system/live_qwen_refiner.py": "1bb8aa685a8911d40c22eefa35ff88730708b138603d5d3a581af6c2782a7992",
+        "system/web/index.html": "7b3b4a1cd387b70030201d2d2aba4f5b6de838ba98d9ab4e97dd203f48664015",
+        "system/web_app.py": "13a2ba049ab982eb8784eb8576ad13a2988f91382f00242c71560f6f93411ce2",
+        "zh-itn/zh-itn/build/libzh_itn_bridge.so": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1"
+      }
+    },
+    "compression": "deflate",
+    "negotiated_extensions": [],
+    "model_sum_s": 2.236,
+    "vad_sum_s": 0.295,
+    "request_sum_s": 2.554,
+    "lock_wait_sum_s": 0.0,
+    "web_round_trip_sum_s": 2.637
+  },
+  "_stream_updates": [
+    {
+      "elapsed_s": 1.09,
+      "revision": 1,
+      "refined_chars": 42,
+      "pending_chars": 0
+    },
+    {
+      "elapsed_s": 2.114,
+      "revision": 2,
+      "refined_chars": 46,
+      "pending_chars": 39
+    },
+    {
+      "elapsed_s": 5.559,
+      "revision": 3,
+      "refined_chars": 125,
+      "pending_chars": 0
+    },
+    {
+      "elapsed_s": 5.565,
+      "revision": 4,
+      "refined_chars": 125,
+      "pending_chars": 0
+    }
+  ]
+}

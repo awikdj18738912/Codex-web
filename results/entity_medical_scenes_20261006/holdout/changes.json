@@ -1,0 +1,622 @@
+[
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "output": "简称 TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "reference": "简称TAVI。 他不想劳烦家人， 因此拒绝他们陪他前来。 手术预计一个小时内能够完成。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "bounded_copy",
+    "source": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "output": "简称TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "reference": "简称TAVI。 他不想劳烦家人， 因此拒绝他们陪他前来。 手术预计一个小时内能够完成。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "restricted_copy",
+    "source": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "output": "简称TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "reference": "简称TAVI。 他不想劳烦家人， 因此拒绝他们陪他前来。 手术预计一个小时内能够完成。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "output": "简称 TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+    "reference": "简称TAVI。 他不想劳烦家人， 因此拒绝他们陪他前来。 手术预计一个小时内能够完成。",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0016",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。",
+    "output": "的风险，它的几率差不多三到四八千，但不做TAVI，心门继续。",
+    "reference": "它的几率差不多三到四巴仙， 但不做TAVI 心门继续狭窄",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0016",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。",
+    "output": "的工作，它的几率差不多三到四八千，但不做 heavy，只能继续。",
+    "reference": "它的几率差不多三到四巴仙， 但不做TAVI 心门继续狭窄",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "plain_entity",
+    "source": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "output": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "reference": "在TAVI研发之前 病患只能接受开胸换瓣手术。 过程中 患者需要经历全身麻醉 切开胸骨 心脏停跳",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "context_entity",
+    "source": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "output": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "reference": "在TAVI研发之前 病患只能接受开胸换瓣手术。 过程中 患者需要经历全身麻醉 切开胸骨 心脏停跳",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "output": "在 TAVI 研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "reference": "在TAVI研发之前 病患只能接受开胸换瓣手术。 过程中 患者需要经历全身麻醉 切开胸骨 心脏停跳",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "output": "在 TAVI 研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "reference": "在TAVI研发之前 病患只能接受开胸换瓣手术。 过程中 患者需要经历全身麻醉 切开胸骨 心脏停跳",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "bounded_copy",
+    "source": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "output": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+    "reference": "在TAVI研发之前 病患只能接受开胸换瓣手术。 过程中 患者需要经历全身麻醉 切开胸骨 心脏停跳",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0014",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。",
+    "output": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会当。",
+    "reference": "血就会容易从心脏出到全身。 这个架子里有一个生物的心瓣叶。 这心瓣叶就会代替",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0035",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。",
+    "output": "你今天早上有吃药吗？有。我们做TAVI首选是从腿部的主动。",
+    "reference": "五 六点钟。 你今天早上有吃药吗？ 有。 我们做TAVI首选 是从腿部的主动脉",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0035",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。",
+    "output": "你今天早上有吃药吗？没有。我们做台机首选是从腿部的主动。",
+    "reference": "五 六点钟。 你今天早上有吃药吗？ 有。 我们做TAVI首选 是从腿部的主动脉",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0010",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+    "output": "病发病率也在不断的增长，主动脉瓣关闭不全以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+    "reference": "也在不断地增长。 主动脉瓣关闭不全， 以及像郑友进一样患上主动脉瓣狭窄， 是较为常见的两种病种。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0015",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。",
+    "output": "代替旧狭窄心瓣叶的那个功能。TAVI的风险呢，有包括第一死亡。",
+    "reference": "旧狭窄心瓣叶的那个功能。 TAVI的风险 有包括 第一 死亡的风险，",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0015",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。",
+    "output": "肺主狭窄心瓣叶的一个功能。开胸风险呢，有包括第一死亡。",
+    "reference": "旧狭窄心瓣叶的那个功能。 TAVI的风险 有包括 第一 死亡的风险，",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0017",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。",
+    "output": "狭窄，死亡的风险一年有差不多五十八千。那时，我母亲还在跟我住在。",
+    "reference": "死亡的风险一年有差不多五十巴仙。 那时 我母亲还在 跟我住在一起",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0017",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。",
+    "output": "狭窄，死亡的风险一年有差不多五十八千。那时我们是在做这个。",
+    "reference": "死亡的风险一年有差不多五十巴仙。 那时 我母亲还在 跟我住在一起",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0034",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+    "output": "血管来植入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+    "reference": "来介入这个新的心瓣。 最后几点吃的饭呢？ 昨晚大概五 六点。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0034",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。",
+    "output": "来接入这个新技术。最后几点吃的饭呢？昨晚大概五六点。",
+    "reference": "来介入这个新的心瓣。 最后几点吃的饭呢？ 昨晚大概五 六点。",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0044",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。",
+    "output": "可能额外的需要放一个起搏器。Valve is ready。我们通常做这个手术之间会让他们进行不同的扫描，来制。",
+    "reference": "可能额外的需要放一个起搏机。 我们通常做这个手续之前 会让他们进行不同的扫描来知道",
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_train_0044",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+    "output": "可能额外需要放一个起搏器。Valve team，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+    "reference": "可能额外的需要放一个起搏机。 我们通常做这个手续之前 会让他们进行不同的扫描来知道",
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0036",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。",
+    "output": "动脉接入这个新的心瓣，因为它的侵入度呢，没有比开胸啊或者从颈项的血管或手臂的血管来的这样侵入。",
+    "reference": "介入这个新的心瓣。 因为它的侵略度 没有比开胸或者从颈项的血管 或手臂的血管来得这样侵入。",
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0036",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。",
+    "output": "接入这个新的心瓣，因为它的亲越度呢，没有开胸啊，或者从颈上的血管或手臂的血管来个像亲入。",
+    "reference": "介入这个新的心瓣。 因为它的侵略度 没有比开胸或者从颈项的血管 或手臂的血管来得这样侵入。",
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0671",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。",
+    "output": "也是因为骨质疏松引起的了哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、弯倾倒的这样走路。",
+    "reference": "也是因为骨质疏松引起的了。 严重的脊椎侧弯会整个人 比如说伸不直腰 半倾倒地这样走路。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0671",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。",
+    "output": "也是因为骨质疏松引起的哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样一种。",
+    "reference": "也是因为骨质疏松引起的了。 严重的脊椎侧弯会整个人 比如说伸不直腰 半倾倒地这样走路。",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0089",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。",
+    "output": "患有颈椎病的Royston今早来到医院动手术。One two three up.因为开刀部位非常尖。",
+    "reference": "患有颈椎病的Royston 今早来到医院动手术。 因为开刀部位非常接近脊髓，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0089",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。",
+    "output": "患有颈椎病的 Royce Dan 今早来到医院动手术。 One two three.因为开刀部位非常近。",
+    "reference": "患有颈椎病的Royston 今早来到医院动手术。 因为开刀部位非常接近脊髓，",
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_train_0112",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。",
+    "output": "在另一间手术室里，夏辉颖医生正小心翼翼地切除颈椎间盘，因为他越来越。",
+    "reference": "在另一间手术室里， 夏辉颖医生 正小心翼翼地切除颈椎间盘。 因为他越来越靠近",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0112",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。",
+    "output": "在另一间手术室里，贾和勇医生正小心翼翼地切除颈椎间盘，因为它越来越。",
+    "reference": "在另一间手术室里， 夏辉颖医生 正小心翼翼地切除颈椎间盘。 因为他越来越靠近",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0574",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+    "output": "身边有没有人，或者是担心自己会获得这个骨患上？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+    "reference": "或者是担心自己会获得这个骨质疏松症？ 我真的很害怕。 因为我有亲戚就是因为跌倒了 她年长了嘛？ 后来就不能动。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0101",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。",
+    "output": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备，给 stitch piece。国声基建的。",
+    "reference": "先把病人自己的hamstring tendon进行采取。 采样之后 我们进行准备。 腘绳肌腱的功能",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0101",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。",
+    "output": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitch piece。国声机电。",
+    "reference": "先把病人自己的hamstring tendon进行采取。 采样之后 我们进行准备。 腘绳肌腱的功能",
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0599",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+    "output": "元首哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+    "reference": "本身钙质就很多咯。 对。 来 第三题。 定时地补充钙片 就不用担心会患上骨质疏松症。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0599",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+    "output": "莲藕哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+    "reference": "本身钙质就很多咯。 对。 来 第三题。 定时地补充钙片 就不用担心会患上骨质疏松症。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0619",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+    "output": "夏英姐，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+    "reference": "说的是真的。 因为当你骨质疏松的时候 你的骨支撑力越来越低了， 然后可能会慢慢地驼下来。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0619",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+    "output": "张姐，哎，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+    "reference": "说的是真的。 因为当你骨质疏松的时候 你的骨支撑力越来越低了， 然后可能会慢慢地驼下来。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0073",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me.",
+    "output": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I apologize to him, lah. You know, I said sorry because I was really in pain and it's very frustrating for me.",
+    "reference": "他几乎每一晚 都得叫儿子帮他按揉颈部和肩膀。",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0073",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me.",
+    "output": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She left a bit, so left, yeah, down a bit. After that, I feel better. Now apologize to him, lah. You know, I say sorry because I was really in pain and it was very frustrating for me.",
+    "reference": "他几乎每一晚 都得叫儿子帮他按揉颈部和肩膀。",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0126",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+    "output": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业，不过或许就是他所做的粗。",
+    "reference": "Royston是一个喜欢动手劳作的人 他大半辈子的职业 离不开餐饮业和服务业。 不过 或许就是他所做的“粗活儿”，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0126",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+    "output": "Rayson是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的。",
+    "reference": "Royston是一个喜欢动手劳作的人 他大半辈子的职业 离不开餐饮业和服务业。 不过 或许就是他所做的“粗活儿”，",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0677",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+    "output": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+    "reference": "晨运 跑步 饮食。 尽量吃高钙质的食物 比如牛奶",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0677",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。",
+    "output": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶了。",
+    "reference": "晨运 跑步 饮食。 尽量吃高钙质的食物 比如牛奶",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0600",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？",
+    "output": "真真还是假？来，三二一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假为什么？",
+    "reference": "真还是假？ 来 三 二 一 请举牌。 我是这么做啦。 我是这么做 所以我相信它是。 你说假 为什么？",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0600",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？",
+    "output": "真还是假？来，三二一，停！我是这么做了，我是这么做，相信他是了。说假为什么？",
+    "reference": "真还是假？ 来 三 二 一 请举牌。 我是这么做啦。 我是这么做 所以我相信它是。 你说假 为什么？",
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0775",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+    "output": "指标 OK 精准度，通常如果是 PSA 在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+    "reference": "精准度如何？ 通常如果是PSA 在四到十之间的话， 它有前列腺癌的几率是差不多30%。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0768",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。",
+    "output": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺，更多问题。",
+    "reference": "如果前列腺癌扩散到脊椎， 如果扩散到脊椎， 压到神经线的话， 那可以导致大便 小便不顺 失禁，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0768",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。",
+    "output": "如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通畅，更多问题。",
+    "reference": "如果前列腺癌扩散到脊椎， 如果扩散到脊椎， 压到神经线的话， 那可以导致大便 小便不顺 失禁，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0806",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+    "output": "啊，呃，鱼类之类的话，有那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+    "reference": "鱼类之类的话 那你得前列腺癌的几率 可能会比较低一点。 其实有研究显示 如果是说你每天吃十份以上的西红柿，",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0765",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+    "output": "前列腺增生是那个前列腺肿大的部位，是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+    "reference": "那个前列腺肿大的部位 是在尿道的周围。对。 如果是开始有良性增生的话 就比较早会有小便的症状。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0823",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+    "output": "什么是前列腺？我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+    "reference": "什么是前列腺 我都不知道。 前列腺癌是什么？ 很严重吗？ 我会活多久？",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0823",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。",
+    "output": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重吗？我会活多久？啊。",
+    "reference": "什么是前列腺 我都不知道。 前列腺癌是什么？ 很严重吗？ 我会活多久？",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0836",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+    "output": "除了这个切除手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+    "reference": "除了这个切除手术 还有什么样其他的治疗方法吗？ 其实不是每个前列腺癌 都需要做治疗的。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0841",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。",
+    "output": "往外的扩散，然后扩散的，嗯，一般像切除是整个切掉，就是把整个前列腺。",
+    "reference": "往外辐射。 扩散。 对。 扩散。 对。 一般上切除是整个切掉啊。 就是把整个前列腺拿出来。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0774",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。",
+    "output": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃前列腺。",
+    "reference": "生产的一个蛋白质之一。 可以在男性的血液找到， 所以通过抽血就可以验到 前列腺的指标了。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0760",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。",
+    "output": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候能够立。",
+    "reference": "提供精子所需要的养分 还有环境。 可以让它如果去到女性体内的时候 能力争上游。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0760",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。",
+    "output": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候能够立。",
+    "reference": "提供精子所需要的养分 还有环境。 可以让它如果去到女性体内的时候 能力争上游。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0828",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+    "output": "康复了之后，我就被安排去rehabcenter做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+    "reference": "康复了之后 我就被安排去 rehab center 做一些复健的运动， 把全身的肌肉都锻炼起来。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0828",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。",
+    "output": "康复了之后，我就被安排去李克群的做一些逐渐的运动，把全身的肌肉都啊锻炼起来。",
+    "reference": "康复了之后 我就被安排去 rehab center 做一些复健的运动， 把全身的肌肉都锻炼起来。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0769",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。",
+    "output": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期哇！如果病情这么严。",
+    "reference": "甚至可以影响到脚 变成没有力， 无法行走。 这些是非常后期。 如果病情这么严重的话",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0769",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+    "output": "啊，甚至会影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+    "reference": "甚至可以影响到脚 变成没有力， 无法行走。 这些是非常后期。 如果病情这么严重的话",
+    "error_delta": 2
+  }
+]

@@ -1,0 +1,120 @@
+{
+  "counts": {
+    "current": {
+      "samples": 1282,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0,
+      "expected_mentions": 312,
+      "recovered_mentions": 214
+    },
+    "independent_sentence": {
+      "samples": 1282,
+      "changed": 3,
+      "improved": 1,
+      "regressed": 2,
+      "error_delta": 5,
+      "expected_mentions": 312,
+      "recovered_mentions": 215
+    },
+    "procedure_heading": {
+      "samples": 1282,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -1,
+      "expected_mentions": 312,
+      "recovered_mentions": 215
+    },
+    "quantified_action": {
+      "samples": 1282,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0,
+      "expected_mentions": 312,
+      "recovered_mentions": 214
+    }
+  },
+  "changes": {
+    "current": [],
+    "independent_sentence": [
+      {
+        "id": "MultiMed_Chinese_train_1145",
+        "variant": "clean",
+        "reference": "医生马上为她展开 预计长达七个小时的手术。 胰十二指肠切除术",
+        "baseline": "麻醉后，医生马上为他展开预计长达七个小时的手术。宜十二指肠切除术。",
+        "output": "麻醉后，医生马上为他展开预计长达七个小时的手术。胰十二指肠切除术。",
+        "normalizations": [
+          {
+            "observed": "宜十二指肠切除术",
+            "canonical": "胰十二指肠切除术",
+            "entity_type": "TERM",
+            "entity_id": 38,
+            "match_type": "CONTEXT_PINYIN",
+            "match_score": 0.94875
+          }
+        ],
+        "error_delta": -1
+      },
+      {
+        "id": "negative_10",
+        "variant": "constructed",
+        "reference": "患者准备了一幅作品。介质手书。",
+        "baseline": "患者准备了一幅作品。介质手书。",
+        "output": "患者准备了一幅作品。截肢手术。",
+        "normalizations": [
+          {
+            "observed": "介质手书",
+            "canonical": "截肢手术",
+            "entity_type": "TERM",
+            "entity_id": 10000,
+            "match_type": "CONTEXT_PINYIN",
+            "match_score": 0.7925
+          }
+        ],
+        "error_delta": 3
+      },
+      {
+        "id": "negative_11",
+        "variant": "constructed",
+        "reference": "主持人介绍了这篇文献。介质手书。",
+        "baseline": "主持人介绍了这篇文献。介质手书。",
+        "output": "主持人介绍了这篇文献。截肢手术。",
+        "normalizations": [
+          {
+            "observed": "介质手书",
+            "canonical": "截肢手术",
+            "entity_type": "TERM",
+            "entity_id": 10000,
+            "match_type": "CONTEXT_PINYIN",
+            "match_score": 0.7925
+          }
+        ],
+        "error_delta": 3
+      }
+    ],
+    "procedure_heading": [
+      {
+        "id": "MultiMed_Chinese_train_1145",
+        "variant": "clean",
+        "reference": "医生马上为她展开 预计长达七个小时的手术。 胰十二指肠切除术",
+        "baseline": "麻醉后，医生马上为他展开预计长达七个小时的手术。宜十二指肠切除术。",
+        "output": "麻醉后，医生马上为他展开预计长达七个小时的手术。胰十二指肠切除术。",
+        "normalizations": [
+          {
+            "observed": "宜十二指肠切除术",
+            "canonical": "胰十二指肠切除术",
+            "entity_type": "TERM",
+            "entity_id": 38,
+            "match_type": "CONTEXT_PINYIN",
+            "match_score": 0.94875
+          }
+        ],
+        "error_delta": -1
+      }
+    ],
+    "quantified_action": []
+  }
+}

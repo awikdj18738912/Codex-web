@@ -1,0 +1,63 @@
+{
+  "existing_code_files_checked": 134,
+  "changed_existing_code_files": [],
+  "live_entity_rows": {
+    "protected_entities": 12,
+    "entity_aliases": 9
+  },
+  "live_dictionary_logical_sha256": "5dfb978da0ab2498543e7bc15fe2599c8c0a8d85aadbb2546850cdf290099dbd",
+  "live_dictionary_unchanged": true,
+  "model_input_samples": 630,
+  "real_refiner_calls": 69,
+  "real_asr_calls": 320,
+  "audio_originals": 40,
+  "audio_versions_per_arm": 80,
+  "repeat_off_exact_matches": 80,
+  "pcm_hashes_verified": true,
+  "entity_tests_passed": 56,
+  "rejected_production_changes": [
+    "expanded_candidate_recall",
+    "refiner_choice_protocol",
+    "refiner_patch_protocol",
+    "static_16term_context",
+    "dynamic_8term_rerecognition",
+    "online_description_enrichment"
+  ],
+  "production_changes_retained": [],
+  "health": {
+    "8081": {
+      "ok": true,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  }
+}

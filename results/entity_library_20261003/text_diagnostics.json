@@ -1,0 +1,303 @@
+{
+  "cases": [
+    {
+      "name": "exact_alias",
+      "kind": "controlled_text_not_audio",
+      "source": "乌冬得水电站开始蓄水。",
+      "expected": "乌东德水电站开始蓄水。",
+      "actual": "乌东德水电站开始蓄水。",
+      "correct": true,
+      "mode": "auto",
+      "allow_auto": true,
+      "confidence": null,
+      "changes": [
+        {
+          "observed": "乌冬得",
+          "canonical": "乌东德",
+          "entity_type": "TERM",
+          "entity_id": 8,
+          "match_type": "EXACT_ALIAS",
+          "match_score": 1.0
+        }
+      ],
+      "candidates": [],
+      "damaged_refiner_fallback": "乌东德水电站开始蓄水。",
+      "damaged_refiner_reasons": [
+        "placeholder_count:__ENTITY_000__:0"
+      ]
+    },
+    {
+      "name": "fuzzy_positive",
+      "kind": "controlled_text_not_audio",
+      "source": "鬼灵们是入口。",
+      "expected": "鬼灵门是入口。",
+      "actual": "鬼灵门是入口。",
+      "correct": true,
+      "mode": "auto",
+      "allow_auto": true,
+      "confidence": null,
+      "changes": [
+        {
+          "observed": "鬼灵们",
+          "canonical": "鬼灵门",
+          "entity_type": "TERM",
+          "entity_id": 7,
+          "match_type": "PINYIN_FUZZY",
+          "match_score": 0.8966666666666667
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "鬼灵们",
+          "entity_id": 7,
+          "canonical": "鬼灵门",
+          "entity_type": "TERM",
+          "domain": "general",
+          "matched_surface": "鬼灵门",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.6667,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.8967,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "score_pass",
+            "margin_pass",
+            "final_event"
+          ]
+        }
+      ],
+      "damaged_refiner_fallback": "鬼灵门是入口。",
+      "damaged_refiner_reasons": [
+        "placeholder_count:__ENTITY_000__:0"
+      ]
+    },
+    {
+      "name": "context_negative",
+      "kind": "controlled_text_not_audio",
+      "source": "外出务工人员回乡。",
+      "expected": "外出务工人员回乡。",
+      "actual": "外出误工人员回乡。",
+      "correct": false,
+      "mode": "auto",
+      "allow_auto": true,
+      "confidence": null,
+      "changes": [
+        {
+          "observed": "务工",
+          "canonical": "误工",
+          "entity_type": "TERM",
+          "entity_id": 11,
+          "match_type": "PINYIN_FUZZY",
+          "match_score": 0.855
+        }
+      ],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "务工",
+          "entity_id": 11,
+          "canonical": "误工",
+          "entity_type": "TERM",
+          "domain": "general",
+          "matched_surface": "误工",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.5,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.855,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "score_pass",
+            "margin_pass",
+            "final_event"
+          ]
+        }
+      ],
+      "damaged_refiner_fallback": "外出误工人员回乡。",
+      "damaged_refiner_reasons": [
+        "placeholder_count:__ENTITY_000__:0"
+      ]
+    },
+    {
+      "name": "context_negative_low_confidence",
+      "kind": "controlled_text_not_audio",
+      "source": "外出务工人员回乡。",
+      "expected": "外出务工人员回乡。",
+      "actual": "外出误工人员回乡。",
+      "correct": false,
+      "mode": "auto",
+      "allow_auto": true,
+      "confidence": 0.01,
+      "changes": [
+        {
+          "observed": "务工",
+          "canonical": "误工",
+          "entity_type": "TERM",
+          "entity_id": 11,
+          "match_type": "PINYIN_FUZZY",
+          "match_score": 0.855
+        }
+      ],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "务工",
+          "entity_id": 11,
+          "canonical": "误工",
+          "entity_type": "TERM",
+          "domain": "general",
+          "matched_surface": "误工",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.5,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.855,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "AUTO_NORMALIZE",
+          "reasons": [
+            "score_pass",
+            "margin_pass",
+            "final_event"
+          ]
+        }
+      ],
+      "damaged_refiner_fallback": "外出误工人员回乡。",
+      "damaged_refiner_reasons": [
+        "placeholder_count:__ENTITY_000__:0"
+      ]
+    },
+    {
+      "name": "shadow_negative",
+      "kind": "controlled_text_not_audio",
+      "source": "外出务工人员回乡。",
+      "expected": "外出务工人员回乡。",
+      "actual": "外出务工人员回乡。",
+      "correct": true,
+      "mode": "shadow",
+      "allow_auto": true,
+      "confidence": null,
+      "changes": [],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "务工",
+          "entity_id": 11,
+          "canonical": "误工",
+          "entity_type": "TERM",
+          "domain": "general",
+          "matched_surface": "误工",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.5,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.855,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "KEEP_RAW",
+          "reasons": [
+            "shadow_would_auto_normalize"
+          ]
+        }
+      ],
+      "damaged_refiner_fallback": "外出务工人员回乡。",
+      "damaged_refiner_reasons": [
+        "severe_content_loss"
+      ]
+    },
+    {
+      "name": "off_still_normalizes_exact_alias",
+      "kind": "controlled_text_not_audio",
+      "source": "乌冬得水电站开始蓄水。",
+      "expected": "乌东德水电站开始蓄水。",
+      "actual": "乌东德水电站开始蓄水。",
+      "correct": true,
+      "mode": "off",
+      "allow_auto": true,
+      "confidence": null,
+      "changes": [
+        {
+          "observed": "乌冬得",
+          "canonical": "乌东德",
+          "entity_type": "TERM",
+          "entity_id": 8,
+          "match_type": "EXACT_ALIAS",
+          "match_score": 1.0
+        }
+      ],
+      "candidates": [],
+      "damaged_refiner_fallback": "乌东德水电站开始蓄水。",
+      "damaged_refiner_reasons": [
+        "placeholder_count:__ENTITY_000__:0"
+      ]
+    },
+    {
+      "name": "partial_contract",
+      "kind": "controlled_text_not_audio",
+      "source": "鬼灵们是入口。",
+      "expected": "鬼灵们是入口。",
+      "actual": "鬼灵们是入口。",
+      "correct": true,
+      "mode": "auto",
+      "allow_auto": false,
+      "confidence": null,
+      "changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "鬼灵们",
+          "entity_id": 7,
+          "canonical": "鬼灵门",
+          "entity_type": "TERM",
+          "domain": "general",
+          "matched_surface": "鬼灵门",
+          "match_type": "PINYIN_FUZZY",
+          "char_score": 0.6667,
+          "pinyin_score": 1.0,
+          "length_score": 1.0,
+          "domain_score": 1.0,
+          "priority_score": 0.0,
+          "final_score": 0.8967,
+          "runner_up_score": null,
+          "margin": 1.0,
+          "decision": "HINT_ONLY",
+          "reasons": [
+            "partial_event"
+          ]
+        }
+      ],
+      "damaged_refiner_fallback": "鬼灵们是入口。",
+      "damaged_refiner_reasons": [
+        "severe_content_loss",
+        "semantic_substitution"
+      ]
+    }
+  ],
+  "crud": {
+    "normalized_alias": "北京航空航天大学开展实验。",
+    "preserve_alias": "北航开展实验。",
+    "general_domain_names": [],
+    "disabled_active_count": 0,
+    "deleted": true
+  },
+  "note": "Constructed text diagnostics are excluded from all audio CER/recall tables."
+}

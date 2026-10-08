@@ -1,0 +1,24 @@
+{
+  "changed_existing_files": [
+    "system/ENTITY_SPELLING_CONTEXT.md",
+    "system/entity_matcher.py",
+    "system/entity_pronunciation.py"
+  ],
+  "unexpected_changes": [],
+  "formal_db_unchanged": true,
+  "formal_counts": {
+    "protected_entities": 12,
+    "entity_aliases": 9,
+    "entity_spelling_contexts": 0
+  },
+  "initial_audio_rules_selection_terms_frozen": true,
+  "retained_rule": "Exact-sound disease definition",
+  "rejected_rules": [
+    "Independent procedure sentence",
+    "Procedure heading",
+    "Quantified action",
+    "Long procedure near variants",
+    "Narrow ASR context variants"
+  ],
+  "services_restarted": false
+}

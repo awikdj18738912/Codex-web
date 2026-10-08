@@ -12,6 +12,15 @@ from pathlib import Path
 from typing import Iterable
 
 from .entity_store import EntityDefinition
+from .entity_boundaries import candidate_boundary_issue
+from .entity_pronunciation import (context_spelling_evidence, pronunciation_signature,
+                                  context_omission_evidence, internal_omission_forms,
+                                  low_character_medical_role, procedure_spelling_evidence,
+                                  registered_alias_spelling_evidence,
+                                  registered_alias_near_evidence,
+                                  supports_disease_definition, disease_definition_spelling_evidence,
+                                  supports_procedure_stem, procedure_stem_spelling_evidence,
+                                  near_spelling_forms, context_near_spelling_evidence)
 
 
 DEFAULT_CONFIG_PATH = Path(__file__).resolve().parent / "configs" / "entity_matching.json"
@@ -256,6 +265,47 @@ class EntityCandidateMatcher:
                 + ", ".join(sorted(invalid_domains))
             )
         self._entities = {item.entity_id: item for item in definitions if item.enabled}
+        self._spelling_namespace: dict[tuple[str, ...], frozenset[str]] = {}
+        self._omission_namespace: dict[str, frozenset[str]] = {}
+        self._near_namespace = {}
+        stem_namespace=defaultdict(set)
+        if any(supports_procedure_stem(item) for item in self._entities.values()):
+            for item in self._entities.values():
+                for value in (item.canonical_text,*item.aliases):
+                    stem_namespace[pronunciation_signature(value)].add(item.canonical_text)
+        self._procedure_stem_namespace={k:frozenset(v) for k,v in stem_namespace.items()}
+        disease_namespace=defaultdict(set)
+        if any(supports_disease_definition(item) for item in self._entities.values()):
+            for item in self._entities.values():
+                for value in (item.canonical_text,*item.aliases):
+                    disease_namespace[pronunciation_signature(value)].add(item.canonical_text)
+        self._disease_definition_namespace={k:frozenset(v) for k,v in disease_namespace.items()}
+        alias_namespace = defaultdict(set)
+        if any(item.domain=='medical' and item.entity_type=='TERM' and item.aliases
+               for item in self._entities.values()):
+            for item in self._entities.values():
+                for value in (item.canonical_text,*item.aliases):
+                    alias_namespace[pronunciation_signature(value)].add(item.canonical_text)
+        self._alias_spelling_namespace = {k:frozenset(v) for k,v in alias_namespace.items()}
+        if (any(item.spelling_context is not None for item in self._entities.values())
+            or any(item.entity_type=='TERM' and item.domain=='medical' and item.normalization_policy=='normalize'
+                   and item.canonical_text.endswith(('手术','术')) for item in self._entities.values())):
+            namespace: dict[tuple[str, ...], set[str]] = defaultdict(set)
+            for item in self._entities.values():
+                namespace[pronunciation_signature(item.canonical_text)].add(item.canonical_text)
+            self._spelling_namespace = {k:frozenset(v) for k,v in namespace.items()}
+            if any(item.entity_type == 'TERM' and item.spelling_context is not None
+                   and item.spelling_context.allow_internal_omission is True for item in self._entities.values()):
+                omissions = defaultdict(set)
+                for item in self._entities.values():
+                    for form, _ in internal_omission_forms(item.canonical_text):
+                        omissions[form].add(item.canonical_text)
+                self._omission_namespace = {k:frozenset(v) for k,v in omissions.items()}
+            if any(item.spelling_context and item.spelling_context.allow_near_spelling is True for item in self._entities.values()):
+                near=defaultdict(set)
+                for item in self._entities.values():
+                    for key in near_spelling_forms(item.canonical_text):near[key].add(item.canonical_text)
+                self._near_namespace={k:frozenset(v) for k,v in near.items()}
         self._surfaces: list[_Surface] = []
         self._char_index: dict[str, set[int]] = defaultdict(set)
         self._pinyin_index: dict[str, set[int]] = defaultdict(set)
@@ -346,15 +396,102 @@ class EntityCandidateMatcher:
                     -item.surface.definition.priority,
                     item.surface.definition.entity_id,
                 ),
-            )[: self.config.max_candidates_per_span]
-            if not ranked or ranked[0].final_score < self.config.hint_score:
+            )
+            if not ranked:
                 continue
             best = ranked[0]
-            runner_up = ranked[1].final_score if len(ranked) > 1 else None
+            boundary_issue = candidate_boundary_issue(text,start,end)
+            context_evidence = ()
+            alias_evidence = ()
+            alias_near_evidence = ()
+            if self._alias_spelling_namespace and allow_auto and self.mode is EntityFuzzyMode.AUTO:
+                for candidate in ranked:
+                    if candidate.pinyin_score != 1.0:continue
+                    evidence=registered_alias_spelling_evidence(text,start,end,candidate.surface.definition,
+                        candidate.surface.value,self._alias_spelling_namespace)
+                    if evidence:
+                        best, alias_evidence = candidate, evidence
+                        break
+                if not alias_evidence and not boundary_issue:
+                    for candidate in ranked:
+                        evidence=registered_alias_near_evidence(text,start,end,candidate.surface.definition,
+                            candidate.surface.value,self._alias_spelling_namespace)
+                        if evidence:
+                            best,alias_near_evidence=candidate,evidence
+                            break
+            if not alias_evidence and not alias_near_evidence and not boundary_issue and allow_auto and self.mode is EntityFuzzyMode.AUTO:
+                # Verify exact sounds before a character-weighted score can
+                # discard them. Sparse glyph matches need extra medical role
+                # evidence; all existing context/identity guards still apply.
+                for candidate in ranked:
+                    if candidate.pinyin_score != 1.0:
+                        continue
+                    evidence=procedure_spelling_evidence(text,start,end,candidate.surface.definition,self._spelling_namespace)
+                    if not evidence and self._procedure_stem_namespace:
+                        evidence=procedure_stem_spelling_evidence(text,start,end,candidate.surface.definition,self._procedure_stem_namespace)
+                    if not evidence and self._disease_definition_namespace:
+                        evidence=disease_definition_spelling_evidence(text,start,end,candidate.surface.definition,self._disease_definition_namespace)
+                    if not evidence:
+                        if (candidate.final_score < self.config.hint_score
+                            and not low_character_medical_role(text,start,end,candidate.surface.definition)):
+                            continue
+                        evidence = context_spelling_evidence(text,start,end,candidate.surface.definition,self._spelling_namespace)
+                    if evidence:
+                        best, context_evidence = candidate, evidence
+                        break
+            if best.final_score < self.config.hint_score and not context_evidence and not alias_evidence and not alias_near_evidence:
+                continue
+            alternatives = [candidate for candidate in ranked if candidate is not best][:max(0,self.config.max_candidates_per_span-1)]
+            runner_up = alternatives[0].final_score if alternatives else None
             margin = (
                 best.final_score - runner_up if runner_up is not None else 1.0
             )
             decision, reasons = self._decide(best, margin, allow_auto=allow_auto)
+            context_evidence = context_evidence or (
+                context_spelling_evidence(text,start,end,best.surface.definition,self._spelling_namespace)
+                if not boundary_issue and allow_auto and self.mode is EntityFuzzyMode.AUTO
+                else ()
+            )
+            omission_evidence = (
+                context_omission_evidence(text,start,end,best.surface.definition,self._omission_namespace)
+                if self._omission_namespace and not boundary_issue and not context_evidence and allow_auto and self.mode is EntityFuzzyMode.AUTO
+                else ()
+            )
+            near_evidence = (
+                context_near_spelling_evidence(text,start,end,best.surface.definition,self._near_namespace)
+                if self._near_namespace and not boundary_issue and not context_evidence and not omission_evidence
+                   and allow_auto and self.mode is EntityFuzzyMode.AUTO else ()
+            )
+            if alias_evidence:
+                decision = EntityDecision.AUTO_NORMALIZE
+                reasons = ('registered_alias_pronunciation_context', *alias_evidence)
+            elif alias_near_evidence:
+                decision = EntityDecision.AUTO_NORMALIZE
+                reasons = ('registered_alias_near_context',*alias_near_evidence)
+            elif boundary_issue:
+                decision = EntityDecision.KEEP_RAW
+                reasons = (boundary_issue,)
+            elif context_evidence:
+                decision = EntityDecision.AUTO_NORMALIZE
+                reasons = ('registered_pronunciation_context', *('context:'+w for w in context_evidence))
+            elif omission_evidence:
+                decision = EntityDecision.AUTO_NORMALIZE
+                reasons = ('registered_internal_omission_context', *('context:'+w for w in omission_evidence))
+            elif near_evidence:
+                decision = EntityDecision.AUTO_NORMALIZE
+                reasons = ('registered_single_character_near_context', *('context:'+w for w in near_evidence))
+            elif (decision is EntityDecision.AUTO_NORMALIZE
+                  and _layout_normalize(text[start:end]) != _layout_normalize(best.surface.value)):
+                # Similarity recalls a candidate; it does not verify that
+                # this occurrence denotes the glossary entity. Keep it out
+                # of the protected baseline until a bounded patch confirms it.
+                decision = EntityDecision.HINT_ONLY
+                reasons = ("context_confirmation_required",)
+            elif ("shadow_would_auto_normalize" in reasons
+                  and _layout_normalize(text[start:end]) != _layout_normalize(best.surface.value)):
+                reasons=("context_confirmation_required","shadow_mode")
+            elif decision is EntityDecision.AUTO_NORMALIZE:
+                reasons=("layout_equivalent","score_pass","margin_pass")
             matches.append(
                 EntityMatch(
                     start=start,
@@ -366,7 +503,7 @@ class EntityCandidateMatcher:
                     domain=best.surface.definition.domain,
                     matched_surface=best.surface.value,
                     match_type=(
-                        "PINYIN_FUZZY"
+                        "CONTEXT_ALIAS_NEAR_PINYIN" if alias_near_evidence else "CONTEXT_ALIAS_PINYIN" if alias_evidence else "CONTEXT_NEAR_PINYIN" if near_evidence else "CONTEXT_OMISSION" if omission_evidence else "CONTEXT_PINYIN" if context_evidence else "PINYIN_FUZZY"
                         if best.pinyin_score >= best.char_score
                         else "CHAR_FUZZY"
                     ),
@@ -383,6 +520,15 @@ class EntityCandidateMatcher:
                     reasons=reasons,
                 )
             )
+        # A declared longer alias can subsume a prefix only if its replacement
+        # preserves the prefix normalization and the unchanged source suffix.
+        # Different or incompatible targets keep the existing conflict policy.
+        alias_types={'CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'}
+        matches = [m for m in matches if not (
+            m.match_type in alias_types and m.decision is EntityDecision.AUTO_NORMALIZE
+            and any(r.match_type in alias_types and r.decision is EntityDecision.AUTO_NORMALIZE
+                    and r.start==m.start and r.end>m.end
+                    and r.canonical==m.canonical+text[m.end:r.end] for r in matches))]
         matches.sort(
             key=lambda item: (
                 -_decision_rank(item.decision),
@@ -479,6 +625,10 @@ def _normalize(value: str) -> str:
         for character in normalized
         if unicodedata.category(character)[0] not in _IGNORED_CATEGORIES
     )
+
+
+def _layout_normalize(value: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFKC",value).casefold() if not c.isspace())
 
 
 def _normalize_with_offsets(value: str, base_offset: int) -> tuple[str, tuple[int, ...]]:

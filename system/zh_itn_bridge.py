@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ctypes
+from dataclasses import dataclass
 from pathlib import Path
 
 from .numeric_normalizer import NumericNormalization, NumericNormalizationResult
@@ -12,6 +13,13 @@ DEFAULT_LIBRARY = (
     Path(__file__).resolve().parent.parent
     / "zh-itn" / "zh-itn" / "build" / "libzh_itn_bridge.so"
 )
+
+
+@dataclass(frozen=True, slots=True)
+class ZhITNNormalizationResult(NumericNormalizationResult):
+    rule_pack: str = ""
+    decision_reason: str = ""
+    candidate_count: int = 0
 
 
 class ZhITNNormalizer:
@@ -30,6 +38,12 @@ class ZhITNNormalizer:
         native.zh_itn_result_output.restype = ctypes.c_char_p
         native.zh_itn_result_error.restype = ctypes.c_char_p
         native.zh_itn_result_mapping_count.restype = ctypes.c_size_t
+        self._has_diagnostics = hasattr(native, "zh_itn_result_decision_reason")
+        if self._has_diagnostics:
+            native.zh_itn_result_decision_reason.argtypes = [ctypes.c_void_p]
+            native.zh_itn_result_decision_reason.restype = ctypes.c_char_p
+            native.zh_itn_result_candidate_count.argtypes = [ctypes.c_void_p]
+            native.zh_itn_result_candidate_count.restype = ctypes.c_size_t
         for name in ("zh_itn_mapping_kind", "zh_itn_mapping_rule_id",
                      "zh_itn_mapping_input_start", "zh_itn_mapping_input_end",
                      "zh_itn_mapping_output_start", "zh_itn_mapping_output_end"):
@@ -44,9 +58,9 @@ class ZhITNNormalizer:
         self._native = native
         self.rule_pack = native.zh_itn_rule_pack().decode("utf-8")
 
-    def normalize(self, text: str) -> NumericNormalizationResult:
+    def normalize(self, text: str) -> ZhITNNormalizationResult:
         if not text:
-            return NumericNormalizationResult(text, ())
+            return ZhITNNormalizationResult(text, (), self.rule_pack, "empty_input", 0)
         native = self._native
         handle = native.zh_itn_normalize_text(text.encode("utf-8"))
         if not handle:
@@ -70,6 +84,11 @@ class ZhITNNormalizer:
                     rule_id.decode("utf-8") if rule_id else "zh-itn",
                     start, end,
                 ))
-            return NumericNormalizationResult(output, tuple(changes))
+            decision = (
+                native.zh_itn_result_decision_reason(handle).decode("utf-8")
+                if self._has_diagnostics else ""
+            )
+            count = native.zh_itn_result_candidate_count(handle) if self._has_diagnostics else 0
+            return ZhITNNormalizationResult(output, tuple(changes), self.rule_pack, decision, count)
         finally:
             native.zh_itn_result_free(handle)

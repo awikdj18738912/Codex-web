@@ -1,0 +1,1520 @@
+{
+  "seed": 20261008,
+  "noise_snr_db": 5,
+  "samples": [
+    {
+      "id": "MultiMed_Chinese_train_0961",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0961.wav",
+      "reference": "5床患有恶性肿瘤 抵抗力低下 氧合指数正在持续下降。 15床已经插了两周的呼吸机 仍然持续高烧，二氧化碳潴留 潮气量很高。",
+      "entities": [
+        {
+          "text": "恶性肿瘤",
+          "start": 4,
+          "end": 8,
+          "annotation_types": [
+            "dis"
+          ]
+        },
+        {
+          "text": "氧合指数",
+          "start": 15,
+          "end": 19,
+          "annotation_types": [
+            "ite"
+          ]
+        },
+        {
+          "text": "呼吸机",
+          "start": 37,
+          "end": 40,
+          "annotation_types": [
+            "equ"
+          ]
+        },
+        {
+          "text": "二氧化碳潴留",
+          "start": 48,
+          "end": 54,
+          "annotation_types": [
+            "sym"
+          ]
+        },
+        {
+          "text": "潮气量",
+          "start": 55,
+          "end": 58,
+          "annotation_types": [
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 961,
+      "actual_duration_seconds": 17.0,
+      "original_audio_sha256": "3d448072f0fafac6daf179529a6b2ab6ff1741e55d1bd9f9fc33f9ecb1112fe0"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0636",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0636.wav",
+      "reference": "他们的尺骨，桡骨， 他的骨头矿物质的含量呢 是比同年龄健康的， 或者是没有肾虚的骨质疏松的病人啊",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 40,
+          "end": 44,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 636,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "e2ddfbac0d34fba4abd6a0c26dfaa614f50dbd94dc87b819a7f31d79973b6d55"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1177",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1177.wav",
+      "reference": "两个小时后 胡医生成功地 将陈美萍的甲状旁腺切除。 切除了之后 我们其实看得出",
+      "entities": [
+        {
+          "text": "甲状旁腺",
+          "start": 18,
+          "end": 22,
+          "annotation_types": [
+            "bod",
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1177,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "6cecd2319050ceee4e672c218aa5d641f61f7370348493f4b6c5be801c6336ea"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1126",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1126.wav",
+      "reference": "过多的甲状旁腺激素 会导致血液内的钙含量过高。 高钙血症有可能危及病人的生命。",
+      "entities": [
+        {
+          "text": "甲状旁腺激素",
+          "start": 3,
+          "end": 9,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "高钙血症",
+          "start": 24,
+          "end": 28,
+          "annotation_types": [
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1126,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "e9261f5910a64680bcb807c00d55449f81c3527100ae80a92c4a61cb9c4dbfbc"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0975",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0975.wav",
+      "reference": "还有这个人 现在血色素已经六点几了 血怎么解决？ 你今天可能做不成。 做不成的话 你800毫升血能拿得到吗？800 毫升的血 400毫升血浆",
+      "entities": [
+        {
+          "text": "血色素",
+          "start": 8,
+          "end": 11,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 975,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "eaf90592cd21a4779ccf558d3486ad1498bb9f209f7c5359f6f094a9cb1fc169"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0436",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0436.wav",
+      "reference": "完全可以自愈的。 那么你让他从头到尾自己自愈 会对孩子免疫系统有一个巨大的 提升。",
+      "entities": [
+        {
+          "text": "免疫系统",
+          "start": 27,
+          "end": 31,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 436,
+      "actual_duration_seconds": 6.0,
+      "original_audio_sha256": "6c5aba2583ecb5daf75e4babf819ffafb8115a4c8ce5f08f4790fe1f1f45f398"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0948",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0948.wav",
+      "reference": "各种管路配件一个都没有。它还缺一样东西。 还缺一个混合静脉血氧饱和度监视仪。关键还缺东西。",
+      "entities": [
+        {
+          "text": "混合静脉血",
+          "start": 25,
+          "end": 30,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "氧饱和度",
+          "start": 30,
+          "end": 34,
+          "annotation_types": [
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 948,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "39fff697fba900842e05d74d6d4cefd5b3e4c8560f6bf55273f5651172ecf156"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0598",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0598.wav",
+      "reference": "医生会发现到他们都有 骨质疏松症。 所以要有重力 我们才能够吸收钙质。 那那些举重的选手",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 11,
+          "end": 15,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 598,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "24fa7f66f0eb49f3e90b8841a1193b6de9aff0461e18b7cfa63293ad27cb3f3d"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0993",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0993.wav",
+      "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+      "entities": [
+        {
+          "text": "生命支持",
+          "start": 2,
+          "end": 6,
+          "annotation_types": [
+            "pro"
+          ]
+        },
+        {
+          "text": "ECMO",
+          "start": 21,
+          "end": 25,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        },
+        {
+          "text": "ECMO",
+          "start": 47,
+          "end": 51,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 993,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "6c38ad4478b12200a862b619568e08583195f2157767f4e2e55d49fca26504bd"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0930",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0930.wav",
+      "reference": "地塞米松。 然后下面这个盐酸溴 它是化痰用的。 之前没打的。 今天给我打了3只。",
+      "entities": [
+        {
+          "text": "地塞米松",
+          "start": 0,
+          "end": 4,
+          "annotation_types": [
+            "dru"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 930,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "34e6767e65d2cc4edc5c79b4516ee3ed5dcd92a5ff24f7569774ad23158e8e38"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0947",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0947.wav",
+      "reference": "你又没有车你哪有杆子，你怎么装这个东西呢？让我想一想。 机器拼装到最后，王维俊才发现ECMO只有机身，",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 42,
+          "end": 46,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 947,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "d80eb13bb1786671779001aa11614292aed1206f653722704a909bccd8507d9e"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1132",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1132.wav",
+      "reference": "那这个病人也是十年前 已经有过胃溃疡， 因素也可能是因为高钙的问题。 有些病人可能也是会觉得",
+      "entities": [
+        {
+          "text": "胃溃疡",
+          "start": 15,
+          "end": 18,
+          "annotation_types": [
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1132,
+      "actual_duration_seconds": 7.0,
+      "original_audio_sha256": "404854d1b66bece3df4ab4bef09e4eacae5237e5f3effef30759d8697a288822"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0897",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0897.wav",
+      "reference": "都都觉得 还不是特别害怕血压高 到时吃药呗。 你看这个这个这个接受不了 希望他这个后遗症",
+      "entities": [
+        {
+          "text": "后遗症",
+          "start": 41,
+          "end": 44,
+          "annotation_types": [
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 897,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "768b2707bb0afc3fa5a3b90f59735b39431e1436a74c563b1d72c49e60c889d5"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1046",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1046.wav",
+      "reference": "穿梭在不同的病房。 而胡医生在完成巡房后 即将进入手术室进行一个紧急手术。",
+      "entities": [
+        {
+          "text": "手术室",
+          "start": 25,
+          "end": 28,
+          "annotation_types": [
+            "dep",
+            "equ"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1046,
+      "actual_duration_seconds": 14.0,
+      "original_audio_sha256": "0b70aa8f7d1ca838e555de40c4c0e5d26b1537ac527d0943f0363ea61c58c2ca"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0845",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0845.wav",
+      "reference": "还有那个位置。 它的坏处呢就是它的灵活性不高啊， 而且传统的腹腔镜手术呢 就是用二维的影像 它没有那个深度。",
+      "entities": [
+        {
+          "text": "腹腔镜",
+          "start": 30,
+          "end": 33,
+          "annotation_types": [
+            "equ"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 845,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "3ce37db90042b71b44517a77616060eed8a24cf669d4892c0b971c930425510c"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1179",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1179.wav",
+      "reference": "那个甲状旁腺激素会这么高。 那一切除之后",
+      "entities": [
+        {
+          "text": "甲状旁腺激素",
+          "start": 2,
+          "end": 8,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1179,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "96beca10d99210c74481ffeea89a7282b587015d70ecdea734d4d26e0a287906"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0788",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0788.wav",
+      "reference": "然后拿细胞。 拿了那个机器就会去到下一个位置。 医生 我听说直肠指检也可以 是吗？ 诶？可以检查看看你有没有前列腺癌了。",
+      "entities": [
+        {
+          "text": "直肠指检",
+          "start": 30,
+          "end": 34,
+          "annotation_types": [
+            "pro"
+          ]
+        },
+        {
+          "text": "前列腺",
+          "start": 54,
+          "end": 57,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 788,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "3acbad29624de6c9e8b240117be75129cad15d80c52bedadabca216fc14887ca"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0967",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0967.wav",
+      "reference": "上这个ECMO的终点我们要想好。到底是救还是延长时间。 这个我们要想好的。我们上ECMO讲起来只是一个辅助 但是归根结底还是一个病因学的治疗。",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 3,
+          "end": 7,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        },
+        {
+          "text": "ECMO",
+          "start": 40,
+          "end": 44,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 967,
+      "actual_duration_seconds": 13.0,
+      "original_audio_sha256": "9447c614f0da95160aa68c090a8441f671e6c57742127175539bb210599fde25"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0966",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0966.wav",
+      "reference": "怎么琢磨来 怎么琢磨去？ 昨天二氧化碳分压上来了。肺的问题对他的威胁是紧迫的。 马上就要不行的了。这个病人每天都不稳定。上午是挺稳定的，到了晚上和夜分总是出点问题。",
+      "entities": [
+        {
+          "text": "二氧化碳分压",
+          "start": 15,
+          "end": 21,
+          "annotation_types": [
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 966,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "95aada2b0abe937dc4bd0215366c09a99debe731ee0f640086cd73608632a75e"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0996",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0996.wav",
+      "reference": "他可能会错过做ECMO手术的最佳窗口期。 明天会怎么样 谁都吃不准。新冠病人和以前的病人不一样的。 好像外面成功率总的成功率只有百分之十几。这百分之十几还要看",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 7,
+          "end": 11,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 996,
+      "actual_duration_seconds": 16.0,
+      "original_audio_sha256": "2accb5ead66f6a88ff179c5fca2a78250230736aea1beef84271b82ea1d7f45b"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0222",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0222.wav",
+      "reference": "取出皮瓣后 整型团队会用荧光仪器 检查皮瓣是否血液循环正常 才把皮瓣转移到胸部。",
+      "entities": [
+        {
+          "text": "血液循环",
+          "start": 23,
+          "end": 27,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 222,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "c2ef1cde3e46b2c44318b7e519a791e1765776195737d53d6c44aadb348c1ce6"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1170",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1170.wav",
+      "reference": "陈美萍的手术已经进行了一个半小时。 胡瀚文医生正小心翼翼地 为她切除甲状旁腺。",
+      "entities": [
+        {
+          "text": "甲状旁腺",
+          "start": 34,
+          "end": 38,
+          "annotation_types": [
+            "bod",
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1170,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "0c1a876f801cba18357d56fd6824dfab330efb245f68182dc94151c82c15bae7"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0670",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0670.wav",
+      "reference": "我想问一下医师。 就是你有没有遇过一些病患 他是有骨质疏松 同时有脊椎侧弯的问题？ 脊椎侧弯其中一部分的原因",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 25,
+          "end": 29,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 670,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "2f362758099f543ff240b07fc2f29d5f509d47b513e931472d78fc75416b945a"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0680",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0680.wav",
+      "reference": "摄取到足够的钙。对。 那就会降低骨质疏松症的风险。风险。 那如果说你刚刚讲的这些",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 16,
+          "end": 20,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 680,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "4ac93fba7c64d5e0be77ad2a37a07fcc85c0952610d2f113c3b829fad3841dda"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1063",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1063.wav",
+      "reference": "被发现有胆结石的黄丽晶 在进入全身麻醉后 手术正式开始。 这项手术将使用小型器械",
+      "entities": [
+        {
+          "text": "全身麻醉",
+          "start": 15,
+          "end": 19,
+          "annotation_types": [
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1063,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "f929811a8affce4d93bde1466f660d8caabd46cfabf2eb6d514f5492d67904e7"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0826",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0826.wav",
+      "reference": "切除前列腺的手术。 幸好癌细胞没有扩散到， 所以就不需要做电疗。",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 2,
+          "end": 5,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "癌细胞",
+          "start": 12,
+          "end": 15,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 826,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "0b8ddc80501b530d1bdb568fcc6f291cdd68501c19800e1715e8d6c50dc2db6b"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0665",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0665.wav",
+      "reference": "所以出现好像白色的影子。是这样的。 骨质疏松症的病人通常也有。 蛮严重的退化",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 18,
+          "end": 22,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 665,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "756fdfa3e3907b8ad170eb269cf499ede45f96d1096c8338971918ec7b9aaec8"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0731",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0731.wav",
+      "reference": "我是一名心血管内科的医生。 从2016年的9月份开始拍摄 一共前前后后拍摄了405位患者，",
+      "entities": [
+        {
+          "text": "心血管",
+          "start": 4,
+          "end": 7,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 731,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "51c00c136c5235bc065aedc3fe3d74befb250f1397506e0e641278a4b3781e52"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0809",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0809.wav",
+      "reference": "大约是40寸的话 那你患有前列腺癌的几率 也可能会上升。 那想请问一下这个中医师，",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 13,
+          "end": 16,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 809,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "be7ac32ea7c9aa152cc8a099967a70f5439d3dac0f4a3e3340441d5a786ed77c"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0761",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0761.wav",
+      "reference": "与受精卵结合 提高怀孕的几率。 还有另外一个功能 就是高潮时， 前列腺的肌肉会收缩，",
+      "entities": [
+        {
+          "text": "受精卵",
+          "start": 1,
+          "end": 4,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "前列腺",
+          "start": 32,
+          "end": 35,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 761,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "ebe5f7d236ef921496851dba3d9acb60ef25f49e9ce5240d745ed8936e6b39f3"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0274",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0274.wav",
+      "reference": "替代传统手术。 传统的动静脉瘘手术需要切口 这个手术只需要一个小的针孔。",
+      "entities": [
+        {
+          "text": "动静脉瘘",
+          "start": 11,
+          "end": 15,
+          "annotation_types": [
+            "bod",
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 274,
+      "actual_duration_seconds": 16.0,
+      "original_audio_sha256": "2311c4adf1422cd53a69f2ba401db79625dc459b88b60fa79441776609533405"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0375",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0375.wav",
+      "reference": "但前提是要做好水分的补充。 只要在水分充足 电解质充足的前提下的 这孩子其实是不会烧坏的",
+      "entities": [
+        {
+          "text": "电解质",
+          "start": 22,
+          "end": 25,
+          "annotation_types": [
+            "bod",
+            "dru",
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 375,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "ae52cb8039ea891bd577deff888a0d672164f262dcb96942824217cc14b13596"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1228",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1228.wav",
+      "reference": "麻醉科医生的主要职责 是确保病人在手术中的安全。 除了帮助病人在无痛 无知觉的情况下进行手术。",
+      "entities": [
+        {
+          "text": "麻醉科",
+          "start": 0,
+          "end": 3,
+          "annotation_types": [
+            "dep"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1228,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "d157615355efb9376aacaf71a138e55ec5438bcbed0242f161c500272a61461d"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0691",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0691.wav",
+      "reference": "病人他就是他基础是一个慢性肾衰竭，然后现在又出现一个急性心衰加重。他就是有急诊透析指征的 可能要做血滤的，所以我就联系了抢救室的二线。然后他们就说让他去急诊那边就给他进一步地处理。",
+      "entities": [
+        {
+          "text": "慢性肾衰竭",
+          "start": 11,
+          "end": 16,
+          "annotation_types": [
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 691,
+      "actual_duration_seconds": 19.0,
+      "original_audio_sha256": "7a53f9d00859b594b61a1c2b949df1beb0f15cc9bfb1a38db11e5c011ae7aa5f"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0778",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0778.wav",
+      "reference": "可以先做MRI 我们叫做磁力共振扫描。 看看有什么不寻常。 你刚刚说什么活体检验",
+      "entities": [
+        {
+          "text": "MRI",
+          "start": 4,
+          "end": 7,
+          "annotation_types": [
+            "bod",
+            "ite",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 778,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "35085851e72d7476ee3fa3e57902ef30589535817c4eb9c4215d3edba5bc015e"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0819",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0819.wav",
+      "reference": "57岁那一年， 我去了医院 做了检查。 医生发现我的前列腺肿大，",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 26,
+          "end": 29,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 819,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "09a1003b4d32967a1979c5755b9018c8f7ba7ffeccaba6477d9e9783abf9b5bf"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0754",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0754.wav",
+      "reference": "不过 的确 有些男人啊。 连前列腺在什么位置都不知道。 不会吧 一个男人对前列腺一无所知 怎么可能？",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 14,
+          "end": 17,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "前列腺",
+          "start": 37,
+          "end": 40,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 754,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "0a001e3b17c4f91edfab7bf9dd93e0e7ae405e99ae8f5814bd95df2ad1b1e7a0"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0981",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0981.wav",
+      "reference": "他随时都有可能走掉的。这个病变化很快的。 不接电话 可能进舱了。我们这里有一套索林的ECMO机器。",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 42,
+          "end": 46,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 981,
+      "actual_duration_seconds": 15.0,
+      "original_audio_sha256": "be37611933d1719ed4e29ab66a0874d5640e4394fbe26f2ed1c8b3fd2dcdf0d5"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0871",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0871.wav",
+      "reference": "可能就是有点高血压。 去年和今年的测的血压都比较高 但是我没吃药 大部分平均在140",
+      "entities": [
+        {
+          "text": "高血压",
+          "start": 6,
+          "end": 9,
+          "annotation_types": [
+            "dis",
+            "ite",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 871,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "ff2886b8952c54bcb8c01db20a046072eb98cea4ea3f3ed2d0c648444070329b"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1051",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1051.wav",
+      "reference": "黄丽晶。 她因为工作忙碌 饮食习惯长期不良， 因而造成许多大大小小的胃肠道问题。",
+      "entities": [
+        {
+          "text": "胃肠道",
+          "start": 34,
+          "end": 37,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1051,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "4331101ed87952026610ca257edf4c94e37918209e5b136e3c436d4c3dd07a87"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0696",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0696.wav",
+      "reference": "就是手术团队跟麻醉团队两个团队。 麻醉团队通常会含有一位麻醉科医师 在配搭配一个麻醉科的护士。",
+      "entities": [
+        {
+          "text": "麻醉科",
+          "start": 28,
+          "end": 31,
+          "annotation_types": [
+            "dep"
+          ]
+        },
+        {
+          "text": "麻醉科",
+          "start": 40,
+          "end": 43,
+          "annotation_types": [
+            "dep"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 696,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "302aaa4721f146b2e2306cb681d9cf27dcc49abf7a959b062d35dc32bbd3341f"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1108",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1108.wav",
+      "reference": "病人会很快地死亡。 所以我们在两小时内把她带入手术房 把这个这部分的小肠切除了。",
+      "entities": [
+        {
+          "text": "肠切除",
+          "start": 35,
+          "end": 38,
+          "annotation_types": [
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1108,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "d461a2221566ad8afa279581b3993719a90a58556fec975c8a449dc35e0e5ff7"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0791",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0791.wav",
+      "reference": "不过这个指检也不是100%准确的， 因为你用指检的时候 其实只能摸到前列腺的后方， 那个靠近肛门的地方。",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 34,
+          "end": 37,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 791,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "409f496ae2183062a2fb06d44bd09625bfb9c33b06c76626f0700988ffa6a5f0"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0302",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0302.wav",
+      "reference": "要是无法从这个位置 彻底切除肿瘤组织的话 医生将通过肛门的部位完成手术。",
+      "entities": [
+        {
+          "text": "切除肿瘤组织",
+          "start": 12,
+          "end": 18,
+          "annotation_types": [
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 302,
+      "actual_duration_seconds": 15.0,
+      "original_audio_sha256": "4de2056d5fb50195e04162e815ce3d2d3e7f292e05cb7c186317c602a6d42933"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0802",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0802.wav",
+      "reference": "我们就会聊到风险因素。 是。 到底有哪一些呢？ 其实前列腺癌有几个风险因素啦。 第一 可以算是家族史。",
+      "entities": [
+        {
+          "text": "前列腺",
+          "start": 26,
+          "end": 29,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 802,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "403f1cefd98a5a774d22810d77bd5a0c7aadb35a69a032aa122f6936758d613b"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0465",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0465.wav",
+      "reference": "值得注意的是重症当中有 1名20多岁女性 没有慢性病史 打过三剂 疫苗 确诊居家照护时 因为腹痛呕吐恶化 目前插管及呼吸器。",
+      "entities": [
+        {
+          "text": "呼吸器",
+          "start": 58,
+          "end": 61,
+          "annotation_types": [
+            "equ"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 465,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "6d8b521ed0b524e3ac1f0512fef412beeee2e37496d93a38ec6da1a6cc266c2e"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0628",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0628.wav",
+      "reference": "好 广告过后 我们继续深入了解 骨质疏松症。 还有中医师会加入讨论呢 我们稍后见。",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 16,
+          "end": 20,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 628,
+      "actual_duration_seconds": 17.0,
+      "original_audio_sha256": "7f570cb9280a8a97558f3f203ab9df481b220be10bb22bd5fe610637fe378445"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1080",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1080.wav",
+      "reference": "主要最关键的就是说 把那个盲肠切除掉 把那个血管切除掉 不要让它流血。 第二个就是要把盲肠附近的周围",
+      "entities": [
+        {
+          "text": "肠切除",
+          "start": 14,
+          "end": 17,
+          "annotation_types": [
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1080,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "46d17940ffe194a649b017e0e81844cd2f815c0cc96468bd13e8ab3daf205b2f"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0060",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0060.wav",
+      "reference": "已经送到中心的病理科进行检验。 为了更快得到检验结果， 王雯贤医生亲自到病理科",
+      "entities": [
+        {
+          "text": "病理科",
+          "start": 7,
+          "end": 10,
+          "annotation_types": [
+            "dep"
+          ]
+        },
+        {
+          "text": "病理科",
+          "start": 36,
+          "end": 39,
+          "annotation_types": [
+            "dep"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 60,
+      "actual_duration_seconds": 9.0,
+      "original_audio_sha256": "866e5ed9f69544f8edd81efc35cd368c62d70b3003cd85fcc1b5864b8c9e0b12"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0704",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0704.wav",
+      "reference": "做麻醉科跟手术团队当中的协调。 他会做一个病人身分的核对。 然后在病人睡着之前确认病人的病史，",
+      "entities": [
+        {
+          "text": "麻醉科",
+          "start": 1,
+          "end": 4,
+          "annotation_types": [
+            "dep"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 704,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "29d1f8a7e9134e23e4e7d2c9bb3877af887c6cb43ea4a435ee30a21bc55ab8b1"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1154",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1154.wav",
+      "reference": "那这个是特别看这个甲状旁腺的功能 哪一个有亢进。 那这个病人",
+      "entities": [
+        {
+          "text": "甲状旁腺",
+          "start": 9,
+          "end": 13,
+          "annotation_types": [
+            "bod",
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1154,
+      "actual_duration_seconds": 7.0,
+      "original_audio_sha256": "852049659ff5ad5369eab96cc08ea56a0a8a465898e7cc967630dd3c95f08e64"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0591",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0591.wav",
+      "reference": "那第二题哈。 跑步比游泳更能够预防骨质疏松症。 真还是假？",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 17,
+          "end": 21,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 591,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "451a5b09badb7508728bf4f25726862eca99214eb0b342a744e7e50aecc2afb5"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0987",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0987.wav",
+      "reference": "但拼到一半 王维俊才发现 第二台ECMO不但没有套包耗材， 连水箱管路都有了问题。",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 16,
+          "end": 20,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 987,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "5c7d69b839c3867f0b16de92dd7047cb805f337f96d8157d120cd0ac6124759b"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1060",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1060.wav",
+      "reference": "如果胰脏发炎得太严重的话 会造成呼吸困难， 或者其他的器官受到损伤。 死亡的病率",
+      "entities": [
+        {
+          "text": "呼吸困难",
+          "start": 16,
+          "end": 20,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1060,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "0d18c9f470409764af1a7cb9feaa166ee80b2d6c3d5f348b2c35f5aea742fd3f"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0998",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0998.wav",
+      "reference": "口罩，呼吸机，防护服 等医疗资源严重短缺。结果我们进来以后， 只有床和床头柜。抢救的设备也都缺乏，唯一的呼吸机被我们上掉了。 后面都没有呼吸机了。",
+      "entities": [
+        {
+          "text": "呼吸机",
+          "start": 3,
+          "end": 6,
+          "annotation_types": [
+            "equ"
+          ]
+        },
+        {
+          "text": "呼吸机",
+          "start": 52,
+          "end": 55,
+          "annotation_types": [
+            "equ"
+          ]
+        },
+        {
+          "text": "呼吸机",
+          "start": 68,
+          "end": 71,
+          "annotation_types": [
+            "equ"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 998,
+      "actual_duration_seconds": 16.0,
+      "original_audio_sha256": "bc251828936ab3aea25b1c536ff77422e4fd232cd05cf4a5dfe48e6c279cd900"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0570",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0570.wav",
+      "reference": "哇 一讲到骨质疏松症， 我就想到好像是女性比较容易得到。 诶 那年长女性的风险不是更高？ 不然这样 问问嘉宾好不好？",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 5,
+          "end": 9,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 570,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "d5ef3ded2fe6ef070514e1d4e2cf1c0c99b011c85559a31bb1ac6b53e0356383"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0517",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0517.wav",
+      "reference": "我们耳鼻喉科医学会好 就我们对这个 我们是呼吸道的专家 对这个筛检我们是 最最专精的。是。 所以其实我们在4月下旬的时候 我们有去",
+      "entities": [
+        {
+          "text": "耳鼻喉科",
+          "start": 2,
+          "end": 6,
+          "annotation_types": [
+            "dep"
+          ]
+        },
+        {
+          "text": "呼吸道",
+          "start": 21,
+          "end": 24,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 517,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "b846d95af99d680de3192c0afad5e6bfe552b4db7005315c5c9955710f095438"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1171",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1171.wav",
+      "reference": "手术当中 胡医生最担心的是 意外损伤到喉返神经。 这将使病人彻底丧失正常呼吸的能力，",
+      "entities": [
+        {
+          "text": "意外损伤",
+          "start": 14,
+          "end": 18,
+          "annotation_types": [
+            "dis"
+          ]
+        },
+        {
+          "text": "喉返神经",
+          "start": 19,
+          "end": 23,
+          "annotation_types": [
+            "bod"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1171,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "afdd5abbc2a0f1cf30846d5cd81926310216ce6e93b682fb37b62c54ba54ffe8"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0578",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0578.wav",
+      "reference": "看不出的。 骨质疏松是看不出的。 因为骨质疏松症有一个名称 叫做无声疾病。 通常是因为他们跌伤有骨折，",
+      "entities": [
+        {
+          "text": "骨质疏松",
+          "start": 6,
+          "end": 10,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        },
+        {
+          "text": "骨质疏松",
+          "start": 19,
+          "end": 23,
+          "annotation_types": [
+            "dis",
+            "sym"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 578,
+      "actual_duration_seconds": 11.0,
+      "original_audio_sha256": "c4f4c46ed08f989ce9750bfa20f90c66b45042d63fefa0c1cd0e70a089c92d69"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1034",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1034.wav",
+      "reference": "现年六十四岁的洪美金 八年前被诊断患有干燥综合征。 一种慢性自身免疫性炎性疾病。",
+      "entities": [
+        {
+          "text": "干燥综合征",
+          "start": 19,
+          "end": 24,
+          "annotation_types": [
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1034,
+      "actual_duration_seconds": 10.0,
+      "original_audio_sha256": "20d8dbe074cfa9e1ed45753b76009754e88c838e0397eb75778c6ba1b37d21df"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0991",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0991.wav",
+      "reference": "到现在17年的时间，他做了数十例ECMO手术，从来没有一刻 像在雷神山医院这样纠结。我们做这个东西从来没把握。",
+      "entities": [
+        {
+          "text": "ECMO",
+          "start": 16,
+          "end": 20,
+          "annotation_types": [
+            "equ",
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 991,
+      "actual_duration_seconds": 12.0,
+      "original_audio_sha256": "2b0b31752bf185b8db5442202ec72ea1e9a7cbed8673a4584a3a47d9d7a0b103"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1124",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1124.wav",
+      "reference": "普通的甲状旁腺呢其实是看不到的。 连我们做扫描超声波也是看不到的。 因为它们真的是很小，",
+      "entities": [
+        {
+          "text": "甲状旁腺",
+          "start": 3,
+          "end": 7,
+          "annotation_types": [
+            "bod",
+            "ite"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1124,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "1b7d58f0b443ccc0c37f6b6de53e55caaff81813975f61f4784fea286f7cacdb"
+    },
+    {
+      "id": "MultiMed_Chinese_train_1136",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_1136.wav",
+      "reference": "她在丈夫的陪伴下办理入院手续， 准备进行长达七个小时的 胰十二指肠切除术。",
+      "entities": [
+        {
+          "text": "十二指肠",
+          "start": 29,
+          "end": 33,
+          "annotation_types": [
+            "bod",
+            "dis"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 1136,
+      "actual_duration_seconds": 15.0,
+      "original_audio_sha256": "4a7a9bf46ae14d835236639b9db4339109307b617dc95ca02a549286a9a6dc1a"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0215",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/audio/MultiMed_Chinese_train_0215.wav",
+      "reference": "以检验组织的边缘是否有癌细胞。 若检测呈阳 就代表肿瘤切除得不干净。",
+      "entities": [
+        {
+          "text": "癌细胞",
+          "start": 11,
+          "end": 14,
+          "annotation_types": [
+            "bod"
+          ]
+        },
+        {
+          "text": "肿瘤切除",
+          "start": 25,
+          "end": 29,
+          "annotation_types": [
+            "pro"
+          ]
+        }
+      ],
+      "group": "reference_entities",
+      "source_row": 215,
+      "actual_duration_seconds": 8.0,
+      "original_audio_sha256": "a562c08ce72a76e2405cbc6d8c49b616723e5c85686179ee2b4643e1e5c7f0a1"
+    }
+  ],
+  "source_url": "https://huggingface.co/datasets/leduckhai/MultiMed",
+  "extraction": "CMeEE-annotated medical spellings matched in evaluated reference transcripts; longest non-overlapping names",
+  "coverage_role": "Intentional reference-derived vocabulary; not independent generalization",
+  "excluded_previously_decoded_train_rows": [
+    8,
+    10,
+    12,
+    14,
+    15,
+    16,
+    17,
+    22,
+    24,
+    25,
+    27,
+    29,
+    30,
+    32,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    44,
+    47,
+    49,
+    53,
+    57,
+    58,
+    59,
+    72,
+    73,
+    75,
+    86,
+    89,
+    100,
+    101,
+    104,
+    112,
+    117,
+    124,
+    126,
+    127,
+    574,
+    576,
+    577,
+    579,
+    580,
+    582,
+    589,
+    599,
+    600,
+    616,
+    619,
+    635,
+    649,
+    671,
+    677,
+    757,
+    760,
+    762,
+    765,
+    768,
+    769,
+    774,
+    775,
+    795,
+    797,
+    801,
+    806,
+    807,
+    811,
+    820,
+    821,
+    822,
+    823,
+    827,
+    828,
+    834,
+    835,
+    836,
+    837,
+    839,
+    840,
+    841,
+    843
+  ],
+  "eligible_pool": 197,
+  "source_sha256": "a5f939b54cdb41ca4c9b1f0ebc6926bb17fe2ba45445e1a29922e953fb3e41ac",
+  "caveats": [
+    "Human public audio; supplied captions may omit speech or contain typos",
+    "Pre-ASR language/duration screening cannot certify verbatim correctness",
+    "All successes must be checked against their local reference and actual edit",
+    "Unknown speaker/source video overlap; noisy versions not independent recordings"
+  ]
+}

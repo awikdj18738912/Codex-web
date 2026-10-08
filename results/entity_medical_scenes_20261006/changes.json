@@ -1,0 +1,612 @@
+[
+  {
+    "id": "MultiMed_Chinese_train_0024",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "近几年，他积极筹备创立新的企业管理顾问公司，但这个计划却在一年前被迫搁置，因为他被诊断出患有鳞状细胞癌。",
+    "output": "近几年，他积极筹备，创立新的企业管理顾问公司，但这个计划却在一年前被迫搁置，因为他被诊断出患有鳞状细胞癌。",
+    "reference": "近几年 他积极筹备 创立新的企业管理顾问公司。 但这个计划却在一年前被迫搁置。 因为他被诊断出患有鳞状细胞癌，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0057",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "不需要体外循环，患者术后会恢复的较快，更适合老年瓣膜病患者。手速非常沉。",
+    "output": "不需要体外循环，患者术后会恢复的较快，更适合老年瓣膜病患者。手术非常沉。",
+    "reference": "不需要体外循环。 患者术后会恢复得较快 更适合老年瓣膜病患者。 手术非常成功。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0032",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "没有狭窄或钙化，一旦股动脉有钙化或狭窄的情况，做这个介入呢，就要考虑到有什么其他的。",
+    "output": "没有狭窄或钙化，一旦股动脉有钙化或狭窄的情况，做这个 TAVI 呢，就要考虑到有什么其他的。",
+    "reference": "没有狭窄或钙化。 一旦主动脉有钙化或狭窄的情况， 做这个TAVI 就要考虑到有什么其他的途径",
+    "error_delta": -3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0038",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "体外循环支持等过程，对于年纪大、有开胸病史、肝肾或心肺功能较差等情况的患者来说。",
+    "output": "体外循环支持等过程，对于年纪大有开胸病史、肝肾或心肺功能较差等情况的患者来说。",
+    "reference": "体外循环支持等过程。 对于年纪大 有开胸病史 肝肾 或心肺功能较差等情况的患者来说",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0038",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "体外循环支持等过程，对于年纪大又开胸病史、肝肾或心肺功能较差等情况的患者来说，",
+    "output": "体外循环支持等过程，对于年纪大又开胸病史、肝肾或心肺功能较差等情况的患者来说。",
+    "reference": "体外循环支持等过程。 对于年纪大 有开胸病史 肝肾 或心肺功能较差等情况的患者来说",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0058",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "工接触了这个泰密的手术呢，病患的症状就会完全消除，进医院的那个次数也会几乎变零。",
+    "output": "工，接受了这个TAVI的手术呢，病患的症状就会完全消除，进医院的那个次数也会几乎变零。",
+    "reference": "接受了这个TAVI的手术你 病患的症状就会完全消除 进医院的那个次数也会几乎变零。",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0058",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "bounded_copy",
+    "source": "工接触了这个泰密的手术呢，病患的症状就会完全消除，进医院的那个次数也会几乎变零。",
+    "output": "工接触了这个TAVI的手术呢，病患的症状就会完全消除，进医院的那个次数也会几乎变零。",
+    "reference": "接受了这个TAVI的手术你 病患的症状就会完全消除 进医院的那个次数也会几乎变零。",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0058",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "接触了这个台币的手术呢，病患的症状就会完全消除，进医院的那个次数也会几乎变。",
+    "output": "接触了这个TAVI的手术呢，病患的症状不会完全消除，进医院的那个次数也会几乎变。",
+    "reference": "接受了这个TAVI的手术你 病患的症状就会完全消除 进医院的那个次数也会几乎变零。",
+    "error_delta": -3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0049",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "电磁导航支气管镜，简称EMB，是目前最新的微创临床技术。I use a special computer software to convert Mr. Gold's CT scan into a 3D map of his airways, and this allows me to see how his airways lead to the lung nodule that we want to remove. When Mr. Go is asleep, we place several electromagnetic sensors on his body.",
+    "output": "电磁导航支气管镜，简称EMB，是目前最新的微创临床技术。I use a special computer software to convert Mr. Gold's CT scan into a three D map of his airways, and this allows me to see how his airways lead to the lung nodule that we want to remove. When Mr. Go is asleep, we place several electromagnetic sensors on his body.",
+    "reference": "电磁导航支气管镜简称ENB 是目前最新的微创临床技术。",
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0049",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "电磁导航，支气管镜，简称EMB，是目前最新的微创临床技术。I use a special computer software to convert medical CT scans into a 3D map of his airways, and this allows me to see how his airways lead to the lung nodule that we want to remove. When medical is asleep, we place several electromagnetic sensors on his body.",
+    "output": "电磁导航支气管镜，简称 ENB，是目前最新的微创临床技术。I use a special computer software to convert multiple CT scans into a 3D map of his airway, and this allows me to see how his airway leads to the lung nodule that we want to remove, and Mr. Go is asleep. We place several electromagnetic sensors on his body.",
+    "reference": "电磁导航支气管镜简称ENB 是目前最新的微创临床技术。",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0039",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "风险比较高。没空啊。手术正式开始了，医生通过大腿根部的股动脉。",
+    "output": "风险比较高。解剖啊。手术正式开始了，医生通过大腿根部的股动脉。",
+    "reference": "风险比较高。 手术正式开始了， 医生通过大腿根部的股动脉",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0047",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "预备啦，让这个手续进行的比较安全。另一边，患有肺结节的武振伟在接受全身。",
+    "output": "预备了，让这个手续进行的比较安全。另一边，患有肺结节的武振伟在接受全身。",
+    "reference": "让这个手续进行得比较安全。 另一边 患有肺结节的伍振玮 在接受全身麻醉后",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0047",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "具备了，按这个手续进行的比较安全。另一边，患有肺结节的武振伟在接受全身。",
+    "output": "具备了，按这个手续进行的比较安全。另一边患有肺结节的武振伟在接受全身。",
+    "reference": "让这个手续进行得比较安全。 另一边 患有肺结节的伍振玮 在接受全身麻醉后",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0012",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "Heavy或者Transcatheter Aortic Valve Implantation是一个微创手术，会从腿部的主动脉输入一个导管。",
+    "output": "TAVI或者Transcatheter Aortic Valve Implantation是一个微创手术，会从腿部的主动脉输入一个导管。",
+    "reference": "TAVI 或者Transcatheter Aortic Valve Implantation 是一个微创手术， 会从腿部的主动脉输入一个导管。",
+    "error_delta": -3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0012",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "Heavy forces penetrated theortic valves in some patients, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang手术, which is a wayang",
+    "output": "Heavy post transcatheter aortic valve implantation is a weighty手术，最重腿部的股动脉，输入的套管。",
+    "reference": "TAVI 或者Transcatheter Aortic Valve Implantation 是一个微创手术， 会从腿部的主动脉输入一个导管。",
+    "error_delta": -606
+  },
+  {
+    "id": "MultiMed_Chinese_train_0059",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "新的新闻可以至少耐八年到十年。而患有肺结节的武振伟的肺。",
+    "output": "新的心门可以至少耐八年到十年。而患有肺结节的武振伟的肺。",
+    "reference": "新的心门也可以至少耐八年到十年。 而患有肺结节的伍振玮的肺部组织",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0059",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "新的性能可以至少耐八年到十年。而患有肺结节的武正梅的。",
+    "output": "新的性能可以至少耐八年到十年。而患有肺结节的武正梅的肺。",
+    "reference": "新的心门也可以至少耐八年到十年。 而患有肺结节的伍振玮的肺部组织",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0008",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "所以，通常心上挤的时候，那个心门会打开，充满氧气的血可以跑去全身。心门狭窄，血从心脏跑出来会比较难。",
+    "output": "所以，通常心脏挤的时候，那个心门会打开，充满氧气的血可以跑去全身。心门狭窄，血从心脏跑出来会比较难。",
+    "reference": "所以通常心脏挤的时候 那个心门会打开 那个充满氧气的血可以跑去全身。 心门狭窄 血从心脏跑出来会比较难，",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0008",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "所以通常新闻集的时候，那个新闻会打开，充满氧气的血可以跑去全身。心门狭窄，血从心脏跑出来会比较难。",
+    "output": "所以通常心脏挤的时候，那个心门会打开，充满氧气的血可以跑去全身。心门狭窄，血从心脏跑出来会比较难。",
+    "reference": "所以通常心脏挤的时候 那个心门会打开 那个充满氧气的血可以跑去全身。 心门狭窄 血从心脏跑出来会比较难，",
+    "error_delta": -5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0022",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "这一天在中心里等着动手术的，还有现年六十八岁、患有肺部结节的武振伟。",
+    "output": "这一天在中心里等着动手术的，还有现年六十八岁，患有肺部结节的武振伟。",
+    "reference": "这一天在中心里等着动手术的 还有现年六十八岁 患有肺部结节的伍振玮。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0027",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "医生提供给武政委三个选项，各有利弊。选择继续观察病情的话，病人无需进行不必要的手术及活检。",
+    "output": "医生提供给武政委三个选项，各有利弊，选择继续观察病情的话，病人无需进行不必要的手术及活检。",
+    "reference": "医生提供给伍振玮三个选项各有利弊。 选择继续观察病情的话 病人无需进行不必要的手术及活检。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0027",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "arm": "scene_prompt",
+    "source": "医生提供给武镇伟三个选项，各有利弊，选择继续观察病情的话，病人无需进行不必要的手术及活检。",
+    "output": "医生提供给武振伟三个选项，各有利弊，选择继续观察病情的话，病人无需进行不必要的手术及活检。",
+    "reference": "医生提供给伍振玮三个选项各有利弊。 选择继续观察病情的话 病人无需进行不必要的手术及活检。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0635",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "啊，那么骨头呢，就会显得比较容易脆弱。现在的流行病学，他们有一个研究，就发现属于肾虚型的那种骨质疏松症的。",
+    "output": "啊，那么骨头呢，就会显得比较容易脆弱。现在的流行病学，他们有一个研究就发现，属于肾虚型的那种骨质疏松症的。",
+    "reference": "骨头就会显得比较容易脆弱。 现代的流行病学 它们有一个研究就发现 属于肾虚型的那种骨质疏松症的病人，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0649",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "因为一旦呃一个病人有骨质疏松症的时候，这个这两个部分是最普遍受伤的那部分。O.K.那比如说他们跌倒。",
+    "output": "因为一旦你一个病人有骨质疏松症的时候，这个这两个部分是最普遍受伤的那部分。OK，那比如说他们跌倒。",
+    "reference": "因为一旦一个病人 有骨质疏松症的时候， 这两个是最普遍受伤的部分。 那比如说他们跌倒 你们帮忙开刀，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0649",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "因为一旦你啊，一个病人有骨质疏松症的时候，这个这两个部分是最普遍受伤的那部分。O.K.，那比如说他们跌倒。",
+    "output": "因为一旦你啊一个病人有骨质疏松症的时候，这个这两个部分是最普遍受伤的那部分。O K，那比如说他们跌倒。",
+    "reference": "因为一旦一个病人 有骨质疏松症的时候， 这两个是最普遍受伤的部分。 那比如说他们跌倒 你们帮忙开刀，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0616",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "发现你，你需要更长的时间才会失去到骨疏松症的程度。明白。好，最后一个迷失啊，请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。",
+    "output": "发现你，你需要更长的时间才会失去到骨质疏松症的程度。明白。好，最后一个迷失啊，请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。",
+    "reference": "你需要更长的时间 才会失去到骨质疏松症的程度。 好 最后一个迷思 请听清楚。 身材变矮呢 就是可能患上骨质疏松症。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0616",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "发现你，你需要更长的时间才会失去到，比如失聪症的程度，明白？好，最后一个迷失啊，请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。",
+    "output": "发现你，你需要更长的时间才会失去到，比如骨质疏松症的程度，明白？好，最后一个迷失啊，请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。",
+    "reference": "你需要更长的时间 才会失去到骨质疏松症的程度。 好 最后一个迷思 请听清楚。 身材变矮呢 就是可能患上骨质疏松症。",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0576",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "太太，因为听说就是女生会比较容易患上这个骨质疏松症，所以都会很勤劳的叫他们补钙了。对，趁年轻要多。",
+    "output": "因为听说，就是女生会比较容易患上这个骨质疏松症，所以都会很勤劳的叫他们补钙了。对，趁年轻要多。",
+    "reference": "因为就是听说女性会比较容易患上 骨质疏松症。 所以都会很勤劳地叫她们补钙 趁年轻要多补一下。",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0576",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "听说，就是女生会比较容易患上这个骨质增生，所以都会很勤劳的叫他们补钙。对，趁年轻要多。",
+    "output": "听说，就是你身体会比较容易患上这个骨质疏松症，所以都会很勤劳的叫他们补钙。对，趁年轻要多。",
+    "reference": "因为就是听说女性会比较容易患上 骨质疏松症。 所以都会很勤劳地叫她们补钙 趁年轻要多补一下。",
+    "error_delta": -2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0580",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "骨质疏松症是骨头结构上的问题。O.K.所以虽然你的骨头是完整，完整，可是它的质地不好了，钙质流。",
+    "output": "骨质疏松症是骨头结构上的问题。OK，所以虽然你的骨头是完整，完整，可是它的质地不好了，钙质流。",
+    "reference": "骨质疏松症是骨头结构上的问题， 所以虽然你的骨头是完整的。 完整的。 可是它的质地不好了 钙质流失。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0100",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "用丝带、碳纤维，不过现在许多手术都会利用病患自体的移植物来取代前交叉韧带的手术。基本的步骤是。",
+    "output": "用丝带、碳纤维，不过现在许多手术都会利用病患自体的移植物来取代前交叉韧带的手术，基本的步骤是。",
+    "reference": "碳纤维。 不过 现在许多手术 都会利用病患自体的移植物来取代 前交叉韧带的手术基本的步骤是",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0100",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "用丝带、碳纤维，不过现在许多手术都会利用病患自己的移植物来取代前交叉韧带的手术。基本的步骤是。",
+    "output": "用丝带、碳纤维，不过现在许多手术都会利用病患自己的移植物来取代前交叉韧带的手术基本的步骤是。",
+    "reference": "碳纤维。 不过 现在许多手术 都会利用病患自体的移植物来取代 前交叉韧带的手术基本的步骤是",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0579",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "帮他们开刀过后，人发现他们其实有骨疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+    "output": "帮他们开刀过后，人发现他们其实有骨质疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么他学不到啊？对。",
+    "reference": "帮他们开刀过后发现 他们其实有骨质疏松症。 所以很多患者可能自己都不知道。 对啊。 有这个问题 可是为什么察觉不到？ 对啊。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0579",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "bounded_copy",
+    "source": "帮他们开刀过后，人发现他们其实有骨疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+    "output": "帮他们开刀过后，人发现他们其实有骨质疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+    "reference": "帮他们开刀过后发现 他们其实有骨质疏松症。 所以很多患者可能自己都不知道。 对啊。 有这个问题 可是为什么察觉不到？ 对啊。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0579",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "restricted_copy",
+    "source": "帮他们开刀过后，人发现他们其实有骨疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+    "output": "帮他们开刀过后，人发现他们其实有骨质疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。",
+    "reference": "帮他们开刀过后发现 他们其实有骨质疏松症。 所以很多患者可能自己都不知道。 对啊。 有这个问题 可是为什么察觉不到？ 对啊。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0579",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "帮他们开刀过后，人发现他们其实有骨质疏松，所以很多患者可能自己都不知道有这个。对呀，嗯，哎，可是为什么差别不大？",
+    "output": "帮他们开刀过后，人发现他们其实有骨质疏松，所以很多患者可能自己都不知道有这个。对呀，哎，可是为什么差别不大？",
+    "reference": "帮他们开刀过后发现 他们其实有骨质疏松症。 所以很多患者可能自己都不知道。 对啊。 有这个问题 可是为什么察觉不到？ 对啊。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0577",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "补一下，对对对，其实我个人是蛮好奇啊，有没有可能从一个人的外表哈，就知道说他是不是有这个骨质疏松？",
+    "output": "补一下，对对对，其实我个人是蛮好奇的，有没有可能从一个人的外表哈，就知道说他是不是有这个骨质疏松？",
+    "reference": "其实我个人是蛮好奇啊。 有没有可能从一个人的外表 就知道说他是不是有 骨质疏松症的问题？",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0117",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "顿时，如时光静止一般。Left C6 Improvement Note. 好的，Ken。检测显示椎间盘被切除后。",
+    "output": "顿时，如时光静止一般。Left C six improvement noted. Okay, Ken. 检测显示椎间盘被切除后。",
+    "reference": "顿时如时光静止一般。 检测显示 椎间盘被切除后",
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_train_0117",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "顿时，如时光静止一般。Left C C improvement note.我先先检测显示椎间盘被切除后。",
+    "output": "顿时，如时光静止一般。Left C C improvement noted. Okay,先检测显示椎间盘被切除后。",
+    "reference": "顿时如时光静止一般。 检测显示 椎间盘被切除后",
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0582",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "一创伤，轻微的创伤，就会，啊，骨折，哦，那对于骨质疏松症，我们其实也是有些名。",
+    "output": "一创伤，轻微的创伤，就会啊骨折，哦，那对于骨质疏松症，我们其实也是有些明。",
+    "reference": "一撞伤 轻微的撞伤 你就会骨折。 那对于骨质疏松症 我们其实也是有些迷思。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0072",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "除了颈部疼痛以外，因为神经受影响，Royceen的左上臂在这两年也一直处于发麻状。",
+    "output": "除了颈部疼痛以外，因为神经受影响，Rayson的左上臂在这两年也一直处于发麻状。",
+    "reference": "除了颈部疼痛以外 因为神经受影响 Royston的左上臂在这两年 也一直处于发麻状态。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0127",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "粗活儿导致他伤到了颈椎。I think it's lifting a lot of heavy things, and I always like to put it on my head, you know, when I carry those things, and definitely my wife will nag at me, you know, you can't do it, and why I used to put, because I like to do things that, you know, it's a challenge for me lah.",
+    "output": "粗活儿导致他伤到了颈椎。I think it's lifting a lot of heavy things, and I always like to put it on my head. You know, when I carry those things, and definitely my wife would nag at me. You know, you can't do it, and why I used to put because I like to do things that you know, it's a challenge for me lah.",
+    "reference": "导致他伤到了颈椎。",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0127",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "导致他伤到了颈椎。I think it's lifting a lot of heavy things, and I always like to put it on my head. You know, when I carry those tennis, and definitely my wife will nag at me. You know, you can't do it, and why I wish to put because I like to do things that, you know, it's a challenge for me lah.",
+    "output": "导致他伤到了颈椎。I think it's lifting a lot of heavy things, and I always like to put it on my head. You know when I carry those things, and definitely my wife will nag at me. You know you can't do it, and why I will say put because I like to do things that you know it's a challenge for me lah.",
+    "reference": "导致他伤到了颈椎。",
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0075",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "arm": "scene_prompt",
+    "source": "但一直没有好转。Just one or two my friends said that do not go for the surgery, you know. Try not to. But I did tell them I tried many ways. It didn't help.所以，这是我的 last solution.",
+    "output": "但一直没有好转。There's one or two my patients that do not go for the surgery, you know, try not to. But I did tell them I tried many ways. It didn't help. So this is my last solution.",
+    "reference": "但一直没有好转。",
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0840",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "那电疗又分呃，近距离电疗和远距离电疗了。近距离电疗就是把那个有辐射的东西，把它直接放在皮内线里面。",
+    "output": "那电疗又分呃近距离电疗和远距离电疗了。近距离电疗就是把那个有辐射的东西，把它直接放在前列腺里面。",
+    "reference": "电疗又分近距离电疗 和远距离电疗 近距离电疗就是把有辐射的东西， 把它直接放在前列腺里面",
+    "error_delta": -3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0835",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "手术都是用那个机器人辅助了，动了手术过后，他还有生育能力嘛？切除了这个前列腺过后，耳穴就是一个很好的啊治疗。",
+    "output": "手术都是用那个机器人辅助了，动了手术过后，他还有生育能力嘛？切除了这个前列腺过后，而且就是一个很好的啊治疗。",
+    "reference": "都是那个用机器人辅助了。 动了手术过后 他还有生育能力吗？ 切除了前列腺过后。 耳穴就是一个很好的治疗方法。",
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_train_0835",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "手术都是用那个机器人辅助了，做了手术过后，它还有神秘能力嘛？切除了这个前列腺过后，的确就是一个很好的啊治疗。",
+    "output": "手术都是用那个机器人辅助了。做了手术过后，他还有生育能力嘛？切除了这个前列腺过后，而且就是一个很好的啊治疗。",
+    "reference": "都是那个用机器人辅助了。 动了手术过后 他还有生育能力吗？ 切除了前列腺过后。 耳穴就是一个很好的治疗方法。",
+    "error_delta": -3
+  },
+  {
+    "id": "MultiMed_Chinese_train_0834",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "因为我们刚好听到他是有做这个切除的手术，是是是是。那当然，除了这个切除手术，还有什么样其他的治疗方法吗？嗯，近几年来，绝大多数的前列腺。",
+    "output": "因为我们刚刚听到他是有做这个切除的手术，是是是是。那当然，除了这个切除手术，还有什么样其他的治疗方法吗？嗯，近几年来，绝大多数的前列腺。",
+    "reference": "他是有做这个切除的手术。是是是。 那当然除了这个切除手术， 还有什么样其他的治疗方法？ 近几年了 绝大多数的前列腺手术",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0834",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "因为我们刚刚听到他是有做这个切割的手艺，是是是是。那当然除了这个切割手艺，他有什么样其他的治疗方法？嗯，近几年来绝大多数的前列腺。",
+    "output": "因为我们刚刚听到他是有做这个切除的手术，是是是是。那当然除了这个切除手术，他有什么样其他的治疗方法？嗯，近几年来绝大多数的前列腺。",
+    "reference": "他是有做这个切除的手术。是是是。 那当然除了这个切除手术， 还有什么样其他的治疗方法？ 近几年了 绝大多数的前列腺手术",
+    "error_delta": -4
+  },
+  {
+    "id": "MultiMed_Chinese_train_0820",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "建议我做一次的BSA血验，结果result出来就是六，比一般的四点零还要高。",
+    "output": "建议我做一次的 PSA 血验，结果 result 出来就是六，比一般的四点零还要高。",
+    "reference": "建议我做一次的PSA血验。 结果result出来就是六 比一般的4.0还要高。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0820",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "大建议我做一次的TSA血验，结果理造出来就是六，比一般的四点零还要。",
+    "output": "大，建议我做一次的 PSA 血验，结果理照出来就是六，比一般的四点零还要。",
+    "reference": "建议我做一次的PSA血验。 结果result出来就是六 比一般的4.0还要高。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0843",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "OK，这个的好处就是医生可以把他的手放进那个呃呃病人的体内，所以手的灵活性非常的高。是啊，对。不过前列腺在盆腔的内。",
+    "output": "OK，这个的好处就是医生可以把他的手放进那个呃呃病人的体内，所以手的灵活性非常的高，是啊，对。不过前列腺在盆腔的内。",
+    "reference": "这个的好处就是医生可以把他的手 放进那个病人的体内。 所以手的灵活性非常的高。 是。 对。 不过 前列腺在盆腔的内部，",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0795",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "欢迎李广军医师加入我们的讨论。欢迎，欢迎，欢迎，欢迎。好，那欢迎李医师哦。这个前列腺癌呢，以你来讲。",
+    "output": "欢迎李广军医师加入我们的讨论。欢迎欢迎欢迎欢迎，好，那欢迎李医师哦，这个前列腺癌呢，以你来讲。",
+    "reference": "欢迎李广军医师加入我们的讨论。 欢迎 欢迎 欢迎。 欢迎李医师啊。 这个前列腺癌 以你的角度来说",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0795",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "欢迎李广金医师加入我们的讨论。欢迎，欢迎，欢迎，欢迎！好，那欢迎李医师哦。那前列腺癌呢，以你的？",
+    "output": "欢迎李广金医师加入我们的讨论。欢迎欢迎欢迎欢迎，好，那欢迎李医师哦。那前列腺癌呢，以你的。",
+    "reference": "欢迎李广军医师加入我们的讨论。 欢迎 欢迎 欢迎。 欢迎李医师啊。 这个前列腺癌 以你的角度来说",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0757",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "雄赳赳，气昂昂的一集哈，来各位请坐，嗯，问一下两位哈，你们对这个前列腺呢，到底了解多少？",
+    "output": "雄赳赳气昂昂的一集哈，来各位请坐，嗯，问一下两位哈，你们对这个前列腺呢，到底了解多少？",
+    "reference": "雄赳赳 气昂昂的一集。 来 各位 请坐。 问一下两位啊 你们对前列腺到底了解多少？",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0757",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "雄赳赳，气昂昂的一组哦，有请坐，嗯，问一下两位哈，你们对这个前列腺呢，到底了解多？",
+    "output": "雄赳赳，气昂昂的一组哈，有请坐，嗯，问一下两位哈，你们对这个前列腺呢，到底了解多？",
+    "reference": "雄赳赳 气昂昂的一集。 来 各位 请坐。 问一下两位啊 你们对前列腺到底了解多少？",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0811",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "也是，这个人呢，差不多有六十出，他是手术后来长的。手术后啊，手术后四个月，他也做了电疗。OK，啊，当时他来来。",
+    "output": "也是，这个人呢，差不多有六十出，他是手术后来长的。手术后啊，手术后四个月，他也做了电疗。OK啊，当时他来来。",
+    "reference": "这个人差不多有六十岁出。 他是手术后来找你？ 手术后 手术后四个月 他也做了电疗。 OK。 当时他来的时候",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0827",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "手术后，当然有一些。后遗症，我尿毒症就必须要多做 physical exercise，把它控制。",
+    "output": "手术后，当然有一些。后遗症，做尿球镜就必须要多做 physical exercise，把它控制。",
+    "reference": "手术后当然有一点后遗症。 尿失禁就必须要多做 凯格尔运动 把它控制。",
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_train_0821",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "淡的，所以我又拖，过了两个月以后，我回去再做一次BSA test。",
+    "output": "淡的，所以我又拖，过了两个月以后，我回去再做一次 PSA test。",
+    "reference": "所以我又拖。 过了两个月以后 我回去再做一次 PSA test。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0821",
+    "variant": "noise",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "办的，所以我就拖过了两个月以后，我回去再做一次TSA单。",
+    "output": "干的，所以我就拖过了两个月以后，我回去再做一次 PSA 检。",
+    "reference": "所以我又拖。 过了两个月以后 我回去再做一次 PSA test。",
+    "error_delta": -1
+  },
+  {
+    "id": "MultiMed_Chinese_train_0839",
+    "variant": "clean",
+    "scene": "urology",
+    "arm": "scene_prompt",
+    "source": "以防它有病变，那那时候要及时做治疗。是，如果治疗方法大致上有分两种，第一种是电疗。",
+    "output": "预防它有病变，那那时候要及时做治疗。是，如果治疗方法大致上有分两种，第一种是电疗。",
+    "reference": "预防它有病变 那时候要及时做治疗。 治疗方法大致上有分两种 第一种是电疗。",
+    "error_delta": -1
+  }
+]

@@ -1,0 +1,4858 @@
+[
+  {
+    "id": "MultiMed_Chinese_eval_0000",
+    "variant": "clean",
+    "source": "在获知不好的消息后，王医生很快就恢复状态，重新披上手术衣，为吴政委进行右上肺叶切除术。理解了。",
+    "output": "在获知不好的消息后，王医生很快就恢复状态，重心尖上手术衣，微生物委进行右上肺叶切除术。理解了。",
+    "reference": "在获知不好的消息后， 王医生很快就恢复状态， 重新披上手术衣 为伍振玮进行右上肺叶切除术。",
+    "edits": [
+      {
+        "start": 29,
+        "end": 32,
+        "observed": "为吴政",
+        "canonical": "微生物",
+        "sound": 0.86,
+        "gain": 24.58741
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "新披",
+        "canonical": "心尖",
+        "sound": 0.85333,
+        "gain": 9.03667
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0000",
+    "variant": "noise",
+    "source": "在获知不好的消息后，王医生很快就恢复状态，重新披上手术衣，为吴振伟进行右上肺叶切除术。没得错。",
+    "output": "在获知不好的消息后，王医生很快就恢复状态，重心尖上手术衣，胃灼热伟进行右上肺叶切除术。没得错。",
+    "reference": "在获知不好的消息后， 王医生很快就恢复状态， 重新披上手术衣 为伍振玮进行右上肺叶切除术。",
+    "edits": [
+      {
+        "start": 29,
+        "end": 32,
+        "observed": "为吴振",
+        "canonical": "胃灼热",
+        "sound": 0.86296,
+        "gain": 28.56861
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "新披",
+        "canonical": "心尖",
+        "sound": 0.85333,
+        "gain": 9.03667
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0001",
+    "variant": "clean",
+    "source": "王医生沿着肺门上缘打开纵隔胸膜，并向后下方延伸至中间支气管位置。接着，在游离肺动脉前进行解剖。",
+    "output": "王医生殖器肺门上呼吸道纵隔胸膜，病理性黄疸延神经纤维支气管位置。接着，在游离肺动脉前进行解剖。",
+    "reference": "王医生沿着肺门上缘打开纵隔胸膜， 并向后下方延伸至中间支气管位置。 接着 在游离肺动脉前进行解剖",
+    "edits": [
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "伸至中间",
+        "canonical": "神经纤维",
+        "sound": 0.85833,
+        "gain": 14.24313
+      },
+      {
+        "start": 16,
+        "end": 21,
+        "observed": "并向后下方",
+        "canonical": "病理性黄疸",
+        "sound": 0.88456,
+        "gain": 12.83923
+      },
+      {
+        "start": 7,
+        "end": 11,
+        "observed": "上缘打开",
+        "canonical": "上呼吸道",
+        "sound": 0.85635,
+        "gain": 9.77015
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "observed": "生沿着",
+        "canonical": "生殖器",
+        "sound": 0.86727,
+        "gain": 9.60365
+      }
+    ],
+    "error_delta": 14
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0001",
+    "variant": "noise",
+    "source": "王医生沿着肺门上缘打开纵隔胸膜，并向后下方延伸至中间支气管位置。接着，在游离肺动脉前进行解剖。",
+    "output": "王医生殖器肺门上呼吸道纵隔胸膜，病理性黄疸延神经纤维支气管位置。接着，在游离肺动脉前进行解剖。",
+    "reference": "王医生沿着肺门上缘打开纵隔胸膜， 并向后下方延伸至中间支气管位置。 接着 在游离肺动脉前进行解剖",
+    "edits": [
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "伸至中间",
+        "canonical": "神经纤维",
+        "sound": 0.85833,
+        "gain": 14.24313
+      },
+      {
+        "start": 16,
+        "end": 21,
+        "observed": "并向后下方",
+        "canonical": "病理性黄疸",
+        "sound": 0.88456,
+        "gain": 12.83923
+      },
+      {
+        "start": 7,
+        "end": 11,
+        "observed": "上缘打开",
+        "canonical": "上呼吸道",
+        "sound": 0.85635,
+        "gain": 9.77015
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "observed": "生沿着",
+        "canonical": "生殖器",
+        "sound": 0.86727,
+        "gain": 9.60365
+      }
+    ],
+    "error_delta": 14
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0003",
+    "variant": "clean",
+    "source": "两个多星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在里坐。",
+    "output": "链霉素星期前完成凯比手术的郑友进，这一天回来国家心脏中心进行复诊。在流脑。",
+    "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+    "edits": [
+      {
+        "start": 34,
+        "end": 36,
+        "observed": "里坐",
+        "canonical": "流脑",
+        "sound": 0.85778,
+        "gain": 20.03321
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "两个多",
+        "canonical": "链霉素",
+        "sound": 0.85333,
+        "gain": 12.90315
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0003",
+    "variant": "noise",
+    "source": "两个多星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+    "output": "链霉素星期前完成凯蒂手术的郑有信，这天回来国家心脏中心进行复诊。",
+    "reference": "两个多星期前 完成TAVI手术的郑友进 这天回来国家心脏中心进行复诊。 看一下。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "两个多",
+        "canonical": "链霉素",
+        "sound": 0.85333,
+        "gain": 12.90315
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0004",
+    "variant": "clean",
+    "source": "今早，自瑞斯顿踏进手术室后，他的妻子就一直在手术室外静静的守候着。Let's see, I'm not here. I'm at work. I don't think so. I'm able to work because I'll be worried and then wondering what's happening. Yeah, so no matter what, no matter how many operation he goes, I will still come and accompany him.",
+    "output": "今早，自瑞斯顿胎盘手术室后，他的妻子就一直在手术室外静脉的手术室。Let's see, I'm not here. I'm at work. I don't think so. I'm able to work because I'll be worried and then wondering what's happening. Yeah, so no matter what, no matter how many operation he goes, I will still come and accompany him.",
+    "reference": "今早 自Royston踏进手术室后 他的妻子就一直在手术室外 静静地守候着。",
+    "edits": [
+      {
+        "start": 29,
+        "end": 32,
+        "observed": "守候着",
+        "canonical": "手术室",
+        "sound": 0.88,
+        "gain": 32.73228
+      },
+      {
+        "start": 26,
+        "end": 28,
+        "observed": "静静",
+        "canonical": "静脉",
+        "sound": 0.86786,
+        "gain": 10.1348
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "踏进",
+        "canonical": "胎盘",
+        "sound": 0.85778,
+        "gain": 9.08569
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0004",
+    "variant": "noise",
+    "source": "今早，斯瑞森踏进手术室后，他的妻子就一直在手术室外静静的守候着。Let's see, I'm not here. I'm at work. I don't think I'm able to work because I'll be worried and then wondering what's happening. Yeah, so no matter what, no matter how many operation he goes, I will still come and accompany him.嗯。",
+    "output": "今早，斯瑞森胎盘手术室后，他的妻子就一直在手术室外静脉的手术室。Let's see, I'm not here. I'm at work. I don't think I'm able to work because I'll be worried and then wondering what's happening. Yeah, so no matter what, no matter how many operation he goes, I will still come and accompany him.嗯。",
+    "reference": "今早 自Royston踏进手术室后 他的妻子就一直在手术室外 静静地守候着。",
+    "edits": [
+      {
+        "start": 28,
+        "end": 31,
+        "observed": "守候着",
+        "canonical": "手术室",
+        "sound": 0.88,
+        "gain": 32.73228
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "observed": "静静",
+        "canonical": "静脉",
+        "sound": 0.86786,
+        "gain": 10.1348
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "踏进",
+        "canonical": "胎盘",
+        "sound": 0.85778,
+        "gain": 9.08569
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0005",
+    "variant": "noise",
+    "source": "通过团队的努力，取出的肌腱准备好移植到膝关节里了。你踏实， okay。对， Tower 4， 4， 1， 2， 3， 4。",
+    "output": "通过团队的努力，取出的肌腱准备好移植到膝关节里了。尿失禁， okay。对， Tower 4， 4， 1， 2， 3， 4。",
+    "reference": "通过团队的努力 取出的肌腱准备好移植到膝关节里了。",
+    "edits": [
+      {
+        "start": 25,
+        "end": 28,
+        "observed": "你踏实",
+        "canonical": "尿失禁",
+        "sound": 0.85524,
+        "gain": 11.21765
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0006",
+    "variant": "clean",
+    "source": "手术团队为手术部位进行清洗、缝合，并且装上支架后，不到两。",
+    "output": "手术团队为手术部位进行清洗、缝合，病毒抗原支架后，不到两。",
+    "reference": "手术团队为手术部位进行清洗 缝合 并且装上支架后， 不到两个小时",
+    "edits": [
+      {
+        "start": 17,
+        "end": 21,
+        "observed": "并且装上",
+        "canonical": "病毒抗原",
+        "sound": 0.85397,
+        "gain": 20.06333
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0006",
+    "variant": "noise",
+    "source": "手术团队为手术部位进行清洗、缝合，并且装上支架后，不到两。",
+    "output": "手术团队为手术部位进行清洗、缝合，病毒抗原支架后，不到两。",
+    "reference": "手术团队为手术部位进行清洗 缝合 并且装上支架后， 不到两个小时",
+    "edits": [
+      {
+        "start": 17,
+        "end": 21,
+        "observed": "并且装上",
+        "canonical": "病毒抗原",
+        "sound": 0.85397,
+        "gain": 20.06333
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0007",
+    "variant": "clean",
+    "source": "个小时，而范迪再次穿过手术室大门。不过，这只是他康复过程的一个开始。一般来说，要恢复到能够。",
+    "output": "个小时，而反流再次穿过手术室大门。不过，这只是他康复过程的一个开始。一般来说，要呼吸道梗阻。",
+    "reference": "Afendi再次穿过手术室大门。 不过 这只是他康复过程的一个开始。 一般来说 要恢复到能够进行。",
+    "edits": [
+      {
+        "start": 40,
+        "end": 45,
+        "observed": "恢复到能够",
+        "canonical": "呼吸道梗阻",
+        "sound": 0.86362,
+        "gain": 23.90057
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "范迪",
+        "canonical": "反流",
+        "sound": 0.87556,
+        "gain": 13.27041
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0007",
+    "variant": "noise",
+    "source": "两个小时，阿凡蒂再次穿过手术室大门。不过，这只是他康复过程的一个开始。一般来说，要恢复到能够。",
+    "output": "两个小时，发绀蒂再次穿过手术室大门。不过，这只是他康复过程的一个开始。一般来说，要呼吸道梗阻。",
+    "reference": "Afendi再次穿过手术室大门。 不过 这只是他康复过程的一个开始。 一般来说 要恢复到能够进行。",
+    "edits": [
+      {
+        "start": 41,
+        "end": 46,
+        "observed": "恢复到能够",
+        "canonical": "呼吸道梗阻",
+        "sound": 0.86362,
+        "gain": 23.90057
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "阿凡",
+        "canonical": "发绀",
+        "sound": 0.85,
+        "gain": 12.96254
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0008",
+    "variant": "clean",
+    "source": "经过两个小时的努力，突出的组织仍然还未推回腹腔。正当维杰瑞纳医生决定改变策略，做一个更大的切口。",
+    "output": "经过两个小时的努力，突出的组织仍然还未推回腹腔。正压通气瑞纳医生决定改变策略，做一个更大的切口。",
+    "reference": "经过两个小时的努力 凸出的组织仍然还未推回腹腔。 正当Wijerathne医生决定改变策略 做一个更大的切口时",
+    "edits": [
+      {
+        "start": 24,
+        "end": 28,
+        "observed": "正当维杰",
+        "canonical": "正压通气",
+        "sound": 0.85846,
+        "gain": 32.57295
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0008",
+    "variant": "noise",
+    "source": "经过两个小时的努力，突出的组织仍然还未推回腹腔。正当维吉尼亚医生决定改变策略，做一个更大的切口。",
+    "output": "经过两个小时的努力，突出的组织仍然还未推回腹腔。正压通气尼亚医生决定改变策略，做一个更大的切口。",
+    "reference": "经过两个小时的努力 凸出的组织仍然还未推回腹腔。 正当Wijerathne医生决定改变策略 做一个更大的切口时",
+    "edits": [
+      {
+        "start": 24,
+        "end": 28,
+        "observed": "正当维吉",
+        "canonical": "正压通气",
+        "sound": 0.86703,
+        "gain": 32.76958
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0009",
+    "variant": "clean",
+    "source": "时，手术终于有了突破。Okay, can, it's reduce, can? Reduce that. Yeah, okay, go back. We just let the医生和团队。",
+    "output": "时，手术肿瘤有了突破。Okay, can, it's reduce, can? Reduce that. Yeah, okay, go back. We just let the医生和团队。",
+    "reference": "手术终于有了突破。 Wijerathne医生和团队",
+    "edits": [
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "终于",
+        "canonical": "肿瘤",
+        "sound": 0.92143,
+        "gain": 12.57515
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0009",
+    "variant": "noise",
+    "source": "时，手术终于有了突破。OK， can， is reduce， can， reduce， yeah， yeah， OK， go back， 啊， OK， We just wanna医生和团。",
+    "output": "时，手术肿瘤有了突破。OK， can， is reduce， can， reduce， yeah， yeah， OK， go back， 啊， OK， We just wanna医生和团。",
+    "reference": "手术终于有了突破。 Wijerathne医生和团队",
+    "edits": [
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "终于",
+        "canonical": "肿瘤",
+        "sound": 0.92143,
+        "gain": 12.57515
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0010",
+    "variant": "clean",
+    "source": "队终于露出难得的笑容。I had the need to deliver to my patients because any additional cut would cause more pain. We have that happiness when we are able to do it with the keyhole method.",
+    "output": "队肿瘤负荷难得的小肠。I had the need to deliver to my patients because any additional cut would cause more pain. We have that happiness when we are able to do it with the keyhole method.",
+    "reference": "终于露出难得的笑容。",
+    "edits": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "终于露出",
+        "canonical": "肿瘤负荷",
+        "sound": 0.87778,
+        "gain": 19.9005
+      },
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "笑容",
+        "canonical": "小肠",
+        "sound": 0.88333,
+        "gain": 12.66608
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0010",
+    "variant": "noise",
+    "source": "终于露出难得的笑容。I had the need to deliver to my patients because any additional cut would cause more pain. We have that happiness when we are able to do it with a keyhole method.",
+    "output": "重度脱水难得的小肠。I had the need to deliver to my patients because any additional cut would cause more pain. We have that happiness when we are able to do it with a keyhole method.",
+    "reference": "终于露出难得的笑容。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "终于露出",
+        "canonical": "重度脱水",
+        "sound": 0.87857,
+        "gain": 20.2312
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "笑容",
+        "canonical": "小肠",
+        "sound": 0.88333,
+        "gain": 12.66608
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0011",
+    "variant": "clean",
+    "source": "手术的下一个关键环节，就是修补薄弱或缺损的部位，以防止问题复发。What we did was actually pull back the honey sac, and then basically stitch it in layers to fill the gap where the honeyah goes in, or to reduce the size of the honeyah neck.",
+    "output": "手术的下一个关键环节，就是修补手术或缺损的部位，以防止胃体复发。What we did was actually pull back the honey sac, and then basically stitch it in layers to fill the gap where the honeyah goes in, or to reduce the size of the honeyah neck.",
+    "reference": "手术的下一个关键环节 就是修补薄弱或缺损的部位 以防止问题复发。",
+    "edits": [
+      {
+        "start": 27,
+        "end": 29,
+        "observed": "问题",
+        "canonical": "胃体",
+        "sound": 0.89333,
+        "gain": 15.27288
+      },
+      {
+        "start": 13,
+        "end": 17,
+        "observed": "修补薄弱",
+        "canonical": "修补手术",
+        "sound": 0.85667,
+        "gain": 12.33904
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0011",
+    "variant": "noise",
+    "source": "手术的下一个关键环节，就是修补薄弱或缺损的部位，以防止问题复发。What we did is actually pull back the hernia sac, and then basically stitch it in layers to fill the gap where the hernia goes in, or to reduce the size of the hernia.嗯。",
+    "output": "手术的下一个关键环节，就是修补手术或缺损的部位，以防止胃体复发。What we did is actually pull back the hernia sac, and then basically stitch it in layers to fill the gap where the hernia goes in, or to reduce the size of the hernia.嗯。",
+    "reference": "手术的下一个关键环节 就是修补薄弱或缺损的部位 以防止问题复发。",
+    "edits": [
+      {
+        "start": 27,
+        "end": 29,
+        "observed": "问题",
+        "canonical": "胃体",
+        "sound": 0.89333,
+        "gain": 15.27288
+      },
+      {
+        "start": 13,
+        "end": 17,
+        "observed": "修补薄弱",
+        "canonical": "修补手术",
+        "sound": 0.85667,
+        "gain": 12.33904
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0012",
+    "variant": "clean",
+    "source": "这种修补方式是维吉尔纳医生和医疗团队近几年在亚历山大医院研发的修补方式，取得良好效果。",
+    "output": "这种修补房室连接不一致医生和医疗团队近几年在亚历山大医院研发的修补方式，取得良好效果。",
+    "reference": "这种修补方式 是Wijerathne医生和医疗团队 近几年在亚历山大医院研发的 修补方式取得良好效果",
+    "edits": [
+      {
+        "start": 4,
+        "end": 11,
+        "observed": "方式是维吉尔纳",
+        "canonical": "房室连接不一致",
+        "sound": 0.85213,
+        "gain": 33.60592
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0012",
+    "variant": "noise",
+    "source": "这种修补方式是维吉班纳医生和医疗团队近几年在亚历山大医院研发的修补方式，取得良好效果。",
+    "output": "这种修补房室连接不一致医生和医疗团队近几年在亚历山大医院研发的修补方式，取得良好效果。",
+    "reference": "这种修补方式 是Wijerathne医生和医疗团队 近几年在亚历山大医院研发的 修补方式取得良好效果",
+    "edits": [
+      {
+        "start": 4,
+        "end": 11,
+        "observed": "方式是维吉班纳",
+        "canonical": "房室连接不一致",
+        "sound": 0.86619,
+        "gain": 40.98536
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0013",
+    "variant": "clean",
+    "source": "在进行像整形式乳癌切除手术这样的手术时，吴医生和许医生之间的合作协调非常重要。",
+    "output": "在进行性肌营养不良切除手术这样的手术时，吴医生和许医生发基质合作协调非常重要。",
+    "reference": "在进行像整型式乳癌切除手术 这样的手术时 伍医生和许医生之间的合作 协调 非常重要。",
+    "edits": [
+      {
+        "start": 1,
+        "end": 9,
+        "observed": "进行像整形式乳癌",
+        "canonical": "进行性肌营养不良",
+        "sound": 0.85238,
+        "gain": 19.04402
+      },
+      {
+        "start": 26,
+        "end": 30,
+        "observed": "生之间的",
+        "canonical": "生发基质",
+        "sound": 0.90411,
+        "gain": 10.78765
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0013",
+    "variant": "noise",
+    "source": "在进行像整形式乳癌切除手术这样的手术时，武医生和许医生之间的合作协调非常重要。",
+    "output": "在进行性肌营养不良切除手术这样的手术时，无力生和许医生发基质合作协调非常重要。",
+    "reference": "在进行像整型式乳癌切除手术 这样的手术时 伍医生和许医生之间的合作 协调 非常重要。",
+    "edits": [
+      {
+        "start": 1,
+        "end": 9,
+        "observed": "进行像整形式乳癌",
+        "canonical": "进行性肌营养不良",
+        "sound": 0.85238,
+        "gain": 19.04402
+      },
+      {
+        "start": 26,
+        "end": 30,
+        "observed": "生之间的",
+        "canonical": "生发基质",
+        "sound": 0.90411,
+        "gain": 10.78765
+      },
+      {
+        "start": 20,
+        "end": 22,
+        "observed": "武医",
+        "canonical": "无力",
+        "sound": 0.86667,
+        "gain": 9.36674
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0014",
+    "variant": "noise",
+    "source": "嗯，很好了，嗯。在确认移植皮瓣的健康状况后，手术可以说是顺利的。",
+    "output": "嗯，很好了，嗯。在确认移植皮瓣的健康状况后，手术可以手术治疗的。",
+    "reference": "还有痛吗。 很好了。 在确认移植皮瓣的健康状况后 手术可以说是顺利完成了。",
+    "edits": [
+      {
+        "start": 26,
+        "end": 30,
+        "observed": "说是顺利",
+        "canonical": "手术治疗",
+        "sound": 0.85335,
+        "gain": 9.62074
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0015",
+    "variant": "clean",
+    "source": "完成了，不过这时林凤流的挑战才真正开始。Hello, Madam Lim.",
+    "output": "完成了，不过这视力障碍的挑战才真正开始。Hello, Madam Lim.",
+    "reference": "不过这时 林凤留的挑战才真正开始。 你好 Mdm Lin。",
+    "edits": [
+      {
+        "start": 7,
+        "end": 11,
+        "observed": "时林凤流",
+        "canonical": "视力障碍",
+        "sound": 0.85641,
+        "gain": 14.20421
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0017",
+    "variant": "clean",
+    "source": "经验，所以说呢，就会造成了这种遗误病情的这种案例出现，然后我们再说说中国这个中国的优点呢，就是这看病啊，真的是。",
+    "output": "经验，所以说呢，就会造成了这中毒性脑病的这中毒性菌痢，然后我们再说说中国这个中脑导水管呢，就是这看病啊，真的是。",
+    "reference": "所以说就会造成了这种贻误病情 的案例出现。 然后我们再说说中国这个。中国的优点 就是看病真的是非常的快",
+    "edits": [
+      {
+        "start": 14,
+        "end": 19,
+        "observed": "种遗误病情",
+        "canonical": "中毒性脑病",
+        "sound": 0.85123,
+        "gain": 17.76035
+      },
+      {
+        "start": 21,
+        "end": 26,
+        "observed": "种案例出现",
+        "canonical": "中毒性菌痢",
+        "sound": 0.85,
+        "gain": 14.83523
+      },
+      {
+        "start": 38,
+        "end": 43,
+        "observed": "中国的优点",
+        "canonical": "中脑导水管",
+        "sound": 0.85901,
+        "gain": 9.70037
+      }
+    ],
+    "error_delta": 12
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0017",
+    "variant": "noise",
+    "source": "经验，所以说呢，就会造成这种一物定型的这种案例出现，然后我们再说说中国这个，中国的优点呢，就是这看病啊，真的是。",
+    "output": "经验，所以说呢，就会造成这中毒性脑病的这中毒性菌痢，然后我们再说说中毒症状，中脑导水管呢，就是这看病啊，真的是。",
+    "reference": "所以说就会造成了这种贻误病情 的案例出现。 然后我们再说说中国这个。中国的优点 就是看病真的是非常的快",
+    "edits": [
+      {
+        "start": 13,
+        "end": 18,
+        "observed": "种一物定型",
+        "canonical": "中毒性脑病",
+        "sound": 0.89169,
+        "gain": 30.71608
+      },
+      {
+        "start": 20,
+        "end": 25,
+        "observed": "种案例出现",
+        "canonical": "中毒性菌痢",
+        "sound": 0.85,
+        "gain": 14.83523
+      },
+      {
+        "start": 38,
+        "end": 43,
+        "observed": "中国的优点",
+        "canonical": "中脑导水管",
+        "sound": 0.85901,
+        "gain": 11.32543
+      },
+      {
+        "start": 33,
+        "end": 37,
+        "observed": "中国这个",
+        "canonical": "中毒症状",
+        "sound": 0.85509,
+        "gain": 11.04501
+      }
+    ],
+    "error_delta": 12
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0018",
+    "variant": "clean",
+    "source": "非常的快，当然这个呢，经验只是来自在中国这个儿童医院，北京儿童医院国际部，就是新世纪儿童医院。",
+    "output": "非常的快，当然这个呢，静脉注射来自在肿瘤负荷儿童医院，北京儿童医院国际部，就是新世纪儿童医院。",
+    "reference": "当然这个经验只是来自在中国 儿童医院 北京儿童医院国际部就是新世纪 儿童医院里的经验",
+    "edits": [
+      {
+        "start": 11,
+        "end": 15,
+        "observed": "经验只是",
+        "canonical": "静脉注射",
+        "sound": 0.88769,
+        "gain": 13.63606
+      },
+      {
+        "start": 18,
+        "end": 22,
+        "observed": "中国这个",
+        "canonical": "肿瘤负荷",
+        "sound": 0.85641,
+        "gain": 9.10719
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0018",
+    "variant": "noise",
+    "source": "非常的快，当然这个呢，今年只是来自在中国这个儿童医院，北京儿童医院国际部，就是新世界儿童医院。",
+    "output": "非常的快，当然这个呢，今年只是来自在肿瘤负荷儿童医院，北京儿童医院国际部，就是新世界儿童医院。",
+    "reference": "当然这个经验只是来自在中国 儿童医院 北京儿童医院国际部就是新世纪 儿童医院里的经验",
+    "edits": [
+      {
+        "start": 18,
+        "end": 22,
+        "observed": "中国这个",
+        "canonical": "肿瘤负荷",
+        "sound": 0.85641,
+        "gain": 9.10719
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0019",
+    "variant": "clean",
+    "source": "你的经验啊，我一听到我的朋友跟我讲说，在中国其他地方一样，可是要等很长时间的。那么另外一个优点呢，这是我个人感觉，就是全面。",
+    "output": "你的经验啊，我一听到我的朋友跟我讲说，在中毒性脑病方一样，可是要等很长时间的。那么另外一个优点呢，这是我个人感觉，就是全面。",
+    "reference": "我也听到我的朋友跟我讲 说在中国其他地方一样 可是要等很长时间的。 那么另外一个优点 这是我个人感觉就是全面的检查",
+    "edits": [
+      {
+        "start": 20,
+        "end": 25,
+        "observed": "中国其他地",
+        "canonical": "中毒性脑病",
+        "sound": 0.87143,
+        "gain": 17.87361
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0019",
+    "variant": "noise",
+    "source": "今年啊，我一听到我的朋友给我讲说，在中国其他地方一样，可是要等很长时间的。那么另外一个优点呢，这是我个人感觉，就是全面。",
+    "output": "今年啊，我一听到我的朋友给我讲说，在中毒性脑病方一样，可是要等很长时间的。那么另外一个优点呢，这是我个人感觉，就是全面。",
+    "reference": "我也听到我的朋友跟我讲 说在中国其他地方一样 可是要等很长时间的。 那么另外一个优点 这是我个人感觉就是全面的检查",
+    "edits": [
+      {
+        "start": 18,
+        "end": 23,
+        "observed": "中国其他地",
+        "canonical": "中毒性脑病",
+        "sound": 0.87143,
+        "gain": 17.87361
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0020",
+    "variant": "clean",
+    "source": "的检查，咱先不说这个医院是不是为了盈利，或者说是减少自己的这种责任啊，就承担风险这些责任，但这种全面的检查呢，确实。",
+    "output": "的检查，咱先不说这个医院是不是为了应激，或者手术减少自己的这中毒症状，就承担风险这些核仁，但这种全免疫学检查，确实。",
+    "reference": "咱先不说这个医院不是为了盈利 或者说是减少自己的这种责任 承担风险这些责任 但这种全面的检查确实是能让",
+    "edits": [
+      {
+        "start": 30,
+        "end": 34,
+        "observed": "种责任啊",
+        "canonical": "中毒症状",
+        "sound": 0.86364,
+        "gain": 21.52566
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "observed": "责任",
+        "canonical": "核仁",
+        "sound": 0.86667,
+        "gain": 15.14286
+      },
+      {
+        "start": 49,
+        "end": 54,
+        "observed": "面的检查呢",
+        "canonical": "免疫学检查",
+        "sound": 0.89333,
+        "gain": 14.34
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "盈利",
+        "canonical": "应激",
+        "sound": 0.93333,
+        "gain": 13.95925
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "说是",
+        "canonical": "手术",
+        "sound": 0.87937,
+        "gain": 12.9637
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0020",
+    "variant": "noise",
+    "source": "咱先不说这医院是不是为了盈利，或者说是减少自己的这种责任啊，就承担风险这些责任，但这种全面的检查呢，确。",
+    "output": "咱先不说这医院是不是为了应激，或者手术减少自己的这中毒症状，就承担风险这些核仁，但这种全免疫学检查，确。",
+    "reference": "咱先不说这个医院不是为了盈利 或者说是减少自己的这种责任 承担风险这些责任 但这种全面的检查确实是能让",
+    "edits": [
+      {
+        "start": 25,
+        "end": 29,
+        "observed": "种责任啊",
+        "canonical": "中毒症状",
+        "sound": 0.86364,
+        "gain": 21.52566
+      },
+      {
+        "start": 37,
+        "end": 39,
+        "observed": "责任",
+        "canonical": "核仁",
+        "sound": 0.86667,
+        "gain": 15.14286
+      },
+      {
+        "start": 44,
+        "end": 49,
+        "observed": "面的检查呢",
+        "canonical": "免疫学检查",
+        "sound": 0.89333,
+        "gain": 14.34
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "observed": "盈利",
+        "canonical": "应激",
+        "sound": 0.93333,
+        "gain": 13.95925
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "说是",
+        "canonical": "手术",
+        "sound": 0.87937,
+        "gain": 12.9637
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0021",
+    "variant": "clean",
+    "source": "只是能让家长非常放心，而且呢，这个确实也能够减少呃判断失误或贻误病情的这个几率，而且中国的医护人员。",
+    "output": "只是能让甲状旁腺激素，而且呢，这个确实也能够减少呃膀胱食管或贻误病情的这个几率，而且中国的医护人员。",
+    "reference": "家长非常放心 而且确实也能够减少判断失误或 贻误病情的几率 而且中国的医护人员的办事效率",
+    "edits": [
+      {
+        "start": 4,
+        "end": 10,
+        "observed": "家长非常放心",
+        "canonical": "甲状旁腺激素",
+        "sound": 0.85401,
+        "gain": 22.79364
+      },
+      {
+        "start": 27,
+        "end": 29,
+        "observed": "失误",
+        "canonical": "食管",
+        "sound": 0.85333,
+        "gain": 11.12788
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "observed": "判断",
+        "canonical": "膀胱",
+        "sound": 0.88889,
+        "gain": 10.75337
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0021",
+    "variant": "noise",
+    "source": "只是能让家长非常放心，而且呢，这个确实能够减少呃判断失误或遗误病情这个几率，而且中国医护人员。",
+    "output": "只是能让甲状旁腺激素，而且呢，这个确实能够减少呃膀胱食管或遗误病情这个几率，而且中国医护人员。",
+    "reference": "家长非常放心 而且确实也能够减少判断失误或 贻误病情的几率 而且中国的医护人员的办事效率",
+    "edits": [
+      {
+        "start": 4,
+        "end": 10,
+        "observed": "家长非常放心",
+        "canonical": "甲状旁腺激素",
+        "sound": 0.85401,
+        "gain": 22.79364
+      },
+      {
+        "start": 26,
+        "end": 28,
+        "observed": "失误",
+        "canonical": "食管",
+        "sound": 0.85333,
+        "gain": 11.12788
+      },
+      {
+        "start": 24,
+        "end": 26,
+        "observed": "判断",
+        "canonical": "膀胱",
+        "sound": 0.88889,
+        "gain": 10.75337
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0022",
+    "variant": "clean",
+    "source": "人员的办事效率啊，真的是非常的高啊。那么缺点呢，肯定也是有的。当然，每个人和每个人经历不同，我只说一下我个人的这个两个。",
+    "output": "人员的办事硝普钠，真的是非常的高啊。那么缺点呢，肯定也是有的。当然，每个人和每个人经历不同，我只说一下我个人的这个两个。",
+    "reference": "真的是非常的高啊。 那么缺点肯定也是有的 当然每个人和每个人经历不同 我只说一下我个人的两个感受啊。",
+    "edits": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "效率啊",
+        "canonical": "硝普钠",
+        "sound": 0.86786,
+        "gain": 10.05345
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0022",
+    "variant": "noise",
+    "source": "员的办事效率啊，真的是非常的高啊。那么缺点呢，肯定也是有的。当然，每个人和每个人经历不同，我只说一下我个人的这个两个。",
+    "output": "远端肾小管率啊，真的是非常的高啊。那么缺点呢，肯定也是有的。当然，每个人和每个人经历不同，我只说一下我个人的这个两个。",
+    "reference": "真的是非常的高啊。 那么缺点肯定也是有的 当然每个人和每个人经历不同 我只说一下我个人的两个感受啊。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 5,
+        "observed": "员的办事效",
+        "canonical": "远端肾小管",
+        "sound": 0.87214,
+        "gain": 37.10776
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0023",
+    "variant": "clean",
+    "source": "感受啊，那么第一个感受呢，就是在中国给孩子啊，动不动就输液，这个真的是太危险了。这个中国安全注射联盟曾经。",
+    "output": "感受啊，那么第一个感受器，就是在重要生命器官，动脉导管输液，这个真的是太危险了。这个中肠扭转注射联盟曾经。",
+    "reference": "那么第一个感受就是在中国给 孩子动不动就输液。 这个真的是太危险了。 中国安全注射联盟曾经统计过",
+    "edits": [
+      {
+        "start": 23,
+        "end": 27,
+        "observed": "动不动就",
+        "canonical": "动脉导管",
+        "sound": 0.8567,
+        "gain": 29.17037
+      },
+      {
+        "start": 16,
+        "end": 22,
+        "observed": "中国给孩子啊",
+        "canonical": "重要生命器官",
+        "sound": 0.85787,
+        "gain": 14.47097
+      },
+      {
+        "start": 42,
+        "end": 46,
+        "observed": "中国安全",
+        "canonical": "中肠扭转",
+        "sound": 0.87143,
+        "gain": 13.74408
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "observed": "感受呢",
+        "canonical": "感受器",
+        "sound": 0.91111,
+        "gain": 13.52729
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0023",
+    "variant": "noise",
+    "source": "那么，第一个感受呢，就是在中国给孩子动不动就输液，这个真的是太危险了。这个中国安全注射联盟曾经。",
+    "output": "那么，第一个感受器，就是在中国给孩子动脉导管输液，这个真的是太危险了。这个中肠扭转注射联盟曾经。",
+    "reference": "那么第一个感受就是在中国给 孩子动不动就输液。 这个真的是太危险了。 中国安全注射联盟曾经统计过",
+    "edits": [
+      {
+        "start": 18,
+        "end": 22,
+        "observed": "动不动就",
+        "canonical": "动脉导管",
+        "sound": 0.8567,
+        "gain": 21.35916
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "observed": "中国安全",
+        "canonical": "中肠扭转",
+        "sound": 0.87143,
+        "gain": 13.74408
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "感受呢",
+        "canonical": "感受器",
+        "sound": 0.91111,
+        "gain": 13.52729
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0024",
+    "variant": "clean",
+    "source": "统计过一个数字，说在中国百分之七十这个输液病例啊，其实是根本不需要输液的，而且有一个医学研究。",
+    "output": "统计过一个数字，说在肿瘤细胞溶解综合征输液病原体，其实是根本不需要输液的，而且有一个医学研究。",
+    "reference": "一个数字。 说在中国70%输液病例其实是 根本不需要输液的。 而且有一个医学研究者曾经解剖",
+    "edits": [
+      {
+        "start": 10,
+        "end": 19,
+        "observed": "中国百分之七十这个",
+        "canonical": "肿瘤细胞溶解综合征",
+        "sound": 0.85035,
+        "gain": 43.34524
+      },
+      {
+        "start": 21,
+        "end": 24,
+        "observed": "病例啊",
+        "canonical": "病原体",
+        "sound": 0.8581,
+        "gain": 11.63031
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0024",
+    "variant": "noise",
+    "source": "统计过一个数字啊，说在中国百分之七十这个输液病例啊，其实是根本不需要输液的，而且有一个医学研究。",
+    "output": "统计过一个数字啊，说在肿瘤细胞溶解综合征输液病原体，其实是根本不需要输液的，而且有一个医学研究。",
+    "reference": "一个数字。 说在中国70%输液病例其实是 根本不需要输液的。 而且有一个医学研究者曾经解剖",
+    "edits": [
+      {
+        "start": 11,
+        "end": 20,
+        "observed": "中国百分之七十这个",
+        "canonical": "肿瘤细胞溶解综合征",
+        "sound": 0.85035,
+        "gain": 43.34524
+      },
+      {
+        "start": 22,
+        "end": 25,
+        "observed": "病例啊",
+        "canonical": "病原体",
+        "sound": 0.8581,
+        "gain": 11.63031
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0025",
+    "variant": "clean",
+    "source": "诊所，那其实我们之前也有工会，也有像这个我们的这个呃呃指挥中心去提出了哈。不过因为那时候我们国内的病例很少嘛，大部分都是集中在医院，他们。",
+    "output": "诊所，那其实我们支气管扩张剂，也有像这个我们的这个呃呃指挥中心前区出了哈。不过因为那时候我们国内的病例很少尿，大部分都是集中在医院，他们。",
+    "reference": "那其实我们之前也有 公会也有向这个我们的 这个 指挥中心去提出。 不过因为那时候我们国内 的病例很少嘛。 大部分都是集中在医院 他们就可以承受",
+    "edits": [
+      {
+        "start": 8,
+        "end": 14,
+        "observed": "之前也有工会",
+        "canonical": "支气管扩张剂",
+        "sound": 0.86246,
+        "gain": 22.88448
+      },
+      {
+        "start": 30,
+        "end": 33,
+        "observed": "心去提",
+        "canonical": "心前区",
+        "sound": 0.85397,
+        "gain": 15.06104
+      },
+      {
+        "start": 52,
+        "end": 54,
+        "observed": "少嘛",
+        "canonical": "少尿",
+        "sound": 0.89167,
+        "gain": 10.50282
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0025",
+    "variant": "noise",
+    "source": "诊所，那其实我们之前也有工会，也有像那个我们的这个呃呃指挥中心去提出了哈，不过因为那时候我们国内的病例很少嘛，大部分都是集中在医院，他。",
+    "output": "诊所，那其实我们支气管扩张剂，也有像那个我们的这个呃呃指挥中心前区出了哈，不过因为那时候我们国内的病例很少尿，大部分都是集中在医院，他。",
+    "reference": "那其实我们之前也有 公会也有向这个我们的 这个 指挥中心去提出。 不过因为那时候我们国内 的病例很少嘛。 大部分都是集中在医院 他们就可以承受",
+    "edits": [
+      {
+        "start": 8,
+        "end": 14,
+        "observed": "之前也有工会",
+        "canonical": "支气管扩张剂",
+        "sound": 0.86246,
+        "gain": 22.88448
+      },
+      {
+        "start": 30,
+        "end": 33,
+        "observed": "心去提",
+        "canonical": "心前区",
+        "sound": 0.85397,
+        "gain": 15.06104
+      },
+      {
+        "start": 52,
+        "end": 54,
+        "observed": "少嘛",
+        "canonical": "少尿",
+        "sound": 0.89167,
+        "gain": 10.50282
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0026",
+    "variant": "clean",
+    "source": "就可以承受了，所以那个东西建诶建议到现在就不了了之，好，那不过我我觉得刚才主任还讲到一个，就是说除了筛检出来以后，我们怎么样去做做一个投入？刚才那个潘小姐哈是在新北。",
+    "output": "就可以承受了，所以那个东西间接激发试验在就不了了之，好，那不过我我觉得刚才主任还讲到一个，就是手术了筛检出来以后，我们怎么样去做做一个头颅？刚才那个潘小脑幕切迹疝北。",
+    "reference": "所以那个东西建议到现在 不了了之。 不过我觉得刚才主持人还讲到一个就是说 除了筛检出来以后 我们怎么样去做 一个投入。 刚才潘小姐是在新北市",
+    "edits": [
+      {
+        "start": 75,
+        "end": 81,
+        "observed": "小姐哈是在新",
+        "canonical": "小脑幕切迹疝",
+        "sound": 0.85812,
+        "gain": 32.25329
+      },
+      {
+        "start": 13,
+        "end": 19,
+        "observed": "建诶建议到现",
+        "canonical": "间接激发试验",
+        "sound": 0.85901,
+        "gain": 30.27401
+      },
+      {
+        "start": 67,
+        "end": 69,
+        "observed": "投入",
+        "canonical": "头颅",
+        "sound": 0.90667,
+        "gain": 13.68603
+      },
+      {
+        "start": 47,
+        "end": 49,
+        "observed": "说除",
+        "canonical": "手术",
+        "sound": 0.87937,
+        "gain": 11.96652
+      }
+    ],
+    "error_delta": 12
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0026",
+    "variant": "noise",
+    "source": "你就可以承受了，所以那个东西建建议到现在就不了了之哦。那不过我我觉得刚才主任还讲到一个，就是说除了筛检出来以后，我们怎么样去做做一个投入？刚才那个潘小姐哦是在新北。",
+    "output": "你就可以承受了，所以那个大便镜检议到现在就不了了之哦。那不过我我觉得刚才主任还讲到一个，就是手术了筛检出来以后，我们怎么样去做做一个头颅？刚才那个潘小儿艾滋病新北。",
+    "reference": "所以那个东西建议到现在 不了了之。 不过我觉得刚才主持人还讲到一个就是说 除了筛检出来以后 我们怎么样去做 一个投入。 刚才潘小姐是在新北市",
+    "edits": [
+      {
+        "start": 74,
+        "end": 79,
+        "observed": "小姐哦是在",
+        "canonical": "小儿艾滋病",
+        "sound": 0.86571,
+        "gain": 29.72589
+      },
+      {
+        "start": 66,
+        "end": 68,
+        "observed": "投入",
+        "canonical": "头颅",
+        "sound": 0.90667,
+        "gain": 13.68603
+      },
+      {
+        "start": 12,
+        "end": 16,
+        "observed": "东西建建",
+        "canonical": "大便镜检",
+        "sound": 0.86429,
+        "gain": 13.37431
+      },
+      {
+        "start": 46,
+        "end": 48,
+        "observed": "说除",
+        "canonical": "手术",
+        "sound": 0.87937,
+        "gain": 11.96652
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0027",
+    "variant": "clean",
+    "source": "是哈，跟台北市有点类似啦，就是说在四月中旬的时候，哈，指挥中心就说你轻症、无症状的人，合乎一定条件可以做居居家照护，哦，这个是一个名词哦，就要要收收个案，有人来照护了哈。",
+    "output": "嗜睡，跟台北市有点类似啦，就是说在四月中旬的时候，哈，指挥中毒性菌痢轻症、无症状的人，合乎一定条件可以做居居家照护，哦，这个是一个名词哦，就要要手术切除，有人来照护了哈。",
+    "reference": "跟台北市有点类似 就是说在4月中旬 的时候 指挥中心就说 你轻症无症状 的人 符合一定条件可以做居家照护。 这个是一个名词 就要收个案有人来照护了哈。",
+    "edits": [
+      {
+        "start": 72,
+        "end": 76,
+        "observed": "收收个案",
+        "canonical": "手术切除",
+        "sound": 0.85641,
+        "gain": 29.72301
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "是哈",
+        "canonical": "嗜睡",
+        "sound": 0.85333,
+        "gain": 23.5956
+      },
+      {
+        "start": 29,
+        "end": 34,
+        "observed": "中心就说你",
+        "canonical": "中毒性菌痢",
+        "sound": 0.86929,
+        "gain": 19.25891
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0027",
+    "variant": "noise",
+    "source": "是哈，跟台北市有点类似啦，就是说在四月中旬的时候，哈，指挥中心就说你轻症、无症状的人，合乎一定条件可以做居居家照护，哦，这个是一个名词哦，就要要收收个案，有人来照护了哈。",
+    "output": "嗜睡，跟台北市有点类似啦，就是说在四月中旬的时候，哈，指挥中毒性菌痢轻症、无症状的人，合乎一定条件可以做居居家照护，哦，这个是一个名词哦，就要要手术切除，有人来照护了哈。",
+    "reference": "跟台北市有点类似 就是说在4月中旬 的时候 指挥中心就说 你轻症无症状 的人 符合一定条件可以做居家照护。 这个是一个名词 就要收个案有人来照护了哈。",
+    "edits": [
+      {
+        "start": 72,
+        "end": 76,
+        "observed": "收收个案",
+        "canonical": "手术切除",
+        "sound": 0.85641,
+        "gain": 29.72301
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "是哈",
+        "canonical": "嗜睡",
+        "sound": 0.85333,
+        "gain": 23.5956
+      },
+      {
+        "start": 29,
+        "end": 34,
+        "observed": "中心就说你",
+        "canonical": "中毒性菌痢",
+        "sound": 0.86929,
+        "gain": 19.25891
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0028",
+    "variant": "clean",
+    "source": "那其实，在高雄、在花莲，吼，他们卫生单位都分给基层医师去做，而且做的不错。那因为在台北，哈，跟新北，哈，他是给医院做，那医院现在都已经，吼，这个火烧屁股。",
+    "output": "那其实，在高雄、在化疗，吼，他们维生素缺乏肺内基层医师去做，而且做的不错。那因为在台北，哈，跟新北，哈，他是给医院做，那医院现在都已经，吼，这个火烧皮肤。",
+    "reference": "那其实在高雄 在花莲 他们卫生单位都分给 基层医师去做 而且也做得不错。 那 因为在台北跟新北 他是给医院做 那医院 现在都已经是火烧屁股了哈。",
+    "edits": [
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "花莲",
+        "canonical": "化疗",
+        "sound": 0.94286,
+        "gain": 33.9084
+      },
+      {
+        "start": 74,
+        "end": 76,
+        "observed": "屁股",
+        "canonical": "皮肤",
+        "sound": 0.86667,
+        "gain": 19.00406
+      },
+      {
+        "start": 16,
+        "end": 21,
+        "observed": "卫生单位都",
+        "canonical": "维生素缺乏",
+        "sound": 0.8579,
+        "gain": 14.31634
+      },
+      {
+        "start": 21,
+        "end": 23,
+        "observed": "分给",
+        "canonical": "肺内",
+        "sound": 0.91111,
+        "gain": 11.76634
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0028",
+    "variant": "noise",
+    "source": "那其实，在高雄，在花莲哦，他们卫生单位都分给基层医师去做，而且做的不错。那因为在台北哈，跟新北哈，他是给医院做，那医院现在都已经吼，就是火烧屁股。",
+    "output": "那其实，在高雄，在化疗哦，他们维生素缺乏肺内基层医师去做，而且做的不错。那因为在台北哈，跟纤维化，他是给医院做，那医院现在都阴茎头，就是火烧皮肤。",
+    "reference": "那其实在高雄 在花莲 他们卫生单位都分给 基层医师去做 而且也做得不错。 那 因为在台北跟新北 他是给医院做 那医院 现在都已经是火烧屁股了哈。",
+    "edits": [
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "花莲",
+        "canonical": "化疗",
+        "sound": 0.94286,
+        "gain": 25.32121
+      },
+      {
+        "start": 62,
+        "end": 65,
+        "observed": "已经吼",
+        "canonical": "阴茎头",
+        "sound": 0.8837,
+        "gain": 20.89994
+      },
+      {
+        "start": 70,
+        "end": 72,
+        "observed": "屁股",
+        "canonical": "皮肤",
+        "sound": 0.86667,
+        "gain": 19.00406
+      },
+      {
+        "start": 45,
+        "end": 48,
+        "observed": "新北哈",
+        "canonical": "纤维化",
+        "sound": 0.88667,
+        "gain": 15.23977
+      },
+      {
+        "start": 15,
+        "end": 20,
+        "observed": "卫生单位都",
+        "canonical": "维生素缺乏",
+        "sound": 0.8579,
+        "gain": 14.31634
+      },
+      {
+        "start": 20,
+        "end": 22,
+        "observed": "分给",
+        "canonical": "肺内",
+        "sound": 0.91111,
+        "gain": 11.76634
+      }
+    ],
+    "error_delta": 14
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0029",
+    "variant": "clean",
+    "source": "然后，所以才会有潘小姐这样的一个哈case，就说哎，没有人，好像没有人去主动的去跟她做一些联系，然后在台北市，我最近也是遇到很多，就是他他就看视讯诊，他就主动来找我，而不是说卫生单位派。",
+    "output": "然后，所以才会有潘小结核病的一个哈case，就说哎，没有人，好像没有人去主动的去跟她做一些联系，然后在台北市，我最近也室管膜很多，就是他他就看视讯诊，他就主动脉狭窄，而不是说卫声音嘶哑。",
+    "reference": "所以才会有潘小姐这样的一个 case 就是说 没有人 好像没有人去主动地去跟他 做一些联系 在台北市 我最近也是遇到很多 就是他 他就看视讯诊察 就主动来找我。 而不是说卫生单位派案的。",
+    "edits": [
+      {
+        "start": 77,
+        "end": 82,
+        "observed": "主动来找我",
+        "canonical": "主动脉狭窄",
+        "sound": 0.87451,
+        "gain": 31.96554
+      },
+      {
+        "start": 88,
+        "end": 92,
+        "observed": "生单位派",
+        "canonical": "声音嘶哑",
+        "sound": 0.85635,
+        "gain": 19.79552
+      },
+      {
+        "start": 10,
+        "end": 13,
+        "observed": "姐这样",
+        "canonical": "结核病",
+        "sound": 0.87815,
+        "gain": 14.02859
+      },
+      {
+        "start": 59,
+        "end": 62,
+        "observed": "是遇到",
+        "canonical": "室管膜",
+        "sound": 0.86389,
+        "gain": 10.43008
+      }
+    ],
+    "error_delta": 13
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0029",
+    "variant": "noise",
+    "source": "所以才会有潘小姐这样的一个哦case，就说哎没有人，好像没有人去主动的去跟她做一些联系啊，在台北市，我最近也是遇到很多，就是她她就看视讯诊，她就主动来找我，而不是说卫生单位派。",
+    "output": "所以才会有潘小结核病的一个哦case，就说哎没有人，好像没有人去主动的去跟她做一些联系啊，在台北市，我最近也室管膜很多，就是她她就看视讯诊，她就主动脉狭窄，而不是说卫声音嘶哑。",
+    "reference": "所以才会有潘小姐这样的一个 case 就是说 没有人 好像没有人去主动地去跟他 做一些联系 在台北市 我最近也是遇到很多 就是他 他就看视讯诊察 就主动来找我。 而不是说卫生单位派案的。",
+    "edits": [
+      {
+        "start": 72,
+        "end": 77,
+        "observed": "主动来找我",
+        "canonical": "主动脉狭窄",
+        "sound": 0.87451,
+        "gain": 31.96554
+      },
+      {
+        "start": 83,
+        "end": 87,
+        "observed": "生单位派",
+        "canonical": "声音嘶哑",
+        "sound": 0.85635,
+        "gain": 19.79552
+      },
+      {
+        "start": 7,
+        "end": 10,
+        "observed": "姐这样",
+        "canonical": "结核病",
+        "sound": 0.87815,
+        "gain": 14.02859
+      },
+      {
+        "start": 54,
+        "end": 57,
+        "observed": "是遇到",
+        "canonical": "室管膜",
+        "sound": 0.86389,
+        "gain": 10.43008
+      }
+    ],
+    "error_delta": 13
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0030",
+    "variant": "clean",
+    "source": "样的哈，那我们这几天诶，这几天哈，已经诶，因为指挥中心已经定调下来一个很好的SOP哈，那我们已经跟卫生局已经有开过几次会议，明天会再开最后一次会议哈，要做一个定调了。",
+    "output": "洋地黄，那我们这几天诶，肢体瘫痪，易激惹，因为指挥中心已经定调下来一个很好的SOP哈，那我们已经跟卫生局已经有开过几次会议，明天会再开最后一次会阴部，要做一个定调了。",
+    "reference": "那我们这几天 这几天已经 因为指挥中心已经定调下来 一个很好 的SOP。 那我们已经跟卫生局 已经有开过几次会议 明天会再开 最后 一次会议 要做一个定调。",
+    "edits": [
+      {
+        "start": 12,
+        "end": 16,
+        "observed": "这几天哈",
+        "canonical": "肢体瘫痪",
+        "sound": 0.88485,
+        "gain": 25.8618
+      },
+      {
+        "start": 17,
+        "end": 20,
+        "observed": "已经诶",
+        "canonical": "易激惹",
+        "sound": 0.89167,
+        "gain": 21.04187
+      },
+      {
+        "start": 71,
+        "end": 74,
+        "observed": "会议哈",
+        "canonical": "会阴部",
+        "sound": 0.86786,
+        "gain": 11.66449
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "样的哈",
+        "canonical": "洋地黄",
+        "sound": 0.90227,
+        "gain": 11.66009
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0030",
+    "variant": "noise",
+    "source": "那我们这几呃这几天哈，已经诶，因为指挥中心已经定调下来一个很好的SOP哈，那我们已经跟卫生局已经有开过几次会议，明天会再开最后一次会议哈，要做一个定调。",
+    "output": "那我们这几呃肢体瘫痪，易激惹，因为指挥中心已经定调下来一个很好的SOP哈，那我们已经跟卫生局已经有开过几次会议，明天会再开最后一次会阴部，要做一个定调。",
+    "reference": "那我们这几天 这几天已经 因为指挥中心已经定调下来 一个很好 的SOP。 那我们已经跟卫生局 已经有开过几次会议 明天会再开 最后 一次会议 要做一个定调。",
+    "edits": [
+      {
+        "start": 11,
+        "end": 14,
+        "observed": "已经诶",
+        "canonical": "易激惹",
+        "sound": 0.89167,
+        "gain": 21.04187
+      },
+      {
+        "start": 6,
+        "end": 10,
+        "observed": "这几天哈",
+        "canonical": "肢体瘫痪",
+        "sound": 0.88485,
+        "gain": 12.44899
+      },
+      {
+        "start": 65,
+        "end": 68,
+        "observed": "会议哈",
+        "canonical": "会阴部",
+        "sound": 0.86786,
+        "gain": 11.66449
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0031",
+    "variant": "clean",
+    "source": "好，这个是我们明天哈要开会里面的内容了哈，就是我们台北市的防疫的战略哈，刚才我们有讲过哈，确诊者他会去三个地方嘛，那有一些就是要到医院，就是中重症嘛哈，那有一些就是虽然他是轻症哈，但是他的条件，譬如。",
+    "output": "好，这个是我们面瘫哈要开会里面的内容了哈，就是我们台北市的防疫的战略哈，刚才我们有浆细胞，确诊者他会去三个地方嘛，那有一些就是要到医院，就是中重症肺炎，那有一些肌束虽然他十二指肠，但是他的条件，譬如。",
+    "reference": "这是我们明天要开会里面的内容。 就是说我们台北市的防疫的战略 刚刚我们讲过确诊者他会去三个地方嘛。 那有一些就是要到医院 这中重症 那有一些就是虽然他是轻症 但是他的条件 比如说他年纪",
+    "edits": [
+      {
+        "start": 71,
+        "end": 75,
+        "observed": "重症嘛哈",
+        "canonical": "重症肺炎",
+        "sound": 0.89464,
+        "gain": 18.67022
+      },
+      {
+        "start": 41,
+        "end": 44,
+        "observed": "讲过哈",
+        "canonical": "浆细胞",
+        "sound": 0.85143,
+        "gain": 15.91482
+      },
+      {
+        "start": 80,
+        "end": 82,
+        "observed": "就是",
+        "canonical": "肌束",
+        "sound": 0.90222,
+        "gain": 13.37831
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "明天",
+        "canonical": "面瘫",
+        "sound": 0.89524,
+        "gain": 12.9182
+      },
+      {
+        "start": 85,
+        "end": 89,
+        "observed": "是轻症哈",
+        "canonical": "十二指肠",
+        "sound": 0.85047,
+        "gain": 9.87191
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0031",
+    "variant": "noise",
+    "source": "这个是我们明天哈要开会里面的内容啦，就是我们台北市的防疫的战略哈，刚才我们有讲过哈，确诊者他会去三个地方嘛，那有一些就是要到医院，就是中重症嘛，是，那有一些就是虽然他是轻症哈，但是他的条件譬如。",
+    "output": "这个是我们面瘫哈要开会里面的内容啦，就是我们台北市的防疫的战略哈，刚才我们有浆细胞，确诊者他会去三个地方嘛，那有一些就是要到医院，就是中毒症状，是，那有一些肌束虽然他十二指肠，但是他的条件譬如。",
+    "reference": "这是我们明天要开会里面的内容。 就是说我们台北市的防疫的战略 刚刚我们讲过确诊者他会去三个地方嘛。 那有一些就是要到医院 这中重症 那有一些就是虽然他是轻症 但是他的条件 比如说他年纪",
+    "edits": [
+      {
+        "start": 67,
+        "end": 71,
+        "observed": "中重症嘛",
+        "canonical": "中毒症状",
+        "sound": 0.8898,
+        "gain": 22.32734
+      },
+      {
+        "start": 38,
+        "end": 41,
+        "observed": "讲过哈",
+        "canonical": "浆细胞",
+        "sound": 0.85143,
+        "gain": 15.91482
+      },
+      {
+        "start": 78,
+        "end": 80,
+        "observed": "就是",
+        "canonical": "肌束",
+        "sound": 0.90222,
+        "gain": 13.37831
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "明天",
+        "canonical": "面瘫",
+        "sound": 0.89524,
+        "gain": 12.9182
+      },
+      {
+        "start": 83,
+        "end": 87,
+        "observed": "是轻症哈",
+        "canonical": "十二指肠",
+        "sound": 0.85047,
+        "gain": 9.87191
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0032",
+    "variant": "clean",
+    "source": "说他年纪比较大了，哈，还是有些他会在专责旅馆嘛。那再来就是有一些，刚刚我们讲的居家照顾，就像潘小姐这样的一个case啊。那我们就说居家照护，那但是用这个专责旅馆作为备援，哈，保留一。",
+    "output": "肾小管疾病较大了，哈，还是有些他会在专责氯化钠。那再来就是有一些，刚刚我们讲的居家照顾，就先天性巨结肠的一个case啊。那我们就说居家照护，脑炎是用这个专责旅馆作为背部，哈，保留一。",
+    "reference": "比较大还是有些 他会在专责旅馆。 那再来就是有一些 刚才 我们讲的居家照护 就像潘小姐 这样的一个case。 我们就做居家照护 那 但是又这个专责旅馆作为备援 保留",
+    "edits": [
+      {
+        "start": 45,
+        "end": 51,
+        "observed": "像潘小姐这样",
+        "canonical": "先天性巨结肠",
+        "sound": 0.86591,
+        "gain": 28.61348
+      },
+      {
+        "start": 82,
+        "end": 84,
+        "observed": "备援",
+        "canonical": "背部",
+        "sound": 0.85333,
+        "gain": 20.65302
+      },
+      {
+        "start": 70,
+        "end": 72,
+        "observed": "那但",
+        "canonical": "脑炎",
+        "sound": 0.85778,
+        "gain": 13.56065
+      },
+      {
+        "start": 0,
+        "end": 5,
+        "observed": "说他年纪比",
+        "canonical": "肾小管疾病",
+        "sound": 0.86585,
+        "gain": 13.10178
+      },
+      {
+        "start": 20,
+        "end": 23,
+        "observed": "旅馆嘛",
+        "canonical": "氯化钠",
+        "sound": 0.89524,
+        "gain": 11.11718
+      }
+    ],
+    "error_delta": 13
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0032",
+    "variant": "noise",
+    "source": "说他年纪比较大了，哈，还是有些他会在专责旅馆嘛。那再来就是有一些，刚好我们讲的居家照顾，就像潘小姐这样的一个case嘛。那我们就说居家照顾，那但是用这个专责旅馆作为备援，哈，保留一。",
+    "output": "肾小管疾病较大了，哈，还是有些他会在专责氯化钠。那再来就是有一些，肝功能障碍的居家照顾，就先天性巨结肠的一个case嘛。那我们就说居家照顾，脑炎是用这个专责旅馆作为背部，哈，保留一。",
+    "reference": "比较大还是有些 他会在专责旅馆。 那再来就是有一些 刚才 我们讲的居家照护 就像潘小姐 这样的一个case。 我们就做居家照护 那 但是又这个专责旅馆作为备援 保留",
+    "edits": [
+      {
+        "start": 45,
+        "end": 51,
+        "observed": "像潘小姐这样",
+        "canonical": "先天性巨结肠",
+        "sound": 0.86591,
+        "gain": 28.61348
+      },
+      {
+        "start": 82,
+        "end": 84,
+        "observed": "备援",
+        "canonical": "背部",
+        "sound": 0.85333,
+        "gain": 20.65302
+      },
+      {
+        "start": 33,
+        "end": 38,
+        "observed": "刚好我们讲",
+        "canonical": "肝功能障碍",
+        "sound": 0.85123,
+        "gain": 19.15234
+      },
+      {
+        "start": 70,
+        "end": 72,
+        "observed": "那但",
+        "canonical": "脑炎",
+        "sound": 0.85778,
+        "gain": 13.56065
+      },
+      {
+        "start": 0,
+        "end": 5,
+        "observed": "说他年纪比",
+        "canonical": "肾小管疾病",
+        "sound": 0.86585,
+        "gain": 13.10178
+      },
+      {
+        "start": 20,
+        "end": 23,
+        "observed": "旅馆嘛",
+        "canonical": "氯化钠",
+        "sound": 0.89524,
+        "gain": 11.11718
+      }
+    ],
+    "error_delta": 17
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0033",
+    "variant": "clean",
+    "source": "连医医院的量能，好，那轻症状减轻的话，它可以用下转到好防疫专责旅馆，才不会像刚才像副院长讲，大家不愿意去离开，好，这是我们明天哈要讨论，这是明天要讨论。",
+    "output": "利尿医院的量能，好，那轻症状减轻的话，它可以用下转到好防疫专责旅馆，才不会先天畸形副院长讲，大家不愿意去离开，好，这是我们面瘫哈要讨论，这是明天要讨论。",
+    "reference": "医院的量能。 那症状减轻的话 他可以用下转到 防疫专责旅馆。 是。 才不会像刚才像副院长 讲 大家不愿意去离开 这是我们明天要讨论 这是明天要讨论",
+    "edits": [
+      {
+        "start": 61,
+        "end": 63,
+        "observed": "明天",
+        "canonical": "面瘫",
+        "sound": 0.89524,
+        "gain": 12.9182
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "连医",
+        "canonical": "利尿",
+        "sound": 0.85778,
+        "gain": 10.10948
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "observed": "像刚才像",
+        "canonical": "先天畸形",
+        "sound": 0.85019,
+        "gain": 9.61341
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0033",
+    "variant": "noise",
+    "source": "医医院的量能，好，那轻症状减轻的话，它可以用下转到哦，防疫专责旅馆，还像刚才像副院长讲，大家不愿意去离开，好，这是我们明天哈要讨论，这是明天要讨论。",
+    "output": "衣原体的量能，好，那轻症状减轻的话，它可以用下转到哦，防疫专责旅馆，还先天畸形副院长讲，大家不愿意去离开，好，这是我们面瘫哈要讨论，这是明天要讨论。",
+    "reference": "医院的量能。 那症状减轻的话 他可以用下转到 防疫专责旅馆。 是。 才不会像刚才像副院长 讲 大家不愿意去离开 这是我们明天要讨论 这是明天要讨论",
+    "edits": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "医医院",
+        "canonical": "衣原体",
+        "sound": 0.88333,
+        "gain": 17.7006
+      },
+      {
+        "start": 59,
+        "end": 61,
+        "observed": "明天",
+        "canonical": "面瘫",
+        "sound": 0.89524,
+        "gain": 12.9182
+      },
+      {
+        "start": 35,
+        "end": 39,
+        "observed": "像刚才像",
+        "canonical": "先天畸形",
+        "sound": 0.85019,
+        "gain": 9.36021
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0034",
+    "variant": "clean",
+    "source": "PowerPoint，我先拿出来给大家看哈，我们就是要定掉这样做，然后呢，居家照护的流程呢，哈，就像说，如果哈，我们现在居家照护哈，假设卫生局哈，他把这个案子派给我们，它分为。",
+    "output": "PowerPoint，我先拿出来给大家看哈，我们就是要定掉这样做，然后呢，居家照护的流程呢，哈，就像说，如果哈，我们现在居家照护哈，假设卫生局哈，他把这个胆汁派给我们，它分为。",
+    "reference": "的power point 我先拿出来给大家看 我们就是 要定调这样做。 然后居家照护的流程 就像说如果我们现在居家照护。 假设卫生局 他把这个案子派给我们 他分为两个部分。",
+    "edits": [
+      {
+        "start": 77,
+        "end": 79,
+        "observed": "案子",
+        "canonical": "胆汁",
+        "sound": 0.88889,
+        "gain": 13.13133
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0034",
+    "variant": "noise",
+    "source": "PowerPoint，我先拿出来给大家看哦。我们就是要定掉这样做，然后呢，居家照护的流程呢，哈，就像说，如果哈，我们现在居家照护哈，假设卫生局哈，他把这个案子派给我们，它分为。",
+    "output": "PowerPoint，我先拿出来给大家看哦。我们就是要定掉这样做，然后呢，居家照护的流程呢，哈，就像说，如果哈，我们现在居家照护哈，假设卫生局哈，他把这个胆汁派给我们，它分为。",
+    "reference": "的power point 我先拿出来给大家看 我们就是 要定调这样做。 然后居家照护的流程 就像说如果我们现在居家照护。 假设卫生局 他把这个案子派给我们 他分为两个部分。",
+    "edits": [
+      {
+        "start": 77,
+        "end": 79,
+        "observed": "案子",
+        "canonical": "胆汁",
+        "sound": 0.88889,
+        "gain": 13.13133
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0035",
+    "variant": "clean",
+    "source": "所以健康服务中心吼，他会派案给我们，好，那我们可能就是一开始会在呃几个区哈，就比较热心的，像我们中山区，我可能就找十几家诊所就开始先做派。",
+    "output": "所以健康服务中心衰，他会派案给我们，好，那我们可能就是一开始会在呃几个区哈，就比较热心的，像我们中耳炎，我可能纠正脱水急诊手术开始纤维化。",
+    "reference": "所以健康服务中心 他会派案给我们。 那我们可能就是一开始 会在几个区 就比较热心的 像我们中山区 我可能就找10 几家诊所就开始先做。 派案给我们的时候",
+    "edits": [
+      {
+        "start": 65,
+        "end": 68,
+        "observed": "先做派",
+        "canonical": "纤维化",
+        "sound": 0.85143,
+        "gain": 19.74174
+      },
+      {
+        "start": 48,
+        "end": 51,
+        "observed": "中山区",
+        "canonical": "中耳炎",
+        "sound": 0.86727,
+        "gain": 16.578
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "心吼",
+        "canonical": "心衰",
+        "sound": 0.87361,
+        "gain": 15.54339
+      },
+      {
+        "start": 55,
+        "end": 59,
+        "observed": "就找十几",
+        "canonical": "纠正脱水",
+        "sound": 0.87,
+        "gain": 13.76519
+      },
+      {
+        "start": 59,
+        "end": 63,
+        "observed": "家诊所就",
+        "canonical": "急诊手术",
+        "sound": 0.85026,
+        "gain": 12.51781
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0035",
+    "variant": "noise",
+    "source": "所以健康服务中心哦，他会派案给我们，哦，那我们可能就是一开始会在几个区哈，就比较热心的，像我们中山区，我可能就找十几家诊所就开始先做派。",
+    "output": "所以健康服务红细胞，他会派案给我们，哦，那我们可能就是一开始呼吸衰竭区哈，就比较热心的，像我们中耳炎，我可能纠正脱水急诊手术开始纤维化。",
+    "reference": "所以健康服务中心 他会派案给我们。 那我们可能就是一开始 会在几个区 就比较热心的 像我们中山区 我可能就找10 几家诊所就开始先做。 派案给我们的时候",
+    "edits": [
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "中心哦",
+        "canonical": "红细胞",
+        "sound": 0.85185,
+        "gain": 22.25539
+      },
+      {
+        "start": 64,
+        "end": 67,
+        "observed": "先做派",
+        "canonical": "纤维化",
+        "sound": 0.85143,
+        "gain": 19.74174
+      },
+      {
+        "start": 47,
+        "end": 50,
+        "observed": "中山区",
+        "canonical": "中耳炎",
+        "sound": 0.86727,
+        "gain": 16.578
+      },
+      {
+        "start": 54,
+        "end": 58,
+        "observed": "就找十几",
+        "canonical": "纠正脱水",
+        "sound": 0.87,
+        "gain": 13.76519
+      },
+      {
+        "start": 58,
+        "end": 62,
+        "observed": "家诊所就",
+        "canonical": "急诊手术",
+        "sound": 0.85026,
+        "gain": 12.51781
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "observed": "会在几个",
+        "canonical": "呼吸衰竭",
+        "sound": 0.85778,
+        "gain": 11.17115
+      }
+    ],
+    "error_delta": 17
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0036",
+    "variant": "clean",
+    "source": "给我们说，我们要做什么呢？哈，第一个哈，我们就是要呃，在拍案以后啊，赶快跟呃这个啊居家照护的呃居家照照护的这个哈case来做联络哈，我们做一个初步的评估。",
+    "output": "给我们说，我们要做什么呢？哈，第一个哈，我们就是要呃，在皮炎以后啊，赶快跟呃这个啊居家照护的呃居家照照护的这个哈case来做联络哈，我们做一个初步的评估。",
+    "reference": "我们要做什么呢。 第一个我们 就是要在派案以后 赶快跟这个 居家照护的 居家照护的这个case来做 联络。 我们做一个初步的评估",
+    "edits": [
+      {
+        "start": 28,
+        "end": 30,
+        "observed": "拍案",
+        "canonical": "皮炎",
+        "sound": 0.88,
+        "gain": 27.55659
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0037",
+    "variant": "clean",
+    "source": "哈，就是健康状况的，他现在的状况是怎么样啊？危险因子是怎么样？再给他做一些适度的喂教，因为有时候哈，他发到这边来，结果我们觉得不对劲，这个应该。",
+    "output": "哈，就是健康状况的，他现在的状况是怎么样啊？危险因子是怎么样？再给他左心室肥大的胃泡，因为有时候哈，他发到这边来，结果我们觉得不对劲，这个应该。",
+    "reference": "就是健康状况的 他现在的状况是怎么样 危险因子是怎么样 再给他做一些适度的 卫教。 因为有时候他 发到这边来 结果我们觉得不对劲这个 应该住院",
+    "edits": [
+      {
+        "start": 34,
+        "end": 39,
+        "observed": "做一些适度",
+        "canonical": "左心室肥大",
+        "sound": 0.85047,
+        "gain": 15.3281
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "observed": "喂教",
+        "canonical": "胃泡",
+        "sound": 0.89444,
+        "gain": 13.14497
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0037",
+    "variant": "noise",
+    "source": "就是健康状况的，他现在的状况是怎么样？啊，危险因子是怎样？再给他做一些适度的喂教，因为有时候哈，他发到这边来，结果我们觉得不对劲，这个应该。",
+    "output": "就是健康状况的，他现在的状况是怎么样？啊，危险因子是怎样？再给他左心室肥大的胃泡，因为有时候哈，他发到这边来，结果我们觉得不对劲，这个应该。",
+    "reference": "就是健康状况的 他现在的状况是怎么样 危险因子是怎么样 再给他做一些适度的 卫教。 因为有时候他 发到这边来 结果我们觉得不对劲这个 应该住院",
+    "edits": [
+      {
+        "start": 32,
+        "end": 37,
+        "observed": "做一些适度",
+        "canonical": "左心室肥大",
+        "sound": 0.85047,
+        "gain": 15.3281
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "observed": "喂教",
+        "canonical": "胃泡",
+        "sound": 0.89444,
+        "gain": 13.14497
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0038",
+    "variant": "clean",
+    "source": "哦，所以我们不打什么担心，是到了四十岁以后，那个破骨细胞就比成骨细胞更活跃，所以导致我们的骨质流失。",
+    "output": "哦，所以我们不打肾上腺素，是到了四十岁以后，那个破骨细胞就比成骨细胞更活跃，所以导致我们的骨质流失。",
+    "reference": "所以我们不大怎么担心。 到了四十岁以后， 那个破骨细胞就比成骨细胞更活跃。 所以导致我们的骨质流失。",
+    "edits": [
+      {
+        "start": 8,
+        "end": 12,
+        "observed": "什么担心",
+        "canonical": "肾上腺素",
+        "sound": 0.87,
+        "gain": 16.3688
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0038",
+    "variant": "noise",
+    "source": "所以我们不打什么担心，到了四十岁以后，那个破骨细胞就比成骨细胞更活跃，所以导致我们的骨质流失。",
+    "output": "所以我们不打肾上腺素，到了四十岁以后，那个破骨细胞就比成骨细胞更活跃，所以导致我们的骨质流失。",
+    "reference": "所以我们不大怎么担心。 到了四十岁以后， 那个破骨细胞就比成骨细胞更活跃。 所以导致我们的骨质流失。",
+    "edits": [
+      {
+        "start": 6,
+        "end": 10,
+        "observed": "什么担心",
+        "canonical": "肾上腺素",
+        "sound": 0.87,
+        "gain": 16.3688
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0039",
+    "variant": "clean",
+    "source": "所以那个药物呢？第一，first first choice，通常我们是针对是那个破骨细胞，叫bisphosphonates。",
+    "output": "所以那个药物呢？第一，first first choice，通常我们是针对视网膜破骨细胞，叫bisphosphonates。",
+    "reference": "所以那个药物呢 第一 first choice 通常我们是针对破骨细胞。 叫bisphosphonates。 服用的？ 啊 服用。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 40,
+        "observed": "是那个",
+        "canonical": "视网膜",
+        "sound": 0.85,
+        "gain": 14.63678
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0039",
+    "variant": "noise",
+    "source": "所以那个药物呢，第一 first first choice，通常我们是针对是那个破骨细胞叫 bisphosphonates。",
+    "output": "所以那个药物呢，第一 first first choice，通常我们是针对视网膜破骨细胞叫 bisphosphonates。",
+    "reference": "所以那个药物呢 第一 first choice 通常我们是针对破骨细胞。 叫bisphosphonates。 服用的？ 啊 服用。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 40,
+        "observed": "是那个",
+        "canonical": "视网膜",
+        "sound": 0.85,
+        "gain": 14.63678
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0042",
+    "variant": "clean",
+    "source": "台注射，注射在你的脂肪，OK，可以用大概两年左右。嗯嗯，如果用过多两年呢，我们怕产生骨癌。",
+    "output": "台注射，注射在你的脂肪，OK，可以用大概两年左右。嗯嗯，如果用过度兴奋呢，我们怕常染色体。",
+    "reference": "注射。注射在你的脂肪。 可以用大概两年左右。 如果用超过两年呢 我们怕产生骨癌。",
+    "edits": [
+      {
+        "start": 31,
+        "end": 35,
+        "observed": "过多两年",
+        "canonical": "过度兴奋",
+        "sound": 0.87,
+        "gain": 19.83648
+      },
+      {
+        "start": 40,
+        "end": 44,
+        "observed": "产生骨癌",
+        "canonical": "常染色体",
+        "sound": 0.88051,
+        "gain": 17.97316
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0042",
+    "variant": "noise",
+    "source": "在注射，注射在你的脂肪，OK，可以用大概两年左右。如果用过多两年呢，我们怕产生骨癌。",
+    "output": "在注射，注射在你的脂肪，OK，可以用大概两年左右。如果用过度兴奋呢，我们怕常染色体。",
+    "reference": "注射。注射在你的脂肪。 可以用大概两年左右。 如果用超过两年呢 我们怕产生骨癌。",
+    "edits": [
+      {
+        "start": 28,
+        "end": 32,
+        "observed": "过多两年",
+        "canonical": "过度兴奋",
+        "sound": 0.87,
+        "gain": 19.83648
+      },
+      {
+        "start": 37,
+        "end": 41,
+        "observed": "产生骨癌",
+        "canonical": "常染色体",
+        "sound": 0.88051,
+        "gain": 17.97316
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0043",
+    "variant": "clean",
+    "source": "对啊，所以病人他是有骨癌的，不可以服食这个药。哦，哎，可是骨质疏松可以逆转的吗？可以啊，当然是可以。",
+    "output": "对啊，所以病人他是有骨癌的，不可以腹水这个药。哦，哎，可是骨质疏松可以逆转的吗？可以啊，当然是可以。",
+    "reference": "所以那些有骨癌的病人 不可以服食这个药。 可是骨质疏松可以逆转的吗？ 可以啊 当然是可以。",
+    "edits": [
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "服食",
+        "canonical": "腹水",
+        "sound": 0.96667,
+        "gain": 15.80138
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0043",
+    "variant": "noise",
+    "source": "对啊，所以订位那些有骨癌的不可以服食这个药。哦，哎，可是骨质疏松可以逆转的吗？可以啊，当然是。",
+    "output": "对啊，所以胸围那些有关节的不可以腹水这个药。哦，哎，可是骨质疏松可以逆转的吗？可以啊，当然是。",
+    "reference": "所以那些有骨癌的病人 不可以服食这个药。 可是骨质疏松可以逆转的吗？ 可以啊 当然是可以。",
+    "edits": [
+      {
+        "start": 16,
+        "end": 18,
+        "observed": "服食",
+        "canonical": "腹水",
+        "sound": 0.96667,
+        "gain": 15.80138
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "订位",
+        "canonical": "胸围",
+        "sound": 0.86905,
+        "gain": 13.76592
+      },
+      {
+        "start": 10,
+        "end": 12,
+        "observed": "骨癌",
+        "canonical": "关节",
+        "sound": 0.9,
+        "gain": 11.18512
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0044",
+    "variant": "clean",
+    "source": "就好像，如果我们可以啊，有些那些某某些risk factor，就好像你们刚才像抽烟啊，这些都可以缓和了。",
+    "output": "就好像，如果我们可以啊，右心室肥厚某些risk factor，就好像你们刚才像抽烟啊，这些都可以缓和了。",
+    "reference": "就是好像某些risk factors 就好像刚才提到的抽烟 戒掉是以缓和的。",
+    "edits": [
+      {
+        "start": 12,
+        "end": 17,
+        "observed": "有些那些某",
+        "canonical": "右心室肥厚",
+        "sound": 0.85619,
+        "gain": 23.73999
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0044",
+    "variant": "noise",
+    "source": "就像如果我们可以，啊，有些那些某某些risk factor，就好像你们刚才讲抽烟啊，这些都可以缓和了。",
+    "output": "就像如果我们可以，啊，右心室肥厚某些risk factor，就好像你们刚才讲抽烟啊，这些都可以缓和了。",
+    "reference": "就是好像某些risk factors 就好像刚才提到的抽烟 戒掉是以缓和的。",
+    "edits": [
+      {
+        "start": 11,
+        "end": 16,
+        "observed": "有些那些某",
+        "canonical": "右心室肥厚",
+        "sound": 0.85619,
+        "gain": 23.73999
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0045",
+    "variant": "clean",
+    "source": "所以，先从改善生活开始，跟饮食这块，OK。那王医师中医讲治疗，一般上是以调理。",
+    "output": "所以，先从改善生理盐水，跟意识障碍，OK。谵妄医师中性粒细胞，一般上食欲减退。",
+    "reference": "所以先从改善生活开始。 跟饮食这一块。 那王医师 中医怎么样治疗。 一般上是以调理为主",
+    "edits": [
+      {
+        "start": 13,
+        "end": 17,
+        "observed": "饮食这块",
+        "canonical": "意识障碍",
+        "sound": 0.85128,
+        "gain": 27.83324
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "observed": "中医讲治疗",
+        "canonical": "中性粒细胞",
+        "sound": 0.86857,
+        "gain": 25.49911
+      },
+      {
+        "start": 7,
+        "end": 11,
+        "observed": "生活开始",
+        "canonical": "生理盐水",
+        "sound": 0.87792,
+        "gain": 16.00327
+      },
+      {
+        "start": 34,
+        "end": 38,
+        "observed": "是以调理",
+        "canonical": "食欲减退",
+        "sound": 0.85379,
+        "gain": 15.80602
+      },
+      {
+        "start": 21,
+        "end": 23,
+        "observed": "那王",
+        "canonical": "谵妄",
+        "sound": 0.86111,
+        "gain": 14.06969
+      }
+    ],
+    "error_delta": 15
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0045",
+    "variant": "noise",
+    "source": "所以，先从改善生活开始，跟饮食这块，对，好。那王医师中医讲治疗，一般算是调理。",
+    "output": "所以，先从改善生理盐水，跟意识障碍，对，好。谵妄医师中性粒细胞，一般算是调理。",
+    "reference": "所以先从改善生活开始。 跟饮食这一块。 那王医师 中医怎么样治疗。 一般上是以调理为主",
+    "edits": [
+      {
+        "start": 13,
+        "end": 17,
+        "observed": "饮食这块",
+        "canonical": "意识障碍",
+        "sound": 0.85128,
+        "gain": 27.83324
+      },
+      {
+        "start": 26,
+        "end": 31,
+        "observed": "中医讲治疗",
+        "canonical": "中性粒细胞",
+        "sound": 0.86857,
+        "gain": 25.49911
+      },
+      {
+        "start": 7,
+        "end": 11,
+        "observed": "生活开始",
+        "canonical": "生理盐水",
+        "sound": 0.87792,
+        "gain": 16.00327
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "那王",
+        "canonical": "谵妄",
+        "sound": 0.86111,
+        "gain": 14.06969
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0046",
+    "variant": "clean",
+    "source": "面对急诊的告急，北京协和医院很多教授、主任们也都赶来增援，扑在一线抢救患者。我们的教授、主任们，嗯，都跑到一线来，跟我们一起来并肩作战。这对我们来说也是一个很好的鼓舞，也告诉我们，就是，身为大夫，不管你是什么样的职称和职位，只要有病人需要。哪里需要我们，我们就去哪里。",
+    "output": "面对急正压通气，北京协和医院很多教授、主任们也都赶阑尾炎，扑在乙酰胆碱酯酶。我们的教授、主任们，嗯，都跑到胰腺炎，跟我们一起来病理活检。这对我们来说也是一个很好的鼓舞，也告诉我们，就是，身为大夫，不管你是什么样的直肠指检位，只要有病人需要。哪里需要我们，我们就去哪里。",
+    "reference": "面对急诊的高级，北京协和医院很多教授主任们也都赶来增援，铺在一线抢救患者。 我们的教授主人们都跑到一线来跟我们一起来并肩作战。这对我们来说也是一个很好的鼓舞，也告诉我们就是身为大夫 不管你是什么样的职称和职位，只要有病人需要 哪里需要我们 我们就去哪里。",
+    "edits": [
+      {
+        "start": 106,
+        "end": 110,
+        "observed": "职称和职",
+        "canonical": "直肠指检",
+        "sound": 0.86718,
+        "gain": 26.10303
+      },
+      {
+        "start": 63,
+        "end": 67,
+        "observed": "并肩作战",
+        "canonical": "病理活检",
+        "sound": 0.86135,
+        "gain": 24.70875
+      },
+      {
+        "start": 31,
+        "end": 37,
+        "observed": "一线抢救患者",
+        "canonical": "乙酰胆碱酯酶",
+        "sound": 0.8708,
+        "gain": 24.64917
+      },
+      {
+        "start": 3,
+        "end": 7,
+        "observed": "诊的告急",
+        "canonical": "正压通气",
+        "sound": 0.86853,
+        "gain": 21.04018
+      },
+      {
+        "start": 25,
+        "end": 28,
+        "observed": "来增援",
+        "canonical": "阑尾炎",
+        "sound": 0.86431,
+        "gain": 19.22354
+      },
+      {
+        "start": 53,
+        "end": 56,
+        "observed": "一线来",
+        "canonical": "胰腺炎",
+        "sound": 0.91111,
+        "gain": 15.67619
+      }
+    ],
+    "error_delta": 22
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0046",
+    "variant": "noise",
+    "source": "面对急诊的告急，北京协和医院很多教授、主任们也都赶来增援，扑在一线抢救患者。你的教授、主任们，嗯，都跑到一线来，跟我们一起来并肩作战，这对我们来说也是一个很好的鼓舞，也告诉我们，就是身为大夫，不管你是什么样的职称和职位，只要有病人需要。哪里需要我们，就去哪里。",
+    "output": "面对急正压通气，北京协和医院很多教授、主任们也都赶阑尾炎，扑在乙酰胆碱酯酶。你的角膜、主任们，嗯，都跑到胰腺炎，跟我们一起来病理活检，这对我们来说也是一个很好的鼓舞，也告诉我们，就是身为大夫，不管你是什么样的直肠指检位，只要有病人需要。哪里需要我们，就去哪里。",
+    "reference": "面对急诊的高级，北京协和医院很多教授主任们也都赶来增援，铺在一线抢救患者。 我们的教授主人们都跑到一线来跟我们一起来并肩作战。这对我们来说也是一个很好的鼓舞，也告诉我们就是身为大夫 不管你是什么样的职称和职位，只要有病人需要 哪里需要我们 我们就去哪里。",
+    "edits": [
+      {
+        "start": 104,
+        "end": 108,
+        "observed": "职称和职",
+        "canonical": "直肠指检",
+        "sound": 0.86718,
+        "gain": 26.10303
+      },
+      {
+        "start": 62,
+        "end": 66,
+        "observed": "并肩作战",
+        "canonical": "病理活检",
+        "sound": 0.86135,
+        "gain": 24.70875
+      },
+      {
+        "start": 31,
+        "end": 37,
+        "observed": "一线抢救患者",
+        "canonical": "乙酰胆碱酯酶",
+        "sound": 0.8708,
+        "gain": 24.64917
+      },
+      {
+        "start": 3,
+        "end": 7,
+        "observed": "诊的告急",
+        "canonical": "正压通气",
+        "sound": 0.86853,
+        "gain": 21.04018
+      },
+      {
+        "start": 25,
+        "end": 28,
+        "observed": "来增援",
+        "canonical": "阑尾炎",
+        "sound": 0.86431,
+        "gain": 19.22354
+      },
+      {
+        "start": 52,
+        "end": 55,
+        "observed": "一线来",
+        "canonical": "胰腺炎",
+        "sound": 0.91111,
+        "gain": 15.67619
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "observed": "教授",
+        "canonical": "角膜",
+        "sound": 0.89167,
+        "gain": 9.39881
+      }
+    ],
+    "error_delta": 24
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0047",
+    "variant": "clean",
+    "source": "或者是无菌这个部分讲的都是感染上面的感控哦，手术本身的那个视野必须是一个无菌的。那除非你是在真空的环境。",
+    "output": "或者是无菌这个部分碱中毒是感染上呼吸道感染，手术本身的那个视野必须是一个无菌的。那除非你是自身抗的环境。",
+    "reference": "无菌这个部分， 讲的都是感染上面的感控。 手术本身的视野必须是一个无菌的， 那除非你是在真空的环境里面",
+    "edits": [
+      {
+        "start": 15,
+        "end": 21,
+        "observed": "上面的感控哦",
+        "canonical": "上呼吸道感染",
+        "sound": 0.85052,
+        "gain": 32.88503
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "observed": "讲的都",
+        "canonical": "碱中毒",
+        "sound": 0.88045,
+        "gain": 18.20135
+      },
+      {
+        "start": 45,
+        "end": 48,
+        "observed": "在真空",
+        "canonical": "自身抗",
+        "sound": 0.85818,
+        "gain": 11.34759
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0047",
+    "variant": "noise",
+    "source": "或者是无菌这个部分讲的都是感染上面的感控哦，手术本身的那个视野必须是一个无菌的。那除非你是在真空的环境。",
+    "output": "或者是无菌这个部分碱中毒是感染上呼吸道感染，手术本身的那个视野必须是一个无菌的。那除非你是自身抗的环境。",
+    "reference": "无菌这个部分， 讲的都是感染上面的感控。 手术本身的视野必须是一个无菌的， 那除非你是在真空的环境里面",
+    "edits": [
+      {
+        "start": 15,
+        "end": 21,
+        "observed": "上面的感控哦",
+        "canonical": "上呼吸道感染",
+        "sound": 0.85052,
+        "gain": 32.88503
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "observed": "讲的都",
+        "canonical": "碱中毒",
+        "sound": 0.88045,
+        "gain": 18.20135
+      },
+      {
+        "start": 45,
+        "end": 48,
+        "observed": "在真空",
+        "canonical": "自身抗",
+        "sound": 0.85818,
+        "gain": 11.34759
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0048",
+    "variant": "clean",
+    "source": "环境里面，你很难完全保持这个环境跟空气里面是完全无菌的。那正压的环境，其实它要强调的并不是什么，就是压力的。",
+    "output": "环磷酰胺，你很难完全保持这个环静脉总干里面是完全切除的。那正压的环境，其实它要强调的并不是什么，激素治疗的。",
+    "reference": "你很难完全保持这个环境跟空气里面 是完全无菌的。 那正压的环境其实它要强调的 并不是什么压力的问题，",
+    "edits": [
+      {
+        "start": 15,
+        "end": 19,
+        "observed": "境跟空气",
+        "canonical": "静脉总干",
+        "sound": 0.8567,
+        "gain": 20.65358
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "环境里面",
+        "canonical": "环磷酰胺",
+        "sound": 0.8767,
+        "gain": 16.68198
+      },
+      {
+        "start": 48,
+        "end": 52,
+        "observed": "就是压力",
+        "canonical": "激素治疗",
+        "sound": 0.86559,
+        "gain": 15.12993
+      },
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "完全无菌",
+        "canonical": "完全切除",
+        "sound": 0.85641,
+        "gain": 10.0764
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0048",
+    "variant": "noise",
+    "source": "环境里，你很难完全保持这个环境的空气里面是完全无菌的，这镇压的环境其实它要强调的并不是什么，就是压力的。",
+    "output": "磺胺类，你很难完全保持呼吸道通畅空气里面是完全切除的，指征压的环静脉滴注要强调的并不是什么，激素治疗的。",
+    "reference": "你很难完全保持这个环境跟空气里面 是完全无菌的。 那正压的环境其实它要强调的 并不是什么压力的问题，",
+    "edits": [
+      {
+        "start": 27,
+        "end": 29,
+        "observed": "这镇",
+        "canonical": "指征",
+        "sound": 0.85079,
+        "gain": 15.40616
+      },
+      {
+        "start": 46,
+        "end": 50,
+        "observed": "就是压力",
+        "canonical": "激素治疗",
+        "sound": 0.86559,
+        "gain": 15.12993
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "环境里",
+        "canonical": "磺胺类",
+        "sound": 0.895,
+        "gain": 14.58214
+      },
+      {
+        "start": 32,
+        "end": 36,
+        "observed": "境其实它",
+        "canonical": "静脉滴注",
+        "sound": 0.85379,
+        "gain": 14.10359
+      },
+      {
+        "start": 9,
+        "end": 16,
+        "observed": "保持这个环境的",
+        "canonical": "保持呼吸道通畅",
+        "sound": 0.86034,
+        "gain": 12.49947
+      },
+      {
+        "start": 21,
+        "end": 25,
+        "observed": "完全无菌",
+        "canonical": "完全切除",
+        "sound": 0.85641,
+        "gain": 10.0764
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0049",
+    "variant": "clean",
+    "source": "问题，他强调的是细菌的菌落数被控制，大概就是控制在我们可以被控制的低菌落数的范围内啊。刷手台是更重。",
+    "output": "问题，他强调的是细菌的菌落数被控制，大概就是控制在我们可以被控制的菌落计数的范围内啊。手术台是更重。",
+    "reference": "它强调的是细菌的菌落数被控制在 我们可以被控制的低菌落数范围内啊。 刷手台是更重要的一环",
+    "edits": [
+      {
+        "start": 43,
+        "end": 45,
+        "observed": "刷手",
+        "canonical": "手术",
+        "sound": 0.89524,
+        "gain": 27.26007
+      },
+      {
+        "start": 33,
+        "end": 37,
+        "observed": "低菌落数",
+        "canonical": "菌落计数",
+        "sound": 0.87879,
+        "gain": 11.74921
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0049",
+    "variant": "noise",
+    "source": "他强调的是细菌的菌落数被控制，大概就是控制在我们可以被控制的低菌落数的范围内啊。刷手台是更重。",
+    "output": "他强调的是细菌的菌落数被控制，大概就是控制在我们可以被控制的菌落计数的范围内啊。手术台是更重。",
+    "reference": "它强调的是细菌的菌落数被控制在 我们可以被控制的低菌落数范围内啊。 刷手台是更重要的一环",
+    "edits": [
+      {
+        "start": 40,
+        "end": 42,
+        "observed": "刷手",
+        "canonical": "手术",
+        "sound": 0.89524,
+        "gain": 27.26007
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "observed": "低菌落数",
+        "canonical": "菌落计数",
+        "sound": 0.87879,
+        "gain": 11.74921
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0050",
+    "variant": "clean",
+    "source": "一个结果，跟我进行交流，他们在不断的释放自己的压力，让他们会感受到一份温暖，一份温情。我很多人会。",
+    "output": "一个结果，跟我进胸腺瘤，他们在不断的生发基质的压力，让他们会感受到一份温暖，一份盆腔。我很多人会。",
+    "reference": "跟我进行交流，他们在不断地释放自己的压力 让他们会感受到一份温暖，一份温情。 很多人会潸然泪下，",
+    "edits": [
+      {
+        "start": 18,
+        "end": 22,
+        "observed": "释放自己",
+        "canonical": "生发基质",
+        "sound": 0.85131,
+        "gain": 21.3103
+      },
+      {
+        "start": 8,
+        "end": 11,
+        "observed": "行交流",
+        "canonical": "胸腺瘤",
+        "sound": 0.87798,
+        "gain": 11.58606
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "observed": "温情",
+        "canonical": "盆腔",
+        "sound": 0.86905,
+        "gain": 9.25851
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0050",
+    "variant": "noise",
+    "source": "一个结果，跟我进行交流，他们在不断的释放自己的压力，让他们会感受到一份温暖，一份温情。我很多人会。",
+    "output": "一个结果，跟我进胸腺瘤，他们在不断的生发基质的压力，让他们会感受到一份温暖，一份盆腔。我很多人会。",
+    "reference": "跟我进行交流，他们在不断地释放自己的压力 让他们会感受到一份温暖，一份温情。 很多人会潸然泪下，",
+    "edits": [
+      {
+        "start": 18,
+        "end": 22,
+        "observed": "释放自己",
+        "canonical": "生发基质",
+        "sound": 0.85131,
+        "gain": 21.3103
+      },
+      {
+        "start": 8,
+        "end": 11,
+        "observed": "行交流",
+        "canonical": "胸腺瘤",
+        "sound": 0.87798,
+        "gain": 11.58606
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "observed": "温情",
+        "canonical": "盆腔",
+        "sound": 0.86905,
+        "gain": 9.25851
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0051",
+    "variant": "clean",
+    "source": "潸然泪下，但最后会感谢我。我是一名医生，我不能怂，我会在他们最脆弱的时候，提供一个最果断的治疗方法。",
+    "output": "上眼睑下，但最后会干细胞。我是一名医生，我不能怂，我会在他们最脆弱的时候，提供一个最高胆的治疗方法。",
+    "reference": "但最后会感谢我。 我是一名医生，我不能怂。 我会在他们最脆弱的时候提供一个最果断的治疗方法。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "潸然泪",
+        "canonical": "上眼睑",
+        "sound": 0.85667,
+        "gain": 45.11047
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "observed": "感谢我",
+        "canonical": "干细胞",
+        "sound": 0.9,
+        "gain": 23.39
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "observed": "果断",
+        "canonical": "高胆",
+        "sound": 0.86429,
+        "gain": 15.26825
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0051",
+    "variant": "noise",
+    "source": "潸然泪下，但最后会感谢我。我是一名医生，我不能走，我会在他们最脆弱的时候，提供一个最果断的治疗方法。",
+    "output": "上眼睑下，但最后会干细胞。我是一名医生，我不能走，我会在他们最脆弱的时候，提供一个最高胆的治疗方法。",
+    "reference": "但最后会感谢我。 我是一名医生，我不能怂。 我会在他们最脆弱的时候提供一个最果断的治疗方法。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "潸然泪",
+        "canonical": "上眼睑",
+        "sound": 0.85667,
+        "gain": 45.11047
+      },
+      {
+        "start": 9,
+        "end": 12,
+        "observed": "感谢我",
+        "canonical": "干细胞",
+        "sound": 0.9,
+        "gain": 23.39
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "observed": "果断",
+        "canonical": "高胆",
+        "sound": 0.86429,
+        "gain": 15.26825
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0053",
+    "variant": "clean",
+    "source": "方式手术，还有那个传统的真空手术的优点，嗯，也就是说，通过小的伤口，可以把机器人的手放进体内，嗯。",
+    "output": "方式手术，还有那个穿孔的震颤手术的优点，嗯，也就是说，通过小的伤口，可以把机器人的手放进体内，嗯。",
+    "reference": "还有传统腹腔镜手术的优点。 也就是说通过小的伤口。 可以把机器人的手放进体内。",
+    "edits": [
+      {
+        "start": 12,
+        "end": 14,
+        "observed": "真空",
+        "canonical": "震颤",
+        "sound": 0.85,
+        "gain": 10.59071
+      },
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "传统",
+        "canonical": "穿孔",
+        "sound": 0.95556,
+        "gain": 9.1848
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0053",
+    "variant": "noise",
+    "source": "方式手术，还有那个传统的针孔手术的优点，嗯，也就是说，通过小的伤口，可以把机器人的手放进体内，嗯。",
+    "output": "方式手术，还有那个穿孔的针孔手术的优点，嗯，也就是说，通过小的伤口，可以把机器人的手放进体内，嗯。",
+    "reference": "还有传统腹腔镜手术的优点。 也就是说通过小的伤口。 可以把机器人的手放进体内。",
+    "edits": [
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "传统",
+        "canonical": "穿孔",
+        "sound": 0.95556,
+        "gain": 9.1848
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0054",
+    "variant": "clean",
+    "source": "啊，它影像也是3D的啊，这这个机器人的手其实非常的灵活，也就是说可以缝的比较密。",
+    "output": "啊，它影像也是3D的啊，这这个机器人的手术室非常的灵活，也就是说可以缝的逼尿肌。",
+    "reference": "那个影像也是3D的。 这个机器人的手其实非常灵活， 也就是说可以缝得比较密， 看得比较精准。",
+    "edits": [
+      {
+        "start": 36,
+        "end": 39,
+        "observed": "比较密",
+        "canonical": "逼尿肌",
+        "sound": 0.86667,
+        "gain": 19.47563
+      },
+      {
+        "start": 19,
+        "end": 22,
+        "observed": "手其实",
+        "canonical": "手术室",
+        "sound": 0.86698,
+        "gain": 14.12335
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0054",
+    "variant": "noise",
+    "source": "啊，那影像也是3D的，啊，这这个机器人的手其实非常的灵活，也就是说可以缝的比较密。",
+    "output": "啊，那影像也是3D的，啊，这这个机器人的手术室非常的灵活，也就是说可以缝的逼尿肌。",
+    "reference": "那个影像也是3D的。 这个机器人的手其实非常灵活， 也就是说可以缝得比较密， 看得比较精准。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 40,
+        "observed": "比较密",
+        "canonical": "逼尿肌",
+        "sound": 0.86667,
+        "gain": 19.47563
+      },
+      {
+        "start": 20,
+        "end": 23,
+        "observed": "手其实",
+        "canonical": "手术室",
+        "sound": 0.86698,
+        "gain": 14.12335
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0055",
+    "variant": "clean",
+    "source": "看的比较精准，对，诶，呃，前列腺患者的治疗啊，呃，复原啊，也有呃，好处。嗯，OK，嗯，而如果说。",
+    "output": "看的比较紧张，对，诶，呃，前列腺患者的治疗啊，呃，复原啊，也有呃，好处。嗯，OK，嗯，而如果说。",
+    "reference": "对前列腺患者的治疗 复原 也有好处。 如果说做了手术之后",
+    "edits": [
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "精准",
+        "canonical": "紧张",
+        "sound": 0.88333,
+        "gain": 19.61279
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0055",
+    "variant": "noise",
+    "source": "看的比较精准，对，呃，前列腺患者的治疗啊，呃，复原啊，也有呃好处。嗯，OK，而如果说。",
+    "output": "看的比较紧张，对，呃，前列腺患者的治疗啊，呃，复原啊，也有呃好处。嗯，OK，而如果说。",
+    "reference": "对前列腺患者的治疗 复原 也有好处。 如果说做了手术之后",
+    "edits": [
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "精准",
+        "canonical": "紧张",
+        "sound": 0.88333,
+        "gain": 19.61279
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0056",
+    "variant": "clean",
+    "source": "做了手术之后，对对这个性功能会不会有影响嘞？通常对性功能多多少少会有影响了，最大的问题就是操作性功能曾经。",
+    "output": "做了手术之后，对对这个性功能会不会有影像学？通常对心功能不全少少会有影响了，最大的问题就是操作性功能衰竭。",
+    "reference": "对性功能会不会有影响？ 通常对性功能多多少少会有影响。 最大的问题就是操作性功能的神经线。",
+    "edits": [
+      {
+        "start": 48,
+        "end": 52,
+        "observed": "功能曾经",
+        "canonical": "功能衰竭",
+        "sound": 0.85682,
+        "gain": 24.06145
+      },
+      {
+        "start": 18,
+        "end": 21,
+        "observed": "影响嘞",
+        "canonical": "影像学",
+        "sound": 0.93333,
+        "gain": 21.32466
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "observed": "性功能多多",
+        "canonical": "心功能不全",
+        "sound": 0.85123,
+        "gain": 14.2919
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0056",
+    "variant": "noise",
+    "source": "做了手术之后，对对这个性功能会不会有影响？通常对性功能多多少少会有影响了。最大的问题就是操作性功能曾经。",
+    "output": "做了手术之后，对对这个性功能会不会有影响？通常对心功能不全少少会有影响了。最大的问题就是操作性功能衰竭。",
+    "reference": "对性功能会不会有影响？ 通常对性功能多多少少会有影响。 最大的问题就是操作性功能的神经线。",
+    "edits": [
+      {
+        "start": 47,
+        "end": 51,
+        "observed": "功能曾经",
+        "canonical": "功能衰竭",
+        "sound": 0.85682,
+        "gain": 24.06145
+      },
+      {
+        "start": 24,
+        "end": 29,
+        "observed": "性功能多多",
+        "canonical": "心功能不全",
+        "sound": 0.85123,
+        "gain": 14.2919
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0057",
+    "variant": "clean",
+    "source": "它的位置非常靠近那个前列腺。嗯，OK。动了手术过后，它还有生育能力嘛？切除了这个前列腺过后，你要自然生育的话，这样就没有可能。",
+    "output": "它的位置肺动脉干那个前列腺。嗯，OK。动了手术过后，它还有生育能力嘛？切除了这个前列腺过后，你要自然生理盐水，这样就没有可能。",
+    "reference": "它的位置非常靠近前列腺。 动了手术过后 他还有生育能力吗？ 切除了这个前列腺过后。 你要自然生育的话 这样就没有可能",
+    "edits": [
+      {
+        "start": 4,
+        "end": 8,
+        "observed": "非常靠近",
+        "canonical": "肺动脉干",
+        "sound": 0.85615,
+        "gain": 15.54617
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "observed": "生育的话",
+        "canonical": "生理盐水",
+        "sound": 0.85635,
+        "gain": 10.86222
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0057",
+    "variant": "noise",
+    "source": "它的位置非常靠近那个前列腺，嗯，做了手术过后，它还有生命能力嘛？切除了这个前列腺过后，你要自然生育的话，这样就没有可能。",
+    "output": "它的位置肺动脉干那个前列腺，嗯，做了手术过后，它还有生理性黄疸？切除了这个前列腺过后，你要自然生理盐水，这样就没有可能。",
+    "reference": "它的位置非常靠近前列腺。 动了手术过后 他还有生育能力吗？ 切除了这个前列腺过后。 你要自然生育的话 这样就没有可能",
+    "edits": [
+      {
+        "start": 26,
+        "end": 31,
+        "observed": "生命能力嘛",
+        "canonical": "生理性黄疸",
+        "sound": 0.85493,
+        "gain": 22.43759
+      },
+      {
+        "start": 4,
+        "end": 8,
+        "observed": "非常靠近",
+        "canonical": "肺动脉干",
+        "sound": 0.85615,
+        "gain": 15.54617
+      },
+      {
+        "start": 47,
+        "end": 51,
+        "observed": "生育的话",
+        "canonical": "生理盐水",
+        "sound": 0.85635,
+        "gain": 10.86222
+      }
+    ],
+    "error_delta": 9
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0059",
+    "variant": "clean",
+    "source": "术语，呃，来，呃，一，呃，传，呃，下一代的，OK，那有没有药物的一种治疗法？如果要用药物治疗，通常是。",
+    "output": "失语，呃，来，呃，一，呃，传，呃，小气道的，OK，那有没有药物的一种治疗法？如果要用药物治疗，通常是。",
+    "reference": "来传宗接代。 那有没有药物的一种治疗法？ 如果要用药物治疗 通常已经算是末期。",
+    "edits": [
+      {
+        "start": 17,
+        "end": 20,
+        "observed": "下一代",
+        "canonical": "小气道",
+        "sound": 0.86389,
+        "gain": 13.5298
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "术语",
+        "canonical": "失语",
+        "sound": 0.89333,
+        "gain": 10.8242
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0059",
+    "variant": "noise",
+    "source": "术语，呃，来，呃，一，呃，传，呃，下一代，那有没有药物的一种治疗？如果要用药物治疗，通常是。",
+    "output": "失语，呃，来，呃，一，呃，传，呃，下一代，那有没有药物的一种治疗？如果要用药物治疗，通常是。",
+    "reference": "来传宗接代。 那有没有药物的一种治疗法？ 如果要用药物治疗 通常已经算是末期。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "术语",
+        "canonical": "失语",
+        "sound": 0.89333,
+        "gain": 10.8242
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0060",
+    "variant": "clean",
+    "source": "医院这个地方真的不能够常来。本来今天很开心的，是吧？想知道这个肺部变好的消息，其实很开心。",
+    "output": "医院这个地方真的不能够产道。本来今天很开心的，是吧？想知道这个肺部变好的消息，其实很开心。",
+    "reference": "医院这个地方真的不能够常来。 本来今天很开心的是吧 知道这个肺部变好消息其实很开心。",
+    "edits": [
+      {
+        "start": 11,
+        "end": 13,
+        "observed": "常来",
+        "canonical": "产道",
+        "sound": 0.86786,
+        "gain": 9.73942
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0060",
+    "variant": "noise",
+    "source": "医院这个地方真的不能够常来。本来今天很开心的是吧？想知道这个肺部变好的消息，其实很开心。",
+    "output": "医院这个地方真的不能够产道。本来今天很开心的是吧？想知道这个肺部变好的消息，其实很开心。",
+    "reference": "医院这个地方真的不能够常来。 本来今天很开心的是吧 知道这个肺部变好消息其实很开心。",
+    "edits": [
+      {
+        "start": 11,
+        "end": 13,
+        "observed": "常来",
+        "canonical": "产道",
+        "sound": 0.86786,
+        "gain": 9.73942
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0062",
+    "variant": "clean",
+    "source": "应该和您相当的。嗯，那个他的父亲应该是老贪。行动不便，然后也是因为这个病，刚才也在发牢骚。",
+    "output": "婴儿痉挛相当的。嗯，那个他的父亲应该是老贪。心动过缓，然后也是因为这个病，刚才也在发牢骚。",
+    "reference": "应该和我年龄相当的。 嗯。 他的父亲应该是脑瘫。 行动不便。 然后也是因为这个病刚才有点发牢骚。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "应该和您",
+        "canonical": "婴儿痉挛",
+        "sound": 0.85635,
+        "gain": 22.45823
+      },
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "行动不便",
+        "canonical": "心动过缓",
+        "sound": 0.85758,
+        "gain": 15.74997
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0062",
+    "variant": "noise",
+    "source": "应该和你相当的。嗯，那个他的父亲应该是老贪。行动不便，然后也是因为这个病，刚才也在发牢骚。",
+    "output": "应激性溃疡当的。嗯，那个他的父亲应该是老贪。心动过缓，然后也是因为这个病，刚才也在发牢骚。",
+    "reference": "应该和我年龄相当的。 嗯。 他的父亲应该是脑瘫。 行动不便。 然后也是因为这个病刚才有点发牢骚。",
+    "edits": [
+      {
+        "start": 0,
+        "end": 5,
+        "observed": "应该和你相",
+        "canonical": "应激性溃疡",
+        "sound": 0.88467,
+        "gain": 22.6922
+      },
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "行动不便",
+        "canonical": "心动过缓",
+        "sound": 0.85758,
+        "gain": 15.74997
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0063",
+    "variant": "clean",
+    "source": "每天来打针，每天来打针，一待好几个小时。今天好像是刚刚才挂上针嘛，已经下午现在一点半了嘛。",
+    "output": "每天来打针，每天来打针，胰岛素几个小时。今天好像是刚刚才挂上震颤，已经下午纤维蛋白原了嘛。",
+    "reference": "每天来打针每天来打针。 一待好几个小时。 今天好像是刚刚才挂上针吗。 已经下午现在1点半了吗。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 42,
+        "observed": "现在一点半",
+        "canonical": "纤维蛋白原",
+        "sound": 0.89685,
+        "gain": 25.67518
+      },
+      {
+        "start": 12,
+        "end": 15,
+        "observed": "一待好",
+        "canonical": "胰岛素",
+        "sound": 0.86786,
+        "gain": 18.10247
+      },
+      {
+        "start": 30,
+        "end": 32,
+        "observed": "针嘛",
+        "canonical": "震颤",
+        "sound": 0.89167,
+        "gain": 11.17438
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0063",
+    "variant": "noise",
+    "source": "每天来打针，每天来打针，一待好几个小时。今天好像是刚刚才挂上针嘛，已经下午现在一点半了嘛。",
+    "output": "每天来打针，每天来打针，胰岛素几个小时。今天好像是刚刚才挂上震颤，已经下午纤维蛋白原了嘛。",
+    "reference": "每天来打针每天来打针。 一待好几个小时。 今天好像是刚刚才挂上针吗。 已经下午现在1点半了吗。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 42,
+        "observed": "现在一点半",
+        "canonical": "纤维蛋白原",
+        "sound": 0.89685,
+        "gain": 25.67518
+      },
+      {
+        "start": 12,
+        "end": 15,
+        "observed": "一待好",
+        "canonical": "胰岛素",
+        "sound": 0.86786,
+        "gain": 18.10247
+      },
+      {
+        "start": 30,
+        "end": 32,
+        "observed": "针嘛",
+        "canonical": "震颤",
+        "sound": 0.89167,
+        "gain": 11.17438
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0064",
+    "variant": "clean",
+    "source": "然后才打完针回去都五六点钟了，他就说，这怎么这样搞？他哪有时间上班呢？不上班了，我不上班了。",
+    "output": "然后才打完全切除都物理降温了，他就说，这怎么这阳性？糖原有时间上班呢？不上班了，我不上班了。",
+    "reference": "然后他打完针回去都五六点钟了。 他就说 这样搞他哪有时间上班呢。 不上班了我不上班了。",
+    "edits": [
+      {
+        "start": 4,
+        "end": 8,
+        "observed": "完针回去",
+        "canonical": "完全切除",
+        "sound": 0.8606,
+        "gain": 18.95704
+      },
+      {
+        "start": 26,
+        "end": 28,
+        "observed": "他哪",
+        "canonical": "糖原",
+        "sound": 0.88333,
+        "gain": 14.89975
+      },
+      {
+        "start": 9,
+        "end": 13,
+        "observed": "五六点钟",
+        "canonical": "物理降温",
+        "sound": 0.85635,
+        "gain": 12.77582
+      },
+      {
+        "start": 23,
+        "end": 25,
+        "observed": "样搞",
+        "canonical": "阳性",
+        "sound": 0.86786,
+        "gain": 11.66658
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0064",
+    "variant": "noise",
+    "source": "然后他打完针回去都五六点了，他就说：“这怎么这样搞？他哪有时间上班呢？”不上班了，我不上班了。",
+    "output": "然后他打完全切除都物理降温，他就说：“这怎么这阳性？糖原有时间上班呢？”不上班了，我不上班了。",
+    "reference": "然后他打完针回去都五六点钟了。 他就说 这样搞他哪有时间上班呢。 不上班了我不上班了。",
+    "edits": [
+      {
+        "start": 4,
+        "end": 8,
+        "observed": "完针回去",
+        "canonical": "完全切除",
+        "sound": 0.8606,
+        "gain": 18.95704
+      },
+      {
+        "start": 9,
+        "end": 13,
+        "observed": "五六点了",
+        "canonical": "物理降温",
+        "sound": 0.87879,
+        "gain": 17.42331
+      },
+      {
+        "start": 26,
+        "end": 28,
+        "observed": "他哪",
+        "canonical": "糖原",
+        "sound": 0.88333,
+        "gain": 14.89975
+      },
+      {
+        "start": 23,
+        "end": 25,
+        "observed": "样搞",
+        "canonical": "阳性",
+        "sound": 0.86786,
+        "gain": 11.66658
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0065",
+    "variant": "clean",
+    "source": "说多少说话要带点气吧。看得出来，他父亲也是。老摊已经很久。",
+    "output": "水痘少收缩压带点气吧。看得出来，他父亲也是。老摊已经很久。",
+    "reference": "多少说话带点气吧。 看得出来他父亲也是 脑瘫已经很久了。",
+    "edits": [
+      {
+        "start": 3,
+        "end": 6,
+        "observed": "说话要",
+        "canonical": "收缩压",
+        "sound": 0.85037,
+        "gain": 10.56253
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "说多",
+        "canonical": "水痘",
+        "sound": 0.89444,
+        "gain": 10.24803
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0065",
+    "variant": "noise",
+    "source": "说多少说话要带点气吧。看得出来，他父亲也是。老摊已经很久。",
+    "output": "水痘少收缩压带点气吧。看得出来，他父亲也是。老摊已经很久。",
+    "reference": "多少说话带点气吧。 看得出来他父亲也是 脑瘫已经很久了。",
+    "edits": [
+      {
+        "start": 3,
+        "end": 6,
+        "observed": "说话要",
+        "canonical": "收缩压",
+        "sound": 0.85037,
+        "gain": 10.56253
+      },
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "说多",
+        "canonical": "水痘",
+        "sound": 0.89444,
+        "gain": 10.24803
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0066",
+    "variant": "clean",
+    "source": "就跟说久病床前无孝子。哎呀，然后又看到旁边的那一床，两个儿子在那精心的照顾自己的父亲。",
+    "output": "纠正脱水病原体感染子。脉压，然后又看到旁边的那一床，两个儿子在那经导管介入治疗的父亲。",
+    "reference": "别人说 久病床前无孝子。 哎呀然后又看到旁边的那一床 两个儿子在那精心的照顾自己的父亲。",
+    "edits": [
+      {
+        "start": 4,
+        "end": 9,
+        "observed": "病床前无孝",
+        "canonical": "病原体感染",
+        "sound": 0.85333,
+        "gain": 35.37284
+      },
+      {
+        "start": 32,
+        "end": 39,
+        "observed": "精心的照顾自己",
+        "canonical": "经导管介入治疗",
+        "sound": 0.85619,
+        "gain": 26.42391
+      },
+      {
+        "start": 11,
+        "end": 13,
+        "observed": "哎呀",
+        "canonical": "脉压",
+        "sound": 0.93333,
+        "gain": 25.72811
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "就跟说久",
+        "canonical": "纠正脱水",
+        "sound": 0.87705,
+        "gain": 20.53965
+      }
+    ],
+    "error_delta": 15
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0066",
+    "variant": "noise",
+    "source": "人家说，久病床前无孝子。嗯，然后又看到旁边的那一床，两个儿子在那精心的照顾自己的父亲。",
+    "output": "人家说，久病原体感染子。嗯，然后又看到旁边的那一床，两个儿子在那经导管介入治疗的父亲。",
+    "reference": "别人说 久病床前无孝子。 哎呀然后又看到旁边的那一床 两个儿子在那精心的照顾自己的父亲。",
+    "edits": [
+      {
+        "start": 5,
+        "end": 10,
+        "observed": "病床前无孝",
+        "canonical": "病原体感染",
+        "sound": 0.85333,
+        "gain": 35.37284
+      },
+      {
+        "start": 32,
+        "end": 39,
+        "observed": "精心的照顾自己",
+        "canonical": "经导管介入治疗",
+        "sound": 0.85619,
+        "gain": 26.42391
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0067",
+    "variant": "clean",
+    "source": "那些逝去的人们，会让我们更加懂得生的珍贵。所以，接下来的日子里，王维俊要和同事们带着食物床，一关关地闯。",
+    "output": "那些肾区的人们，会让我们更加懂得生长迟缓。所以，接下来的日子里，王维俊要和同事们带着食欲差，一冠状动脉。",
+    "reference": "那些逝去的人们 会让我们更加懂得 生的珍贵。 所以 接下来的日子里，王维俊要和同事们带着15床 一关关地闯。",
+    "edits": [
+      {
+        "start": 47,
+        "end": 51,
+        "observed": "关关地闯",
+        "canonical": "冠状动脉",
+        "sound": 0.89685,
+        "gain": 33.96956
+      },
+      {
+        "start": 16,
+        "end": 20,
+        "observed": "生的珍贵",
+        "canonical": "生长迟缓",
+        "sound": 0.86837,
+        "gain": 20.8307
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "observed": "逝去",
+        "canonical": "肾区",
+        "sound": 0.85778,
+        "gain": 18.26589
+      },
+      {
+        "start": 42,
+        "end": 45,
+        "observed": "食物床",
+        "canonical": "食欲差",
+        "sound": 0.88598,
+        "gain": 15.38686
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0067",
+    "variant": "noise",
+    "source": "那些逝去的人们，会让我们更加懂得生的珍贵。所以，接下来的日子里，王维俊要和同事们带着食物床，一关关地闯。",
+    "output": "那些肾区的人们，会让我们更加懂得生长迟缓。所以，接下来的日子里，王维俊要和同事们带着食欲差，一冠状动脉。",
+    "reference": "那些逝去的人们 会让我们更加懂得 生的珍贵。 所以 接下来的日子里，王维俊要和同事们带着15床 一关关地闯。",
+    "edits": [
+      {
+        "start": 47,
+        "end": 51,
+        "observed": "关关地闯",
+        "canonical": "冠状动脉",
+        "sound": 0.89685,
+        "gain": 33.96956
+      },
+      {
+        "start": 16,
+        "end": 20,
+        "observed": "生的珍贵",
+        "canonical": "生长迟缓",
+        "sound": 0.86837,
+        "gain": 20.8307
+      },
+      {
+        "start": 2,
+        "end": 4,
+        "observed": "逝去",
+        "canonical": "肾区",
+        "sound": 0.85778,
+        "gain": 18.26589
+      },
+      {
+        "start": 42,
+        "end": 45,
+        "observed": "食物床",
+        "canonical": "食欲差",
+        "sound": 0.88598,
+        "gain": 15.38686
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0068",
+    "variant": "clean",
+    "source": "白天我要下水，今天我要下水，今天我要下水，就在旁边，看看能淘到多少。感染了另外一个细菌，张院长。",
+    "output": "白天我要消瘦，今天我要消瘦，今天我要消瘦，脊髓旁边，看看能淘到多少。感染了另外一个细菌，谵妄长。",
+    "reference": "白天我要下去一趟。今天我要下去一趟。坐在15床旁边。看看能调到多少。 感染了另外一个细菌。张院长 不管怎么样",
+    "edits": [
+      {
+        "start": 21,
+        "end": 23,
+        "observed": "就在",
+        "canonical": "脊髓",
+        "sound": 0.85778,
+        "gain": 15.19214
+      },
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 11,
+        "end": 13,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 18,
+        "end": 20,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 44,
+        "end": 46,
+        "observed": "张院",
+        "canonical": "谵妄",
+        "sound": 0.90198,
+        "gain": 9.18164
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0068",
+    "variant": "noise",
+    "source": "二，白天我要下水。今天我要下水。今天我要下水，就在旁边，看看能跳到多少。嗯。感染了另外一个士兵，张院长。",
+    "output": "二，白天我要消瘦。今天我要消瘦。今天我要消瘦，脊髓旁边，看看能跳到多少。嗯。感染了另外一个肾病，谵妄长。",
+    "reference": "白天我要下去一趟。今天我要下去一趟。坐在15床旁边。看看能调到多少。 感染了另外一个细菌。张院长 不管怎么样",
+    "edits": [
+      {
+        "start": 45,
+        "end": 47,
+        "observed": "士兵",
+        "canonical": "肾病",
+        "sound": 0.85079,
+        "gain": 19.13757
+      },
+      {
+        "start": 23,
+        "end": 25,
+        "observed": "就在",
+        "canonical": "脊髓",
+        "sound": 0.85778,
+        "gain": 15.19214
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 13,
+        "end": 15,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 20,
+        "end": 22,
+        "observed": "下水",
+        "canonical": "消瘦",
+        "sound": 0.90833,
+        "gain": 14.23232
+      },
+      {
+        "start": 48,
+        "end": 50,
+        "observed": "张院",
+        "canonical": "谵妄",
+        "sound": 0.90198,
+        "gain": 9.18164
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0069",
+    "variant": "clean",
+    "source": "不管怎么样，我进去带上三级防护去查他这个原因。你看那个速度这么快，他肯定有原因的。遇人烦躁，所以我在外面跟你们讲，永远跟进跟进。但是你们每个小时不可以跟进。",
+    "output": "不管怎么样，我进去带上三度房室传导阻滞个原因。你看那个速度这么快，他肯定有原因的。遇人烦躁，所以我在外面跟你们讲，永远跟兴奋剂。但是你们每个小时不可以跟进。",
+    "reference": "我进去 带上三级防护 去查 他这个原因。你想这个心率这么快 肯定有原因的。 病人烦躁。所以说我在外面跟你们讲。补液容量跟进 跟进。 但是你们每个小时都不给我跟进。",
+    "edits": [
+      {
+        "start": 11,
+        "end": 19,
+        "observed": "三级防护去查他这",
+        "canonical": "三度房室传导阻滞",
+        "sound": 0.85344,
+        "gain": 42.96837
+      },
+      {
+        "start": 60,
+        "end": 63,
+        "observed": "进跟进",
+        "canonical": "兴奋剂",
+        "sound": 0.85185,
+        "gain": 22.08221
+      }
+    ],
+    "error_delta": 10
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0069",
+    "variant": "noise",
+    "source": "不管怎么样，我进去带上三局八号去查他的人，像那个速度这么快，肯定你能干。有人感到，所以说我在外面跟你们讲，永远争取争取，但是你们每个小时苦着呢。",
+    "output": "不管怎么样，我进去大肠杆菌八号去查他的人，显微镜速度这么快，肯定你能干。有人感到，所以说我在外面跟你们讲，永远争取争取，但是你们每个小时骨折呢。",
+    "reference": "我进去 带上三级防护 去查 他这个原因。你想这个心率这么快 肯定有原因的。 病人烦躁。所以说我在外面跟你们讲。补液容量跟进 跟进。 但是你们每个小时都不给我跟进。",
+    "edits": [
+      {
+        "start": 9,
+        "end": 13,
+        "observed": "带上三局",
+        "canonical": "大肠杆菌",
+        "sound": 0.87692,
+        "gain": 25.09727
+      },
+      {
+        "start": 68,
+        "end": 70,
+        "observed": "苦着",
+        "canonical": "骨折",
+        "sound": 0.86667,
+        "gain": 15.30107
+      },
+      {
+        "start": 21,
+        "end": 24,
+        "observed": "像那个",
+        "canonical": "显微镜",
+        "sound": 0.85426,
+        "gain": 10.96026
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0070",
+    "variant": "clean",
+    "source": "原来三千四，三千四，现在去掉一千六百五，还一千八。我们过的普遍的太多了。要不要做一些这些？而且，您亲戚呢，也是干苦力的。嗯。",
+    "output": "原来三千四，三千四，现在气道一前列腺素，还一前额。我们过的普遍的太多了。要不要做一些这些？而且，您青霉胺，也食管裂孔疝。嗯。",
+    "reference": "原来3400 现在去掉1650 还有1800。 我觉得补液量太多了。 要不然真的一会就要吊。",
+    "edits": [
+      {
+        "start": 15,
+        "end": 19,
+        "observed": "千六百五",
+        "canonical": "前列腺素",
+        "sound": 0.86624,
+        "gain": 34.69348
+      },
+      {
+        "start": 54,
+        "end": 59,
+        "observed": "是干苦力的",
+        "canonical": "食管裂孔疝",
+        "sound": 0.85101,
+        "gain": 17.6597
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "observed": "去掉",
+        "canonical": "气道",
+        "sound": 0.89,
+        "gain": 10.82694
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "千八",
+        "canonical": "前额",
+        "sound": 0.89333,
+        "gain": 10.80756
+      },
+      {
+        "start": 49,
+        "end": 52,
+        "observed": "亲戚呢",
+        "canonical": "青霉胺",
+        "sound": 0.85,
+        "gain": 9.49074
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0070",
+    "variant": "noise",
+    "source": "原来看电视，看电视，现在要一千六百五，还一千八。还是年轻人干体力。嗯。",
+    "output": "原来单心室，单心室，现在腰椎前列腺素，还一前额。还是年轻人干体力。嗯。",
+    "reference": "原来3400 现在去掉1650 还有1800。 我觉得补液量太多了。 要不然真的一会就要吊。",
+    "edits": [
+      {
+        "start": 14,
+        "end": 18,
+        "observed": "千六百五",
+        "canonical": "前列腺素",
+        "sound": 0.86624,
+        "gain": 34.69348
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "看电视",
+        "canonical": "单心室",
+        "sound": 0.85463,
+        "gain": 20.64938
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "observed": "看电视",
+        "canonical": "单心室",
+        "sound": 0.85463,
+        "gain": 13.50564
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "observed": "要一",
+        "canonical": "腰椎",
+        "sound": 0.85333,
+        "gain": 11.13434
+      },
+      {
+        "start": 21,
+        "end": 23,
+        "observed": "千八",
+        "canonical": "前额",
+        "sound": 0.89333,
+        "gain": 10.80756
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0071",
+    "variant": "clean",
+    "source": "心脏功能。背的辛苦，和背的。要要做一些关系的虚实，深，一，好，上二点。",
+    "output": "心脏功能。背侧垫苦，核酶的。要要做一些关系的虚实，深，一，好，上部量。",
+    "reference": "他的感染控制得蛮好了。他的心脏功能没有问题。肺的胸片 核酸的检测 看起来他都很好。 那么这个时候要做一些关节的屈 伸。一二三。对。",
+    "edits": [
+      {
+        "start": 31,
+        "end": 34,
+        "observed": "上二点",
+        "canonical": "上部量",
+        "sound": 0.87879,
+        "gain": 22.75271
+      },
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "背的辛",
+        "canonical": "背侧垫",
+        "sound": 0.88565,
+        "gain": 11.61003
+      },
+      {
+        "start": 10,
+        "end": 12,
+        "observed": "和背",
+        "canonical": "核酶",
+        "sound": 0.89333,
+        "gain": 9.81042
+      }
+    ],
+    "error_delta": 0
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0071",
+    "variant": "noise",
+    "source": "以上不能。贵的东西，投资。那么这个情况要要注意观察，需跟，哎，对哦。",
+    "output": "以上腹痛。贵的东西，投资。那么这个情况要要注意观察，血钠，哎，对哦。",
+    "reference": "他的感染控制得蛮好了。他的心脏功能没有问题。肺的胸片 核酸的检测 看起来他都很好。 那么这个时候要做一些关节的屈 伸。一二三。对。",
+    "edits": [
+      {
+        "start": 26,
+        "end": 28,
+        "observed": "需跟",
+        "canonical": "血钠",
+        "sound": 0.89333,
+        "gain": 18.92645
+      },
+      {
+        "start": 1,
+        "end": 4,
+        "observed": "上不能",
+        "canonical": "上腹痛",
+        "sound": 0.89091,
+        "gain": 15.40011
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0072",
+    "variant": "clean",
+    "source": "保持。二。发声音，哎，发声音，哎，来，咳嗽有声音了，对吧？",
+    "output": "保持。二。发声音，哎，发声音，哎，来，咳嗽有肾功能，对吧？",
+    "reference": "拉直。二。 讲话。发声音。咳嗽有声音了 对吧？",
+    "edits": [
+      {
+        "start": 22,
+        "end": 25,
+        "observed": "声音了",
+        "canonical": "肾功能",
+        "sound": 0.85667,
+        "gain": 13.43496
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0072",
+    "variant": "noise",
+    "source": "阿婆。送你啊，不送你啊，来，他说有生意了，对吧？",
+    "output": "阿婆。送黏膜，不送黏膜，来，他说有肾结石，对吧？",
+    "reference": "拉直。二。 讲话。发声音。咳嗽有声音了 对吧？",
+    "edits": [
+      {
+        "start": 17,
+        "end": 20,
+        "observed": "生意了",
+        "canonical": "肾结石",
+        "sound": 0.85333,
+        "gain": 18.4529
+      },
+      {
+        "start": 4,
+        "end": 6,
+        "observed": "你啊",
+        "canonical": "黏膜",
+        "sound": 0.88333,
+        "gain": 9.83741
+      },
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "你啊",
+        "canonical": "黏膜",
+        "sound": 0.88333,
+        "gain": 9.83741
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0073",
+    "variant": "clean",
+    "source": "对啊，那你看，嗯，你看到吗？我也在养虎。你现在最想做的什么事情？我们要赶快好起来，对不对？好，你说一句话，你说想家，回去，想回去，说一句给我。",
+    "output": "对啊，那你看，嗯，你看到吗？我也在羊水。你现在最想做的什么事情？我们要赶快潮气量，对不对？好，你说一句话，你说心悸，回去，腺病毒，说一句给我。",
+    "reference": "你看到吗？你现在最想做的是什么事情？我们要赶快好起来。对不对？好。 你说一句话。你说 想家 想回去。说一句给我听。",
+    "edits": [
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "养虎",
+        "canonical": "羊水",
+        "sound": 0.95,
+        "gain": 22.76121
+      },
+      {
+        "start": 61,
+        "end": 64,
+        "observed": "想回去",
+        "canonical": "腺病毒",
+        "sound": 0.85143,
+        "gain": 16.70309
+      },
+      {
+        "start": 55,
+        "end": 57,
+        "observed": "想家",
+        "canonical": "心悸",
+        "sound": 0.9,
+        "gain": 14.77557
+      },
+      {
+        "start": 37,
+        "end": 40,
+        "observed": "好起来",
+        "canonical": "潮气量",
+        "sound": 0.86742,
+        "gain": 10.46991
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0073",
+    "variant": "noise",
+    "source": "对，安娜，你看，嗯，你看到吗？你现在最想做的什么事情？我们要让他好起来，对不对？好，你只说一句话，你说想家，回去，想回去，回去就。",
+    "output": "对，间脑，你看，嗯，你看到吗？你现在最想做的什么事情？我们要让他潮气量，对不对？好，根治术一句话，你说心悸，回去，腺病毒，呼吸机。",
+    "reference": "你看到吗？你现在最想做的是什么事情？我们要赶快好起来。对不对？好。 你说一句话。你说 想家 想回去。说一句给我听。",
+    "edits": [
+      {
+        "start": 2,
+        "end": 4,
+        "observed": "安娜",
+        "canonical": "间脑",
+        "sound": 0.85714,
+        "gain": 21.93444
+      },
+      {
+        "start": 42,
+        "end": 45,
+        "observed": "你只说",
+        "canonical": "根治术",
+        "sound": 0.85185,
+        "gain": 16.88592
+      },
+      {
+        "start": 57,
+        "end": 60,
+        "observed": "想回去",
+        "canonical": "腺病毒",
+        "sound": 0.85143,
+        "gain": 16.70309
+      },
+      {
+        "start": 51,
+        "end": 53,
+        "observed": "想家",
+        "canonical": "心悸",
+        "sound": 0.9,
+        "gain": 14.77557
+      },
+      {
+        "start": 61,
+        "end": 64,
+        "observed": "回去就",
+        "canonical": "呼吸机",
+        "sound": 0.85556,
+        "gain": 11.2022
+      },
+      {
+        "start": 32,
+        "end": 35,
+        "observed": "好起来",
+        "canonical": "潮气量",
+        "sound": 0.86742,
+        "gain": 10.46991
+      }
+    ],
+    "error_delta": 7
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0074",
+    "variant": "clean",
+    "source": "我听，想回去。下回去。对，啊，有声音的。好，我们成功。好，好，可以啊。好，可以。",
+    "output": "我听，腺病毒。下回去。对，啊，有神经节。好，我们成功。好，好，可以啊。好，可以。",
+    "reference": "想回去。想回去。对 好有声音的。 我们成功。好。可以。",
+    "edits": [
+      {
+        "start": 3,
+        "end": 6,
+        "observed": "想回去",
+        "canonical": "腺病毒",
+        "sound": 0.85143,
+        "gain": 16.70309
+      },
+      {
+        "start": 16,
+        "end": 19,
+        "observed": "声音的",
+        "canonical": "神经节",
+        "sound": 0.88045,
+        "gain": 15.34248
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0074",
+    "variant": "noise",
+    "source": "我听，想回去。啊，有事，啊，OK，走，行了，向东，好，好，可以啊，好，可以。",
+    "output": "我听，腺病毒。啊，透视，啊，OK，走，心率，胸痛，好，好，可以啊，好，可以。",
+    "reference": "想回去。想回去。对 好有声音的。 我们成功。好。可以。",
+    "edits": [
+      {
+        "start": 9,
+        "end": 11,
+        "observed": "有事",
+        "canonical": "透视",
+        "sound": 0.88889,
+        "gain": 20.56131
+      },
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "向东",
+        "canonical": "胸痛",
+        "sound": 0.88148,
+        "gain": 18.82493
+      },
+      {
+        "start": 3,
+        "end": 6,
+        "observed": "想回去",
+        "canonical": "腺病毒",
+        "sound": 0.85143,
+        "gain": 16.70309
+      },
+      {
+        "start": 19,
+        "end": 21,
+        "observed": "行了",
+        "canonical": "心率",
+        "sound": 0.87556,
+        "gain": 9.09883
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0075",
+    "variant": "clean",
+    "source": "肠胃穿孔又称为肠道破裂，有可能会引发败血症，并带来一系列包含心跳过速。",
+    "output": "肠胃穿孔又称为肠道破裂，有可能会引发败血症，病毒基因系列包含心动过速。",
+    "reference": "肠胃穿孔又称为肠道破裂， 有可能会引发败血症， 并带来一系列包含心跳过速，",
+    "edits": [
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "并带来一",
+        "canonical": "病毒基因",
+        "sound": 0.85379,
+        "gain": 16.44669
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "observed": "心跳过速",
+        "canonical": "心动过速",
+        "sound": 0.88333,
+        "gain": 14.86461
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0075",
+    "variant": "noise",
+    "source": "肠胃穿孔又称为肠道破裂，有可能会引发败血症，并带来一系列包含心跳过速。",
+    "output": "肠胃穿孔又称为肠道破裂，有可能会引发败血症，病毒基因系列包含心动过速。",
+    "reference": "肠胃穿孔又称为肠道破裂， 有可能会引发败血症， 并带来一系列包含心跳过速，",
+    "edits": [
+      {
+        "start": 22,
+        "end": 26,
+        "observed": "并带来一",
+        "canonical": "病毒基因",
+        "sound": 0.85379,
+        "gain": 16.44669
+      },
+      {
+        "start": 30,
+        "end": 34,
+        "observed": "心跳过速",
+        "canonical": "心动过速",
+        "sound": 0.88333,
+        "gain": 14.86461
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0076",
+    "variant": "clean",
+    "source": "呼吸急促、发烧和意识不清等症状，这是为什么？唐医生必须立即为Staram进行手术。录在的台真的我听了。",
+    "output": "呼吸急促、发烧和意识不清等症状，这是为什么？唐医生殖细胞瘤为Staram进行手术。颅外的胎粪的我听了。",
+    "reference": "呼吸急促 发烧和意识不清等症状。 这是为什么汤医生必须立即 为Seetharam进行手术。",
+    "edits": [
+      {
+        "start": 41,
+        "end": 43,
+        "observed": "录在",
+        "canonical": "颅外",
+        "sound": 0.89333,
+        "gain": 24.53706
+      },
+      {
+        "start": 24,
+        "end": 29,
+        "observed": "生必须立即",
+        "canonical": "生殖细胞瘤",
+        "sound": 0.90128,
+        "gain": 14.50439
+      },
+      {
+        "start": 44,
+        "end": 46,
+        "observed": "台真",
+        "canonical": "胎粪",
+        "sound": 0.89444,
+        "gain": 11.51525
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0076",
+    "variant": "noise",
+    "source": "呼吸急促、发烧和意识不清等症状，这是为什么？唐医生必须立即为斯卡尔姆进行手术。looks like the tightening was here, lah.",
+    "output": "呼吸急促、发烧和意识不清等症状，这是为什么？唐医生殖细胞瘤胃食管尔姆进行手术。looks like the tightening was here, lah.",
+    "reference": "呼吸急促 发烧和意识不清等症状。 这是为什么汤医生必须立即 为Seetharam进行手术。",
+    "edits": [
+      {
+        "start": 24,
+        "end": 29,
+        "observed": "生必须立即",
+        "canonical": "生殖细胞瘤",
+        "sound": 0.90128,
+        "gain": 13.74701
+      },
+      {
+        "start": 29,
+        "end": 32,
+        "observed": "为斯卡",
+        "canonical": "胃食管",
+        "sound": 0.89143,
+        "gain": 13.65342
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0077",
+    "variant": "clean",
+    "source": "这位太太呢，体弱多病，所以时间长，她的风险也是跟着会提升，有机会心脏病啦、中风啊啊、细菌感染啦。",
+    "output": "这位太太呢，体弱多病，所以时间长，她的风险也是根治术提升，有机会心脏病啦、中枢感染、细菌感染啦。",
+    "reference": "这位太太呢体弱多病 所以时间长 她的风险也是跟着会提升 有机会心脏病啊 中风啊 细菌感染啊。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 41,
+        "observed": "中风啊啊",
+        "canonical": "中枢感染",
+        "sound": 0.86999,
+        "gain": 25.66841
+      },
+      {
+        "start": 23,
+        "end": 26,
+        "observed": "跟着会",
+        "canonical": "根治术",
+        "sound": 0.93056,
+        "gain": 9.13831
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0077",
+    "variant": "noise",
+    "source": "这位太太呢，体弱多病，所以时间长，她的风险也是跟着会提升，有机会心脏病啦、中风啊、啊细菌感染啦。",
+    "output": "这位太太呢，体弱多病，所以时间长，她的风险也是根治术提升，有机会心脏病啦、中耳炎、啊细菌感染啦。",
+    "reference": "这位太太呢体弱多病 所以时间长 她的风险也是跟着会提升 有机会心脏病啊 中风啊 细菌感染啊。",
+    "edits": [
+      {
+        "start": 37,
+        "end": 40,
+        "observed": "中风啊",
+        "canonical": "中耳炎",
+        "sound": 0.895,
+        "gain": 14.75436
+      },
+      {
+        "start": 23,
+        "end": 26,
+        "observed": "跟着会",
+        "canonical": "根治术",
+        "sound": 0.93056,
+        "gain": 9.13831
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0078",
+    "variant": "clean",
+    "source": "所以我们要赶紧把手术做完，因为有了可以避免大切口的微创手术，开放性的手术在现代。",
+    "output": "所以我们要赶紧把手术做完，因为有了可以避免大气道的微创手术，开放性的手术在现代。",
+    "reference": "所以我们要赶紧把手术做完。 因为有了可以避免大切口的微创手术 开放性的手术在现代医学界",
+    "edits": [
+      {
+        "start": 21,
+        "end": 24,
+        "observed": "大切口",
+        "canonical": "大气道",
+        "sound": 0.86786,
+        "gain": 11.55682
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0078",
+    "variant": "noise",
+    "source": "所以我们要赶紧把手术做完，因为有了可以避免大切口的微创手术，开放性的手术在现代。",
+    "output": "所以我们要赶紧把手术做完，因为有了可以避免大气道的微创手术，开放性的手术在现代。",
+    "reference": "所以我们要赶紧把手术做完。 因为有了可以避免大切口的微创手术 开放性的手术在现代医学界",
+    "edits": [
+      {
+        "start": 21,
+        "end": 24,
+        "observed": "大切口",
+        "canonical": "大气道",
+        "sound": 0.86786,
+        "gain": 11.55682
+      }
+    ],
+    "error_delta": 2
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0079",
+    "variant": "clean",
+    "source": "医学界已经渐渐式微，但对Staram的病况来说，开放性手术能给医生带来更好的视野，能更精准地将小肠切除。",
+    "output": "医学解痉剂渐监护仪，但对Staram的病毒抗原，开放性手术能给医生带来更好的视野，能更精准地将小肠切除。",
+    "reference": "已经渐渐式微。 但对Seetharam的病况来说 开放性手术能给医生带来更好的视野， 能更精准地将小肠切除。",
+    "edits": [
+      {
+        "start": 19,
+        "end": 23,
+        "observed": "病况来说",
+        "canonical": "病毒抗原",
+        "sound": 0.85828,
+        "gain": 17.12086
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "渐式微",
+        "canonical": "监护仪",
+        "sound": 0.87,
+        "gain": 14.8359
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "observed": "界已经",
+        "canonical": "解痉剂",
+        "sound": 0.88981,
+        "gain": 9.64846
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0079",
+    "variant": "noise",
+    "source": "医学界已经渐渐式微，但对斯达尔曼的病况来说，开放性手术能给医生带来更好的视野，能更精准地将小肠切除。",
+    "output": "医学解痉剂渐监护仪，但对斯达耳鸣的病毒抗原，开放性手术能给医生带来更好的视野，能更精准地将小肠切除。",
+    "reference": "已经渐渐式微。 但对Seetharam的病况来说 开放性手术能给医生带来更好的视野， 能更精准地将小肠切除。",
+    "edits": [
+      {
+        "start": 17,
+        "end": 21,
+        "observed": "病况来说",
+        "canonical": "病毒抗原",
+        "sound": 0.85828,
+        "gain": 15.32957
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "渐式微",
+        "canonical": "监护仪",
+        "sound": 0.87,
+        "gain": 14.8359
+      },
+      {
+        "start": 14,
+        "end": 16,
+        "observed": "尔曼",
+        "canonical": "耳鸣",
+        "sound": 0.87556,
+        "gain": 12.04711
+      },
+      {
+        "start": 2,
+        "end": 5,
+        "observed": "界已经",
+        "canonical": "解痉剂",
+        "sound": 0.88981,
+        "gain": 9.64846
+      }
+    ],
+    "error_delta": 8
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0080",
+    "variant": "clean",
+    "source": "首先呢，就是要找出小肠，因为小肠有 five to six meters，所以首先要找出它打结的地方，然后呢，要帮它松结起来。好，嘿嘿嘿嘿嘿。啊，所以，那 hole 是 here ， you can see ，啊。",
+    "output": "首先呢，就是要找出小肠，因为小肠有 five to six meters，所以首先要找出汗打结的地方，然后呢，腰背痛松结起来。好，嘿嘿嘿嘿嘿。啊，所以，那 hole 是 here ， you can see ，啊。",
+    "reference": "首先就是要找出小肠 因为小肠有5 to 6 centimeters。 所以首先要找出它打结的地方。 然后要帮它松解起来。",
+    "edits": [
+      {
+        "start": 55,
+        "end": 58,
+        "observed": "要帮它",
+        "canonical": "腰背痛",
+        "sound": 0.86698,
+        "gain": 17.65533
+      },
+      {
+        "start": 43,
+        "end": 45,
+        "observed": "出它",
+        "canonical": "出汗",
+        "sound": 0.87556,
+        "gain": 9.26938
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0080",
+    "variant": "noise",
+    "source": "首先呢，就是要找出小肠，因为小肠有 five to six meters，所以首先要找出它打结的地方，然后呢，要帮它松结起来。对呀，对呀，对呀，对呀，对呀。所以，的 hole is here. You can see, ah.",
+    "output": "首先呢，就是要找出小肠，因为小肠有 five to six meters，所以首先要找出汗打结的地方，然后呢，腰背痛松结起来。对呀，对呀，对呀，对呀，对呀。所以，的 hole is here. You can see, ah.",
+    "reference": "首先就是要找出小肠 因为小肠有5 to 6 centimeters。 所以首先要找出它打结的地方。 然后要帮它松解起来。",
+    "edits": [
+      {
+        "start": 55,
+        "end": 58,
+        "observed": "要帮它",
+        "canonical": "腰背痛",
+        "sound": 0.86698,
+        "gain": 17.65533
+      },
+      {
+        "start": 43,
+        "end": 45,
+        "observed": "出它",
+        "canonical": "出汗",
+        "sound": 0.87556,
+        "gain": 9.26938
+      }
+    ],
+    "error_delta": 4
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0081",
+    "variant": "clean",
+    "source": "而最末端的胆管是穿过胰头才连接到十二指肠的。因此，手术时。",
+    "output": "而最末端的胆管是传感器多肽链接到十二指肠的。因此，手术时。",
+    "reference": "而最末端的胆管是穿过胰头 才连接到十二指肠的。 因此手术时",
+    "edits": [
+      {
+        "start": 11,
+        "end": 14,
+        "observed": "头才连",
+        "canonical": "多肽链",
+        "sound": 0.8963,
+        "gain": 14.2429
+      },
+      {
+        "start": 8,
+        "end": 11,
+        "observed": "穿过胰",
+        "canonical": "传感器",
+        "sound": 0.88,
+        "gain": 9.70085
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0081",
+    "variant": "noise",
+    "source": "而最末端的胆管是穿过胰头，才连接到十二指肠的。因此，手术时。",
+    "output": "而最末端的胆管是传感器头，才连接到十二指肠的。因此，手术时。",
+    "reference": "而最末端的胆管是穿过胰头 才连接到十二指肠的。 因此手术时",
+    "edits": [
+      {
+        "start": 8,
+        "end": 11,
+        "observed": "穿过胰",
+        "canonical": "传感器",
+        "sound": 0.88,
+        "gain": 9.70085
+      }
+    ],
+    "error_delta": 3
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0082",
+    "variant": "clean",
+    "source": "也必须将总胆管和胆囊切除。没事。汤医生已经连续工作近五个小时。",
+    "output": "也必须将中肾管和胆囊切除。没事。汤医神经系统后遗症惊厥个小时。",
+    "reference": "也必须将总胆管和胆囊切除。 汤医生已经连续工作近五个小时，",
+    "edits": [
+      {
+        "start": 18,
+        "end": 25,
+        "observed": "生已经连续工作",
+        "canonical": "神经系统后遗症",
+        "sound": 0.85351,
+        "gain": 19.91231
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "observed": "近五",
+        "canonical": "惊厥",
+        "sound": 0.85333,
+        "gain": 10.68611
+      },
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "总胆管",
+        "canonical": "中肾管",
+        "sound": 0.85315,
+        "gain": 9.36061
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0082",
+    "variant": "noise",
+    "source": "也必须将总胆管和胆囊切除。我说。康医生已经连续工作近五个小时。",
+    "output": "也必须将中肾管和胆囊切除。我说。抗体神经系统后遗症惊厥个小时。",
+    "reference": "也必须将总胆管和胆囊切除。 汤医生已经连续工作近五个小时，",
+    "edits": [
+      {
+        "start": 18,
+        "end": 25,
+        "observed": "生已经连续工作",
+        "canonical": "神经系统后遗症",
+        "sound": 0.85351,
+        "gain": 22.06631
+      },
+      {
+        "start": 16,
+        "end": 18,
+        "observed": "康医",
+        "canonical": "抗体",
+        "sound": 0.93333,
+        "gain": 14.5944
+      },
+      {
+        "start": 25,
+        "end": 27,
+        "observed": "近五",
+        "canonical": "惊厥",
+        "sound": 0.85333,
+        "gain": 10.68611
+      },
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "总胆管",
+        "canonical": "中肾管",
+        "sound": 0.85315,
+        "gain": 9.36061
+      }
+    ],
+    "error_delta": 11
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0083",
+    "variant": "clean",
+    "source": "但他依然全神贯注地投入手术中。因为尼桑周边环绕着许多复杂的大。",
+    "output": "但他依然全肾脏异位投入手术中。因为黏膜皱襞环绕着许多复杂的大。",
+    "reference": "但他依然全神贯注地投入手术中。 因为胰脏周边 环绕着许多复杂的大血管。",
+    "edits": [
+      {
+        "start": 5,
+        "end": 9,
+        "observed": "神贯注地",
+        "canonical": "肾脏异位",
+        "sound": 0.8547,
+        "gain": 39.76486
+      },
+      {
+        "start": 17,
+        "end": 21,
+        "observed": "尼桑周边",
+        "canonical": "黏膜皱襞",
+        "sound": 0.8527,
+        "gain": 35.12366
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0083",
+    "variant": "noise",
+    "source": "但他依然全神贯注地投入手术中。因为尼桑周边环绕着许多复杂的大。",
+    "output": "但他依然全肾脏异位投入手术中。因为黏膜皱襞环绕着许多复杂的大。",
+    "reference": "但他依然全神贯注地投入手术中。 因为胰脏周边 环绕着许多复杂的大血管。",
+    "edits": [
+      {
+        "start": 5,
+        "end": 9,
+        "observed": "神贯注地",
+        "canonical": "肾脏异位",
+        "sound": 0.8547,
+        "gain": 39.76486
+      },
+      {
+        "start": 17,
+        "end": 21,
+        "observed": "尼桑周边",
+        "canonical": "黏膜皱襞",
+        "sound": 0.8527,
+        "gain": 35.12366
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0084",
+    "variant": "clean",
+    "source": "血管手术时，如果角度或距离拿捏不够精准，随时都可能发生大出血。",
+    "output": "血管手术时，如果角度或距离脑血管畸形准，随时都可能发生大出血。",
+    "reference": "手术时 如果角度或距离 拿捏不够精准 随时都可能发生大出血。",
+    "edits": [
+      {
+        "start": 13,
+        "end": 18,
+        "observed": "拿捏不够精",
+        "canonical": "脑血管畸形",
+        "sound": 0.85079,
+        "gain": 22.67059
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0084",
+    "variant": "noise",
+    "source": "血管手术时，如果角度或距离拿捏不够精准，随时都可能发生大出血。",
+    "output": "血管手术时，如果角度或距离脑血管畸形准，随时都可能发生大出血。",
+    "reference": "手术时 如果角度或距离 拿捏不够精准 随时都可能发生大出血。",
+    "edits": [
+      {
+        "start": 13,
+        "end": 18,
+        "observed": "拿捏不够精",
+        "canonical": "脑血管畸形",
+        "sound": 0.85079,
+        "gain": 22.67059
+      }
+    ],
+    "error_delta": 5
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0086",
+    "variant": "clean",
+    "source": "这是遗仗，人这是十二指肠。能啊，这个是病人的胆囊啊，所以癌症的地方大概是在这里。",
+    "output": "这是移植，妊娠是十二指肠。能啊，这个是病人的胆囊啊，所以癌症的地方大概是在这里。",
+    "reference": "这是胰脏 这是十二指肠 这个是病人的胆囊 所以癌症的地方大概是在这里",
+    "edits": [
+      {
+        "start": 2,
+        "end": 4,
+        "observed": "遗仗",
+        "canonical": "移植",
+        "sound": 0.87429,
+        "gain": 16.48328
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "人这",
+        "canonical": "妊娠",
+        "sound": 0.89444,
+        "gain": 11.57604
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0086",
+    "variant": "noise",
+    "source": "这是一丈，人这是十二指肠。人啊，这是病人的胆囊啊，所以癌症的地方大概是在这里。",
+    "output": "这是移植，妊娠是十二指肠。人啊，这是病人的胆囊啊，所以癌症的地方大概是在这里。",
+    "reference": "这是胰脏 这是十二指肠 这个是病人的胆囊 所以癌症的地方大概是在这里",
+    "edits": [
+      {
+        "start": 2,
+        "end": 4,
+        "observed": "一丈",
+        "canonical": "移植",
+        "sound": 0.87429,
+        "gain": 12.35132
+      },
+      {
+        "start": 5,
+        "end": 7,
+        "observed": "人这",
+        "canonical": "妊娠",
+        "sound": 0.89444,
+        "gain": 11.57604
+      }
+    ],
+    "error_delta": 1
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0089",
+    "variant": "clean",
+    "source": "这时，C.D.已经开始渐渐恢复精神。所以， by sitting up啊， you actually will feel better lah. This chair also better. 陈医生早前已吩咐医疗团队。",
+    "output": "这时，C.D.已经开始间接激发试验。所以， by sitting up啊， you actually will feel better lah. This chair also better. 陈医肾小球性血尿医疗团队。",
+    "reference": "这时 Siddique已经开始 渐渐恢复精神。 陈医生早前已吩咐医疗团队",
+    "edits": [
+      {
+        "start": 11,
+        "end": 17,
+        "observed": "渐渐恢复精神",
+        "canonical": "间接激发试验",
+        "sound": 0.85518,
+        "gain": 27.79522
+      },
+      {
+        "start": 99,
+        "end": 105,
+        "observed": "生早前已吩咐",
+        "canonical": "肾小球性血尿",
+        "sound": 0.86759,
+        "gain": 26.27058
+      }
+    ],
+    "error_delta": 6
+  },
+  {
+    "id": "MultiMed_Chinese_eval_0089",
+    "variant": "noise",
+    "source": "这时，C D已经开始渐渐恢复精神。都快七点啊嘛，有只有九百多啦，你笑什么？陈医生早前已吩咐医疗团队。",
+    "output": "这时，C D已经开始间接激发试验。都奎尼丁啊嘛，幼稚细胞百多啦，尿急什么？陈医肾小球性血尿医疗团队。",
+    "reference": "这时 Siddique已经开始 渐渐恢复精神。 陈医生早前已吩咐医疗团队",
+    "edits": [
+      {
+        "start": 24,
+        "end": 28,
+        "observed": "有只有九",
+        "canonical": "幼稚细胞",
+        "sound": 0.85379,
+        "gain": 36.63974
+      },
+      {
+        "start": 10,
+        "end": 16,
+        "observed": "渐渐恢复精神",
+        "canonical": "间接激发试验",
+        "sound": 0.85518,
+        "gain": 27.79522
+      },
+      {
+        "start": 39,
+        "end": 45,
+        "observed": "生早前已吩咐",
+        "canonical": "肾小球性血尿",
+        "sound": 0.86759,
+        "gain": 26.27058
+      },
+      {
+        "start": 18,
+        "end": 21,
+        "observed": "快七点",
+        "canonical": "奎尼丁",
+        "sound": 0.86074,
+        "gain": 19.20945
+      },
+      {
+        "start": 32,
+        "end": 34,
+        "observed": "你笑",
+        "canonical": "尿急",
+        "sound": 0.85778,
+        "gain": 15.03889
+      }
+    ],
+    "error_delta": 11
+  }
+]

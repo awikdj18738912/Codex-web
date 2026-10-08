@@ -1,0 +1,182 @@
+{
+  "_id": "6a55857066d1716949c1ac33",
+  "id": "YDMYy/MMedFD",
+  "author": "YDMYy",
+  "sha": "fa0df22392618f127ed4de21ac9dba19d6ee9977",
+  "lastModified": "2026-07-14T00:40:17.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "task_categories:automatic-speech-recognition",
+    "language:zh",
+    "license:apache-2.0",
+    "size_categories:1K<n<10K",
+    "format:parquet",
+    "modality:audio",
+    "modality:text",
+    "library:datasets",
+    "library:dask",
+    "library:polars",
+    "library:mlcroissant",
+    "arxiv:2509.19817",
+    "region:us",
+    "medical",
+    "healthcare"
+  ],
+  "description": "\n\t\n\t\t\n\t\n\t\n\t\tMMedFD: A Real-World Healthcare Benchmark for Multi-Turn Full-Duplex Automatic Speech Recognition\n\t\n\n\n\n\t\n\t\t\n\t\n\t\n\t\t⚠️Data Availability\n\t\n\nFull access requires internal approval and a research-only data use agreement. \n🚫 Non-Commercial Use\nThis dataset is provided for non-commercial research and education only. Commercial use is prohibited.Researchers who wish to request full access may contact us with a brief description of their affiliation, project goals, intended use, and data… See the full description on the dataset page: https://huggingface.co/datasets/YDMYy/MMedFD.",
+  "downloads": 78,
+  "likes": 0,
+  "cardData": {
+    "language": [
+      "zh"
+    ],
+    "license": "apache-2.0",
+    "task_categories": [
+      "automatic-speech-recognition"
+    ],
+    "viewer": true,
+    "dataset_info": [
+      {
+        "config_name": "User",
+        "features": [
+          {
+            "name": "audio",
+            "dtype": {
+              "audio": {
+                "sampling_rate": 16000
+              }
+            }
+          },
+          {
+            "name": "text",
+            "dtype": "string"
+          },
+          {
+            "name": "duration",
+            "dtype": "float64"
+          },
+          {
+            "name": "chat_id",
+            "dtype": "string"
+          }
+        ],
+        "splits": [
+          {
+            "name": "train",
+            "num_bytes": 889743413,
+            "num_examples": 1008
+          },
+          {
+            "name": "eval",
+            "num_bytes": 235780103,
+            "num_examples": 253
+          }
+        ]
+      },
+      {
+        "config_name": "Agent",
+        "features": [
+          {
+            "name": "audio",
+            "dtype": {
+              "audio": {
+                "sampling_rate": 16000
+              }
+            }
+          },
+          {
+            "name": "text",
+            "dtype": "string"
+          },
+          {
+            "name": "duration",
+            "dtype": "float64"
+          },
+          {
+            "name": "chat_id",
+            "dtype": "string"
+          }
+        ],
+        "splits": [
+          {
+            "name": "train",
+            "num_bytes": 3749359214,
+            "num_examples": 4552
+          },
+          {
+            "name": "eval",
+            "num_bytes": 930931836,
+            "num_examples": 1138
+          }
+        ]
+      }
+    ],
+    "configs": [
+      {
+        "config_name": "User",
+        "data_files": [
+          {
+            "split": "train",
+            "path": "User/train/*"
+          },
+          {
+            "split": "eval",
+            "path": "User/eval/*"
+          }
+        ]
+      },
+      {
+        "config_name": "Agent",
+        "data_files": [
+          {
+            "split": "train",
+            "path": "Agent/train/*"
+          },
+          {
+            "split": "eval",
+            "path": "Agent/eval/*"
+          }
+        ]
+      }
+    ],
+    "tags": [
+      "medical",
+      "healthcare"
+    ],
+    "size_categories": [
+      "1K<n<10K"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes"
+    },
+    {
+      "rfilename": "Agent/eval/0000.parquet"
+    },
+    {
+      "rfilename": "Agent/train/0000.parquet"
+    },
+    {
+      "rfilename": "Agent/train/0001.parquet"
+    },
+    {
+      "rfilename": "Agent/train/0002.parquet"
+    },
+    {
+      "rfilename": "Agent/train/0003.parquet"
+    },
+    {
+      "rfilename": "README.md"
+    },
+    {
+      "rfilename": "User/eval/0000.parquet"
+    },
+    {
+      "rfilename": "User/train/0000.parquet"
+    }
+  ],
+  "createdAt": "2026-07-14T00:40:16.000Z",
+  "usedStorage": 5288876708
+}

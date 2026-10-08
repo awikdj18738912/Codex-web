@@ -1,0 +1,27 @@
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 53/219 [00:00<00:00, 529.70it/s]Loading weights:  48%|████▊     | 106/219 [00:00<00:00, 528.12it/s]Loading weights:  76%|███████▌  | 166/219 [00:00<00:00, 541.09it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 546.47it/s]
+Loading AgenticASR Refiner...
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+MultiMed_Chinese_train_0616 clean baseline 发现你需要更长的时间才会失去到骨疏松症的程度。明白。好，最后一个迷失啊，请听清楚哦身材变矮呢，就是可能患上骨质疏松症。
+MultiMed_Chinese_train_0616 clean proposed 发现你需要更长的时间才会失去到骨疏松症的程度。明白。好，最后一个迷失啊，请听清楚哦身材变矮呢，就是可能患上骨质疏松症。
+MultiMed_Chinese_train_0616 noise baseline 发现你，你需要更长的时间才会失去到，比如失聪症的程度，明白？好，最后一个迷失啊。请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。
+MultiMed_Chinese_train_0616 noise proposed 发现你，你需要更长的时间才会失去到，比如失聪症的程度，明白？好，最后一个迷失啊。请听清楚哦，身材变矮呢，就是可能患上骨质疏松症。
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 15048.49it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+MultiMed_Chinese_train_0576 clean baseline 太太，因为听说就是女生会比较容易患上这个骨质疏松症，所以都会很勤劳的叫他们补钙了。对，趁年轻要多。
+MultiMed_Chinese_train_0576 clean proposed 太太，因为听说就是女生会比较容易患上这个骨质疏松症，所以都会很勤劳的叫他们补钙了。对，趁年轻要多。
+MultiMed_Chinese_train_0576 noise baseline 听说，就是女生会比较容易患上这个骨质增生，所以都会很勤劳的叫他们补钙。对，趁年轻要多。
+MultiMed_Chinese_train_0576 noise proposed 听说，就是女生会比较容易患上这个骨质增生，所以都会很勤劳的叫他们补钙。对，趁年轻要多。
+MultiMed_Chinese_train_0579 clean baseline 帮他们开刀过后，人发现他们其实有骨疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。
+MultiMed_Chinese_train_0579 clean proposed 帮他们开刀过后，人发现他们其实有骨质疏松症，所以很多患者可能自己都不知道有这个。对呀，是哎，可是为什么查觉不到啊？对。
+MultiMed_Chinese_train_0579 noise baseline 帮他们开刀过后，人发现他们其实有骨质疏松，所以很多患者可能自己都不知道有这个。对呀，哎，可是为什么差别不大？
+MultiMed_Chinese_train_0579 noise proposed 帮他们开刀过后，人发现他们其实有骨质疏松，所以很多患者可能自己都不知道有这个。对呀，哎，可是为什么差别不大？

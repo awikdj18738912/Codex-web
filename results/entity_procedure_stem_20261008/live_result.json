@@ -1,0 +1,191 @@
+{
+  "event": "final",
+  "raw_text": "麻醉后，医生马上为他展开预计长达七个小时的手术。以十二指肠切除术。",
+  "clean_text": "麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。",
+  "asr_language": "Chinese",
+  "asr_confidence": 0.9852569465049247,
+  "asr_confidence_metadata": {
+    "calibrated": false,
+    "covers_full_text": false,
+    "scope": "current_state",
+    "source": "qwen_vllm_token_logprob",
+    "token_count": 8,
+    "min_probability": 0.923323983229887
+  },
+  "refiner_latency_ms": 0,
+  "numeric_rule_latency_ms": 3.158,
+  "refiner_executed": false,
+  "refiner_accepted": true,
+  "refiner_reject_reasons": [],
+  "placeholder_retry_count": 0,
+  "refiner_retry_count": 0,
+  "refiner_retry_reasons": [],
+  "refiner_masked_outputs": [],
+  "structured_patch_audits": [],
+  "boundary_anomalies": [],
+  "boundary_reviews": [],
+  "refinement_gate_mode": "tri_state",
+  "refinement_gate_config": {
+    "mode": "tri_state",
+    "high_confidence": 0.92,
+    "refine_on_unverified_confidence": false
+  },
+  "refinement_gate_decisions": [
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 30,
+      "asr_confidence": 0.9852569465049247,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    }
+  ],
+  "refinement_gate_skipped_segments": 1,
+  "entity_audit_issues": [],
+  "entity_refinement_hints": [],
+  "entity_normalizations": [
+    {
+      "observed": "以十二指肠",
+      "canonical": "胰十二指肠",
+      "entity_type": "TERM",
+      "entity_id": 13,
+      "match_type": "CONTEXT_PINYIN",
+      "match_score": 0.9299999999999999
+    }
+  ],
+  "numeric_normalizations": [
+    {
+      "original": "七个小时",
+      "replacement": "7个小时",
+      "kind": "zh.number.complete_numeric_object",
+      "start": 16,
+      "end": 20,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    }
+  ],
+  "numeric_rule_repairs": [],
+  "numeric_fallbacks": [],
+  "safe_numeric_repairs": [],
+  "safe_repetition_repairs": [],
+  "local_deletion_reviews": [],
+  "repetition_reviews": [],
+  "boundary_echo_repairs": [],
+  "protected_entities": [
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "以十二指肠",
+      "replacement": "胰十二指肠",
+      "entity_type": "TERM",
+      "source": "fuzzy:medical",
+      "entity_id": 13,
+      "match_type": "CONTEXT_PINYIN",
+      "match_score": 0.9299999999999999,
+      "decision": "AUTO_NORMALIZE"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "胰十二指肠",
+      "replacement": "胰十二指肠",
+      "entity_type": "TERM",
+      "source": "database:medical",
+      "entity_id": 13,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1.0,
+      "decision": "EXACT"
+    }
+  ],
+  "entity_candidates": [
+    {
+      "start": 24,
+      "end": 29,
+      "observed": "以十二指肠",
+      "entity_id": 13,
+      "canonical": "胰十二指肠",
+      "entity_type": "TERM",
+      "domain": "medical",
+      "matched_surface": "胰十二指肠",
+      "match_type": "CONTEXT_PINYIN",
+      "char_score": 0.8,
+      "pinyin_score": 1.0,
+      "length_score": 1.0,
+      "domain_score": 1.0,
+      "priority_score": 0.0,
+      "final_score": 0.93,
+      "runner_up_score": null,
+      "margin": 1.0,
+      "decision": "AUTO_NORMALIZE",
+      "reasons": [
+        "registered_pronunciation_context",
+        "context:medical_procedure_stem_role"
+      ]
+    }
+  ],
+  "entity_matcher_latency_ms": 5.065,
+  "entity_fuzzy_mode": "auto",
+  "entity_matching_config_version": 2,
+  "rule_protection_enabled": true,
+  "numeric_normalization_enabled": true,
+  "numeric_backend": "zh-itn",
+  "zh_itn_enabled": true,
+  "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+  "window_size": 3,
+  "window_max_chars": 80,
+  "committed_chunks": 3,
+  "pending_refinement_chunks": 0,
+  "refinement_batch_size": 3,
+  "refinement_state": "window_refined",
+  "refinement_source_spans": [
+    {
+      "source_text": "麻醉后，医生马上为他展开预计长达七个小时的手术。以十二指肠切除术。",
+      "clean_text": "麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。",
+      "state": "committed"
+    }
+  ],
+  "window_cache_reused_group_count": 1,
+  "window_cache_reused_gate_skip_group_count": 1,
+  "window_cache_reprocessed_group_count": 0,
+  "window_cache_reprocess_reasons": {},
+  "window_cache_partition": "vad_segments",
+  "final_vad_source_segment_count": 2,
+  "repetition_review_model_calls": 0,
+  "repetition_response_cache_hits": 0,
+  "refinement_revision": 2,
+  "final_refinement_mode": "off",
+  "entity_asr_context_requested": false,
+  "entity_asr_context_applied": false,
+  "entity_asr_context_term_count": 0,
+  "refiner_session_stats": {
+    "schema_version": 1,
+    "call_count": 0,
+    "initial_call_count": 0,
+    "retry_call_count": 0,
+    "intermediate_call_count": 0,
+    "final_call_count": 0,
+    "completed_call_count": 0,
+    "failed_call_count": 0,
+    "inflight_call_count": 0,
+    "completed_wall_latency_ms": 0.0,
+    "gate_skipped_segment_count": 2,
+    "busy_segment_count": 0,
+    "closed_call_rejection_count": 0,
+    "observed_initial_opportunity_count": 2,
+    "accepting_new_calls": false,
+    "stats_complete": true
+  },
+  "session_refiner_call_count": 0,
+  "session_refiner_initial_call_count": 0,
+  "session_refiner_retry_call_count": 0,
+  "session_refiner_intermediate_call_count": 0,
+  "session_refiner_final_call_count": 0,
+  "session_gate_skipped_segment_count": 2
+}

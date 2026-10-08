@@ -1,0 +1,51 @@
+...................F....                                                 [100%]
+=================================== FAILURES ===================================
+_ test_no_renaming_people_titles_identifiers_or_other_sounds[\u8fd9\u53f0\u57c3\u514b\u83ab\u662f\u4e0d\u53ef\u80fd\u7684\u4eba\u540d\u3002] _
+
+text = '这台埃克莫是不可能的人名。'
+
+    @pytest.mark.parametrize('text',[
+        '医生埃克莫建议继续治疗。','请埃克莫医生过来。',
+        '这台埃克莫医生推荐的仪器很好。','患者埃克莫说很难受。',
+        '接受埃克莫作为礼物。','进行埃克莫的签名核对。',
+        '做埃克莫的作者访谈。','使用《埃克莫》这本小说。',
+        '使用@埃克莫_2026。','使用/埃克莫/file。',
+        '使用埃克莫这个词的写法。','谈到了埃克莫。',
+        '这台艾克曼支持生命。','这台埃克蒙支持生命。',
+        '这台埃克，莫支持生命。','这台埃克莫是不可能的人名。',
+    ])
+    def test_no_renaming_people_titles_identifiers_or_other_sounds(text):
+>       assert prepare(text).baseline_text==text
+E       AssertionError: assert '这台ECMO是不可能的人名。' == '这台埃克莫是不可能的人名。'
+E         - 这台埃克莫是不可能的人名。
+E         + 这台ECMO是不可能的人名。
+
+tests/test_entity_alias_pronunciation.py:46: AssertionError
+=============================== warnings summary ===============================
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+  /home/aim0/anaconda3/lib/python3.12/site-packages/jieba/_compat.py:18: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('google')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_alias_pronunciation.py::test_complete_alias_sound_in_a_medical_object_slot[\u8fd9\u53f0\u57c3\u514b\u83ab\u652f\u6301\u751f\u547d\u3002-\u8fd9\u53f0ECMO\u652f\u6301\u751f\u547d\u3002]
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('zope')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_entity_alias_pronunciation.py::test_no_renaming_people_titles_identifiers_or_other_sounds[\u8fd9\u53f0\u57c3\u514b\u83ab\u662f\u4e0d\u53ef\u80fd\u7684\u4eba\u540d\u3002]
+1 failed, 23 passed, 8 warnings in 1.24s

@@ -1,0 +1,250 @@
+diff --git a/scripts/build_zh_itn_bridge.sh b/scripts/build_zh_itn_bridge.sh
+index 8ffde94..aefca5e 100644
+--- a/scripts/build_zh_itn_bridge.sh
++++ b/scripts/build_zh_itn_bridge.sh
+@@ -7,10 +7,14 @@ ITN_ROOT="${PROJECT_ROOT}/zh-itn/zh-itn"
+ BUILD_DIR="${ITN_ROOT}/build"
+ 
+ mkdir -p "${BUILD_DIR}"
++ITN_BUILD_TEMP="$(mktemp "${BUILD_DIR}/libzh_itn_bridge.XXXXXX.so")"
++trap 'rm -f -- "${ITN_BUILD_TEMP}"' EXIT
+ "${CXX:-g++}" -std=c++17 -O2 -fPIC -shared \
+   -I"${ITN_ROOT}/include" \
+   "${ITN_ROOT}/src/itn_safe.cc" \
+   "${ITN_ROOT}/src/itn_zh_conservative_v2.cc" \
+   "${ITN_ROOT}/src/zh_itn_bridge.cc" \
+-  -o "${BUILD_DIR}/libzh_itn_bridge.so"
++  -o "${ITN_BUILD_TEMP}"
++chmod 644 "${ITN_BUILD_TEMP}"
++mv -- "${ITN_BUILD_TEMP}" "${BUILD_DIR}/libzh_itn_bridge.so"
+ printf '%s\n' "${BUILD_DIR}/libzh_itn_bridge.so"
+diff --git a/system/qwen_asr_stream_server.py b/system/qwen_asr_stream_server.py
+index 01a15dd..025226c 100644
+--- a/system/qwen_asr_stream_server.py
++++ b/system/qwen_asr_stream_server.py
+@@ -8,6 +8,7 @@ import threading
+ import time
+ import uuid
+ from dataclasses import dataclass, field
++from math import isfinite
+ from pathlib import Path
+ 
+ import numpy as np
+@@ -490,7 +491,13 @@ def main(argv: list[str] | None = None) -> int:
+                 unfixed_chunk_num=unfixed_chunk_num,
+                 unfixed_token_num=unfixed_token_num,
+             )
+-        return jsonify(session_id=session_id)
++        return jsonify(
++            session_id=session_id,
++            chunk_seconds=(
++                args.chunk_size_seconds
++                if chunk_size_seconds is None else chunk_size_seconds
++            ),
++        )
+ 
+     def full_text(session: Session) -> str:
+         return _join_transcripts(
+@@ -584,7 +591,16 @@ def main(argv: list[str] | None = None) -> int:
+     @app.post("/stream/start")
+     def start():
+         language = request.args.get("language") or None
+-        return start_session(language)
++        value = request.args.get("chunk_seconds")
++        if value is None:
++            return start_session(language)
++        try:
++            chunk_seconds = float(value)
++        except (TypeError, ValueError):
++            return jsonify(error="chunk_seconds must be a positive finite number"), 400
++        if not isfinite(chunk_seconds) or chunk_seconds <= 0:
++            return jsonify(error="chunk_seconds must be a positive finite number"), 400
++        return start_session(language, chunk_size_seconds=chunk_seconds)
+ 
+     @app.post("/v1/stream/start")
+     def legacy_start():
+diff --git a/system/web/index.html b/system/web/index.html
+index ee7248f..6a1d37f 100644
+--- a/system/web/index.html
++++ b/system/web/index.html
+@@ -654,14 +654,15 @@
+       return output;
+     }
+ 
+-    function websocketUrl() {
++    function websocketUrl(asrChunkSeconds) {
+       const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
+-      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value);
++      const decodeInterval = asrChunkSeconds === undefined ? '' : '&asr_chunk_seconds=' + encodeURIComponent(asrChunkSeconds);
++      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + decodeInterval;
+     }
+ 
+-    function connectSocket() {
++    function connectSocket(asrChunkSeconds) {
+       return new Promise((resolve, reject) => {
+-        socket = new WebSocket(websocketUrl());
++        socket = new WebSocket(websocketUrl(asrChunkSeconds));
+         const currentSocket = socket;
+         socket.binaryType = 'arraybuffer';
+         const timeout = setTimeout(() => reject(new Error('连接超时')), 10000);
+@@ -831,7 +832,9 @@
+         modeSelect.disabled = true; transcriptionDomain.disabled = true;
+         setButton(false, true); setStatus(`正在读取文件：${file.name}`);
+         const samples = await decodeAudioFile(file);
+-        await connectSocket();
++        // File uploads decode every two audio seconds; transport stays at one
++        // second per block. Microphone sessions retain the server default.
++        await connectSocket(2);
+         raw.textContent = ''; clean.textContent = ''; latestRefinedText = ''; lastAppliedRefinementRevision = 0; resetRefinerStatus(); resetRefinementHistory();
+         running = true; startedAt = Date.now(); ticker = setInterval(updateTimer, 250); updateTimer();
+         setButton(false, true);
+diff --git a/system/web_app.py b/system/web_app.py
+index cf440f9..211889b 100644
+--- a/system/web_app.py
++++ b/system/web_app.py
+@@ -16,6 +16,7 @@ import urllib.parse
+ import urllib.request
+ from datetime import datetime, timezone
+ from enum import Enum
++from math import isfinite
+ from pathlib import Path
+ 
+ from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+@@ -1739,6 +1740,13 @@ def create_app(
+                 if trace_segments is not None else None
+             )
+             if trace_segment is not None:
++                if zh_result is not None:
++                    trace_segment["numeric_rule"] = {
++                        "rule_pack": zh_itn.rule_pack,
++                        "decision_reason": getattr(zh_result, "decision_reason", ""),
++                        "candidate_count": getattr(zh_result, "candidate_count", 0),
++                        "changes": [change.public_dict() for change in zh_result.changes],
++                    }
+                 trace_segments.append(trace_segment)
+             if zh_result is not None:
+                 numeric_normalizations.extend(
+@@ -2511,6 +2519,20 @@ def create_app(
+         requested_language = websocket.query_params.get("language") or language
+         requested_mode = (websocket.query_params.get("mode") or "online").lower()
+         requested_domain = (websocket.query_params.get("domain") or "general").strip() or "general"
++        requested_chunk_seconds = websocket.query_params.get("asr_chunk_seconds")
++        if requested_chunk_seconds is not None:
++            try:
++                chunk_seconds = float(requested_chunk_seconds)
++                valid_chunk_seconds = isfinite(chunk_seconds) and chunk_seconds > 0
++            except (TypeError, ValueError):
++                valid_chunk_seconds = False
++            if not valid_chunk_seconds:
++                await send_json({
++                    "event": "error",
++                    "detail": "asr_chunk_seconds must be a positive finite number",
++                })
++                await websocket.close()
++                return
+         if requested_mode not in {"online", "offline", "streaming"}:
+             await send_json(
+                 {"event": "error", "detail": "mode must be online, offline, or streaming"}
+@@ -3342,12 +3364,24 @@ def create_app(
+                     )
+ 
+         try:
++            start_params = (
++                {"language": requested_language} if requested_language else {}
++            )
++            if requested_chunk_seconds is not None:
++                start_params["chunk_seconds"] = requested_chunk_seconds
+             start = await request_asr(
+                 "/stream/start",
+-                params={"language": requested_language} if requested_language else None,
++                params=start_params or None,
+             )
+             session_id = str(start["session_id"])
+-            await send_json({"event": "ready"})
++            record_trace(
++                "asr_session_started", mode=requested_mode,
++                asr_chunk_seconds=start.get("chunk_seconds"),
++            )
++            await send_json({
++                "event": "ready", "trace_id": trace_id,
++                "asr_chunk_seconds": start.get("chunk_seconds"),
++            })
+             while True:
+                 message = await websocket.receive()
+                 if message.get("type") == "websocket.disconnect":
+@@ -3953,7 +3987,10 @@ def main(argv: list[str] | None = None) -> int:
+         args.final_refinement_mode,
+         args.zh_itn_library.resolve() if args.enable_zh_itn else None,
+     )
+-    uvicorn.run(app, host=args.host, port=args.port, log_level="info")
++    # Float32 audio gains little from deflate, while compressing each PCM
++    # frame adds CPU work to the file-streaming critical path.
++    uvicorn.run(app, host=args.host, port=args.port, log_level="info",
++                ws_per_message_deflate=False)
+     return 0
+ 
+ 
+diff --git a/system/zh_itn_bridge.py b/system/zh_itn_bridge.py
+index 2b80bc5..0a14473 100644
+--- a/system/zh_itn_bridge.py
++++ b/system/zh_itn_bridge.py
+@@ -3,6 +3,7 @@
+ from __future__ import annotations
+ 
+ import ctypes
++from dataclasses import dataclass
+ from pathlib import Path
+ 
+ from .numeric_normalizer import NumericNormalization, NumericNormalizationResult
+@@ -14,6 +15,13 @@ DEFAULT_LIBRARY = (
+ )
+ 
+ 
++@dataclass(frozen=True, slots=True)
++class ZhITNNormalizationResult(NumericNormalizationResult):
++    rule_pack: str = ""
++    decision_reason: str = ""
++    candidate_count: int = 0
++
++
+ class ZhITNNormalizer:
+     """Normalize one source window once and preserve the rule's source spans."""
+ 
+@@ -30,6 +38,12 @@ class ZhITNNormalizer:
+         native.zh_itn_result_output.restype = ctypes.c_char_p
+         native.zh_itn_result_error.restype = ctypes.c_char_p
+         native.zh_itn_result_mapping_count.restype = ctypes.c_size_t
++        self._has_diagnostics = hasattr(native, "zh_itn_result_decision_reason")
++        if self._has_diagnostics:
++            native.zh_itn_result_decision_reason.argtypes = [ctypes.c_void_p]
++            native.zh_itn_result_decision_reason.restype = ctypes.c_char_p
++            native.zh_itn_result_candidate_count.argtypes = [ctypes.c_void_p]
++            native.zh_itn_result_candidate_count.restype = ctypes.c_size_t
+         for name in ("zh_itn_mapping_kind", "zh_itn_mapping_rule_id",
+                      "zh_itn_mapping_input_start", "zh_itn_mapping_input_end",
+                      "zh_itn_mapping_output_start", "zh_itn_mapping_output_end"):
+@@ -44,9 +58,9 @@ class ZhITNNormalizer:
+         self._native = native
+         self.rule_pack = native.zh_itn_rule_pack().decode("utf-8")
+ 
+-    def normalize(self, text: str) -> NumericNormalizationResult:
++    def normalize(self, text: str) -> ZhITNNormalizationResult:
+         if not text:
+-            return NumericNormalizationResult(text, ())
++            return ZhITNNormalizationResult(text, (), self.rule_pack, "empty_input", 0)
+         native = self._native
+         handle = native.zh_itn_normalize_text(text.encode("utf-8"))
+         if not handle:
+@@ -70,6 +84,11 @@ class ZhITNNormalizer:
+                     rule_id.decode("utf-8") if rule_id else "zh-itn",
+                     start, end,
+                 ))
+-            return NumericNormalizationResult(output, tuple(changes))
++            decision = (
++                native.zh_itn_result_decision_reason(handle).decode("utf-8")
++                if self._has_diagnostics else ""
++            )
++            count = native.zh_itn_result_candidate_count(handle) if self._has_diagnostics else 0
++            return ZhITNNormalizationResult(output, tuple(changes), self.rule_pack, decision, count)
+         finally:
+             native.zh_itn_result_free(handle)

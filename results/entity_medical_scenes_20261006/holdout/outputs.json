@@ -1,0 +1,1113 @@
+[
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "plain_entity": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "context_entity": "简称Tevi。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "scene_prompt": "简称 TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "bounded_copy": "简称TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "restricted_copy": "简称TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。"
+    },
+    "bounded_patches": [
+      {
+        "start": 2,
+        "end": 6,
+        "observed": "Tevi",
+        "canonical": "TAVI",
+        "entity_id": 16
+      }
+    ],
+    "restricted_patches": [
+      {
+        "start": 2,
+        "end": 6,
+        "observed": "Tevi",
+        "canonical": "TAVI",
+        "entity_id": 16
+      }
+    ]
+  },
+  {
+    "id": "MultiMed_Chinese_train_0030",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "plain_entity": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "context_entity": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "scene_prompt": "简称 TAVI。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "bounded_copy": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。",
+      "restricted_copy": "简称 Tady。他不想劳烦家人，因此拒绝他们陪他前来。手术预计一个小时内能够完成。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0040",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。",
+      "plain_entity": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。",
+      "context_entity": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。",
+      "scene_prompt": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。",
+      "bounded_copy": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。",
+      "restricted_copy": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括中。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0040",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。",
+      "plain_entity": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。",
+      "context_entity": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。",
+      "scene_prompt": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。",
+      "bounded_copy": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。",
+      "restricted_copy": "将一个带有支架的瓣膜，透过导管植入到主动脉瓣膜的位置。这个手术是有它的风险的，包括后。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0016",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。",
+      "plain_entity": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。",
+      "context_entity": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。",
+      "scene_prompt": "的风险，它的几率差不多三到四八千，但不做TAVI，心门继续。",
+      "bounded_copy": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。",
+      "restricted_copy": "的风险，它的几率差不多三到四八千，但不做heavy，新门继续。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0016",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。",
+      "plain_entity": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。",
+      "context_entity": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。",
+      "scene_prompt": "的工作，它的几率差不多三到四八千，但不做 heavy，只能继续。",
+      "bounded_copy": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。",
+      "restricted_copy": "的工作，它的几率差不多三到四八千，但不做heavy，只能继续。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "plain_entity": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "context_entity": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "scene_prompt": "在 TAVI 研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "bounded_copy": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "restricted_copy": "在Tavi研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0037",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "plain_entity": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "context_entity": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "scene_prompt": "在 TAVI 研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "bounded_copy": "在TAVI研发之前，病患只能接受开胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。",
+      "restricted_copy": "在凯迪研发之前，病患只能接受拍胸换瓣手术，过程中患者需要经历全身麻醉，切开胸骨，心脏停跳。"
+    },
+    "bounded_patches": [
+      {
+        "start": 14,
+        "end": 20,
+        "observed": "拍胸换瓣手术",
+        "canonical": "开胸换瓣手术",
+        "entity_id": 4
+      },
+      {
+        "start": 1,
+        "end": 3,
+        "observed": "凯迪",
+        "canonical": "TAVI",
+        "entity_id": 16
+      }
+    ],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0014",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。",
+      "plain_entity": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。",
+      "context_entity": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。",
+      "scene_prompt": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会当。",
+      "bounded_copy": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。",
+      "restricted_copy": "边，血就会容易从心脏出到全身。这个架子里有一个生物的心瓣叶，这心瓣叶就会。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0014",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。",
+      "plain_entity": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。",
+      "context_entity": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。",
+      "scene_prompt": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。",
+      "bounded_copy": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。",
+      "restricted_copy": "血就会容易从心脏输到全身。这驾驶里有一个生物的心瓣叶，这心瓣叶就会。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0035",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。",
+      "plain_entity": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。",
+      "context_entity": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。",
+      "scene_prompt": "你今天早上有吃药吗？有。我们做TAVI首选是从腿部的主动。",
+      "bounded_copy": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。",
+      "restricted_copy": "你今天早上有吃药吗？有。我们做台医首选是从腿部的主动。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0035",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。",
+      "plain_entity": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。",
+      "context_entity": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。",
+      "scene_prompt": "你今天早上有吃药吗？没有。我们做台机首选是从腿部的主动。",
+      "bounded_copy": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。",
+      "restricted_copy": "你今天早上有吃药吗？没有。我们做台肌首选是从腿部的主动。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0010",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "plain_entity": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "context_entity": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "scene_prompt": "病发病率也在不断的增长，主动脉瓣关闭不全以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "bounded_copy": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "restricted_copy": "病发病率也在不断的增长，主动脉瓣关闭不全，以及像郑有进一样患上主动脉瓣狭窄，是较为常见的两种病种。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0010",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "plain_entity": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "context_entity": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "scene_prompt": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "bounded_copy": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。",
+      "restricted_copy": "病发病率也在不断的增长，主动脉瓣关闭不全以及像正有病一样患上主动脉瓣狭窄，是较为常见的两种病种。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0015",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。",
+      "plain_entity": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。",
+      "context_entity": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。",
+      "scene_prompt": "代替旧狭窄心瓣叶的那个功能。TAVI的风险呢，有包括第一死亡。",
+      "bounded_copy": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。",
+      "restricted_copy": "代替旧狭窄心瓣叶的那个功能。海外的风险呢，有包括第一，死亡。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0015",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。",
+      "plain_entity": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。",
+      "context_entity": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。",
+      "scene_prompt": "肺主狭窄心瓣叶的一个功能。开胸风险呢，有包括第一死亡。",
+      "bounded_copy": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。",
+      "restricted_copy": "太狹窄，侵犯叶的一个功能。台币风险呢，有包括第一，死亡。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0017",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。",
+      "plain_entity": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。",
+      "context_entity": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。",
+      "scene_prompt": "狭窄，死亡的风险一年有差不多五十八千。那时，我母亲还在跟我住在。",
+      "bounded_copy": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。",
+      "restricted_copy": "狭窄，死亡的风险一年有差不多五十八千。那时，王母亲还在跟我住在。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0017",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。",
+      "plain_entity": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。",
+      "context_entity": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。",
+      "scene_prompt": "狭窄，死亡的风险一年有差不多五十八千。那时我们是在做这个。",
+      "bounded_copy": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。",
+      "restricted_copy": "狭窄，死亡的风险一年有差不多五十八千。那时，我们是在在乎这些。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0034",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+      "plain_entity": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+      "context_entity": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+      "scene_prompt": "血管来植入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+      "bounded_copy": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。",
+      "restricted_copy": "血管来接入这个新的心瓣。最后几点吃的饭呢？昨晚大概五六点。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0034",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。",
+      "plain_entity": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。",
+      "context_entity": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。",
+      "scene_prompt": "来接入这个新技术。最后几点吃的饭呢？昨晚大概五六点。",
+      "bounded_copy": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。",
+      "restricted_copy": "来接入这个新的系统。最后几点吃的饭呢？昨晚大概五六点。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0044",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。",
+      "plain_entity": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。",
+      "context_entity": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。",
+      "scene_prompt": "可能额外的需要放一个起搏器。Valve is ready。我们通常做这个手术之间会让他们进行不同的扫描，来制。",
+      "bounded_copy": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。",
+      "restricted_copy": "可能额外的需要放一个起搏器。我好准备。我们通常做这个手续之间，会让他们进行不同的扫描，来制。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0044",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+      "plain_entity": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+      "context_entity": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+      "scene_prompt": "可能额外需要放一个起搏器。Valve team，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+      "bounded_copy": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。",
+      "restricted_copy": "可能额外需要换一个起火机。搞培训，我们通常做这个手续之间会让他们进行不同的扫描，来就。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0036",
+    "variant": "clean",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。",
+      "plain_entity": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。",
+      "context_entity": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。",
+      "scene_prompt": "动脉接入这个新的心瓣，因为它的侵入度呢，没有比开胸啊或者从颈项的血管或手臂的血管来的这样侵入。",
+      "bounded_copy": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。",
+      "restricted_copy": "脉接入这个新的心瓣，因为它的侵略度呢，没有比开胸啊，或者从颈项的血管或手臂的血管来的这样侵入。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0036",
+    "variant": "noise",
+    "scene": "cardiopulmonary",
+    "results": {
+      "raw": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。",
+      "plain_entity": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。",
+      "context_entity": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。",
+      "scene_prompt": "接入这个新的心瓣，因为它的亲越度呢，没有开胸啊，或者从颈上的血管或手臂的血管来个像亲入。",
+      "bounded_copy": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。",
+      "restricted_copy": "接入这个新的芯片，因为它的侵略度呢，没有开胸啊，或者从颈项的血管或手臂的血管来的这样侵略。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0671",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。",
+      "plain_entity": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。",
+      "context_entity": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。",
+      "scene_prompt": "也是因为骨质疏松引起的了哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、弯倾倒的这样走路。",
+      "bounded_copy": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。",
+      "restricted_copy": "也是因为骨质疏松引起的啦，哦，严重的脊脊柱侧弯，他会整个人，比如说弯不起腰、半倾倒的这样走路。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0671",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。",
+      "plain_entity": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。",
+      "context_entity": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。",
+      "scene_prompt": "也是因为骨质疏松引起的哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样一种。",
+      "bounded_copy": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。",
+      "restricted_copy": "也是因为体质其中引起的，哦，严重的脊脊柱侧弯，它会整个人，比如说弯不起腰、弯不倒的这样子走路。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0089",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。",
+      "plain_entity": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。",
+      "context_entity": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。",
+      "scene_prompt": "患有颈椎病的Royston今早来到医院动手术。One two three up.因为开刀部位非常尖。",
+      "bounded_copy": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。",
+      "restricted_copy": "患有颈椎病的Royston今早来到医院动手术。One, two, three, up.因为开刀部位非常尖。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0089",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。",
+      "plain_entity": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。",
+      "context_entity": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。",
+      "scene_prompt": "患有颈椎病的 Royce Dan 今早来到医院动手术。 One two three.因为开刀部位非常近。",
+      "bounded_copy": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。",
+      "restricted_copy": "患有颈椎病的罗斯丹，今早来到医院动手术。因为开刀部位非常尖。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0086",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "plain_entity": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "context_entity": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "scene_prompt": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "bounded_copy": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "restricted_copy": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0086",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "plain_entity": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "context_entity": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "scene_prompt": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "bounded_copy": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。",
+      "restricted_copy": "最重要的一条韧带之一，它位于膝盖的内部，在这边，它的功能是防止这个膝盖在前后的移动。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0112",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。",
+      "plain_entity": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。",
+      "context_entity": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。",
+      "scene_prompt": "在另一间手术室里，夏辉颖医生正小心翼翼地切除颈椎间盘，因为他越来越。",
+      "bounded_copy": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。",
+      "restricted_copy": "在另一间手术室里，夏慧颖医生正小心翼翼地切除颈椎间盘，因为她越来越。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0112",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。",
+      "plain_entity": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。",
+      "context_entity": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。",
+      "scene_prompt": "在另一间手术室里，贾和勇医生正小心翼翼地切除颈椎间盘，因为它越来越。",
+      "bounded_copy": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。",
+      "restricted_copy": "在另一间手术室里，贾和雨医生正小心翼翼地切除颈椎间盘，因为他越来越重。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0574",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。",
+      "plain_entity": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。",
+      "context_entity": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。",
+      "scene_prompt": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。",
+      "bounded_copy": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。",
+      "restricted_copy": "身边有没有人，或者是担心自己会获得这个骨质疏松症？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，他年长了嘛，那呃后来呢就呃就不能。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0574",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+      "plain_entity": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+      "context_entity": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+      "scene_prompt": "身边有没有人，或者是担心自己会获得这个骨患上？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+      "bounded_copy": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。",
+      "restricted_copy": "身边有没有人，或者是担心自己会获得这个骨坏伤？哎，我真的很害怕啊，因为我有亲戚呢，就是因为跌倒了，太年长了嘛，那呃后来呢就呃就不能。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0101",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。",
+      "plain_entity": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。",
+      "context_entity": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。",
+      "scene_prompt": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备，给 stitch piece。国声基建的。",
+      "bounded_copy": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。",
+      "restricted_copy": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备。给 stitch please。国省基建的。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0101",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。",
+      "plain_entity": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。",
+      "context_entity": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。",
+      "scene_prompt": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitch piece。国声机电。",
+      "bounded_copy": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。",
+      "restricted_copy": "先把啊，病人自己的 hamstring tendon 进行采取采样之后，我们进行准备 stitching。国声机电。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0599",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+      "plain_entity": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+      "context_entity": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+      "scene_prompt": "元首哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+      "bounded_copy": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。",
+      "restricted_copy": "选手哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片啊，就不用担心会患上骨质疏松。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0599",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+      "plain_entity": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+      "context_entity": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+      "scene_prompt": "莲藕哇，本身钙质就很多喽。Yeah，OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+      "bounded_copy": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。",
+      "restricted_copy": "元素哇，本身钙质就很多喽。Yeah, OK，来第三题哈，定时的补充钙片，就不用担心会患上骨质疏松。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0619",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "plain_entity": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "context_entity": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "scene_prompt": "夏英姐，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "bounded_copy": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "restricted_copy": "夏玉洁呢？诶，说的是真的，是真。因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0619",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "plain_entity": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "context_entity": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "scene_prompt": "张姐，哎，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "bounded_copy": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。",
+      "restricted_copy": "张姐，诶，说的是真的，是真的，因为当你骨质疏松的时候，你的骨的支支撑力越来越低了，然后可能会会慢慢的脱下。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0073",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me.",
+      "plain_entity": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me.",
+      "context_entity": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me.",
+      "scene_prompt": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I apologize to him, lah. You know, I said sorry because I was really in pain and it's very frustrating for me.",
+      "bounded_copy": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me.",
+      "restricted_copy": "状态，他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit loud to him because he couldn't get the the part where I want. To your left a bit, to the left, yeah, down a bit. After that, I feel better. I now apologize to him, like you know, I said sorry because I was really in pain and it's very frustrating for me."
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0073",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me.",
+      "plain_entity": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me.",
+      "context_entity": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me.",
+      "scene_prompt": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She left a bit, so left, yeah, down a bit. After that, I feel better. Now apologize to him, lah. You know, I say sorry because I was really in pain and it was very frustrating for me.",
+      "bounded_copy": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me.",
+      "restricted_copy": "他几乎每一晚都得叫儿子帮他按揉颈部和肩膀。To be honest, sometimes I will yell a little bit last season because we couldn't get the the part that I want. She'll laugh a bit, so laugh, yeah, down a bit. After that, I feel better. Now apologize to him, like, you know, I say sorry because I was really in pain and it was very frustrating for me."
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0126",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "plain_entity": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "context_entity": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "scene_prompt": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业，不过或许就是他所做的粗。",
+      "bounded_copy": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "restricted_copy": "Rayston是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0126",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "plain_entity": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "context_entity": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "scene_prompt": "Rayson是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的。",
+      "bounded_copy": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。",
+      "restricted_copy": "瑞森是一个喜欢动手劳作的人，他大半辈子的职业离不开餐饮业和服务业。不过，或许就是他所做的粗。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0677",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+      "plain_entity": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+      "context_entity": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+      "scene_prompt": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+      "bounded_copy": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。",
+      "restricted_copy": "晨运、跑步，嗯，饮食，所以是尽量呢吃高钙质的啊食物，啊，比如牛奶啦，嗯。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0677",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。",
+      "plain_entity": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。",
+      "context_entity": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。",
+      "scene_prompt": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶了。",
+      "bounded_copy": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。",
+      "restricted_copy": "晨运跑步，嗯，饮食，所以是尽量呢吃高钙质的啊，是不啊？比如牛奶啦。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0600",
+    "variant": "clean",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？",
+      "plain_entity": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？",
+      "context_entity": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？",
+      "scene_prompt": "真真还是假？来，三二一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假为什么？",
+      "bounded_copy": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？",
+      "restricted_copy": "真还是假？来，三、二、一，请举牌。我是这么做了，我是这么做，所以我相信他是了。说假，为什么？"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0600",
+    "variant": "noise",
+    "scene": "orthopedics",
+    "results": {
+      "raw": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？",
+      "plain_entity": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？",
+      "context_entity": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？",
+      "scene_prompt": "真还是假？来，三二一，停！我是这么做了，我是这么做，相信他是了。说假为什么？",
+      "bounded_copy": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？",
+      "restricted_copy": "真还是假？来，三二一，停！我是这么做了，我是这么做，所以相信他是了。说假为什么？"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0775",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。",
+      "plain_entity": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。",
+      "context_entity": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。",
+      "scene_prompt": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。",
+      "bounded_copy": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。",
+      "restricted_copy": "的指标了，OK，精准度如何？通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八线。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0775",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+      "plain_entity": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+      "context_entity": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+      "scene_prompt": "指标 OK 精准度，通常如果是 PSA 在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+      "bounded_copy": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。",
+      "restricted_copy": "目标OK，精准度。通常如果是PSA在四到十之间的话，嗯，它有前列腺癌的几率是差不多三十八千。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0768",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。",
+      "plain_entity": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。",
+      "context_entity": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。",
+      "scene_prompt": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺，更多问题。",
+      "bounded_copy": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。",
+      "restricted_copy": "嗯，如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不顺更多问题。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0768",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。",
+      "plain_entity": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。",
+      "context_entity": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。",
+      "scene_prompt": "如果那个前列腺癌扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通畅，更多问题。",
+      "bounded_copy": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。",
+      "restricted_copy": "如果那个前列腺来扩散到脊椎，如果呃扩散到脊椎，它压到神经线的话，对，那可以导致啊大便啊小便不通，更多问题。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0806",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "plain_entity": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "context_entity": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "scene_prompt": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "bounded_copy": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "restricted_copy": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。其实有研究是显示，呃，如果是说你每天吃十份以上的。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0806",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "plain_entity": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "context_entity": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "scene_prompt": "啊，呃，鱼类之类的话，有那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "bounded_copy": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。",
+      "restricted_copy": "啊，呃，鱼类之类的话，那你的前列腺癌的几率可能会比较低一点。嗯，其实有研究是显示，呃，如果是说你每天吃十份以上的。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0765",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "plain_entity": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "context_entity": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "scene_prompt": "前列腺增生是那个前列腺肿大的部位，是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "bounded_copy": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "restricted_copy": "前列腺增生是那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0765",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "plain_entity": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "context_entity": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "scene_prompt": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "bounded_copy": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。",
+      "restricted_copy": "前列腺增生，那个前列腺肿大的部位是在尿道的周围。对，如果是说有开始有良性增生的话，就比较早会有小便的症状。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0823",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+      "plain_entity": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+      "context_entity": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+      "scene_prompt": "什么是前列腺？我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+      "bounded_copy": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。",
+      "restricted_copy": "什么是前列腺，我都不知道。前列腺癌。是什么？很严重吗？我会活多久？啊。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0823",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。",
+      "plain_entity": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。",
+      "context_entity": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。",
+      "scene_prompt": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重吗？我会活多久？啊。",
+      "bounded_copy": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。",
+      "restricted_copy": "什么是前列腺？我就不知道。前列腺癌。这什么？很严重嘛？我会活多久？啊。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0836",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。",
+      "plain_entity": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。",
+      "context_entity": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。",
+      "scene_prompt": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。",
+      "bounded_copy": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。",
+      "restricted_copy": "除了这个切除手术，还有什么样其他的治疗方法吗？嗯，OK，其实不是每个前列腺癌都需要做治疗。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0836",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+      "plain_entity": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+      "context_entity": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+      "scene_prompt": "除了这个切除手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+      "bounded_copy": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。",
+      "restricted_copy": "除了这个切割手术，还有什么样其他的治疗方法？嗯，对，其实不是每个前列腺癌都需要做治疗。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0841",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。",
+      "plain_entity": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。",
+      "context_entity": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。",
+      "scene_prompt": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。",
+      "bounded_copy": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。",
+      "restricted_copy": "是往外辐射，啊，扩散，对，嗯，一般上切除是整个切掉，就是把整个前列腺拿。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0841",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。",
+      "plain_entity": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。",
+      "context_entity": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。",
+      "scene_prompt": "往外的扩散，然后扩散的，嗯，一般像切除是整个切掉，就是把整个前列腺。",
+      "bounded_copy": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。",
+      "restricted_copy": "往外扩散，然后扩散出去。嗯，一般像切除是整个切掉，就是把整个前列腺。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0774",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。",
+      "plain_entity": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。",
+      "context_entity": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。",
+      "scene_prompt": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃前列腺。",
+      "bounded_copy": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。",
+      "restricted_copy": "呃，生产的一个蛋白质之一，嗯，OK，可以在男性的血液找到，所以就都通过抽血就可以验到呃，呃，前列腺。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0774",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。",
+      "plain_entity": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。",
+      "context_entity": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。",
+      "scene_prompt": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。",
+      "bounded_copy": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。",
+      "restricted_copy": "呃，生产的一个蛋白质之一，OK，可以在男性的血液找到，所以就就通过抽血就可以验到呃，呃前列腺。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0760",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。",
+      "plain_entity": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。",
+      "context_entity": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。",
+      "scene_prompt": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候能够立。",
+      "bounded_copy": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。",
+      "restricted_copy": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0760",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。",
+      "plain_entity": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。",
+      "context_entity": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。",
+      "scene_prompt": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候能够立。",
+      "bounded_copy": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。",
+      "restricted_copy": "提供精子所需要的养分，还有环境，可以让它如果去到女性体内的时候，能够力。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0828",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+      "plain_entity": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+      "context_entity": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+      "scene_prompt": "康复了之后，我就被安排去rehabcenter做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+      "bounded_copy": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。",
+      "restricted_copy": "康复了之后，我就被安排去rehab center做一些复健的运动，把全身的肌肉都啊锻炼起来。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0828",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。",
+      "plain_entity": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。",
+      "context_entity": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。",
+      "scene_prompt": "康复了之后，我就被安排去李克群的做一些逐渐的运动，把全身的肌肉都啊锻炼起来。",
+      "bounded_copy": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。",
+      "restricted_copy": "康复了之后，我就被安排去李克群的做一些出剑的运动，把全身的肌肉都啊锻炼起来。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0807",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "plain_entity": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "context_entity": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "scene_prompt": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "bounded_copy": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "restricted_copy": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0807",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "plain_entity": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "context_entity": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "scene_prompt": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "bounded_copy": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。",
+      "restricted_copy": "西红柿，我们俗称番茄，番茄啊，不过这个番茄一定要是煮过还是加工后的，那些生吃的番茄没有太大的用。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0769",
+    "variant": "clean",
+    "scene": "urology",
+    "results": {
+      "raw": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。",
+      "plain_entity": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。",
+      "context_entity": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。",
+      "scene_prompt": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期哇！如果病情这么严。",
+      "bounded_copy": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。",
+      "restricted_copy": "啊，甚至可以影响到你的脚变成没有力，呃，无法行走，这些是非常后期。哇，如果病情这么严。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  },
+  {
+    "id": "MultiMed_Chinese_train_0769",
+    "variant": "noise",
+    "scene": "urology",
+    "results": {
+      "raw": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+      "plain_entity": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+      "context_entity": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+      "scene_prompt": "啊，甚至会影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+      "bounded_copy": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。",
+      "restricted_copy": "啊，甚至可以影响到你的脚，变成没有力，呃，无法行走，那些是非常好奇。哇，如果病情这么严。"
+    },
+    "bounded_patches": [],
+    "restricted_patches": []
+  }
+]

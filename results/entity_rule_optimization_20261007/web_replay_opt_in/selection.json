@@ -1,0 +1,76 @@
+{
+  "seed": 20261007,
+  "noise_snr_db": 5,
+  "samples": [
+    {
+      "id": "MultiMed_Chinese_train_0616",
+      "scene": "orthopedics",
+      "scene_label": "骨科与骨质疏松",
+      "group": "covered_entity",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_medical_scenes_20261006/audio/MultiMed_Chinese_train_0616.wav",
+      "reference": "你需要更长的时间 才会失去到骨质疏松症的程度。 好 最后一个迷思 请听清楚。 身材变矮呢 就是可能患上骨质疏松症。",
+      "entities": [
+        {
+          "text": "骨质疏松症",
+          "entity_type": "TERM",
+          "start": 13,
+          "end": 18,
+          "covered": true
+        },
+        {
+          "text": "骨质疏松症",
+          "entity_type": "TERM",
+          "start": 43,
+          "end": 48,
+          "covered": true
+        }
+      ],
+      "actual_duration_seconds": 12.0,
+      "source_row": 616,
+      "source_audio_path": "426000.0000_438000.0000.ogg",
+      "source_audio_sha256": "c5411363f05aa33cf107e56f383e2cb3dc46b9f28517b7f1a4e477a8f013aece"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0576",
+      "scene": "orthopedics",
+      "scene_label": "骨科与骨质疏松",
+      "group": "covered_entity",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_medical_scenes_20261006/audio/MultiMed_Chinese_train_0576.wav",
+      "reference": "因为就是听说女性会比较容易患上 骨质疏松症。 所以都会很勤劳地叫她们补钙 趁年轻要多补一下。",
+      "entities": [
+        {
+          "text": "骨质疏松症",
+          "entity_type": "TERM",
+          "start": 15,
+          "end": 20,
+          "covered": true
+        }
+      ],
+      "actual_duration_seconds": 8.0,
+      "source_row": 576,
+      "source_audio_path": "86000.0000_94000.0000.ogg",
+      "source_audio_sha256": "6cb27d28a19cf92d7c997bd2c52804b9d99e5801462b5b4241459ac82db93842"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0579",
+      "scene": "orthopedics",
+      "scene_label": "骨科与骨质疏松",
+      "group": "covered_entity",
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_medical_scenes_20261006/audio/MultiMed_Chinese_train_0579.wav",
+      "reference": "帮他们开刀过后发现 他们其实有骨质疏松症。 所以很多患者可能自己都不知道。 对啊。 有这个问题 可是为什么察觉不到？ 对啊。",
+      "entities": [
+        {
+          "text": "骨质疏松症",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 19,
+          "covered": true
+        }
+      ],
+      "actual_duration_seconds": 8.0,
+      "source_row": 579,
+      "source_audio_path": "112000.0000_120000.0000.ogg",
+      "source_audio_sha256": "8bec58c51d8ba05dd5dc2c8b8a55ca8d9d70c013d118404293b7c11828284887"
+    }
+  ]
+}

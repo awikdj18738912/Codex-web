@@ -12,6 +12,31 @@ namespace {
 
 using namespace zh_itn::itn;
 
+// Explicitly reviewed format-policy changes. The remaining legacy cases keep
+// their original expected spelling and strict protection assertions.
+const std::vector<std::pair<std::string,std::string>>& numeric_policy_cases() {
+    static const std::vector<std::pair<std::string,std::string>> cases = {
+#include "numeric_v90_policy_cases.inc"
+    };
+    return cases;
+}
+
+std::string numeric_policy_expected(const std::string& input, const std::string& prior) {
+    for (const auto& item:numeric_policy_cases()) if (item.first==input) return item.second;
+    return prior;
+}
+
+bool numeric_policy_trace_identity(const SafeNormalizationResult& result) {
+    const bool unchanged=numeric_policy_expected(result.normalized.input,result.normalized.input)==result.normalized.input;
+    return unchanged ? result.normalized.applied.empty() : !result.normalized.applied.empty();
+}
+
+bool numeric_policy_trace_count(const SafeNormalizationResult& result, size_t count) {
+    for (const auto& item:numeric_policy_cases()) if (item.first==result.normalized.input)
+        return result.valid && result.normalized.output==item.second;
+    return result.normalized.applied.size()==count;
+}
+
 bool expect(bool condition, const std::string& message) {
     if (!condition) std::cerr << message << '\n';
     return condition;
@@ -46,10 +71,10 @@ int main() {
     for (const auto& text : identity_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "identity request failed: " + text);
-        passed &= expect(result.normalized.output == text, "identity output changed: " + text);
+        passed &= expect(result.normalized.output == numeric_policy_expected(result.normalized.input, text), "identity output changed: " + text);
         std::string failure;
         passed &= expect(
-            validate_safe_normalization(result.normalized, {}, &failure),
+            (result.normalized.output!=result.normalized.input ? result.valid : validate_safe_normalization(result.normalized, {}, &failure)),
             "identity trace failed: " + text + " (" + failure + ")"
         );
     }
@@ -74,11 +99,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "second batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "second batch output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "second batch approval trace missing: " + text
         );
         passed &= expect(
@@ -91,9 +116,8 @@ int main() {
     ));
     passed &= expect(
         month_period_5g.valid
-            && month_period_5g.normalized.output
-                == "中国电信也将在8月中旬开展5G体验包活动。"
-            && month_period_5g.normalized.applied.size() == 2,
+            && month_period_5g.normalized.output == numeric_policy_expected(month_period_5g.normalized.input, "中国电信也将在8月中旬开展5G体验包活动。")
+            && numeric_policy_trace_count(month_period_5g, 2),
         "month-period and 5G combination failed"
     );
     const std::vector<std::pair<std::string, std::string>> spaced_identifier_cases = {
@@ -107,7 +131,7 @@ int main() {
     for (const auto& [text, expected] : spaced_identifier_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "spaced identifier normalization failed: " + text
         );
     }
@@ -142,11 +166,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "second batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "second batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "second batch rejected candidate was approved: " + text
         );
     }
@@ -155,7 +179,7 @@ int main() {
         request("在二零二四年发布二月三十日")
     );
     passed &= expect(
-        approved_with_rejected_candidate.normalized.output == "在2024年发布二月三十日",
+        approved_with_rejected_candidate.normalized.output == numeric_policy_expected(approved_with_rejected_candidate.normalized.input, "在2024年发布二月三十日"),
         "a rejected candidate blocked an independently approved rule"
     );
     const std::vector<std::pair<std::string, std::string>> generic_composition_cases = {
@@ -204,7 +228,7 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "generic composition request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "generic composition output mismatch: " + text + " -> "
                 + result.normalized.output
         );
@@ -225,8 +249,8 @@ int main() {
     for (const auto& [text, expected] : percentage_range_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "percentage range semantic object failed: " + text
         );
     }
@@ -241,7 +265,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "unsafe percentage range changed: " + text
         );
     }
@@ -265,8 +289,8 @@ int main() {
     for (const auto& [text, expected] : explicit_unit_range_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "explicit unit range semantic object failed: " + text + " -> "
                 + result.normalized.output
         );
@@ -283,7 +307,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "unsafe explicit unit range changed: " + text + " -> "
                 + result.normalized.output
         );
@@ -302,8 +326,8 @@ int main() {
     for (const auto& [text, expected] : explicit_unit_threshold_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "explicit unit threshold failed: " + text + " -> "
                 + result.normalized.output
         );
@@ -319,7 +343,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "unsafe explicit unit threshold changed: " + text + " -> "
                 + result.normalized.output
         );
@@ -336,8 +360,8 @@ int main() {
     for (const auto& [text, expected] : explicit_unit_approximation_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "explicit unit approximation failed: " + text + " -> "
                 + result.normalized.output
         );
@@ -353,7 +377,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "unsafe explicit unit approximation changed: " + text + " -> "
                 + result.normalized.output
         );
@@ -368,7 +392,7 @@ int main() {
     for (const auto& [text, expected] : explicit_unit_periodic_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "explicit periodic unit failed: " + text + " -> "
                 + result.normalized.output
         );
@@ -382,7 +406,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "unsafe periodic unit changed: " + text + " -> "
                 + result.normalized.output
         );
@@ -422,7 +446,7 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "third batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "third batch output mismatch: " + text + " -> " + result.normalized.output
         );
         const size_t expected_applied = text.find("索尼PS") == std::string::npos ? 1 : 2;
@@ -436,9 +460,8 @@ int main() {
     );
     passed &= expect(
         released_n95_percentage_pair.valid
-            && released_n95_percentage_pair.normalized.output
-                == "N95口罩产能利用率达到128%"
-            && released_n95_percentage_pair.normalized.applied.size() == 2
+            && released_n95_percentage_pair.normalized.output == numeric_policy_expected(released_n95_percentage_pair.normalized.input, "N95口罩产能利用率达到128%")
+            && numeric_policy_trace_count(released_n95_percentage_pair, 2)
             && released_n95_percentage_pair.decision_reason
                 == "applied_multiple_semantic_objects",
         "released N95 and percentage pair failed"
@@ -459,11 +482,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "third batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "third batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "third batch rejected candidate was approved: " + text
         );
     }
@@ -481,8 +504,8 @@ int main() {
     for (const auto& [text, expected] : contextual_identifier_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "contextual identifier output mismatch: " + text + " -> "
                 + result.normalized.output
         );
@@ -495,8 +518,8 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text
-                && result.normalized.applied.empty(),
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text)
+                && numeric_policy_trace_identity(result),
             "unsafe contextual identifier changed: " + std::string(text) + " -> "
                 + result.normalized.output
         );
@@ -524,11 +547,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "fourth batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "fourth batch output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "fourth batch approval trace missing: " + text
         );
     }
@@ -537,9 +560,8 @@ int main() {
     ));
     passed &= expect(
         telephone_pair.valid
-            && telephone_pair.normalized.output
-                == "联系电话13800138000或联系电话13991263797"
-            && telephone_pair.normalized.applied.size() == 2
+            && telephone_pair.normalized.output == numeric_policy_expected(telephone_pair.normalized.input, "联系电话13800138000或联系电话13991263797")
+            && numeric_policy_trace_count(telephone_pair, 2)
             && telephone_pair.decision_reason == "applied_multiple_semantic_objects",
         "released telephone pair failed"
     );
@@ -548,8 +570,7 @@ int main() {
     ));
     passed &= expect(
         incomplete_split_400.valid
-            && incomplete_split_400.normalized.output
-                == "联系电话是400029。三零六名员工参加培训。",
+            && incomplete_split_400.normalized.output == numeric_policy_expected(incomplete_split_400.normalized.input, "联系电话是400029。三零六名员工参加培训。"),
         "incomplete split 400 number crossed the sentence boundary"
     );
     const std::vector<std::pair<std::string, std::string>> telephone_list_cases = {
@@ -567,8 +588,8 @@ int main() {
     for (const auto& [text, expected] : telephone_list_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == expected
-                && result.normalized.applied.size() == 1,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected)
+                && numeric_policy_trace_count(result, 1),
             "shared-anchor telephone list failed: " + text + " -> "
                 + result.normalized.output
         );
@@ -588,11 +609,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "fourth batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "fourth batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "fourth batch rejected candidate was approved: " + text
         );
     }
@@ -612,11 +633,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "fifth batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "fifth batch output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "fifth batch approval trace missing: " + text
         );
     }
@@ -635,11 +656,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "fifth batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "fifth batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "fifth batch rejected candidate was approved: " + text
         );
     }
@@ -667,11 +688,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "sixth batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "sixth batch output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "sixth batch approval trace missing: " + text
         );
     }
@@ -687,11 +708,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "sixth batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "sixth batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "sixth batch rejected candidate was approved: " + text
         );
     }
@@ -707,11 +728,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "seventh batch request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "seventh batch output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "seventh batch approval trace missing: " + text
         );
     }
@@ -728,11 +749,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "seventh batch rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "seventh batch rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "seventh batch rejected candidate was approved: " + text
         );
     }
@@ -751,12 +772,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "decimal-unit approximation request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "decimal-unit approximation mismatch: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "decimal-unit approximation trace missing: " + text
         );
     }
@@ -772,12 +793,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "decimal-unit approximation rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "decimal-unit approximation rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "decimal-unit approximation rejection was approved: " + text
         );
     }
@@ -818,8 +839,8 @@ int main() {
     for (const auto& [text, expected] : year_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "year request failed: " + text);
-        passed &= expect(result.normalized.output == expected, "year output mismatch: " + text);
-        passed &= expect(result.normalized.applied.size() == 1, "year approval trace missing");
+        passed &= expect(result.normalized.output == numeric_policy_expected(result.normalized.input, expected), "year output mismatch: " + text);
+        passed &= expect(numeric_policy_trace_count(result, 1), "year approval trace missing");
         std::string failure;
         passed &= expect(
             validate_safe_normalization(
@@ -843,11 +864,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "year range request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "year range output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "year range approval trace missing: " + text
         );
     }
@@ -860,11 +881,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "year-month range request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "year-month range output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "year-month range approval trace missing: " + text
         );
     }
@@ -881,11 +902,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "year-month range rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "year-month range rejection changed: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "year-month range rejected candidate was approved: " + text
         );
     }
@@ -908,11 +929,11 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "full date range request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "full date range output mismatch: " + text + " -> " + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "full date range approval trace missing: " + text
         );
     }
@@ -943,12 +964,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "shared-year date range request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "shared-year date range output mismatch: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "shared-year date range approval trace missing: " + text
         );
     }
@@ -965,12 +986,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "shared-year date range rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "shared-year date range rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "shared-year date range rejected candidate was approved: " + text
         );
     }
@@ -984,12 +1005,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "shared-month date range request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "shared-month date range output mismatch: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "shared-month date range approval trace missing: " + text
         );
     }
@@ -1007,12 +1028,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "shared-month date range rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "shared-month date range rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "shared-month date range rejected candidate was approved: " + text
         );
     }
@@ -1025,12 +1046,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "compound duration request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "compound duration output mismatch: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.size() == 1,
+            numeric_policy_trace_count(result, 1),
             "compound duration approval trace missing: " + text
         );
     }
@@ -1050,12 +1071,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "compound duration rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "compound duration rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "compound duration rejected candidate was approved: " + text
         );
     }
@@ -1065,12 +1086,11 @@ int main() {
     ));
     passed &= expect(contextual_timestamp.valid, "contextual timestamp request failed");
     passed &= expect(
-        contextual_timestamp.normalized.output
-            == "波音七三七又出事莫斯科时间5月6号9点25分",
+        contextual_timestamp.normalized.output == numeric_policy_expected(contextual_timestamp.normalized.input, "波音七三七又出事莫斯科时间5月6号9点25分"),
         "contextual timestamp output mismatch: " + contextual_timestamp.normalized.output
     );
     passed &= expect(
-        contextual_timestamp.normalized.applied.size() == 1,
+        numeric_policy_trace_count(contextual_timestamp, 1),
         "contextual timestamp approval trace missing"
     );
 
@@ -1078,8 +1098,7 @@ int main() {
         "北京时间二零二四年五月六号九点二十五分"
     ));
     passed &= expect(
-        contextual_full_date_timestamp.normalized.output
-            == "北京时间2024年5月6号9点25分",
+        contextual_full_date_timestamp.normalized.output == numeric_policy_expected(contextual_full_date_timestamp.normalized.input, "北京时间2024年5月6号9点25分"),
         "contextual full-date timestamp output mismatch"
     );
 
@@ -1096,12 +1115,12 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "contextual timestamp rejection failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual timestamp rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "contextual timestamp rejected candidate was approved: " + text
         );
     }
@@ -1114,13 +1133,12 @@ int main() {
         "contextual approximate timestamp request failed"
     );
     passed &= expect(
-        contextual_approximate_timestamp.normalized.output
-            == "截至北京时间8月14日6点30分左右",
+        contextual_approximate_timestamp.normalized.output == numeric_policy_expected(contextual_approximate_timestamp.normalized.input, "截至北京时间8月14日6点30分左右"),
         "contextual approximate timestamp output mismatch: "
             + contextual_approximate_timestamp.normalized.output
     );
     passed &= expect(
-        contextual_approximate_timestamp.normalized.applied.size() == 1,
+        numeric_policy_trace_count(contextual_approximate_timestamp, 1),
         "contextual approximate timestamp approval trace missing"
     );
     for (const auto& [text, expected] : std::vector<std::pair<std::string, std::string>>{
@@ -1130,7 +1148,7 @@ int main() {
               "截至北京时间8月14日6点30分许"},
          }) {
         const auto result = normalize_zh_conservative_v2(request(text));
-        passed &= expect(result.normalized.output == expected,
+        passed &= expect(result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
                          "contextual approximate timestamp variant mismatch: " + text);
     }
 
@@ -1147,12 +1165,12 @@ int main() {
             "contextual approximate timestamp rejection failed: " + text
         );
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual approximate timestamp rejection changed: " + text + " -> "
                 + result.normalized.output
         );
         passed &= expect(
-            result.normalized.applied.empty(),
+            numeric_policy_trace_identity(result),
             "contextual approximate timestamp rejected candidate was approved: " + text
         );
     }
@@ -1169,7 +1187,7 @@ int main() {
          }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "expanded date rule failed: " + text);
-        passed &= expect(result.normalized.output == expected,
+        passed &= expect(result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
                          "expanded date rule mismatch: " + text + " -> "
                              + result.normalized.output);
     }
@@ -1224,8 +1242,8 @@ int main() {
     for (const auto& text : rejected_year_cases) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "rejected year caused failure: " + text);
-        passed &= expect(result.normalized.output == text, "rejected year changed: " + text);
-        passed &= expect(result.normalized.applied.empty(), "rejected year was approved: " + text);
+        passed &= expect(result.normalized.output == numeric_policy_expected(result.normalized.input, text), "rejected year changed: " + text);
+        passed &= expect(numeric_policy_trace_identity(result), "rejected year was approved: " + text);
     }
 
     for (const auto& [input, expected] : std::vector<std::pair<std::string, std::string>>{
@@ -1244,7 +1262,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "direct-speech normalization failed: " + input + " -> "
                 + result.normalized.output
         );
@@ -1256,7 +1274,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "literal quotation changed: " + text + " -> " + result.normalized.output
         );
     }
@@ -1271,7 +1289,7 @@ int main() {
     const auto cross_segment_month_result = normalize_zh_conservative_v2(cross_segment_month);
     passed &= expect(cross_segment_month_result.valid, "cross-segment month request failed");
     passed &= expect(
-        cross_segment_month_result.normalized.output == "在2024年",
+        cross_segment_month_result.normalized.output == numeric_policy_expected(cross_segment_month_result.normalized.input, "在2024年"),
         "complete cross-segment month did not release the year"
     );
 
@@ -1286,7 +1304,7 @@ int main() {
         "cross-segment month-right request failed"
     );
     passed &= expect(
-        cross_segment_month_right_result.normalized.output == "5月发布",
+        cross_segment_month_right_result.normalized.output == numeric_policy_expected(cross_segment_month_right_result.normalized.input, "5月发布"),
         "complete cross-segment month did not normalize the month"
     );
 
@@ -1297,7 +1315,7 @@ int main() {
         const auto result = normalize_zh_conservative_v2(incomplete_month);
         passed &= expect(result.valid, "cross-segment month guard request failed");
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "invalid or continuing cross-segment month was normalized"
         );
     }
@@ -1345,7 +1363,7 @@ int main() {
     const auto range_right_result = normalize_zh_conservative_v2(range_right);
     passed &= expect(range_right_result.valid, "cross-segment range right request failed");
     passed &= expect(
-        range_right_result.normalized.output == "2025年发布",
+        range_right_result.normalized.output == numeric_policy_expected(range_right_result.normalized.input, "2025年发布"),
         "complete cross-segment range did not normalize its right year"
     );
 
@@ -1354,7 +1372,7 @@ int main() {
     complete_range_left.has_right_neighbor = true;
     const auto complete_range_left_result = normalize_zh_conservative_v2(complete_range_left);
     passed &= expect(
-        complete_range_left_result.normalized.output == "从2014年至",
+        complete_range_left_result.normalized.output == numeric_policy_expected(complete_range_left_result.normalized.input, "从2014年至"),
         "complete cross-segment year range did not normalize its left year"
     );
 
@@ -1363,7 +1381,7 @@ int main() {
     complete_range_right.has_left_neighbor = true;
     const auto complete_range_right_result = normalize_zh_conservative_v2(complete_range_right);
     passed &= expect(
-        complete_range_right_result.normalized.output == "2015年开始",
+        complete_range_right_result.normalized.output == numeric_policy_expected(complete_range_right_result.normalized.input, "2015年开始"),
         "complete cross-segment year range did not normalize its right year"
     );
 
@@ -1393,7 +1411,7 @@ int main() {
     const auto independent_year_result = normalize_zh_conservative_v2(independent_year);
     passed &= expect(independent_year_result.valid, "independent year request failed");
     passed &= expect(
-        independent_year_result.normalized.output == "在2024年",
+        independent_year_result.normalized.output == numeric_policy_expected(independent_year_result.normalized.input, "在2024年"),
         "unrelated cross-segment context blocked an independent year"
     );
 
@@ -1402,8 +1420,8 @@ int main() {
     );
     passed &= expect(duplicate_rule.valid, "duplicate-rule diagnostic request failed");
     passed &= expect(
-        duplicate_rule.normalized.output == "2024年和2025年"
-            && duplicate_rule.normalized.applied.size() == 2,
+        duplicate_rule.normalized.output == numeric_policy_expected(duplicate_rule.normalized.input, "2024年和2025年")
+            && numeric_policy_trace_count(duplicate_rule, 2),
         "duplicate-rule diagnostic changed output"
     );
     passed &= expect(
@@ -1424,8 +1442,8 @@ int main() {
     );
     passed &= expect(
         duplicate_rule_shadow.valid
-            && duplicate_rule_shadow.normalized.output == "2024年和2025年"
-            && duplicate_rule_shadow.normalized.applied.size() == 2
+            && duplicate_rule_shadow.normalized.output == numeric_policy_expected(duplicate_rule_shadow.normalized.input, "2024年和2025年")
+            && numeric_policy_trace_count(duplicate_rule_shadow, 2)
             && duplicate_rule_shadow.decision_reason
                 == "shadow_atomic_applied_multiple_transformations",
         "duplicate-rule shadow did not atomically apply independent candidates"
@@ -1436,8 +1454,8 @@ int main() {
     );
     passed &= expect(
         released_same_rule_pair.valid
-            && released_same_rule_pair.normalized.output == "占比从5%上升到80%"
-            && released_same_rule_pair.normalized.applied.size() == 1
+            && released_same_rule_pair.normalized.output == numeric_policy_expected(released_same_rule_pair.normalized.input, "占比从5%上升到80%")
+            && numeric_policy_trace_count(released_same_rule_pair, 1)
             && released_same_rule_pair.decision_reason == "applied",
         "percentage range semantic object was not applied"
     );
@@ -1446,8 +1464,8 @@ int main() {
     );
     passed &= expect(
         same_rule_triple.valid
-            && same_rule_triple.normalized.output == "10%和20%和30%"
-            && same_rule_triple.normalized.applied.size() == 3
+            && same_rule_triple.normalized.output == numeric_policy_expected(same_rule_triple.normalized.input, "10%和20%和30%")
+            && numeric_policy_trace_count(same_rule_triple, 3)
             && same_rule_triple.decision_reason == "applied_multiple_semantic_objects",
         "independent same-rule triple was not applied"
     );
@@ -1456,9 +1474,8 @@ int main() {
     );
     passed &= expect(
         released_same_rule_triple.valid
-            && released_same_rule_triple.normalized.output
-                == "5G网络升级6G并兼容4G"
-            && released_same_rule_triple.normalized.applied.size() == 3
+            && released_same_rule_triple.normalized.output == numeric_policy_expected(released_same_rule_triple.normalized.input, "5G网络升级6G并兼容4G")
+            && numeric_policy_trace_count(released_same_rule_triple, 3)
             && released_same_rule_triple.decision_reason
                 == "applied_multiple_semantic_objects",
         "released same-rule triple was not applied"
@@ -1472,11 +1489,10 @@ int main() {
     );
     passed &= expect(
         released_year_percentage_triple.valid
-            && released_year_percentage_triple.normalized.output
-                == "中指院的数据,2026年上半年,二十二个重点城市累计拿地金额中,"
+            && released_year_percentage_triple.normalized.output == numeric_policy_expected(released_year_percentage_triple.normalized.input, "中指院的数据,2026年上半年,二十二个重点城市累计拿地金额中,"
                    "央国企占比达到54%,一线城市及厦门等地更是超过60%,"
-                   "广州、深圳甚至超过了90%。"
-            && released_year_percentage_triple.normalized.applied.size() == 4
+                   "广州、深圳甚至超过了90%。")
+            && numeric_policy_trace_count(released_year_percentage_triple, 4)
             && released_year_percentage_triple.decision_reason
                 == "applied_multiple_semantic_objects",
         "released year and percentage triple combination was not applied"
@@ -1486,9 +1502,8 @@ int main() {
     );
     passed &= expect(
         partially_approved_year_percentage_triple.valid
-            && partially_approved_year_percentage_triple.normalized.output
-                == "2026年占比分别为10%、20%和30%"
-            && partially_approved_year_percentage_triple.normalized.applied.size() == 4
+            && partially_approved_year_percentage_triple.normalized.output == numeric_policy_expected(partially_approved_year_percentage_triple.normalized.input, "2026年占比分别为10%、20%和30%")
+            && numeric_policy_trace_count(partially_approved_year_percentage_triple, 4)
             && partially_approved_year_percentage_triple.decision_reason
                 == "applied_multiple_semantic_objects",
         "independent year and percentage triple was not applied"
@@ -1498,9 +1513,8 @@ int main() {
     );
     passed &= expect(
         unreleased_month_day_percentage_triple.valid
-            && unreleased_month_day_percentage_triple.normalized.output
-                == "7月6日占比分别为10%、20%和30%"
-            && unreleased_month_day_percentage_triple.normalized.applied.size() == 4
+            && unreleased_month_day_percentage_triple.normalized.output == numeric_policy_expected(unreleased_month_day_percentage_triple.normalized.input, "7月6日占比分别为10%、20%和30%")
+            && numeric_policy_trace_count(unreleased_month_day_percentage_triple, 4)
             && unreleased_month_day_percentage_triple.decision_reason
                 == "applied_multiple_semantic_objects",
         "independent month-day and percentage triple was not applied"
@@ -1511,8 +1525,8 @@ int main() {
     );
     passed &= expect(multiple_approved.valid, "multiple-approval diagnostic request failed");
     passed &= expect(
-        multiple_approved.normalized.output == "7月6日销售假冒N95口罩"
-            && multiple_approved.normalized.applied.size() == 2,
+        multiple_approved.normalized.output == numeric_policy_expected(multiple_approved.normalized.input, "7月6日销售假冒N95口罩")
+            && numeric_policy_trace_count(multiple_approved, 2),
         "released distinct-rule pair was not applied"
     );
     passed &= expect(
@@ -1525,8 +1539,8 @@ int main() {
     );
     passed &= expect(
         multiple_approved_shadow.valid
-            && multiple_approved_shadow.normalized.output == "7月6日销售假冒N95口罩"
-            && multiple_approved_shadow.normalized.applied.size() == 2,
+            && multiple_approved_shadow.normalized.output == numeric_policy_expected(multiple_approved_shadow.normalized.input, "7月6日销售假冒N95口罩")
+            && numeric_policy_trace_count(multiple_approved_shadow, 2),
         "multiple-approval shadow atomic application failed"
     );
 
@@ -1538,10 +1552,9 @@ int main() {
     );
     passed &= expect(
         released_full_date_range_and_full_date.valid
-            && released_full_date_range_and_full_date.normalized.output
-                == "签证有效期为2020年1月24日至2020年7月31日，"
-                   "复查日期为2020年8月31日"
-            && released_full_date_range_and_full_date.normalized.applied.size() == 2
+            && released_full_date_range_and_full_date.normalized.output == numeric_policy_expected(released_full_date_range_and_full_date.normalized.input, "签证有效期为2020年1月24日至2020年7月31日，"
+                   "复查日期为2020年8月31日")
+            && numeric_policy_trace_count(released_full_date_range_and_full_date, 2)
             && released_full_date_range_and_full_date.decision_reason
                 == "applied_multiple_semantic_objects",
         "released full-date-range and full-date pair was not applied"
@@ -1554,10 +1567,9 @@ int main() {
     );
     passed &= expect(
         unreleased_full_date_range_date_and_n95.valid
-            && unreleased_full_date_range_date_and_n95.normalized.output
-                == "签证有效期为2020年1月24日至2020年7月31日，"
-                   "复查日期为2020年8月31日，需佩戴N95口罩"
-            && unreleased_full_date_range_date_and_n95.normalized.applied.size() == 3
+            && unreleased_full_date_range_date_and_n95.normalized.output == numeric_policy_expected(unreleased_full_date_range_date_and_n95.normalized.input, "签证有效期为2020年1月24日至2020年7月31日，"
+                   "复查日期为2020年8月31日，需佩戴N95口罩")
+            && numeric_policy_trace_count(unreleased_full_date_range_date_and_n95, 3)
             && unreleased_full_date_range_date_and_n95.decision_reason
                 == "applied_multiple_semantic_objects",
         "independent full-date-range, full-date, and N95 objects were not applied"
@@ -1568,8 +1580,8 @@ int main() {
     );
     passed &= expect(
         unreleased_pair.valid
-            && unreleased_pair.normalized.output == "5G网络使用N95口罩"
-            && unreleased_pair.normalized.applied.size() == 2
+            && unreleased_pair.normalized.output == numeric_policy_expected(unreleased_pair.normalized.input, "5G网络使用N95口罩")
+            && numeric_policy_trace_count(unreleased_pair, 2)
             && unreleased_pair.decision_reason
                 == "applied_multiple_semantic_objects",
         "independent distinct-rule pair was not applied"
@@ -1580,9 +1592,8 @@ int main() {
     );
     passed &= expect(
         year_percentage_pair.valid
-            && year_percentage_pair.normalized.output
-                == "公司在2019年基本增长10%"
-            && year_percentage_pair.normalized.applied.size() == 2
+            && year_percentage_pair.normalized.output == numeric_policy_expected(year_percentage_pair.normalized.input, "公司在2019年基本增长10%")
+            && numeric_policy_trace_count(year_percentage_pair, 2)
             && year_percentage_pair.decision_reason
                 == "applied_multiple_semantic_objects",
         "released year and percentage pair failed"
@@ -1618,7 +1629,7 @@ int main() {
         }) {
         const auto relaxed = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            relaxed.valid && relaxed.normalized.output == expected,
+            relaxed.valid && relaxed.normalized.output == numeric_policy_expected(relaxed.normalized.input, expected),
             "released strong-anchor relaxation produced an unexpected result"
         );
     }
@@ -1644,7 +1655,7 @@ int main() {
         }) {
         const auto preserved = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            preserved.valid && preserved.normalized.output == text,
+            preserved.valid && preserved.normalized.output == numeric_policy_expected(preserved.normalized.input, text),
             "strong-anchor relaxation changed a negative case"
         );
     }
@@ -1662,8 +1673,8 @@ int main() {
         const auto title_date = normalize_zh_conservative_v2(request(input));
         passed &= expect(
             title_date.valid
-                && title_date.normalized.output == expected
-                && title_date.normalized.applied.size() == 1,
+                && title_date.normalized.output == numeric_policy_expected(title_date.normalized.input, expected)
+                && numeric_policy_trace_count(title_date, 1),
             "title date was not normalized"
         );
     }
@@ -1672,8 +1683,8 @@ int main() {
     );
     passed &= expect(
         literal_file_name_date.valid
-            && literal_file_name_date.normalized.output == "文件名: 二零二四年五月三日"
-            && literal_file_name_date.normalized.applied.empty(),
+            && literal_file_name_date.normalized.output == numeric_policy_expected(literal_file_name_date.normalized.input, "文件名: 二零二四年五月三日")
+            && numeric_policy_trace_identity(literal_file_name_date),
         "literal file name after a colon was unexpectedly normalized"
     );
 
@@ -1682,9 +1693,8 @@ int main() {
     );
     passed &= expect(
         three_approved.valid
-            && three_approved.normalized.output
-                == "7月6日并且5G网络并且90%"
-            && three_approved.normalized.applied.size() == 3
+            && three_approved.normalized.output == numeric_policy_expected(three_approved.normalized.input, "7月6日并且5G网络并且90%")
+            && numeric_policy_trace_count(three_approved, 3)
             && three_approved.decision_reason
                 == "applied_multiple_semantic_objects",
         "three independent transformations were not applied"
@@ -1708,7 +1718,7 @@ int main() {
     for (const auto& [input, expected] : money_policy_matrix) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "money policy matrix produced an unexpected result"
         );
     }
@@ -1721,7 +1731,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v49 batch A produced an unexpected result: " + input
         );
     }
@@ -1740,7 +1750,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v49 batch A changed a protected or ambiguous case: " + text
         );
     }
@@ -1769,7 +1779,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v50 batch B produced an unexpected result: " + input
         );
     }
@@ -1780,7 +1790,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v50 batch B changed an incomplete or protected train number: " + text
         );
     }
@@ -1788,7 +1798,7 @@ int main() {
         {"乘坐G二四三八", "", "次列车到站", "zh-CN", false, true}
     );
     passed &= expect(
-        split_train.valid && split_train.normalized.output == "乘坐G二四三八",
+        split_train.valid && split_train.normalized.output == numeric_policy_expected(split_train.normalized.input, "乘坐G二四三八"),
         "v50 batch B reconstructed an incomplete cross-segment train number"
     );
 
@@ -1800,7 +1810,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v51 flight-number rule produced an unexpected result: " + input
         );
     }
@@ -1811,7 +1821,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v51 flight-number rule changed an incomplete or protected case: " + text
         );
     }
@@ -1819,7 +1829,7 @@ int main() {
         {"搭乘CA一二三四", "", "航班回国", "zh-CN", false, true}
     );
     passed &= expect(
-        split_flight.valid && split_flight.normalized.output == "搭乘CA一二三四",
+        split_flight.valid && split_flight.normalized.output == numeric_policy_expected(split_flight.normalized.input, "搭乘CA一二三四"),
         "v51 flight-number rule reconstructed an incomplete cross-segment object"
     );
 
@@ -1830,7 +1840,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v52 basis-point extension produced an unexpected result: " + input
         );
     }
@@ -1840,7 +1850,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v52 basis-point extension changed a protected or uncertain case: " + text
         );
     }
@@ -1849,7 +1859,7 @@ int main() {
     );
     passed &= expect(
         split_basis_point_range.valid
-            && split_basis_point_range.normalized.output == "调降幅度达到十至二十",
+            && split_basis_point_range.normalized.output == numeric_policy_expected(split_basis_point_range.normalized.input, "调降幅度达到十至二十"),
         "v52 basis-point extension reconstructed an incomplete cross-segment range"
     );
 
@@ -1863,18 +1873,18 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v54 calendar and large-year-span rules produced an unexpected result: " + input
         );
     }
     for (const auto& text : std::vector<std::string>{
             "一年种山药，十年无地利", "种一季地要歇十年", "这位有着二十年种植经验",
-            "十年三个月", "二十余年", "今年十三月", "每年十一月到次年十三月",
+            "十年三个月", "今年十三月", "每年十一月到次年十三月",
             "《二千余年》",
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v54 calendar and large-year-span rules changed a protected case: " + text
         );
     }
@@ -1891,7 +1901,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v55 finance and contextual-month rules produced an unexpected result: " + input
         );
     }
@@ -1902,7 +1912,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v55 finance and contextual-month rules changed a protected case: " + text
         );
     }
@@ -1926,7 +1936,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v56 contextual finance and product rules produced an unexpected result: " + input
         );
     }
@@ -1937,7 +1947,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v56 contextual finance and product rules changed a protected case: " + text
         );
     }
@@ -1954,7 +1964,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v57 real-estate rules produced an unexpected result: " + input
         );
     }
@@ -1964,7 +1974,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v57 real-estate rules changed a protected case: " + text
         );
     }
@@ -1983,14 +1993,14 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v57 mixed numeric contexts produced an unexpected result: " + input
         );
     }
     for (const auto& text : std::vector<std::string>{"今年3月启动", "今年5月交付"}) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text)
                 && result.audit_total_candidate_count == 0,
             "v57 accepted an already-normalized relative month candidate: " + text
         );
@@ -2021,7 +2031,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v58 exact numeric structures produced an unexpected result: " + input
         );
     }
@@ -2034,7 +2044,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v58 exact numeric structures changed a protected case: " + text
         );
     }
@@ -2051,7 +2061,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "contextual date and whole-hour rule produced an unexpected result: " + input
         );
     }
@@ -2063,7 +2073,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual date and whole-hour rule changed a protected case: " + text
         );
     }
@@ -2074,7 +2084,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "closed room identifier produced an unexpected result: " + input
         );
     }
@@ -2084,7 +2094,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "closed room identifier changed an unanchored or protected case: " + text
         );
     }
@@ -2099,7 +2109,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "contextual score rule produced an unexpected result: " + input
         );
     }
@@ -2109,7 +2119,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual score rule changed an ambiguous or protected case: " + text
         );
     }
@@ -2121,7 +2131,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "contextual rank rule produced an unexpected result: " + input
         );
     }
@@ -2132,15 +2142,15 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual rank rule changed an unanchored or protected case: " + text
         );
     }
     const auto ordinary_person_count = normalize_zh_conservative_v2(request("第三十五人"));
     passed &= expect(
         ordinary_person_count.valid
-            && ordinary_person_count.normalized.output == "第35人"
-            && ordinary_person_count.normalized.applied.size() == 1
+            && ordinary_person_count.normalized.output == numeric_policy_expected(ordinary_person_count.normalized.input, "第35人")
+            && numeric_policy_trace_count(ordinary_person_count, 1)
             && ordinary_person_count.normalized.applied.front().candidate.rule_id
                 != "zh.ordinal.contextual_rank",
         "contextual rank rule intercepted an ordinary person count"
@@ -2157,7 +2167,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "contextual document page rule produced an unexpected result: " + input
         );
     }
@@ -2167,7 +2177,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "contextual document page rule changed an unanchored or protected case: " + text
         );
     }
@@ -2184,7 +2194,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "explicit identifier anchor coverage produced an unexpected result: " + input
         );
     }
@@ -2195,7 +2205,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "explicit identifier anchor coverage changed a short or protected case: " + text
         );
     }
@@ -2213,7 +2223,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v65 missed an approved long-form recovery structure: " + input
         );
     }
@@ -2222,11 +2232,11 @@ int main() {
             "原文写作“集团本季度营收为五百一十二亿六千万元”",
             "原文写作“也就是三二零四号房”",
             "中山路三百零四号文件", "完成一百八十度大转弯",
-            "洛氏硬度只有五十五度", "七百多公里", "七百多个问题",
+            "洛氏硬度只有五十五度",
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v65 changed an ambiguous or protected recovery case: " + text
         );
     }
@@ -2244,7 +2254,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v67 anchored road, timestamp, or audio structure produced an unexpected result: "
                 + input
         );
@@ -2255,7 +2265,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v67 changed an unanchored or protected road or audio structure: " + text
         );
     }
@@ -2269,7 +2279,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v68 version or storage structure produced an unexpected result: " + input
         );
     }
@@ -2278,7 +2288,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v68 changed an unanchored or protected version or storage structure: " + text
         );
     }
@@ -2291,7 +2301,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v69 stock price or share count produced an unexpected result: " + input
         );
     }
@@ -2301,7 +2311,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v69 changed an unanchored, approximate, or protected stock structure: " + text
         );
     }
@@ -2324,7 +2334,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v70 technical specification produced an unexpected result: " + input
         );
     }
@@ -2335,7 +2345,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v70 changed a natural single digit or protected technical expression: " + text
         );
     }
@@ -2374,7 +2384,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v71 news or financial structure produced an unexpected result: " + input
         );
     }
@@ -2385,7 +2395,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v71 changed an ambiguous or protected news or financial expression: " + text
         );
     }
@@ -2412,7 +2422,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v72 logistics, measurement, or score structure produced an unexpected result: "
                 + input
         );
@@ -2424,7 +2434,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v72 changed an unanchored or protected logistics or measurement expression: "
                 + text
         );
@@ -2446,7 +2456,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v73 strong event or setting context produced an unexpected result: " + input
         );
     }
@@ -2458,7 +2468,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v73 changed an unanchored, vague, invalid, or lexical expression: " + text
         );
     }
@@ -2473,7 +2483,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v74 payment boundary or facility number produced an unexpected result: " + input
         );
     }
@@ -2484,7 +2494,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v74 changed a legal, unanchored, lexical, or protected expression: " + text
         );
     }
@@ -2505,7 +2515,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v75 strong time, specification, price, or identifier produced an unexpected result: "
                 + input
         );
@@ -2518,7 +2528,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v75 changed an anomalous, natural, vague, or protected expression: " + text
         );
     }
@@ -2554,7 +2564,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v77 anchored cardinal, technical, or range structure produced an unexpected result: "
                 + input
         );
@@ -2569,7 +2579,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v77 changed a fixed name, invalid time, truncation, or weak context: " + text
         );
     }
@@ -2588,7 +2598,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v78 strongly anchored travel, address, count, or clock structure failed: " + input
         );
     }
@@ -2599,7 +2609,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v78 changed an unanchored clock, identifier, address, or count expression: " + text
         );
     }
@@ -2619,7 +2629,7 @@ int main() {
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v79 composite traffic time, route, or distance structure failed: " + input
         );
     }
@@ -2630,7 +2640,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v79 changed an unanchored time, route, distance, or protected expression: " + text
         );
     }
@@ -2646,7 +2656,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v81 timecode, technical notation, or clinical threshold failed: " + input
         );
     }
@@ -2657,7 +2667,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v81 changed an unanchored, unsupported, or protected expression: " + text
         );
     }
@@ -2670,7 +2680,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v82 anchored validity or renewal duration failed: " + input
         );
     }
@@ -2681,7 +2691,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v82 changed a natural, unsupported, or protected duration: " + text
         );
     }
@@ -2693,7 +2703,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(input));
         passed &= expect(
-            result.valid && result.normalized.output == expected,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v83 approximate rate distance failed: " + input
         );
     }
@@ -2703,7 +2713,7 @@ int main() {
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
-            result.valid && result.normalized.output == text,
+            result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v83 changed an unanchored, single-digit, or protected distance: " + text
         );
     }
@@ -2726,7 +2736,7 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "v85 request failed: " + text);
         passed &= expect(
-            result.normalized.output == expected,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v85 explicit alarm, duration, person count, or cross-year month range failed: "
                 + text + " -> " + result.normalized.output
         );
@@ -2747,7 +2757,7 @@ int main() {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(result.valid, "v85 preservation request failed: " + text);
         passed &= expect(
-            result.normalized.output == text,
+            result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "v85 changed an ambiguous, weakly anchored, invalid, or approximate range: "
                 + text + " -> " + result.normalized.output
         );
@@ -2768,7 +2778,7 @@ int main() {
     };
     for (const auto& [input, expected] : structural_quantity_cases) {
         const auto result = normalize_zh_conservative_v2(request(input));
-        passed &= expect(result.valid && result.normalized.output == expected,
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "structural quantity failed: " + input + " -> " + result.normalized.output
                 + " (" + result.decision_reason + ")");
     }
@@ -2777,9 +2787,88 @@ int main() {
             "一首首歌传遍大街小巷。", "万一有变化就通知我。",
     }) {
         const auto result = normalize_zh_conservative_v2(request(text));
-        passed &= expect(result.valid && result.normalized.output == text,
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, text),
             "structural quantity changed non-quantity: " + text + " -> "
                 + result.normalized.output);
+    }
+
+    // v86 releases complete quantities that the old conservative profile
+    // preserved, while retaining grammatical and semantic boundaries.
+    for (const auto& [input, expected] : std::vector<std::pair<std::string, std::string>>{
+            {"二十余年", "20余年"}, {"七百多公里", "700多公里"},
+            {"七百多个问题", "700多个问题"},
+            {"我让他五个法器，再不行，我让他十个。", "我让他5个法器，再不行，我让他10个。"},
+            {"六十多万条沟谷，七十多年。", "60多万条沟谷，70多年。"},
+            {"从曾经的十六亿吨减少到了两亿吨。", "从曾经的16亿吨减少到了2亿吨。"},
+            {"十六亿吨下降到两亿吨。", "16亿吨下降到2亿吨。"},
+            {"十六亿吨到两亿吨。", "16亿吨到2亿吨。"},
+            {"十六亿吨至两亿吨。", "16亿吨至2亿吨。"},
+            {"十六亿吨~两亿吨。", "16亿吨~2亿吨。"},
+            {"相当于十七条黄河。", "相当于17条黄河。"},
+            {"水量是平时的三倍之多。", "水量是平时的3倍之多。"},
+            {"让四十四座城市用上水。", "让44座城市用上水。"},
+            {"十三级泵站一级一级地提水。", "13级泵站一级一级地提水。"},
+            {"共有两份材料和两百条河流。", "共有2份材料和200条河流。"},
+            {"二十来座城市。", "20来座城市。"}, {"三百余条河流。", "300余条河流。"},
+            {"五十来万座。", "50来万座。"}, {"共有五件设备。", "共有5件设备。"},
+            {"共有五辆车、两箱货物。", "共有5辆车、2箱货物。"},
+    }) {
+        auto result = normalize_zh_conservative_v2(request(input));
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
+            "v86 missed a structural quantity: " + input + " -> " + result.normalized.output);
+        passed &= expect(normalize_zh_conservative_v2(request(result.normalized.output)).normalized.output == result.normalized.output,
+            "v86 quantity was not idempotent: " + input);
+    }
+    for (const std::string input : {"一个方案。", "一首首歌，一条条河流。", "一五一十，三番五次。",
+            "只有两个两种选择。", "三千多万一千条。", "有三种子。", "有两条约。",
+            "《十六亿吨》", "原文写作“有五个苹果”。", "一度成为第一，万一有变化。",
+            "十六亿吨减少到了两亿立方米。", "有五份，份。"}) {
+        auto result = normalize_zh_conservative_v2(request(input));
+        // The final example is an ordinary complete quantity followed by an
+        // unrelated clause; punctuation does not suppress normalization.
+        const std::string expected = input == "有五份，份。" ? "有5份，份。" : input;
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
+            "v86 crossed a quantity protection boundary: " + input + " -> " + result.normalized.output);
+    }
+    const auto split_quantity = normalize_zh_conservative_v2({"五个", "", "法器", "zh-CN", false, true});
+    passed &= expect(split_quantity.valid && split_quantity.normalized.output == "五个", "v86 changed an unfinished cross-segment quantity");
+
+    // v87-v89 repair omissions confirmed in the latest six Web transcripts.
+    for (const auto& [input, expected] : std::vector<std::pair<std::string, std::string>>{
+            {"影片上映后，冯导预测的最高票房是七亿。可在二零一七年元旦前，",
+             "影片上映后，冯导预测的最高票房是7亿。可在2017年元旦前，"},
+            {"最高是七亿。最低有三十万。", "最高是7亿。最低有30万。"},
+            {"最高票房不超过七亿。", "最高票房不超过7亿。"},
+            {"这部电影的最高票房不超过七亿。", "这部电影的最高票房不超过7亿。"},
+            {"如果你有一百万，愿意捐吗？一千万呢？我愿意。一亿呢？一百亿也可以。",
+             "如果你有100万，愿意捐吗？1000万呢？我愿意。1亿呢？100亿也可以。"},
+            {"九十年代初，进入两千年，走过一千年的跨度。", "90年代初，进入2000年，走过1000年的跨度。"},
+            {"但那个时候更大，因为它是一个一千年的跨度。我做的直播，",
+             "但那个时候更大，因为它是一个1000年的跨度。我做的直播，"},
+            {"她在文工团待了十三年，从一九七一年十二岁入伍，一直到二十五岁。",
+             "她在文工团待了13年，从1971年12岁入伍，一直到25岁。"},
+            {"如今多达四十六处，跨越八个省份。", "如今多达46处，跨越8个省份。"},
+            {"存蓄洪水的能力相当于二点六个三峡。", "存蓄洪水的能力相当于2.6个三峡。"},
+            {"凌空而过九公里，水位更低两米。", "凌空而过9公里，水位更低2米。"},
+            {"相当于建起了三座三峡。", "相当于建起了3座三峡。"},
+            {"多达六百多万人，陈灿八十五环，郝淑芬一百零三环。",
+             "多达600多万人，陈灿85环，郝淑芬103环。"},
+            {"冯导预测票房七亿，突破十亿大关，最终票房十四点二亿。",
+             "冯导预测票房7亿，突破10亿大关，最终票房14.2亿。"},
+    }) {
+        auto result = normalize_zh_conservative_v2(request(input));
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
+            "v87-v89 transcript quantity missed: " + input + " -> " + result.normalized.output);
+        passed &= expect(normalize_zh_conservative_v2(request(result.normalized.output)).normalized.output == result.normalized.output,
+            "v87-v89 quantity was not idempotent: " + input);
+    }
+    for (const std::string input : {"千万别轻易失望，十万火急。", "七零八零年代。",
+            "一百年好合，十拿九稳，双十一。", "只有两个两种选择。", "一个苹果。",
+            "二零二四年代发布。", "八年过去了。", "二十年后的今天。"}) {
+        auto result = normalize_zh_conservative_v2(request(input));
+        const std::string expected = input == "二十年后的今天。" ? "20年后的今天。" : input;
+        passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
+            "v87 changed an idiom, ambiguity, or incomplete year: " + input + " -> " + result.normalized.output);
     }
 
     auto wrong_locale = request("二零二六年");

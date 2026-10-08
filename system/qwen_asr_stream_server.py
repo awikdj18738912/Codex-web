@@ -8,6 +8,7 @@ import threading
 import time
 import uuid
 from dataclasses import dataclass, field
+from math import isfinite
 from pathlib import Path
 
 import numpy as np
@@ -17,6 +18,7 @@ from .audio_activity import is_silence, pcm_peak, pcm_rms
 from .backends import SAMPLE_RATE, VAD_WINDOW, build_vad
 from .qwen_confidence import QwenVLLMConfidenceDecoder, state_confidence_payload
 from .stream_vad import StreamingVADGate
+from .entity_asr_context import validate_asr_context, context_digest, MAX_ASR_CONTEXT_CHARS
 
 
 @dataclass
@@ -41,6 +43,7 @@ class Session:
     chunk_size_seconds: float | None = None
     unfixed_chunk_num: int | None = None
     unfixed_token_num: int | None = None
+    context: str = ""
 
 
 _SENTENCE_END_RE = re.compile(r"[.!?。！？][\"'”’》〉』】）)]*$")
@@ -352,8 +355,10 @@ def main(argv: list[str] | None = None) -> int:
         chunk_size_seconds: float | None = None,
         unfixed_chunk_num: int | None = None,
         unfixed_token_num: int | None = None,
+        context: str = "",
     ):
         return asr_runner.init_streaming_state(
+            context=context,
             language=language,
             unfixed_chunk_num=(
                 args.unfixed_chunk_num
@@ -459,6 +464,7 @@ def main(argv: list[str] | None = None) -> int:
                 chunk_size_seconds=session.chunk_size_seconds,
                 unfixed_chunk_num=session.unfixed_chunk_num,
                 unfixed_token_num=session.unfixed_token_num,
+                context=session.context,
             )
             if timing is not None:
                 timing["state_reset_ms"] += (time.perf_counter() - started_at) * 1000.0
@@ -470,6 +476,7 @@ def main(argv: list[str] | None = None) -> int:
         chunk_size_seconds: float | None = None,
         unfixed_chunk_num: int | None = None,
         unfixed_token_num: int | None = None,
+        context: str = "",
     ):
         with model_lock:
             state = new_state(
@@ -477,6 +484,7 @@ def main(argv: list[str] | None = None) -> int:
                 chunk_size_seconds=chunk_size_seconds,
                 unfixed_chunk_num=unfixed_chunk_num,
                 unfixed_token_num=unfixed_token_num,
+                context=context,
             )
             vad_gate = new_vad_gate()
         session_id = uuid.uuid4().hex
@@ -489,8 +497,18 @@ def main(argv: list[str] | None = None) -> int:
                 chunk_size_seconds=chunk_size_seconds,
                 unfixed_chunk_num=unfixed_chunk_num,
                 unfixed_token_num=unfixed_token_num,
+                context=context,
             )
-        return jsonify(session_id=session_id)
+        return jsonify(
+            session_id=session_id,
+            context_supported=True,
+            context_applied=bool(context),
+            context_digest=context_digest(context),
+            chunk_seconds=(
+                args.chunk_size_seconds
+                if chunk_size_seconds is None else chunk_size_seconds
+            ),
+        )
 
     def full_text(session: Session) -> str:
         return _join_transcripts(
@@ -546,6 +564,8 @@ def main(argv: list[str] | None = None) -> int:
             "vad_skipped_chunks": session.vad_skipped_chunks,
             "asr_segment_count": session.completed_segments,
             "segmentation_mode": args.segmentation_mode,
+            "context_applied": bool(session.context),
+            "context_digest": context_digest(session.context),
             # Events are scoped to this request.  Consumers can process each
             # VAD-finalized source segment exactly once instead of trying to
             # recover boundaries from the cumulative transcript.
@@ -564,6 +584,8 @@ def main(argv: list[str] | None = None) -> int:
     @app.get("/health")
     def health():
         return {
+            "context_supported": True,
+            "max_context_chars": MAX_ASR_CONTEXT_CHARS,
             "ok": True,
             "mode": "streaming",
             "api_styles": ["current", "legacy_v1"],
@@ -584,7 +606,20 @@ def main(argv: list[str] | None = None) -> int:
     @app.post("/stream/start")
     def start():
         language = request.args.get("language") or None
-        return start_session(language)
+        try:
+            context=validate_asr_context(request.args.get("context",""))
+        except ValueError as error:
+            return jsonify(error=str(error)),400
+        value = request.args.get("chunk_seconds")
+        if value is None:
+            return start_session(language,context=context)
+        try:
+            chunk_seconds = float(value)
+        except (TypeError, ValueError):
+            return jsonify(error="chunk_seconds must be a positive finite number"), 400
+        if not isfinite(chunk_seconds) or chunk_seconds <= 0:
+            return jsonify(error="chunk_seconds must be a positive finite number"), 400
+        return start_session(language, chunk_size_seconds=chunk_seconds,context=context)
 
     @app.post("/v1/stream/start")
     def legacy_start():
@@ -596,6 +631,10 @@ def main(argv: list[str] | None = None) -> int:
         language_value = payload.get("language")
         language = language_value if isinstance(language_value, str) else None
         try:
+            context=validate_asr_context(payload.get("context",""))
+        except ValueError as error:
+            return jsonify(error=str(error)),400
+        try:
             chunk_size_seconds = float(
                 payload.get("chunk_seconds", args.chunk_size_seconds)
             )
@@ -605,16 +644,18 @@ def main(argv: list[str] | None = None) -> int:
             unfixed_token_num = int(
                 payload.get("unfixed_token_num", args.unfixed_token_num)
             )
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, OverflowError):
             return jsonify(error="invalid legacy streaming configuration"), 400
         if (
-            chunk_size_seconds <= 0
+            not isfinite(chunk_size_seconds)
+            or chunk_size_seconds <= 0
             or unfixed_chunk_num < 0
             or unfixed_token_num < 0
         ):
             return jsonify(error="invalid legacy streaming configuration"), 400
         return start_session(
             language,
+            context=context,
             chunk_size_seconds=chunk_size_seconds,
             unfixed_chunk_num=unfixed_chunk_num,
             unfixed_token_num=unfixed_token_num,

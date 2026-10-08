@@ -1,13 +1,61 @@
 from __future__ import annotations
 
 import unittest
+import tempfile
+import types
+from unittest.mock import Mock, patch
 
 from system.qwen_asr_stream_server import (
     _join_transcripts,
     _scope_confidence_payload,
     _should_rotate_segment,
     _vad_finalize_reason,
+    main,
 )
+
+
+class QwenStreamRequestValidationTest(unittest.TestCase):
+    def setUp(self) -> None:
+        # Exercise the HTTP handlers without loading GPU model weights.
+        self.backend = Mock()
+        module = types.ModuleType("qwen_asr")
+        module.Qwen3ASRModel = types.SimpleNamespace(LLM=Mock(return_value=self.backend))
+        apps = []
+        with tempfile.TemporaryDirectory() as model_dir:
+            with patch.dict("sys.modules", {"qwen_asr": module}), patch(
+                "system.qwen_asr_stream_server.Flask.run",
+                lambda app, **kwargs: apps.append(app),
+            ):
+                main(["--model", model_dir, "--vad", "off", "--confidence-logprobs", "0"])
+        self.client = apps[0].test_client()
+
+    def test_legacy_rejects_nonfinite_and_invalid_chunk_sizes_before_model_call(self) -> None:
+        for value in ("nan", "inf", "-inf", float("nan"), float("inf"),
+                      10**400, 0, -1, None, "invalid"):
+            with self.subTest(value=value):
+                response = self.client.post("/v1/stream/start", json={"chunk_seconds": value})
+                self.assertEqual(response.status_code, 400)
+                self.assertIn("error", response.json)
+        self.backend.init_streaming_state.assert_not_called()
+
+    def test_legacy_rejects_nonfinite_integer_configuration(self) -> None:
+        for field in ("unfixed_chunk_num", "unfixed_token_num"):
+            for value in (float("inf"), float("nan"), -1, None):
+                with self.subTest(field=field, value=value):
+                    response = self.client.post("/v1/stream/start", json={field: value})
+                    self.assertEqual(response.status_code, 400)
+                    self.assertIn("error", response.json)
+        self.backend.init_streaming_state.assert_not_called()
+
+    def test_both_protocols_still_accept_finite_chunk_sizes(self) -> None:
+        responses = (
+            self.client.post("/stream/start?chunk_seconds=0.5"),
+            self.client.post("/v1/stream/start", json={"chunk_seconds": 0.5}),
+        )
+        for response in responses:
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.json["chunk_seconds"], 0.5)
+            self.assertTrue(response.json["session_id"])
 
 
 class QwenStreamSegmentationTest(unittest.TestCase):

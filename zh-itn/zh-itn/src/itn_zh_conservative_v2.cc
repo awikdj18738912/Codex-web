@@ -20,6 +20,8 @@ namespace {
 
 constexpr const char* kCalendarYearRule = "zh.date.explicit_four_digit_year";
 constexpr const char* kCalendarYearRuleVersion = "3";
+constexpr const char* kSpokenDecadeRule = "zh.date.spoken_cardinal_decade";
+constexpr const char* kSpokenDecadeRuleVersion = "1";
 constexpr const char* kYearRangeRule = "zh.date.explicit_year_range";
 constexpr const char* kYearRangeRuleVersion = "1";
 constexpr const char* kFullDateRangeRule = "zh.date.explicit_full_date_range";
@@ -278,6 +280,8 @@ std::optional<std::string> parse_software_version(
     size_t start,
     size_t end
 );
+std::optional<int64_t> parse_spoken_large_count_integer(
+    const std::string&, const std::vector<size_t>&, size_t, size_t);
 
 std::optional<int> spoken_year_digit(const std::string& value) {
     if (value == "零" || value == "〇") return 0;
@@ -479,6 +483,9 @@ std::optional<std::string> closing_delimiter(const std::string& value) {
     return std::nullopt;
 }
 
+bool standard_literal_delimiter(const std::string&, const std::vector<size_t>&, size_t, const std::string&);
+bool standard_numeric_lexical_guard(const std::string&, const std::vector<size_t>&, size_t);
+
 bool direct_speech_quote_opener(
     const std::string& input,
     const std::vector<size_t>& boundaries,
@@ -510,20 +517,20 @@ bool inside_protected_delimiters(
     const std::vector<size_t>& boundaries,
     size_t position
 ) {
-    std::vector<std::string> expected_closers;
+    if (standard_numeric_lexical_guard(input, boundaries, position)) return true;
+    std::vector<std::pair<std::string, bool>> expected_closers;
     for (size_t index = 0; index < position; ++index) {
         const std::string value = unicode_scalar_substring(input, boundaries, index, index + 1);
-        if (!expected_closers.empty() && value == expected_closers.back()) {
+        if (!expected_closers.empty() && value == expected_closers.back().first) {
             expected_closers.pop_back();
             continue;
         }
         const auto closer = closing_delimiter(value);
-        if (closer.has_value()
-            && !direct_speech_quote_opener(input, boundaries, index, value)) {
-            expected_closers.push_back(*closer);
+        if (closer.has_value()) {
+            expected_closers.emplace_back(*closer, standard_literal_delimiter(input, boundaries, index, value));
         }
     }
-    return !expected_closers.empty();
+    return std::any_of(expected_closers.begin(), expected_closers.end(), [](const auto& item) { return item.second; });
 }
 
 bool starts_with_any(const std::string& value, const std::vector<std::string>& prefixes) {
@@ -863,7 +870,23 @@ bool incomplete_temporal_span(
         );
         if (right.find("年代") != std::string::npos) return true;
         const std::string next = unicode_scalar_substring(input, boundaries, end, end + 1);
-        bool released_year_suffix = right.rfind("七夕", 0) == 0;
+        bool released_year_suffix = right.rfind("七夕", 0) == 0
+            || right.rfind("元旦", 0) == 0;
+        if (!released_year_suffix && (spoken_cardinal_digit(next).has_value()
+                || spoken_small_unit(next).has_value())) {
+            size_t age_end = end;
+            while (age_end < length && age_end - end < 4) {
+                const auto part = unicode_scalar_substring(input, boundaries, age_end, age_end + 1);
+                if (!spoken_cardinal_digit(part).has_value()
+                    && !spoken_small_unit(part).has_value()) break;
+                ++age_end;
+            }
+            if (age_end < length
+                && unicode_scalar_substring(input, boundaries, age_end, age_end + 1) == "岁") {
+                const auto age = parse_spoken_cardinal(input, boundaries, end, age_end);
+                released_year_suffix = age.has_value() && *age >= 2 && *age <= 130;
+            }
+        }
         if (!released_year_suffix && next == "代" && end >= 2) {
             const auto decade_digit = spoken_year_digit(unicode_scalar_substring(
                 input, boundaries, end - 2, end - 1
@@ -1037,13 +1060,8 @@ RuleApproval approve_explicit_year(
         }
         year = year * 10 + *digit;
     }
-    if (year < 1000 || year > 2999) {
+    if (year < 1 || year > 9999) {
         return {RuleDecision::preserve, "", {}, {}, "year_out_of_strict_range"};
-    }
-    const std::string left = context_window(input, *boundaries, 0, range.start, 10);
-    if ((year < 1900 || year > 2099)
-        && !ends_with_any(left, {"公元", "西元"})) {
-        return {RuleDecision::preserve, "", {}, {}, "year_outside_modern_context"};
     }
     const std::string digits = unicode_scalar_substring(
         input,
@@ -1104,8 +1122,7 @@ RuleApproval approve_year_month(
         year = year * 10 + *digit;
     }
     const std::string left = context_window(input, *boundaries, 0, range.start, 10);
-    if (year < 1000 || year > 2999
-        || ((year < 1900 || year > 2099) && !ends_with_any(left, {"公元", "西元"}))) {
+    if (year < 1 || year > 9999) {
         return {RuleDecision::preserve, "", {}, {}, "year_month_year_out_of_range"};
     }
     const bool possessive = year_end + 1 < month_suffix
@@ -1264,7 +1281,7 @@ RuleApproval approve_year_month_range(
         }
         year = year * 10 + *digit;
     }
-    if (year < 1900 || year > 2099) {
+    if (year < 1 || year > 9999) {
         return {RuleDecision::preserve, "", {}, {}, "year_month_range_year_out_of_range"};
     }
     size_t first_month_mark = year_end + 1;
@@ -1333,7 +1350,7 @@ RuleApproval approve_year_month_range(
         || *first_month < 1 || *first_month > 12
         || *second_month < 1 || *second_month > 12
         || (has_second_year
-            ? (second_year <= year || second_year > 2099)
+            ? (second_year <= year || second_year > 9999)
             : *first_month >= *second_month)
         || !canonical_spoken_calendar_component(
             input, *boundaries, year_end + 1, first_month_mark, *first_month
@@ -1422,8 +1439,8 @@ RuleApproval approve_year_range(
         first_year = first_year * 10 + *first_digit;
         second_year = second_year * 10 + *second_digit;
     }
-    if (first_year < 1900 || first_year > 2099
-        || second_year < 1900 || second_year > 2099) {
+    if (first_year < 1 || first_year > 9999
+        || second_year < 1 || second_year > 9999) {
         return {RuleDecision::preserve, "", {}, {}, "year_range_out_of_range"};
     }
     const std::string replacement = std::to_string(first_year) + "年" + connector
@@ -1596,8 +1613,7 @@ RuleApproval approve_full_date(
         ));
     }
     const std::string left = context_window(input, *boundaries, 0, range.start, 10);
-    if (year < 1000 || year > 2999
-        || ((year < 1900 || year > 2099) && !ends_with_any(left, {"公元", "西元"}))) {
+    if (year < 1 || year > 9999) {
         return {RuleDecision::preserve, "", {}, {}, "full_date_year_out_of_range"};
     }
     const bool has_linking_particle = year_end + 1 < range.end
@@ -2681,8 +2697,8 @@ std::optional<std::string> parse_percentage_value(
             decimal_mark = index;
         }
     }
-    const auto integer = parse_spoken_cardinal(input, boundaries, start, decimal_mark);
-    if (!integer.has_value() || *integer > 1000) return std::nullopt;
+    const auto integer = parse_spoken_large_count_integer(input, boundaries, start, decimal_mark);
+    if (!integer.has_value()) return std::nullopt;
     std::string value = std::to_string(*integer);
     if (decimal_mark == end) return value;
     if (decimal_mark + 1 == end) return std::nullopt;
@@ -2805,11 +2821,11 @@ std::optional<std::string> parse_explicit_decimal_duration(
         }
     }
     if (decimal_mark == unit->first || decimal_mark == start
-        || decimal_mark + 1 == unit->first || unit->first - decimal_mark - 1 > 3) {
+        || decimal_mark + 1 == unit->first) {
         return std::nullopt;
     }
-    const auto integer = parse_spoken_cardinal(input, boundaries, start, decimal_mark);
-    if (!integer.has_value() || *integer > 999) return std::nullopt;
+    const auto integer = parse_spoken_large_count_integer(input, boundaries, start, decimal_mark);
+    if (!integer.has_value()) return std::nullopt;
     std::string replacement = std::to_string(*integer) + ".";
     for (size_t index = decimal_mark + 1; index < unit->first; ++index) {
         const auto digit = spoken_year_digit(unicode_scalar_substring(
@@ -2849,6 +2865,36 @@ std::optional<std::pair<size_t, std::string>> decimal_measure_unit(
     return std::nullopt;
 }
 
+bool structural_classifier_unit(const std::string& value) {
+    static const std::vector<std::string> units = {
+        "个", "条", "座", "种", "位", "名", "只", "本", "台", "首", "张", "家",
+        "次", "级", "根", "份", "册", "双", "支", "杯", "件", "辆", "颗", "箱",
+        "批", "处", "环", "岁", "人",
+    };
+    return std::find(units.begin(), units.end(), value) != units.end();
+}
+
+bool classifier_followed_by_numbered_noun(
+    const std::string& input,
+    const std::vector<size_t>& boundaries,
+    size_t unit_end
+) {
+    const size_t length = boundaries.size() - 1;
+    if (unit_end + 1 >= length) return false;
+    const std::string onset = unicode_scalar_substring(
+        input, boundaries, unit_end, unit_end + 1
+    );
+    if (!spoken_cardinal_digit(onset).has_value()) return false;
+    const std::string following = unicode_scalar_substring(
+        input, boundaries, unit_end + 1, unit_end + 2
+    );
+    // Keep nested quantity candidates intact (两个两种、五个三次), while
+    // allowing a noun whose written name starts with a numeral (三峡、三角形).
+    return !structural_classifier_unit(following)
+        && !number_continuation(following)
+        && following != "点";
+}
+
 std::string measure_output_unit(const std::string& unit) {
     if (unit == "太拉弗洛普斯") return " TFLOPS";
     if (unit == "个ppm") return " ppm";
@@ -2880,15 +2926,11 @@ std::optional<std::string> parse_explicit_decimal_measure(
         }
     }
     if (decimal_mark == unit->first || decimal_mark == start
-        || decimal_mark + 1 == unit->first || unit->first - decimal_mark - 1 > 3) {
+        || decimal_mark + 1 == unit->first) {
         return std::nullopt;
     }
-    const auto integer = unit->second == "平方米"
-        ? parse_spoken_money_integer(input, boundaries, start, decimal_mark)
-        : parse_spoken_cardinal(input, boundaries, start, decimal_mark);
-    const int maximum = unit->second == "平方米" ? 99999999
-        : unit->second == "万股" ? 9999 : 999;
-    if (!integer.has_value() || *integer > maximum) return std::nullopt;
+    const auto integer = parse_spoken_large_count_integer(input, boundaries, start, decimal_mark);
+    if (!integer.has_value()) return std::nullopt;
     std::string replacement = std::to_string(*integer) + ".";
     for (size_t index = decimal_mark + 1; index < unit->first; ++index) {
         const auto digit = spoken_year_digit(unicode_scalar_substring(
@@ -2952,8 +2994,10 @@ std::optional<int64_t> parse_spoken_large_count_integer(
         cursor = wan + 1;
     }
     if (cursor < end) {
+        const bool explicit_zero=contains_any("零〇", {unicode_scalar_substring(input,boundaries,cursor,cursor+1)});
         const auto low = parse_section(cursor, end);
         if (!low.has_value() || *low >= 10000) return std::nullopt;
+        if (!explicit_zero && *low < (wan!=end ? 1000 : 10000000)) return std::nullopt;
         total += *low;
     }
     return total;
@@ -3109,7 +3153,7 @@ std::optional<std::string> parse_explicit_decimal_money(
         }
     }
     if (decimal_mark == unit->first || decimal_mark == start
-        || decimal_mark + 1 == unit->first || unit->first - decimal_mark - 1 > 3) {
+        || decimal_mark + 1 == unit->first) {
         return std::nullopt;
     }
     const auto integer = parse_spoken_money_integer(
@@ -3753,11 +3797,15 @@ RuleApproval approve_explicit_decimal_measure(
         const std::string right = unicode_scalar_substring(
             input, *boundaries, range.end, std::min(length, range.end + 2)
         );
+        const bool numbered_count_noun = measure_unit.has_value()
+            && measure_unit->second == "个"
+            && classifier_followed_by_numbered_noun(input, *boundaries, range.end);
         const bool released_suffix = approximate_candidate
             && starts_with_any(right, {"左右", "上下", "前后"});
         const bool released_threshold_suffix = threshold_candidate
             && starts_with_any(right, {"以上", "以下", "以内", "之内"});
-        if (number_continuation(next) || range_connector(next) || next == "钟"
+        if ((number_continuation(next) && !numbered_count_noun)
+            || range_connector(next) || next == "钟"
             || contains_any("点每/／", {next})
             || (!released_suffix && !released_threshold_suffix && starts_with_any(right, {
                 "多", "左右", "上下", "前后", "以内", "以上", "以下", "余", "几",
@@ -4109,13 +4157,6 @@ RuleApproval approve_explicit_temperature(
     if (!replacement.has_value()) {
         return {RuleDecision::preserve, "", {}, {}, "invalid_explicit_temperature"};
     }
-    size_t digit_count = 0;
-    for (const char value : *replacement) {
-        if (value >= '0' && value <= '9') ++digit_count;
-    }
-    if (digit_count == 1 && replacement->find('.') == std::string::npos) {
-        return {RuleDecision::preserve, "", {}, {}, "natural_single_digit_integer"};
-    }
     return {
         RuleDecision::approve,
         *replacement,
@@ -4317,33 +4358,20 @@ bool explicit_integer_meter_context(
     return contains_any(left + right, {
         "累计爬升", "累积爬升", "海拔", "标高", "高度", "限高", "长度", "距离",
         "全程", "路程", "距您", "距离您", "向东", "向西", "向南", "向北",
+        "更低", "更高", "加高", "加宽",
     });
 }
 
 bool integer_money_constraint_applies(const std::string& left) {
     static const std::vector<std::string> constraints = {
         "大约", "大概", "约为", "大约在", "约在", "将近", "接近",
-        "约合", "约合人民币", "至少", "至多", "最多", "最少", "最低",
-        "最高", "不到", "不足", "不过", "超过", "不超过", "不少于", "不低于",
+        "约合", "约合人民币", "至少", "至多", "不到", "不足", "不过",
+        "超过", "不超过", "不少于", "不低于",
         "高于", "低于", "应该", "好像", "可能", "也许", "估计", "预计",
         "差不多", "几乎",
     };
-    static const std::vector<std::string> attributive_superlatives = {
-        "最多", "最少", "最低", "最高",
-    };
-    static const std::string attributive_marker = "的";
     for (const auto& constraint : constraints) {
-        size_t position = 0;
-        while ((position = left.find(constraint, position)) != std::string::npos) {
-            const size_t after = position + constraint.size();
-            const bool intervening_attributive = contains_any(
-                    constraint, attributive_superlatives
-                )
-                && left.compare(after, attributive_marker.size(), attributive_marker) == 0
-                && after + attributive_marker.size() < left.size();
-            if (!intervening_attributive) return true;
-            position = after;
-        }
+        if (left.find(constraint) != std::string::npos) return true;
     }
     return false;
 }
@@ -4408,6 +4436,19 @@ bool integer_unit_threshold_applies(
             "超过", "不超过", "不少于", "不低于", "高于", "低于",
         })
         || starts_with_any(right, {"以上", "以下", "以内", "之内"});
+}
+
+bool integer_measure_constraint_applies(const std::string& left) {
+    static const std::vector<std::string> constraints = {
+        "大约", "大概", "约为", "大约在", "约在", "将近", "接近",
+        "至少", "至多", "不到", "不足",
+        "超过", "不超过", "不少于", "不低于", "高于", "低于", "应该",
+        "好像", "可能", "也许", "估计", "预计", "差不多", "几乎",
+    };
+    for (const auto& constraint : constraints) {
+        if (left.find(constraint) != std::string::npos) return true;
+    }
+    return false;
 }
 
 bool integer_unit_threshold_uncertainty_applies(
@@ -4522,9 +4563,6 @@ RuleApproval approve_explicit_integer_money(
     );
     if (!unit.has_value()
         || unicode_scalar_substring(input, *boundaries, range.start, range.end) != range.text
-        || (!threshold_candidate && !approximate_candidate && !explicit_integer_money_context(
-                input, *boundaries, range.start, range.end, unit->second
-            ))
         || inside_protected_delimiters(input, *boundaries, range.start)
         || (range.start == 0 && context.has_left_neighbor)
         || (range.end == length && context.has_right_neighbor)
@@ -4555,8 +4593,7 @@ RuleApproval approve_explicit_integer_money(
             || (contains_any("点约近几多儿啊呃嗯元", {previous})
                 && !released_prefix
                 && !(released_constraint && ends_with_any(left, {"原价最多"})))
-            || (!released_constraint && !released_planned_total
-                && integer_money_constraint_applies(left))) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "integer_money_continues_left"};
         }
         const bool rmb_unit = unit->second == "元" || unit->second == "万元"
@@ -4594,9 +4631,6 @@ RuleApproval approve_explicit_integer_money(
             }))) {
             return {RuleDecision::preserve, "", {}, {}, "integer_money_continues_right"};
         }
-        if (contains_any(right, {"吧", "好像", "大概", "可能", "也许"})) {
-            return {RuleDecision::preserve, "", {}, {}, "uncertain_integer_money_suffix"};
-        }
         if (unit->second == "元" && starts_with_any(right, {
                 "旦", "年", "件", "素", "音", "组", "论", "化", "函数", "方程",
                 "关系", "结构", "系统", "模型", "分析", "运算", "数据", "宇宙", "裤业",
@@ -4616,11 +4650,6 @@ RuleApproval approve_explicit_integer_money(
     const auto integer = parse_spoken_money_integer(
         input, *boundaries, range.start, unit->first
     );
-    const bool released_exchange_unit = integer.has_value() && *integer == 1
-        && unit->second == "美元" && starts_with_any(right, {"兑换"});
-    if (integer.has_value() && *integer < 10 && !released_exchange_unit) {
-        return {RuleDecision::preserve, "", {}, {}, "natural_single_digit_integer"};
-    }
     auto replacement = parse_explicit_integer_money(
         input, *boundaries, range.start, range.end
     );
@@ -4713,7 +4742,7 @@ RuleApproval approve_explicit_integer_measure(
         ) == "多";
     if (approximate_person_count && !ends_with_any(left, {
             "现场有", "现场共有", "共有", "一共有", "总共有", "累计有",
-            "到场有", "出席有", "参会有",
+            "到场有", "出席有", "参会有", "多达", "超过",
         })) {
         return {RuleDecision::preserve, "", {}, {}, "unanchored_approximate_person_count"};
     }
@@ -4780,14 +4809,7 @@ RuleApproval approve_explicit_integer_measure(
             || (!approximate_candidate && !released_periodic_prefix
                 && !released_threshold_prefix
                 && contains_any("点约近几多儿啊呃嗯每/／超", {previous}))
-            || (!threshold_candidate && !approximate_candidate && !periodic_candidate
-                && !released_money_fraction
-                && contains_any(left, {
-                "大约", "大概", "约为", "大约在", "约在", "将近", "接近",
-                "至少", "至多", "最多", "最少", "最低", "最高", "不到", "不足",
-                "超过", "不超过", "不少于", "不低于", "高于", "低于", "应该",
-                "好像", "可能", "也许", "估计", "预计", "差不多", "几乎",
-            }))) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "integer_measure_continues_left"};
         }
     }
@@ -4815,9 +4837,6 @@ RuleApproval approve_explicit_integer_measure(
             "指数报", "指数收报", "指数为",
         })) {
         return {RuleDecision::preserve, "", {}, {}, "uncertain_market_index_context"};
-    }
-    if (unit->second == "亿" && !contains_any(left, {"成交额", "交易额"})) {
-        return {RuleDecision::preserve, "", {}, {}, "uncertain_financial_magnitude_context"};
     }
     if (unit->second == "安" && !contains_any(left, {
             "电流", "额定电流", "工作电流",
@@ -4855,13 +4874,13 @@ RuleApproval approve_explicit_integer_measure(
                 && !meter_followed_by_turn) || (range_connector(next)
                 && !audience_followed_by_predicate)
             || (exact_count && next == "乘")
-            || (unit->second == "人" && starts_with_any(right, {"工", "民币"}))
+            || (unit->second == "人" && starts_with_any(right, {"工", "民币", "帮"}))
             || contains_any("点每/／", {next})
             || (!threshold_candidate && !approximate_candidate && starts_with_any(right, {
                 "多", "左右", "上下", "前后", "以内", "以上", "以下", "余", "几",
                 "起", "之间", "吧", "之多", "级别", "差不多",
             }))
-            || contains_any(right, {"吧", "好像", "大概", "可能", "也许"})) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "integer_measure_continues_right"};
         }
         if (unit->second == "例" && starts_with_any(right, {"外"})) {
@@ -4884,13 +4903,19 @@ RuleApproval approve_explicit_integer_measure(
             "个ppm", "个ppb",
         }
     );
+    if (integer.has_value() && *integer==1
+        && (exact_count || unit->second=="辆" || unit->second=="颗" || unit->second=="个人")
+        && !(range.start && unicode_scalar_substring(input,*boundaries,range.start-1,range.start)=="第")) {
+        return {RuleDecision::preserve,"",{},{},"indefinite_single_one_count"};
+    }
     const bool explicit_process_node = unit->second == "纳米";
     const bool explicit_money_fraction = unit->second == "角";
-    if (integer.has_value() && *integer < 10
-        && !explicit_storage_capacity && !explicit_process_node
-        && !explicit_money_fraction) {
-        return {RuleDecision::preserve, "", {}, {}, "natural_single_digit_integer"};
-    }
+    const bool released_small_physical_measure = !threshold_candidate
+        && !approximate_candidate
+        && ((unit->second == "公里" || unit->second == "千米")
+            || (unit->second == "米" && explicit_integer_meter_context(
+                input, *boundaries, range.start, range.end,
+                unicode_scalar_substring(input, *boundaries, range.start, unit->first))));
     const auto replacement = periodic_candidate
         ? parse_explicit_periodic_integer_measure(
             input, *boundaries, range.start, range.end
@@ -5002,15 +5027,7 @@ RuleApproval approve_explicit_integer_duration(
             || (!approximate_candidate && !released_periodic_prefix
                 && !released_exact_duration_context
                 && contains_any("点约近几多儿啊呃嗯每/／时分秒钟", {previous}))
-            || (!threshold_candidate && !approximate_candidate && !periodic_candidate
-                && !released_exact_duration_context
-                && contains_any(left, {
-                "大约", "大概", "约为", "大约在", "约在", "将近", "接近",
-                "至少", "至多", "最多", "最少", "最低", "最高", "不到", "不足",
-                "超过", "不超过", "不少于", "不低于", "高于", "低于", "长过",
-                "短于", "应该", "好像", "可能", "也许", "估计", "预计",
-                "差不多", "几乎",
-            }))) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "integer_duration_continues_left"};
         }
     }
@@ -5024,16 +5041,13 @@ RuleApproval approve_explicit_integer_duration(
                 "多", "左右", "上下", "前后", "以内", "以上", "以下", "余", "几",
                 "起", "之间", "吧", "之多", "级别", "差不多", "内", "之内",
             }))
-            || contains_any(right, {"吧", "好像", "大概", "可能", "也许"})) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "integer_duration_continues_right"};
         }
     }
     const auto integer = parse_spoken_money_integer(
         input, *boundaries, range.start, unit->first
     );
-    if (integer.has_value() && *integer < 10) {
-        return {RuleDecision::preserve, "", {}, {}, "natural_single_digit_integer"};
-    }
     const auto replacement = parse_explicit_integer_duration(
         input, *boundaries, range.start, range.end
     );
@@ -5292,14 +5306,8 @@ RuleApproval approve_explicit_compound_duration(
         const bool adjacent_ascii = previous.size() == 1
             && std::isalnum(static_cast<unsigned char>(previous[0])) != 0;
         if (adjacent_ascii || number_continuation(previous) || range_connector(previous)
-            || contains_any("点约近几多儿啊呃嗯每/／时分秒钟", {previous})
-            || contains_any(left, {
-                "大约", "大概", "约为", "大约在", "约在", "将近", "接近",
-                "至少", "至多", "最多", "最少", "最低", "最高", "不到", "不足",
-                "超过", "不超过", "不少于", "不低于", "高于", "低于", "长过",
-                "短于", "应该", "好像", "可能", "也许", "估计", "预计",
-                "差不多", "几乎",
-            })) {
+            || (contains_any("点约近几多儿啊呃嗯每/／时分秒钟", {previous})
+                && !ends_with_any(left, {"耗时", "用时"}))) {
             return {RuleDecision::preserve, "", {}, {}, "compound_duration_continues_left"};
         }
     }
@@ -5316,7 +5324,7 @@ RuleApproval approve_explicit_compound_duration(
                 "多", "左右", "上下", "前后", "以内", "以上", "以下", "余", "几",
                 "起", "之间", "吧", "之多", "级别", "差不多", "内", "之内",
             })
-            || contains_any(right, {"吧", "好像", "大概", "可能", "也许"})) {
+            ) {
             return {RuleDecision::preserve, "", {}, {}, "compound_duration_continues_right"};
         }
     }
@@ -6459,7 +6467,7 @@ RuleApproval approve_contextual_rank(
     const auto replacement = parse_spoken_cardinal(
         input, *boundaries, range.start, range.end
     );
-    if (!replacement.has_value() || *replacement < 10 || *replacement > 9999
+    if (!replacement.has_value() || *replacement < 1 || *replacement > 9999
         || unicode_scalar_substring(input, *boundaries, range.start, range.end) != range.text
         || range.start == 0 || range.end >= length
         || unicode_scalar_substring(input, *boundaries, range.start - 1, range.start) != "第"
@@ -6510,7 +6518,7 @@ RuleApproval approve_contextual_document_page(
     const auto replacement = parse_spoken_cardinal(
         input, *boundaries, range.start, range.end
     );
-    if (!replacement.has_value() || *replacement < 10 || *replacement > 9999
+    if (!replacement.has_value() || *replacement < 1 || *replacement > 9999
         || unicode_scalar_substring(input, *boundaries, range.start, range.end) != range.text
         || range.start == 0 || range.end >= length
         || unicode_scalar_substring(input, *boundaries, range.start - 1, range.start) != "第"
@@ -11356,6 +11364,231 @@ std::vector<TransformationCandidate> detect_explicit_integer_money(
     return candidates;
 }
 
+constexpr const char* kStructuralQuantityRule = "zh.quantity.structural_count_or_approximation";
+constexpr const char* kStructuralQuantityRuleVersion = "2";
+constexpr const char* kStructuralQuantityRangeRuleVersion = "2";
+
+// Parse a complete number + classifier/measure object. Contextual count
+// evidence and explicit approximation morphology broaden coverage without
+// changing the existing small-measure and calendar policies.
+std::optional<std::pair<size_t, std::string>> structural_quantity(
+    const std::string& input, const std::vector<size_t>& boundaries, size_t start,
+    bool range_endpoint = false
+) {
+    const size_t length = boundaries.size() - 1;
+    auto scalar = [&](size_t i) {
+        return i < length ? unicode_scalar_substring(input, boundaries, i, i + 1) : "";
+    };
+    if (start >= length || !integer_measure_number_scalar(scalar(start))) return std::nullopt;
+    const bool released_temporal_endpoint = start > 0 && scalar(start - 1) == "到"
+        && ends_with_any(left_clause_context(input, boundaries, start, 8), {"一直到", "直到"});
+    if (start > 0 && (number_continuation(scalar(start - 1))
+            || (!range_endpoint && range_connector(scalar(start - 1)) && !released_temporal_endpoint)
+            || contains_any("第数几点儿.．", {scalar(start - 1)})
+            || (scalar(start - 1).size() == 1 && std::isalnum(static_cast<unsigned char>(scalar(start - 1)[0]))))) return std::nullopt;
+    size_t number_end = start;
+    while (number_end < length && integer_measure_number_scalar(scalar(number_end))) ++number_end;
+    auto value = parse_spoken_large_count_integer(input, boundaries, start, number_end);
+    auto formatted = format_spoken_large_count_integer(input, boundaries, start, number_end);
+    if (!value.has_value() || !formatted.has_value()) return std::nullopt;
+    size_t cursor = number_end;
+    std::string modifier;
+    if (cursor < length && contains_any("多余来", {scalar(cursor)})) modifier = scalar(cursor++);
+    if (!modifier.empty() && cursor < length && contains_any("万亿", {scalar(cursor)})) {
+        // Infix approximations preserve order: 六十多万 -> 60多万.
+        if (contains_any(unicode_scalar_substring(input, boundaries, start, number_end), {"万", "亿"})) return std::nullopt;
+        *formatted += modifier + scalar(cursor++);
+        modifier.clear();
+    }
+    const bool approximate = cursor != number_end;
+    size_t end = cursor;
+    std::string unit;
+    bool classifier = false;
+    for (const std::string candidate : {"个", "条", "座", "种", "位", "名", "只", "本", "台", "首", "张", "家", "次", "级", "根", "份", "册", "双", "支", "杯", "件", "辆", "颗", "箱", "批", "处", "环", "岁", "人"}) {
+        if (scalar(cursor) == candidate) { unit = candidate; end = cursor + 1; classifier = true; break; }
+    }
+    if (unit.empty() && approximate && scalar(cursor) == "年") { unit = "年"; end = cursor + 1; }
+    if (unit.empty() && scalar(cursor) == "年") { unit = "年"; end = cursor + 1; classifier = true; }
+    if (unit.empty()) {
+        for (const std::string candidate : {"平方公里", "平方米", "立方米", "公斤", "千克", "公里", "千米", "厘米", "毫米", "毫升", "吨", "米", "倍"}) {
+            auto ub = unicode_scalar_boundaries(candidate);
+            const size_t width = ub->size() - 1;
+            if (cursor + width <= length && unicode_scalar_substring(input, boundaries, cursor, cursor + width) == candidate) {
+                unit = candidate; end = cursor + width; break;
+            }
+        }
+    }
+    bool bare_magnitude = false;
+    const std::string parsed_number = unicode_scalar_substring(
+        input, boundaries, start, number_end
+    );
+    const bool has_terminal_magnitude = !approximate && ends_with_any(parsed_number, {"万"});
+    if (unit.empty() && has_terminal_magnitude) {
+        const std::string following = scalar(end);
+        const bool complete_surface = following.empty()
+            || contains_any("，。！？；：、,.!?;:", {following})
+            || starts_with_any(right_clause_context(input, boundaries, end, 8), {
+                "呢", "啊", "吧", "的", "左右", "上下", "以上", "以下", "之多",
+            });
+        if (!complete_surface) return std::nullopt;
+        unit = "__bare_magnitude__";
+        bare_magnitude = true;
+    }
+    if (unit.empty() || inside_protected_delimiters(input, boundaries, start)) return std::nullopt;
+    const std::string number = unicode_scalar_substring(input, boundaries, start, number_end);
+    const std::string left = left_clause_context(input, boundaries, start, 16);
+    const std::string right = right_clause_context(input, boundaries, end, 8);
+    const std::string next = scalar(end);
+    if (bare_magnitude) {
+        return std::make_pair(end, *formatted + modifier);
+    }
+    const bool numbered_count_noun = classifier
+        && classifier_followed_by_numbered_noun(input, boundaries, end);
+    if (!next.empty() && ((number_continuation(next) && !numbered_count_noun)
+            || (!range_endpoint && range_connector(next)) || next == unit
+            || contains_any("点每/／", {next}))) return std::nullopt;
+    // A following numeral is a malformed overlapping quantity, not an
+    // independently normalizable count (e.g. 两个两种).
+    const bool lexical_suffix =
+        (unit == "个" && starts_with_any(right, {"月", "小时", "百分点", "基点", "基本点", "ppm", "ppb"}))
+        || (unit == "人" && starts_with_any(right, {"工", "民币", "帮"}))
+        ||
+        (unit == "条" && starts_with_any(right, {"件", "例", "款", "理", "约", "码", "纹"}))
+        || (unit == "种" && starts_with_any(right, {"子", "植", "姓"}))
+        || (unit == "位" && starts_with_any(right, {"置", "移", "于"}))
+        || (unit == "名" && starts_with_any(right, {"字", "称", "义"}))
+        || (unit == "次" && starts_with_any(right, {"序", "数", "方", "元"}))
+        || (unit == "家" && starts_with_any(right, {"庭", "长"}))
+        || (unit == "台" && starts_with_any(right, {"风", "阶"}))
+        || (unit == "首" && starts_with_any(right, {"先", "都"}));
+    if (lexical_suffix || (unit=="只" && starts_with_any(right,{"字节"}))) return std::nullopt;
+    // Avoid normalizing the second half of an overlapping quantity too.
+    // Defer this decision until the duration context is known: “一个一千年
+    // 的跨度” is a valid year span, not a second classifier in “两个两种”.
+    const bool overlapping_count_prefix = start >= 2
+        && contains_any("个种条座位名次级", {scalar(start - 1)})
+        && integer_measure_number_scalar(scalar(start - 2));
+    if (overlapping_count_prefix && !classifier) return std::nullopt;
+    if (classifier) {
+        if (*value == 1) return std::nullopt;
+        // Keep the established formatting of exact large counts in these
+        // units; this extension only adds small counts and approximations.
+        const bool anchor = contains_any(left, {"有", "让", "总计", "累计", "共", "包含", "包括", "相当于", "达到", "记录", "发生", "建成", "建起", "设置", "剩余", "跨越", "多达", "从"});
+        bool duration_context = false;
+        if (unit == "年") {
+            duration_context = contains_any(left, {
+                    "待了", "跳了", "经历了", "经过了", "持续了", "度过了", "工作了", "服役了",
+                    "跨越", "跨度", "已经有", "已有", "进入", "新的一",
+                })
+                || starts_with_any(right, {
+                    "过去", "后", "之后", "以来", "即将到来", "的跨度", "发生", "这段时间",
+                });
+        }
+        if (overlapping_count_prefix && !duration_context) return std::nullopt;
+        if (unit == "人" && (starts_with_any(right, {"乘"}) || (start && scalar(start-1)=="乘"))) return std::nullopt;
+    } else if (unit == "倍") {
+        if (approximate || !ends_with_any(left, {"的"}) || !contains_any(left, {"是", "为", "相当于"})) return std::nullopt;
+    } else {
+        // Leave ordinary small measurements under the original rule policy.
+        const bool magnitude = contains_any(number, {"万", "亿"});
+        const bool infix_magnitude = approximate && ends_with_any(*formatted, {"万", "亿"});
+        if (!magnitude && !infix_magnitude && !approximate) return std::nullopt;
+        if (approximate && *value < 10) return std::nullopt;
+        if (!approximate && *value < 10000) return std::nullopt;
+        if (unit == "亿" || unit == "角" || unit == "度" || unit == "点" || unit == "人") return std::nullopt;
+        if (unit == "吨" && starts_with_any(right, {"位", "公里"})) return std::nullopt;
+    }
+    return std::make_pair(end, *formatted + modifier + unit);
+}
+
+RuleApproval approve_structural_quantity(
+    const std::string& input, const SafePolicyContext& context,
+    const TransformationCandidate& candidate
+) {
+    auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {RuleDecision::error, "", {}, {}, "invalid_utf8"};
+    const auto& range = candidate.semantic_source;
+    auto parsed = structural_quantity(input, *boundaries, range.start);
+    if (!parsed.has_value() || parsed->first != range.end
+            || (range.start==0 && context.has_left_neighbor)
+            || (range.end==boundaries->size()-1 && context.has_right_neighbor)
+            || incomplete_cross_segment_span(context, boundaries->size() - 1, range.start, range.end)) {
+        return {RuleDecision::preserve, "", {}, {}, "uncertain_structural_quantity"};
+    }
+    return {RuleDecision::approve, parsed->second,
+        {{"shape", "complete_quantity_with_classifier_or_magnitude", kStructuralQuantityRule}},
+        {{{range.start, range.end, range.text}, parsed->second}}, "complete_structural_quantity"};
+}
+
+constexpr const char* kStructuralQuantityRangeRule = "zh.quantity.structural_range";
+
+bool structural_quantity_bridge(const std::string& gap) {
+    if (gap == "到" || gap == "至" || gap == "-" || gap == "～" || gap == "~") return true;
+    return ends_with_any(gap, {"到", "到了", "至"})
+        && starts_with_any(gap, {"增长", "增加", "上升", "下降", "减少", "提高", "降低", "缩短", "扩大", "调整"});
+}
+
+RuleApproval approve_structural_quantity_range(
+    const std::string& input, const SafePolicyContext& context,
+    const TransformationCandidate& candidate
+) {
+    auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {RuleDecision::error, "", {}, {}, "invalid_utf8"};
+    const auto& range = candidate.semantic_source;
+    auto first = structural_quantity(input, *boundaries, range.start, true);
+    if (!first.has_value() || incomplete_cross_segment_span(context, boundaries->size() - 1, range.start, range.end))
+        return {RuleDecision::preserve, "", {}, {}, "uncertain_structural_range"};
+    for (size_t start = first->first + 1; start < range.end && start <= first->first + 12; ++start) {
+        auto second = structural_quantity(input, *boundaries, start, true);
+        if (!second.has_value() || second->first != range.end) continue;
+        const std::string gap = unicode_scalar_substring(input, *boundaries, first->first, start);
+        // Match full explicit measurement units, not merely a shared final
+        // character such as 米 in 平方米 and 立方米.
+        auto first_unit = explicit_integer_measure_unit(input, *boundaries, range.start, first->first);
+        auto second_unit = explicit_integer_measure_unit(input, *boundaries, start, range.end);
+        if (!first_unit.has_value() || !second_unit.has_value()
+                || first_unit->second != second_unit->second || !structural_quantity_bridge(gap)) continue;
+        return {RuleDecision::approve, first->second + gap + second->second,
+            {{"shape", "two_complete_same_unit_quantities", kStructuralQuantityRangeRule}},
+            {{{range.start, first->first, unicode_scalar_substring(input, *boundaries, range.start, first->first)}, first->second},
+             {{start, range.end, unicode_scalar_substring(input, *boundaries, start, range.end)}, second->second}},
+            "complete_structural_quantity_range"};
+    }
+    return {RuleDecision::preserve, "", {}, {}, "uncertain_structural_range"};
+}
+
+std::vector<TransformationCandidate> detect_structural_quantities(const std::string& input) {
+    auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {};
+    std::vector<TransformationCandidate> candidates;
+    for (size_t start = 0; start < boundaries->size() - 1; ++start) {
+        auto parsed = structural_quantity(input, *boundaries, start);
+        if (!parsed.has_value()) continue;
+        candidates.push_back({"zh-structural-quantity-" + std::to_string(start),
+            {start, parsed->first, unicode_scalar_substring(input, *boundaries, start, parsed->first)},
+            "zh-CN", "quantity", "structural_quantity", kStructuralQuantityRule, kStructuralQuantityRuleVersion});
+        start = parsed->first - 1;
+    }
+    for (size_t first_start = 0; first_start < boundaries->size() - 1; ++first_start) {
+        auto parsed = structural_quantity(input, *boundaries, first_start, true);
+        if (!parsed.has_value()) continue;
+        const V2SourceRange first = {first_start, parsed->first,
+            unicode_scalar_substring(input, *boundaries, first_start, parsed->first)};
+        for (size_t start = first.end + 1; start < boundaries->size() - 1 && start <= first.end + 12; ++start) {
+            if (!structural_quantity_bridge(unicode_scalar_substring(input, *boundaries, first.end, start))) continue;
+            auto second = structural_quantity(input, *boundaries, start, true);
+            if (!second.has_value()) continue;
+            TransformationCandidate combined = {"zh-structural-range-" + std::to_string(first.start),
+                {first.start, second->first, unicode_scalar_substring(input, *boundaries, first.start, second->first)},
+                "zh-CN", "quantity", "structural_quantity_range", kStructuralQuantityRangeRule, kStructuralQuantityRangeRuleVersion};
+            if (approve_structural_quantity_range(input, {}, combined).decision == RuleDecision::approve)
+                candidates.push_back(std::move(combined));
+        }
+        first_start = first.end - 1;
+    }
+    return candidates;
+}
+
 std::vector<TransformationCandidate> detect_explicit_integer_measures(
     const std::string& input
 ) {
@@ -11478,7 +11711,7 @@ std::vector<TransformationCandidate> detect_explicit_integer_measures(
         const std::string right = right_clause_context(input, *boundaries, end, 8);
         if (approximate_person_count && !ends_with_any(left, {
                 "现场有", "现场共有", "共有", "一共有", "总共有", "累计有",
-                "到场有", "出席有", "参会有",
+                "到场有", "出席有", "参会有", "多达", "超过",
             })) {
             continue;
         }
@@ -11492,7 +11725,6 @@ std::vector<TransformationCandidate> detect_explicit_integer_measures(
             || (detected_unit == "点" && !contains_any(left, {
                 "指数报", "指数收报", "指数为",
             }))
-            || (detected_unit == "亿" && !contains_any(left, {"成交额", "交易额"}))
             || (detected_unit == "安" && !contains_any(left, {"电流"}))) {
             continue;
         }
@@ -12126,19 +12358,6 @@ RuleApproval approve_explicit_unit_range(
             input, *boundaries, range.end, range.end + 1
         )))) {
         return {RuleDecision::preserve, "", {}, {}, "chained_explicit_unit_range"};
-    }
-    const bool released_single_digit_range = (kind == ExplicitUnitRangeKind::measure
-            && (match->unit == "米" || match->unit == "个人"))
-        || contains_any(left, {
-        "距地铁站", "距离", "补贴金额", "成交额", "交易额",
-    });
-    if (!released_single_digit_range && (natural_single_digit_range_endpoint(
-            input, *boundaries, match->first_number_start, match->first_number_end
-        )
-        || natural_single_digit_range_endpoint(
-            input, *boundaries, match->second_number_start, match->second_number_end
-        ))) {
-        return {RuleDecision::preserve, "", {}, {}, "natural_single_digit_range_endpoint"};
     }
     const std::string middle = unicode_scalar_substring(
         input, *boundaries, match->first_number_end, match->second_number_start
@@ -14359,8 +14578,87 @@ std::vector<TransformationCandidate> detect_explicit_years(
     return candidates;
 }
 
+RuleApproval approve_spoken_decade(
+    const std::string& input,
+    const SafePolicyContext& context,
+    const TransformationCandidate& candidate
+) {
+    const auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {RuleDecision::error, "", {}, {}, "invalid_utf8"};
+    const auto& range = candidate.semantic_source;
+    const size_t length = boundaries->size() - 1;
+    if (range.end - range.start < 4
+        || unicode_scalar_substring(input, *boundaries, range.start, range.end) != range.text
+        || unicode_scalar_substring(input, *boundaries, range.end - 2, range.end) != "年代"
+        || inside_protected_delimiters(input, *boundaries, range.start)
+        || incomplete_cross_segment_span(context, length, range.start, range.end)) {
+        return {RuleDecision::preserve, "", {}, {}, "not_complete_spoken_decade"};
+    }
+    if (range.start > 0) {
+        const auto previous = unicode_scalar_substring(input, *boundaries, range.start - 1, range.start);
+        if (number_continuation(previous) || previous == "第")
+            return {RuleDecision::preserve, "", {}, {}, "spoken_decade_continues_left"};
+    }
+    if (range.end < length) {
+        const auto next = unicode_scalar_substring(input, *boundaries, range.end, range.end + 1);
+        if (number_continuation(next) || range_connector(next))
+            return {RuleDecision::preserve, "", {}, {}, "spoken_decade_continues_right"};
+    }
+    const auto spoken = parse_spoken_large_count_integer(
+        input, *boundaries, range.start, range.end - 2
+    );
+    if (!spoken.has_value() || *spoken < 10 || *spoken > 99)
+        return {RuleDecision::preserve, "", {}, {}, "not_two_digit_decade"};
+    const std::string output = std::to_string(*spoken) + "年代";
+    return {RuleDecision::approve, output,
+        {{"shape", "spoken_cardinal_plus_decade_unit", kSpokenDecadeRule},
+         {"boundary", "complete_two_digit_decade", kSpokenDecadeRule}},
+        {{{range.start, range.end, range.text}, output}}, "explicit_spoken_decade"};
+}
+
+std::vector<TransformationCandidate> detect_spoken_decades(const std::string& input) {
+    const auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {};
+    const size_t length = boundaries->size() - 1;
+    std::vector<TransformationCandidate> candidates;
+    for (size_t start = 0; start < length; ++start) {
+        const auto first = unicode_scalar_substring(input, *boundaries, start, start + 1);
+        if (!spoken_cardinal_digit(first).has_value()
+            && !spoken_small_unit(first).has_value()) continue;
+        if (start > 0) {
+            const auto previous = unicode_scalar_substring(input, *boundaries, start - 1, start);
+            if (number_continuation(previous) || previous == "第") continue;
+        }
+        size_t number_end = start;
+        while (number_end < length && integer_money_number_scalar(
+                unicode_scalar_substring(input, *boundaries, number_end, number_end + 1))) ++number_end;
+        if (number_end + 2 > length
+            || unicode_scalar_substring(input, *boundaries, number_end, number_end + 2) != "年代") continue;
+        const auto value = parse_spoken_large_count_integer(input, *boundaries, start, number_end);
+        if (!value.has_value() || *value < 10 || *value > 99) continue;
+        const size_t end = number_end + 2;
+        candidates.push_back({
+            "zh-spoken-decade-" + std::to_string(start) + "-" + std::to_string(end),
+            {start, end, unicode_scalar_substring(input, *boundaries, start, end)},
+            "zh-CN", "date_time", "spoken_cardinal_decade",
+            kSpokenDecadeRule, kSpokenDecadeRuleVersion,
+        });
+        start = end - 1;
+    }
+    return candidates;
+}
+
+#include "itn_zh_numeric_grammar.inc"
+
 const std::vector<ReleasedRule>& released_rules() {
     static const std::vector<ReleasedRule> rules = {
+        {kCommonNumericRule, kCommonNumericRuleVersion, "zh-CN", "number", "common_object", approve_common_numeric},
+        {kCommonNumericRangeRule, kCommonNumericRuleVersion, "zh-CN", "number", "common_range", approve_common_numeric},
+        {kCommonNumericSequenceRule, kCommonNumericRuleVersion, "zh-CN", "number", "common_sequence", approve_common_numeric},
+        {"zh.number.complete_scalar", kCommonNumericRuleVersion, "zh-CN", "number", "common_scalar", approve_common_numeric},
+        {kStructuralQuantityRule, kStructuralQuantityRuleVersion, "zh-CN", "quantity", "structural_quantity", approve_structural_quantity},
+        {kStructuralQuantityRangeRule, kStructuralQuantityRangeRuleVersion, "zh-CN", "quantity", "structural_quantity_range", approve_structural_quantity_range},
+        {kSpokenDecadeRule, kSpokenDecadeRuleVersion, "zh-CN", "date_time", "spoken_cardinal_decade", approve_spoken_decade},
         {
             kCalendarYearRule, kCalendarYearRuleVersion, "zh-CN",
             "date_time", "explicit_four_digit_year", approve_explicit_year,
@@ -14817,6 +15115,13 @@ const std::vector<ReleasedRule>& released_rules() {
 }
 
 int semantic_candidate_priority(const TransformationCandidate& candidate) {
+    if (candidate.rule_id == kCommonNumericRangeRule) return 95;
+    if (candidate.rule_id == kCommonNumericSequenceRule) return 62;
+    if (candidate.rule_id == kCommonNumericRule) return 64;
+    if (candidate.rule_id == "zh.number.complete_scalar") return 63;
+    if (candidate.rule_id == kStructuralQuantityRule) return 65;
+    if (candidate.rule_id == kStructuralQuantityRangeRule) return 100;
+    if (candidate.rule_id == kSpokenDecadeRule) return 92;
     if (candidate.rule_id == kExplicitSignedNumberRule) return 108;
     if (candidate.rule_id == kApproximateCalendarTimestampRule) return 125;
     if (candidate.rule_id == kContextualApproximateClockTimeRule) return 122;
@@ -14918,8 +15223,7 @@ void add_unreleased_composite_blockers(
             const size_t start = first.semantic_source.start;
             const size_t end = second.semantic_source.end;
             if (std::any_of(candidates->begin(), candidates->end(), [&](const auto& item) {
-                    return (item.rule_id == kCalendarTimestampRangeRule
-                            || item.rule_id == kClockTimeRangeRule)
+                    return item.semantic_type!="guard" && item.subtype.find("range")!=std::string::npos
                         && item.semantic_source.start <= start
                         && item.semantic_source.end >= end;
                 })) {
@@ -14952,19 +15256,8 @@ void add_unreleased_composite_blockers(
             || std::any_of(candidates->begin(), candidates->end(), [&](const auto& candidate) {
                 return candidate.semantic_source.start <= connector
                     && candidate.semantic_source.end > connector
-                    && (candidate.rule_id == kYearRangeRule
-                        || candidate.rule_id == kYearMonthRangeRule
-                        || candidate.rule_id == kFullDateRangeRule
-                        || candidate.rule_id == kSharedYearDateRangeRule
-                        || candidate.rule_id == kSharedMonthDateRangeRule
-                        || candidate.rule_id == kFullDateSharedMonthRangeRule
-                         || candidate.rule_id == kCalendarTimestampRangeRule
-                         || candidate.rule_id == kClockTimeRangeRule
-                        || candidate.rule_id == kPercentageRangeRule
-                        || candidate.rule_id == kSharedPrefixPercentageRangeRule
-                        || candidate.rule_id == kExplicitMoneyRangeRule
-                        || candidate.rule_id == kExplicitMeasureRangeRule
-                        || candidate.rule_id == kExplicitDurationRangeRule);
+                    && candidate.semantic_type!="guard"
+                    && candidate.subtype.find("range")!=std::string::npos;
             })) {
             continue;
         }
@@ -15034,7 +15327,9 @@ void add_unreleased_composite_blockers(
 }
 
 std::vector<TransformationCandidate> resolve_complete_semantic_candidates(
-    std::vector<TransformationCandidate> candidates
+    std::vector<TransformationCandidate> candidates,
+    const std::string& input,
+    const SafePolicyContext& context
 ) {
     std::sort(candidates.begin(), candidates.end(), [](const auto& left, const auto& right) {
         return left.semantic_source.start < right.semantic_source.start
@@ -15059,6 +15354,7 @@ std::vector<TransformationCandidate> resolve_complete_semantic_candidates(
         size_t selected = end;
         int selected_priority = -1;
         bool conflicting_selection = false;
+        bool selected_approved = false;
         for (size_t index = begin; index < end; ++index) {
             const bool contains_component = std::all_of(
                 candidates.begin() + static_cast<std::ptrdiff_t>(begin),
@@ -15068,12 +15364,21 @@ std::vector<TransformationCandidate> resolve_complete_semantic_candidates(
                 }
             );
             if (!contains_component) continue;
+            const auto rule = std::find_if(released_rules().begin(), released_rules().end(), [&](const auto& item) {
+                return item.rule_id == candidates[index].rule_id && item.rule_version == candidates[index].rule_version;
+            });
+            const bool approved = rule != released_rules().end()
+                && rule->approver(input, context, candidates[index]).decision == RuleDecision::approve;
+            const bool semantic_blocker = candidates[index].semantic_type == "guard";
             const int priority = semantic_candidate_priority(candidates[index]);
-            if (selected == end || priority > selected_priority) {
+            if (selected == end || semantic_blocker
+                || (approved && !selected_approved && candidates[selected].semantic_type != "guard")
+                || (approved == selected_approved && priority > selected_priority && candidates[selected].semantic_type != "guard")) {
                 selected = index;
                 selected_priority = priority;
+                selected_approved = approved;
                 conflicting_selection = false;
-            } else if (priority == selected_priority
+            } else if (approved == selected_approved && priority == selected_priority
                 && (candidates[index].semantic_source.start
                         != candidates[selected].semantic_source.start
                     || candidates[index].semantic_source.end
@@ -15271,6 +15576,8 @@ static SafeNormalizationResult normalize_zh_conservative_v2_impl(
     candidates.insert(
         candidates.end(), cross_segment_month.begin(), cross_segment_month.end()
     );
+    const auto spoken_decades = detect_spoken_decades(request.text);
+    candidates.insert(candidates.end(), spoken_decades.begin(), spoken_decades.end());
     const auto years = detect_explicit_years(request.text, candidates);
     candidates.insert(candidates.end(), years.begin(), years.end());
     const auto percentages = detect_percentages(request.text);
@@ -15400,6 +15707,8 @@ static SafeNormalizationResult normalize_zh_conservative_v2_impl(
     );
     const auto integer_money = detect_explicit_integer_money(request.text);
     candidates.insert(candidates.end(), integer_money.begin(), integer_money.end());
+    const auto structural_quantities = detect_structural_quantities(request.text);
+    candidates.insert(candidates.end(), structural_quantities.begin(), structural_quantities.end());
     const auto integer_measures = detect_explicit_integer_measures(request.text);
     candidates.insert(candidates.end(), integer_measures.begin(), integer_measures.end());
     const auto compound_durations = detect_explicit_compound_durations(request.text);
@@ -15451,8 +15760,41 @@ static SafeNormalizationResult normalize_zh_conservative_v2_impl(
         kExplicitDurationRangeRuleVersion
     );
     candidates.insert(candidates.end(), duration_ranges.begin(), duration_ranges.end());
+    const auto common_numeric = detect_common_numeric(request.text);
+    candidates.insert(candidates.end(), common_numeric.begin(), common_numeric.end());
+    // Keep the existing specialized rule when its approved edits already
+    // produce the common grammar's spelling. This preserves established
+    // canonical formats and provenance without letting rejected rules block
+    // a complete approved numeric object.
+    const auto semantic_candidates=candidates;
+    candidates.erase(std::remove_if(candidates.begin(), candidates.end(), [&](const auto& candidate) {
+        if (candidate.rule_id!=kCommonNumericRule && candidate.rule_id!=kCommonNumericRangeRule && candidate.rule_id!=kCommonNumericSequenceRule
+            && candidate.rule_id!="zh.number.complete_scalar") return false;
+        const auto bounds=unicode_scalar_boundaries(request.text);
+        const auto common=approve_common_numeric(request.text, {}, candidate);
+        if (!bounds.has_value() || common.decision!=RuleDecision::approve) return false;
+        for (const auto& specific:semantic_candidates) {
+            if (specific.rule_id==kCommonNumericRule || specific.rule_id==kCommonNumericRangeRule || specific.rule_id==kCommonNumericSequenceRule
+                || specific.rule_id=="zh.number.complete_scalar" || !contains_candidate(candidate,specific)) continue;
+            const auto rule=std::find_if(released_rules().begin(),released_rules().end(),[&](const auto& item) { return item.rule_id==specific.rule_id; });
+            if (rule==released_rules().end()) continue;
+            const auto approved=rule->approver(request.text,
+                {request.left_context,request.right_context,request.has_left_neighbor,request.has_right_neighbor},specific);
+            if (approved.decision!=RuleDecision::approve) continue;
+            std::string rendered;
+            size_t cursor=candidate.semantic_source.start;
+            for (const auto& edit:approved.edits) {
+                rendered+=unicode_scalar_substring(request.text,*bounds,cursor,edit.source.start)+edit.replacement;
+                cursor=edit.source.end;
+            }
+            rendered+=unicode_scalar_substring(request.text,*bounds,cursor,candidate.semantic_source.end);
+            if (rendered==common.parsed_value) return true;
+        }
+        return false;
+    }), candidates.end());
     add_unreleased_composite_blockers(request.text, &candidates);
-    candidates = resolve_complete_semantic_candidates(std::move(candidates));
+    candidates = resolve_complete_semantic_candidates(std::move(candidates), request.text,
+        {request.left_context, request.right_context, request.has_left_neighbor, request.has_right_neighbor});
     const size_t total_candidate_count = candidates.size();
     std::vector<std::string> duplicate_rule_ids;
     std::vector<std::pair<std::string, size_t>> duplicate_rule_candidate_counts;

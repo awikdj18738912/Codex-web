@@ -8,6 +8,8 @@ memory instead of querying SQLite for every partial ASR hypothesis.
 from __future__ import annotations
 
 import sqlite3
+import json
+import math
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,6 +17,24 @@ from typing import Iterable
 
 
 _POLICIES = frozenset({"preserve", "normalize"})
+
+
+@dataclass(frozen=True, slots=True)
+class EntitySpellingContext:
+    """Explicit permission to spell a registered name in its declared context.
+
+    Exact-sound spelling is the default. Internal omission completion needs
+    its own opt-in. Evidence weights are not correctness probabilities.
+    """
+
+    keywords: tuple[tuple[str, float], ...]
+    minimum_score: float
+    source: str
+    canonical_text: str
+    entity_type: str
+    domain: str
+    allow_internal_omission: bool = False
+    allow_near_spelling: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -32,6 +52,7 @@ class EntityDefinition:
     source: str = "user"
     created_at: str = ""
     updated_at: str = ""
+    spelling_context: EntitySpellingContext | None = None
 
 
 class EntityStore:
@@ -80,6 +101,18 @@ class EntityStore:
                     ON entity_aliases(alias);
                 CREATE INDEX IF NOT EXISTS idx_entity_domain_enabled
                     ON protected_entities(domain, enabled);
+
+                CREATE TABLE IF NOT EXISTS entity_spelling_contexts (
+                    entity_id INTEGER PRIMARY KEY,
+                    canonical_text TEXT NOT NULL,
+                    entity_type TEXT NOT NULL,
+                    domain TEXT NOT NULL,
+                    keywords_json TEXT NOT NULL,
+                    minimum_score REAL NOT NULL,
+                    source TEXT NOT NULL,
+                    FOREIGN KEY (entity_id) REFERENCES protected_entities(id)
+                        ON DELETE CASCADE
+                );
                 """
             )
 
@@ -146,6 +179,9 @@ class EntityStore:
             if row is None:
                 raise RuntimeError("failed to read entity after upsert")
             entity_id = int(row["id"])
+            connection.execute('''DELETE FROM entity_spelling_contexts WHERE entity_id=?
+                AND (canonical_text!=? OR entity_type!=? OR domain!=?)''',
+                (entity_id,canonical,kind,entity_domain))
             connection.execute(
                 "DELETE FROM entity_aliases WHERE entity_id = ?", (entity_id,)
             )
@@ -188,6 +224,16 @@ class EntityStore:
         where = f"WHERE {' AND '.join(conditions)}" if conditions else ""
 
         with self._connect() as connection:
+            contexts = {
+                int(row['entity_id']): EntitySpellingContext(
+                    tuple((str(k), float(v)) for k,v in json.loads(row['keywords_json']).items()),
+                    float(row['minimum_score']), str(row['source']),
+                    str(row['canonical_text']), str(row['entity_type']), str(row['domain']),
+                    row['allow_internal_omission'] == 1 if 'allow_internal_omission' in row.keys() else False,
+                    row['allow_near_spelling'] == 1 if 'allow_near_spelling' in row.keys() else False,
+                )
+                for row in connection.execute('SELECT * FROM entity_spelling_contexts').fetchall()
+            }
             rows = connection.execute(
                 f"""
                 SELECT e.id, e.canonical_text, e.entity_type, e.domain,
@@ -238,6 +284,7 @@ class EntityStore:
                 source=str(values["source"]),
                 created_at=str(values["created_at"]),
                 updated_at=str(values["updated_at"]),
+                spelling_context=contexts.get(entity_id),
             )
             for entity_id, values in grouped.items()
         )
@@ -323,6 +370,9 @@ class EntityStore:
             )
             if cursor.rowcount == 0:
                 raise KeyError(f"unknown entity id: {entity_id}")
+            connection.execute('''DELETE FROM entity_spelling_contexts WHERE entity_id=?
+                AND (canonical_text!=? OR entity_type!=? OR domain!=?)''',
+                (entity_id,canonical,kind,entity_domain))
             connection.execute("DELETE FROM entity_aliases WHERE entity_id = ?", (entity_id,))
             connection.executemany(
                 "INSERT INTO entity_aliases (entity_id, alias) VALUES (?, ?)",
@@ -334,6 +384,67 @@ class EntityStore:
         with self._connect() as connection:
             cursor = connection.execute("DELETE FROM protected_entities WHERE id = ?", (entity_id,))
             return cursor.rowcount > 0
+
+    def set_spelling_context(
+        self, entity_id: int, *, keywords: dict[str, float],
+        minimum_score: float = 2.0, source: str,
+        allow_internal_omission: bool = False,
+        allow_near_spelling: bool = False,
+    ) -> EntityDefinition:
+        """Opt in a verified standard name to exact-sound contextual spelling.
+
+        The existing CRUD endpoints do not silently enable this policy. A
+        source and nonempty independent context are required for every record.
+        """
+        definition = self.get_entity_by_id(entity_id)
+        if not isinstance(allow_internal_omission, bool):
+            raise ValueError('allow_internal_omission must be a boolean')
+        if not isinstance(allow_near_spelling, bool):
+            raise ValueError('allow_near_spelling must be a boolean')
+        if not 1 <= len(keywords) <= 64:
+            raise ValueError('spelling context requires 1 to 64 keywords')
+        evidence = {}
+        for word, score in keywords.items():
+            word = _required_text(word, 'context keyword')
+            if not 2 <= len(word) <= 32 or word in definition.canonical_text:
+                raise ValueError('context keyword must be independent of the standard name')
+            if not isinstance(score, (int, float)) or isinstance(score, bool) or not math.isfinite(score) or not 0 < score <= 100:
+                raise ValueError('context keyword weight must be finite and positive')
+            evidence[word] = float(score)
+        if isinstance(minimum_score, bool) or not isinstance(minimum_score,(int,float)) or not math.isfinite(minimum_score) or minimum_score <= 0:
+            raise ValueError('minimum context score must be finite and positive')
+        source = _required_text(source, 'spelling context source')
+        with self._connect() as connection:
+            connection.execute('BEGIN IMMEDIATE')
+            columns = {row[1] for row in connection.execute('PRAGMA table_info(entity_spelling_contexts)')}
+            # Reading an old library does not migrate it or enable new rules.
+            if allow_internal_omission and 'allow_internal_omission' not in columns:
+                connection.execute('ALTER TABLE entity_spelling_contexts ADD COLUMN '
+                    'allow_internal_omission INTEGER NOT NULL DEFAULT 0 CHECK (allow_internal_omission IN (0,1))')
+                columns.add('allow_internal_omission')
+            if allow_near_spelling and 'allow_near_spelling' not in columns:
+                connection.execute('ALTER TABLE entity_spelling_contexts ADD COLUMN '
+                    'allow_near_spelling INTEGER NOT NULL DEFAULT 0 CHECK (allow_near_spelling IN (0,1))')
+                columns.add('allow_near_spelling')
+            connection.execute('''INSERT INTO entity_spelling_contexts
+                (entity_id,canonical_text,entity_type,domain,keywords_json,minimum_score,source)
+                VALUES (?,?,?,?,?,?,?) ON CONFLICT(entity_id) DO UPDATE SET
+                canonical_text=excluded.canonical_text,entity_type=excluded.entity_type,
+                domain=excluded.domain,keywords_json=excluded.keywords_json,
+                minimum_score=excluded.minimum_score,source=excluded.source''',
+                (entity_id,definition.canonical_text,definition.entity_type,definition.domain,
+                 json.dumps(evidence,ensure_ascii=False),float(minimum_score),source))
+            if 'allow_internal_omission' in columns:
+                connection.execute('UPDATE entity_spelling_contexts SET allow_internal_omission=? WHERE entity_id=?',
+                                   (int(allow_internal_omission), entity_id))
+            if 'allow_near_spelling' in columns:
+                connection.execute('UPDATE entity_spelling_contexts SET allow_near_spelling=? WHERE entity_id=?',
+                                   (int(allow_near_spelling), entity_id))
+        return self.get_entity_by_id(entity_id)
+
+    def clear_spelling_context(self, entity_id: int) -> bool:
+        with self._connect() as connection:
+            return connection.execute('DELETE FROM entity_spelling_contexts WHERE entity_id=?',(entity_id,)).rowcount > 0
 
 
 def _required_text(value: str, name: str) -> str:

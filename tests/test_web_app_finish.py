@@ -2416,7 +2416,7 @@ class WebAppFinishTest(unittest.TestCase):
         )
         self.assertEqual(final["refinement_gate_decisions"][0]["cleanup_signals"], ["numeric_normalization"])
 
-    def test_streaming_window_applies_fuzzy_entity_before_finish(self) -> None:
+    def test_streaming_window_does_not_commit_unconfirmed_fuzzy_entity(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             entity_db = Path(directory) / "entities.db"
             EntityStore(entity_db).upsert_entity(
@@ -2448,21 +2448,21 @@ class WebAppFinishTest(unittest.TestCase):
                         while message["event"] != "update":
                             message = websocket.receive_json()
                         self.assertEqual(
-                            message["clean_text"], "鬼灵门是这个副本的入口。"
+                            message["clean_text"], "鬼灵们是这个副本的入口。"
                         )
                         self.assertEqual(
                             message["entity_candidates"][0]["decision"],
-                            "AUTO_NORMALIZE",
+                            "HINT_ONLY",
                         )
 
                         websocket.send_json({"event": "finish"})
                         self.assertEqual(websocket.receive_json()["event"], "transcript")
                         final = self._await_event(websocket, "final")
 
-                        self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
+                        self.assertEqual(final["clean_text"], "鬼灵们是这个副本的入口。")
                         self.assertEqual(
                             final["entity_candidates"][0]["decision"],
-                            "AUTO_NORMALIZE",
+                            "HINT_ONLY",
                         )
 
     def test_stream_trace_links_model_window_review_and_publication(self) -> None:
@@ -2659,6 +2659,7 @@ class WebAppFinishTest(unittest.TestCase):
                 "鬼灵门",
                 entity_type="TERM",
                 normalization_policy="normalize",
+                aliases=("鬼灵们",),
             )
             with (
                 patch.object(
@@ -2696,7 +2697,7 @@ class WebAppFinishTest(unittest.TestCase):
                         self.assertEqual(final["session_refiner_initial_call_count"], 1)
                         self.assertEqual(final["session_refiner_retry_call_count"], 1)
 
-    def test_final_auto_mode_applies_and_restores_fuzzy_entity(self) -> None:
+    def test_final_auto_mode_keeps_unconfirmed_fuzzy_entity(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             entity_db = Path(directory) / "entities.db"
             EntityStore(entity_db).upsert_entity(
@@ -2729,15 +2730,12 @@ class WebAppFinishTest(unittest.TestCase):
                             "鬼灵们是这个副本的入口。",
                         )
                         final = self._await_event(websocket, "final")
-                        self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
+                        self.assertEqual(final["clean_text"], "鬼灵们是这个副本的入口。")
                         self.assertEqual(
                             final["entity_candidates"][0]["decision"],
-                            "AUTO_NORMALIZE",
+                            "HINT_ONLY",
                         )
-                        self.assertEqual(
-                            final["protected_entities"][0]["source"],
-                            "fuzzy:general",
-                        )
+                        self.assertEqual(final["protected_entities"], [])
 
     def test_slow_chunk_reports_progress_before_acknowledgement(self) -> None:
         with (

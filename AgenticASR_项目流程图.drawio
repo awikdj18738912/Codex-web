@@ -1,0 +1,634 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-08T05:36:09.923250+00:00" agent="Codex" version="24.7.17" compressed="false">
+  <diagram id="page-1" name="01 · 整体运行链路">
+    <mxGraphModel dx="1840" dy="1510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1660" pageHeight="1980" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;01 · 整体运行链路&lt;/b&gt;&lt;br&gt;当前主入口：浏览器 Web → Qwen3-ASR-1.7B / vLLM → 规则、门控、Refiner → 可审计输出" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="20" width="1570" height="95" />
+        </mxCell>
+        <mxCell id="footer" value="&lt;b&gt;阅读说明&lt;/b&gt;&lt;br&gt;实线：处理 / 数据流；虚线：可选功能、辅助信息或控制流；灰色：预留能力或独立实验。&lt;br&gt;基于 2026-10-08 当前源码及 8081 / 8766 健康配置。新源码规则是否已加载到常驻进程，需另行核验。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="1875" width="1570" height="90" />
+        </mxCell>
+        <mxCell id="input" value="&lt;b&gt;音频输入与前端&lt;/b&gt;&lt;br&gt;在线麦克风 / 离线整段文件 / 离线流式文件&lt;br&gt;system/web/index.html" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="145" width="460" height="105" />
+        </mxCell>
+        <mxCell id="vad" value="&lt;b&gt;音频转换与 VAD&lt;/b&gt;&lt;br&gt;单声道 16 kHz Float32 PCM；Silero VAD&lt;br&gt;0.7 s 前缓冲 / 语音结束判定 / 1.0 s 尾部补静音" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="290" width="460" height="115" />
+        </mxCell>
+        <mxCell id="asr" value="&lt;b&gt;Qwen3-ASR 流式识别&lt;/b&gt;&lt;br&gt;模型：1.7B；后端：vLLM；模式：vad_finalize&lt;br&gt;当前段累积音频 + 可修订文字尾部；必要时轮换状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="450" width="460" height="115" />
+        </mxCell>
+        <mxCell id="schedule" value="&lt;b&gt;源窗口、调度与缓存&lt;/b&gt;&lt;br&gt;只消费已完成的 ASR 源段；标点切块，完整 K=3 分组&lt;br&gt;最新任务替换待处理任务；最小 1 s 启动间隔；按源文本复用缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="630" width="460" height="130" />
+        </mxCell>
+        <mxCell id="prepare" value="&lt;b&gt;数字规则 + 实体准备&lt;/b&gt;&lt;br&gt;当前 zh-itn v90 开启：先规范数字，再准备实体保护&lt;br&gt;标准名 / 别名 / 受约束字音验证 → 可信基线、占位符、候选提示" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="810" width="460" height="130" />
+        </mxCell>
+        <mxCell id="gate" value="&lt;b&gt;窗口门控&lt;/b&gt;&lt;br&gt;tri_state&lt;br&gt;是否需要 Refiner？" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="650" y="995" width="360" height="135" />
+        </mxCell>
+        <mxCell id="refiner" value="&lt;b&gt;AgenticASR Refiner&lt;/b&gt;&lt;br&gt;受保护输入 + 提示 → 单个 JSON 局部补丁&lt;br&gt;口癖 / 重复 / 改口 / 文字修正；普通调用有生成时间上限" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="1190" width="460" height="115" />
+        </mxCell>
+        <mxCell id="guard" value="&lt;b&gt;补丁应用、恢复与输出校验&lt;/b&gt;&lt;br&gt;source 唯一定位；占位符数量、顺序与句间关系&lt;br&gt;数字值 / 规则写法 / 内容损失 / 新增内容 / 截断与循环" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="1345" width="460" height="115" />
+        </mxCell>
+        <mxCell id="merge" value="&lt;b&gt;合并、确定性清理与局部复核&lt;/b&gt;&lt;br&gt;跨窗口精确短语修复、明确重复及口吃清理&lt;br&gt;歧义重复可走独立模型复核；仅应用可验证的局部修改" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="1510" width="460" height="125" />
+        </mxCell>
+        <mxCell id="output" value="&lt;b&gt;展示与记录&lt;/b&gt;&lt;br&gt;raw_text / clean_text 分开；已精修内容 + 最新待处理尾部&lt;br&gt;WebSocket 更新 / final；JSONL、窗口日志、调用与耗时统计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="600" y="1690" width="460" height="150" />
+        </mxCell>
+        <mxCell id="inputs" value="&lt;b&gt;前端传输与解码节奏&lt;/b&gt;&lt;br&gt;麦克风：0.5 s 上传 / 默认 1 s 解码&lt;br&gt;文件：1 s 上传 / 2 s 解码&lt;br&gt;传输分块 ≠ 模型解码间隔 ≠ 精修窗口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="175" width="430" height="125" />
+        </mxCell>
+        <mxCell id="context" value="&lt;b&gt;可选词库辅助识别&lt;/b&gt;&lt;br&gt;当前默认关闭；仅传选定领域的标准名&lt;br&gt;Web 最多 16 项 / 1024 字符；ASR API 上限 2048&lt;br&gt;会话保存 context，并在 VAD 状态轮换后继续使用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="450" width="430" height="125" />
+        </mxCell>
+        <mxCell id="confidence" value="&lt;b&gt;ASR 置信度：提取并记录&lt;/b&gt;&lt;br&gt;当前捕获 token logprob（top_logprobs=5）&lt;br&gt;未校准；可能仅覆盖新生成尾部&lt;br&gt;当前 Web 不依据 0.80 / 0.92 阈值路由" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="450" width="440" height="125" />
+        </mxCell>
+        <mxCell id="raw" value="&lt;b&gt;原始转写立即展示&lt;/b&gt;&lt;br&gt;累计假设持续更新；不等待 Refiner&lt;br&gt;HypothesisTracker 计算稳定性，显示 KEEP / DEFER / REFINE&lt;br&gt;页面状态不会单独决定是否入队" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="630" width="440" height="130" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;SQLite 实体库与会话记忆&lt;/b&gt;&lt;br&gt;管理标准名、别名、领域、策略、语境和显式权限&lt;br&gt;新会话载入所选领域 + general；本次会话定义固定&lt;br&gt;已审核库实体直接可信；会话记忆有独立证据限制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="810" width="430" height="130" />
+        </mxCell>
+        <mxCell id="reuse" value="&lt;b&gt;缓存命中与原文修订&lt;/b&gt;&lt;br&gt;相同源分组复用已处理结果，避免重复生成&lt;br&gt;源文本或分组改变 → 对应窗口重新处理&lt;br&gt;结束全文重跑开关 off 仍会处理变化源和短尾部" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="630" width="430" height="125" />
+        </mxCell>
+        <mxCell id="keep" value="&lt;b&gt;保留规则处理后的基线&lt;/b&gt;&lt;br&gt;KEEP：不调用普通窗口 Refiner&lt;br&gt;不足 K=3 的尾部等待后续 / finish&lt;br&gt;实体规范与规则清理仍可生效" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="995" width="440" height="135" />
+        </mxCell>
+        <mxCell id="fallback" value="&lt;b&gt;拒绝、重试与回退&lt;/b&gt;&lt;br&gt;可重试的完整性失败 → 严格重试最多 1 次&lt;br&gt;仍失败 / 忙 / 超时 / 异常 → 返回可信基线&lt;br&gt;zh-itn 模式保留规则数字；旧 Python 路径另有数字挽救" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCEAEA;strokeColor=#B96767;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="1330" width="440" height="145" />
+        </mxCell>
+        <mxCell id="finish" value="&lt;b&gt;finish 收尾&lt;/b&gt;&lt;br&gt;停止输入 → ASR 最终快照 → 清空已有精修队列&lt;br&gt;最终快照走同一窗口路径；补齐不足 K 的尾部&lt;br&gt;复用缓存；默认不重跑此前被拒绝的相同窗口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="1510" width="430" height="140" />
+        </mxCell>
+        <mxCell id="details" value="&lt;b&gt;其余页&lt;/b&gt;&lt;br&gt;02：门控与真实调用条件&lt;br&gt;03：实体、精修保护与回退&lt;br&gt;04：训练数据、评测与研究工具" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="1690" width="440" height="115" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="input" target="vad">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vad" target="asr">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="asr" target="schedule">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="schedule" target="prepare">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="prepare" target="gate">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" value="REFINE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="refiner">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="refiner" target="guard">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" value="接受" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="guard" target="merge">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="merge" target="output">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="inputs" target="input">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-10" value="用户启用时" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="context" target="asr">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="asr" target="confidence">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-12" value="raw_text" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="asr" target="raw">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1100" y="590" />
+              <mxPoint x="1370" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="db" target="prepare">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="reuse" target="schedule">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-15" value="KEEP / 待处理尾部" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="keep">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B78429;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="keep" target="merge">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1615" y="1062" />
+              <mxPoint x="1615" y="1480" />
+              <mxPoint x="1100" y="1480" />
+              <mxPoint x="1100" y="1572" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-17" value="拒绝 / 不可用" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="guard" target="fallback">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-18" value="重试成功或安全回退" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fallback" target="merge">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1370" y="1572" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-19" value="收尾控制" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="finish" target="schedule">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="30" y="1580" />
+              <mxPoint x="30" y="605" />
+              <mxPoint x="580" y="605" />
+              <mxPoint x="580" y="695" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page-2" name="02 · 门控决策与实际调度">
+    <mxGraphModel dx="1840" dy="1510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1860" pageHeight="1760" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;02 · 门控决策与实际调度&lt;/b&gt;&lt;br&gt;当前 Web：tri_state；refine_on_unverified_confidence=false；zh-itn=true。区分实时状态、调度和窗口门控。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="20" width="1770" height="95" />
+        </mxCell>
+        <mxCell id="footer" value="&lt;b&gt;阅读说明&lt;/b&gt;&lt;br&gt;实线：处理 / 数据流；虚线：可选功能、辅助信息或控制流；灰色：预留能力或独立实验。&lt;br&gt;基于 2026-10-08 当前源码及 8081 / 8766 健康配置。新源码规则是否已加载到常驻进程，需另行核验。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="1655" width="1770" height="90" />
+        </mxCell>
+        <mxCell id="leftlabel" value="&lt;b&gt;A · 中间假设状态与调度&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="140" width="730" height="50" />
+        </mxCell>
+        <mxCell id="hyp" value="&lt;b&gt;新的累计 ASR 文本&lt;/b&gt;&lt;br&gt;先显示 raw_text；观察跨次假设变化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="230" width="560" height="90" />
+        </mxCell>
+        <mxCell id="tracker" value="&lt;b&gt;HypothesisTracker 稳定性&lt;/b&gt;&lt;br&gt;任一条件满足即可：连续 2 次不变；或修订比例 ≤20%；&lt;br&gt;或句末完整 + 至少 1 次不变 + 距变化 ≥600 ms" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="355" width="560" height="120" />
+        </mxCell>
+        <mxCell id="state" value="&lt;b&gt;中间状态发布&lt;/b&gt;&lt;br&gt;非最终且不稳定 → DEFER；稳定后根据文本信号给状态&lt;br&gt;KEEP / DEFER / REFINE 用于页面和追踪日志&lt;br&gt;此处状态没有直接阻止或强制 completed_segments 入队" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="515" width="560" height="130" />
+        </mxCell>
+        <mxCell id="complete" value="&lt;b&gt;本次有新的已完成源段？&lt;/b&gt;&lt;br&gt;来自 ASR completed_segments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="225" y="705" width="410" height="130" />
+        </mxCell>
+        <mxCell id="wait" value="&lt;b&gt;没有已完成源段&lt;/b&gt;&lt;br&gt;保持原始假设 / 已精修显示&lt;br&gt;等待 ASR 完成段或最终快照" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="900" width="330" height="110" />
+        </mxCell>
+        <mxCell id="queue" value="&lt;b&gt;有已完成源段&lt;/b&gt;&lt;br&gt;按 segment_id 去重并积累源段&lt;br&gt;只保留最新待处理任务；最小启动间隔 1 s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="435" y="900" width="350" height="110" />
+        </mxCell>
+        <mxCell id="groups" value="&lt;b&gt;切块、组窗、检查缓存&lt;/b&gt;&lt;br&gt;按标点切块，完整 K=3 组进入窗口处理&lt;br&gt;未满组只准备基线；相同源分组复用缓存&lt;br&gt;修订源分组重新处理；自我修正可合并相关块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="435" y="1080" width="350" height="145" />
+        </mxCell>
+        <mxCell id="flush" value="&lt;b&gt;finish 收尾&lt;/b&gt;&lt;br&gt;先完成已有任务，再处理最终 ASR 快照&lt;br&gt;不足 K=3 的尾部被补齐处理&lt;br&gt;final_refinement_mode=off：默认复用被拒窗口缓存" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="150" y="1330" width="560" height="140" />
+        </mxCell>
+        <mxCell id="rightlabel" value="&lt;b&gt;B · 每个源窗口的实际模型路由&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="865" y="140" width="930" height="50" />
+        </mxCell>
+        <mxCell id="prepared" value="&lt;b&gt;规则处理后的窗口&lt;/b&gt;&lt;br&gt;数字规范 + 实体保护 → baseline / masked_text / hints&lt;br&gt;完整组正常判断；未满组的 REFINE 会被覆为 DEFER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1080" y="230" width="560" height="100" />
+        </mxCell>
+        <mxCell id="signals" value="&lt;b&gt;有实体提示或文本清理信号？&lt;/b&gt;&lt;br&gt;规则详见下方；数字格式需求单独判断" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1150" y="380" width="420" height="135" />
+        </mxCell>
+        <mxCell id="call" value="&lt;b&gt;REFINE&lt;/b&gt;&lt;br&gt;尝试普通窗口 Refiner&lt;br&gt;还需获取模型锁；生成后必须通过校验" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="570" width="370" height="110" />
+        </mxCell>
+        <mxCell id="numeric" value="&lt;b&gt;只有数字格式需求？&lt;/b&gt;&lt;br&gt;当前 zh-itn 已负责处理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1340" y="570" width="390" height="130" />
+        </mxCell>
+        <mxCell id="numeric_keep" value="&lt;b&gt;KEEP：规则负责数字&lt;/b&gt;&lt;br&gt;不因数字格式需求调用普通 Refiner&lt;br&gt;数字重复分句仍属于清理信号" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1340" y="755" width="390" height="110" />
+        </mxCell>
+        <mxCell id="final" value="&lt;b&gt;最终窗口且没有结束标点？&lt;/b&gt;&lt;br&gt;没有前述清理信号和实体提示时" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="930" y="965" width="410" height="135" />
+        </mxCell>
+        <mxCell id="clean_keep" value="&lt;b&gt;KEEP：无明确精修信号&lt;/b&gt;&lt;br&gt;当前未校准置信度不强制触发精修&lt;br&gt;稳定普通窗口 / 完整最终窗口保留基线" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1430" y="965" width="350" height="135" />
+        </mxCell>
+        <mxCell id="signal_list" value="&lt;b&gt;当前清理信号&lt;/b&gt;&lt;br&gt;重复字 / 2–8 字重复短语；独立口癖和嵌入的 嗯 / 呃&lt;br&gt;自我修正：不对、应该是、说错了、改成、更正一下等&lt;br&gt;重复空格 / 标点；孤立单字分句；特定断句异常&lt;br&gt;zh-itn 模式下：包含数字的相邻重复分句；嗯哼 / 呃逆等有例外保护" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="1190" width="905" height="155" />
+        </mxCell>
+        <mxCell id="reserved" value="&lt;b&gt;预留的置信度分支：当前未生效&lt;/b&gt;&lt;br&gt;只有 calibrated=true 且 covers_full_text=true 才可参与判断。&lt;br&gt;可用置信度 &amp;lt;0.80 → REFINE；≥0.92 → KEEP（实体与清理信号优先）。&lt;br&gt;当前 Qwen confidence_calibrated=false；Web 不因缺失或未校准而强制精修。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="875" y="1400" width="905" height="150" />
+        </mxCell>
+        <mxCell id="note" value="&lt;b&gt;独立调用通道&lt;/b&gt;&lt;br&gt;局部重复复核可另行调用模型；窗口 KEEP 不保证整个会话零调用。&lt;br&gt;原文不变时缓存可减少调用，但这与规则门控的收益需要分开评估。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1550" width="730" height="100" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hyp" target="tracker">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tracker" target="state">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="state" target="complete">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="complete" target="wait">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="225" y="865" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="complete" target="queue">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="610" y="865" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="queue" target="groups">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="最终快照 / 短尾部" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="flush" target="groups">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="745" y="1400" />
+              <mxPoint x="745" y="1250" />
+              <mxPoint x="610" y="1250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="prepared" target="signals">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-8" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="signals" target="call">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1060" y="447" />
+              <mxPoint x="1060" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="signals" target="numeric">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1535" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-10" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="numeric" target="numeric_keep">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-11" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="numeric" target="final">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1280" y="635" />
+              <mxPoint x="1280" y="925" />
+              <mxPoint x="1135" y="925" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-12" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="final" target="call">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="850" y="1032" />
+              <mxPoint x="850" y="720" />
+              <mxPoint x="1060" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-13" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="final" target="clean_keep">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-14" value="完整组 / 收尾短尾部" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="groups" target="prepared">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="820" y="1152" />
+              <mxPoint x="820" y="205" />
+              <mxPoint x="1360" y="205" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-15" value="文本规则特征" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="signal_list" target="signals">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1810" y="1267" />
+              <mxPoint x="1810" y="350" />
+              <mxPoint x="1360" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page-3" name="03 · 实体与精修安全流程">
+    <mxGraphModel dx="1840" dy="1510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1810" pageHeight="2130" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;03 · 实体与精修安全流程&lt;/b&gt;&lt;br&gt;主 Web 流程：数字与实体先生成可信基线，模型提出修改，恢复和校验决定能否接受。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="20" width="1720" height="95" />
+        </mxCell>
+        <mxCell id="footer" value="&lt;b&gt;阅读说明&lt;/b&gt;&lt;br&gt;实线：处理 / 数据流；虚线：可选功能、辅助信息或控制流；灰色：预留能力或独立实验。&lt;br&gt;基于 2026-10-08 当前源码及 8081 / 8766 健康配置。新源码规则是否已加载到常驻进程，需另行核验。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="2025" width="1720" height="90" />
+        </mxCell>
+        <mxCell id="source" value="&lt;b&gt;源窗口&lt;/b&gt;&lt;br&gt;raw_text 保留；当前先执行 zh-itn v90" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="150" width="490" height="95" />
+        </mxCell>
+        <mxCell id="exact" value="&lt;b&gt;精确实体与规则保护&lt;/b&gt;&lt;br&gt;标准名 / 已审核别名 / URL / 缩写 / 标识符 / 数字成语&lt;br&gt;Web 数字不使用占位符：由独立数值与写法校验保护" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="295" width="490" height="115" />
+        </mxCell>
+        <mxCell id="match" value="&lt;b&gt;实体候选与独立证据验证&lt;/b&gt;&lt;br&gt;字形 / 拼音 / 长度 / 领域 / 优先级召回评分&lt;br&gt;独立 jieba 词边界、源偏移、竞争候选、策略与权限检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="460" width="490" height="120" />
+        </mxCell>
+        <mxCell id="baseline" value="&lt;b&gt;准备可信基线与模型输入&lt;/b&gt;&lt;br&gt;已验证规范进入基线并掩码；未知候选仅供模型核对&lt;br&gt;产物：baseline_text、masked_text、hints、observed/canonical" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="705" width="490" height="125" />
+        </mxCell>
+        <mxCell id="gate" value="&lt;b&gt;窗口门控&lt;/b&gt;&lt;br&gt;KEEP → 基线；REFINE → 模型&lt;br&gt;不足组等待；完整规则详见第 02 页" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="885" width="490" height="100" />
+        </mxCell>
+        <mxCell id="model" value="&lt;b&gt;Refiner 生成&lt;/b&gt;&lt;br&gt;JSON keep / replace；保留旧文本格式兼容&lt;br&gt;候选实体修改需 exact observed → canonical 的局部补丁" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="1050" width="490" height="110" />
+        </mxCell>
+        <mxCell id="patch" value="&lt;b&gt;结构化补丁应用&lt;/b&gt;&lt;br&gt;replace 的 source 必须逐字来自输入且只出现一次&lt;br&gt;非法 / 非唯一 / 空输出 → 拒绝" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="1210" width="490" height="110" />
+        </mxCell>
+        <mxCell id="restore" value="&lt;b&gt;占位符恢复与语义安全检查&lt;/b&gt;&lt;br&gt;修复有限的占位符下划线损坏；数量、顺序、句间关系校验&lt;br&gt;再检查实体、数值、规则数字写法、内容损失和无依据新增" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="1370" width="490" height="125" />
+        </mxCell>
+        <mxCell id="accept" value="&lt;b&gt;候选通过？&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;shape=rhombus;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="700" y="1550" width="310" height="115" />
+        </mxCell>
+        <mxCell id="accepted" value="&lt;b&gt;接受候选&lt;/b&gt;&lt;br&gt;记录实际规范和接受状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="1720" width="490" height="90" />
+        </mxCell>
+        <mxCell id="result" value="&lt;b&gt;合并、清理与可审计输出&lt;/b&gt;&lt;br&gt;普通窗口输出合并；局部重复复核另行验证&lt;br&gt;返回 raw / clean、拒绝原因、修改记录、模型与门控统计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="610" y="1880" width="490" height="110" />
+        </mxCell>
+        <mxCell id="store" value="&lt;b&gt;词库与配置入口&lt;/b&gt;&lt;br&gt;SQLite CRUD；当前领域 + general&lt;br&gt;preserve / normalize；启停、别名和优先级&lt;br&gt;语境与近音 / 漏字权限通过 entity_context_cli 管理&lt;br&gt;下一会话加载；库导入采用验证后事务合并" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="295" width="465" height="155" />
+        </mxCell>
+        <mxCell id="verified" value="&lt;b&gt;可形成可信规范的分支&lt;/b&gt;&lt;br&gt;EXACT_ALIAS / EXACT_CANONICAL&lt;br&gt;CONTEXT_PINYIN：完整读音 + 唯一目标 + 有效角色 / 语境&lt;br&gt;CONTEXT_OMISSION：显式许可的内部单字补全&lt;br&gt;CONTEXT_NEAR_PINYIN / CONTEXT_ALIAS_NEAR_PINYIN：显式许可近音&lt;br&gt;CONTEXT_ALIAS_PINYIN：正式别称读音 + 明确对象位置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="535" width="465" height="210" />
+        </mxCell>
+        <mxCell id="candidate" value="&lt;b&gt;候选尚未确认&lt;/b&gt;&lt;br&gt;off / shadow / hint / auto 有不同候选决策&lt;br&gt;同音或近音竞争、词边界冲突、策略不符等保留原文&lt;br&gt;普通拼音相似分数本身不授权实体自动替换" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1210" y="460" width="535" height="140" />
+        </mxCell>
+        <mxCell id="clinical" value="&lt;b&gt;医学规则的事实保护&lt;/b&gt;&lt;br&gt;身体部位、否定、数量、方位和化学元素等敏感变化拦截&lt;br&gt;人物称谓、书名、标识符、拼写讨论、已知完整词等限制&lt;br&gt;医学疾病定义句可触发完整同音验证；不能推断诊断事实" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1210" y="655" width="535" height="155" />
+        </mxCell>
+        <mxCell id="keep" value="&lt;b&gt;KEEP / 模型不可用&lt;/b&gt;&lt;br&gt;保留规则与已验证实体基线&lt;br&gt;模型锁超时、最终超时和异常也有回退路径" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3D9;strokeColor=#B78429;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="885" width="465" height="115" />
+        </mxCell>
+        <mxCell id="checks" value="&lt;b&gt;输出检查范围&lt;/b&gt;&lt;br&gt;实体：标记完整、提示不能无源新增、候选补丁须确认&lt;br&gt;数字：数值 / 单位 / 顺序；范围两端须整体转换&lt;br&gt;zh-itn：保留规则拥有的数字写法，允许受验证的重复 / 改口删除&lt;br&gt;内容：严重删减、语义替换、无依据插入、生成循环、截断" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1210" y="1210" width="535" height="195" />
+        </mxCell>
+        <mxCell id="retry" value="&lt;b&gt;可重试完整性失败&lt;/b&gt;&lt;br&gt;占位符损坏 / 内容损失 / 数字等可恢复异常&lt;br&gt;严格保护提示重试最多 1 次&lt;br&gt;再次按相同补丁、恢复与安全检查验收" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1210" y="1495" width="535" height="140" />
+        </mxCell>
+        <mxCell id="fallback" value="&lt;b&gt;最终回退与安全挽救&lt;/b&gt;&lt;br&gt;保留已验证别名 / 语境同音 / 显式漏字与近音规范&lt;br&gt;zh-itn 模式以规则数字基线为准；旧路径保留安全数字修改&lt;br&gt;只挽救通过局部检查的重复修改；无法验证则保留基线" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCEAEA;strokeColor=#B96767;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1210" y="1710" width="535" height="150" />
+        </mxCell>
+        <mxCell id="prototype" value="&lt;b&gt;独立实验模块&lt;/b&gt;&lt;br&gt;entity_retrieval / entity_ranker 与音频似然重评分&lt;br&gt;保留用于研究复现；当前正式 Web 未接入这些自动方案" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="1240" width="465" height="125" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="exact">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="exact" target="match">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="match" target="baseline">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="baseline" target="gate">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="model">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="model" target="patch">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="patch" target="restore">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="restore" target="accept">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-8" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="accept" target="accepted">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="accepted" target="result">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-10" value="已启用定义" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="store" target="exact">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-11" value="语境 / 权限" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="store" target="match">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="555" y="372" />
+              <mxPoint x="555" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="verified" target="baseline">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="565" y="640" />
+              <mxPoint x="565" y="767" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-13" value="未验证候选" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="match" target="candidate">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-14" value="可核对提示" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="candidate" target="baseline">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1160" y="675" />
+              <mxPoint x="1160" y="767" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-15" value="证据限制" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="clinical" target="match">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1775" y="732" />
+              <mxPoint x="1775" y="425" />
+              <mxPoint x="855" y="425" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-16" value="跳过" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="keep">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-17" value="安全基线" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B78429;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="keep" target="result">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="30" y="942" />
+              <mxPoint x="30" y="1850" />
+              <mxPoint x="855" y="1850" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-18" value="校验约束" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="checks" target="restore">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-19" value="否；符合重试条件且尚未重试" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="accept" target="retry">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-20" value="重试候选" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#8264B1;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="retry" target="patch">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1775" y="1565" />
+              <mxPoint x="1775" y="1175" />
+              <mxPoint x="855" y="1175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-21" value="重试仍失败 / 不可恢复" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="retry" target="fallback">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-22" value="无需或已用完重试" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="accept" target="fallback">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1145" y="1607" />
+              <mxPoint x="1145" y="1785" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-23" value="回退结果" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#B96767;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="fallback" target="result">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1477" y="1935" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page-4" name="04 · 数据生成、训练与评测">
+    <mxGraphModel dx="1840" dy="1510" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1840" pageHeight="1510" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;04 · 数据生成、训练与评测&lt;/b&gt;&lt;br&gt;运行系统之外的研究工具；冻结输入用于质量比较，真实音频链路用于性能评测。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="20" width="1750" height="95" />
+        </mxCell>
+        <mxCell id="footer" value="&lt;b&gt;阅读说明&lt;/b&gt;&lt;br&gt;实线：处理 / 数据流；虚线：可选功能、辅助信息或控制流；灰色：预留能力或独立实验。&lt;br&gt;基于 2026-10-08 当前源码及 8081 / 8766 健康配置。新源码规则是否已加载到常驻进程，需另行核验。" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="45" y="1405" width="1750" height="90" />
+        </mxCell>
+        <mxCell id="trainlabel" value="&lt;b&gt;A · Refiner 训练数据流程&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="140" width="1710" height="55" />
+        </mxCell>
+        <mxCell id="seeds" value="&lt;b&gt;01 · 场景种子与 Oral&lt;/b&gt;&lt;br&gt;16 个内部场景配置&lt;br&gt;口语程度 / 改口结构 / 干净样本&lt;br&gt;LLM 服务；支持断点续跑" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="235" width="380" height="130" />
+        </mxCell>
+        <mxCell id="clean" value="&lt;b&gt;02 · Clean 目标生成&lt;/b&gt;&lt;br&gt;Oral → 保留最终意图的书面目标&lt;br&gt;关键词可追溯检查&lt;br&gt;干净样本保持原样" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="520" y="235" width="380" height="130" />
+        </mxCell>
+        <mxCell id="sim" value="&lt;b&gt;03 · 构造 ASR 输入&lt;/b&gt;&lt;br&gt;llm_sim / text_sim / TTS→ASR&lt;br&gt;LLM 模式部分样本生成语义对齐的截断输入&lt;br&gt;TTS→ASR 可用独立 MOSS / Qwen HTTP 服务" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="975" y="235" width="380" height="130" />
+        </mxCell>
+        <mxCell id="assemble" value="&lt;b&gt;04 · 组装记录&lt;/b&gt;&lt;br&gt;input / oral_text / output / meta&lt;br&gt;统一当前与兼容输入 schema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1430" y="235" width="345" height="130" />
+        </mxCell>
+        <mxCell id="qc" value="&lt;b&gt;05 · QC、去重与统计&lt;/b&gt;&lt;br&gt;语义 QC / 字符 n-gram 去重&lt;br&gt;场景与语言分布检查&lt;br&gt;生成 data/final/train.jsonl" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1430" y="440" width="345" height="130" />
+        </mxCell>
+        <mxCell id="sft" value="&lt;b&gt;SFT 导出&lt;/b&gt;&lt;br&gt;ShareGPT conversations&lt;br&gt;按场景 + 长度分层划分 train / val&lt;br&gt;system prompt 取共享运行协议" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="975" y="440" width="380" height="130" />
+        </mxCell>
+        <mxCell id="training" value="&lt;b&gt;模型训练 / 可选 MLX 转换&lt;/b&gt;&lt;br&gt;LLaMAFactory 配置：refiner.yaml&lt;br&gt;训练需独立执行；不是运行 Web 时自动训练&lt;br&gt;转换工具面向 Apple Silicon" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="520" y="440" width="380" height="130" />
+        </mxCell>
+        <mxCell id="deploy" value="&lt;b&gt;Refiner checkpoint&lt;/b&gt;&lt;br&gt;Web Transformers / 批处理 / 本地 MLX&lt;br&gt;各入口提示词、数字策略尚未完全统一" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFEAFF;strokeColor=#8264B1;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="440" width="380" height="130" />
+        </mxCell>
+        <mxCell id="evallabel" value="&lt;b&gt;B · 推理、质量评测与性能验证&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=18;spacing=4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="55" y="630" width="1710" height="55" />
+        </mxCell>
+        <mxCell id="testinput" value="&lt;b&gt;固定评测输入&lt;/b&gt;&lt;br&gt;真实音频 → Qwen / Whisper&lt;br&gt;或读取保存的 ASR JSONL / HTTP 响应&lt;br&gt;保存模型、配置、来源和音频哈希" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="735" width="380" height="130" />
+        </mxCell>
+        <mxCell id="infer" value="&lt;b&gt;被测处理策略&lt;/b&gt;&lt;br&gt;WebSocket 实时链路 / 保存响应回放&lt;br&gt;批处理 postprocess_asr.py&lt;br&gt;实体、数字、门控、Refiner 与回退配置" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="520" y="735" width="380" height="130" />
+        </mxCell>
+        <mxCell id="records" value="&lt;b&gt;逐条输出与审计&lt;/b&gt;&lt;br&gt;raw / clean、调用次数、拒绝与回退&lt;br&gt;实体修改、源跨度、置信度、耗时&lt;br&gt;保存逐样本结果，支持续跑" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="975" y="735" width="380" height="130" />
+        </mxCell>
+        <mxCell id="metrics" value="&lt;b&gt;文本与意图评测&lt;/b&gt;&lt;br&gt;参考文本 → CER / WER / MER&lt;br&gt;AASR-Bench rubric → 外部 Judge&lt;br&gt;实体名称保留、改善 / 退化与反例检查" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E4F4EF;strokeColor=#31806A;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1430" y="735" width="345" height="150" />
+        </mxCell>
+        <mxCell id="calib" value="&lt;b&gt;置信度校准工具&lt;/b&gt;&lt;br&gt;已实现：记录分数 + 正误标签 → 温度校准 / ECE&lt;br&gt;当前未完成 Qwen 完整窗口置信度的门控验收&lt;br&gt;校准参数和阈值应在开发数据上拟合" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="980" width="580" height="150" />
+        </mxCell>
+        <mxCell id="perf" value="&lt;b&gt;真实链路性能实验&lt;/b&gt;&lt;br&gt;同一音频、模型和配置，区分暖机与正式测量&lt;br&gt;记录总耗时、发送 / 收尾、模型次数和延迟&lt;br&gt;缓存、上传、解码间隔、节流与门控应分别对照" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#4A78B8;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="710" y="980" width="510" height="150" />
+        </mxCell>
+        <mxCell id="studies" value="&lt;b&gt;实体与数字研究实验&lt;/b&gt;&lt;br&gt;独立词库、医学 / 新闻音频、冻结规则对照&lt;br&gt;正确文字与构造负例；区分开发、独立录音、噪声版本&lt;br&gt;实验配置不自动导入正式词库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1285" y="980" width="490" height="150" />
+        </mxCell>
+        <mxCell id="regression" value="&lt;b&gt;回归与后续研究&lt;/b&gt;&lt;br&gt;tests/：模块、假服务、WebSocket 与规则回归；本轮 483 passed，9 warnings。&lt;br&gt;已有回归通过不等于真实 GPU / 全数据质量验收；音频实测证据应单独保留。&lt;br&gt;待完善：统一 ASRHypothesis、双参考数据、完整门控消融、动态活动区与统一 replay。&lt;br&gt;当前门控已减少部分实际调用，但尚缺严格 off vs tri_state 的质量 / 延迟因果对照。" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F2F5;strokeColor=#8A96A5;strokeWidth=1.5;fontColor=#233349;fontFamily=Noto Sans CJK SC;fontSize=14;align=center;verticalAlign=middle;spacing=12;arcSize=12;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="65" y="1210" width="1710" height="180" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="seeds" target="clean">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="clean" target="sim">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="sim" target="assemble">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="assemble" target="qc">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="qc" target="sft">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="sft" target="training">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="training" target="deploy">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="testinput" target="infer">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="infer" target="records">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="records" target="metrics">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge-10" value="分数及独立标签" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="records" target="calib">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1165" y="940" />
+              <mxPoint x="355" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-11" value="运行追踪" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="records" target="perf">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1165" y="920" />
+              <mxPoint x="965" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-12" value="逐例证据" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#687A90;strokeWidth=1.7;fontColor=#46546A;fontFamily=Noto Sans CJK SC;fontSize=13;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="metrics" target="studies">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

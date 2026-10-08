@@ -1,0 +1,83 @@
+{
+  "counts": {
+    "current": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_distance2": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_length4": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_multi_glyph": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "ignore_word_interior": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_exact": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_sound": {
+      "samples": 1128,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -4
+    }
+  },
+  "changes": {
+    "current": [],
+    "near_distance2": [],
+    "near_length4": [],
+    "near_multi_glyph": [],
+    "ignore_word_interior": [],
+    "official_alias_exact": [],
+    "official_alias_sound": [
+      {
+        "id": "MultiMed_Chinese_train_0993",
+        "variant": "clean",
+        "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+        "baseline": "急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。",
+        "output": "急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。",
+        "edits": [
+          {
+            "start": 21,
+            "end": 24,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "registered_alias_sound"
+          }
+        ],
+        "error_delta": -4
+      }
+    ]
+  },
+  "official_alias": "艾克膜",
+  "official_alias_source": "https://tb.chinacdc.cn/jkjyzyk/twl/202103/W020210321669295949344.pdf",
+  "role": "Previously seen development audio plus text controls; not independent acceptance"
+}

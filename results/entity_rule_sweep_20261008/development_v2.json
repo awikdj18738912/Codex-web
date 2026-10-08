@@ -1,0 +1,199 @@
+{
+  "counts": {
+    "current": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_distance2": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_length4": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "near_multi_glyph": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "ignore_word_interior": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_exact": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "official_alias_sound": {
+      "samples": 1128,
+      "changed": 1,
+      "improved": 1,
+      "regressed": 0,
+      "error_delta": -4
+    },
+    "alias_nested_guarded": {
+      "samples": 1128,
+      "changed": 2,
+      "improved": 2,
+      "regressed": 0,
+      "error_delta": -8
+    },
+    "alias_device_boundary": {
+      "samples": 1128,
+      "changed": 3,
+      "improved": 3,
+      "regressed": 0,
+      "error_delta": -12
+    },
+    "sound_distance2_relaxed": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    },
+    "component_bridge": {
+      "samples": 1128,
+      "changed": 0,
+      "improved": 0,
+      "regressed": 0,
+      "error_delta": 0
+    }
+  },
+  "changes": {
+    "current": [],
+    "near_distance2": [],
+    "near_length4": [],
+    "near_multi_glyph": [],
+    "ignore_word_interior": [],
+    "official_alias_exact": [],
+    "official_alias_sound": [
+      {
+        "id": "MultiMed_Chinese_train_0993",
+        "variant": "clean",
+        "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+        "baseline": "急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。",
+        "output": "急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。",
+        "edits": [
+          {
+            "start": 21,
+            "end": 24,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "registered_alias_sound"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "alias_nested_guarded": [
+      {
+        "id": "MultiMed_Chinese_train_0993",
+        "variant": "clean",
+        "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+        "baseline": "急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。",
+        "output": "急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。",
+        "edits": [
+          {
+            "start": 21,
+            "end": 24,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "alias_nested_guarded"
+          }
+        ],
+        "error_delta": -4
+      },
+      {
+        "id": "MultiMed_Chinese_train_0996",
+        "variant": "clean",
+        "reference": "他可能会错过做ECMO手术的最佳窗口期。 明天会怎么样 谁都吃不准。新冠病人和以前的病人不一样的。 好像外面成功率总的成功率只有百分之十几。这百分之十几还要看",
+        "baseline": "他可能会错过做埃克莫手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+        "output": "他可能会错过做ECMO手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+        "edits": [
+          {
+            "start": 7,
+            "end": 12,
+            "observed": "埃克莫手术",
+            "canonical": "ECMO手术",
+            "rule": "alias_nested_guarded"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "alias_device_boundary": [
+      {
+        "id": "MultiMed_Chinese_train_0993",
+        "variant": "clean",
+        "reference": "急需生命支持。从常识判断，5床应该得到这台ECMO。 因为救急就是救命。但从现实来讲，仅有一台ECMO，",
+        "baseline": "急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。",
+        "output": "急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。",
+        "edits": [
+          {
+            "start": 21,
+            "end": 24,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "alias_device_boundary"
+          }
+        ],
+        "error_delta": -4
+      },
+      {
+        "id": "MultiMed_Chinese_train_0996",
+        "variant": "clean",
+        "reference": "他可能会错过做ECMO手术的最佳窗口期。 明天会怎么样 谁都吃不准。新冠病人和以前的病人不一样的。 好像外面成功率总的成功率只有百分之十几。这百分之十几还要看",
+        "baseline": "他可能会错过做埃克莫手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+        "output": "他可能会错过做ECMO手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿六套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+        "edits": [
+          {
+            "start": 7,
+            "end": 12,
+            "observed": "埃克莫手术",
+            "canonical": "ECMO手术",
+            "rule": "alias_device_boundary"
+          }
+        ],
+        "error_delta": -4
+      },
+      {
+        "id": "MultiMed_Chinese_train_0987",
+        "variant": "clean",
+        "reference": "但拼到一半 王维俊才发现 第二台ECMO不但没有套包耗材， 连水箱管路都有了问题。",
+        "baseline": "但拼到一半，王维军才发现，第二台埃克莫不但没有套包耗材，连水箱管路都有了问题。哦。",
+        "output": "但拼到一半，王维军才发现，第二台ECMO不但没有套包耗材，连水箱管路都有了问题。哦。",
+        "edits": [
+          {
+            "start": 16,
+            "end": 19,
+            "observed": "埃克莫",
+            "canonical": "ECMO",
+            "rule": "alias_device_boundary"
+          }
+        ],
+        "error_delta": -4
+      }
+    ],
+    "sound_distance2_relaxed": [],
+    "component_bridge": []
+  }
+}

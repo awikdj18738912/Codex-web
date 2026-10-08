@@ -1,0 +1,68 @@
+"""Opt-in spelling of registered Chinese names with contextual evidence.
+
+This verifies a glossary spelling, not an arbitrary semantic correction.
+Different sounds, ambiguous registered spellings and unmatched contexts abstain.
+"""
+from functools import lru_cache
+import re
+import unicodedata
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .entity_store import EntityDefinition
+
+_CHINESE_NAME = re.compile(r'[\u3400-\u9fff]{3,16}')
+_SENTENCE_END = re.compile(r'[。！？!?\n\r]')
+_NUMERIC_DATE_CHARACTERS = frozenset('零〇一二三四五六七八九十百千万萬亿億两兩年月日号號时時分秒点點')
+
+
+@lru_cache(maxsize=8192)
+def pronunciation_signature(text: str) -> tuple[str, ...]:
+    """Compare complete syllables; ASR's guessed characters do not prove tones."""
+    from pypinyin import Style, lazy_pinyin
+    return tuple(lazy_pinyin(text,style=Style.NORMAL))
+
+
+def context_spelling_evidence(text, start, end, definition, namespace):
+    """Return matched context terms for an explicitly enabled exact-sound name."""
+    policy = definition.spelling_context
+    canonical = unicodedata.normalize('NFKC',definition.canonical_text)
+    observed = text[start:end]
+    if (
+        policy is None or not definition.enabled
+        or definition.normalization_policy != 'normalize'
+        or (policy.canonical_text,policy.entity_type,policy.domain)
+           != (definition.canonical_text,definition.entity_type,definition.domain)
+        or definition.entity_type not in {'PERSON','ORG','TERM','PROJECT','MODEL'}
+        or _CHINESE_NAME.fullmatch(canonical) is None
+        or _CHINESE_NAME.fullmatch(observed) is None
+        or len(observed) != len(canonical)
+        or observed == canonical
+        or (definition.entity_type == 'PERSON' and observed[0] != canonical[0])
+        or all(c in _NUMERIC_DATE_CHARACTERS for c in observed)
+        or re.fullmatch(r'星期[一二三四五六日天]',observed)
+    ):
+        return ()
+    # Registered real names do not authorize editing identifiers or titles.
+    before = text[start-1] if start else ''
+    after = text[end] if end<len(text) else ''
+    if before in {'@','/','\\','_'} or after in {'/','\\','_'}:
+        return ()
+    if any(c.isascii() and c.isalnum() for c in (before,after)):
+        return ()
+    if definition.entity_type=='PERSON' and (
+        text[:start].rfind('《')>text[:start].rfind('》')
+        or text[max(0,start-2):start].endswith('姓')
+    ):
+        return ()
+    signature = pronunciation_signature(canonical)
+    if pronunciation_signature(observed) != signature:
+        return ()
+    if namespace.get(signature) != frozenset({definition.canonical_text}):
+        return ()
+    left = _SENTENCE_END.split(text[max(0,start-32):start])[-1]
+    right = _SENTENCE_END.split(text[end:end+32])[0]
+    surrounding = left+'\0'+right
+    evidence = tuple(word for word,weight in policy.keywords if word in surrounding)
+    score = sum(weight for word,weight in policy.keywords if word in evidence)
+    return evidence if score >= policy.minimum_score else ()

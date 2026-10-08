@@ -1,0 +1,23 @@
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:28,  7.71it/s]Loading weights:   1%|          | 2/219 [00:00<00:29,  7.41it/s]Loading weights:  23%|██▎       | 50/219 [00:00<00:00, 185.78it/s]Loading weights:  48%|████▊     | 105/219 [00:00<00:00, 312.46it/s]Loading weights:  74%|███████▍  | 163/219 [00:00<00:00, 399.28it/s]Loading weights:  99%|█████████▉| 217/219 [00:00<00:00, 443.15it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 323.72it/s]
+Loading AgenticASR Refiner...
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 13690.57it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+MultiMed_Chinese_train_0845 clean baseline 线还有那个的位置，OK，它的坏处呢，就是它的灵活性不高啊啊，而且这是传统的那个内窥镜手术呢，嗯，就是用独立的影像，它没有那个深度，对啊。
+MultiMed_Chinese_train_0845 clean proposed 线还有那个的位置，OK，它的坏处呢，就是它的灵活性不高啊啊，而且这是传统的那个内窥镜手术呢，嗯，就是用独立的影像，它没有那个深度，对啊。
+MultiMed_Chinese_train_0845 noise baseline 线还有那个位置，OK，它的坏处呢，就是它的灵活性不高而且这个传统的那个内窥镜手术呢，就是用独立的影像，它没有那个深度，对对啊。
+MultiMed_Chinese_train_0845 noise proposed 线还有那个位置，OK，它的坏处呢，就是它的灵活性不高而且这个传统的那个内窥镜手术呢，就是用独立的影像，它没有那个深度，对对啊。
+MultiMed_Chinese_train_1145 clean baseline 麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。
+MultiMed_Chinese_train_1145 clean proposed 麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。
+MultiMed_Chinese_train_1145 noise baseline 麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。
+MultiMed_Chinese_train_1145 noise proposed 麻醉后，医生马上为他展开预计长达7个小时的手术。胰十二指肠切除术。

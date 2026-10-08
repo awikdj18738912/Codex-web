@@ -1,0 +1,28 @@
+Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:28,  7.73it/s]Loading weights:   1%|          | 2/219 [00:00<00:29,  7.40it/s]Loading weights:  22%|██▏       | 49/219 [00:00<00:00, 179.84it/s]Loading weights:  49%|████▉     | 107/219 [00:00<00:00, 318.84it/s]Loading weights:  75%|███████▌  | 165/219 [00:00<00:00, 394.69it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 324.21it/s]
+Loading AgenticASR Refiner...
+Loading AgenticASR Refiner...
+/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+WEB 1/6 baseline_auto MultiMed_Chinese_train_0961 clean: 五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。 [calls=1]
+WEB 1/6 optimized_auto MultiMed_Chinese_train_0961 clean: 五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。 [calls=0]
+WEB 2/6 baseline_auto MultiMed_Chinese_train_0961 noise: 五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。 [calls=1]
+WEB 2/6 optimized_auto MultiMed_Chinese_train_0961 noise: 五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。 [calls=0]
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 14763.81it/s]
+[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
+Key                         | Status     |  | 
+----------------------------+------------+--+-
+cls.seq_relationship.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight | UNEXPECTED |  | 
+bert.pooler.dense.weight    | UNEXPECTED |  | 
+bert.pooler.dense.bias      | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+WEB 3/6 baseline_auto MultiMed_Chinese_train_0845 clean: 线还有那个的位置，OK，它的坏处呢，就是它的灵活性不高啊啊，而且这是传统的那个内窥镜手术呢，嗯，就是用独立的影像，它没有那个深度，对啊。 [calls=5]
+WEB 3/6 optimized_auto MultiMed_Chinese_train_0845 clean: 线还有那个的位置，OK，它的坏处呢，就是它的灵活性不高啊啊，而且这是传统的那个内窥镜手术呢，嗯，就是用独立的影像，它没有那个深度，对啊。 [calls=5]
+WEB 4/6 baseline_auto MultiMed_Chinese_train_0845 noise: 线还有那个位置，OK，它的坏处呢，就是它的灵活性不高而且这个传统的那个内窥镜手术呢，就是用独立的影像，它没有那个深度，对对啊。 [calls=4]
+WEB 4/6 optimized_auto MultiMed_Chinese_train_0845 noise: 线还有那个位置，OK，它的坏处呢，就是它的灵活性不高而且这个传统的那个内窥镜手术呢，就是用独立的影像，它没有那个深度，对对啊。 [calls=4]
+WEB 5/6 baseline_auto MultiMed_Chinese_train_0274 clean: 是替代传统手术。传统的颈动脉瘘手术需要切口，这一个手术只需要一个小的针孔。So we open it up bigger so that the blood flow is better in the fistula. [calls=2]
+WEB 5/6 optimized_auto MultiMed_Chinese_train_0274 clean: 是替代传统手术。传统的颈动脉瘘手术需要切口，这一个手术只需要一个小的针孔。So we open it up bigger so that the blood flow is better in the fistula. [calls=2]
+WEB 6/6 baseline_auto MultiMed_Chinese_train_0274 noise: 是替代传统手术，传统的颈动脉瘤手术需要切口，这一个手术只需要一个小的针孔，所以 open it up 这个，使得 the blood flow is better in the procedure. [calls=2]
+WEB 6/6 optimized_auto MultiMed_Chinese_train_0274 noise: 是替代传统手术，传统的颈动脉瘤手术需要切口，这一个手术只需要一个小的针孔，所以 open it up 这个，使得 the blood flow is better in the procedure. [calls=2]

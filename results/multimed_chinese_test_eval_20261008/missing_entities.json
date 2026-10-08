@@ -1,0 +1,106 @@
+[
+  {
+    "id": "MultiMed_Chinese_test_0016",
+    "missing": {
+      "韧带重建手术": 1
+    },
+    "reference": "在你跟他细心地讲解过后 都能够接受这个事实。 在完成韧带重建手术后",
+    "raw": "部分的病人呢，在你跟他细心的讲解过后呢，都能够接受这个事实。在完成韧带重建。",
+    "final": "部分的病人呢，在你跟他细心的讲解过后呢，都能够接受这个事实。在完成韧带重建。",
+    "candidates": [],
+    "hints": []
+  },
+  {
+    "id": "MultiMed_Chinese_test_0116",
+    "missing": {
+      "急诊室": 1
+    },
+    "reference": "急诊收的进来还要分住区。11月19日，北京协和医院正式启用首个院内新冠患者隔离病房，之后又散期启用多个隔离病房，并已过渡到个专科分别收治本专科的新冠患者。对于病情转重的新冠重症患者，由急诊科急诊室落实首诊负责制，再转到各种ICU进行抢救。个专科都是有重症病床和专科内的ICU。在需要时，24小时就能完成重症病房转换。",
+    "raw": "急诊收得进来，还要分得出去。十一月十九日，北京协和医院正式启用首个院内新冠患者隔离病房，之后又相继启用多个隔离病房，并已过渡到各专科分别收治本专科的新冠患者。对于病情转重的新冠重症患者，由急诊科抢救室落实首诊负责制。再转到各个ICU进行抢救，各专科都设有重症病床或专科内的ICU，在需要时，二十四小时就能完成重症病床转换。",
+    "final": "急诊收得进来，还要分得出去。11月19日，北京协和医院正式启用首个院内新冠患者隔离病房，之后又相继启用多个隔离病房，并已过渡到各专科分别收治本专科的新冠患者。对于病情转重的新冠重症患者，由急诊科抢救室落实首诊负责制。再转到各个ICU进行抢救，各专科都设有重症病床或专科内的ICU，在需要时，24小时就能完成重症病床转换。",
+    "candidates": [],
+    "hints": []
+  },
+  {
+    "id": "MultiMed_Chinese_test_0142",
+    "missing": {
+      "皮质下": 1
+    },
+    "reference": "贴两天左右吧。 我们先黏在皮质下 大约在这个位置。 要黏几个啊？ 根据病情。",
+    "raw": "贴两天左右吧。啊，我们先捏这个皮脂下啊，大约在这个位置。那您几个啊？根据。",
+    "final": "贴2天左右吧。我们先捏这个皮脂下。大约在这个位置。那您几个啊？根据。",
+    "candidates": [
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "皮脂下",
+        "entity_id": 27,
+        "canonical": "皮质下",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "皮质下",
+        "match_type": "PINYIN_FUZZY",
+        "char_score": 0.6667,
+        "pinyin_score": 1.0,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.8967,
+        "runner_up_score": null,
+        "margin": 1.0,
+        "decision": "HINT_ONLY",
+        "reasons": [
+          "context_confirmation_required"
+        ]
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "observed": "皮脂下",
+        "entity_id": 27,
+        "canonical": "皮质下",
+        "entity_type": "TERM",
+        "domain": "medical",
+        "matched_surface": "皮质下",
+        "match_type": "PINYIN_FUZZY",
+        "char_score": 0.6667,
+        "pinyin_score": 1.0,
+        "length_score": 1.0,
+        "domain_score": 1.0,
+        "priority_score": 0.0,
+        "final_score": 0.8967,
+        "runner_up_score": null,
+        "margin": 1.0,
+        "decision": "HINT_ONLY",
+        "reasons": [
+          "context_confirmation_required"
+        ]
+      }
+    ],
+    "hints": [
+      "皮质下"
+    ]
+  },
+  {
+    "id": "MultiMed_Chinese_test_0182",
+    "missing": {
+      "ICU": 1
+    },
+    "reference": "一二三。家里还有一个大大的ICU要管。 回家 继续搞。不要搞这个病就可以了。",
+    "raw": "二三。回家你还一个大大的S U要管呢，嗯，回家继续搞啊，不要搞这个病就行了。",
+    "final": "2.回家你还一个大大的SUX要管呢回家继续搞啊，不要搞这个病就行了。",
+    "candidates": [],
+    "hints": []
+  },
+  {
+    "id": "MultiMed_Chinese_test_0207",
+    "missing": {
+      "胰脏癌": 1
+    },
+    "reference": "这个胰脏癌呢 有20%是genetics 80%是sporadic 就是说 她是因为有些genetic mutation 造成的。",
+    "raw": "这个遗传癌呢，有二十八先呢（genetics），八十八先呢，就是说sporadic，就是说，它是因为有些genetic mutation造成的。",
+    "final": "这个遗传癌呢，有二十八先呢（genetics），八十八先呢，就是说sporadic，就是说，它是因为有些genetic mutation造成的。",
+    "candidates": [],
+    "hints": []
+  }
+]

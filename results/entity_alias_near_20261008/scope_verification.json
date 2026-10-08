@@ -1,0 +1,25 @@
+{
+  "changed_existing_files": [
+    "system/ENTITY_SPELLING_CONTEXT.md",
+    "system/entity_matcher.py",
+    "system/entity_pipeline.py",
+    "system/entity_pronunciation.py"
+  ],
+  "unexpected_changes": [],
+  "formal_db_unchanged": true,
+  "formal_counts": {
+    "protected_entities": 12,
+    "entity_aliases": 9,
+    "entity_spelling_contexts": 0
+  },
+  "frozen_rules_and_selection_unchanged": true,
+  "retained_rule": "near_actions",
+  "withdrawn_rule": "repeat_exact: no improvement through real segmented Web/Refiner replay",
+  "web_summary": {
+    "pairs": 8,
+    "changed": 5,
+    "more_ecmo": 5,
+    "baseline_refiner_calls": 8,
+    "proposed_refiner_calls": 6
+  }
+}

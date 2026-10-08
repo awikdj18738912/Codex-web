@@ -1,0 +1,1784 @@
+{
+  "seed": 20261003,
+  "vocabulary_size": 500,
+  "vocabulary_source": "AISHELL-1 train + dev only; >=3 characters; frequency-ranked",
+  "test_pool_sizes": {
+    "covered_entity": 481,
+    "uncovered_entity": 1895,
+    "no_entity": 4800
+  },
+  "annotation_transcript_mismatches": [],
+  "sample_count": 100,
+  "noise_snr_db": 10.0,
+  "samples": [
+    {
+      "id": "BAC009S0905W0350",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0350.wav",
+      "reference": "凝聚力一直都是中国女排的传统",
+      "entities": [
+        {
+          "text": "中国女排",
+          "entity_type": "ORG",
+          "start": 7,
+          "end": 11,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0764W0127",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0127.wav",
+      "reference": "中原地产首席分析师张大伟说",
+      "entities": [
+        {
+          "text": "中原地产",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "张大伟",
+          "entity_type": "PERSON",
+          "start": 9,
+          "end": 12,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0770W0471",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0471.wav",
+      "reference": "门头沟雁翅镇村民李冬梅因不服行政批复",
+      "entities": [
+        {
+          "text": "门头沟",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "雁翅镇",
+          "entity_type": "LOC",
+          "start": 3,
+          "end": 6,
+          "covered": false
+        },
+        {
+          "text": "李冬梅",
+          "entity_type": "PERSON",
+          "start": 8,
+          "end": 11,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0904W0394",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0394.wav",
+      "reference": "对垒日本女排有这样一个小细节",
+      "entities": [
+        {
+          "text": "日本女排",
+          "entity_type": "ORG",
+          "start": 2,
+          "end": 6,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0765W0419",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0419.wav",
+      "reference": "搜狐娱乐讯日前",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0766W0353",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0353.wav",
+      "reference": "法国冰协同于放人五度世界冠军即将复出搜狐体育",
+      "entities": [
+        {
+          "text": "法国冰协",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": false
+        },
+        {
+          "text": "搜狐体育",
+          "entity_type": "ORG",
+          "start": 18,
+          "end": 22,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0908W0433",
+      "speaker": "S0908",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0908/BAC009S0908W0433.wav",
+      "reference": "香港明报参考消息网八月二十九日报道港媒称",
+      "entities": [
+        {
+          "text": "香港明报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": false
+        },
+        {
+          "text": "参考消息网",
+          "entity_type": "ORG",
+          "start": 4,
+          "end": 9,
+          "covered": true
+        },
+        {
+          "text": "港",
+          "entity_type": "LOC",
+          "start": 17,
+          "end": 18,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0901W0420",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0420.wav",
+      "reference": "搜狐娱乐讯据台湾媒体报道",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "台湾",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0915W0418",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0418.wav",
+      "reference": "但陈妍希在出席活动时",
+      "entities": [
+        {
+          "text": "陈妍希",
+          "entity_type": "PERSON",
+          "start": 1,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0768W0442",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0442.wav",
+      "reference": "新京报讯记者王巍利用村里遭受泥石流灾害后",
+      "entities": [
+        {
+          "text": "新京报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "王巍",
+          "entity_type": "PERSON",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0767W0194",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0194.wav",
+      "reference": "中国证券报从您刚才的介绍中我们了解到",
+      "entities": [
+        {
+          "text": "中国证券报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0903W0390",
+      "speaker": "S0903",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0903/BAC009S0903W0390.wav",
+      "reference": "另外还有两名来自加拿大和美国的外籍华侨",
+      "entities": [
+        {
+          "text": "加拿大",
+          "entity_type": "LOC",
+          "start": 8,
+          "end": 11,
+          "covered": true
+        },
+        {
+          "text": "美国",
+          "entity_type": "LOC",
+          "start": 12,
+          "end": 14,
+          "covered": false
+        },
+        {
+          "text": "华",
+          "entity_type": "LOC",
+          "start": 17,
+          "end": 18,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0906W0474",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0474.wav",
+      "reference": "温州首家支付宝菜市场启动一周很多摊主不会用",
+      "entities": [
+        {
+          "text": "温州",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "支付宝",
+          "entity_type": "ORG",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0916W0358",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0358.wav",
+      "reference": "在复盘与俄罗斯一战时",
+      "entities": [
+        {
+          "text": "俄罗斯",
+          "entity_type": "ORG",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0912W0494",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0494.wav",
+      "reference": "京华时报讯记者武红利与家人来京旅游",
+      "entities": [
+        {
+          "text": "京华时报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "武红利",
+          "entity_type": "PERSON",
+          "start": 7,
+          "end": 10,
+          "covered": false
+        },
+        {
+          "text": "京",
+          "entity_type": "LOC",
+          "start": 14,
+          "end": 15,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0769W0264",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0264.wav",
+      "reference": "据新华社电有病当然要吃药",
+      "entities": [
+        {
+          "text": "新华社",
+          "entity_type": "ORG",
+          "start": 1,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0902W0409",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0409.wav",
+      "reference": "搜狐娱乐讯七月十五日",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0914W0348",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0348.wav",
+      "reference": "美国队十六分排第二",
+      "entities": [
+        {
+          "text": "美国队",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0913W0399",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0399.wav",
+      "reference": "中国女排从第三轮开始便被挤出了三甲",
+      "entities": [
+        {
+          "text": "中国女排",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0907W0403",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0403.wav",
+      "reference": "文本报记者刘艾林",
+      "entities": [
+        {
+          "text": "刘艾林",
+          "entity_type": "PERSON",
+          "start": 5,
+          "end": 8,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0905W0412",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0412.wav",
+      "reference": "搜狐娱乐讯北京时间七月二十日消息",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "北京",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0764W0411",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0411.wav",
+      "reference": "搜狐娱乐讯七月十日消息",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0770W0335",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0335.wav",
+      "reference": "浪潮与海关总署启动战略合作助推智慧海关搜狐科技",
+      "entities": [
+        {
+          "text": "浪潮",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "海关总署",
+          "entity_type": "ORG",
+          "start": 3,
+          "end": 7,
+          "covered": false
+        },
+        {
+          "text": "搜狐科技",
+          "entity_type": "ORG",
+          "start": 19,
+          "end": 23,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0904W0488",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0488.wav",
+      "reference": "参考消息网九月二五日报道新报称",
+      "entities": [
+        {
+          "text": "参考消息网",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0765W0446",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0446.wav",
+      "reference": "京华时报记者蒲东峰摄二零零七年",
+      "entities": [
+        {
+          "text": "京华时报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "蒲东峰",
+          "entity_type": "PERSON",
+          "start": 6,
+          "end": 9,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0766W0419",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0419.wav",
+      "reference": "华西都市报讯闪婚欧巴一年后二零一四年",
+      "entities": [
+        {
+          "text": "华西都市报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0908W0426",
+      "speaker": "S0908",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0908/BAC009S0908W0426.wav",
+      "reference": "搜狐娱乐讯四月三十日",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0901W0426",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0426.wav",
+      "reference": "搜狐娱乐讯据台湾媒体报道",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "台湾",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0915W0375",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0375.wav",
+      "reference": "中国队三比二力克美国队收获分站赛九连胜",
+      "entities": [
+        {
+          "text": "中国队",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "美国队",
+          "entity_type": "ORG",
+          "start": 8,
+          "end": 11,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0768W0369",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0369.wav",
+      "reference": "上届莫斯科世锦赛上拿到的金牌的四位选手悉数出战",
+      "entities": [
+        {
+          "text": "莫斯科",
+          "entity_type": "LOC",
+          "start": 2,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0767W0415",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0415.wav",
+      "reference": "搜狐娱乐讯据香港明晚九月十日报道",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "香港",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0903W0373",
+      "speaker": "S0903",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0903/BAC009S0903W0373.wav",
+      "reference": "要将北京市业馀排球联赛打造成群众性品牌赛事",
+      "entities": [
+        {
+          "text": "北京市",
+          "entity_type": "LOC",
+          "start": 2,
+          "end": 5,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0906W0397",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0397.wav",
+      "reference": "意志力惊人的白俄罗斯特种兵被没有就此放弃",
+      "entities": [
+        {
+          "text": "白俄罗斯",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 10,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0916W0339",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0339.wav",
+      "reference": "高清女排力擒俄罗斯夺冠占主动众将喜极而泣",
+      "entities": [
+        {
+          "text": "女排",
+          "entity_type": "ORG",
+          "start": 2,
+          "end": 4,
+          "covered": false
+        },
+        {
+          "text": "俄罗斯",
+          "entity_type": "ORG",
+          "start": 6,
+          "end": 9,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0912W0365",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0365.wav",
+      "reference": "崇礼县发展较成熟的万龙滑雪场和云顶滑雪场",
+      "entities": [
+        {
+          "text": "崇礼县",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "万龙滑雪场",
+          "entity_type": "LOC",
+          "start": 9,
+          "end": 14,
+          "covered": false
+        },
+        {
+          "text": "云顶滑雪场",
+          "entity_type": "LOC",
+          "start": 15,
+          "end": 20,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0769W0125",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0125.wav",
+      "reference": "新京报讯记者张旭报道",
+      "entities": [
+        {
+          "text": "新京报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "张旭",
+          "entity_type": "PERSON",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0902W0414",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0414.wav",
+      "reference": "搜狐娱乐讯日前",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0914W0425",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0425.wav",
+      "reference": "陈妍希回应现在真的很享受快乐恋爱的喜悦",
+      "entities": [
+        {
+          "text": "陈妍希",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0913W0409",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0409.wav",
+      "reference": "与陈妍希分别看向对方",
+      "entities": [
+        {
+          "text": "陈妍希",
+          "entity_type": "PERSON",
+          "start": 1,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0907W0128",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0128.wav",
+      "reference": "住建部官员发表文章指出",
+      "entities": [
+        {
+          "text": "住建部",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0905W0398",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0398.wav",
+      "reference": "从九月四日起迎接多米尼加俄罗斯和日本的挑战",
+      "entities": [
+        {
+          "text": "多米尼加",
+          "entity_type": "LOC",
+          "start": 8,
+          "end": 12,
+          "covered": false
+        },
+        {
+          "text": "俄罗斯",
+          "entity_type": "LOC",
+          "start": 12,
+          "end": 15,
+          "covered": true
+        },
+        {
+          "text": "日本",
+          "entity_type": "LOC",
+          "start": 16,
+          "end": 18,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0764W0495",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0495.wav",
+      "reference": "警方证实周云露遇害",
+      "entities": [
+        {
+          "text": "周云露",
+          "entity_type": "PERSON",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0770W0154",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0154.wav",
+      "reference": "张大伟向南都记者分析",
+      "entities": [
+        {
+          "text": "张大伟",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "南都",
+          "entity_type": "ORG",
+          "start": 4,
+          "end": 6,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0904W0350",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0350.wav",
+      "reference": "新队长曾春蕾揭秘了角色转变前后的幕后故事",
+      "entities": [
+        {
+          "text": "曾春蕾",
+          "entity_type": "PERSON",
+          "start": 3,
+          "end": 6,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0765W0487",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0487.wav",
+      "reference": "李克强集众智汇众力攻坚克难激发活力",
+      "entities": [
+        {
+          "text": "李克强",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0766W0342",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0342.wav",
+      "reference": "年少成名的他带领国家队出征冬奥会",
+      "entities": [
+        {
+          "text": "国家队",
+          "entity_type": "ORG",
+          "start": 8,
+          "end": 11,
+          "covered": true
+        },
+        {
+          "text": "奥",
+          "entity_type": "LOC",
+          "start": 14,
+          "end": 15,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0908W0152",
+      "speaker": "S0908",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0908/BAC009S0908W0152.wav",
+      "reference": "北京市公积金额度提升后的元旦时期",
+      "entities": [
+        {
+          "text": "北京市",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0901W0284",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0284.wav",
+      "reference": "原创张驰乔布斯逝世已久",
+      "entities": [
+        {
+          "text": "张驰",
+          "entity_type": "PERSON",
+          "start": 2,
+          "end": 4,
+          "covered": false
+        },
+        {
+          "text": "乔布斯",
+          "entity_type": "PERSON",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0915W0416",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0416.wav",
+      "reference": "陈妍希回到台北代言悠游卡",
+      "entities": [
+        {
+          "text": "陈妍希",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "台北",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0768W0430",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0430.wav",
+      "reference": "搜狐娱乐讯据香港媒体报道",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "香港",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0767W0426",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0426.wav",
+      "reference": "搜狐娱乐讯九月十六日二十点二十七分",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0903W0416",
+      "speaker": "S0903",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0903/BAC009S0903W0416.wav",
+      "reference": "中新网七月二十八日电据香港明报消息",
+      "entities": [
+        {
+          "text": "中新网",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "香港明报",
+          "entity_type": "ORG",
+          "start": 11,
+          "end": 15,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0906W0412",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0412.wav",
+      "reference": "搜狐娱乐讯据香港媒体报道",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "香港",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0916W0462",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0462.wav",
+      "reference": "晨报记者张佳琪晨报讯昨晚九时三零分",
+      "entities": [
+        {
+          "text": "晨报",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "张佳琪",
+          "entity_type": "PERSON",
+          "start": 4,
+          "end": 7,
+          "covered": true
+        },
+        {
+          "text": "晨报",
+          "entity_type": "ORG",
+          "start": 7,
+          "end": 9,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0912W0177",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0177.wav",
+      "reference": "国务院总理李克强在二政府工作报告中表示",
+      "entities": [
+        {
+          "text": "国务院",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        },
+        {
+          "text": "李克强",
+          "entity_type": "PERSON",
+          "start": 5,
+          "end": 8,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0769W0283",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0283.wav",
+      "reference": "据新华社电印度官员透露",
+      "entities": [
+        {
+          "text": "新华社",
+          "entity_type": "ORG",
+          "start": 1,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "印度",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0902W0430",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0430.wav",
+      "reference": "搜狐娱乐讯北京时间六月二十四日消息",
+      "entities": [
+        {
+          "text": "搜狐娱乐",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": true
+        },
+        {
+          "text": "北京",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "covered": false
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0914W0435",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0435.wav",
+      "reference": "已经有游客迫不及待想去张家口看看了",
+      "entities": [
+        {
+          "text": "张家口",
+          "entity_type": "LOC",
+          "start": 11,
+          "end": 14,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0913W0425",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0425.wav",
+      "reference": "否认了陈妍希疑似怀孕的传闻",
+      "entities": [
+        {
+          "text": "陈妍希",
+          "entity_type": "PERSON",
+          "start": 3,
+          "end": 6,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0907W0388",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0388.wav",
+      "reference": "吕会会在全场观众的加油助威声中爆发",
+      "entities": [
+        {
+          "text": "吕会会",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": true
+        }
+      ],
+      "group": "covered_entity"
+    },
+    {
+      "id": "BAC009S0765W0488",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0488.wav",
+      "reference": "李彬彬喂大象喝水略显老态提醒网友夏天要补水",
+      "entities": [
+        {
+          "text": "李彬彬",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0768W0465",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0465.wav",
+      "reference": "被麒麟区法院判处有期徒刑六个月",
+      "entities": [
+        {
+          "text": "麒麟区法院",
+          "entity_type": "ORG",
+          "start": 1,
+          "end": 6,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0766W0362",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0362.wav",
+      "reference": "萨维申科宣布会再坚持一个冬奥会周期",
+      "entities": [
+        {
+          "text": "萨维申科",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 4,
+          "covered": false
+        },
+        {
+          "text": "奥",
+          "entity_type": "LOC",
+          "start": 13,
+          "end": 14,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0912W0449",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0449.wav",
+      "reference": "港珠澳大桥又起漂移风波可能进一步影响工期",
+      "entities": [
+        {
+          "text": "港珠澳大桥",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 5,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0904W0165",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0165.wav",
+      "reference": "伟嘉安捷提供数据显示",
+      "entities": [
+        {
+          "text": "伟嘉安捷",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 4,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0901W0157",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0157.wav",
+      "reference": "上海深圳等主要城市也在公积金新政推动下",
+      "entities": [
+        {
+          "text": "上海",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "深圳",
+          "entity_type": "LOC",
+          "start": 2,
+          "end": 4,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0769W0137",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0137.wav",
+      "reference": "北京将继续改进住宅产业化推进方式",
+      "entities": [
+        {
+          "text": "北京",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0916W0456",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0456.wav",
+      "reference": "目前湖北省质监局已要求全省暂停使用涉事厂家电梯",
+      "entities": [
+        {
+          "text": "湖北省质监局",
+          "entity_type": "ORG",
+          "start": 2,
+          "end": 8,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0908W0456",
+      "speaker": "S0908",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0908/BAC009S0908W0456.wav",
+      "reference": "东莞常平一地盘两日两度地陷",
+      "entities": [
+        {
+          "text": "东莞",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "常平",
+          "entity_type": "LOC",
+          "start": 2,
+          "end": 4,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0905W0484",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0484.wav",
+      "reference": "浙江温州市一位市民一零零元买回三只斑节虾",
+      "entities": [
+        {
+          "text": "浙江",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "温州市",
+          "entity_type": "LOC",
+          "start": 2,
+          "end": 5,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0764W0440",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0440.wav",
+      "reference": "特别是师父赵本山也公开出面为大鹏点赞",
+      "entities": [
+        {
+          "text": "赵本山",
+          "entity_type": "PERSON",
+          "start": 5,
+          "end": 8,
+          "covered": false
+        },
+        {
+          "text": "大鹏",
+          "entity_type": "PERSON",
+          "start": 14,
+          "end": 16,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0915W0442",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0442.wav",
+      "reference": "游客踩敦煌千年古城遗址拍照反问踩了会掉吗",
+      "entities": [
+        {
+          "text": "敦煌",
+          "entity_type": "LOC",
+          "start": 3,
+          "end": 5,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0770W0381",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0381.wav",
+      "reference": "但庞清和佟健并不愿意随遇而安地安排自己的后半生",
+      "entities": [
+        {
+          "text": "庞清",
+          "entity_type": "PERSON",
+          "start": 1,
+          "end": 3,
+          "covered": false
+        },
+        {
+          "text": "佟健",
+          "entity_type": "PERSON",
+          "start": 4,
+          "end": 6,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0767W0380",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0380.wav",
+      "reference": "她就是因伤未能随队参加本次赛事的徐云丽",
+      "entities": [
+        {
+          "text": "徐云丽",
+          "entity_type": "PERSON",
+          "start": 16,
+          "end": 19,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0902W0379",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0379.wav",
+      "reference": "高桥大辅应该是他的新欢",
+      "entities": [
+        {
+          "text": "高桥大辅",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 4,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0907W0430",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0430.wav",
+      "reference": "曾获美国时代杂志形容为影响香港乐坛风格的人物",
+      "entities": [
+        {
+          "text": "美国时代杂志",
+          "entity_type": "ORG",
+          "start": 2,
+          "end": 8,
+          "covered": false
+        },
+        {
+          "text": "香港",
+          "entity_type": "LOC",
+          "start": 13,
+          "end": 15,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0906W0391",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0391.wav",
+      "reference": "祖耶夫的右肋很快便被踢出大片鲜红的淤血斑痕",
+      "entities": [
+        {
+          "text": "祖耶夫",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 3,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0903W0352",
+      "speaker": "S0903",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0903/BAC009S0903W0352.wav",
+      "reference": "北京市体育局副局长孙学才宣布比赛开幕",
+      "entities": [
+        {
+          "text": "北京市体育局",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 6,
+          "covered": false
+        },
+        {
+          "text": "孙学才",
+          "entity_type": "PERSON",
+          "start": 9,
+          "end": 12,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0913W0335",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0335.wav",
+      "reference": "被合并到美的的厨房电器事业部后",
+      "entities": [
+        {
+          "text": "美的",
+          "entity_type": "ORG",
+          "start": 4,
+          "end": 6,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0914W0434",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0434.wav",
+      "reference": "北京冬奥会刚刚申办成功",
+      "entities": [
+        {
+          "text": "北京",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "covered": false
+        },
+        {
+          "text": "奥",
+          "entity_type": "LOC",
+          "start": 3,
+          "end": 4,
+          "covered": false
+        }
+      ],
+      "group": "uncovered_entity"
+    },
+    {
+      "id": "BAC009S0916W0227",
+      "speaker": "S0916",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0916/BAC009S0916W0227.wav",
+      "reference": "扩大到四个小长假之后",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0908W0330",
+      "speaker": "S0908",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0908/BAC009S0908W0330.wav",
+      "reference": "净利润为九点七亿元",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0907W0259",
+      "speaker": "S0907",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0907/BAC009S0907W0259.wav",
+      "reference": "它是软件集成的一种方式",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0764W0145",
+      "speaker": "S0764",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0764/BAC009S0764W0145.wav",
+      "reference": "绝大部分三线城市房价仍然下降",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0903W0194",
+      "speaker": "S0903",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0903/BAC009S0903W0194.wav",
+      "reference": "组建一批产业技术创新战略联盟和国家农业科技园区",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0902W0208",
+      "speaker": "S0902",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0902/BAC009S0902W0208.wav",
+      "reference": "农村实用人才总量万人",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0912W0183",
+      "speaker": "S0912",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0912/BAC009S0912W0183.wav",
+      "reference": "百分之五的网友认为不会",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0770W0493",
+      "speaker": "S0770",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0770/BAC009S0770W0493.wav",
+      "reference": "涉嫌编造谣言非法拘禁被刑拘",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0913W0228",
+      "speaker": "S0913",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0913/BAC009S0913W0228.wav",
+      "reference": "更好地适应了新形势的需要",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0769W0166",
+      "speaker": "S0769",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0769/BAC009S0769W0166.wav",
+      "reference": "还有多家机构分析认为",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0914W0467",
+      "speaker": "S0914",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0914/BAC009S0914W0467.wav",
+      "reference": "事情的真相完全不是这样的",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0906W0183",
+      "speaker": "S0906",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0906/BAC009S0906W0183.wav",
+      "reference": "从一线城市及存销比在七个月以下的城市来看",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0901W0446",
+      "speaker": "S0901",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0901/BAC009S0901W0446.wav",
+      "reference": "保安得知自己被骗后表示我真的很恨他们",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0768W0128",
+      "speaker": "S0768",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0768/BAC009S0768W0128.wav",
+      "reference": "土地交易可能随着供应淡季的到来而降温",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0915W0150",
+      "speaker": "S0915",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0915/BAC009S0915W0150.wav",
+      "reference": "多个楼盘仍然采取的是低价走量的策略",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0765W0436",
+      "speaker": "S0765",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0765/BAC009S0765W0436.wav",
+      "reference": "这是二零一零年四月二三日以来",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0905W0289",
+      "speaker": "S0905",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0905/BAC009S0905W0289.wav",
+      "reference": "却完全不足以彰显编制机构与时并进",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0766W0239",
+      "speaker": "S0766",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0766/BAC009S0766W0239.wav",
+      "reference": "难以满足发行城投债券的资格和条件",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0767W0491",
+      "speaker": "S0767",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0767/BAC009S0767W0491.wav",
+      "reference": "想办法扑上去咬一口",
+      "entities": [],
+      "group": "no_entity"
+    },
+    {
+      "id": "BAC009S0904W0214",
+      "speaker": "S0904",
+      "audio_path": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav/test/S0904/BAC009S0904W0214.wav",
+      "reference": "发展多种形式的适度规模经营",
+      "entities": [],
+      "group": "no_entity"
+    }
+  ]
+}

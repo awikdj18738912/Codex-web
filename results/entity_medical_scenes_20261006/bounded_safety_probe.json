@@ -1,0 +1,155 @@
+{
+  "synthetic_text_only": true,
+  "results": [
+    {
+      "case": "legal_disease",
+      "restricted": false,
+      "source": "医生说患者患有骨质增生。",
+      "proposal": "医生说患者患有骨质疏松症。",
+      "output": "医生说患者患有骨质增生。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "ordinary_grammar",
+      "restricted": false,
+      "source": "医生说患者曾经系统学习了急救。",
+      "proposal": "医生说患者神经系统学习了急救。",
+      "output": "医生说患者神经系统学习了急救。",
+      "patches": [
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "曾经系统",
+          "canonical": "神经系统",
+          "entity_id": 8
+        }
+      ],
+      "passed": false
+    },
+    {
+      "case": "inserted_term",
+      "restricted": false,
+      "source": "患者今天到医院复诊。",
+      "proposal": "患者今天因骨质疏松症到医院复诊。",
+      "output": "患者今天到医院复诊。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "number_change",
+      "restricted": false,
+      "source": "医生说患者骨疏松症，服药20毫克。",
+      "proposal": "医生说患者骨质疏松症，服药200毫克。",
+      "output": "医生说患者骨质疏松症，服药20毫克。",
+      "patches": [
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "骨疏松症",
+          "canonical": "骨质疏松症",
+          "entity_id": 16
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "punctuation_boundary",
+      "restricted": false,
+      "source": "医生说患者有骨质、疏松症。",
+      "proposal": "医生说患者有骨质疏松症。",
+      "output": "医生说患者有骨质、疏松症。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "actual_spelling",
+      "restricted": false,
+      "source": "医生说患者有骨疏松症。",
+      "proposal": "医生说患者有骨质疏松症。",
+      "output": "医生说患者有骨质疏松症。",
+      "patches": [
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "骨疏松症",
+          "canonical": "骨质疏松症",
+          "entity_id": 16
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "legal_disease",
+      "restricted": true,
+      "source": "医生说患者患有骨质增生。",
+      "proposal": "医生说患者患有骨质疏松症。",
+      "output": "医生说患者患有骨质增生。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "ordinary_grammar",
+      "restricted": true,
+      "source": "医生说患者曾经系统学习了急救。",
+      "proposal": "医生说患者神经系统学习了急救。",
+      "output": "医生说患者曾经系统学习了急救。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "inserted_term",
+      "restricted": true,
+      "source": "患者今天到医院复诊。",
+      "proposal": "患者今天因骨质疏松症到医院复诊。",
+      "output": "患者今天到医院复诊。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "number_change",
+      "restricted": true,
+      "source": "医生说患者骨疏松症，服药20毫克。",
+      "proposal": "医生说患者骨质疏松症，服药200毫克。",
+      "output": "医生说患者骨质疏松症，服药20毫克。",
+      "patches": [
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "骨疏松症",
+          "canonical": "骨质疏松症",
+          "entity_id": 16
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "punctuation_boundary",
+      "restricted": true,
+      "source": "医生说患者有骨质、疏松症。",
+      "proposal": "医生说患者有骨质疏松症。",
+      "output": "医生说患者有骨质、疏松症。",
+      "patches": [],
+      "passed": true
+    },
+    {
+      "case": "actual_spelling",
+      "restricted": true,
+      "source": "医生说患者有骨疏松症。",
+      "proposal": "医生说患者有骨质疏松症。",
+      "output": "医生说患者有骨质疏松症。",
+      "patches": [
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "骨疏松症",
+          "canonical": "骨质疏松症",
+          "entity_id": 16
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "passed": 11,
+  "total": 12
+}

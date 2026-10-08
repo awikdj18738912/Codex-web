@@ -1,0 +1,40 @@
+{
+  "source": "麻醉后，医生马上为他展开预计长达七个小时的手术。以十二指肠切除术。",
+  "output": "麻醉后，医生马上为他展开预计长达七个小时的手术。胰十二指肠切除术。",
+  "normalizations": [
+    {
+      "observed": "以十二指肠",
+      "canonical": "胰十二指肠",
+      "entity_type": "TERM",
+      "entity_id": 13,
+      "match_type": "CONTEXT_PINYIN",
+      "match_score": 0.9299999999999999
+    }
+  ],
+  "candidates": [
+    {
+      "start": 24,
+      "end": 29,
+      "observed": "以十二指肠",
+      "entity_id": 13,
+      "canonical": "胰十二指肠",
+      "entity_type": "TERM",
+      "domain": "medical",
+      "matched_surface": "胰十二指肠",
+      "match_type": "CONTEXT_PINYIN",
+      "char_score": 0.8,
+      "pinyin_score": 1.0,
+      "length_score": 1.0,
+      "domain_score": 1.0,
+      "priority_score": 0.0,
+      "final_score": 0.93,
+      "runner_up_score": null,
+      "margin": 1.0,
+      "decision": "AUTO_NORMALIZE",
+      "reasons": [
+        "registered_pronunciation_context",
+        "context:medical_procedure_stem_role"
+      ]
+    }
+  ]
+}

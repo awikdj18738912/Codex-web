@@ -488,7 +488,7 @@ def run(config: RunConfig) -> int:
                         entity_candidates=tuple(
                             match.public_dict() for match in prepared.report.matches
                         ),
-                        entity_normalizations=prepared.normalizations,
+                        entity_normalizations=finalized.normalizations,
                         entity_refinement_hints=prepared.hints,
                         entity_audit_issues=protector.audit_unmasked(
                             finalized.text, prepared.protection

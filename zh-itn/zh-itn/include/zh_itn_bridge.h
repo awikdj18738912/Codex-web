@@ -12,6 +12,8 @@ void* zh_itn_normalize_text(const char* text);
 int zh_itn_result_valid(const void* handle);
 const char* zh_itn_result_output(const void* handle);
 const char* zh_itn_result_error(const void* handle);
+const char* zh_itn_result_decision_reason(const void* handle);
+size_t zh_itn_result_candidate_count(const void* handle);
 size_t zh_itn_result_mapping_count(const void* handle);
 const char* zh_itn_mapping_kind(const void* handle, size_t index);
 const char* zh_itn_mapping_rule_id(const void* handle, size_t index);

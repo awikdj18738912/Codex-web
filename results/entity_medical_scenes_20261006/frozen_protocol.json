@@ -1,0 +1,18 @@
+{
+  "hashes": {
+    "selection.json": "3382114fb47bb9f6748381aa13cd48b5c5f7d12427b7b801c943d698639d7384",
+    "glossaries.json": "8a89e67831675725f887e23d13d2e60b1fba3920d8f05c19f0ae961eaa6ebf62",
+    "cardiopulmonary.db": "8b4935e717cf2f1af8a8555d909902886180d713006a48b280df04c2cd627639",
+    "orthopedics.db": "a38deaed5839f0084c7c03e01cec7a83a9928b999167e37936bbf2f73b8fe583",
+    "urology.db": "b8da878bd10aee7fddea50b1b63923a835c9eab4437078cd01d2dd2e7908d46c"
+  },
+  "arms": [
+    "raw",
+    "plain_entity",
+    "context_entity",
+    "scene_prompt"
+  ],
+  "retain": "Positive entity gain, zero lost correct mentions, zero regressed samples; otherwise reject",
+  "inference_inputs": "PCM and predeclared specialty only; no reference or gold entities",
+  "production_changes": false
+}

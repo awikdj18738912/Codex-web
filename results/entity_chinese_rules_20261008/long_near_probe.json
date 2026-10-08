@@ -1,0 +1,142 @@
+{
+  "role": "Development probe after fresh inspection; not independent acceptance",
+  "counts": {
+    "wide": {
+      "samples": 1373,
+      "changed": 4,
+      "improved": 2,
+      "regressed": 2,
+      "error_delta": 0,
+      "expected_mentions": 388,
+      "recovered_mentions": 278
+    },
+    "action_only": {
+      "samples": 1373,
+      "changed": 3,
+      "improved": 2,
+      "regressed": 1,
+      "error_delta": -6,
+      "expected_mentions": 388,
+      "recovered_mentions": 278
+    }
+  },
+  "changes": {
+    "wide": [
+      {
+        "id": "MultiMed_Chinese_train_0181",
+        "variant": "clean",
+        "reference": "一般的腹股沟疝修补手术 只需要约一个半小时就能完成。 不过 已经过了两个小时",
+        "baseline": "一般的复骨钩扇修骨手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "output": "一般的腹股沟疝修补手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "edits": [
+          {
+            "start": 3,
+            "end": 11,
+            "observed": "复骨钩扇修骨手术",
+            "canonical": "腹股沟疝修补手术"
+          }
+        ],
+        "error_delta": -5
+      },
+      {
+        "id": "MultiMed_Chinese_train_0181",
+        "variant": "noise",
+        "reference": "一般的腹股沟疝修补手术 只需要约一个半小时就能完成。 不过 已经过了两个小时",
+        "baseline": "一般的复骨钩扇修骨手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "output": "一般的腹股沟疝修补手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "edits": [
+          {
+            "start": 3,
+            "end": 11,
+            "observed": "复骨钩扇修骨手术",
+            "canonical": "腹股沟疝修补手术"
+          }
+        ],
+        "error_delta": -5
+      },
+      {
+        "id": "negative_14",
+        "variant": "constructed",
+        "reference": "患者接受匈强敬胃页切厨术，手术需要一小时。",
+        "baseline": "患者接受匈强敬胃页切厨术，手术需要一小时。",
+        "output": "患者接受胸腔镜肺叶切除术，手术需要一小时。",
+        "edits": [
+          {
+            "start": 4,
+            "end": 12,
+            "observed": "匈强敬胃页切厨术",
+            "canonical": "胸腔镜肺叶切除术"
+          }
+        ],
+        "error_delta": 6
+      },
+      {
+        "id": "negative_15",
+        "variant": "constructed",
+        "reference": "患者接受节指再置修浦手术，手术需要一小时。",
+        "baseline": "患者接受节指再置修浦手术，手术需要一小时。",
+        "output": "患者接受截肢再植修补手术，手术需要一小时。",
+        "edits": [
+          {
+            "start": 4,
+            "end": 12,
+            "observed": "节指再置修浦手术",
+            "canonical": "截肢再植修补手术"
+          }
+        ],
+        "error_delta": 4
+      }
+    ],
+    "action_only": [
+      {
+        "id": "MultiMed_Chinese_train_0181",
+        "variant": "clean",
+        "reference": "一般的腹股沟疝修补手术 只需要约一个半小时就能完成。 不过 已经过了两个小时",
+        "baseline": "一般的复骨钩扇修骨手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "output": "一般的腹股沟疝修补手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "edits": [
+          {
+            "start": 3,
+            "end": 11,
+            "observed": "复骨钩扇修骨手术",
+            "canonical": "腹股沟疝修补手术"
+          }
+        ],
+        "error_delta": -5
+      },
+      {
+        "id": "MultiMed_Chinese_train_0181",
+        "variant": "noise",
+        "reference": "一般的腹股沟疝修补手术 只需要约一个半小时就能完成。 不过 已经过了两个小时",
+        "baseline": "一般的复骨钩扇修骨手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "output": "一般的腹股沟疝修补手术只需要约一个半小时就能完成，不过已经过了两个小时。",
+        "edits": [
+          {
+            "start": 3,
+            "end": 11,
+            "observed": "复骨钩扇修骨手术",
+            "canonical": "腹股沟疝修补手术"
+          }
+        ],
+        "error_delta": -5
+      },
+      {
+        "id": "negative_15",
+        "variant": "constructed",
+        "reference": "患者接受节指再置修浦手术，手术需要一小时。",
+        "baseline": "患者接受节指再置修浦手术，手术需要一小时。",
+        "output": "患者接受截肢再植修补手术，手术需要一小时。",
+        "edits": [
+          {
+            "start": 4,
+            "end": 12,
+            "observed": "节指再置修浦手术",
+            "canonical": "截肢再植修补手术"
+          }
+        ],
+        "error_delta": 4
+      }
+    ]
+  },
+  "script_sha256": "b8268357dcf88e25185d5959865737cb3554eab9f14d935f8e6021a22dffb8f3"
+}

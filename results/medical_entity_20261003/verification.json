@@ -1,0 +1,52 @@
+{
+  "asr_variants": 430,
+  "entity_layer_records": 430,
+  "medical_web_sessions": 1720,
+  "ordinary_control_sessions": 160,
+  "development_demo_sessions": 6,
+  "no_response_cache_used": true,
+  "sqlite_integrity": {
+    "medical.db": "ok",
+    "current_snapshot.db": "ok",
+    "context_alias_demo/context.db": "ok"
+  },
+  "legacy_rows_preserved": {
+    "protected_entities": true,
+    "entity_aliases": true
+  },
+  "original_database_entity_count": 12,
+  "business_sources_changed": [],
+  "services": {
+    "8081": {
+      "ok": true,
+      "entity_db": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  }
+}

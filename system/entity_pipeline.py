@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .entity_matcher import EntityCandidateMatcher, EntityMatchReport
+from .entity_matcher import EntityCandidateMatcher, EntityMatchReport, EntityDecision
 from .protection import EntityProtector, ProtectionResult
 from .refinement_guard import (
     permits_self_correction_punctuation_repair,
@@ -12,6 +12,8 @@ from .refinement_guard import (
     reject_reasons,
     source_punctuation_lost,
 )
+
+_TRUSTED_ENTITY_MATCH_TYPES = frozenset({'EXACT_ALIAS','EXACT_CANONICAL','CONTEXT_PINYIN','CONTEXT_OMISSION','CONTEXT_NEAR_PINYIN','CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'})
 
 
 @dataclass(frozen=True, slots=True)
@@ -21,6 +23,15 @@ class PreparedEntitySegment:
     baseline_text: str
     hints: tuple[str, ...]
     report: EntityMatchReport
+    trusted_baseline_text: str = ""
+
+    @property
+    def refiner_candidates(self) -> tuple[dict[str, str], ...]:
+        return tuple(
+            {"observed": m.observed, "canonical": m.canonical, "type": m.entity_type}
+            for m in self.report.matches
+            if m.decision is EntityDecision.HINT_ONLY
+        )
 
     @property
     def normalizations(self) -> tuple[dict[str, object], ...]:
@@ -43,6 +54,22 @@ class FinalizedEntitySegment:
     text: str
     accepted: bool
     reject_reasons: tuple[str, ...]
+    normalizations: tuple[dict[str, object], ...] = ()
+
+
+def fallback_entity_segment(prepared, reasons):
+    """Retain verified aliases while discarding proposed fuzzy changes."""
+    changes = tuple(
+        c
+        for c in prepared.normalizations
+        if c["match_type"] in _TRUSTED_ENTITY_MATCH_TYPES
+    )
+    return FinalizedEntitySegment(
+        prepared.trusted_baseline_text or prepared.baseline_text,
+        False,
+        tuple(reasons),
+        changes,
+    )
 
 
 _PLACEHOLDER_REJECT_PREFIXES = (
@@ -63,7 +90,8 @@ def has_retryable_integrity_failure(reasons: tuple[str, ...]) -> bool:
     """Return whether a stricter second refinement attempt can recover output."""
 
     return has_placeholder_failure(reasons) or any(
-        reason in {
+        reason
+        in {
             "severe_content_loss",
             "truncated_refiner_output",
             "entity_sentence_boundary_lost",
@@ -86,6 +114,9 @@ def prepare_entity_segment(
     confidence: float | None = None,
 ) -> PreparedEntitySegment:
     exact = protector.protect(text, confidence=confidence)
+    trusted = protector.restore(exact.masked_text, exact)
+    if not trusted.accepted:
+        raise RuntimeError("internal trusted entity restoration failed")
     if matcher is None:
         report = EntityMatchReport((), 0.0)
     else:
@@ -94,6 +125,15 @@ def prepare_entity_segment(
             allow_auto=allow_auto,
             blocked_spans=((span.start, span.end) for span in exact.spans),
         )
+    # Context spellings and explicitly enabled internal completions have passed
+    # the entity verifier. Preserve them if later refinement fails.
+    contextual_matches = tuple(m for m in report.auto_matches if m.match_type in {'CONTEXT_PINYIN','CONTEXT_OMISSION','CONTEXT_NEAR_PINYIN','CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'})
+    if contextual_matches:
+        contextual = protector.protect(text,confidence=confidence,fuzzy_matches=contextual_matches)
+        contextual_trusted = protector.restore(contextual.masked_text,contextual)
+        if not contextual_trusted.accepted:
+            raise RuntimeError('internal contextual entity restoration failed')
+        trusted = contextual_trusted
     protection = protector.protect(
         text,
         confidence=confidence,
@@ -111,7 +151,9 @@ def prepare_entity_segment(
             (*protector.refinement_hints(protection), *report.hint_canonicals)
         )
     )[:max_hints]
-    return PreparedEntitySegment(text, protection, baseline.text, hints, report)
+    return PreparedEntitySegment(
+        text, protection, baseline.text, hints, report, trusted.text
+    )
 
 
 def finalize_entity_segment(
@@ -123,13 +165,21 @@ def finalize_entity_segment(
     preserve_terminal_only: bool = False,
     allow_boundary_punctuation_repair: bool = False,
     numeric_rule_mode: bool = False,
+    entity_patch: dict[str, object] | None = None,
 ) -> FinalizedEntitySegment:
+    trusted_baseline = prepared.trusted_baseline_text or prepared.baseline_text
+    trusted_changes = tuple(
+        change
+        for change in prepared.normalizations
+        if change["match_type"] in _TRUSTED_ENTITY_MATCH_TYPES
+    )
     restored = protector.restore(refined_masked_text, prepared.protection)
     if not restored.accepted:
         return FinalizedEntitySegment(
-            prepared.baseline_text,
+            trusted_baseline,
             False,
             restored.reject_reasons,
+            trusted_changes,
         )
     restored_text = (
         preserve_terminal_punctuation(prepared.baseline_text, restored.text)
@@ -149,6 +199,7 @@ def finalize_entity_segment(
     reasons = (
         *punctuation_reasons,
         *_introduced_hint_reasons(prepared, restored_text),
+        *_unconfirmed_entity_edit_reasons(prepared, restored_text, entity_patch),
         *reject_reasons(
             prepared.baseline_text,
             restored_text,
@@ -156,8 +207,64 @@ def finalize_entity_segment(
         ),
     )
     if reasons:
-        return FinalizedEntitySegment(prepared.baseline_text, False, reasons)
-    return FinalizedEntitySegment(restored_text, True, ())
+        return FinalizedEntitySegment(trusted_baseline, False, reasons, trusted_changes)
+    confirmed_changes = tuple(
+        {
+            "observed": m.observed,
+            "canonical": m.canonical,
+            "entity_type": m.entity_type,
+            "entity_id": m.entity_id,
+            "match_type": m.match_type,
+            "match_score": m.final_score,
+            "decision": "CONTEXT_CONFIRMED",
+        }
+        for m in prepared.report.matches
+        if m.decision is EntityDecision.HINT_ONLY
+        and restored_text.count(m.canonical) > prepared.baseline_text.count(m.canonical)
+        and restored_text.count(m.observed) < prepared.baseline_text.count(m.observed)
+    )
+    return FinalizedEntitySegment(
+        restored_text, True, (), (*prepared.normalizations, *confirmed_changes)
+    )
+
+
+def _unconfirmed_entity_edit_reasons(prepared, output, patch):
+    reasons = []
+    baseline = prepared.baseline_text
+    for match in prepared.report.matches:
+        if match.observed == match.canonical:
+            continue
+        introduced = output.count(match.canonical) > baseline.count(match.canonical)
+        removed = output.count(match.observed) < baseline.count(match.observed)
+        if not introduced and not removed:
+            continue
+        if match.decision is EntityDecision.AUTO_NORMALIZE:
+            continue  # harmless width/spacing normalization already verified
+        if match.decision is EntityDecision.KEEP_RAW:
+            if introduced:
+                reasons.append("entity_boundary_or_shadow_edit:" + match.canonical)
+            continue
+        if (
+            "preserve_policy" in match.reasons
+            or "high_risk_entity_type" in match.reasons
+        ):
+            if introduced:
+                reasons.append("entity_requires_verified_alias:" + match.canonical)
+            continue
+        confirmed = (
+            isinstance(patch, dict)
+            and patch.get("action") == "replace"
+            and patch.get("source") == match.observed
+            and patch.get("target") == match.canonical
+            and patch.get("reason")
+            in {"entity_correction", "local_typo", "term_normalization"}
+            and baseline.count(match.observed) == 1
+            and introduced
+            and removed
+        )
+        if not confirmed:
+            reasons.append("entity_confirmation_required:" + match.canonical)
+    return tuple(dict.fromkeys(reasons))
 
 
 def _introduced_hint_reasons(

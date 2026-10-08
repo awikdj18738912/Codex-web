@@ -1,0 +1,71 @@
+{
+  "seed": 20261010,
+  "noise_snr_db": 5,
+  "samples": [
+    {
+      "id": "MultiMed_Chinese_train_0181",
+      "source_row": 181,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0181.wav",
+      "reference": "一般的腹股沟疝修补手术 只需要约一个半小时就能完成。 不过 已经过了两个小时",
+      "group": "known_positive"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0136",
+      "source_row": 136,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0136.wav",
+      "reference": "原来有个大肿块。 而且早在十年前就出现了。 腹股沟疝是一种相当常见的疾病",
+      "group": "control"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0157",
+      "source_row": 157,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0157.wav",
+      "reference": "患有腹股沟疝的蔡永恒 今天要动手术了。 休息。 放松。 陪同他前来的有二女儿和女婿",
+      "group": "control"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0149",
+      "source_row": 149,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0149.wav",
+      "reference": "现年七十四岁的王振兴 其实在去年十月 已经做过左眼的白内障手术。 右眼的白内障问题虽然不严重",
+      "group": "control"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0259",
+      "source_row": 259,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0259.wav",
+      "reference": "这项微创手术为病人带来许多便利 也减少了手术的风险。 但却大大地延长了手术的时间，",
+      "group": "control"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0308",
+      "source_row": 308,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0308.wav",
+      "reference": "则接手清除遗留在病人体内的淋巴瘤。 很多人都以为 开刀只是外科医生的功劳。",
+      "group": "control"
+    },
+    {
+      "id": "MultiMed_Chinese_train_0365",
+      "source_row": 365,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/narrow_asr_context/audio/MultiMed_Chinese_train_0365.wav",
+      "reference": "那么医生的检查流程就是先给 弟弟看看耳朵有没有中耳炎 然后再看看鼻腔",
+      "group": "control"
+    }
+  ],
+  "term": "腹股沟疝修补手术",
+  "context": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"腹股沟疝\", \"腹股沟疝修补手术\"]",
+  "conditions": [
+    "off_before",
+    "glossary",
+    "off_after"
+  ],
+  "role": "Development followup: paired disease/procedure canonical vocabulary; frozen before new calls",
+  "only_canonical_name": true,
+  "no_error_aliases": true,
+  "production_changes": false,
+  "frozen_at_utc": "2026-10-08T03:25:45.625518+00:00",
+  "canonical_terms": [
+    "腹股沟疝",
+    "腹股沟疝修补手术"
+  ]
+}

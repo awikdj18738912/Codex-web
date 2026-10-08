@@ -1,0 +1,290 @@
+...................................................F...F.FF..F.......... [ 20%]
+........................................................................ [ 41%]
+........................................................................ [ 62%]
+................................................F....................F.. [ 83%]
+.............F............................................               [100%]
+=================================== FAILURES ===================================
+___ EntityCandidateMatcherTest.test_character_score_is_not_a_hard_auto_gate ____
+
+self = <test_entity_matcher.EntityCandidateMatcherTest testMethod=test_character_score_is_not_a_hard_auto_gate>
+
+    def test_character_score_is_not_a_hard_auto_gate(self) -> None:
+        config = EntityMatchConfig.load()
+        matcher = EntityCandidateMatcher(
+            (_definition("厉飞羽"),),
+            selected_domain="game",
+            mode="auto",
+            config=config,
+        )
+    
+        report = matcher.match("李飞鱼", allow_auto=True)
+    
+>       self.assertEqual(report.auto_matches[0].canonical, "厉飞羽")
+E       IndexError: tuple index out of range
+
+tests/test_entity_matcher.py:112: IndexError
+_ EntityCandidateMatcherTest.test_same_pinyin_single_character_error_can_auto_normalize _
+
+self = <test_entity_matcher.EntityCandidateMatcherTest testMethod=test_same_pinyin_single_character_error_can_auto_normalize>
+
+    def test_same_pinyin_single_character_error_can_auto_normalize(self) -> None:
+        entity = _definition("鬼灵门")
+        matcher = EntityCandidateMatcher(
+            (entity,), selected_domain="game", mode=EntityFuzzyMode.AUTO
+        )
+    
+        report = matcher.match("鬼灵们是副本入口。", allow_auto=True)
+    
+>       self.assertEqual(len(report.auto_matches), 1)
+E       AssertionError: 0 != 1
+
+tests/test_entity_matcher.py:48: AssertionError
+____ EntityPipelineTest.test_auto_match_is_masked_and_restored_to_canonical ____
+
+self = <test_entity_matcher.EntityPipelineTest testMethod=test_auto_match_is_masked_and_restored_to_canonical>
+
+    def test_auto_match_is_masked_and_restored_to_canonical(self) -> None:
+        entity = _definition("鬼灵门")
+        protector = EntityProtector((entity,))
+        matcher = EntityCandidateMatcher(
+            (entity,), selected_domain="game", mode="auto"
+        )
+    
+        prepared = prepare_entity_segment(
+            "鬼灵们是副本入口。",
+            protector,
+            matcher,
+            allow_auto=True,
+        )
+    
+>       self.assertNotIn("鬼灵们", prepared.protection.masked_text)
+E       AssertionError: '鬼灵们' unexpectedly found in '鬼灵们是副本入口。'
+
+tests/test_entity_matcher.py:182: AssertionError
+_ EntityPipelineTest.test_broken_placeholder_falls_back_to_deterministic_baseline _
+
+self = <test_entity_matcher.EntityPipelineTest testMethod=test_broken_placeholder_falls_back_to_deterministic_baseline>
+
+    def test_broken_placeholder_falls_back_to_deterministic_baseline(self) -> None:
+        entity = _definition("鬼灵门")
+        protector = EntityProtector((entity,))
+        matcher = EntityCandidateMatcher(
+            (entity,), selected_domain="game", mode="auto"
+        )
+        prepared = prepare_entity_segment(
+            "鬼灵们是入口", protector, matcher, allow_auto=True
+        )
+    
+        finalized = finalize_entity_segment("这是一段丢失占位符的文本", prepared, protector)
+    
+        self.assertFalse(finalized.accepted)
+>       self.assertEqual(finalized.text, "鬼灵门是入口")
+E       AssertionError: '鬼灵们是入口' != '鬼灵门是入口'
+E       - 鬼灵们是入口
+E       ?   ^
+E       + 鬼灵门是入口
+E       ?   ^
+
+tests/test_entity_matcher.py:203: AssertionError
+_ EntityPipelineTest.test_hint_correction_is_allowed_when_it_consumes_the_observed_span _
+
+self = <test_entity_matcher.EntityPipelineTest testMethod=test_hint_correction_is_allowed_when_it_consumes_the_observed_span>
+
+    def test_hint_correction_is_allowed_when_it_consumes_the_observed_span(self) -> None:
+        entity = _definition("鬼灵门")
+        protector = EntityProtector((entity,))
+        matcher = EntityCandidateMatcher(
+            (entity,), selected_domain="game", mode="hint"
+        )
+        prepared = prepare_entity_segment(
+            "鬼灵们是入口", protector, matcher, allow_auto=True
+        )
+    
+        finalized = finalize_entity_segment("鬼灵门是入口", prepared, protector)
+    
+>       self.assertTrue(finalized.accepted)
+E       AssertionError: False is not true
+
+tests/test_entity_matcher.py:249: AssertionError
+___ WebAppFinishTest.test_final_auto_mode_applies_and_restores_fuzzy_entity ____
+
+self = <test_web_app_finish.WebAppFinishTest testMethod=test_final_auto_mode_applies_and_restores_fuzzy_entity>
+
+    def test_final_auto_mode_applies_and_restores_fuzzy_entity(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            entity_db = Path(directory) / "entities.db"
+            EntityStore(entity_db).upsert_entity(
+                "鬼灵门",
+                entity_type="TERM",
+                normalization_policy="normalize",
+            )
+            with (
+                patch.object(web_app, "TransformersRefiner", _IdentityRefiner),
+                patch.object(web_app, "_stream_request", _entity_stream_request),
+            ):
+                app = web_app.create_app(
+                    Path("/tmp/fake-refiner"),
+                    "cpu",
+                    "http://fake-asr",
+                    "Chinese",
+                    32,
+                    None,
+                    entity_db,
+                    "auto",
+                )
+                with TestClient(app) as client:
+                    with client.websocket_connect(
+                        "/ws/stream?mode=offline&domain=general"
+                    ) as websocket:
+                        self.assertEqual(websocket.receive_json()["event"], "ready")
+                        websocket.send_json({"event": "finish"})
+                        self.assertEqual(
+                            websocket.receive_json()["raw_text"],
+                            "鬼灵们是这个副本的入口。",
+                        )
+                        final = self._await_event(websocket, "final")
+>                       self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
+E                       AssertionError: '鬼灵们是这个副本的入口。' != '鬼灵门是这个副本的入口。'
+E                       - 鬼灵们是这个副本的入口。
+E                       ?   ^
+E                       + 鬼灵门是这个副本的入口。
+E                       ?   ^
+
+tests/test_web_app_finish.py:2732: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Loading AgenticASR Refiner...
+__ WebAppFinishTest.test_placeholder_failure_retries_once_with_strict_prompt ___
+
+self = <test_web_app_finish.WebAppFinishTest testMethod=test_placeholder_failure_retries_once_with_strict_prompt>
+
+    def test_placeholder_failure_retries_once_with_strict_prompt(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            entity_db = Path(directory) / "entities.db"
+            EntityStore(entity_db).upsert_entity(
+                "鬼灵门",
+                entity_type="TERM",
+                normalization_policy="normalize",
+            )
+            with (
+                patch.object(
+                    web_app, "TransformersRefiner", _DropsPlaceholderOnceRefiner
+                ),
+                patch.object(web_app, "_stream_request", _entity_stream_request),
+            ):
+                app = web_app.create_app(
+                    Path("/tmp/fake-refiner"),
+                    "cpu",
+                    "http://fake-asr",
+                    "Chinese",
+                    32,
+                    None,
+                    entity_db,
+                    "auto",
+                )
+                with TestClient(app) as client:
+                    with client.websocket_connect(
+                        "/ws/stream?mode=offline&domain=general"
+                    ) as websocket:
+                        self.assertEqual(websocket.receive_json()["event"], "ready")
+                        websocket.send_json({"event": "finish"})
+                        self.assertEqual(
+                            websocket.receive_json()["raw_text"],
+                            "鬼灵们是这个副本的入口。",
+                        )
+                        final = self._await_event(websocket, "final")
+>                       self.assertEqual(final["clean_text"], "鬼灵门是这个副本的入口。")
+E                       AssertionError: '鬼灵们是这个副本的入口。' != '鬼灵门是这个副本的入口。'
+E                       - 鬼灵们是这个副本的入口。
+E                       ?   ^
+E                       + 鬼灵门是这个副本的入口。
+E                       ?   ^
+
+tests/test_web_app_finish.py:2690: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Loading AgenticASR Refiner...
+__ WebAppFinishTest.test_streaming_window_applies_fuzzy_entity_before_finish ___
+
+self = <test_web_app_finish.WebAppFinishTest testMethod=test_streaming_window_applies_fuzzy_entity_before_finish>
+
+    def test_streaming_window_applies_fuzzy_entity_before_finish(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            entity_db = Path(directory) / "entities.db"
+            EntityStore(entity_db).upsert_entity(
+                "鬼灵门",
+                entity_type="TERM",
+                normalization_policy="normalize",
+            )
+            with (
+                patch.object(web_app, "TransformersRefiner", _IdentityRefiner),
+                patch.object(web_app, "_stream_request", _entity_stream_request),
+            ):
+                app = web_app.create_app(
+                    Path("/tmp/fake-refiner"),
+                    "cpu",
+                    "http://fake-asr",
+                    "Chinese",
+                    32,
+                    None,
+                    entity_db,
+                    "auto",
+                )
+                with TestClient(app) as client:
+                    with client.websocket_connect(
+                        "/ws/stream?mode=streaming&domain=general"
+                    ) as websocket:
+                        self.assertEqual(websocket.receive_json()["event"], "ready")
+                        websocket.send_bytes(b"pcm")
+                        message = websocket.receive_json()
+                        while message["event"] != "update":
+                            message = websocket.receive_json()
+>                       self.assertEqual(
+                            message["clean_text"], "鬼灵门是这个副本的入口。"
+                        )
+E                       AssertionError: '鬼灵们是这个副本的入口。' != '鬼灵门是这个副本的入口。'
+E                       - 鬼灵们是这个副本的入口。
+E                       ?   ^
+E                       + 鬼灵门是这个副本的入口。
+E                       ?   ^
+
+tests/test_web_app_finish.py:2450: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Loading AgenticASR Refiner...
+=============================== warnings summary ===============================
+../../../../anaconda3/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /home/aim0/anaconda3/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+  /home/aim0/anaconda3/lib/python3.12/site-packages/jieba/_compat.py:18: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    import pkg_resources
+
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('google')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_ambiguous_homophones_are_downgraded
+  /home/aim0/anaconda3/lib/python3.12/site-packages/pkg_resources/__init__.py:3154: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('zope')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_character_score_is_not_a_hard_auto_gate
+FAILED tests/test_entity_matcher.py::EntityCandidateMatcherTest::test_same_pinyin_single_character_error_can_auto_normalize
+FAILED tests/test_entity_matcher.py::EntityPipelineTest::test_auto_match_is_masked_and_restored_to_canonical
+FAILED tests/test_entity_matcher.py::EntityPipelineTest::test_broken_placeholder_falls_back_to_deterministic_baseline
+FAILED tests/test_entity_matcher.py::EntityPipelineTest::test_hint_correction_is_allowed_when_it_consumes_the_observed_span
+FAILED tests/test_web_app_finish.py::WebAppFinishTest::test_final_auto_mode_applies_and_restores_fuzzy_entity
+FAILED tests/test_web_app_finish.py::WebAppFinishTest::test_placeholder_failure_retries_once_with_strict_prompt
+FAILED tests/test_web_app_finish.py::WebAppFinishTest::test_streaming_window_applies_fuzzy_entity_before_finish
+8 failed, 338 passed, 9 warnings in 10.71s

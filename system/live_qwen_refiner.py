@@ -29,6 +29,7 @@ from .deterministic_cleanup import clean_transcript_deterministically
 from .entity_store import EntityStore
 from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
 from .entity_pipeline import (
+    fallback_entity_segment,
     FinalizedEntitySegment,
     finalize_entity_segment,
     has_placeholder_failure,
@@ -62,6 +63,7 @@ class TransformersRefiner:
     # available; the caller quality-checks it and falls back to source text
     # when it is incomplete.
     GENERATION_MAX_TIME_SECONDS = 12.0
+    supports_entity_candidates = True
 
     def __init__(self, model_path: Path, device_map: str, max_new_tokens: int) -> None:
         try:
@@ -90,12 +92,14 @@ class TransformersRefiner:
         *,
         entity_hints: Iterable[str] = (),
         strict_placeholders: bool = False,
+        entity_candidates: Iterable[dict[str,str]] = (),
     ) -> tuple[str, float]:
         return self._refine_with_system_prompt(
             raw_text,
             SYSTEM_PROMPT,
             entity_hints=entity_hints,
             strict_placeholders=strict_placeholders,
+            entity_candidates=entity_candidates,
         )
 
     def refine_with_numeric_rules(
@@ -104,6 +108,7 @@ class TransformersRefiner:
         *,
         entity_hints: Iterable[str] = (),
         strict_placeholders: bool = False,
+        entity_candidates: Iterable[dict[str,str]] = (),
     ) -> tuple[str, float]:
         """Refine language while leaving rule-normalized number surfaces intact."""
 
@@ -113,6 +118,7 @@ class TransformersRefiner:
             entity_hints=entity_hints,
             strict_placeholders=strict_placeholders,
             strict_placeholder_prompt=NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT,
+            entity_candidates=entity_candidates,
         )
 
     def _refine_with_system_prompt(
@@ -123,11 +129,21 @@ class TransformersRefiner:
         entity_hints: Iterable[str],
         strict_placeholders: bool,
         strict_placeholder_prompt: str = STRICT_PLACEHOLDER_PROMPT,
+        entity_candidates: Iterable[dict[str,str]] = (),
     ) -> tuple[str, float]:
         hints = tuple(dict.fromkeys(item.strip() for item in entity_hints if item.strip()))
         user_content = raw_text
         if hints:
             user_content = f"{raw_text}\n<KEY>[{'、'.join(hints[:16])}]"
+        candidates = list(entity_candidates)[:16]
+        if candidates:
+            user_content += "\n<ENTITY_CANDIDATES>"+json.dumps(candidates,ensure_ascii=False)
+            system_prompt += (
+                "术语候选仅供核对，并非已确认事实。保持原句关系。"
+                "只有上下文明确支持时才选择标准名；需要改术语时只返回单个JSON局部补丁，"
+                "source严格等于候选observed，target严格等于canonical，reason为entity_correction。"
+                "有歧义则返回action为keep，不得只改候选的一部分。"
+            )
         messages = [
             {
                 "role": "system",
@@ -565,7 +581,7 @@ def main(argv: list[str] | None = None) -> int:
         refiner_retry_reasons: tuple[str, ...] = ()
         if gate_decision.should_refine:
             refined_text, latency_ms = refiner.refine(
-                masked_text, entity_hints=prepared.hints
+                masked_text, entity_hints=prepared.hints,entity_candidates=prepared.refiner_candidates
             )
             refiner_masked_outputs.append(refined_text)
             structured_candidate, patch_payload, structured_issue = apply_structured_patch(
@@ -575,12 +591,10 @@ def main(argv: list[str] | None = None) -> int:
                 _patch_audit(patch_payload, structured_issue)
             )
             finalized = (
-                FinalizedEntitySegment(
-                    prepared.baseline_text, False, (structured_issue,)
-                )
+                fallback_entity_segment(prepared,(structured_issue,))
                 if structured_issue
                 else finalize_entity_segment(
-                    structured_candidate, prepared, protector
+                    structured_candidate, prepared, protector,entity_patch=patch_payload
                 )
             )
             if not structured_issue:
@@ -594,6 +608,7 @@ def main(argv: list[str] | None = None) -> int:
                     masked_text,
                     entity_hints=prepared.hints,
                     strict_placeholders=True,
+                    entity_candidates=prepared.refiner_candidates,
                 )
                 latency_ms += retry_latency_ms
                 refiner_retry_count = 1
@@ -606,12 +621,10 @@ def main(argv: list[str] | None = None) -> int:
                     _patch_audit(retry_payload, structured_retry_issue)
                 )
                 finalized = (
-                    FinalizedEntitySegment(
-                        prepared.baseline_text, False, (structured_retry_issue,)
-                    )
+                    fallback_entity_segment(prepared,(structured_retry_issue,))
                     if structured_retry_issue
                     else finalize_entity_segment(
-                        structured_retry, prepared, protector
+                        structured_retry, prepared, protector,entity_patch=retry_payload
                     )
                 )
                 if not structured_retry_issue:
@@ -655,7 +668,7 @@ def main(argv: list[str] | None = None) -> int:
         else:
             finalized_accepted = finalized.accepted
             finalized_reasons = finalized.reject_reasons
-        entity_normalizations = prepared.normalizations
+        entity_normalizations = finalized.normalizations if refiner_executed else prepared.normalizations
         entity_audit_issues = protector.audit_unmasked(refined_text, protection)
         print(f"[raw] {raw_text}")
         print(f"[refined {latency_ms:.0f}ms] {refined_text}", flush=True)

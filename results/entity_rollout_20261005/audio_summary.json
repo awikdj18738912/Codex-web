@@ -1,0 +1,102 @@
+{
+  "medical": {
+    "off": {
+      "samples": 64,
+      "errors": 838,
+      "reference_chars": 2332,
+      "improved": 0,
+      "worsened": 0,
+      "changed_samples": 0,
+      "actual_context_decodes": 0,
+      "expected_entities": 36,
+      "recovered": 33,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "retention_gate_passed": 0
+    },
+    "static": {
+      "samples": 64,
+      "errors": 800,
+      "reference_chars": 2332,
+      "improved": 12,
+      "worsened": 5,
+      "changed_samples": 18,
+      "actual_context_decodes": 64,
+      "expected_entities": 36,
+      "recovered": 33,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "retention_gate_passed": 0
+    },
+    "dynamic": {
+      "samples": 64,
+      "errors": 811,
+      "reference_chars": 2332,
+      "improved": 7,
+      "worsened": 4,
+      "changed_samples": 12,
+      "actual_context_decodes": 42,
+      "expected_entities": 36,
+      "recovered": 33,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "retention_gate_passed": 0
+    },
+    "repeat_off": {
+      "samples": 64,
+      "errors": 838,
+      "reference_chars": 2332,
+      "improved": 0,
+      "worsened": 0,
+      "changed_samples": 0,
+      "actual_context_decodes": 0,
+      "expected_entities": 36,
+      "recovered": 33,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "retention_gate_passed": 0
+    }
+  },
+  "general_control": {
+    "off": {
+      "samples": 16,
+      "errors": 3,
+      "reference_chars": 184,
+      "improved": 0,
+      "worsened": 0,
+      "changed_samples": 0,
+      "actual_context_decodes": 0,
+      "retention_gate_passed": 0
+    },
+    "static": {
+      "samples": 16,
+      "errors": 5,
+      "reference_chars": 184,
+      "improved": 0,
+      "worsened": 2,
+      "changed_samples": 2,
+      "actual_context_decodes": 16,
+      "retention_gate_passed": 0
+    },
+    "dynamic": {
+      "samples": 16,
+      "errors": 3,
+      "reference_chars": 184,
+      "improved": 0,
+      "worsened": 0,
+      "changed_samples": 0,
+      "actual_context_decodes": 0,
+      "retention_gate_passed": 0
+    },
+    "repeat_off": {
+      "samples": 16,
+      "errors": 3,
+      "reference_chars": 184,
+      "improved": 0,
+      "worsened": 0,
+      "changed_samples": 0,
+      "actual_context_decodes": 0,
+      "retention_gate_passed": 0
+    }
+  }
+}

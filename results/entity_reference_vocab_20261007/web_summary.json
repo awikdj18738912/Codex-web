@@ -1,0 +1,42 @@
+{
+  "stats": {
+    "pairs": 6,
+    "changed": 2
+  },
+  "changes": [
+    {
+      "id": "MultiMed_Chinese_train_0961",
+      "variant": "clean",
+      "baseline": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。",
+      "output": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。",
+      "normalizations": [
+        {
+          "observed": "二氧化碳储留",
+          "canonical": "二氧化碳潴留",
+          "entity_type": "TERM",
+          "entity_id": 5,
+          "match_type": "CONTEXT_NEAR_PINYIN",
+          "match_score": 0.8466666666666667
+        }
+      ]
+    },
+    {
+      "id": "MultiMed_Chinese_train_0961",
+      "variant": "noise",
+      "baseline": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳储留，潮气量很高。",
+      "output": "五床患有恶性肿瘤，抵抗力低下，氧合指数正在持续下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳潴留，潮气量很高。",
+      "normalizations": [
+        {
+          "observed": "二氧化碳储留",
+          "canonical": "二氧化碳潴留",
+          "entity_type": "TERM",
+          "entity_id": 5,
+          "match_type": "CONTEXT_NEAR_PINYIN",
+          "match_score": 0.8466666666666667
+        }
+      ]
+    }
+  ],
+  "sessions": 12,
+  "model_calls": 28
+}
