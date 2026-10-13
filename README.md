@@ -157,7 +157,7 @@ pytest -q
 
 本项目目前是**研究型可运行原型**。已有批处理、音频推理、浏览器模式、术语保护、安全校验和回退能力；方向 A 研究方案中的完整系统尚未实现。
 
-当前精修路由支持 off / conservative / tri_state。tri_state 已接入浏览器在线、离线和离线流式链路：中间假设按 KEEP（保留）、DEFER（等待稳定）、REFINE（调用模型）路由，逗号和句末标点都作为窗口边界，活动窗口默认最多保留最近 3 个标点块（仍受窗口字符上限约束）；模型省略的窗口内原始标点会触发重试或安全回退，未结束片段不会凭空补标点；Refiner 已支持 JSON 局部补丁并在 source 不唯一或校验失败时回退；前端会显示状态和原因。当前仍未完成统一 ASR 假设协议、稳定前缀与完整动态活动区、双参考数据和完整流式评测。详细状态见 [CURRENT_WORK_AND_NEXT_STEPS.md](CURRENT_WORK_AND_NEXT_STEPS.md)，实际精修规则见[当前精修规则与实现说明](当前精修规则与实现说明.md)。
+当前精修路由支持 off / conservative / tri_state，以及可选的学习窗口门控。Web 的各门控模式共用 `fixed_k3_v1` 分窗、缓存和重试策略：按 ASR/VAD 已完成片段构造标点块，以 K=3 固定分组；不足 K 的尾部等待补齐或终态，等待不计入门控跳过。关闭门控时会精修每个完整窗口，分组策略保持一致。流式阶段复用原文未变的结果；终态是否重跑被拒绝窗口由独立的 `--final-refinement-mode` 决定。Refiner 支持受校验的局部补丁与回退。学习门控开关和验证范围见 [LEARNED_WINDOW_GATE_SWITCH.md](LEARNED_WINDOW_GATE_SWITCH.md)。当前仍未完成双参考数据和完整独立流式评测；近期检测器计划见 [EDIT_DETECTION_NEXT_STEPS_20261013.md](EDIT_DETECTION_NEXT_STEPS_20261013.md)。
 
 叠词保护已扩展为独立量词安全词表（`system/quantifiers.py`）和结构模式兜底：`一朵朵`、`一层层`、`一本本`、`一艘艘`、`一群群` 等“数词/限定词 + 量词重叠”不会被去重；即使遇到词表之外的地域量词，只要符合该结构也会保留。Refiner 删除重叠量词时会被语义校验拦截并回退。
 

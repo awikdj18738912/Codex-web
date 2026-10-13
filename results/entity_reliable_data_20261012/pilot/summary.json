@@ -1,0 +1,112 @@
+{
+  "all": {
+    "initial": {
+      "samples": 96,
+      "hits": 109,
+      "expected_mentions": 115,
+      "errors": 75,
+      "reference_chars": 2795,
+      "replays": 0,
+      "absent_changes": 0,
+      "CER": 0.026833631484794274
+    },
+    "production_final": {
+      "samples": 96,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 69,
+      "reference_chars": 2795,
+      "replays": 24,
+      "absent_changes": 0,
+      "CER": 0.024686940966010734
+    }
+  },
+  "football": {
+    "initial": {
+      "samples": 48,
+      "hits": 66,
+      "expected_mentions": 68,
+      "errors": 7,
+      "reference_chars": 1067,
+      "replays": 0,
+      "absent_changes": 0,
+      "CER": 0.006560449859418931
+    },
+    "production_final": {
+      "samples": 48,
+      "hits": 68,
+      "expected_mentions": 68,
+      "errors": 3,
+      "reference_chars": 1067,
+      "replays": 14,
+      "absent_changes": 0,
+      "CER": 0.0028116213683223993
+    }
+  },
+  "positive": {
+    "initial": {
+      "samples": 64,
+      "hits": 109,
+      "expected_mentions": 115,
+      "errors": 57,
+      "reference_chars": 1833,
+      "replays": 0,
+      "absent_changes": 0,
+      "CER": 0.031096563011456628
+    },
+    "production_final": {
+      "samples": 64,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 51,
+      "reference_chars": 1833,
+      "replays": 18,
+      "absent_changes": 0,
+      "CER": 0.027823240589198037
+    }
+  },
+  "no_registered_target": {
+    "initial": {
+      "samples": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "errors": 18,
+      "reference_chars": 962,
+      "replays": 0,
+      "absent_changes": 0,
+      "CER": 0.018711018711018712
+    },
+    "production_final": {
+      "samples": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "errors": 18,
+      "reference_chars": 962,
+      "replays": 6,
+      "absent_changes": 0,
+      "CER": 0.018711018711018712
+    }
+  },
+  "automotive": {
+    "initial": {
+      "samples": 48,
+      "hits": 43,
+      "expected_mentions": 47,
+      "errors": 68,
+      "reference_chars": 1728,
+      "replays": 0,
+      "absent_changes": 0,
+      "CER": 0.03935185185185185
+    },
+    "production_final": {
+      "samples": 48,
+      "hits": 44,
+      "expected_mentions": 47,
+      "errors": 66,
+      "reference_chars": 1728,
+      "replays": 10,
+      "absent_changes": 0,
+      "CER": 0.03819444444444445
+    }
+  }
+}

@@ -1,0 +1,382 @@
+{
+  "dataset": "entity_local_replay_v2_unseen_long_supplement",
+  "seed": "entity-local-unseen-long-supplement-20261012-v1",
+  "selection": "fixed SHA-256 rank over source IDs, references, and duration only; excludes 96 pilot IDs and all 83 components of the original five scenes",
+  "case_count": 2,
+  "unique_component_source_id_count": 30,
+  "missing_scenes": [
+    {
+      "id": "auto_bmw",
+      "registered_entity": "宝马",
+      "source_all_matches": 1,
+      "excluded_used": 1,
+      "available_unseen": 0
+    }
+  ],
+  "cases": [
+    {
+      "id": "football_argentina",
+      "kind": "positive",
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long_supplement/football_argentina.f32le",
+      "pcm_sha256": "ecdb80924c417519287e4cb34b156131dd7295d1010c144a5b892072df1a9460",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 98.6555625,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long_supplement/libraries/football_argentina/entities.db",
+      "library_sha256": "46bb0aaba96b7d12622631248c4b9d7e431ac672be7de4c0de4d23323b62d94e",
+      "registered_entity": "阿根廷",
+      "entity_type": "LOC",
+      "target_insertion_index": 0,
+      "source_ids": [
+        "0AoLtRVZZPg__2018_4_16_36-28",
+        "jWcyKg7edJw__2018_5_7_-_38-1571",
+        "Myb_P5Yui60__2018_5_7_-_106-770",
+        "lRyMaicUSGU____11-1657",
+        "9Gz_rAUeLFA__2_85-244",
+        "0AoLtRVZZPg__2018_4_16_52-46",
+        "HECC1FKi6V8____68-484",
+        "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_12-81",
+        "0AoLtRVZZPg__2018_4_16_71-67",
+        "9Gz_rAUeLFA__2_26-185",
+        "VniQwSVS_CQ__2018_4_16_3-1024",
+        "WeSZX0lAvyg__2018_4_30_48-1140",
+        "bFXyEWzFSpk__2018_4_30_45-1354",
+        "M3R9aCo3vYE____70-732",
+        "bFXyEWzFSpk__2018_4_30_157-1294",
+        "Myb_P5Yui60__2018_5_7_-_14-795"
+      ],
+      "components": [
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_36-28",
+          "raw_audio_sha256": "e96e76fc2d0a03d040ce7a2ee6d673170c6b12f8ed5e0c53e70b9ba6e6334416",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 66320,
+          "duration_seconds": 4.145,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_36-28.wav"
+        },
+        {
+          "source_id": "jWcyKg7edJw__2018_5_7_-_38-1571",
+          "raw_audio_sha256": "db3b6e9e4679c68bfe6a71984cac1c42bf4483b81ed2a954248e0ab7f4e0a939",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 71444,
+          "duration_seconds": 4.46525,
+          "speaker": "jWcyKg7edJw",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jWc/jWcyKg7edJw__2018_5_7_-_38-1571.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_106-770",
+          "raw_audio_sha256": "c6c1769d32003513b138c8428a90e358d712fdea72ed9d2ea29ba39c379dfdcc",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 91440,
+          "duration_seconds": 5.715,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_106-770.wav"
+        },
+        {
+          "source_id": "lRyMaicUSGU____11-1657",
+          "raw_audio_sha256": "a0aae346381eccb3ce49d5c7bc446973400e5c56af44b65f75f78c1bd468fdbe",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 81765,
+          "duration_seconds": 5.1103125,
+          "speaker": "lRyMaicUSGU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/lRy/lRyMaicUSGU____11-1657.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_85-244",
+          "raw_audio_sha256": "8c7d2d2b1d01dc0040ab9f90d858215181bd5a43eff1424d4bcb40df0ff0eb2c",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 93680,
+          "duration_seconds": 5.855,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_85-244.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_52-46",
+          "raw_audio_sha256": "f0261ee5af66a46c3f9c917280a9ae60122386465324e0c24aac883e1787c266",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 106080,
+          "duration_seconds": 6.63,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_52-46.wav"
+        },
+        {
+          "source_id": "HECC1FKi6V8____68-484",
+          "raw_audio_sha256": "88f6304756efeeaeaf1e87fc49f9c79ab9dad4e29807b0679c1cd131da51c8f5",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 72960,
+          "duration_seconds": 4.56,
+          "speaker": "HECC1FKi6V8",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/HEC/HECC1FKi6V8____68-484.wav"
+        },
+        {
+          "source_id": "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_12-81",
+          "raw_audio_sha256": "6c4c7e4a4b8b2b30790d099ce219c77eb4f8b357b48027f35e23fc6d4c1fa823",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 94960,
+          "duration_seconds": 5.935,
+          "speaker": "2zW2-Ut",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/2zW/2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_12-81.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_71-67",
+          "raw_audio_sha256": "c759f29262c4d92dcb9d3b9492c2ac8fd6eb98fa8484de3199bdd6b148e137de",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 50960,
+          "duration_seconds": 3.185,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_71-67.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_26-185",
+          "raw_audio_sha256": "fa7ba0d098ddb310771e2eea4924fa67fc597d720fbd0c02fe856441838bc3d4",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 60720,
+          "duration_seconds": 3.795,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_26-185.wav"
+        },
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_3-1024",
+          "raw_audio_sha256": "68a279887e9fb774a7ab43078d311092c35111473882f8bc4389acc14640329f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 92240,
+          "duration_seconds": 5.765,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_3-1024.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_48-1140",
+          "raw_audio_sha256": "666259cba032810f8e41e4d2df6701a22984d87ee44fe1fd7d764fd9423a2115",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 106480,
+          "duration_seconds": 6.655,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_48-1140.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_45-1354",
+          "raw_audio_sha256": "9ecb7ea3b904587b33a4e4ead2735505f5f58ef410e91cd3545e18082282fa68",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 61040,
+          "duration_seconds": 3.815,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_45-1354.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____70-732",
+          "raw_audio_sha256": "1628cc2a086f7f9eecb15536e2434c014b4aa055e9e9479139377bc8d943ae92",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 108880,
+          "duration_seconds": 6.805,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____70-732.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_157-1294",
+          "raw_audio_sha256": "7538b0e09ba5d566176b63ff9cc8f62a712cdb7cd480f6226640a602c72ee5fe",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 125760,
+          "duration_seconds": 7.86,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_157-1294.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_14-795",
+          "raw_audio_sha256": "7ea46e17b313457fafcac78f497dd9b4f13fe80c8887eea78c850f43afd62004",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 88960,
+          "duration_seconds": 5.56,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_14-795.wav"
+        }
+      ]
+    },
+    {
+      "id": "auto_four_wheel_drive",
+      "kind": "positive",
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long_supplement/auto_four_wheel_drive.f32le",
+      "pcm_sha256": "00b8857215ab5feed888dd7c5573b4c035d06060c2f82189c96d246a4007a6e7",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 100.676,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long_supplement/libraries/auto_four_wheel_drive/entities.db",
+      "library_sha256": "eeaa423635a8049d38f9b543ea2e7e5ac6fe398e19ba3131ef63931d5ac3fe1a",
+      "registered_entity": "四驱系统",
+      "entity_type": "TERM",
+      "target_insertion_index": 6,
+      "source_ids": [
+        "VGjoQImIkUI_0056-512",
+        "X-YAN8-BB04_0040-565",
+        "p3mb22VGsqc_0003-816",
+        "O4Y2dSpSCZc_0049-354",
+        "p3mb22VGsqc_0036-849",
+        "N_KT4_lH7Tg_0062-295",
+        "N_KT4_lH7Tg_0066-299",
+        "_P5MhCu8uq4_0121-766",
+        "VGjoQImIkUI_0012-468",
+        "p3mb22VGsqc_0023-836",
+        "CwhJE5P5i2A_0042-41",
+        "N_KT4_lH7Tg_0058-291",
+        "CwhJE5P5i2A_0006-5",
+        "CwhJE5P5i2A_0124-122"
+      ],
+      "components": [
+        {
+          "source_id": "VGjoQImIkUI_0056-512",
+          "raw_audio_sha256": "ce7c548d500db5f40f53fdce8db032d37ba4d528b8c7ad54f7584408f5ae339a",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 53248,
+          "duration_seconds": 3.328,
+          "speaker": "VGjoQImIkUI",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/VGj/VGjoQImIkUI_0056-512.wav"
+        },
+        {
+          "source_id": "X-YAN8-BB04_0040-565",
+          "raw_audio_sha256": "3593c33bee2255e958e0dfc493124725571915ab9975db8aeb4451cfa3998355",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 105440,
+          "duration_seconds": 6.59,
+          "speaker": "X-YAN8-BB04",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/X-Y/X-YAN8-BB04_0040-565.wav"
+        },
+        {
+          "source_id": "p3mb22VGsqc_0003-816",
+          "raw_audio_sha256": "cbfb23342b06ef2263873b428950f2f85ab102d62f3e38a38014963d8f60f5b3",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 81360,
+          "duration_seconds": 5.085,
+          "speaker": "p3mb22VGsqc",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/p3m/p3mb22VGsqc_0003-816.wav"
+        },
+        {
+          "source_id": "O4Y2dSpSCZc_0049-354",
+          "raw_audio_sha256": "dae065f6b20d9d184b2507674a7838f16b5cf9501fb6c896d7982badc80c251f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 78448,
+          "duration_seconds": 4.903,
+          "speaker": "O4Y2dSpSCZc",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/O4Y/O4Y2dSpSCZc_0049-354.wav"
+        },
+        {
+          "source_id": "p3mb22VGsqc_0036-849",
+          "raw_audio_sha256": "1b7e84e68b5763385319d9aec8d03cbd1e8c9bcfa29f4d0cad3b4afb64bb9011",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 140224,
+          "duration_seconds": 8.764,
+          "speaker": "p3mb22VGsqc",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/p3m/p3mb22VGsqc_0036-849.wav"
+        },
+        {
+          "source_id": "N_KT4_lH7Tg_0062-295",
+          "raw_audio_sha256": "a49ad65828b7cc7ccaebf7f62d8e6d733be1dabf5d31ba2e570e0dd6e6590cc6",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 100128,
+          "duration_seconds": 6.258,
+          "speaker": "N",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/N_K/N_KT4_lH7Tg_0062-295.wav"
+        },
+        {
+          "source_id": "N_KT4_lH7Tg_0066-299",
+          "raw_audio_sha256": "c29e61b52cd713ba388e78d52697072844b17d754ac8ca222865450771e2faab",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 81360,
+          "duration_seconds": 5.085,
+          "speaker": "N",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/N_K/N_KT4_lH7Tg_0066-299.wav"
+        },
+        {
+          "source_id": "_P5MhCu8uq4_0121-766",
+          "raw_audio_sha256": "9486113174872d3fbe0b698618bc2528ae4c50138fb84e9ec6df2d521839e241",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 88352,
+          "duration_seconds": 5.522,
+          "speaker": "",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/_P5/_P5MhCu8uq4_0121-766.wav"
+        },
+        {
+          "source_id": "VGjoQImIkUI_0012-468",
+          "raw_audio_sha256": "c0a1180f88aba2288d1f991c6fa2e8c28da367585a4087df141ee25f267b5b27",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 139520,
+          "duration_seconds": 8.72,
+          "speaker": "VGjoQImIkUI",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/VGj/VGjoQImIkUI_0012-468.wav"
+        },
+        {
+          "source_id": "p3mb22VGsqc_0023-836",
+          "raw_audio_sha256": "5ba47a181b21b13c7d60819b7c5a961189f0681671aa155177e7b444a9efbb38",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 150592,
+          "duration_seconds": 9.412,
+          "speaker": "p3mb22VGsqc",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/p3m/p3mb22VGsqc_0023-836.wav"
+        },
+        {
+          "source_id": "CwhJE5P5i2A_0042-41",
+          "raw_audio_sha256": "4b15d8197ef58eb323a8a42fac69922a6bc70565279ecbc3d48d50fcd448090a",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 128464,
+          "duration_seconds": 8.029,
+          "speaker": "CwhJE5P5i2A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/Cwh/CwhJE5P5i2A_0042-41.wav"
+        },
+        {
+          "source_id": "N_KT4_lH7Tg_0058-291",
+          "raw_audio_sha256": "88c170a354ae236bb2e1558c687781f93345479210ff22814464ac9c7bac6322",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 123072,
+          "duration_seconds": 7.692,
+          "speaker": "N",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/N_K/N_KT4_lH7Tg_0058-291.wav"
+        },
+        {
+          "source_id": "CwhJE5P5i2A_0006-5",
+          "raw_audio_sha256": "65eca72f043c3d6767b4a954187689de4bbe5e2c7eee309d7e28c244a85e6e55",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 57296,
+          "duration_seconds": 3.581,
+          "speaker": "CwhJE5P5i2A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/Cwh/CwhJE5P5i2A_0006-5.wav"
+        },
+        {
+          "source_id": "CwhJE5P5i2A_0124-122",
+          "raw_audio_sha256": "735af9aa8dbe8fa24431646dcf4624526bb78789e521344f229e6884e6d20db0",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 104112,
+          "duration_seconds": 6.507,
+          "speaker": "CwhJE5P5i2A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00021.00000000/Cwh/CwhJE5P5i2A_0124-122.wav"
+        }
+      ]
+    }
+  ]
+}

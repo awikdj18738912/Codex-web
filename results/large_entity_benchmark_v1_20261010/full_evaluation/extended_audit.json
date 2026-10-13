@@ -1,0 +1,597 @@
+{
+  "topic_macro_means": {
+    "baseline": {
+      "topic_mean_CER": 0.030254794445372216,
+      "topic_mean_entity_recall": 0.9666684195150452
+    },
+    "entity_rules": {
+      "topic_mean_CER": 0.03111058024060059,
+      "topic_mean_entity_recall": 0.9667502191060473
+    },
+    "entity_audio_repair": {
+      "topic_mean_CER": 0.029722225639018825,
+      "topic_mean_entity_recall": 0.9839681565877885
+    }
+  },
+  "transitions": {
+    "baseline_to_entity_rules": {
+      "samples": 2410,
+      "changed_samples": 12,
+      "improved_samples": 5,
+      "regressed_samples": 7,
+      "equal_error_changed_samples": 0,
+      "error_delta": 7,
+      "new_absent_surface_samples": 0,
+      "new_absent_surface_mentions": 0,
+      "negative_changed_samples": 0,
+      "negative_improved_samples": 0,
+      "negative_regressed_samples": 0,
+      "negative_new_absent_surface_mentions": 0
+    },
+    "entity_rules_to_entity_audio_repair": {
+      "samples": 2410,
+      "changed_samples": 172,
+      "improved_samples": 167,
+      "regressed_samples": 3,
+      "equal_error_changed_samples": 2,
+      "error_delta": -225,
+      "new_absent_surface_samples": 4,
+      "new_absent_surface_mentions": 4,
+      "negative_changed_samples": 1,
+      "negative_improved_samples": 0,
+      "negative_regressed_samples": 1,
+      "negative_new_absent_surface_mentions": 1
+    }
+  },
+  "target_transitions": {
+    "baseline_to_entity_rules": {
+      "gained_mentions": 2,
+      "lost_mentions": 0,
+      "gained_samples": 2,
+      "lost_samples": 0
+    },
+    "entity_rules_to_entity_audio_repair": {
+      "gained_mentions": 170,
+      "lost_mentions": 0,
+      "gained_samples": 165,
+      "lost_samples": 0
+    }
+  },
+  "per_entity_type": {
+    "ORG": {
+      "baseline": {
+        "expected_mentions": 972,
+        "hits": 898,
+        "entity_recall": 0.9238683127572016
+      },
+      "entity_rules": {
+        "expected_mentions": 972,
+        "hits": 898,
+        "entity_recall": 0.9238683127572016
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 972,
+        "hits": 923,
+        "entity_recall": 0.9495884773662552
+      }
+    },
+    "PERSON": {
+      "baseline": {
+        "expected_mentions": 653,
+        "hits": 459,
+        "entity_recall": 0.7029096477794793
+      },
+      "entity_rules": {
+        "expected_mentions": 653,
+        "hits": 461,
+        "entity_recall": 0.7059724349157733
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 653,
+        "hits": 580,
+        "entity_recall": 0.888208269525268
+      }
+    },
+    "TERM": {
+      "baseline": {
+        "expected_mentions": 299,
+        "hits": 290,
+        "entity_recall": 0.9698996655518395
+      },
+      "entity_rules": {
+        "expected_mentions": 299,
+        "hits": 290,
+        "entity_recall": 0.9698996655518395
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 299,
+        "hits": 294,
+        "entity_recall": 0.9832775919732442
+      }
+    },
+    "LOC": {
+      "baseline": {
+        "expected_mentions": 821,
+        "hits": 784,
+        "entity_recall": 0.9549330085261876
+      },
+      "entity_rules": {
+        "expected_mentions": 821,
+        "hits": 784,
+        "entity_recall": 0.9549330085261876
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 821,
+        "hits": 806,
+        "entity_recall": 0.9817295980511571
+      }
+    }
+  },
+  "negative_controls": {
+    "baseline": {
+      "samples": 300,
+      "reference_chars": 4219,
+      "errors": 51,
+      "CER": 0.012088172552737616
+    },
+    "entity_rules": {
+      "samples": 300,
+      "reference_chars": 4219,
+      "errors": 51,
+      "CER": 0.012088172552737616
+    },
+    "entity_audio_repair": {
+      "samples": 300,
+      "reference_chars": 4219,
+      "errors": 52,
+      "CER": 0.012325195543967766
+    }
+  },
+  "raw_audio_repair": {
+    "samples": 2410,
+    "checks": 2061,
+    "applied_samples": 172,
+    "changes": 178,
+    "canonical_absent_changes": 4,
+    "canonical_absent_samples": 4,
+    "raw_improved_samples": 167,
+    "raw_regressed_samples": 4,
+    "raw_equal_error_changed_samples": 1
+  },
+  "raw_asr_summary": {
+    "initial": {
+      "samples": 2410,
+      "expected_mentions": 2745,
+      "hits": 2434,
+      "errors": 1043,
+      "reference_chars": 39806,
+      "CER": 0.02620208008842888,
+      "entity_recall": 0.8867030965391621
+    },
+    "production_final": {
+      "samples": 2410,
+      "expected_mentions": 2745,
+      "hits": 2604,
+      "errors": 819,
+      "reference_chars": 39806,
+      "CER": 0.020574787720444153,
+      "entity_recall": 0.9486338797814208
+    }
+  },
+  "downstream_target_transitions": {
+    "baseline": {
+      "gained_mentions": 0,
+      "lost_mentions": 3,
+      "gained_samples": 0,
+      "lost_samples": 3
+    },
+    "entity_rules": {
+      "gained_mentions": 2,
+      "lost_mentions": 3,
+      "gained_samples": 2,
+      "lost_samples": 3
+    },
+    "entity_audio_repair": {
+      "gained_mentions": 2,
+      "lost_mentions": 3,
+      "gained_samples": 2,
+      "lost_samples": 3
+    }
+  },
+  "per_topic_transitions": {
+    "新闻人物组织地理": {
+      "baseline_to_entity_rules": {
+        "samples": 2131,
+        "changed_samples": 7,
+        "improved_samples": 4,
+        "regressed_samples": 3,
+        "equal_error_changed_samples": 0,
+        "error_delta": 1,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2131,
+        "changed_samples": 168,
+        "improved_samples": 163,
+        "regressed_samples": 3,
+        "equal_error_changed_samples": 2,
+        "error_delta": -219,
+        "new_absent_surface_samples": 4,
+        "new_absent_surface_mentions": 4
+      }
+    },
+    "自然科学化学": {
+      "baseline_to_entity_rules": {
+        "samples": 24,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 24,
+        "changed_samples": 1,
+        "improved_samples": 1,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": -1,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "金融经济": {
+      "baseline_to_entity_rules": {
+        "samples": 26,
+        "changed_samples": 2,
+        "improved_samples": 1,
+        "regressed_samples": 1,
+        "equal_error_changed_samples": 0,
+        "error_delta": 1,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 26,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "科技计算机通信": {
+      "baseline_to_entity_rules": {
+        "samples": 24,
+        "changed_samples": 1,
+        "improved_samples": 0,
+        "regressed_samples": 1,
+        "equal_error_changed_samples": 0,
+        "error_delta": 3,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 24,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "医疗健康": {
+      "baseline_to_entity_rules": {
+        "samples": 86,
+        "changed_samples": 1,
+        "improved_samples": 0,
+        "regressed_samples": 1,
+        "equal_error_changed_samples": 0,
+        "error_delta": 1,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 86,
+        "changed_samples": 3,
+        "improved_samples": 3,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": -4,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "历史教育": {
+      "baseline_to_entity_rules": {
+        "samples": 24,
+        "changed_samples": 1,
+        "improved_samples": 0,
+        "regressed_samples": 1,
+        "equal_error_changed_samples": 0,
+        "error_delta": 1,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 24,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "农业生态": {
+      "baseline_to_entity_rules": {
+        "samples": 27,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 27,
+        "changed_samples": 1,
+        "improved_samples": 1,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": -2,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "体育文化": {
+      "baseline_to_entity_rules": {
+        "samples": 26,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 26,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "工业交通": {
+      "baseline_to_entity_rules": {
+        "samples": 23,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 23,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "法律政策": {
+      "baseline_to_entity_rules": {
+        "samples": 20,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 20,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    }
+  },
+  "refiner_calls": {
+    "baseline": {
+      "audited_calls": 111,
+      "sessions": 75,
+      "declared_call_count": 265,
+      "declared_count_mismatch": 138
+    },
+    "entity_rules": {
+      "audited_calls": 278,
+      "sessions": 220,
+      "declared_call_count": 430,
+      "declared_count_mismatch": 139
+    },
+    "entity_audio_repair": {
+      "audited_calls": 187,
+      "sessions": 137,
+      "declared_call_count": 340,
+      "declared_count_mismatch": 139
+    }
+  },
+  "actual_model_call_timing": {
+    "baseline": {
+      "count": 111,
+      "total_seconds": 42.13774930359796,
+      "mean_seconds": 0.3796193630954771,
+      "p50_seconds": 0.35709135280922055,
+      "p95_seconds": 0.7011477639898658
+    },
+    "entity_rules": {
+      "count": 278,
+      "total_seconds": 158.61754059093073,
+      "mean_seconds": 0.5705666927731321,
+      "p50_seconds": 0.5445224433206022,
+      "p95_seconds": 0.8882162570953369
+    },
+    "entity_audio_repair": {
+      "count": 187,
+      "total_seconds": 104.48244605958462,
+      "mean_seconds": 0.558729658072645,
+      "p50_seconds": 0.5478818109259009,
+      "p95_seconds": 0.9672050983645022
+    }
+  },
+  "serial_web_replay_timing": {
+    "baseline": {
+      "count": 2410,
+      "total_seconds": 415.35725096426904,
+      "mean_seconds": 0.17234740703911577,
+      "p50_seconds": 0.017627683002501726,
+      "p95_seconds": 1.0216779266484082
+    },
+    "entity_rules": {
+      "count": 2410,
+      "total_seconds": 1338.8993497458287,
+      "mean_seconds": 0.5555598961600948,
+      "p50_seconds": 0.3422477412968874,
+      "p95_seconds": 1.3851607078686357
+    },
+    "entity_audio_repair": {
+      "count": 2410,
+      "total_seconds": 1883.7471046145074,
+      "mean_seconds": 0.7816378027446089,
+      "p50_seconds": 0.6207008250057697,
+      "p95_seconds": 1.474752045236528
+    }
+  },
+  "integrity": {
+    "audio_rows": 2410,
+    "unique_audio_rows": 2410,
+    "web_rows": 7230,
+    "unique_web_rows": 7230,
+    "complete_pairs": true,
+    "formal_database_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+    "formal_database_expected_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+    "formal_database_unchanged": true,
+    "dataset_manifest_unchanged": true,
+    "library_unchanged": true,
+    "snapshot_unchanged": true,
+    "services_health": {
+      "8051": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "8081": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "8766": {
+        "api_styles": [
+          "current",
+          "legacy_v1"
+        ],
+        "asr_send_chunk_seconds": 0.5,
+        "confidence_calibrated": false,
+        "confidence_logprobs": 5,
+        "context_supported": true,
+        "max_context_chars": 2048,
+        "mode": "streaming",
+        "ok": true,
+        "segmentation_mode": "vad_finalize",
+        "silence_rms_threshold": 0.002,
+        "vad": "silero",
+        "vad_min_silence": 0.7,
+        "vad_min_speech": 0.25,
+        "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+        "vad_preroll": 0.7,
+        "vad_tail_pad": 1.0,
+        "vad_threshold": 0.5
+      }
+    },
+    "all_services_healthy": true,
+    "audit_script_sha256": "eddf0d2b026a3f6eff37be66ed2e0e29f99b911e80bbeeeb043267a40a3db635",
+    "evaluation_script_sha256": "eb23a7ef7921e347cb8dad077e96453f0b16d595522d35a9748b9f21aaf766d4",
+    "collection_resume": {
+      "collector_pid": 1125108,
+      "continuation_pid": 1125109,
+      "resume_checkpoint": 2074,
+      "restored_asr_health": {
+        "api_styles": [
+          "current",
+          "legacy_v1"
+        ],
+        "asr_send_chunk_seconds": 0.5,
+        "confidence_calibrated": false,
+        "confidence_logprobs": 5,
+        "context_supported": true,
+        "max_context_chars": 2048,
+        "mode": "streaming",
+        "ok": true,
+        "segmentation_mode": "vad_finalize",
+        "silence_rms_threshold": 0.002,
+        "vad": "silero",
+        "vad_min_silence": 0.7,
+        "vad_min_speech": 0.25,
+        "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+        "vad_preroll": 0.7,
+        "vad_tail_pad": 1.0,
+        "vad_threshold": 0.5
+      },
+      "asr_health_matches_smoke": true,
+      "asr_restart_script_sha256": "af4a8b3179bdcc978a33556febec6d6454fa486eb7c77cc8d3863848e4f60bb3"
+    }
+  },
+  "limitations": [
+    "Audited model_calls capture refine* text methods only. Web session counters also include repetition review; a count mismatch is a scope difference. Final-event repetition counts are not session totals.",
+    "New absent dictionary surfaces are a literal insertion proxy, not semantic false-positive NER; source annotations may be incomplete.",
+    "Canonical absent changes compare against supplied normalized references; no per-item human listening or identity linking is claimed.",
+    "CER regressions are reference agreement regressions and are not adjudicated acoustic errors.",
+    "ASR collection used four concurrent workers; its request elapsed time is not a single-client latency benchmark.",
+    "Serial Web timings replay fixed actual ASR responses and exclude network ASR inference; model-call timings describe actual GPU calls.",
+    "Topic sizes overlap and are highly imbalanced; the news cohort must be assessed separately."
+  ]
+}

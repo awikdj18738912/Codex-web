@@ -25,6 +25,7 @@ from .quantifiers import (
     LEXICAL_REDUPLICATIONS,
     is_quantifier_reduplication_deletion,
 )
+from .repetition_preservation import repetition_preservation_violations
 
 
 _SENTENCE_ENDINGS = frozenset("。！？!?；;\n")
@@ -892,15 +893,21 @@ def reject_reasons(
     if not refined:
         return ("empty_refiner_output",)
 
+    preservation_reasons = (
+        ["repetition_intent_loss"]
+        if repetition_preservation_violations(raw, refined) else []
+    )
+
     if numeric_rule_mode:
         repetition_baseline = _numeric_repeat_collapse_baseline(raw, refined)
         if repetition_baseline is not None:
             repeated_reasons = list(reject_reasons(repetition_baseline, refined))
+            repeated_reasons.extend(preservation_reasons)
             if not _numeric_rule_surface_is_preserved(raw, refined):
                 repeated_reasons.append("numeric_rule_surface_mismatch")
             return tuple(dict.fromkeys(repeated_reasons))
 
-    reasons: list[str] = []
+    reasons: list[str] = list(preservation_reasons)
     equivalent_numbered_list = _equivalent_numbered_choice_rewrite(raw, refined)
     raw_sentences = _sentence_counts(raw)
     for sentence, count in _sentence_counts(refined).items():
@@ -2298,6 +2305,11 @@ def preserve_safe_repetition_edits(
         return None
 
     edits: list[tuple[int, int, str]] = []
+    def add_safe_deletion(start: int, end: int) -> None:
+        projected = source[:start] + source[end:]
+        if not repetition_preservation_violations(source, projected):
+            edits.append((start, end, ""))
+
     matcher = SequenceMatcher(None, source, candidate, autojunk=False)
     for tag, source_start, source_end, target_start, target_end in matcher.get_opcodes():
         if tag != "delete" or source_start == source_end:
@@ -2318,7 +2330,7 @@ def preserve_safe_repetition_edits(
             0,
         )
         if phrase_width:
-            edits.append((source_start, source_start + phrase_width, ""))
+            add_safe_deletion(source_start, source_start + phrase_width)
             continue
         compact = _strip_edit_punctuation(source_fragment)
         if compact != source_fragment or not compact:
@@ -2341,7 +2353,7 @@ def preserve_safe_repetition_edits(
             )
         ):
             continue
-        edits.append((source_start, source_end, ""))
+        add_safe_deletion(source_start, source_end)
 
     if not edits:
         return None

@@ -1,0 +1,19 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "domain": "finance",
+  "training_split_seed": "speechio-professional-split-v1",
+  "train_rows": 538,
+  "heldout_rows": 341,
+  "vocabulary_size": 20,
+  "vocabulary_source": "60% deterministic training split only",
+  "test_selection": "All heldout utterances with at least one exact training-known curated domain term",
+  "reference_at_inference": false,
+  "aliases_added": false,
+  "frozen_hashes": {
+    "entities.db": "07854283080d6c2044e7ab33c3cf5de0e72158ed3f127e4c12749db7089551e6",
+    "entities.json": "7c046419d4cf7e1cf8ab758ca8813e265d24a9ce4481b2f18bec55aec9a58fd5",
+    "sample_entities.json": "40ed8d049c2c14281bd67fc75879a91f1f7328c9ca9809b9ef566e552c718c68",
+    "vocabulary_evidence.json": "95b130a4524925d0dfa383caa1a9d8572c3ff3d28d0decf1ea0d4e0e5456c1e1"
+  }
+}

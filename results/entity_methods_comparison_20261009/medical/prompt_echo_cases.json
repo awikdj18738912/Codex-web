@@ -1,0 +1,118 @@
+[
+  {
+    "id": "MultiMed_Chinese_test_0165",
+    "reference": "你的指标都是好的。 所以我们今天就可以很放心地 把这个东西 拔掉。拔掉以后你可以舒服很多。",
+    "start_seconds": null,
+    "end_seconds": null,
+    "results": {
+      "baseline": {
+        "text": "马上来一件上衣。所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服得多。",
+        "model_calls": 1,
+        "normalizations": [],
+        "glossary_mentions": {},
+        "recovered_by_name": {},
+        "character_errors": 10,
+        "outside_entity_errors": 10,
+        "recovered_mentions": 0
+      },
+      "post_only": {
+        "text": "马上来一件上衣。所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服得多。",
+        "model_calls": 1,
+        "normalizations": [],
+        "glossary_mentions": {},
+        "recovered_by_name": {},
+        "character_errors": 10,
+        "outside_entity_errors": 10,
+        "recovered_mentions": 0
+      },
+      "context_only": {
+        "text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服的多。",
+        "model_calls": 2,
+        "normalizations": [],
+        "glossary_mentions": {
+          "ICU": 1,
+          "MRSA": 1
+        },
+        "recovered_by_name": {},
+        "character_errors": 43,
+        "outside_entity_errors": 43,
+        "recovered_mentions": 0
+      },
+      "combined": {
+        "text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服的多。",
+        "model_calls": 2,
+        "normalizations": [],
+        "glossary_mentions": {
+          "ICU": 1,
+          "MRSA": 1
+        },
+        "recovered_by_name": {},
+        "character_errors": 43,
+        "outside_entity_errors": 43,
+        "recovered_mentions": 0
+      }
+    },
+    "raw_asr": {
+      "off": "马上来一件上衣。所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服得多。",
+      "on": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA所以我们今天就可以很放心的把这个东西拔掉，拔掉以后你可以舒服的多。"
+    }
+  },
+  {
+    "id": "MultiMed_Chinese_test_0173",
+    "reference": "你就安心治病。 一二三。",
+    "start_seconds": null,
+    "end_seconds": null,
+    "results": {
+      "baseline": {
+        "text": "多安心治病啊！嗯。那我问你多少？200到2万。",
+        "model_calls": 2,
+        "normalizations": [],
+        "glossary_mentions": {},
+        "recovered_by_name": {},
+        "character_errors": 16,
+        "outside_entity_errors": 16,
+        "recovered_mentions": 0
+      },
+      "post_only": {
+        "text": "多安心治病啊！嗯。那我问你多少？200到2万。",
+        "model_calls": 2,
+        "normalizations": [],
+        "glossary_mentions": {},
+        "recovered_by_name": {},
+        "character_errors": 16,
+        "outside_entity_errors": 16,
+        "recovered_mentions": 0
+      },
+      "context_only": {
+        "text": "多安心治病啊！参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA那我跟你说话，两个到晚上。",
+        "model_calls": 0,
+        "normalizations": [],
+        "glossary_mentions": {
+          "ICU": 1,
+          "MRSA": 1
+        },
+        "recovered_by_name": {},
+        "character_errors": 56,
+        "outside_entity_errors": 56,
+        "recovered_mentions": 0
+      },
+      "combined": {
+        "text": "多安心治病啊！参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA那我跟你说话，两个到晚上。",
+        "model_calls": 0,
+        "normalizations": [],
+        "glossary_mentions": {
+          "ICU": 1,
+          "MRSA": 1
+        },
+        "recovered_by_name": {},
+        "character_errors": 56,
+        "outside_entity_errors": 56,
+        "recovered_mentions": 0
+      }
+    },
+    "raw_asr": {
+      "off": "多安心治病啊！嗯。那我问你多少？两百到两万。",
+      "on": "多安心治病啊！参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"ICU\", \"MRSA那我跟你说话，两个到晚上。"
+    }
+  }
+]

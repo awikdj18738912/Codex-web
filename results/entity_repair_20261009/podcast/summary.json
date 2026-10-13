@@ -1,0 +1,87 @@
+{
+  "no_library": {
+    "samples": 38,
+    "model_calls": 16,
+    "normalization_events": 0,
+    "event_types": {},
+    "final_standard_occurrences": {
+      "HER2": 4,
+      "PD-1": 0,
+      "PD-L1": 0,
+      "贝伐珠单抗": 0
+    },
+    "remaining_source_forms": {
+      "HER2": 5,
+      "PD-1": 6,
+      "PD-L1": 6,
+      "贝伐珠单抗": 2
+    },
+    "changed_samples": 8
+  },
+  "old_rules": {
+    "samples": 38,
+    "model_calls": 28,
+    "normalization_events": 6,
+    "event_types": {
+      "EXACT_CANONICAL": 6
+    },
+    "final_standard_occurrences": {
+      "HER2": 10,
+      "PD-1": 0,
+      "PD-L1": 0,
+      "贝伐珠单抗": 0
+    },
+    "remaining_source_forms": {
+      "HER2": 5,
+      "PD-1": 6,
+      "PD-L1": 6,
+      "贝伐珠单抗": 2
+    },
+    "changed_samples": 0
+  },
+  "symbols_only": {
+    "samples": 38,
+    "model_calls": 28,
+    "normalization_events": 23,
+    "event_types": {
+      "EXACT_CANONICAL": 6,
+      "EXACT_ACRONYM_PRESENTATION": 17
+    },
+    "final_standard_occurrences": {
+      "HER2": 15,
+      "PD-1": 6,
+      "PD-L1": 6,
+      "贝伐珠单抗": 0
+    },
+    "remaining_source_forms": {
+      "HER2": 0,
+      "PD-1": 0,
+      "PD-L1": 0,
+      "贝伐珠单抗": 2
+    },
+    "changed_samples": 4
+  },
+  "symbols_and_drug_omission": {
+    "samples": 38,
+    "model_calls": 25,
+    "normalization_events": 25,
+    "event_types": {
+      "EXACT_CANONICAL": 6,
+      "EXACT_ACRONYM_PRESENTATION": 17,
+      "CONTEXT_OMISSION": 2
+    },
+    "final_standard_occurrences": {
+      "HER2": 15,
+      "PD-1": 6,
+      "PD-L1": 6,
+      "贝伐珠单抗": 2
+    },
+    "remaining_source_forms": {
+      "HER2": 0,
+      "PD-1": 0,
+      "PD-L1": 0,
+      "贝伐珠单抗": 0
+    },
+    "changed_samples": 6
+  }
+}

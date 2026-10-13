@@ -1,0 +1,355 @@
+{
+  "historical_dense_v1": {
+    "metrics": {
+      "baseline": {
+        "samples": 4,
+        "wall_seconds": 96.18325739260763,
+        "replays": 4,
+        "changes": 15,
+        "scored_samples": 3,
+        "errors": 93,
+        "reference_chars": 2454,
+        "absent_changes": 0,
+        "CER": 0.037897310513447434
+      },
+      "candidate": {
+        "samples": 4,
+        "wall_seconds": 112.75020050583407,
+        "replays": 4,
+        "changes": 15,
+        "scored_samples": 3,
+        "errors": 93,
+        "reference_chars": 2454,
+        "absent_changes": 0,
+        "CER": 0.037897310513447434
+      }
+    },
+    "records": [
+      {
+        "id": "generic_long_060",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 6.809066764079034,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 5
+        },
+        "candidate": {
+          "seconds": 4.331148857716471,
+          "mode": "full",
+          "replay_audio_seconds": 67.405,
+          "changes": 5
+        },
+        "time_reduction_percent": 36.39144676087952
+      },
+      {
+        "id": "generic_long_180",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 13.643777144141495,
+          "mode": "full",
+          "replay_audio_seconds": 183.976,
+          "changes": 4
+        },
+        "baseline": {
+          "seconds": 11.37052090279758,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 4
+        },
+        "time_reduction_percent": -19.99254265285777
+      },
+      {
+        "id": "generic_long_300",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 24.127421356737614,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 4
+        },
+        "candidate": {
+          "seconds": 43.3447075271979,
+          "mode": "full",
+          "replay_audio_seconds": 301.44,
+          "changes": 4
+        },
+        "time_reduction_percent": -79.64915059227344
+      },
+      {
+        "id": "continuous_300",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 51.43056697677821,
+          "mode": "full",
+          "replay_audio_seconds": 300.0,
+          "changes": 2
+        },
+        "baseline": {
+          "seconds": 53.8762483689934,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 2
+        },
+        "time_reduction_percent": 4.539442641709101
+      }
+    ],
+    "all_text_identical": true,
+    "all_changes_identical": true,
+    "scope": "Entity repair stage; timings are single alternating pairs, not whole transcription speed. Historical_dense usesV1 full-mode compatibility, not localized speed evidence."
+  },
+  "sparse_v2": {
+    "metrics": {
+      "baseline": {
+        "samples": 3,
+        "wall_seconds": 23.88107825629413,
+        "replays": 3,
+        "changes": 3,
+        "scored_samples": 3,
+        "errors": 176,
+        "reference_chars": 1541,
+        "absent_changes": 0,
+        "hits": 3,
+        "expected_mentions": 3,
+        "CER": 0.11421155094094744
+      },
+      "candidate": {
+        "samples": 3,
+        "wall_seconds": 11.440815454348922,
+        "replays": 5,
+        "changes": 3,
+        "scored_samples": 3,
+        "errors": 176,
+        "reference_chars": 1541,
+        "absent_changes": 0,
+        "hits": 3,
+        "expected_mentions": 3,
+        "CER": 0.11421155094094744
+      }
+    },
+    "records": [
+      {
+        "id": "sparse_1_football",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 8.256473607383668,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 1
+        },
+        "candidate": {
+          "seconds": 2.2808907739818096,
+          "mode": "localized",
+          "replay_audio_seconds": 30.0,
+          "changes": 1
+        },
+        "time_reduction_percent": 72.37451625907173
+      },
+      {
+        "id": "sparse_2_football",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 6.998078660108149,
+          "mode": "full",
+          "replay_audio_seconds": 122.585,
+          "changes": 1
+        },
+        "baseline": {
+          "seconds": 6.76723457314074,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 1
+        },
+        "time_reduction_percent": -3.4112026777323834
+      },
+      {
+        "id": "sparse_3_automotive",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 8.857370075769722,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 1
+        },
+        "candidate": {
+          "seconds": 2.161846020258963,
+          "mode": "localized",
+          "replay_audio_seconds": 26.24,
+          "changes": 1
+        },
+        "time_reduction_percent": 75.5926871998617
+      }
+    ],
+    "all_text_identical": true,
+    "all_changes_identical": true,
+    "scope": "Entity repair stage; timings are single alternating pairs, not whole transcription speed. Historical_dense usesV1 full-mode compatibility, not localized speed evidence."
+  },
+  "unseen_v2": {
+    "metrics": {
+      "baseline": {
+        "samples": 7,
+        "wall_seconds": 8.870650766417384,
+        "replays": 1,
+        "changes": 0,
+        "scored_samples": 7,
+        "errors": 42,
+        "reference_chars": 2676,
+        "absent_changes": 0,
+        "hits": 5,
+        "expected_mentions": 5,
+        "CER": 0.01569506726457399
+      },
+      "candidate": {
+        "samples": 7,
+        "wall_seconds": 1.6987832817249,
+        "replays": 1,
+        "changes": 0,
+        "scored_samples": 7,
+        "errors": 42,
+        "reference_chars": 2676,
+        "absent_changes": 0,
+        "hits": 5,
+        "expected_mentions": 5,
+        "CER": 0.01569506726457399
+      }
+    },
+    "records": [
+      {
+        "id": "football_baggio",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 1.077062904369086,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "candidate": {
+          "seconds": 0.01420055516064167,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "time_reduction_percent": 98.68154820827667
+      },
+      {
+        "id": "football_inter_milan",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 1.6075777630321681,
+          "mode": "localized",
+          "replay_audio_seconds": 19.0,
+          "changes": 0
+        },
+        "baseline": {
+          "seconds": 7.593899462837726,
+          "mode": "full",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "time_reduction_percent": 78.83066834240863
+      },
+      {
+        "id": "football_uefa_cup",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 0.13750972831621766,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "candidate": {
+          "seconds": 0.01725450810045004,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "time_reduction_percent": 87.45215461354738
+      },
+      {
+        "id": "negative_haoyue",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 0.015175076201558113,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "baseline": {
+          "seconds": 0.011942693963646889,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "time_reduction_percent": -27.065771322203137
+      },
+      {
+        "id": "negative_figo",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 0.014728179667145014,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "candidate": {
+          "seconds": 0.012056384235620499,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "time_reduction_percent": 18.140703684411463
+      },
+      {
+        "id": "football_argentina",
+        "identical_text": true,
+        "retained_change_records": true,
+        "candidate": {
+          "seconds": 0.01639946596696973,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "baseline": {
+          "seconds": 0.013642549980431795,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "time_reduction_percent": -20.20821613622321
+      },
+      {
+        "id": "auto_four_wheel_drive",
+        "identical_text": true,
+        "retained_change_records": true,
+        "baseline": {
+          "seconds": 0.021865247283130884,
+          "mode": "skipped",
+          "replay_audio_seconds": null,
+          "changes": 0
+        },
+        "candidate": {
+          "seconds": 0.016119529027491808,
+          "mode": "pending",
+          "replay_audio_seconds": 0.0,
+          "changes": 0
+        },
+        "time_reduction_percent": 26.277856276850432
+      }
+    ],
+    "all_text_identical": true,
+    "all_changes_identical": true,
+    "scope": "Entity repair stage; timings are single alternating pairs, not whole transcription speed. Historical_dense usesV1 full-mode compatibility, not localized speed evidence."
+  }
+}

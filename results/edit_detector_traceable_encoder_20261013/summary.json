@@ -1,0 +1,100 @@
+{
+  "validation": {
+    "rows": 126,
+    "needs_review": 42,
+    "true_positive_windows": 42,
+    "keep_windows": 84,
+    "false_positive_keep_windows": 23,
+    "reference_locations": 84,
+    "predicted_locations": 104,
+    "matched_locations": 81,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 0.27380952380952384,
+    "location_recall": 0.9642857142857143,
+    "location_precision": 0.7788461538461539,
+    "by_task": {
+      "disfluency": {
+        "edits": 21,
+        "located_edits": 20,
+        "recall": 0.9523809523809523
+      },
+      "repetition": {
+        "edits": 21,
+        "located_edits": 21,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "recall": null
+      },
+      "local_typo": {
+        "recall": null
+      },
+      "boundary_punctuation": {
+        "recall": null
+      },
+      "entity_correction": {
+        "recall": null
+      }
+    },
+    "insertion_supported": false
+  },
+  "internal_text_test": null,
+  "trained_task_probe_fit": {
+    "rows": 18,
+    "needs_review": 12,
+    "true_positive_windows": 12,
+    "keep_windows": 6,
+    "false_positive_keep_windows": 6,
+    "reference_locations": 30,
+    "predicted_locations": 59,
+    "matched_locations": 29,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 1.0,
+    "location_recall": 0.9666666666666667,
+    "location_precision": 0.4915254237288136,
+    "by_task": {
+      "disfluency": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "local_typo": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "boundary_punctuation": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "entity_correction": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      }
+    },
+    "insertion_supported": false
+  },
+  "parameters": 101682437,
+  "threshold": 0.15,
+  "unsupported_validation_or_test": 0,
+  "internal_test_status": "consumed_regression_not_fresh",
+  "test_evaluated": false,
+  "limitations": [
+    "Internal heldout synthetic templates, not independent natural audio",
+    "Last four tasks have only two trained probes each; no heldout generalization evidence",
+    "No positive insertion examples; insertion detection is disabled",
+    "Scores uncalibrated; no production skip permission"
+  ]
+}

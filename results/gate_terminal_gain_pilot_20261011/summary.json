@@ -1,0 +1,121 @@
+{
+  "recordings": 36,
+  "templates": 21,
+  "window_signatures": 37,
+  "labels": {
+    "neutral": 33,
+    "benefit": 4
+  },
+  "stable_native_controls": 36,
+  "eligible_lower_compute_windows": 27,
+  "neutral_with_format_change": 3,
+  "input_label_conflicts": 0,
+  "old_operation_to_terminal_labels": [
+    {
+      "previous": "benefit",
+      "terminal": "benefit",
+      "count": 4
+    },
+    {
+      "previous": "benefit",
+      "terminal": "neutral",
+      "count": 5
+    },
+    {
+      "previous": "harm",
+      "terminal": "neutral",
+      "count": 1
+    },
+    {
+      "previous": "neutral",
+      "terminal": "neutral",
+      "count": 24
+    },
+    {
+      "previous": "uncertain",
+      "terminal": "neutral",
+      "count": 3
+    }
+  ],
+  "old_label_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round3_20261011/dataset/train.jsonl",
+  "old_label_source_sha256": "ac05a9dd97221eebd01c17afb613aa02b4f426b35ed55897856503e4e8990e47",
+  "old_label_scope": "variant=clean exact source window matches; prior teacher/runtime is different, not a pure label-only ablation",
+  "local_compensation_recordings": 6,
+  "physical_execution": {
+    "snapshots": 110,
+    "refiner_calls": 96,
+    "plausibility_calls": 3
+  },
+  "strategies": {
+    "native": {
+      "recordings": 36,
+      "exact_script": 23,
+      "intended_distance": 15,
+      "intended_micro_cer": 0.02819548872180451,
+      "cost": {
+        "refiner_calls": 43,
+        "window_calls": 40,
+        "local_calls": 3,
+        "plausibility_calls": 1,
+        "refiner_token_positions": 16338,
+        "forward_passes": 377,
+        "refiner_wall_ms": 9455.59124276042,
+        "plausibility_wall_ms": 107.0925579406321
+      }
+    },
+    "skip_all": {
+      "recordings": 36,
+      "exact_script": 20,
+      "intended_distance": 19,
+      "intended_micro_cer": 0.03571428571428571,
+      "cost": {
+        "refiner_calls": 8,
+        "window_calls": 0,
+        "local_calls": 8,
+        "plausibility_calls": 1,
+        "refiner_token_positions": 3908,
+        "forward_passes": 16,
+        "refiner_wall_ms": 543.2942905463278,
+        "plausibility_wall_ms": 86.88162174075842
+      }
+    },
+    "posthoc_conservative": {
+      "recordings": 36,
+      "exact_script": 23,
+      "intended_distance": 15,
+      "intended_micro_cer": 0.02819548872180451,
+      "cost": {
+        "refiner_calls": 12,
+        "window_calls": 10,
+        "local_calls": 2,
+        "plausibility_calls": 1,
+        "refiner_token_positions": 4671,
+        "forward_passes": 112,
+        "refiner_wall_ms": 2771.671195048839,
+        "plausibility_wall_ms": 86.88162174075842
+      }
+    },
+    "posthoc_quality_only": {
+      "recordings": 36,
+      "exact_script": 23,
+      "intended_distance": 15,
+      "intended_micro_cer": 0.02819548872180451,
+      "cost": {
+        "refiner_calls": 12,
+        "window_calls": 4,
+        "local_calls": 8,
+        "plausibility_calls": 1,
+        "refiner_token_positions": 5375,
+        "forward_passes": 49,
+        "refiner_wall_ms": 1367.9190506227314,
+        "plausibility_wall_ms": 86.88162174075842
+      }
+    }
+  },
+  "posthoc_scope": "reference_and_counterfactual_aware_selection_of_executed_arms_not_a_trained_or_deployable_policy",
+  "label_file_sha256": "b1316c6dd1f288bc19583684219db39113053d1cf920a5dbfd7ae2aa9178ad77",
+  "human_gold": false,
+  "new_training": false,
+  "production_policy_changed": false,
+  "scope": "actual_WebSocket_final_snapshot_with_frozen_recorded_ASR_not_live_streaming_latency"
+}

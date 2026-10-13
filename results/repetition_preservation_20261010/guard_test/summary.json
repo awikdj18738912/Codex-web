@@ -1,0 +1,36 @@
+{
+  "by_policy": {
+    "rules": {
+      "recordings": 22,
+      "exact_intended": 11,
+      "intended_micro_cer": 0.05172413793103448,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0
+    },
+    "current": {
+      "recordings": 22,
+      "exact_intended": 12,
+      "intended_micro_cer": 0.040229885057471264,
+      "improved_vs_rules": 2,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 11,
+      "logical_plausibility_calls": 2
+    },
+    "student": {
+      "recordings": 22,
+      "exact_intended": 12,
+      "intended_micro_cer": 0.040229885057471264,
+      "improved_vs_rules": 2,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 6,
+      "logical_plausibility_calls": 2
+    }
+  },
+  "current_student_differences": [],
+  "normalized_same_current_student": 22,
+  "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+  "complete": true,
+  "references": "unverified_synthesis_scripts_not_human_gold"
+}

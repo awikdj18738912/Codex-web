@@ -1,0 +1,1129 @@
+{
+  "overlay_version": "entity-context-unseen-annotation-overlay-v1",
+  "purpose": "Post-selection correction of reference labels only; no audio, sample selection, references, READY, or manifest changes.",
+  "replacement_semantics": "For each sample_id, gold_entities replaces the complete gold_entities array in references.jsonl. known_substrings is auxiliary lexical evidence and is not scored as complete NER gold.",
+  "input_sha256": {
+    "unseen_samples.jsonl": "f7823eef940583ad7d9962ef5d2101b86707d2a045f1c396e1bed5cff55999ed",
+    "unseen_references.jsonl": "b9231c07db16e30e35ee2d563b910a81d1534f6f32a270c9bfd88e27c43772a7",
+    "fixed_library_entities.json": "880bff3b888214ecef34747b215c489cff24c5a780e6f9a6fd71b3af2cce5295",
+    "independent_audit.json": "70a0d3d83b01411a60b2069e3727ece53a93bf6c39e8fc45260553190245c30b"
+  },
+  "counts": {
+    "overridden_sample_ids": 27,
+    "corrected_entity_type_mentions": 29,
+    "added_known_literal_gold_mentions": 1,
+    "known_substring_only_mentions": 3
+  },
+  "samples": [
+    {
+      "sample_id": "ecu_0c5ad299be90bd904906",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "安徽",
+          "entity_type": "LOC",
+          "start": 7,
+          "end": 9,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "铁路车站",
+          "entity_type": "TERM",
+          "start": 19,
+          "end": 23,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "安徽",
+          "span": [
+            7,
+            9
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_10aa8460076582f03aac",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "天津",
+          "entity_type": "LOC",
+          "start": 11,
+          "end": 13,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "机车车辆",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 18,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "天津",
+          "span": [
+            11,
+            13
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_1f15a29aee4691f8ca8b",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "山东",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 16,
+          "end": 18,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "山东",
+          "span": [
+            5,
+            7
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_1f5ed18f4c9ef4906029",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "第一次世界大战",
+          "entity_type": "TERM",
+          "start": 15,
+          "end": 22,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "英国",
+          "entity_type": "LOC",
+          "start": 29,
+          "end": 31,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "英国",
+          "span": [
+            29,
+            31
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_31e695ca38204af022df",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "上海",
+          "entity_type": "LOC",
+          "start": 11,
+          "end": 13,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 17,
+          "end": 19,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "上海",
+          "span": [
+            11,
+            13
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_34276d0085b6cfa22e75",
+      "cohort": "library_out",
+      "gold_entities": [
+        {
+          "canonical": "华江瑶族乡十四届人大代表会",
+          "entity_type": "ORG",
+          "start": 0,
+          "end": 13,
+          "annotation_method": "official_aishell_ner"
+        }
+      ],
+      "known_substrings": [
+        {
+          "canonical": "人大",
+          "start": 8,
+          "end": 10,
+          "annotation_method": "known_canonical_literal_substring_only",
+          "overlaps_out_of_library_gold": [
+            {
+              "canonical": "华江瑶族乡十四届人大代表会",
+              "span": [
+                0,
+                13
+              ]
+            }
+          ],
+          "reason": "Literal fixed-library substring within a complete out-of-library official NER span; not a separate complete NER gold entity."
+        }
+      ],
+      "changes": [
+        {
+          "action": "record_known_substring_only",
+          "canonical": "人大",
+          "span": [
+            8,
+            10
+          ],
+          "reason": "Known canonical is nested inside an out-of-library full NER span and remains an auxiliary literal substring signal."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_3eca8a3e7ffaf98877b4",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "天津",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "博物馆",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 12,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "天津",
+          "span": [
+            5,
+            7
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_455becad5a28128001be",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "东京",
+          "entity_type": "LOC",
+          "start": 4,
+          "end": 6,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "唐朝",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 16,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "东京",
+          "span": [
+            4,
+            6
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_467b1732e23b9bde2477",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "体育场",
+          "entity_type": "TERM",
+          "start": 4,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "法国",
+          "entity_type": "LOC",
+          "start": 15,
+          "end": 17,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "体育场",
+          "entity_type": "TERM",
+          "start": 21,
+          "end": 24,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "法国",
+          "span": [
+            15,
+            17
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_5ffceb060a3b7dace944",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "法国",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "史学",
+          "entity_type": "TERM",
+          "start": 9,
+          "end": 11,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "法国",
+          "span": [
+            6,
+            8
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_6324ebe0b86c42a37674",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "印度",
+          "entity_type": "LOC",
+          "start": 5,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "南海",
+          "entity_type": "LOC",
+          "start": 15,
+          "end": 17,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "港口",
+          "entity_type": "TERM",
+          "start": 19,
+          "end": 21,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "印度",
+          "span": [
+            5,
+            7
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        },
+        {
+          "action": "correct_entity_type",
+          "canonical": "南海",
+          "span": [
+            15,
+            17
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_7c046d8a8d4a97de5857",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "台湾",
+          "entity_type": "LOC",
+          "start": 1,
+          "end": 3,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "美术馆",
+          "entity_type": "TERM",
+          "start": 7,
+          "end": 10,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "台湾",
+          "span": [
+            1,
+            3
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_8254b77e9090fc75756a",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "上海",
+          "entity_type": "LOC",
+          "start": 3,
+          "end": 5,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "京剧",
+          "entity_type": "TERM",
+          "start": 5,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "上海",
+          "span": [
+            3,
+            5
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_94d394f2b04eed0f8083",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "浙江",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 18,
+          "end": 20,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "浙江",
+          "span": [
+            6,
+            8
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_967a1893ef1daaf88569",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "清朝",
+          "entity_type": "TERM",
+          "start": 5,
+          "end": 7,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "浙江省",
+          "entity_type": "LOC",
+          "start": 7,
+          "end": 10,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "奉化",
+          "entity_type": "LOC",
+          "start": 13,
+          "end": 15,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "浙江省",
+          "span": [
+            7,
+            10
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        },
+        {
+          "action": "correct_entity_type",
+          "canonical": "奉化",
+          "span": [
+            13,
+            15
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_9ceeb84a988aa26f1925",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "武汉",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "地铁",
+          "entity_type": "TERM",
+          "start": 2,
+          "end": 4,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "武汉",
+          "entity_type": "LOC",
+          "start": 12,
+          "end": 14,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "地铁",
+          "entity_type": "TERM",
+          "start": 14,
+          "end": 16,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "武汉",
+          "entity_type": "LOC",
+          "start": 20,
+          "end": 22,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "地铁",
+          "entity_type": "TERM",
+          "start": 22,
+          "end": 24,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "武汉",
+          "span": [
+            0,
+            2
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        },
+        {
+          "action": "correct_entity_type",
+          "canonical": "武汉",
+          "span": [
+            12,
+            14
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        },
+        {
+          "action": "correct_entity_type",
+          "canonical": "武汉",
+          "span": [
+            20,
+            22
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_a0265de98d6098053e1b",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "北京",
+          "entity_type": "LOC",
+          "start": 0,
+          "end": 2,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "博物馆",
+          "entity_type": "TERM",
+          "start": 6,
+          "end": 9,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "北京市",
+          "entity_type": "LOC",
+          "start": 16,
+          "end": 19,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "北京",
+          "span": [
+            0,
+            2
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        },
+        {
+          "action": "correct_entity_type",
+          "canonical": "北京市",
+          "span": [
+            16,
+            19
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_a83c207cd35c7f0bb032",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "高速公路",
+          "entity_type": "TERM",
+          "start": 7,
+          "end": 11,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "江苏",
+          "entity_type": "LOC",
+          "start": 11,
+          "end": 13,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "江苏",
+          "span": [
+            11,
+            13
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_b641462fbf031c670cb7",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "北京",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "清朝",
+          "entity_type": "TERM",
+          "start": 10,
+          "end": 12,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "北京",
+          "span": [
+            6,
+            8
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_b807bae15b151783deca",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "法国大革命",
+          "entity_type": "TERM",
+          "start": 0,
+          "end": 5,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "法国",
+          "entity_type": "LOC",
+          "start": 16,
+          "end": 18,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "法国",
+          "span": [
+            16,
+            18
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_bb6a3ab3881a912afdd3",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "南昌",
+          "entity_type": "LOC",
+          "start": 8,
+          "end": 10,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 17,
+          "end": 19,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "南昌",
+          "span": [
+            8,
+            10
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_cc6f4bd8a590abce6f19",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "湖南",
+          "entity_type": "LOC",
+          "start": 3,
+          "end": 5,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "清朝",
+          "entity_type": "TERM",
+          "start": 8,
+          "end": 10,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "湖南",
+          "span": [
+            3,
+            5
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_d64592e6b16aeaa8b225",
+      "cohort": "library_out",
+      "gold_entities": [
+        {
+          "canonical": "两岸三地",
+          "entity_type": "LOC",
+          "start": 7,
+          "end": 11,
+          "annotation_method": "official_aishell_ner"
+        },
+        {
+          "canonical": "比特币",
+          "entity_type": "TERM",
+          "start": 18,
+          "end": 21,
+          "annotation_method": "reference_literal_library_match_audit_overlay"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "add_known_literal_gold",
+          "canonical": "比特币",
+          "span": [
+            18,
+            21
+          ],
+          "entity_type": "TERM",
+          "reason": "Independent OpenCC-normalized audit found a standalone exact fixed-library canonical; add this reference-literal gold without ASR evidence."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_e14ca57bae4abefb11e7",
+      "cohort": "library_out",
+      "gold_entities": [
+        {
+          "canonical": "上海迪尼士",
+          "entity_type": "ORG",
+          "start": 3,
+          "end": 8,
+          "annotation_method": "official_aishell_ner"
+        },
+        {
+          "canonical": "香港迪尼士",
+          "entity_type": "ORG",
+          "start": 12,
+          "end": 17,
+          "annotation_method": "official_aishell_ner"
+        }
+      ],
+      "known_substrings": [
+        {
+          "canonical": "上海",
+          "start": 3,
+          "end": 5,
+          "annotation_method": "known_canonical_literal_substring_only",
+          "overlaps_out_of_library_gold": [
+            {
+              "canonical": "上海迪尼士",
+              "span": [
+                3,
+                8
+              ]
+            }
+          ],
+          "reason": "Literal fixed-library substring within a complete out-of-library official NER span; not a separate complete NER gold entity."
+        },
+        {
+          "canonical": "香港",
+          "start": 12,
+          "end": 14,
+          "annotation_method": "known_canonical_literal_substring_only",
+          "overlaps_out_of_library_gold": [
+            {
+              "canonical": "香港迪尼士",
+              "span": [
+                12,
+                17
+              ]
+            }
+          ],
+          "reason": "Literal fixed-library substring within a complete out-of-library official NER span; not a separate complete NER gold entity."
+        }
+      ],
+      "changes": [
+        {
+          "action": "record_known_substring_only",
+          "canonical": "上海",
+          "span": [
+            3,
+            5
+          ],
+          "reason": "Known canonical is nested inside an out-of-library full NER span and remains an auxiliary literal substring signal."
+        },
+        {
+          "action": "record_known_substring_only",
+          "canonical": "香港",
+          "span": [
+            12,
+            14
+          ],
+          "reason": "Known canonical is nested inside an out-of-library full NER span and remains an auxiliary literal substring signal."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_ed4f4a3df252e279505d",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "平阳",
+          "entity_type": "LOC",
+          "start": 7,
+          "end": 9,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 18,
+          "end": 20,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "平阳",
+          "span": [
+            7,
+            9
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_f3ab5669d257010570d1",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "河南",
+          "entity_type": "LOC",
+          "start": 6,
+          "end": 8,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "明朝",
+          "entity_type": "TERM",
+          "start": 15,
+          "end": 17,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "河南",
+          "span": [
+            6,
+            8
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    },
+    {
+      "sample_id": "ecu_f59fa12f0ea055c28be3",
+      "cohort": "positive",
+      "gold_entities": [
+        {
+          "canonical": "清朝",
+          "entity_type": "TERM",
+          "start": 7,
+          "end": 9,
+          "annotation_method": "reference_longest_surface_match"
+        },
+        {
+          "canonical": "北京",
+          "entity_type": "LOC",
+          "start": 14,
+          "end": 16,
+          "annotation_method": "reference_longest_surface_match"
+        }
+      ],
+      "known_substrings": [],
+      "changes": [
+        {
+          "action": "correct_entity_type",
+          "canonical": "北京",
+          "span": [
+            14,
+            16
+          ],
+          "from": "TERM",
+          "to": "LOC",
+          "reason": "Fixed canonical library entity_type is authoritative; the prior reference matcher defaulted to TERM."
+        }
+      ],
+      "reason": "Post-selection annotation overlay. Replace this sample’s complete gold_entities array for scoring; frozen audio selection remains unchanged."
+    }
+  ],
+  "notes": [
+    "All 29 prior TERM labels are corrected to fixed-library LOC across 24 sample IDs.",
+    "Standalone 比特币 is added as TERM gold; original 两岸三地 AISHELL-NER gold is preserved.",
+    "人大 inside 华江瑶族乡十四届人大代表会 and 上海/香港 inside 上海迪尼士/香港迪尼士 are auxiliary known_substrings only.",
+    "库外/近音 samples remain; their cohort represents complete out-of-library NER evidence. Literal substring hits do not remove them.",
+    "No ASR output was read or used."
+  ]
+}

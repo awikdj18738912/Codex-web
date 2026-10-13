@@ -1,0 +1,39 @@
+{
+  "scope": "consumed_ASR_text_replay_refinement_chain_only",
+  "matched_windows": true,
+  "cases": 8,
+  "sessions": 48,
+  "repetitions": 2,
+  "limitations": [
+    "Consumed regression data; no independent accuracy claim",
+    "No audio decoding, ASR timing, upload, or user-facing total latency",
+    "Small warm replay; timing is descriptive only"
+  ],
+  "policies": {
+    "all_refine": {
+      "calls": 20,
+      "refiner_wall_ms": 5309.378,
+      "chain_total_seconds": 5.761940068565309,
+      "chain_median_seconds": 0.36103510088287294,
+      "learner_scored": 0,
+      "learner_vetoed": 0
+    },
+    "native": {
+      "calls": 14,
+      "refiner_wall_ms": 2765.25,
+      "chain_total_seconds": 3.1749338256195188,
+      "chain_median_seconds": 0.1715107394848019,
+      "learner_scored": 0,
+      "learner_vetoed": 0
+    },
+    "learned": {
+      "calls": 10,
+      "refiner_wall_ms": 1619.753,
+      "chain_total_seconds": 2.0295213162899017,
+      "chain_median_seconds": 0.09111189749091864,
+      "learner_scored": 8,
+      "learner_vetoed": 4
+    }
+  },
+  "native_vs_learned_identical_final_pairs": 16
+}

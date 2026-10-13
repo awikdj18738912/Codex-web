@@ -1,0 +1,2032 @@
+[
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_32d11d4d56f3d24fb946",
+    "reference": "泰拳黑王子播求无疑同小皇帝詹姆斯最为相似",
+    "before": "泰拳黑王死，播求无疑同小皇帝詹姆斯最为相似。",
+    "after": "泰拳黑王死，波求无疑同小皇帝詹姆斯最为相似。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "波求",
+        "canonical": "播求",
+        "entity_id": 567,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "播求",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_9ba084329f492369928e",
+    "reference": "东越花苑不少商铺都关门转租记者谢国林摄",
+    "before": "东越花苑不少商铺都关门转租。记者谢国林摄。",
+    "after": "东岳花苑不少商铺都关门转租。记者谢国林摄。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "东岳花苑",
+        "canonical": "东越花苑",
+        "entity_id": 32,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "东越花苑",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_88c4c3e795a59e4951b3",
+    "reference": "德佑链家市场研究部总监陆骑麟表示",
+    "before": "德佑链家市场研究部总监陆骑麟表示。",
+    "after": "德佑链家市场研究部总监陆其林表示。",
+    "rejected": [
+      {
+        "start": 11,
+        "end": 14,
+        "observed": "陆其林",
+        "canonical": "陆骑麟",
+        "entity_id": 1234,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "陆骑麟",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_a577f69e98ab735bf987",
+    "reference": "京华时报讯记者迟名常鑫前天中午近一一点半",
+    "before": "京华时报讯 记者迟名常鑫，前天中午近一一点半。",
+    "after": "京华时报讯 记者池明长新，前天中午近一一点半。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "池明",
+        "canonical": "迟名",
+        "entity_id": 1158,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "迟名",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      },
+      {
+        "start": 10,
+        "end": 12,
+        "observed": "长新",
+        "canonical": "常鑫",
+        "entity_id": 462,
+        "phonetic_score": 0.84,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.772,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "常鑫",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_bb973943ca354993b0b3",
+    "reference": "更是郑嘉颖愿意公开承认的女友",
+    "before": "更是曾嘉颖愿意公开承认的女友。",
+    "after": "更是曾嘉莹愿意公开承认的女友。",
+    "rejected": [
+      {
+        "start": 3,
+        "end": 5,
+        "observed": "嘉莹",
+        "canonical": "嘉颖",
+        "entity_id": 312,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "嘉颖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_1ec382432f8435ab80e5",
+    "reference": "肇事者为紫各庄村民乔某",
+    "before": "肇事者为紫各庄村民乔某。",
+    "after": "肇事者为子阁庄村民乔某。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "子阁庄",
+        "canonical": "紫各庄",
+        "entity_id": 971,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "紫各庄",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_a30dace13129ac3466cf",
+    "reference": "在赛后发布会上颜妮对记者说",
+    "before": "在赛后发布会上，颜妮对记者说。",
+    "after": "在赛后发布会上，闫妮对记者说。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "闫妮",
+        "canonical": "颜妮",
+        "entity_id": 1284,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "颜妮",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_e893d9a27d92255228e5",
+    "reference": "美的家用空调事业部制造副总裁乌守保对记者表示",
+    "before": "美的家用空调事业部制造副总裁乌守保对记者表示。",
+    "after": "美的家用空调事业部制造副总裁吴守宝对记者表示。",
+    "rejected": [
+      {
+        "start": 14,
+        "end": 17,
+        "observed": "吴守宝",
+        "canonical": "乌守保",
+        "entity_id": 83,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "乌守保",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_5f307910fa9088cff939",
+    "reference": "张晓雅这个娃娃训练很自觉",
+    "before": "张晓雅这个娃娃训练很自觉。",
+    "after": "张小雅这个娃娃训练很自觉。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "张小雅",
+        "canonical": "张晓雅",
+        "entity_id": 501,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张晓雅",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_ed9ad8d267a92a6f8087",
+    "reference": "阮经天和许玮甯交往八年屡传婚讯",
+    "before": "阮经天和许玮甯交往八年，屡传婚讯。",
+    "after": "阮经天和徐伟宁交往八年，屡传婚讯。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "徐伟宁",
+        "canonical": "许玮甯",
+        "entity_id": 1113,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": null,
+        "evidence_surface": "许玮甯",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_15328b95b81704e905bf",
+    "reference": "阳逻一家公司以数十名员工的名义",
+    "before": "阳逻一家公司以数十名员工的名义。",
+    "after": "杨罗一家公司以数十名员工的名义。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "杨罗",
+        "canonical": "阳逻",
+        "entity_id": 1224,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "阳逻",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_3d7f0d88ec8429e3ef51",
+    "reference": "港媒称马云向浙江商人发出警告永远不要行贿",
+    "before": "港媒称，马云向浙江商人发出警告：永远不要行贿。",
+    "after": "港媒称，马云向这家商人发出警告：永远不要行贿。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "这家",
+        "canonical": "浙江",
+        "entity_id": 782,
+        "phonetic_score": 0.755,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.704,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "浙江",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_75b1d9062d3a61093819",
+    "reference": "北京科技大学教授刘澄表示",
+    "before": "北京科技大学教授刘澄表示。",
+    "after": "北京科技大学教授刘晨表示。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "刘晨",
+        "canonical": "刘澄",
+        "entity_id": 197,
+        "phonetic_score": 0.84,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.822,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "刘澄",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_f5e3b6e7b1d1516d5d42",
+    "reference": "本报讯记者李晖经过两天转场",
+    "before": "本报讯，记者李晖经过两天专查。",
+    "after": "本报讯，记者李辉经过两天专查。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "李辉",
+        "canonical": "李晖",
+        "entity_id": 654,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "李晖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_a1a46f0b028ea5c8fb51",
+    "reference": "转投到昔日恩师卢民相任教练的游泳俱乐部训练",
+    "before": "转投到昔日恩师卢民相任教练的游泳俱乐部训练。",
+    "after": "转投到昔日恩师卢敏相任教练的游泳俱乐部训练。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 10,
+        "observed": "卢敏相",
+        "canonical": "卢民相",
+        "entity_id": 258,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "卢民相",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "sample_id": "leb1_8acf8b55ab2d4962838d",
+    "reference": "新京报快讯记者杨锋凌晨今日下午",
+    "before": "新京报快讯，记者杨锋凌晨今日下午。",
+    "after": "新京报快讯，记者杨芬凌晨今日下午。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "杨芬",
+        "canonical": "杨锋",
+        "entity_id": 675,
+        "phonetic_score": 0.81875,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.805,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "杨锋",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_a577f69e98ab735bf987",
+    "reference": "京华时报讯记者迟名常鑫前天中午近一一点半",
+    "before": "京华时报讯 记者迟名常鑫，前天中午近一一点半。",
+    "after": "京华时报讯 记者池明常鑫，前天中午近一一点半。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "池明",
+        "canonical": "迟名",
+        "entity_id": 1158,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "迟名",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_e893d9a27d92255228e5",
+    "reference": "美的家用空调事业部制造副总裁乌守保对记者表示",
+    "before": "美的家用空调事业部制造副总裁乌守保对记者表示。",
+    "after": "美的家用空调事业部制造副总裁吴守宝对记者表示。",
+    "rejected": [
+      {
+        "start": 14,
+        "end": 17,
+        "observed": "吴守宝",
+        "canonical": "乌守保",
+        "entity_id": 83,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "乌守保",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_ed9ad8d267a92a6f8087",
+    "reference": "阮经天和许玮甯交往八年屡传婚讯",
+    "before": "阮经天和许玮甯交往八年，屡传婚讯。",
+    "after": "阮经天和徐伟宁交往八年，屡传婚讯。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "徐伟宁",
+        "canonical": "许玮甯",
+        "entity_id": 1113,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": null,
+        "evidence_surface": "许玮甯",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_15328b95b81704e905bf",
+    "reference": "阳逻一家公司以数十名员工的名义",
+    "before": "阳逻一家公司以数十名员工的名义。",
+    "after": "杨罗一家公司以数十名员工的名义。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "杨罗",
+        "canonical": "阳逻",
+        "entity_id": 1224,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "阳逻",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_3d7f0d88ec8429e3ef51",
+    "reference": "港媒称马云向浙江商人发出警告永远不要行贿",
+    "before": "港媒称，马云向浙江商人发出警告：永远不要行贿。",
+    "after": "港媒称，马云向这家商人发出警告：永远不要行贿。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "这家",
+        "canonical": "浙江",
+        "entity_id": 782,
+        "phonetic_score": 0.755,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.704,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "浙江",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_75b1d9062d3a61093819",
+    "reference": "北京科技大学教授刘澄表示",
+    "before": "北京科技大学教授刘澄表示。",
+    "after": "北京科技大学教授刘晨表示。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "刘晨",
+        "canonical": "刘澄",
+        "entity_id": 197,
+        "phonetic_score": 0.84,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.822,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "刘澄",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_f5e3b6e7b1d1516d5d42",
+    "reference": "本报讯记者李晖经过两天转场",
+    "before": "本报讯，记者李晖经过两天专查。",
+    "after": "本报讯，记者李辉经过两天专查。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "李辉",
+        "canonical": "李晖",
+        "entity_id": 654,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "李晖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "sample_id": "leb1_8acf8b55ab2d4962838d",
+    "reference": "新京报快讯记者杨锋凌晨今日下午",
+    "before": "新京报快讯，记者杨锋凌晨今日下午。",
+    "after": "新京报快讯，记者杨芬凌晨今日下午。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "杨芬",
+        "canonical": "杨锋",
+        "entity_id": 675,
+        "phonetic_score": 0.81875,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.805,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "杨锋",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "context_only",
+    "threshold": 1.0,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_32d11d4d56f3d24fb946",
+    "reference": "泰拳黑王子播求无疑同小皇帝詹姆斯最为相似",
+    "before": "泰拳黑王死，播求无疑同小皇帝詹姆斯最为相似。",
+    "after": "泰拳黑王死，波求无疑同小皇帝詹姆斯最为相似。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "波求",
+        "canonical": "播求",
+        "entity_id": 567,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "播求",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_9ba084329f492369928e",
+    "reference": "东越花苑不少商铺都关门转租记者谢国林摄",
+    "before": "东越花苑不少商铺都关门转租。记者谢国林摄。",
+    "after": "东岳花苑不少商铺都关门转租。记者谢国林摄。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 4,
+        "observed": "东岳花苑",
+        "canonical": "东越花苑",
+        "entity_id": 32,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "东越花苑",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_88c4c3e795a59e4951b3",
+    "reference": "德佑链家市场研究部总监陆骑麟表示",
+    "before": "德佑链家市场研究部总监陆骑麟表示。",
+    "after": "德佑链家市场研究部总监陆其林表示。",
+    "rejected": [
+      {
+        "start": 11,
+        "end": 14,
+        "observed": "陆其林",
+        "canonical": "陆骑麟",
+        "entity_id": 1234,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "陆骑麟",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_a577f69e98ab735bf987",
+    "reference": "京华时报讯记者迟名常鑫前天中午近一一点半",
+    "before": "京华时报讯 记者迟名常鑫，前天中午近一一点半。",
+    "after": "京华时报讯 记者池明长新，前天中午近一一点半。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "池明",
+        "canonical": "迟名",
+        "entity_id": 1158,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "迟名",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      },
+      {
+        "start": 10,
+        "end": 12,
+        "observed": "长新",
+        "canonical": "常鑫",
+        "entity_id": 462,
+        "phonetic_score": 0.84,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.772,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "常鑫",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_bb973943ca354993b0b3",
+    "reference": "更是郑嘉颖愿意公开承认的女友",
+    "before": "更是曾嘉颖愿意公开承认的女友。",
+    "after": "更是曾嘉莹愿意公开承认的女友。",
+    "rejected": [
+      {
+        "start": 3,
+        "end": 5,
+        "observed": "嘉莹",
+        "canonical": "嘉颖",
+        "entity_id": 312,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "嘉颖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_1ec382432f8435ab80e5",
+    "reference": "肇事者为紫各庄村民乔某",
+    "before": "肇事者为紫各庄村民乔某。",
+    "after": "肇事者为子阁庄村民乔某。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "子阁庄",
+        "canonical": "紫各庄",
+        "entity_id": 971,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "紫各庄",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_a30dace13129ac3466cf",
+    "reference": "在赛后发布会上颜妮对记者说",
+    "before": "在赛后发布会上，颜妮对记者说。",
+    "after": "在赛后发布会上，闫妮对记者说。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "闫妮",
+        "canonical": "颜妮",
+        "entity_id": 1284,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "颜妮",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_e893d9a27d92255228e5",
+    "reference": "美的家用空调事业部制造副总裁乌守保对记者表示",
+    "before": "美的家用空调事业部制造副总裁乌守保对记者表示。",
+    "after": "美的家用空调事业部制造副总裁吴守宝对记者表示。",
+    "rejected": [
+      {
+        "start": 14,
+        "end": 17,
+        "observed": "吴守宝",
+        "canonical": "乌守保",
+        "entity_id": 83,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "乌守保",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_5f307910fa9088cff939",
+    "reference": "张晓雅这个娃娃训练很自觉",
+    "before": "张晓雅这个娃娃训练很自觉。",
+    "after": "张小雅这个娃娃训练很自觉。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "张小雅",
+        "canonical": "张晓雅",
+        "entity_id": 501,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张晓雅",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_ed9ad8d267a92a6f8087",
+    "reference": "阮经天和许玮甯交往八年屡传婚讯",
+    "before": "阮经天和许玮甯交往八年，屡传婚讯。",
+    "after": "阮经天和徐伟宁交往八年，屡传婚讯。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "徐伟宁",
+        "canonical": "许玮甯",
+        "entity_id": 1113,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": null,
+        "evidence_surface": "许玮甯",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_15328b95b81704e905bf",
+    "reference": "阳逻一家公司以数十名员工的名义",
+    "before": "阳逻一家公司以数十名员工的名义。",
+    "after": "杨罗一家公司以数十名员工的名义。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "杨罗",
+        "canonical": "阳逻",
+        "entity_id": 1224,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "阳逻",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_3d7f0d88ec8429e3ef51",
+    "reference": "港媒称马云向浙江商人发出警告永远不要行贿",
+    "before": "港媒称，马云向浙江商人发出警告：永远不要行贿。",
+    "after": "港媒称，马云向这家商人发出警告：永远不要行贿。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "这家",
+        "canonical": "浙江",
+        "entity_id": 782,
+        "phonetic_score": 0.755,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.704,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "浙江",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_75b1d9062d3a61093819",
+    "reference": "北京科技大学教授刘澄表示",
+    "before": "北京科技大学教授刘澄表示。",
+    "after": "北京科技大学教授刘晨表示。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "刘晨",
+        "canonical": "刘澄",
+        "entity_id": 197,
+        "phonetic_score": 0.84,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.822,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "刘澄",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_f5e3b6e7b1d1516d5d42",
+    "reference": "本报讯记者李晖经过两天转场",
+    "before": "本报讯，记者李晖经过两天专查。",
+    "after": "本报讯，记者李辉经过两天专查。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "李辉",
+        "canonical": "李晖",
+        "entity_id": 654,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "李晖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_a1a46f0b028ea5c8fb51",
+    "reference": "转投到昔日恩师卢民相任教练的游泳俱乐部训练",
+    "before": "转投到昔日恩师卢民相任教练的游泳俱乐部训练。",
+    "after": "转投到昔日恩师卢敏相任教练的游泳俱乐部训练。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 10,
+        "observed": "卢敏相",
+        "canonical": "卢民相",
+        "entity_id": 258,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "卢民相",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "sample_id": "leb1_8acf8b55ab2d4962838d",
+    "reference": "新京报快讯记者杨锋凌晨今日下午",
+    "before": "新京报快讯，记者杨锋凌晨今日下午。",
+    "after": "新京报快讯，记者杨芬凌晨今日下午。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "杨芬",
+        "canonical": "杨锋",
+        "entity_id": 675,
+        "phonetic_score": 0.81875,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.805,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "杨锋",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_a577f69e98ab735bf987",
+    "reference": "京华时报讯记者迟名常鑫前天中午近一一点半",
+    "before": "京华时报讯 记者迟名常鑫，前天中午近一一点半。",
+    "after": "京华时报讯 记者池明常鑫，前天中午近一一点半。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "池明",
+        "canonical": "迟名",
+        "entity_id": 1158,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "迟名",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_e893d9a27d92255228e5",
+    "reference": "美的家用空调事业部制造副总裁乌守保对记者表示",
+    "before": "美的家用空调事业部制造副总裁乌守保对记者表示。",
+    "after": "美的家用空调事业部制造副总裁吴守宝对记者表示。",
+    "rejected": [
+      {
+        "start": 14,
+        "end": 17,
+        "observed": "吴守宝",
+        "canonical": "乌守保",
+        "entity_id": 83,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "乌守保",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_ed9ad8d267a92a6f8087",
+    "reference": "阮经天和许玮甯交往八年屡传婚讯",
+    "before": "阮经天和许玮甯交往八年，屡传婚讯。",
+    "after": "阮经天和徐伟宁交往八年，屡传婚讯。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "徐伟宁",
+        "canonical": "许玮甯",
+        "entity_id": 1113,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": null,
+        "evidence_surface": "许玮甯",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_15328b95b81704e905bf",
+    "reference": "阳逻一家公司以数十名员工的名义",
+    "before": "阳逻一家公司以数十名员工的名义。",
+    "after": "杨罗一家公司以数十名员工的名义。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "杨罗",
+        "canonical": "阳逻",
+        "entity_id": 1224,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "阳逻",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_3d7f0d88ec8429e3ef51",
+    "reference": "港媒称马云向浙江商人发出警告永远不要行贿",
+    "before": "港媒称，马云向浙江商人发出警告：永远不要行贿。",
+    "after": "港媒称，马云向这家商人发出警告：永远不要行贿。",
+    "rejected": [
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "这家",
+        "canonical": "浙江",
+        "entity_id": 782,
+        "phonetic_score": 0.755,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.704,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "浙江",
+        "entity_type": "LOC",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_75b1d9062d3a61093819",
+    "reference": "北京科技大学教授刘澄表示",
+    "before": "北京科技大学教授刘澄表示。",
+    "after": "北京科技大学教授刘晨表示。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "刘晨",
+        "canonical": "刘澄",
+        "entity_id": 197,
+        "phonetic_score": 0.84,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.822,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "刘澄",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_f5e3b6e7b1d1516d5d42",
+    "reference": "本报讯记者李晖经过两天转场",
+    "before": "本报讯，记者李晖经过两天专查。",
+    "after": "本报讯，记者李辉经过两天专查。",
+    "rejected": [
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "李辉",
+        "canonical": "李晖",
+        "entity_id": 654,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "李晖",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "sample_id": "leb1_8acf8b55ab2d4962838d",
+    "reference": "新京报快讯记者杨锋凌晨今日下午",
+    "before": "新京报快讯，记者杨锋凌晨今日下午。",
+    "after": "新京报快讯，记者杨芬凌晨今日下午。",
+    "rejected": [
+      {
+        "start": 8,
+        "end": 10,
+        "observed": "杨芬",
+        "canonical": "杨锋",
+        "entity_id": 675,
+        "phonetic_score": 0.81875,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.805,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "杨锋",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "sample_id": "leb1_84e48c20cbb10fe891fa",
+    "reference": "刘家义在报告中指出",
+    "before": "刘家义在报告中指出。",
+    "after": "刘嘉毅在报告中指出。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "刘嘉毅",
+        "canonical": "刘家义",
+        "entity_id": 191,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "刘家义",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "sample_id": "leb1_59d10f5b62cacde75bcc",
+    "reference": "陈势安两天一夜没洗澡刷牙",
+    "before": "陈势安两天一夜没洗澡、刷牙。",
+    "after": "陈世安两天一夜没洗澡、刷牙。",
+    "rejected": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "陈世安",
+        "canonical": "陈势安",
+        "entity_id": 1238,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "陈势安",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "sample_id": "leb1_9572c0554e4def3037d6",
+    "reference": "王思聪将朱圣祎诉至北京朝阳法院",
+    "before": "王思聪将朱圣祎诉至北京朝阳法院。",
+    "after": "王思聪将朱圣伟诉至北京朝阳法院。",
+    "rejected": [
+      {
+        "start": 4,
+        "end": 7,
+        "observed": "朱圣伟",
+        "canonical": "朱圣祎",
+        "entity_id": 631,
+        "phonetic_score": 0.761111,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.775556,
+        "boundary_issue": null,
+        "evidence_surface": "朱圣祎",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "sample_id": "leb1_ac128e4a79aa5d168186",
+    "reference": "门头沟区长张贵林出庭应诉",
+    "before": "门头沟区长张贵林出庭应诉。",
+    "after": "门头沟区长张桂林出庭应诉。",
+    "rejected": [
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "张桂林",
+        "canonical": "张贵林",
+        "entity_id": 507,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "张贵林",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "condition": "official_background",
+    "threshold": 1.0,
+    "sample_id": "leb1_1d9eb0f927119f8fd82c",
+    "reference": "据阳光家缘网站公布数据统计",
+    "before": "据阳光家缘网站公布数据统计。",
+    "after": "据阳光家园网站公布数据统计。",
+    "rejected": [
+      {
+        "start": 1,
+        "end": 5,
+        "observed": "阳光家园",
+        "canonical": "阳光家缘",
+        "entity_id": 1223,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "阳光家缘",
+        "entity_type": "ORG",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  }
+]

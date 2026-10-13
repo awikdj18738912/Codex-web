@@ -1,0 +1,108 @@
+{
+  "total": 108,
+  "planned": 108,
+  "human_reviewed": 0,
+  "provable_neutral": 63,
+  "scope": "Frozen final-snapshot decision pilot, not streaming/end-to-end latency or independent heldout acceptance.",
+  "sampling": "Balanced exploratory input-side strata; not population prevalence.",
+  "by_task": {
+    "window_refine": {
+      "cases": 0,
+      "unique_recordings": 0,
+      "arms": {
+        "rules": {
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "measured_operation_cost_ms": 0,
+          "refiner_forward_passes": 0,
+          "plausibility_forward_passes": 0,
+          "changed_vs_rules": 0,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 0
+        },
+        "current": {
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "measured_operation_cost_ms": 0,
+          "refiner_forward_passes": 0,
+          "plausibility_forward_passes": 0,
+          "changed_vs_rules": 0,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 0
+        },
+        "always": {
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "measured_operation_cost_ms": 0,
+          "refiner_forward_passes": 0,
+          "plausibility_forward_passes": 0,
+          "changed_vs_rules": 0,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 0
+        }
+      },
+      "current_selected_decisions": 0,
+      "current_selected_no_effect": 0,
+      "current_no_effect_cost_ms": 0
+    },
+    "local_edit_review": {
+      "cases": 108,
+      "unique_recordings": 65,
+      "arms": {
+        "rules": {
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "measured_operation_cost_ms": 0,
+          "refiner_forward_passes": 0,
+          "plausibility_forward_passes": 0,
+          "changed_vs_rules": 0,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 0
+        },
+        "current": {
+          "logical_refiner_calls": 53,
+          "logical_plausibility_calls": 1,
+          "measured_operation_cost_ms": 4516.025,
+          "refiner_forward_passes": 106,
+          "plausibility_forward_passes": 2,
+          "changed_vs_rules": 45,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 45
+        },
+        "always": {
+          "logical_refiner_calls": 53,
+          "logical_plausibility_calls": 1,
+          "measured_operation_cost_ms": 4516.025,
+          "refiner_forward_passes": 106,
+          "plausibility_forward_passes": 2,
+          "changed_vs_rules": 45,
+          "rejected_windows": 0,
+          "proxy_improved": 0,
+          "proxy_regressed": 45
+        }
+      },
+      "current_selected_decisions": 53,
+      "current_selected_no_effect": 8,
+      "current_no_effect_cost_ms": 641.937
+    }
+  },
+  "unique_recordings": 65,
+  "data_kinds": {
+    "synthetic_tts": 108
+  },
+  "reference_available": 108,
+  "audio_available": 108,
+  "physical_logical_calls": 54,
+  "limits": [
+    "No human labels have been assigned automatically.",
+    "Reference edit distance is a full-utterance substitution proxy, not a verified intention or correction label.",
+    "Isolated final snapshots and exploratory sampling do not certify streaming latency or generalization.",
+    "Costs for identical current/always actions share the same measured execution; real shared executions are counted once.",
+    "Warmup and lazy masked-model load are not representative steady-state operation costs; GPU contention can affect timing."
+  ]
+}

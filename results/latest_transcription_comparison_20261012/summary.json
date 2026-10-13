@@ -1,0 +1,197 @@
+{
+  "runs": [
+    {
+      "trace_id": "a40cb174d5dd4a3b993331f320e8b687",
+      "started_local": "16:34:36",
+      "completed_local": "16:35:51",
+      "native_gate_mode": "tri_state",
+      "learned_gate_scored": false,
+      "raw_chars": 3010,
+      "clean_chars": 3004,
+      "asr_segments": 56,
+      "audio_chunks": 725,
+      "total_backend_seconds": 75.11344003677368,
+      "until_last_audio_chunk_seconds": 74.63629603385925,
+      "final_reconciliation_seconds": 0.25135111808776855,
+      "refiner": {
+        "schema_version": 1,
+        "call_count": 15,
+        "initial_call_count": 13,
+        "retry_call_count": 2,
+        "intermediate_call_count": 15,
+        "final_call_count": 0,
+        "completed_call_count": 15,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 5013.633,
+        "gate_skipped_segment_count": 105,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 118,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "asr_summed_seconds": {
+        "request_ms": 48.034468000000004,
+        "model_ms": 41.694356,
+        "vad_ms": 5.4031270000000005,
+        "lock_wait_ms": 0.000983
+      },
+      "asr_quartiles": [
+        {
+          "quarter": 1,
+          "chunks": 181,
+          "mean_request_ms": 66.74840331491713,
+          "mean_lock_wait_ms": 0.0012651933701657459,
+          "mean_model_ms": 58.468906077348066,
+          "mean_active_model_ms": 116.26661538461539
+        },
+        {
+          "quarter": 2,
+          "chunks": 181,
+          "mean_request_ms": 70.06775690607735,
+          "mean_lock_wait_ms": 0.0014640883977900553,
+          "mean_model_ms": 60.96072375690608,
+          "mean_active_model_ms": 117.35421276595744
+        },
+        {
+          "quarter": 3,
+          "chunks": 181,
+          "mean_request_ms": 70.11213812154696,
+          "mean_lock_wait_ms": 0.0013977900552486187,
+          "mean_model_ms": 61.55367403314917,
+          "mean_active_model_ms": 121.07226086956521
+        },
+        {
+          "quarter": 4,
+          "chunks": 182,
+          "mean_request_ms": 58.13431868131868,
+          "mean_lock_wait_ms": 0.0012967032967032967,
+          "mean_model_ms": 49.10097802197802,
+          "mean_active_model_ms": 122.39265753424658
+        }
+      ],
+      "ASR_sessions_during_run": {
+        "b52b7ec024554ad086c77c8a35d87cf9": 726
+      },
+      "modeled_window_events": 4,
+      "unique_modeled_sources": 4,
+      "extra_executions_of_identical_window_source": 0,
+      "cache": {
+        "window_cache_partition": "vad_segments",
+        "window_cache_reused_group_count": 83,
+        "window_cache_reprocessed_group_count": 0,
+        "window_cache_reprocess_reasons": {}
+      }
+    },
+    {
+      "trace_id": "6bfe4bf8a5a04cba92946eadc0433b21",
+      "started_local": "16:39:30",
+      "completed_local": "16:42:11",
+      "native_gate_mode": "off",
+      "learned_gate_scored": false,
+      "raw_chars": 3010,
+      "clean_chars": 3004,
+      "asr_segments": 56,
+      "audio_chunks": 725,
+      "total_backend_seconds": 160.1308891773224,
+      "until_last_audio_chunk_seconds": 158.57708311080933,
+      "final_reconciliation_seconds": 0.24671602249145508,
+      "refiner": {
+        "schema_version": 1,
+        "call_count": 173,
+        "initial_call_count": 153,
+        "retry_call_count": 20,
+        "intermediate_call_count": 18,
+        "final_call_count": 155,
+        "completed_call_count": 173,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 127564.307,
+        "gate_skipped_segment_count": 0,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 153,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "asr_summed_seconds": {
+        "request_ms": 141.098418,
+        "model_ms": 57.186389000000005,
+        "vad_ms": 6.399371,
+        "lock_wait_ms": 76.86624099999999
+      },
+      "asr_quartiles": [
+        {
+          "quarter": 1,
+          "chunks": 181,
+          "mean_request_ms": 191.13370165745857,
+          "mean_lock_wait_ms": 103.00085082872928,
+          "mean_model_ms": 78.1729502762431,
+          "mean_active_model_ms": 153.75428260869566
+        },
+        {
+          "quarter": 2,
+          "chunks": 181,
+          "mean_request_ms": 203.41901657458564,
+          "mean_lock_wait_ms": 112.75969060773481,
+          "mean_model_ms": 81.01500552486188,
+          "mean_active_model_ms": 154.30984210526316
+        },
+        {
+          "quarter": 3,
+          "chunks": 181,
+          "mean_request_ms": 218.88152486187846,
+          "mean_lock_wait_ms": 122.64325966850829,
+          "mean_model_ms": 86.21322099447514,
+          "mean_active_model_ms": 169.5620652173913
+        },
+        {
+          "quarter": 4,
+          "chunks": 182,
+          "mean_request_ms": 165.2023076923077,
+          "mean_lock_wait_ms": 85.79754395604395,
+          "mean_model_ms": 70.15810989010988,
+          "mean_active_model_ms": 174.87543835616438
+        }
+      ],
+      "ASR_sessions_during_run": {
+        "6bafffa7f9a64e5186015e52f57d03a0": 59,
+        "44dc04d0b95c47a4a6a2ba75d154d93f": 726,
+        "75876f522b6141ada4c70bcc8c871a2f": 304,
+        "d80f877daf93438abb558506b4e8d441": 302,
+        "7ef1449d3fe0474cac1483ac4df63117": 302
+      },
+      "modeled_window_events": 133,
+      "unique_modeled_sources": 100,
+      "extra_executions_of_identical_window_source": 33,
+      "cache": {
+        "window_cache_partition": "vad_segments",
+        "window_cache_reused_group_count": 0,
+        "window_cache_reprocessed_group_count": 0,
+        "window_cache_reprocess_reasons": {}
+      }
+    }
+  ],
+  "raw_exact_equal": true,
+  "cleaned_differences": [
+    {
+      "operation": "replace",
+      "before": "。",
+      "after": "，",
+      "before_context": "游袭来的最大洪峰比1998年还要凶猛。但34%的洪峰都在进入三峡下游前被削",
+      "after_context": "游袭来的最大洪峰比1998年还要凶猛，但34%的洪峰都在进入三峡下游前被削"
+    },
+    {
+      "operation": "replace",
+      "before": "，",
+      "after": "。",
+      "before_context": "的使命就是打破原本极不均衡的资源分布，重组新的格局。可是，要以人力再造江河",
+      "after_context": "的使命就是打破原本极不均衡的资源分布。重组新的格局。可是，要以人力再造江河"
+    }
+  ],
+  "not_controlled_AB": true,
+  "audio_file_hash_not_recorded": true,
+  "services_modified": false,
+  "caution": "Per-call ASR/Refiner durations overlap; final_call_count is a flag, not finish-stage timing."
+}

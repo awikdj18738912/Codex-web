@@ -1,0 +1,150 @@
+{
+  "scope": "consumed_matched_cold_final_snapshots_not_live_streaming",
+  "views": 49,
+  "clips": 48,
+  "arms": {
+    "old": {
+      "views": 49,
+      "exact": 38,
+      "summed_reference_distance": 17,
+      "refiner_calls": 21,
+      "plausibility_calls": 1
+    },
+    "new": {
+      "views": 49,
+      "exact": 40,
+      "summed_reference_distance": 13,
+      "refiner_calls": 19,
+      "plausibility_calls": 1
+    }
+  },
+  "changed": 2,
+  "unchanged": 47,
+  "new_worse": 0,
+  "new_better": 2,
+  "changes": [
+    {
+      "view_id": "827c86cc9401ccd2d86b2ff9",
+      "seed_id": "linear_holdout_20261012_021",
+      "raw_text": "归档结束，归档结束，随后检查索引，索引交给值班员。前面的归档结束说了两遍，需要原样保留。",
+      "old_text": "归档结束，归档结束，随后检查索引交给值班员。前面的归档结束说了两遍，需要原样保留。",
+      "new_text": "归档结束，归档结束，随后检查索引，索引交给值班员。前面的归档结束说了两遍，需要原样保留。",
+      "old_distance": 2,
+      "new_distance": 0,
+      "old_calls": 2,
+      "new_calls": 1,
+      "new_reviews": [
+        {
+          "index": 1,
+          "start": 9,
+          "end": 13,
+          "source": "索引索引",
+          "target": "索引",
+          "kind": "phrase_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 9,
+          "end": 13,
+          "source": "索引索引",
+          "target": "索引",
+          "kind": "phrase_run",
+          "context": "归档结束，随后检查索引索引交给值班员。前面的归档结束说了两遍，需要原样保留。",
+          "decision": "keep",
+          "reason": "source_repetition_preservation",
+          "preservation_reasons": [
+            "cross_clause_noun_reuse"
+          ],
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "new_restorations": [
+        {
+          "start": 0,
+          "end": 0,
+          "target": "归档结束，",
+          "source": "",
+          "source_start": 0,
+          "source_end": 5,
+          "reason": "explicit_repetition_intent"
+        },
+        {
+          "start": 16,
+          "end": 16,
+          "source": "",
+          "target": "，",
+          "source_start": 16,
+          "source_end": 17,
+          "reason": "source_clause_boundary_restoration"
+        }
+      ]
+    },
+    {
+      "view_id": "78585fa0daa0deedb8009dc5",
+      "seed_id": "linear_holdout_20261012_022",
+      "raw_text": "现场清空，现场清空，接着核对名单，名单送到调度室。前面的现场清空说了两遍，请保留重复。",
+      "old_text": "现场清空，现场清空，接着核对名单送到调度室。前面的现场清空说了两遍，请保留重复。",
+      "new_text": "现场清空，现场清空，接着核对名单，名单送到调度室。前面的现场清空说了两遍，请保留重复。",
+      "old_distance": 2,
+      "new_distance": 0,
+      "old_calls": 2,
+      "new_calls": 1,
+      "new_reviews": [
+        {
+          "index": 1,
+          "start": 9,
+          "end": 13,
+          "source": "名单名单",
+          "target": "名单",
+          "kind": "phrase_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 9,
+          "end": 13,
+          "source": "名单名单",
+          "target": "名单",
+          "kind": "phrase_run",
+          "context": "现场清空，接着核对名单名单送到调度室。前面的现场清空说了两遍，请保留重复。",
+          "decision": "keep",
+          "reason": "source_repetition_preservation",
+          "preservation_reasons": [
+            "cross_clause_noun_reuse"
+          ],
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "new_restorations": [
+        {
+          "start": 0,
+          "end": 0,
+          "target": "现场清空，",
+          "source": "",
+          "source_start": 0,
+          "source_end": 5,
+          "reason": "explicit_repetition_intent"
+        },
+        {
+          "start": 16,
+          "end": 16,
+          "source": "",
+          "target": "，",
+          "source_start": 16,
+          "source_end": 17,
+          "reason": "source_clause_boundary_restoration"
+        }
+      ]
+    }
+  ],
+  "reference_caveat": "Mixed official references/unverified synthetic scripts; diagnostic regression only"
+}

@@ -13,7 +13,27 @@ import os
 from pathlib import Path
 from typing import Any, Literal
 
+from pydantic import BaseModel, Field
+
 logger = logging.getLogger(__name__)
+
+
+# Keep the schema at module scope so FastAPI can resolve postponed annotations.
+# A local class previously made request look like an untyped query parameter.
+class TTSRequest(BaseModel):
+    text: str = Field(min_length=1)
+    output_path: str
+    language: str | None = None
+    strength: str = "medium"
+    mode: Literal["direct", "clone", "continuation", "continuation_clone"] = "direct"
+    reference_audio: str | None = None
+    reference_transcript: str | None = None
+    tokens: int | None = None
+    max_new_tokens: int = 4096
+    audio_temperature: float = 1.7
+    audio_top_p: float = 0.8
+    audio_top_k: int = 25
+    audio_repetition_penalty: float = 1.0
 
 
 class MossTTSService:
@@ -284,27 +304,11 @@ def _resolve_attn_implementation(device: Any, dtype: Any) -> str:
 def create_app(model_path: str, device: str = "auto"):
     try:
         from fastapi import FastAPI
-        from pydantic import BaseModel, Field
     except ImportError as exc:
         raise RuntimeError("Install fastapi, pydantic and uvicorn to run the MOSS-TTS service.") from exc
 
     service = MossTTSService(model_path=model_path, device=device)
     app = FastAPI(title="AgenticASR MOSS-TTS Service")
-
-    class TTSRequest(BaseModel):
-        text: str = Field(min_length=1)
-        output_path: str
-        language: str | None = None
-        strength: str = "medium"
-        mode: Literal["direct", "clone", "continuation", "continuation_clone"] = "direct"
-        reference_audio: str | None = None
-        reference_transcript: str | None = None
-        tokens: int | None = None
-        max_new_tokens: int = 4096
-        audio_temperature: float = 1.7
-        audio_top_p: float = 0.8
-        audio_top_k: int = 25
-        audio_repetition_penalty: float = 1.0
 
     @app.get("/health")
     def health() -> dict[str, str]:

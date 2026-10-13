@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "stage": "complete",
+  "train_texts": 0,
+  "source_split_used": "test",
+  "selected_texts": 22,
+  "device": "cuda:0",
+  "started_unix": 1791639067.0286367,
+  "refit_student": false,
+  "driver_pid": 3034922,
+  "driver_sha256": "e555bbec163d53a1e51e00aeb878730109c79d3708b2fc3398e424f7f40834c4",
+  "frozen_student_weights_sha256": "749bacd0656c168e77791a567a6b4c275445b2891bbde3a5d81f0e621be62c11",
+  "frozen_student_metadata_sha256": "282b769d5fd8eed6f7f19e0f3f257376945776573a0edfe583f364dbb235faaf",
+  "driver_snapshot": "preparation_sources/run_gate_template_pilot_e555bbec163d.py",
+  "owned_tts_pid": 3034937,
+  "updated_unix": 1791639352.2120328,
+  "completed_stages": [
+    "synthesize",
+    "decode",
+    "prepare_windows",
+    "run_windows",
+    "label_windows",
+    "prepare_reviews",
+    "run_reviews",
+    "label_reviews"
+  ],
+  "owned_tts_shutdown_method": "sigint",
+  "owned_tts_stopped": true,
+  "local_review_candidates": 5,
+  "labels": {
+    "neutral": 20,
+    "benefit": 3,
+    "uncertain": 3,
+    "harm": 1
+  },
+  "total_pairs": 27
+}

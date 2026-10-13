@@ -1,0 +1,133 @@
+{
+  "purpose": "Read-only inventory for preparing a later general entity-review training round; no training, inference, or integration performed.",
+  "inputs": [
+    "results/large_entity_benchmark_v1_20261010/dataset/samples.jsonl",
+    "results/large_entity_benchmark_v1_20261010/full_evaluation/audio.jsonl"
+  ],
+  "label_interpretation": "Weak labels only: whether the changed canonical string appears as an exact substring in the saved reference text. Reference text is not audio ground truth.",
+  "method": {
+    "accepted_change_filter": "production_final.entity_audio_repair.applied is true; each entry in changes with a canonical name is one change event.",
+    "reference_match": "Exact substring check: canonical in sample.reference; no normalization or alias matching.",
+    "recording_key": "sample.recording_id, falling back to sample id if absent.",
+    "grouping": "Per-event counts are reported alongside unique recording counts. Entity type comes from the change record. Topic group counts use sample topics and can overlap."
+  },
+  "coverage": {
+    "sample_rows": 2410,
+    "audio_rows": 2410,
+    "matched_ids": 2410,
+    "unmatched_audio_ids": 0,
+    "accepted_change_events": 178,
+    "unique_sample_ids_with_accepted_changes": 172,
+    "unique_recordings_with_accepted_changes": 172
+  },
+  "reference_presence": {
+    "events": {
+      "canonical_present": 174,
+      "canonical_absent": 4
+    },
+    "unique_recordings": {
+      "recordings_with_only_present_events": 168,
+      "recordings_with_only_absent_events": 4,
+      "recordings_with_both": 0
+    }
+  },
+  "by_entity_type": [
+    {
+      "entity_type": "LOC",
+      "events": 25,
+      "unique_recordings": 24,
+      "canonical_present_events": 24,
+      "canonical_absent_events": 1
+    },
+    {
+      "entity_type": "ORG",
+      "events": 26,
+      "unique_recordings": 26,
+      "canonical_present_events": 24,
+      "canonical_absent_events": 2
+    },
+    {
+      "entity_type": "PERSON",
+      "events": 122,
+      "unique_recordings": 118,
+      "canonical_present_events": 121,
+      "canonical_absent_events": 1
+    },
+    {
+      "entity_type": "TERM",
+      "events": 5,
+      "unique_recordings": 5,
+      "canonical_present_events": 5,
+      "canonical_absent_events": 0
+    }
+  ],
+  "by_sample_topic": [
+    {
+      "topic": "农业生态",
+      "events": 1,
+      "unique_recordings": 1,
+      "canonical_present_events": 1,
+      "canonical_absent_events": 0
+    },
+    {
+      "topic": "医疗健康",
+      "events": 3,
+      "unique_recordings": 3,
+      "canonical_present_events": 3,
+      "canonical_absent_events": 0
+    },
+    {
+      "topic": "新闻人物组织地理",
+      "events": 174,
+      "unique_recordings": 168,
+      "canonical_present_events": 170,
+      "canonical_absent_events": 4
+    },
+    {
+      "topic": "自然科学化学",
+      "events": 1,
+      "unique_recordings": 1,
+      "canonical_present_events": 1,
+      "canonical_absent_events": 0
+    }
+  ],
+  "canonical_absent_reference_events_for_manual_audio_review": [
+    {
+      "sample_id": "leb1_38459bb96fdd7d36ecc1",
+      "recording_id": "BAC009S0770W0368",
+      "entity_type": "PERSON",
+      "canonical": "董健",
+      "observed": "董剑",
+      "reference": "庞清和佟健仍肩负着扛起中国双人滑大旗的重任"
+    },
+    {
+      "sample_id": "leb1_6c86c4a79561e0611e5e",
+      "recording_id": "BAC009S0907W0443",
+      "entity_type": "ORG",
+      "canonical": "金报",
+      "observed": "惊爆",
+      "reference": "广东惠州惊爆港商杀情妇碎尸凶案"
+    },
+    {
+      "sample_id": "leb1_8c2510722ec5a19f9656",
+      "recording_id": "BAC009S0912W0420",
+      "entity_type": "ORG",
+      "canonical": "中传",
+      "observed": "终战",
+      "reference": "终站是好友谢霆锋的创作"
+    },
+    {
+      "sample_id": "leb1_d39d7292a9660cc1eef6",
+      "recording_id": "BAC009S0907W0447",
+      "entity_type": "LOC",
+      "canonical": "冈山",
+      "observed": "冈商",
+      "reference": "港商疑恼羞成怒将她杀害"
+    }
+  ],
+  "limitations": [
+    "Canonical presence or absence in a reference is only a weak text-match signal and does not establish whether the accepted audio change is right or wrong.",
+    "Name conflicts, including canonical/observed/reference disagreement, need human listening before assigning reliable labels.",
+    "Counts describe only accepted changes in these two specified saved data files; they do not measure performance on unseen data or the excluded 181-item test set."
+  ]
+}

@@ -1,0 +1,1174 @@
+[
+  {
+    "elapsed_seconds": 0.09137915121391416,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.6248172842897475,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 0.6252292180433869,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经被。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.5270090174951064
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "已经被。",
+      "display_text": "已经被。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.091356836259365,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.6327013890258968,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 1.633061544969678,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.5582481708060156
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.4545,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "已经备案，已。",
+      "display_text": "已经备案，已。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.092039129231125,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.639270048122853,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 2.6396917500533164,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.8788761107064925
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1765,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "已经备案，已经备案。",
+      "display_text": "已经备案。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.181107196956873,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.1828623451292515,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.952179165799027
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 1,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 541.7,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "已经备案，已经备案。",
+      "display_text": "已经备案。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.1844421601854265,
+    "payload": {
+      "event": "update",
+      "raw_text": "已经备案，已经备案。",
+      "clean_text": "已经备案。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.952179165799027
+      },
+      "refiner_latency_ms": 0,
+      "numeric_rule_latency_ms": 0.0,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [],
+      "structured_patch_audits": [],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "defer",
+          "state": "DEFER",
+          "reasons": [
+            "incomplete_fixed_group"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 0.316,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 0,
+      "pending_refinement_chunks": 2,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "已经备案，已经备案。",
+          "clean_text": "已经备案。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "",
+      "display_text": "已经备案。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 0,
+        "initial_call_count": 0,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 0,
+        "completed_call_count": 0,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 0.0,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 0,
+      "session_refiner_initial_call_count": 0,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 3.591609206981957,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.128343319054693,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.128840619232506,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着，却。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 5,
+        "min_probability": 0.5512655981951545
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着，却。",
+      "display_text": "已经备案。接着，却。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.593270650133491,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 5.146202164236456,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 5.146679114084691,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9514035654291604
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位。",
+      "display_text": "已经备案。接着确认，确认货位。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.592182231135666,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 6.158491495996714,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 13
+    }
+  },
+  {
+    "elapsed_seconds": 6.1588877202011645,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.7627721307743498
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0476,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料。",
+      "display_text": "已经备案。接着确认，确认货位资料。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.593312370125204,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 14
+    }
+  },
+  {
+    "elapsed_seconds": 7.171178259886801,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 15
+    }
+  },
+  {
+    "elapsed_seconds": 7.1715387450531125,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 12,
+        "min_probability": 0.5527547256384214
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.102,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 7.592161369975656,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 16
+    }
+  },
+  {
+    "elapsed_seconds": 8.138897784985602,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 17
+    }
+  },
+  {
+    "elapsed_seconds": 8.13933895714581,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.7720182871456377
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0182,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主管。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主管。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 8.594917516224086,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 18
+    }
+  },
+  {
+    "elapsed_seconds": 9.166059144306928,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 19
+    }
+  },
+  {
+    "elapsed_seconds": 9.16646778723225,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 11,
+        "min_probability": 0.6787775553861156
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.125,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主管。前面的已经备案。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 9.593328077346087,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 20
+    }
+  },
+  {
+    "elapsed_seconds": 10.161988981999457,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 21
+    }
+  },
+  {
+    "elapsed_seconds": 10.162404316011816,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9818228466989142
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0649,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 10.594035832211375,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 22
+    }
+  },
+  {
+    "elapsed_seconds": 11.164082597009838,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 23
+    }
+  },
+  {
+    "elapsed_seconds": 11.164648074191064,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9396892697695448
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0575,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 11.59253403218463,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 24
+    }
+  },
+  {
+    "elapsed_seconds": 12.092223979067057,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 25
+    }
+  },
+  {
+    "elapsed_seconds": 12.345005041919649,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999508881865387
+      },
+      "refiner_deferred": true,
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "已经备案。",
+      "display_refined_text": "已经备案。",
+      "pending_raw_text": "接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "display_text": "已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 12.531943797133863,
+    "payload": {
+      "event": "update",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "clean_text": "已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999508881865387
+      },
+      "refiner_latency_ms": 157,
+      "numeric_rule_latency_ms": 1.544,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "已经备案。接着确认。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 12,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 23,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "refinement_gate_skipped_segments": 2,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 7,
+          "end": 12,
+          "source": "确认。确认",
+          "target": "确认",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.518,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 6,
+      "pending_refinement_chunks": 1,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "已经备案，已经备案。接着确认，",
+          "clean_text": "已经备案。接着确认。",
+          "state": "committed"
+        },
+        {
+          "source_text": "确认货位资料交给仓库主管。前面的已经备案，说了两遍，",
+          "clean_text": "确认货位资料交给仓库主管。前面的已经备案，说了两遍，",
+          "state": "committed"
+        },
+        {
+          "source_text": "需要原样保留。",
+          "clean_text": "需要原样保留。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 2,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 2
+      },
+      "refinement_revision": 2,
+      "display_revision": 2,
+      "committed_clean_text": "已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，",
+      "active_clean_text": "需要原样保留。",
+      "display_refined_text": "已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "pending_raw_text": "",
+      "display_text": "已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 163.528,
+        "gate_skipped_segment_count": 3,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 4,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 3,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 12.623820228967816,
+    "payload": {
+      "event": "final",
+      "raw_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "clean_text": "已经备案，已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999508881865387
+      },
+      "refiner_latency_ms": 239,
+      "numeric_rule_latency_ms": 1.724,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "已经备案。接着确认。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 12,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 23,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "refinement_gate_skipped_segments": 2,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 7,
+          "end": 12,
+          "source": "确认。确认",
+          "target": "确认",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 7,
+          "end": 12,
+          "source": "确认。确认",
+          "target": "确认",
+          "kind": "punctuated_run",
+          "context": "已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+          "decision": "unresolved",
+          "reason": "model_uncertain",
+          "model_response": "UNRESOLVED",
+          "model_completed": true,
+          "candidate_score_margin": -0.0387
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 2.495,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 7,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "已经备案，已经备案。接着确认，确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+          "clean_text": "已经备案，已经备案。接着确认。确认货位资料交给仓库主管。前面的已经备案，说了两遍，需要原样保留。",
+          "state": "final"
+        }
+      ],
+      "window_cache_reused_group_count": 2,
+      "window_cache_reused_gate_skip_group_count": 1,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 2,
+      "repetition_review_model_calls": 1,
+      "repetition_response_cache_hits": 0,
+      "repetition_restorations": [
+        {
+          "start": 0,
+          "end": 0,
+          "target": "已经备案，",
+          "source": "",
+          "source_start": 0,
+          "source_end": 5,
+          "reason": "explicit_repetition_intent"
+        }
+      ],
+      "refinement_revision": 2,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 2,
+        "initial_call_count": 2,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 1,
+        "completed_call_count": 2,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 248.978,
+        "gate_skipped_segment_count": 4,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 6,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 2,
+      "session_refiner_initial_call_count": 2,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 1,
+      "session_gate_skipped_segment_count": 4,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

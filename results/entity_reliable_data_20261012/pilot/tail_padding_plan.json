@@ -1,0 +1,11 @@
+{
+  "development_only": true,
+  "padding_bytes": 64000,
+  "source_manifest_sha256": "734408aa82c9a89bbd489c3cd297ab04ea95e138a98e0ffcd400c87dc3e3e751",
+  "baseline_sha256": "df2666494313a4dddea4f1dd4c453420a43d4b6d1899347a156836cce1fb673e",
+  "production_entity_module_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "proposal_after_known_failures": true,
+  "reference_at_inference": false,
+  "change": "Only prompted entity replay gains1 second of float32 silence at finish. Original recording stays exact prefix.",
+  "acceptance": "No lost target hits, no CER increase, no changed negative controls; at least1 added hit or lower CER."
+}

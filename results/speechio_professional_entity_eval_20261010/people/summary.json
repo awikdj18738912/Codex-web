@@ -1,0 +1,68 @@
+{
+  "raw": {
+    "off": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 45,
+      "expected_mentions": 18,
+      "recovered_mentions": 10,
+      "canonical_recovered_mentions": 7,
+      "CER": 0.07075471698113207
+    },
+    "on": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 34,
+      "expected_mentions": 18,
+      "recovered_mentions": 13,
+      "canonical_recovered_mentions": 10,
+      "CER": 0.05345911949685535
+    }
+  },
+  "final": {
+    "baseline": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 49,
+      "expected_mentions": 18,
+      "recovered_mentions": 10,
+      "canonical_recovered_mentions": 7,
+      "unreferenced_mentions": 0,
+      "refiner_calls": 8,
+      "CER": 0.0770440251572327
+    },
+    "post_only": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 38,
+      "expected_mentions": 18,
+      "recovered_mentions": 10,
+      "canonical_recovered_mentions": 10,
+      "unreferenced_mentions": 0,
+      "refiner_calls": 12,
+      "CER": 0.059748427672955975
+    },
+    "context_only": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 38,
+      "expected_mentions": 18,
+      "recovered_mentions": 13,
+      "canonical_recovered_mentions": 10,
+      "unreferenced_mentions": 0,
+      "refiner_calls": 8,
+      "CER": 0.059748427672955975
+    },
+    "combined": {
+      "samples": 16,
+      "reference_chars": 636,
+      "character_errors": 27,
+      "expected_mentions": 18,
+      "recovered_mentions": 13,
+      "canonical_recovered_mentions": 13,
+      "unreferenced_mentions": 0,
+      "refiner_calls": 12,
+      "CER": 0.04245283018867924
+    }
+  }
+}

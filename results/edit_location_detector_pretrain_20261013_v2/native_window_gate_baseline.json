@@ -1,0 +1,41 @@
+{
+  "validation": {
+    "rows": 126,
+    "positive": 42,
+    "keep": 84,
+    "positive_selected": 21,
+    "keep_selected": 21,
+    "by_task": {
+      "disfluency": {
+        "edits": 21,
+        "selected_window": 0
+      },
+      "repetition": {
+        "edits": 21,
+        "selected_window": 21
+      }
+    },
+    "mean_gate_ms": 0.11185074727686625,
+    "status": "reused_validation"
+  },
+  "test": {
+    "rows": 145,
+    "positive": 42,
+    "keep": 103,
+    "positive_selected": 21,
+    "keep_selected": 0,
+    "by_task": {
+      "disfluency": {
+        "edits": 21,
+        "selected_window": 21
+      },
+      "repetition": {
+        "edits": 21,
+        "selected_window": 0
+      }
+    },
+    "mean_gate_ms": 0.09947279789324465,
+    "status": "consumed_regression_not_fresh"
+  },
+  "scope": "Native window route only; excludes local review/Refiner/audio/ASR and does not measure edit locations"
+}

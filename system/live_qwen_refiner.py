@@ -47,6 +47,8 @@ from .refinement_protocol import (
     STRICT_PLACEHOLDER_PROMPT,
     STRUCTURED_REFINER_SYSTEM_PROMPT,
     apply_structured_patch,
+    parse_window_edit_policy,
+    strict_local_system_prompt,
 )
 from .session_memory import SessionEntityMemory
 
@@ -65,7 +67,8 @@ class TransformersRefiner:
     GENERATION_MAX_TIME_SECONDS = 12.0
     supports_entity_candidates = True
 
-    def __init__(self, model_path: Path, device_map: str, max_new_tokens: int) -> None:
+    def __init__(self, model_path: Path, device_map: str, max_new_tokens: int, *, window_edit_policy: str = "compat") -> None:
+        self.window_edit_policy = parse_window_edit_policy(window_edit_policy)
         try:
             import torch
             from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -96,7 +99,8 @@ class TransformersRefiner:
     ) -> tuple[str, float]:
         return self._refine_with_system_prompt(
             raw_text,
-            SYSTEM_PROMPT,
+            strict_local_system_prompt(numeric_rule_mode=False)
+            if self.window_edit_policy == "strict_local" else SYSTEM_PROMPT,
             entity_hints=entity_hints,
             strict_placeholders=strict_placeholders,
             entity_candidates=entity_candidates,
@@ -114,7 +118,8 @@ class TransformersRefiner:
 
         return self._refine_with_system_prompt(
             raw_text,
-            NUMERIC_RULES_REFINER_SYSTEM_PROMPT,
+            strict_local_system_prompt(numeric_rule_mode=True)
+            if self.window_edit_policy == "strict_local" else NUMERIC_RULES_REFINER_SYSTEM_PROMPT,
             entity_hints=entity_hints,
             strict_placeholders=strict_placeholders,
             strict_placeholder_prompt=NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT,

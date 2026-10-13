@@ -1,0 +1,40 @@
+{
+  "texts": 1000,
+  "tts": {
+    "available": true,
+    "url": "http://127.0.0.1:8011",
+    "health": {
+      "status": "ok",
+      "model_loaded": true,
+      "model": "Qwen3-TTS-12Hz-0.6B-CustomVoice",
+      "device": "cuda:0"
+    }
+  },
+  "asr": {
+    "available": true,
+    "url": "http://127.0.0.1:8766",
+    "health": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "tts_health_scope": "HTTP readiness only; first synthesis verifies actual model loading"
+}

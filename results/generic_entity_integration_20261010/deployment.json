@@ -1,0 +1,93 @@
+{
+  "services": {
+    "8051": {
+      "health": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "ready": {
+        "event": "ready",
+        "trace_id": "911e4a6b5f04452387b1ac79bbaa48a3",
+        "asr_chunk_seconds": 1.0,
+        "entity_asr_context_requested": false,
+        "entity_asr_context_applied": false,
+        "entity_asr_context_term_count": 0,
+        "entity_asr_context_digest": null,
+        "entity_audio_repair_requested": true,
+        "entity_audio_repair": {
+          "enabled": true,
+          "phase": "capturing",
+          "reason": null,
+          "entity_count": 7,
+          "candidate_count": 0,
+          "prompt_terms": [],
+          "checks": 0,
+          "replay_context_applied": false,
+          "applied": false,
+          "change_count": 0,
+          "changes": [],
+          "revision": 0,
+          "elapsed_seconds": 0.0
+        }
+      },
+      "new_mode_default_enabled": true
+    },
+    "8081": {
+      "health": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "ready": {
+        "event": "ready",
+        "trace_id": "4b611504c0594af482a0148a8769ebdb",
+        "asr_chunk_seconds": 1.0,
+        "entity_asr_context_requested": false,
+        "entity_asr_context_applied": false,
+        "entity_asr_context_term_count": 0,
+        "entity_asr_context_digest": null,
+        "entity_audio_repair_requested": true,
+        "entity_audio_repair": {
+          "enabled": true,
+          "phase": "capturing",
+          "reason": null,
+          "entity_count": 7,
+          "candidate_count": 0,
+          "prompt_terms": [],
+          "checks": 0,
+          "replay_context_applied": false,
+          "applied": false,
+          "change_count": 0,
+          "changes": [],
+          "revision": 0,
+          "elapsed_seconds": 0.0
+        }
+      },
+      "new_mode_default_enabled": true
+    }
+  },
+  "formal_dictionary_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+  "formal_dictionary_modified": false,
+  "production_feature_deployed": true
+}

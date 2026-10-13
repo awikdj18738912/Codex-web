@@ -1,0 +1,53 @@
+{
+  "seed": "entity-confirmation-holdout-20261011-v1",
+  "pre_ASR_selection": true,
+  "fixed_library_size": 1346,
+  "pools": {
+    "negative": 4139,
+    "历史教育": 114,
+    "体育文化": 48,
+    "医疗健康": 11,
+    "工业交通": 47,
+    "农业生态": 6,
+    "自然科学化学": 13,
+    "金融经济": 8,
+    "科技计算机通信": 13,
+    "法律政策": 9
+  },
+  "quotas": {
+    "体育文化": 12,
+    "农业生态": 12,
+    "医疗健康": 12,
+    "历史教育": 12,
+    "工业交通": 12,
+    "法律政策": 12,
+    "科技计算机通信": 12,
+    "自然科学化学": 12,
+    "金融经济": 12,
+    "新闻人物组织地理": 60,
+    "negative": 40
+  },
+  "accepted": {
+    "体育文化": 12,
+    "农业生态": 6,
+    "医疗健康": 11,
+    "历史教育": 12,
+    "工业交通": 12,
+    "法律政策": 8,
+    "科技计算机通信": 12,
+    "自然科学化学": 12,
+    "金融经济": 8,
+    "新闻人物组织地理": 0,
+    "negative": 40
+  },
+  "samples": 133,
+  "cohorts": {
+    "positive": 93,
+    "negative": 40
+  },
+  "limitations": [
+    "Reference literal annotations do not establish semantic NER identity.",
+    "Fixed known-word library, same source corpora; not speaker or model-pretraining independence.",
+    "Only AISHELL and Common Voice used; quotas may have source availability shortfalls."
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "input_version": "contextual_char_gap_v1",
+  "labels": [
+    "KEEP",
+    "DELETE_CANDIDATE",
+    "CORRECTION_CANDIDATE"
+  ],
+  "max_tokens": 512,
+  "threshold": 0.0,
+  "weights_sha256": "8ca1bcdc199bdbfcea44d739965e951e2d56fdb3e515734238185ff22b97e3ca",
+  "parameters": 44979461,
+  "student_layers": 4,
+  "hidden_size": 768,
+  "best_epoch": 1,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.424778332165865,
+      "validation_loss": 0.17382376399394628,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 3.3645209497772157
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.08890196356307409,
+      "validation_loss": 0.34451698330608577,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 6.66647310461849
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.030150480916950603,
+      "validation_loss": 0.2780372946112006,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 9.727922942955047
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.011578048325836813,
+      "validation_loss": 0.25031155300838454,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 12.751647743862122
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.007632477024438096,
+      "validation_loss": 0.28740960460256887,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 15.773583349771798
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.008220519244170997,
+      "validation_loss": 0.2680696718864613,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 18.791839786805212
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.005369680988591876,
+      "validation_loss": 0.23734737550084656,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 21.814461011905223
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.004576886408316743,
+      "validation_loss": 0.26134111933611537,
+      "validation_threshold": 0.0,
+      "keep_false_positives": 138,
+      "location_precision": 0.055062166962699825,
+      "elapsed_seconds": 24.8383858948946
+    }
+  ],
+  "calibrated": false,
+  "online_enabled": false,
+  "production_skip_allowed": false,
+  "insertion_detection_supported": false,
+  "teacher_weights_sha256": "da204c021e02020b6e35367bf1b573b4f636c50dc882b1b52899528ebe02483c",
+  "derivation": "teacher embeddings + selected layers + heads, then supervised/soft-target distillation",
+  "teacher_layer_indices": [
+    0,
+    3,
+    7,
+    11
+  ],
+  "teacher_encoder_provenance": {
+    "model_id": "hfl/chinese-roberta-wwm-ext",
+    "revision": "5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "path": "/home/aim0/.cache/huggingface/hub/models--hfl--chinese-roberta-wwm-ext/snapshots/5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "source_url": "https://huggingface.co/hfl/chinese-roberta-wwm-ext",
+    "license": "apache-2.0",
+    "architecture": {
+      "architectures": [
+        "BertForMaskedLM"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "bos_token_id": 0,
+      "directionality": "bidi",
+      "eos_token_id": 2,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 768,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "output_past": true,
+      "pad_token_id": 0,
+      "pooler_fc_size": 768,
+      "pooler_num_attention_heads": 12,
+      "pooler_num_fc_layers": 3,
+      "pooler_size_per_head": 128,
+      "pooler_type": "first_token_transform",
+      "type_vocab_size": 2,
+      "vocab_size": 21128
+    },
+    "files_sha256": {
+      "config.json": "61609babfbada201546297d62f7f3a642d8fd2f1cefec5571c6cbd1e2e2132d9",
+      "pytorch_model.bin": "1ded5a5a1c7841dee6e47942f7b5bf2bcf6f73ff19197580f852f7f638f86b35",
+      "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c",
+      "tokenizer.json": "53ff61207898738bbdc000f38abebef01041c8d23b6270c11855fc692d0a3ad6",
+      "tokenizer_config.json": "61785aeaba176fba6d6489f27dccfd2ddee6aee2af0e590451cab7d8b57e0874"
+    },
+    "previous_small_encoder": "models/entity_ranker/encoder",
+    "previous_small_encoder_upstream_verified": false
+  },
+  "full_four_layer_pretraining_not_claimed": true,
+  "human_audio_gold": 0,
+  "training_seconds": 25.220004834700376
+}

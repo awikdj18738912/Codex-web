@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "threshold": 0.63,
+  "method": "Skip the entire session replay unless the maximum retrieval_score among selected candidates is at least 0.63. Candidates and prompt terms for sessions that pass remain unchanged.",
+  "old_candidate_phase": {
+    "source": "results/generic_entity_audio_20261010/plan.json + outputs_neighbor.jsonl",
+    "sample_count": 344,
+    "baseline_replay_opportunities": 170,
+    "replays_skipped": 84,
+    "saved_fraction": 0.49411764705882355,
+    "successful_samples": 11,
+    "successful_changes": 13,
+    "lost_successful_samples": 0,
+    "lost_successful_changes": 0,
+    "lost_success_cases": [],
+    "minimum_successful_max_candidate_score": 0.635
+  },
+  "new_source_regression": {
+    "source": "128 comparisons; candidates recomputed with GenericEntitySelector from frozen source entity DBs and raw_initial transcript; cohort did not affect threshold selection",
+    "sample_count": 128,
+    "cohorts": {
+      "lexicon_absent": {
+        "sample_count": 32,
+        "baseline_replay_opportunities": 23,
+        "replays_skipped": 15,
+        "saved_fraction": 0.6521739130434783,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      "lexicon_present": {
+        "sample_count": 96,
+        "baseline_replay_opportunities": 67,
+        "replays_skipped": 30,
+        "saved_fraction": 0.44776119402985076,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      }
+    },
+    "aggregate": {
+      "baseline_replay_opportunities": 90,
+      "replays_skipped": 45,
+      "saved_fraction": 0.5,
+      "lost_successful_samples": 0,
+      "lost_successful_changes": 0
+    }
+  },
+  "weak_candidate_example": {
+    "source": "old plan sample, real short sentence; one distinct selected glossary term",
+    "id": "er_faq_observation_005",
+    "sentence": "还有什么检查？",
+    "term": "检查报告",
+    "observed_candidate_span": "检查",
+    "span_start": 4,
+    "span_end": 6,
+    "phonetic_score": 0.6,
+    "character_score": 0.5,
+    "length_score": 0.5,
+    "retrieval_score": 0.58,
+    "candidate_count": 1,
+    "distinct_candidate_terms": 1,
+    "boundary_issue": "short_chinese_span_requires_alias",
+    "changes_in_saved_replay": 0
+  },
+  "selection_rule": "Candidate phase uses only the old 344 sample outcomes. New 128 sample outcomes are reported as regression evaluation and did not influence the threshold."
+}

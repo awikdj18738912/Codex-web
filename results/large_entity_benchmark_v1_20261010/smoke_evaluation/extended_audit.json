@@ -1,0 +1,567 @@
+{
+  "topic_macro_means": {
+    "baseline": {
+      "topic_mean_CER": 0.026561403508771928,
+      "topic_mean_entity_recall": 1.0
+    },
+    "entity_rules": {
+      "topic_mean_CER": 0.026561403508771928,
+      "topic_mean_entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "topic_mean_CER": 0.026561403508771928,
+      "topic_mean_entity_recall": 1.0
+    }
+  },
+  "transitions": {
+    "baseline_to_entity_rules": {
+      "samples": 24,
+      "changed_samples": 0,
+      "improved_samples": 0,
+      "regressed_samples": 0,
+      "equal_error_changed_samples": 0,
+      "error_delta": 0,
+      "new_absent_surface_samples": 0,
+      "new_absent_surface_mentions": 0,
+      "negative_changed_samples": 0,
+      "negative_improved_samples": 0,
+      "negative_regressed_samples": 0,
+      "negative_new_absent_surface_mentions": 0
+    },
+    "entity_rules_to_entity_audio_repair": {
+      "samples": 24,
+      "changed_samples": 0,
+      "improved_samples": 0,
+      "regressed_samples": 0,
+      "equal_error_changed_samples": 0,
+      "error_delta": 0,
+      "new_absent_surface_samples": 0,
+      "new_absent_surface_mentions": 0,
+      "negative_changed_samples": 0,
+      "negative_improved_samples": 0,
+      "negative_regressed_samples": 0,
+      "negative_new_absent_surface_mentions": 0
+    }
+  },
+  "target_transitions": {
+    "baseline_to_entity_rules": {
+      "gained_mentions": 0,
+      "lost_mentions": 0,
+      "gained_samples": 0,
+      "lost_samples": 0
+    },
+    "entity_rules_to_entity_audio_repair": {
+      "gained_mentions": 0,
+      "lost_mentions": 0,
+      "gained_samples": 0,
+      "lost_samples": 0
+    }
+  },
+  "per_entity_type": {
+    "TERM": {
+      "baseline": {
+        "expected_mentions": 20,
+        "hits": 20,
+        "entity_recall": 1.0
+      },
+      "entity_rules": {
+        "expected_mentions": 20,
+        "hits": 20,
+        "entity_recall": 1.0
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 20,
+        "hits": 20,
+        "entity_recall": 1.0
+      }
+    },
+    "PERSON": {
+      "baseline": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      },
+      "entity_rules": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      }
+    },
+    "ORG": {
+      "baseline": {
+        "expected_mentions": 3,
+        "hits": 3,
+        "entity_recall": 1.0
+      },
+      "entity_rules": {
+        "expected_mentions": 3,
+        "hits": 3,
+        "entity_recall": 1.0
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 3,
+        "hits": 3,
+        "entity_recall": 1.0
+      }
+    },
+    "LOC": {
+      "baseline": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      },
+      "entity_rules": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      },
+      "entity_audio_repair": {
+        "expected_mentions": 1,
+        "hits": 1,
+        "entity_recall": 1.0
+      }
+    }
+  },
+  "negative_controls": {
+    "baseline": {
+      "samples": 3,
+      "reference_chars": 40,
+      "errors": 0,
+      "CER": 0.0
+    },
+    "entity_rules": {
+      "samples": 3,
+      "reference_chars": 40,
+      "errors": 0,
+      "CER": 0.0
+    },
+    "entity_audio_repair": {
+      "samples": 3,
+      "reference_chars": 40,
+      "errors": 0,
+      "CER": 0.0
+    }
+  },
+  "raw_audio_repair": {
+    "samples": 24,
+    "checks": 19,
+    "applied_samples": 0,
+    "changes": 0,
+    "canonical_absent_changes": 0,
+    "canonical_absent_samples": 0,
+    "raw_improved_samples": 0,
+    "raw_regressed_samples": 0,
+    "raw_equal_error_changed_samples": 0
+  },
+  "raw_asr_summary": {
+    "initial": {
+      "samples": 24,
+      "expected_mentions": 25,
+      "hits": 25,
+      "errors": 11,
+      "reference_chars": 470,
+      "CER": 0.023404255319148935,
+      "entity_recall": 1.0
+    },
+    "production_final": {
+      "samples": 24,
+      "expected_mentions": 25,
+      "hits": 25,
+      "errors": 11,
+      "reference_chars": 470,
+      "CER": 0.023404255319148935,
+      "entity_recall": 1.0
+    }
+  },
+  "downstream_target_transitions": {
+    "baseline": {
+      "gained_mentions": 0,
+      "lost_mentions": 0,
+      "gained_samples": 0,
+      "lost_samples": 0
+    },
+    "entity_rules": {
+      "gained_mentions": 0,
+      "lost_mentions": 0,
+      "gained_samples": 0,
+      "lost_samples": 0
+    },
+    "entity_audio_repair": {
+      "gained_mentions": 0,
+      "lost_mentions": 0,
+      "gained_samples": 0,
+      "lost_samples": 0
+    }
+  },
+  "per_topic_transitions": {
+    "医疗健康": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "金融经济": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "体育文化": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "工业交通": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "法律政策": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "新闻人物组织地理": {
+      "baseline_to_entity_rules": {
+        "samples": 6,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 6,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "农业生态": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "历史教育": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "自然科学化学": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    },
+    "科技计算机通信": {
+      "baseline_to_entity_rules": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      },
+      "entity_rules_to_entity_audio_repair": {
+        "samples": 2,
+        "changed_samples": 0,
+        "improved_samples": 0,
+        "regressed_samples": 0,
+        "equal_error_changed_samples": 0,
+        "error_delta": 0,
+        "new_absent_surface_samples": 0,
+        "new_absent_surface_mentions": 0
+      }
+    }
+  },
+  "refiner_calls": {
+    "baseline": {
+      "audited_calls": 3,
+      "sessions": 2,
+      "declared_call_count": 4,
+      "declared_count_mismatch": 1
+    },
+    "entity_rules": {
+      "audited_calls": 3,
+      "sessions": 2,
+      "declared_call_count": 4,
+      "declared_count_mismatch": 1
+    },
+    "entity_audio_repair": {
+      "audited_calls": 3,
+      "sessions": 2,
+      "declared_call_count": 4,
+      "declared_count_mismatch": 1
+    }
+  },
+  "actual_model_call_timing": {
+    "baseline": {
+      "count": 3,
+      "total_seconds": 1.2027028100565076,
+      "mean_seconds": 0.40090093668550253,
+      "p50_seconds": 0.2765805399976671,
+      "p95_seconds": 0.7014968036673963
+    },
+    "entity_rules": {
+      "count": 3,
+      "total_seconds": 1.0845913630910218,
+      "mean_seconds": 0.3615304543636739,
+      "p50_seconds": 0.2801125249825418,
+      "p95_seconds": 0.5314449029974639
+    },
+    "entity_audio_repair": {
+      "count": 3,
+      "total_seconds": 1.125718042254448,
+      "mean_seconds": 0.3752393474181493,
+      "p50_seconds": 0.27601795410737395,
+      "p95_seconds": 0.582844550255686
+    }
+  },
+  "serial_web_replay_timing": {
+    "baseline": {
+      "count": 24,
+      "total_seconds": 13.763308361172676,
+      "mean_seconds": 0.5734711817155281,
+      "p50_seconds": 1.0146333759184927,
+      "p95_seconds": 1.0373767260462046
+    },
+    "entity_rules": {
+      "count": 24,
+      "total_seconds": 21.585077459923923,
+      "mean_seconds": 0.8993782274968302,
+      "p50_seconds": 1.2203975496813655,
+      "p95_seconds": 1.5847330871038139
+    },
+    "entity_audio_repair": {
+      "count": 24,
+      "total_seconds": 24.94924545986578,
+      "mean_seconds": 1.0395518941610742,
+      "p50_seconds": 1.2818215070292354,
+      "p95_seconds": 1.3578284159302711
+    }
+  },
+  "integrity": {
+    "audio_rows": 24,
+    "unique_audio_rows": 24,
+    "web_rows": 72,
+    "unique_web_rows": 72,
+    "complete_pairs": true,
+    "formal_database_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+    "formal_database_expected_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+    "formal_database_unchanged": true,
+    "dataset_manifest_unchanged": true,
+    "library_unchanged": true,
+    "snapshot_unchanged": true,
+    "services_health": {
+      "8051": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "8081": {
+        "ok": true,
+        "window_edit_policy": "compat",
+        "strict_local_protocol_version": null,
+        "entity_db": true,
+        "entity_asr_context_enabled": false,
+        "entity_audio_repair_enabled": true,
+        "refinement_gate_mode": "tri_state",
+        "asr_api_style": "current",
+        "numeric_normalization_enabled": true,
+        "numeric_backend": "zh-itn",
+        "zh_itn_enabled": true,
+        "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+        "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+      },
+      "8766": {
+        "api_styles": [
+          "current",
+          "legacy_v1"
+        ],
+        "asr_send_chunk_seconds": 0.5,
+        "confidence_calibrated": false,
+        "confidence_logprobs": 5,
+        "context_supported": true,
+        "max_context_chars": 2048,
+        "mode": "streaming",
+        "ok": true,
+        "segmentation_mode": "vad_finalize",
+        "silence_rms_threshold": 0.002,
+        "vad": "silero",
+        "vad_min_silence": 0.7,
+        "vad_min_speech": 0.25,
+        "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+        "vad_preroll": 0.7,
+        "vad_tail_pad": 1.0,
+        "vad_threshold": 0.5
+      }
+    },
+    "all_services_healthy": true,
+    "audit_script_sha256": "c7418d9efc20e306d4adb8b0854a274a41e4edfb6e7062aba793857bb2d9543f",
+    "evaluation_script_sha256": "da2ef4d12887e4457a612306a2cb8c3ae154f91ffee740d8ca2aa05d09790de6"
+  },
+  "limitations": [
+    "New absent dictionary surfaces are a literal insertion proxy, not semantic false-positive NER; source annotations may be incomplete.",
+    "Canonical absent changes compare against supplied normalized references; no per-item human listening or identity linking is claimed.",
+    "CER regressions are reference agreement regressions and are not adjudicated acoustic errors.",
+    "ASR collection used four concurrent workers; its request elapsed time is not a single-client latency benchmark.",
+    "Serial Web timings replay fixed actual ASR responses and exclude network ASR inference; model-call timings describe actual GPU calls.",
+    "Topic sizes overlap and are highly imbalanced; the news cohort must be assessed separately."
+  ]
+}

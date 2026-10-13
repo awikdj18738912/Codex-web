@@ -1,0 +1,145 @@
+{
+  "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频3.mp3",
+  "audio_sha256": "4e144ecee8d29a026688624eef281684f5df6b7bee48c4cf7a393265c349506d",
+  "pcm_sha256": "bf17e9639cd711905dd0e84cf8c2b6bb8445aaf9f16de8a257d84f384664ac01",
+  "duration_seconds": 322.6876875,
+  "entity_db_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+  "entity_definitions": [
+    {
+      "id": 1,
+      "canonical": "AgenticASR",
+      "type": "PROJECT",
+      "policy": "normalize",
+      "aliases": [
+        "Agentic SR"
+      ]
+    },
+    {
+      "id": 7,
+      "canonical": "鬼灵门",
+      "type": "TERM",
+      "policy": "normalize",
+      "aliases": []
+    },
+    {
+      "id": 8,
+      "canonical": "乌东德",
+      "type": "TERM",
+      "policy": "normalize",
+      "aliases": [
+        "乌冬得"
+      ]
+    },
+    {
+      "id": 9,
+      "canonical": "厉飞宇",
+      "type": "TERM",
+      "policy": "normalize",
+      "aliases": []
+    },
+    {
+      "id": 10,
+      "canonical": "不业之杖",
+      "type": "TERM",
+      "policy": "normalize",
+      "aliases": []
+    },
+    {
+      "id": 11,
+      "canonical": "误工",
+      "type": "TERM",
+      "policy": "normalize",
+      "aliases": []
+    }
+  ],
+  "prompt_terms": [
+    "AgenticASR",
+    "鬼灵门",
+    "乌东德",
+    "厉飞宇",
+    "不业之杖"
+  ],
+  "settings": {
+    "mode": "streaming",
+    "language": "Chinese",
+    "asr_chunk_seconds": 2,
+    "transport_seconds": 1
+  },
+  "arms": {
+    "no_library": {
+      "label": "不使用登记词库",
+      "domain": "general",
+      "entity_asr_context": 0,
+      "entity_audio_repair": 0
+    },
+    "post_only": {
+      "label": "仅实体替换（含新正文确认）",
+      "domain": "general",
+      "entity_asr_context": 0,
+      "entity_audio_repair": 0
+    },
+    "context": {
+      "label": "词库辅助识别＋实体替换",
+      "domain": "general",
+      "entity_asr_context": 1,
+      "entity_audio_repair": 0
+    },
+    "audio": {
+      "label": "实体原音复核＋实体替换",
+      "domain": "general",
+      "entity_asr_context": 0,
+      "entity_audio_repair": 1
+    }
+  },
+  "orders": [
+    [
+      "no_library",
+      "post_only",
+      "context",
+      "audio"
+    ],
+    [
+      "audio",
+      "context",
+      "post_only",
+      "no_library"
+    ],
+    [
+      "post_only",
+      "no_library",
+      "audio",
+      "context"
+    ]
+  ],
+  "health": {
+    "ok": true,
+    "window_edit_policy": "compat",
+    "strict_local_protocol_version": null,
+    "entity_db": true,
+    "entity_asr_context_enabled": false,
+    "entity_audio_repair_enabled": true,
+    "refinement_gate_mode": "tri_state",
+    "asr_api_style": "current",
+    "learned_window_gate": {
+      "mode": "on",
+      "ready": true,
+      "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+      "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+      "threshold": 0.8,
+      "load_error": null,
+      "scored_windows": 18,
+      "would_skip_windows": 8,
+      "vetoed_windows": 8,
+      "scoring_errors": 0,
+      "scope": "window_refine_only",
+      "calibrated": false
+    },
+    "numeric_normalization_enabled": true,
+    "numeric_backend": "zh-itn",
+    "zh_itn_enabled": true,
+    "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+    "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+  },
+  "evaluation_target": "User-configured canonical 厉飞宇 at 在下厉飞羽 source occurrence",
+  "scope": "One user-selected recording; no full gold transcript, no CER or population accuracy claim. Same PCM for every new real Web/ASR/Refiner session. Baseline temporary service started without entity database; production database untouched."
+}

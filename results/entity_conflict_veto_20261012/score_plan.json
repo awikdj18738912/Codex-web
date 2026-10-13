@@ -1,0 +1,23 @@
+{
+  "cases": 64,
+  "development_only": true,
+  "target_reference_at_inference": false,
+  "inputs_sha256": "f92b9bd2b15f3d2818fa246b90cdd2b7649919338a790e192bd9fb79ce5473d4",
+  "background_sha256": "91cc69a182c9b943bbebe60cfbbc6cc8747299336af51a2527ab3b65c028dc72",
+  "entity_module_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "prompt": "你是ASR文本纠错助手。保留原意，最小修改，核对实体字形。不要总结、扩写或解释。只返回转录文本。",
+  "conditions": [
+    "context_only",
+    "official_background"
+  ],
+  "thresholds": [
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "rule": "Veto only if target mean log probability minus source mean log probability is below -threshold under BOTH input hypotheses. No new replacements.",
+  "acceptance": "No target hit loss, no total CER increase, at least one fewer reference-absent replacement. Explore on development only."
+}

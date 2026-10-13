@@ -1,0 +1,208 @@
+{
+  "by_source": {
+    "human_read_speech": {
+      "arms": {
+        "current": {
+          "sessions": 48,
+          "clips": 24,
+          "normalized_reference_exact": 40,
+          "normalized_micro_cer": 0.020771513353115726,
+          "lexical_micro_cer": 0.07602339181286549,
+          "refiner_calls": 2,
+          "plausibility_calls": 0,
+          "gate_calls": 0,
+          "gate_ms": 0,
+          "vetoes": 0,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.16847393120639031,
+              "p95": 0.22982367130666947,
+              "max": 0.2615682430900632
+            },
+            "finish_tail_seconds": {
+              "p50": 0.1676361185964197,
+              "p95": 0.22897323847282677,
+              "max": 0.2605113349854946
+            },
+            "send_overrun_seconds": {
+              "p50": 0.0008929791115224184,
+              "p95": 0.0012827949643133606,
+              "max": 0.00305653801932948
+            },
+            "backpressure_seconds": {
+              "p50": 2.799415960907936e-05,
+              "p95": 4.929178394377231e-05,
+              "max": 0.0009646518155932426
+            }
+          }
+        },
+        "learned": {
+          "sessions": 48,
+          "clips": 24,
+          "normalized_reference_exact": 40,
+          "normalized_micro_cer": 0.020771513353115726,
+          "lexical_micro_cer": 0.07602339181286549,
+          "refiner_calls": 2,
+          "plausibility_calls": 0,
+          "gate_calls": 0,
+          "gate_ms": 0,
+          "vetoes": 0,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.1654551860969513,
+              "p95": 0.2592922096930444,
+              "max": 0.2902313727363941
+            },
+            "finish_tail_seconds": {
+              "p50": 0.16456065536476672,
+              "p95": 0.2585844045272097,
+              "max": 0.28942042076960206
+            },
+            "send_overrun_seconds": {
+              "p50": 0.000881311409175467,
+              "p95": 0.0013486594887450298,
+              "max": 0.0015194756202401294
+            },
+            "backpressure_seconds": {
+              "p50": 2.9009534046053886e-05,
+              "p95": 5.861897952854633e-05,
+              "max": 6.16488978266716e-05
+            }
+          }
+        }
+      },
+      "paired": {
+        "pairs": 48,
+        "raw_asr_exact_equal": 47,
+        "asr_hypothesis_history_equal": 43,
+        "final_exact_equal": 47,
+        "learned_worse": 0,
+        "learned_better": 0
+      },
+      "paired_audio_clock_lag": {
+        "mean_difference_seconds": 0.00894466862276507,
+        "bootstrap95_seconds": [
+          -0.003934589610920132,
+          0.02060601585277861
+        ],
+        "blocks": 24,
+        "unit": "template_family_or_human_speaker"
+      }
+    },
+    "synthetic_tts": {
+      "arms": {
+        "current": {
+          "sessions": 48,
+          "clips": 24,
+          "normalized_reference_exact": 36,
+          "normalized_micro_cer": 0.021844660194174758,
+          "lexical_micro_cer": 0.021844660194174758,
+          "refiner_calls": 40,
+          "plausibility_calls": 2,
+          "gate_calls": 0,
+          "gate_ms": 0,
+          "vetoes": 0,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.33315253949724166,
+              "p95": 0.5841388875348492,
+              "max": 0.6168489168584346
+            },
+            "finish_tail_seconds": {
+              "p50": 0.33257956616580486,
+              "p95": 0.5831815875601023,
+              "max": 0.6161334337666631
+            },
+            "send_overrun_seconds": {
+              "p50": 0.000814139321446472,
+              "p95": 0.0011379322949798265,
+              "max": 0.0015411469526585009
+            },
+            "backpressure_seconds": {
+              "p50": 3.675464540719986e-05,
+              "p95": 8.752963040024041e-05,
+              "max": 0.00012623053044080734
+            }
+          }
+        },
+        "learned": {
+          "sessions": 48,
+          "clips": 24,
+          "normalized_reference_exact": 36,
+          "normalized_micro_cer": 0.021844660194174758,
+          "lexical_micro_cer": 0.021844660194174758,
+          "refiner_calls": 32,
+          "plausibility_calls": 2,
+          "gate_calls": 24,
+          "gate_ms": 34.995412454009056,
+          "vetoes": 10,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.21718815054744467,
+              "p95": 0.5550196853186936,
+              "max": 0.5985022571496668
+            },
+            "finish_tail_seconds": {
+              "p50": 0.21618330641649663,
+              "p95": 0.5543107232777402,
+              "max": 0.5967513439245522
+            },
+            "send_overrun_seconds": {
+              "p50": 0.0009720294456927459,
+              "p95": 0.0015926944715903165,
+              "max": 0.0017509132251145587
+            },
+            "backpressure_seconds": {
+              "p50": 3.6424724385142326e-05,
+              "p95": 7.844956126064062e-05,
+              "max": 0.00010973913595080376
+            }
+          }
+        }
+      },
+      "paired": {
+        "pairs": 48,
+        "raw_asr_exact_equal": 48,
+        "asr_hypothesis_history_equal": 47,
+        "final_exact_equal": 48,
+        "learned_worse": 0,
+        "learned_better": 0
+      },
+      "paired_audio_clock_lag": {
+        "mean_difference_seconds": -0.09138236492354837,
+        "bootstrap95_seconds": [
+          -0.186053251114855,
+          -0.008315383198431728
+        ],
+        "blocks": 12,
+        "unit": "template_family_or_human_speaker"
+      }
+    }
+  },
+  "differences": [
+    {
+      "kind": "human_read_speech",
+      "seed_id": "aishell_dev_holdout:BAC009S0735W0152",
+      "repetition": 0,
+      "raw_equal": false,
+      "history_equal": false,
+      "current": "杨岐一带二手电梯楼均价约4.2万元。",
+      "learned": "杨棋一带二手电梯楼均价约4.2万元。",
+      "current_distance": 1,
+      "learned_distance": 1
+    }
+  ],
+  "sessions": 192,
+  "clips": 48,
+  "repetitions": 2,
+  "failures": 0,
+  "complete": true,
+  "threshold": 0.8,
+  "no_test_tuning": true,
+  "production_enabled": false,
+  "ASR_pretraining_overlap_unknown": true
+}

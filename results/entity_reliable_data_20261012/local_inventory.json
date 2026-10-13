@@ -1,0 +1,154 @@
+{
+  "scope": {
+    "local_root": "/home/aim0/data/datasets/ASR",
+    "project_source_metadata_only": true,
+    "network_or_downloads": false,
+    "audio_files_enumerated": false,
+    "new_181_references_read": false,
+    "quality_policy": "Dataset names and presence of a text field are not evidence that transcripts were manually produced."
+  },
+  "local_datasets": [
+    {
+      "name": "AISHELL-1",
+      "paths": [
+        "/home/aim0/data/datasets/ASR/aishell1",
+        "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/manifests"
+      ],
+      "local_status": "present",
+      "formats": ["compressed WAV archives (tar.gz)", "JSONL manifests", "official transcript file referenced by project source stats"],
+      "approx_scale": {
+        "manifest_rows": {"train": 120098, "dev": 14326, "test": 7176},
+        "directory_disk_usage": "about 49 GB"
+      },
+      "project_overlap": {
+        "large_benchmark_v1_20261010_rows": 2131,
+        "prior_20261011_holdout_manifests": "included among 400 entries sourced only from AISHELL and Common Voice",
+        "unseen_181": "summary records deduplication against 2,410 benchmark samples, the prior 400, and 328 historical AISHELL IDs"
+      },
+      "transcription_evidence": "Project staging metadata names the AISHELL-1 official transcript and official AISHELL-NER annotation source; it reports 6,848 aligned test recordings and zero text alignment mismatches. The available local metadata does not establish whether the original transcript itself was handwritten/manual. This is comparatively strong provenance and exact-span evidence, but not proof of manual transcription or audio correctness for every example.",
+      "quality_notes": ["Test audio has already been sampled heavily; deduplicate by source ID and audio hash.", "Unused train/dev material from the same corpus remains a possible source after exact deduplication and split-aware selection."]
+    },
+    {
+      "name": "Mozilla Common Voice Chinese (zh-CN), corpus 26.0",
+      "paths": ["/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN"],
+      "local_status": "present",
+      "formats": ["MP3 clips", "TSV metadata and transcripts"],
+      "approx_scale": {
+        "clip_files": 852010,
+        "corpus_hours_per_local_readme": 1074.32,
+        "validated_clips_per_local_readme": 190017,
+        "train_dev_test_rows": {"train": 29699, "dev": 10665, "test": 10665},
+        "directory_disk_usage": "about 25 GB"
+      },
+      "project_overlap": {
+        "large_benchmark_v1_20261010_test_rows": 192,
+        "prior_professional_staging_rows": 148,
+        "prior_20261011_holdout_manifests": "included among 400 entries sourced only from AISHELL and Common Voice",
+        "unseen_181": "summary records exclusion of 112 Common Voice source IDs and 112 matching references"
+      },
+      "transcription_evidence": "The local README documents scripted speech and human up-vote/down-vote validation of whether clips match the sentence. It is evidence of community audio-text checking, not proof that transcripts were transcribed from unconstrained speech or that entity spans were human-annotated.",
+      "quality_notes": ["The validated split has the clearest local human audio-text review evidence among the broad local corpora.", "Many prompts derive from a text corpus; evaluate read-speech versus conversational-audio fit separately.", "Many unused clips and splits remain after ID/hash deduplication; prior use of some test examples does not eliminate the corpus."]
+    },
+    {
+      "name": "WenetSpeech TEST_NET",
+      "paths": ["/home/aim0/data/datasets/ASR/wenetspeech_test_net"],
+      "local_status": "present",
+      "formats": ["JSONL segment manifest", "WAV segment files"],
+      "approx_scale": {"manifest_rows": 24774, "wav_segments": 24774, "directory_disk_usage": "about 2.6 GB"},
+      "project_overlap": {"large_benchmark_v1_20261010_rows": 25, "medical_staging_rows": 26},
+      "transcription_evidence": "Local manifests contain transcript/audio metadata, but no local annotation-process documentation was found that establishes human transcription or per-clip human verification.",
+      "quality_notes": ["The 25 benchmark and 26 medical-staging rows are not grounds to discard the other source segments.", "Project staging metadata says selected clips had path/duration/hash checks but no per-item human listening audit."]
+    },
+    {
+      "name": "WenetSpeech manifests (non-TEST_NET)",
+      "paths": ["/home/aim0/data/datasets/ASR/wenetspeech/manifests", "/home/aim0/data/datasets/ASR/wenetspeech/manifests_m"],
+      "local_status": "manifests present; corresponding audio availability not established by this inventory",
+      "formats": ["JSONL manifests"],
+      "approx_scale": {"dev_manifest_rows": 13825, "train_s_manifest_rows": 151599, "train_m_manifest_file_size": "about 346 MB", "all_manifest_directory_disk_usage": "about 705 MB"},
+      "project_overlap": {"prior_metadata_mentions": "WenetSpeech TEST_NET only; no exact overlap count asserted for these manifests"},
+      "transcription_evidence": "No local manifest documentation establishing manual transcript production was found.",
+      "quality_notes": ["A manifest alone is not a usable new audio source if referenced audio is absent.", "Check referenced file existence and exact audio hashes before selecting records."]
+    },
+    {
+      "name": "FLEURS zh-CN test",
+      "paths": ["/home/aim0/data/datasets/ASR/fleurs/zh-CN_test"],
+      "local_status": "present",
+      "formats": ["Hugging Face Arrow shards with audio and transcription columns"],
+      "approx_scale": {"zh_cn_test_examples_per_dataset_info": 945, "zh_cn_test_arrow_bytes": 708711744, "all_local_fleurs_disk_usage": "about 4.2 GB"},
+      "project_overlap": {"prior_source_metadata_matches": "none identified in the inspected 2,410 and 400 source summaries"},
+      "transcription_evidence": "Local metadata exposes transcription and raw-transcription fields but does not document original human transcription or verification procedures.",
+      "quality_notes": ["Potentially useful as a distinct source family, subject to audio review and transcript provenance checks.", "Only zh-CN test is a Chinese candidate; the wider local FLEURS tree includes other languages."]
+    },
+    {
+      "name": "MultiMed Chinese test shard",
+      "paths": ["/home/aim0/data/datasets/ASR/MultiMed/Chinese/test-00000-of-00001.parquet"],
+      "local_status": "present",
+      "formats": ["Parquet with bytes, path, text, and duration columns"],
+      "approx_scale": {"rows": 225, "file_bytes": 32964889, "directory_disk_usage": "about 32 MB"},
+      "project_overlap": {"prior_examples": "Project history includes a MultiMed test audio example; exact source-use total is not asserted here."},
+      "transcription_evidence": "No local annotation-process evidence was found in the inspected Parquet schema.",
+      "quality_notes": ["The user-provided prior project finding of an audio/reference mismatch is a material risk. Treat it as a record-level warning until the affected item is identified; do not generalize it to all 225 rows.", "Requires item-level listening and exact text/audio verification before any use as a reliable reference source."]
+    },
+    {
+      "name": "AASR-Bench",
+      "paths": ["/home/aim0/data/datasets/ASR/AASR-Bench"],
+      "local_status": "metadata and benchmark text present; README-described audio directory/files absent under this local dataset path",
+      "formats": ["JSONL benchmark records", "JSON rubric"],
+      "approx_scale": {"README_claimed_samples": 917, "README_claimed_referenced_wav": 917, "local_audio_files_found_under_dataset_path": 0, "directory_disk_usage": "about 5.5 MB"},
+      "project_overlap": {"prior_source_metadata_matches": "none identified in the inspected source summaries"},
+      "transcription_evidence": "The README describes oral and clean text fields but does not document who transcribed or validated them. It also states that license, audio provenance, annotation provenance, and privacy review remain unconfirmed.",
+      "quality_notes": ["The benchmark targets spoken-language cleanup, correction, formatting, filtering, and rephrasing; it is not documented as a plain verbatim ASR reference corpus.", "The local audio files described by the README were not found, so it is not currently ready for listening review."]
+    }
+  ],
+  "project_source_metadata": {
+    "large_benchmark_2410": {
+      "rows": 2410,
+      "source_rows": {"AISHELL-1 test / AISHELL-NER": 2131, "commonvoice_zh-CN_test": 192, "SpeechIO": 62, "wenetspeech_TEST_NET": 25}
+    },
+    "prior_20261011_holdout": {
+      "manifest_entries_across_holdout_holdout_news_holdout_v2": 400,
+      "unique_audio_ids_across_those_manifests": 400,
+      "source_families_per_manifest_limitations": ["AISHELL", "Common Voice"]
+    },
+    "unseen_181_metadata_only": {
+      "samples": 181,
+      "dedup_metadata": {"large_benchmark_samples": 2410, "prior_20261011_samples": 400, "aishell_historical_ids": 328, "commonvoice_source_ids": 112, "commonvoice_references": 112},
+      "references_jsonl_read": false
+    },
+    "professional_staging": {
+      "samples": 213,
+      "by_source": {"common_voice_zh-CN_test": 148, "SpeechIO": 65},
+      "speechio_identifiers_excluded_by_staging": 416,
+      "commonvoice_sample_ids_excluded_by_staging": 112
+    },
+    "medical_staging": {
+      "samples": 90,
+      "by_source": {"commonvoice_zh-CN_test": 64, "wenetspeech_TEST_NET": 26},
+      "reference_status": "literal matches against supplied standard references; not native speech NER labels",
+      "audio_review": "selected paths/durations/hashes checked; no per-item human listening audit"
+    },
+    "speechio_source_in_project": {
+      "path": "results/speechio_professional_entity_eval_20261010/source",
+      "format": "Parquet",
+      "shards": 6,
+      "rows": 12254,
+      "bytes": 2175084621,
+      "columns": ["segment_id", "speaker", "text", "duration", "bytes", "path", "original_full_path"],
+      "human_transcription_evidence": "No reviewed local source documentation establishes manual annotation or transcription. The Parquet contains text and audio path/size metadata; prior project staging validated selected source rows/audio, which is not transcript provenance."
+    }
+  },
+  "requested_corpus_presence_check": {
+    "SpeechIO": "source Parquet shards are present under project results, not as a corpus directory under /home/aim0/data/datasets/ASR",
+    "WenetSpeech_TEST_NET": "present under /home/aim0/data/datasets/ASR/wenetspeech_test_net",
+    "ASCEND": "not found under the inspected local ASR root",
+    "GigaSpeechMandarin": "not found under the inspected local ASR root",
+    "AISHELL4": "not found under the inspected local ASR root",
+    "KeSpeech": "not found under the inspected local ASR root"
+  },
+  "recommendation": "For stronger local evidence, prioritize unused AISHELL-1 records with official transcript/NER provenance and Common Voice validated clips with documented human match votes, after exact source-ID/audio-hash deduplication. Treat this as stronger provenance, not guaranteed audio truth. WenetSpeech TEST_NET and FLEURS are viable review candidates only after human listening. Hold MultiMed records with any known audio/reference mismatch pending item-level checks; AASR-Bench is not ready because its local audio files and annotation provenance are missing.",
+  "exclusions": [
+    "No 181 references or review-input references were opened; only unseen/summary.json was used for aggregate source and hash metadata.",
+    "No audio clip was played or enumerated by filename. Corpus sizes/counts came from manifests, readmes, and aggregate filesystem metadata.",
+    "No external sources were consulted; named datasets absent locally may exist elsewhere or be downloadable, which this inventory does not assess."
+  ]
+}

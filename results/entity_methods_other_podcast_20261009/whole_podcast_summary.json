@@ -1,0 +1,46 @@
+{
+  "baseline": {
+    "samples": 38,
+    "refiner_calls": 16,
+    "standard_forms": {
+      "HER2": 4,
+      "PD-L1": 0,
+      "CAR-T": 6,
+      "PD-1": 0,
+      "贝伐珠单抗": 0
+    }
+  },
+  "post_only": {
+    "samples": 38,
+    "refiner_calls": 25,
+    "standard_forms": {
+      "HER2": 15,
+      "PD-L1": 6,
+      "CAR-T": 6,
+      "PD-1": 6,
+      "贝伐珠单抗": 2
+    }
+  },
+  "context_only": {
+    "samples": 38,
+    "refiner_calls": 17,
+    "standard_forms": {
+      "HER2": 12,
+      "PD-L1": 1,
+      "CAR-T": 13,
+      "PD-1": 0,
+      "贝伐珠单抗": 0
+    }
+  },
+  "combined": {
+    "samples": 38,
+    "refiner_calls": 23,
+    "standard_forms": {
+      "HER2": 15,
+      "PD-L1": 7,
+      "CAR-T": 13,
+      "PD-1": 6,
+      "贝伐珠单抗": 2
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "count": 1000,
+  "seed": 20261009,
+  "texts_sha256": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+  "generator_sha256": "1cdee02c57bc21eb67179116a6a5a090654c75b3290ff739318ad0888cd32319",
+  "categories": {
+    "clean": 167,
+    "filler": 167,
+    "stutter": 167,
+    "meaningful_repeat": 167,
+    "protected_content": 166,
+    "syntax_boundary": 166
+  },
+  "synthetic_splits": {
+    "train": 628,
+    "test": 250,
+    "dev": 122
+  },
+  "unique_template_groups": 32,
+  "split_unit": "template_family_including_all_slot_values_and_audio_variants",
+  "reference_role": "unverified_synthesis_scripts_not_human_gold",
+  "intended_policy": "clean_filler_and_marked_stutter_preserve_emphasis_and_facts",
+  "scope": "controlled_synthetic_development_not_real_speech_acceptance"
+}

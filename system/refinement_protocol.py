@@ -6,6 +6,51 @@ run the refinement regression set before changing it.
 """
 
 import json
+from difflib import SequenceMatcher
+import unicodedata
+
+WINDOW_EDIT_POLICIES = ("compat", "strict_local")
+STRICT_LOCAL_PROTOCOL_VERSION = "v1-strict-local-window-edit"
+STRICT_LOCAL_MAX_SPAN_CHARS = 32
+STRICT_LOCAL_REASONS = frozenset({
+    "disfluency", "repetition", "self_correction", "boundary_punctuation",
+    "local_typo", "entity_correction",
+})
+_TERMINAL_BOUNDARY_CHARS = frozenset("，,、。！？!?；;：:…“”‘’\"'")
+
+
+def parse_window_edit_policy(value: str) -> str:
+    policy = str(value).strip().lower()
+    if policy not in WINDOW_EDIT_POLICIES:
+        raise ValueError(f"window_edit_policy must be one of {WINDOW_EDIT_POLICIES}")
+    return policy
+
+
+def strict_local_system_prompt(*, numeric_rule_mode: bool) -> str:
+    """Protocol for window editing; candidate KEEP/REMOVE review is independent."""
+    numeric = (
+        "数字格式已由上游规则确定，数字、单位、范围和写法都必须原样保留。"
+        if numeric_rule_mode else
+        "保留原有数字、日期、单位和范围；本轮不做数字格式改写。"
+    )
+    return (
+        "你是忠实的ASR局部纠错助手。优先保留正确内容，只修改有明确依据的异常口吃、"
+        "非必要填充词、局部错字或误断句。信息存疑时保留原文。"
+        "正常叠词、逐次表达、程度强调、对话应答不可按口吃删除，"
+        "例如‘一级一级’‘一件一件’‘很多很多’‘特别特别’应保留。"
+        "保留否定、人物指代、实体和条件关系；不得总结、润色、改写事实或补充内容。"
+        f"{numeric}"
+        "原样保留所有__ENTITY_NNN__标记。必须保留输入末尾的标点和引号，"
+        "不得把窗口末尾的逗号改成句号。"
+        "只返回一个严格JSON对象，不加Markdown、解释或<KEY>后缀。"
+        "对象必须且只能包含action、source、target、reason四个字符串字段。"
+        '无需修改时返回{"action":"keep","source":"","target":"","reason":"no_change"}。'
+        '需修改时返回{"action":"replace","source":"唯一原文片段","target":"修复片段","reason":"原因"}。'
+        f"source必须逐字且唯一地出现在输入中，source和target各不超过{STRICT_LOCAL_MAX_SPAN_CHARS}个字符。"
+        "一次只允许一个连续修改位置，不得把多处修改包进一个长补丁。"
+        "replace的reason只能是disfluency、repetition、self_correction、boundary_punctuation、"
+        "local_typo或entity_correction。无法满足要求时返回keep。"
+    )
 
 RUNTIME_PROTOCOL_VERSION = "v4-model-numeric-range-guard"
 
@@ -74,7 +119,7 @@ STRICT_PLACEHOLDER_PROMPT = (
 
 
 def apply_structured_patch(
-    source: str, response: str
+    source: str, response: str, *, policy: str = "compat"
 ) -> tuple[str, dict[str, object] | None, str | None]:
     """Apply a Refiner JSON patch without allowing free-form window rewrites.
 
@@ -84,9 +129,52 @@ def apply_structured_patch(
     JSON generation from being treated as a transcript.
     """
 
+    policy = parse_window_edit_policy(policy)
     candidate = response.strip()
     if not candidate:
         return source, None, "structured_patch_empty"
+    if policy == "strict_local":
+        payload, issue = _strict_local_payload(candidate)
+        if issue:
+            return source, payload, issue
+        if payload["action"] == "keep":
+            if payload["source"] or payload["target"] or payload["reason"] != "no_change":
+                return source, payload, "strict_local_invalid_keep"
+            return source, payload, None
+        if payload["action"] != "replace" or payload["reason"] not in STRICT_LOCAL_REASONS:
+            return source, payload, "strict_local_invalid_action_or_reason"
+        patch_source, patch_target = payload["source"], payload["target"]
+        if max(len(patch_source), len(patch_target)) > STRICT_LOCAL_MAX_SPAN_CHARS:
+            return source, payload, "strict_local_span_too_long"
+        if patch_source == patch_target:
+            return source, payload, "strict_local_noop_replace"
+        # str.count misses overlapping occurrences, e.g. 哈哈 in 哈哈哈.
+        starts = [i for i in range(len(source)) if patch_source and source.startswith(patch_source, i)]
+        if len(starts) != 1:
+            return source, payload, "structured_patch_source_not_unique"
+        # A syntactically local patch can still replace a short utterance
+        # wholesale (e.g. deleting all words and leaving only its final mark).
+        # Preserve a lexical anchor outside the edited span so the operation
+        # remains source-owned and the existing fallback keeps the full window.
+        meaningful_source = "".join(
+            char for char in source
+            if not char.isspace() and unicodedata.category(char)[0] not in {"P", "Z"}
+        )
+        meaningful_patch = "".join(
+            char for char in patch_source
+            if not char.isspace() and unicodedata.category(char)[0] not in {"P", "Z"}
+        )
+        if meaningful_source and meaningful_patch == meaningful_source:
+            return source, payload, "strict_local_edit_consumes_entire_window"
+        edits = [tag for tag, *_ in SequenceMatcher(None, patch_source, patch_target, autojunk=False).get_opcodes()
+                 if tag != "equal"]
+        if len(edits) != 1:
+            return source, payload, "strict_local_multiple_edit_regions"
+        start = starts[0]
+        refined = source[:start] + patch_target + source[start + len(patch_source):]
+        if _terminal_boundary(source) != _terminal_boundary(refined):
+            return source, payload, "strict_local_terminal_boundary_changed"
+        return refined, payload, None
     payload = _extract_json_object(candidate)
     if payload is None:
         if candidate.startswith("{") or candidate.startswith("```"):
@@ -111,6 +199,36 @@ def apply_structured_patch(
         payload,
         None,
     )
+
+
+def _terminal_boundary(text: str) -> str:
+    text = text.rstrip()
+    start = len(text)
+    while start and text[start - 1] in _TERMINAL_BOUNDARY_CHARS:
+        start -= 1
+    return text[start:]
+
+
+def _strict_local_payload(candidate: str) -> tuple[dict | None, str | None]:
+    if not candidate.startswith("{"):
+        return None, "strict_local_json_required"
+
+    def unique_fields(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON key")
+            result[key] = value
+        return result
+
+    try:
+        payload = json.loads(candidate, object_pairs_hook=unique_fields)
+    except (ValueError, TypeError):
+        return None, "strict_local_invalid_json"
+    fields = {"action", "source", "target", "reason"}
+    if not isinstance(payload, dict) or set(payload) != fields or any(type(payload[key]) is not str for key in fields):
+        return payload if isinstance(payload, dict) else None, "strict_local_invalid_fields"
+    return payload, None
 
 
 def permits_boundary_punctuation_repair(

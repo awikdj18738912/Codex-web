@@ -1,0 +1,1186 @@
+[
+  {
+    "id": "5f728b855512158b2a32",
+    "sample_id": "ec2_11a7a30fcdc77067553b",
+    "reference": "赓扬，满州人，清朝政治人物。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "5f728b855512158b2a32",
+      "sample_id": "ec2_11a7a30fcdc77067553b",
+      "source_text": "庚阳，满洲人，清朝政治人物。",
+      "context_with_slot": "【待核对】，满洲人，清朝政治人物。",
+      "observed": "庚阳",
+      "target_candidate": "杨扬",
+      "profiles": [
+        {
+          "canonical": "杨扬",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_6580ec42d85c81ab27be",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杨扬拿到了五百米和一千米两项短道速的金牌",
+              "source_audio_sha256": "0f35220ab65673ee56cab126de2007cc898d5aa8ae00c91b935ee69301bbda4b"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "平阳",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_ea7ed02764892aa2a7e2",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "澎湃新闻八月一零日从浙江温州平阳警方获悉",
+              "source_audio_sha256": "a2134f3144741990f662c980ef334d7efaebea55d2565faa137e0d486a5279a8"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "5f728b855512158b2a32",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"【待核对】，满洲人，清朝政治人物。\", \"observed\": \"庚阳\", \"target_candidate\": \"杨扬\", \"profiles\": [{\"canonical\": \"杨扬\", \"registered_type\": \"PERSON\", \"evidence\": [{\"evidence_id\": \"leb1_6580ec42d85c81ab27be\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"杨扬拿到了500米和1000米两项短道速的金牌\", \"source_audio_sha256\": \"0f35220ab65673ee56cab126de2007cc898d5aa8ae00c91b935ee69301bbda4b\"}], \"profile",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3961.0955263487995,
+      "wall_seconds": 4.001173253171146
+    }
+  },
+  {
+    "id": "5f728b855512158b2a32",
+    "sample_id": "ec2_11a7a30fcdc77067553b",
+    "reference": "赓扬，满州人，清朝政治人物。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "5f728b855512158b2a32",
+      "sample_id": "ec2_11a7a30fcdc77067553b",
+      "source_text": "庚阳，满洲人，清朝政治人物。",
+      "context_with_slot": "【待核对】，满洲人，清朝政治人物。",
+      "observed": "庚阳",
+      "target_candidate": "杨扬",
+      "profiles": [
+        {
+          "canonical": "杨扬",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_6580ec42d85c81ab27be",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杨扬拿到了五百米和一千米两项短道速的金牌",
+              "source_audio_sha256": "0f35220ab65673ee56cab126de2007cc898d5aa8ae00c91b935ee69301bbda4b"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "平阳",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_ea7ed02764892aa2a7e2",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "澎湃新闻八月一零日从浙江温州平阳警方获悉",
+              "source_audio_sha256": "a2134f3144741990f662c980ef334d7efaebea55d2565faa137e0d486a5279a8"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "5f728b855512158b2a32",
+      "condition": "native_patch_with_background",
+      "output": "庚阳，满洲人，清朝政治人物。\n\n<KEY>[庚阳、满洲人]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 550.4900198429823,
+      "wall_seconds": 0.5540502578951418
+    }
+  },
+  {
+    "id": "4bc5614113e232fbab99",
+    "sample_id": "leb1_8c2510722ec5a19f9656",
+    "reference": "终站是好友谢霆锋的创作",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "4bc5614113e232fbab99",
+      "sample_id": "leb1_8c2510722ec5a19f9656",
+      "source_text": "终战是好友谢霆锋的创作。",
+      "context_with_slot": "【待核对】是好友谢霆锋的创作。",
+      "observed": "终战",
+      "target_candidate": "中传",
+      "profiles": [
+        {
+          "canonical": "中传",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_78336a0d4168eafafa06",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传失联女主嫌犯想找个无辜的人发泄",
+              "source_audio_sha256": "40b2188707e853ab060256ca09b671ef24d0be60933c2cd2ba01f84d2c09f90f"
+            },
+            {
+              "evidence_id": "leb1_84a117ecec5d5ba1d3ea",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传女生嫌犯曾私藏刺刀同学称其特立独行",
+              "source_audio_sha256": "36472ae178dcc392c21c79a3e00624a8c4fb5fdfcf39d59a2d1d60237c603eca"
+            },
+            {
+              "evidence_id": "leb1_a96e61ed0617323218b6",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传女学生犯罪嫌疑人从小家庭教育严格",
+              "source_audio_sha256": "addcf2752a34b2fe5bc8f31b4861702cb065d54f6f5a6305d40232e728884298"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "钟欣",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_db5f56bf43de6c449c57",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "凶手被抓捕归案钟欣摄",
+              "source_audio_sha256": "7052c889014e364687aa0e40c7c2e06f345ff02f91205a949b83aae66b203769"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "嵩山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_852383def84836fddd5e",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "关于中国嵩山少林寺方丈齐永信的举报风波尚未停歇",
+              "source_audio_sha256": "8e415a4f960631090fae3a6695515ea86e86ef01671a43d140958cc500f02eda"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "中国战队",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_3c735705805a343b6ba5",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "对于代表中国战队略先出阵的徐永昊来讲",
+              "source_audio_sha256": "dfd525a738a4aaa6a6cdab2656152194ac058498e549b0724ff4aa70c45188d0"
+            },
+            {
+              "evidence_id": "leb1_ed3d32f5ba0cde4f1698",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "为中国战队打响第一枪",
+              "source_audio_sha256": "1575231212ce8151a5f95594ed93a00069a40ab1061acdbc59831821376356c2"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "郑州",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_ee246a79de264f500cea",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "郑州长春和哈尔滨三地办事处",
+              "source_audio_sha256": "23116da55692838c7e46b4ce41025973f1b6fd300a19fb26ebfeef773ba07881"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "4bc5614113e232fbab99",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"【待核对】是好友谢霆锋的创作。\", \"observed\": \"终战\", \"target_candidate\": \"中传\", \"profiles\": [{\"canonical\": \"中传\", \"registered_type\": \"PERSON\", \"evidence\": [{\"evidence_id\": \"leb1_84a117ecec5d5ba1d3ea\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"杀害中传女生嫌犯曾私藏刺刀同学称其特立独行\", \"source_audio_sha256\": \"36472ae178dcc392c21c79a3e00624a8c4fb5fdf39d59a2d1",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3695.0163771398365,
+      "wall_seconds": 3.7004453991539776
+    }
+  },
+  {
+    "id": "4bc5614113e232fbab99",
+    "sample_id": "leb1_8c2510722ec5a19f9656",
+    "reference": "终站是好友谢霆锋的创作",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "4bc5614113e232fbab99",
+      "sample_id": "leb1_8c2510722ec5a19f9656",
+      "source_text": "终战是好友谢霆锋的创作。",
+      "context_with_slot": "【待核对】是好友谢霆锋的创作。",
+      "observed": "终战",
+      "target_candidate": "中传",
+      "profiles": [
+        {
+          "canonical": "中传",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_78336a0d4168eafafa06",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传失联女主嫌犯想找个无辜的人发泄",
+              "source_audio_sha256": "40b2188707e853ab060256ca09b671ef24d0be60933c2cd2ba01f84d2c09f90f"
+            },
+            {
+              "evidence_id": "leb1_84a117ecec5d5ba1d3ea",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传女生嫌犯曾私藏刺刀同学称其特立独行",
+              "source_audio_sha256": "36472ae178dcc392c21c79a3e00624a8c4fb5fdfcf39d59a2d1d60237c603eca"
+            },
+            {
+              "evidence_id": "leb1_a96e61ed0617323218b6",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "杀害中传女学生犯罪嫌疑人从小家庭教育严格",
+              "source_audio_sha256": "addcf2752a34b2fe5bc8f31b4861702cb065d54f6f5a6305d40232e728884298"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "钟欣",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_db5f56bf43de6c449c57",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "凶手被抓捕归案钟欣摄",
+              "source_audio_sha256": "7052c889014e364687aa0e40c7c2e06f345ff02f91205a949b83aae66b203769"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "嵩山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_852383def84836fddd5e",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "关于中国嵩山少林寺方丈齐永信的举报风波尚未停歇",
+              "source_audio_sha256": "8e415a4f960631090fae3a6695515ea86e86ef01671a43d140958cc500f02eda"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "中国战队",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_3c735705805a343b6ba5",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "对于代表中国战队略先出阵的徐永昊来讲",
+              "source_audio_sha256": "dfd525a738a4aaa6a6cdab2656152194ac058498e549b0724ff4aa70c45188d0"
+            },
+            {
+              "evidence_id": "leb1_ed3d32f5ba0cde4f1698",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "为中国战队打响第一枪",
+              "source_audio_sha256": "1575231212ce8151a5f95594ed93a00069a40ab1061acdbc59831821376356c2"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "郑州",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_ee246a79de264f500cea",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "郑州长春和哈尔滨三地办事处",
+              "source_audio_sha256": "23116da55692838c7e46b4ce41025973f1b6fd300a19fb26ebfeef773ba07881"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "4bc5614113e232fbab99",
+      "condition": "native_patch_with_background",
+      "output": "终战是好友谢霆锋的创作。\n\n<KEY>[谢霆锋]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 591.1366497166455,
+      "wall_seconds": 0.5978612317703664
+    }
+  },
+  {
+    "id": "1a4e68ece62cd962576d",
+    "sample_id": "ec2_8b59e1e5083bb9455821",
+    "reference": "竞秀区是河北省保定市下辖的一个市辖区。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "1a4e68ece62cd962576d",
+      "sample_id": "ec2_8b59e1e5083bb9455821",
+      "source_text": "静秀区是河北省保定市下辖的一个市辖区。",
+      "context_with_slot": "【待核对】是河北省保定市下辖的一个市辖区。",
+      "observed": "静秀区",
+      "target_candidate": "越秀区",
+      "profiles": [
+        {
+          "canonical": "越秀区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_9f07c5d7367d3d29d628",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "数十名市民赶到越秀区一酒家维权",
+              "source_audio_sha256": "846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "1a4e68ece62cd962576d",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"【待核对】是河北省保定市下辖的一个市辖区。\", \"observed\": \"静秀区\", \"target_candidate\": \"越秀区\", \"profiles\": [{\"canonical\": \"越秀区\", \"registered_type\": \"LOC\", \"evidence\": [{\"evidence_id\": \"leb1_9f07c5d7367d3d29d628\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"数十名市民赶到越秀区一酒家维权\", \"source_audio_sha256\": \"846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e\"}], \"",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3594.008530024439,
+      "wall_seconds": 3.5959685808047652
+    }
+  },
+  {
+    "id": "1a4e68ece62cd962576d",
+    "sample_id": "ec2_8b59e1e5083bb9455821",
+    "reference": "竞秀区是河北省保定市下辖的一个市辖区。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "1a4e68ece62cd962576d",
+      "sample_id": "ec2_8b59e1e5083bb9455821",
+      "source_text": "静秀区是河北省保定市下辖的一个市辖区。",
+      "context_with_slot": "【待核对】是河北省保定市下辖的一个市辖区。",
+      "observed": "静秀区",
+      "target_candidate": "越秀区",
+      "profiles": [
+        {
+          "canonical": "越秀区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_9f07c5d7367d3d29d628",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "数十名市民赶到越秀区一酒家维权",
+              "source_audio_sha256": "846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "1a4e68ece62cd962576d",
+      "condition": "native_patch_with_background",
+      "output": "静秀区是河北省保定市下辖的一个市辖区。\n\n<ENTITY_CANDIDATES>[{\"observed\": \"静秀区\", \"canonical\": \"越秀区\", \"registered_type\": \"LOC\", \"evidence\": [{\\\"evidence_id\\\": \"leb1_9f07c5d7367d3d29d628\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"数十名市民赶到越秀区一酒家维权\", \"source_audio_sha256\": \"846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e\", \"profile_complete\": false}]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 3489.7859087213874,
+      "wall_seconds": 3.4922389090061188
+    }
+  },
+  {
+    "id": "db0298374a0be26e5ad9",
+    "sample_id": "leb1_d39d7292a9660cc1eef6",
+    "reference": "港商疑恼羞成怒将她杀害",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "db0298374a0be26e5ad9",
+      "sample_id": "leb1_d39d7292a9660cc1eef6",
+      "source_text": "冈商疑恼，羞成怒，将他杀害。",
+      "context_with_slot": "【待核对】疑恼，羞成怒，将他杀害。",
+      "observed": "冈商",
+      "target_candidate": "冈山",
+      "profiles": [
+        {
+          "canonical": "冈山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_4b467b5b2a033e259674",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "搜狐体育郭健九月一日发自日本冈山今天下午",
+              "source_audio_sha256": "4c0f6ab77e094ae667482755bad9e39779a870530fa109fc95f4d3d0aa52d52d"
+            },
+            {
+              "evidence_id": "leb1_4cb6f6c550bf8c32731d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "中国队将迎战冈山赛区的第二个对手肯尼亚队",
+              "source_audio_sha256": "8392da5c4052e9b48cbabe4f5e99ffe44daa4af964b8c99a317b3318ef3965a4"
+            },
+            {
+              "evidence_id": "leb1_df3996f77f5a61f0a0c4",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "中国女排昨天下午在冈山迎战古巴队",
+              "source_audio_sha256": "f92218c153bdc2aad0baf65573fc1d7575a7828b9acc1b02ad22f412108c319c"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "唐山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_7ccc1cfd920fa86f224a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "唐山乐亭一船队在渤海与一山东渔船发生纠纷",
+              "source_audio_sha256": "eaae1fde7e521a0c945a58714a5f043e44161310d67176595f045f44899dccf3"
+            },
+            {
+              "evidence_id": "leb1_e9edf9efe119714ef36d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "导致唐山一渔船沉没",
+              "source_audio_sha256": "b1674f523eb771cf5faccccb1f804bda361f0f727fae3691060e8d795bb867ac"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "央行",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_0fd00e458f3e4382aa1a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "预计短期央行仍可能会积极维稳",
+              "source_audio_sha256": "fa4ffe1066fd5f68c14c952f24a43bce2f8596a903dfb867edd53205172f49bc"
+            },
+            {
+              "evidence_id": "leb1_134c27b00f984e6db830",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "但专家预计短期央行仍可能会积极维稳",
+              "source_audio_sha256": "522acb8d487f1eb80edeecef8c37337c929450e639669ef819a44beb6489abb5"
+            },
+            {
+              "evidence_id": "leb1_d6d542b431ae161cb49b",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "尽管有央行降息等各方利好刺激",
+              "source_audio_sha256": "2ae78f502d1bac9a5006791ca73c161058662e43750d700238e9ea6630a8011c"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "db0298374a0be26e5ad9",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"【待核对】疑恼，羞成怒，将他杀害。\", \"observed\": \"冈商\", \"target_candidate\": \"冈山\", \"profiles\": [{\"canonical\": \"冈山\", \"registered_type\": \"LOC\", \"evidence\": [{\"evidence_id\": \"leb1_4b467b5b033e259674\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"搜狐体育郭健9月1日发自日本冈山今天下午\", \"source_audio_sha256\": \"4c0f6ab77e094ae667482755bad9e39779a870530fa109fc95f4d3d0aa52d52",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3693.258995190263,
+      "wall_seconds": 3.6983133289031684
+    }
+  },
+  {
+    "id": "db0298374a0be26e5ad9",
+    "sample_id": "leb1_d39d7292a9660cc1eef6",
+    "reference": "港商疑恼羞成怒将她杀害",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "db0298374a0be26e5ad9",
+      "sample_id": "leb1_d39d7292a9660cc1eef6",
+      "source_text": "冈商疑恼，羞成怒，将他杀害。",
+      "context_with_slot": "【待核对】疑恼，羞成怒，将他杀害。",
+      "observed": "冈商",
+      "target_candidate": "冈山",
+      "profiles": [
+        {
+          "canonical": "冈山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_4b467b5b2a033e259674",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "搜狐体育郭健九月一日发自日本冈山今天下午",
+              "source_audio_sha256": "4c0f6ab77e094ae667482755bad9e39779a870530fa109fc95f4d3d0aa52d52d"
+            },
+            {
+              "evidence_id": "leb1_4cb6f6c550bf8c32731d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "中国队将迎战冈山赛区的第二个对手肯尼亚队",
+              "source_audio_sha256": "8392da5c4052e9b48cbabe4f5e99ffe44daa4af964b8c99a317b3318ef3965a4"
+            },
+            {
+              "evidence_id": "leb1_df3996f77f5a61f0a0c4",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "中国女排昨天下午在冈山迎战古巴队",
+              "source_audio_sha256": "f92218c153bdc2aad0baf65573fc1d7575a7828b9acc1b02ad22f412108c319c"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "唐山",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_7ccc1cfd920fa86f224a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "唐山乐亭一船队在渤海与一山东渔船发生纠纷",
+              "source_audio_sha256": "eaae1fde7e521a0c945a58714a5f043e44161310d67176595f045f44899dccf3"
+            },
+            {
+              "evidence_id": "leb1_e9edf9efe119714ef36d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "导致唐山一渔船沉没",
+              "source_audio_sha256": "b1674f523eb771cf5faccccb1f804bda361f0f727fae3691060e8d795bb867ac"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "央行",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_0fd00e458f3e4382aa1a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "预计短期央行仍可能会积极维稳",
+              "source_audio_sha256": "fa4ffe1066fd5f68c14c952f24a43bce2f8596a903dfb867edd53205172f49bc"
+            },
+            {
+              "evidence_id": "leb1_134c27b00f984e6db830",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "但专家预计短期央行仍可能会积极维稳",
+              "source_audio_sha256": "522acb8d487f1eb80edeecef8c37337c929450e639669ef819a44beb6489abb5"
+            },
+            {
+              "evidence_id": "leb1_d6d542b431ae161cb49b",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "尽管有央行降息等各方利好刺激",
+              "source_audio_sha256": "2ae78f502d1bac9a5006791ca73c161058662e43750d700238e9ea6630a8011c"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "db0298374a0be26e5ad9",
+      "condition": "native_patch_with_background",
+      "output": "冈商疑恼，羞成怒，将他杀害。<KEY>[冈商疑恼、羞成怒]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 675.9293121285737,
+      "wall_seconds": 0.6810246277600527
+    }
+  },
+  {
+    "id": "6ded82a02be0ec547595",
+    "sample_id": "leb1_38459bb96fdd7d36ecc1",
+    "reference": "庞清和佟健仍肩负着扛起中国双人滑大旗的重任",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "6ded82a02be0ec547595",
+      "sample_id": "leb1_38459bb96fdd7d36ecc1",
+      "source_text": "庞清、董剑仍肩负着扛起中国双人滑大旗的重任。",
+      "context_with_slot": "庞清、【待核对】仍肩负着扛起中国双人滑大旗的重任。",
+      "observed": "董剑",
+      "target_candidate": "董健",
+      "profiles": [
+        {
+          "canonical": "董健",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_628a5d12b92ff7c963cc",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "著名双人滑运动员庞清和董健虽未正式宣布退役",
+              "source_audio_sha256": "0fecc06ec68104e2e00b6e19a6de3b2d494bcf5109e37e238db48a6804c9a389"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "佟健",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_04662ea0d92b98d5702d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健更希望能有实实在在的发展",
+              "source_audio_sha256": "131e40fa08196a80ec7c670066f9d377d935dcdac9c1037cde8069e36f569354"
+            },
+            {
+              "evidence_id": "leb1_199676edca3b7da6f514",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健因此顺利通过了入学考试",
+              "source_audio_sha256": "66ab8cea1a967014942c5e3708d8dbe25ca792e1b2ddc454e471c0163bf5ca52"
+            },
+            {
+              "evidence_id": "leb1_1b661ef503a5de595d33",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健的解决办法就只能努力提高自己",
+              "source_audio_sha256": "30e6cc728eefb7f8de98e6dfeeade28f6139638647ac9130484bbeb0054580f2"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "东京",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_c70169fe827dd09d11e0",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "到今年十二月为止将在东京的法政大学进行训练",
+              "source_audio_sha256": "35374cc84f92009e8f02556e5e97581f4629f3cb6b31fe542a03b167ce1f77dc"
+            },
+            {
+              "evidence_id": "leb1_f52fa375b412fd1d7ffb",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "二十一日抵达日本的朴泰桓目前确实在东京",
+              "source_audio_sha256": "302e14549425f89bcc33080136dd6a425b62b1df6cbeda80e69d0c8e9b1b7373"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "东莞",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_4b860ac6186853458a2b",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "一四年前轰动东莞沙田的一起命案",
+              "source_audio_sha256": "abc3095f5521199b56e74bc927309ad4e99a17bce17f030486fa6a8b8cfede72"
+            },
+            {
+              "evidence_id": "leb1_7685438edd893c5ac39d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "港媒东莞工地连续两次坍塌路面似被吸入地底",
+              "source_audio_sha256": "4321a4f59993348703c239d4279e0b61f1db19299bff3a40d12b09184933fe03"
+            },
+            {
+              "evidence_id": "leb1_9e359aa1d44e3a70a54f",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "东莞常平住宅大厦联邦花园旁边发生大面积地陷",
+              "source_audio_sha256": "90e914487b779ef00d90a68b0b266388c7599f11257b86c2f86f5b14e9fdba4b"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "6ded82a02be0ec547595",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"庞清、【待核对】仍肩负着扛起中国双人滑大旗的重任。\", \"observed\": \"董剑\", \"target_candidate\": \"董健\", \"profiles\": [{\"canonical\": \"董健\", \"registered_type\": \"PERSON\", \"evidence\": [{\"evidence_id\": \"leb1_628a5d12b92ff7c963cc\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"著名双人滑运动员庞清和董健虽未正式宣布退役\", \"source_audio_sha256\": \"0fecc06ec68104e2e00b6e19a6de3b2d494bcf",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3682.647739071399,
+      "wall_seconds": 3.6880920003168285
+    }
+  },
+  {
+    "id": "6ded82a02be0ec547595",
+    "sample_id": "leb1_38459bb96fdd7d36ecc1",
+    "reference": "庞清和佟健仍肩负着扛起中国双人滑大旗的重任",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "6ded82a02be0ec547595",
+      "sample_id": "leb1_38459bb96fdd7d36ecc1",
+      "source_text": "庞清、董剑仍肩负着扛起中国双人滑大旗的重任。",
+      "context_with_slot": "庞清、【待核对】仍肩负着扛起中国双人滑大旗的重任。",
+      "observed": "董剑",
+      "target_candidate": "董健",
+      "profiles": [
+        {
+          "canonical": "董健",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_628a5d12b92ff7c963cc",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "著名双人滑运动员庞清和董健虽未正式宣布退役",
+              "source_audio_sha256": "0fecc06ec68104e2e00b6e19a6de3b2d494bcf5109e37e238db48a6804c9a389"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "佟健",
+          "registered_type": "PERSON",
+          "evidence": [
+            {
+              "evidence_id": "leb1_04662ea0d92b98d5702d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健更希望能有实实在在的发展",
+              "source_audio_sha256": "131e40fa08196a80ec7c670066f9d377d935dcdac9c1037cde8069e36f569354"
+            },
+            {
+              "evidence_id": "leb1_199676edca3b7da6f514",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健因此顺利通过了入学考试",
+              "source_audio_sha256": "66ab8cea1a967014942c5e3708d8dbe25ca792e1b2ddc454e471c0163bf5ca52"
+            },
+            {
+              "evidence_id": "leb1_1b661ef503a5de595d33",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "佟健的解决办法就只能努力提高自己",
+              "source_audio_sha256": "30e6cc728eefb7f8de98e6dfeeade28f6139638647ac9130484bbeb0054580f2"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "东京",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_c70169fe827dd09d11e0",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "到今年十二月为止将在东京的法政大学进行训练",
+              "source_audio_sha256": "35374cc84f92009e8f02556e5e97581f4629f3cb6b31fe542a03b167ce1f77dc"
+            },
+            {
+              "evidence_id": "leb1_f52fa375b412fd1d7ffb",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "二十一日抵达日本的朴泰桓目前确实在东京",
+              "source_audio_sha256": "302e14549425f89bcc33080136dd6a425b62b1df6cbeda80e69d0c8e9b1b7373"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "东莞",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_4b860ac6186853458a2b",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "一四年前轰动东莞沙田的一起命案",
+              "source_audio_sha256": "abc3095f5521199b56e74bc927309ad4e99a17bce17f030486fa6a8b8cfede72"
+            },
+            {
+              "evidence_id": "leb1_7685438edd893c5ac39d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "港媒东莞工地连续两次坍塌路面似被吸入地底",
+              "source_audio_sha256": "4321a4f59993348703c239d4279e0b61f1db19299bff3a40d12b09184933fe03"
+            },
+            {
+              "evidence_id": "leb1_9e359aa1d44e3a70a54f",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "东莞常平住宅大厦联邦花园旁边发生大面积地陷",
+              "source_audio_sha256": "90e914487b779ef00d90a68b0b266388c7599f11257b86c2f86f5b14e9fdba4b"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "6ded82a02be0ec547595",
+      "condition": "native_patch_with_background",
+      "output": "庞清、董剑仍肩负着扛起中国双人滑大旗的重任。<KEY>[庞清、董剑]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 829.0885798633099,
+      "wall_seconds": 0.834875029977411
+    }
+  },
+  {
+    "id": "f2bf5ab43fae7dde938d",
+    "sample_id": "leb1_6c86c4a79561e0611e5e",
+    "reference": "广东惠州惊爆港商杀情妇碎尸凶案",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "f2bf5ab43fae7dde938d",
+      "sample_id": "leb1_6c86c4a79561e0611e5e",
+      "source_text": "广东惠州惊爆，港商杀情妇碎尸凶案。",
+      "context_with_slot": "广东惠州【待核对】，港商杀情妇碎尸凶案。",
+      "observed": "惊爆",
+      "target_candidate": "金报",
+      "profiles": [
+        {
+          "canonical": "金报",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_7b46f7c7aede878ca9bc",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "金报讯记者蓝莹九月一一日上午",
+              "source_audio_sha256": "79cdfdaf628e2c6f17d56bc4e0611d4a140abe0ad8c27b742fc54b6bac3e1733"
+            },
+            {
+              "evidence_id": "leb1_c1ac99753a26ce4078cd",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "金报讯记者蓝莹还记得小温吗",
+              "source_audio_sha256": "103ecbf7e421710abb706f287e4811aeda42d98d1db1c9bd22532aca9910b02f"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "新京报",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_1a6366ecbaa21d66870a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报讯记者林斐然近日",
+              "source_audio_sha256": "df6f46e8ee54052743ce744603484366ed2855cbc7dcb49b40fd9e3f7b8c5f31"
+            },
+            {
+              "evidence_id": "leb1_307950a56d5081479ed0",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报记者从温岭市政府新闻办获悉",
+              "source_audio_sha256": "f31af51c25c71bd385f377e540f38885e377a3b509e76e3979c768c4d30cbc5a"
+            },
+            {
+              "evidence_id": "leb1_413da76410d3f02887c5",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报快讯记者林野记者今天傍晚获悉",
+              "source_audio_sha256": "205dcc04b599e197a5f61d23de3ab54c4098b193737f38bf8cef9405871d6639"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "f2bf5ab43fae7dde938d",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"广东惠州【待核对】，港商杀情妇碎尸凶案。\", \"observed\": \"惊爆\", \"target_candidate\": \"金报\", \"profiles\": [{\"canonical\": \"金报\", \"registered_type\": \"ORG\", \"evidence\": [{\"evidence_id\": \"leb1_7b46f7c7aede878ca9bc\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"金报讯记者蓝莹9月1日上午\", \"source_audio_sha256\": \"79cdfdaf628e2c6f17d56bc4e0611d4a140abead8c27b742fc54b6bac",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3658.0973961390555,
+      "wall_seconds": 3.6616645748727024
+    }
+  },
+  {
+    "id": "f2bf5ab43fae7dde938d",
+    "sample_id": "leb1_6c86c4a79561e0611e5e",
+    "reference": "广东惠州惊爆港商杀情妇碎尸凶案",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": false,
+    "input": {
+      "id": "f2bf5ab43fae7dde938d",
+      "sample_id": "leb1_6c86c4a79561e0611e5e",
+      "source_text": "广东惠州惊爆，港商杀情妇碎尸凶案。",
+      "context_with_slot": "广东惠州【待核对】，港商杀情妇碎尸凶案。",
+      "observed": "惊爆",
+      "target_candidate": "金报",
+      "profiles": [
+        {
+          "canonical": "金报",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_7b46f7c7aede878ca9bc",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "金报讯记者蓝莹九月一一日上午",
+              "source_audio_sha256": "79cdfdaf628e2c6f17d56bc4e0611d4a140abe0ad8c27b742fc54b6bac3e1733"
+            },
+            {
+              "evidence_id": "leb1_c1ac99753a26ce4078cd",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "金报讯记者蓝莹还记得小温吗",
+              "source_audio_sha256": "103ecbf7e421710abb706f287e4811aeda42d98d1db1c9bd22532aca9910b02f"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "新京报",
+          "registered_type": "ORG",
+          "evidence": [
+            {
+              "evidence_id": "leb1_1a6366ecbaa21d66870a",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报讯记者林斐然近日",
+              "source_audio_sha256": "df6f46e8ee54052743ce744603484366ed2855cbc7dcb49b40fd9e3f7b8c5f31"
+            },
+            {
+              "evidence_id": "leb1_307950a56d5081479ed0",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报记者从温岭市政府新闻办获悉",
+              "source_audio_sha256": "f31af51c25c71bd385f377e540f38885e377a3b509e76e3979c768c4d30cbc5a"
+            },
+            {
+              "evidence_id": "leb1_413da76410d3f02887c5",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "新京报快讯记者林野记者今天傍晚获悉",
+              "source_audio_sha256": "205dcc04b599e197a5f61d23de3ab54c4098b193737f38bf8cef9405871d6639"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "f2bf5ab43fae7dde938d",
+      "condition": "native_patch_with_background",
+      "output": "广东惠州惊爆，港商杀情妇碎尸凶案。\n\n<KEY>[惠州]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 629.6368520706892,
+      "wall_seconds": 0.6334973582997918
+    }
+  },
+  {
+    "id": "029502977321d88d20f4",
+    "sample_id": "ec2_6d69ea498293fa9cf0d8",
+    "reference": "柏林乐器博物馆是位于德国柏林的一座博物馆。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": true,
+    "input": {
+      "id": "029502977321d88d20f4",
+      "sample_id": "ec2_6d69ea498293fa9cf0d8",
+      "source_text": "柏林乐曲博物馆是位于德国柏林的一座博物馆。",
+      "context_with_slot": "柏林【待核对】博物馆是位于德国柏林的一座博物馆。",
+      "observed": "乐曲",
+      "target_candidate": "越秀区",
+      "profiles": [
+        {
+          "canonical": "越秀区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_9f07c5d7367d3d29d628",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "数十名市民赶到越秀区一酒家维权",
+              "source_audio_sha256": "846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "乐清",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_92d205bd1735035824f1",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "浙江温州乐清七五岁的企业家虞一杰退休之后",
+              "source_audio_sha256": "edf75f978206a2dfc7b7750445c44676d023da75b71ee79965efda5420ad38b9"
+            },
+            {
+              "evidence_id": "leb1_b1c14b07ad9388fa9b58",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "陆续有人从乐清赶往平阳法院",
+              "source_audio_sha256": "507a4cc40b5fe38053d733b6399f8f0e2df71b6459dc882d50dc4874300c55c8"
+            },
+            {
+              "evidence_id": "leb1_dcc1aa3211308e6153d4",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "还卖了自己在杭州和乐清的房子",
+              "source_audio_sha256": "6007387173b1a976c3e5df5443facfcd50c7e98c6ab680ef299312e803e66bc0"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "白云区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_8142154500ac0d7d858d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "白云区钟落潭竹一村民白云区钟落潭竹一村的村民跟记者报料",
+              "source_audio_sha256": "65f2e7533264ecedc7c5a5705104ec09233f2fc42fdd624195995dab3fe6f914"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "029502977321d88d20f4",
+      "condition": "explicit_review",
+      "output": "{\"context_with_slot\": \"乐清博物馆是位于德国柏林的一座博物馆。\", \"observed\": \"乐曲\", \"target_candidate\": \"越秀区\", \"profiles\": [{\"canonical\": \"越秀区\", \"registered_type\": \"LOC\", \"evidence\": [{\"evidence_id\": \"leb1_92d205bd1735035824f1\", \"source\": \"AISHELL-1 test / AISHELL-NER\", \"text\": \"浙江温州乐清七五岁的企业家虞一杰退休之后\", \"source_audio_sha256\": \"edf75f978206a2dfc7b7750445c44676d023da75b71ee79965efda5420ad38b9\"}, {\"evidence_id\":",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "incomplete_generation"
+      },
+      "completed": false,
+      "model_latency_ms": 3635.6590553186834,
+      "wall_seconds": 3.6389255756512284
+    }
+  },
+  {
+    "id": "029502977321d88d20f4",
+    "sample_id": "ec2_6d69ea498293fa9cf0d8",
+    "reference": "柏林乐器博物馆是位于德国柏林的一座博物馆。",
+    "canonical_present_in_reference": false,
+    "diagnostic_only": true,
+    "already_vetoed_by_deployed_rule": true,
+    "input": {
+      "id": "029502977321d88d20f4",
+      "sample_id": "ec2_6d69ea498293fa9cf0d8",
+      "source_text": "柏林乐曲博物馆是位于德国柏林的一座博物馆。",
+      "context_with_slot": "柏林【待核对】博物馆是位于德国柏林的一座博物馆。",
+      "observed": "乐曲",
+      "target_candidate": "越秀区",
+      "profiles": [
+        {
+          "canonical": "越秀区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_9f07c5d7367d3d29d628",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "数十名市民赶到越秀区一酒家维权",
+              "source_audio_sha256": "846bc921557113ebba37110242a351d8f016c279832c9619aaa874549591ee8e"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "乐清",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_92d205bd1735035824f1",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "浙江温州乐清七五岁的企业家虞一杰退休之后",
+              "source_audio_sha256": "edf75f978206a2dfc7b7750445c44676d023da75b71ee79965efda5420ad38b9"
+            },
+            {
+              "evidence_id": "leb1_b1c14b07ad9388fa9b58",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "陆续有人从乐清赶往平阳法院",
+              "source_audio_sha256": "507a4cc40b5fe38053d733b6399f8f0e2df71b6459dc882d50dc4874300c55c8"
+            },
+            {
+              "evidence_id": "leb1_dcc1aa3211308e6153d4",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "还卖了自己在杭州和乐清的房子",
+              "source_audio_sha256": "6007387173b1a976c3e5df5443facfcd50c7e98c6ab680ef299312e803e66bc0"
+            }
+          ],
+          "profile_complete": false
+        },
+        {
+          "canonical": "白云区",
+          "registered_type": "LOC",
+          "evidence": [
+            {
+              "evidence_id": "leb1_8142154500ac0d7d858d",
+              "source": "AISHELL-1 test / AISHELL-NER",
+              "text": "白云区钟落潭竹一村民白云区钟落潭竹一村的村民跟记者报料",
+              "source_audio_sha256": "65f2e7533264ecedc7c5a5705104ec09233f2fc42fdd624195995dab3fe6f914"
+            }
+          ],
+          "profile_complete": false
+        }
+      ],
+      "target_has_independent_evidence": true
+    },
+    "result": {
+      "id": "029502977321d88d20f4",
+      "condition": "native_patch_with_background",
+      "output": "柏林乐曲博物馆是位于德国柏林的一座博物馆。\n\n<KEY>[乐曲博物馆]",
+      "parsed": {
+        "decision": "UNCERTAIN",
+        "valid": false,
+        "reason": "non_json_patch"
+      },
+      "completed": null,
+      "model_latency_ms": 545.7891616970301,
+      "wall_seconds": 0.5495825898833573
+    }
+  }
+]

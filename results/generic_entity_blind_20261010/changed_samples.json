@@ -1,0 +1,431 @@
+[
+  {
+    "id": "fleurs:data-00001-of-00002.arrow:328:1663",
+    "source": "fleurs_zh-CN_test",
+    "cohort": "lexicon_present",
+    "reference": "智利首选登山目的地科茶莫山谷 (Cochamó Valley) 被称为南美洲的优胜美地 (Yosemite)，这里有各式各样的花岗岩大石壁和峭壁。",
+    "expected": {
+      "智利": 1,
+      "科茶莫山谷": 1,
+      "优胜美地": 1
+    },
+    "values": {
+      "raw_initial": {
+        "text": "智利首选登山目的地科查莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "errors": 24,
+        "hits": 1,
+        "extras": 0
+      },
+      "raw_repair": {
+        "text": "智利首选登山目的地科茶莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "errors": 23,
+        "hits": 2,
+        "extras": 0
+      },
+      "no_dictionary": {
+        "text": "智利首选登山目的地科查莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "errors": 24,
+        "hits": 1,
+        "extras": 0
+      },
+      "dictionary_rules": {
+        "text": "智利首选登山目的地科查莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "errors": 24,
+        "hits": 1,
+        "extras": 0
+      },
+      "audio_repair": {
+        "text": "智利首选登山目的地科茶莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "errors": 23,
+        "hits": 2,
+        "extras": 0
+      }
+    },
+    "repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 59,
+      "candidate_count": 14,
+      "prompt_terms": [
+        "科茶莫山谷",
+        "智利",
+        "优胜美地",
+        "海地",
+        "南非",
+        "非洲"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 1,
+      "changes": [
+        {
+          "start": 9,
+          "end": 14,
+          "observed": "科查莫山谷",
+          "canonical": "科茶莫山谷",
+          "entity_id": 50,
+          "phonetic_score": 1.0,
+          "character_score": 0.8,
+          "length_score": 1.0,
+          "retrieval_score": 0.98,
+          "boundary_issue": null,
+          "evidence_surface": "科茶莫山谷",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 0.777
+    },
+    "timings": {
+      "initial": 0.8466219995170832,
+      "prompted": 0.7274091211147606
+    }
+  },
+  {
+    "id": "fleurs:data-00001-of-00002.arrow:358:1951",
+    "source": "fleurs_zh-CN_test",
+    "cohort": "lexicon_present",
+    "reference": "2002 年，戈马被尼拉贡戈火山的熔岩所摧毁。火山熔岩掩埋了该镇的大部分街道，尤其是镇中心。",
+    "expected": {
+      "戈马": 1,
+      "尼拉贡戈火山": 1
+    },
+    "values": {
+      "raw_initial": {
+        "text": "两千零二年，格马被尼拉贡格火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "errors": 3,
+        "hits": 0,
+        "extras": 0
+      },
+      "raw_repair": {
+        "text": "两千零二年，戈马被尼拉贡戈火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "errors": 1,
+        "hits": 2,
+        "extras": 0
+      },
+      "no_dictionary": {
+        "text": "2002年，格马被尼拉贡格火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "errors": 3,
+        "hits": 0,
+        "extras": 0
+      },
+      "dictionary_rules": {
+        "text": "2002年，格马被尼拉贡格火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道。尤其是市中心。",
+        "errors": 3,
+        "hits": 0,
+        "extras": 0
+      },
+      "audio_repair": {
+        "text": "2002年，戈马被尼拉贡戈火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "errors": 1,
+        "hits": 2,
+        "extras": 0
+      }
+    },
+    "repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 59,
+      "candidate_count": 11,
+      "prompt_terms": [
+        "尼拉贡戈火山",
+        "戈马",
+        "希拉",
+        "氧气",
+        "剑桥"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 2,
+      "changes": [
+        {
+          "start": 9,
+          "end": 15,
+          "observed": "尼拉贡格火山",
+          "canonical": "尼拉贡戈火山",
+          "entity_id": 24,
+          "phonetic_score": 1.0,
+          "character_score": 0.833333,
+          "length_score": 1.0,
+          "retrieval_score": 0.983333,
+          "boundary_issue": null,
+          "evidence_surface": "尼拉贡戈火山",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "格马",
+          "canonical": "戈马",
+          "entity_id": 42,
+          "phonetic_score": 1.0,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.95,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "戈马",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 0.876
+    },
+    "timings": {
+      "initial": 0.9536115881055593,
+      "prompted": 0.8326073782518506
+    }
+  },
+  {
+    "id": "fleurs:data-00000-of-00002.arrow:176:1831",
+    "source": "fleurs_zh-CN_test",
+    "cohort": "lexicon_present",
+    "reference": "普利特维茨湖国家公园森林茂密，主要树种有山毛榉、云杉和冷杉，并以高山和地中海植被混合为特色。",
+    "expected": {
+      "普利特维茨湖国家公园": 1,
+      "地中海": 1
+    },
+    "values": {
+      "raw_initial": {
+        "text": "普利特维茨谷湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "errors": 3,
+        "hits": 1,
+        "extras": 0
+      },
+      "raw_repair": {
+        "text": "普利特维茨湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "errors": 2,
+        "hits": 2,
+        "extras": 0
+      },
+      "no_dictionary": {
+        "text": "普利特维茨谷湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "errors": 3,
+        "hits": 1,
+        "extras": 0
+      },
+      "dictionary_rules": {
+        "text": "普利特维茨谷湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "errors": 3,
+        "hits": 1,
+        "extras": 0
+      },
+      "audio_repair": {
+        "text": "普利特维茨湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "errors": 2,
+        "hits": 2,
+        "extras": 0
+      }
+    },
+    "repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 59,
+      "candidate_count": 6,
+      "prompt_terms": [
+        "普利特维茨湖国家公园",
+        "智利"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 1,
+      "changes": [
+        {
+          "start": 0,
+          "end": 11,
+          "observed": "普利特维茨谷湖国家公园",
+          "canonical": "普利特维茨湖国家公园",
+          "entity_id": 60,
+          "phonetic_score": 0.927273,
+          "character_score": 0.909091,
+          "length_score": 0.909091,
+          "retrieval_score": 0.923636,
+          "boundary_issue": null,
+          "evidence_surface": "普利特维茨湖国家公园",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 0.939
+    },
+    "timings": {
+      "initial": 1.0356075400486588,
+      "prompted": 0.9072090443223715
+    }
+  },
+  {
+    "id": "fleurs:data-00000-of-00002.arrow:43:1729",
+    "source": "fleurs_zh-CN_test",
+    "cohort": "lexicon_present",
+    "reference": "例如，北卡罗莱纳州本尼特学校 ( Bennet School) 的学生每年都会设计一个有关他们的州府之行的网站。网站每年都会重新设计，但是老版本会在线保存，用作剪贴簿。",
+    "expected": {
+      "北卡罗莱纳州": 1,
+      "本尼特学校": 1
+    },
+    "values": {
+      "raw_initial": {
+        "text": "例如，北卡罗来纳州本尼特学校的学生每一年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计，但是老版本会在线保存，用作剪切簿。",
+        "errors": 17,
+        "hits": 1,
+        "extras": 0
+      },
+      "raw_repair": {
+        "text": "例如，北卡罗莱纳州本尼特学校的学生每一年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计，但是老版本会在线保存，用作剪切簿。",
+        "errors": 16,
+        "hits": 2,
+        "extras": 0
+      },
+      "no_dictionary": {
+        "text": "例如，北卡罗来纳州本尼特学校的学生每1年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计，但是老版本会在线保存，用作剪切簿。",
+        "errors": 17,
+        "hits": 1,
+        "extras": 0
+      },
+      "dictionary_rules": {
+        "text": "例如，北卡罗来纳州本尼特学校的学生每1年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计，但是老版本会在线保存，用作剪切簿。",
+        "errors": 17,
+        "hits": 1,
+        "extras": 0
+      },
+      "audio_repair": {
+        "text": "例如，北卡罗莱纳州本尼特学校的学生每1年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计。但是老版本会在线保存，用作剪切簿。",
+        "errors": 16,
+        "hits": 2,
+        "extras": 0
+      }
+    },
+    "repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 59,
+      "candidate_count": 3,
+      "prompt_terms": [
+        "北卡罗莱纳州",
+        "剑桥",
+        "智利"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 1,
+      "changes": [
+        {
+          "start": 3,
+          "end": 9,
+          "observed": "北卡罗来纳州",
+          "canonical": "北卡罗莱纳州",
+          "entity_id": 9,
+          "phonetic_score": 1.0,
+          "character_score": 0.833333,
+          "length_score": 1.0,
+          "retrieval_score": 0.983333,
+          "boundary_issue": null,
+          "evidence_surface": "北卡罗莱纳州",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 1.191
+    },
+    "timings": {
+      "initial": 1.2967827185057104,
+      "prompted": 1.141168455593288
+    }
+  },
+  {
+    "id": "fleurs:data-00000-of-00002.arrow:68:1735",
+    "source": "fleurs_zh-CN_test",
+    "cohort": "lexicon_present",
+    "reference": "来自美国普林斯顿大学和瑞典乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀中的勇地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代，尽管人们认为这一过程需要更长的时间。",
+    "expected": {
+      "美国": 1,
+      "普林斯顿大学": 1,
+      "乌普萨拉大学": 1,
+      "达尔文雀": 1,
+      "勇地雀": 1,
+      "仙人掌大嘴地雀": 1
+    },
+    "values": {
+      "raw_initial": {
+        "text": "来自美国普林斯顿大学和瑞瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的永地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "errors": 5,
+        "hits": 5,
+        "extras": 0
+      },
+      "raw_repair": {
+        "text": "来自美国普林斯顿大学和瑞瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的勇地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "errors": 4,
+        "hits": 6,
+        "extras": 0
+      },
+      "no_dictionary": {
+        "text": "来自美国普林斯顿大学和瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的永地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "errors": 4,
+        "hits": 5,
+        "extras": 0
+      },
+      "dictionary_rules": {
+        "text": "来自美国普林斯顿大学和瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的永地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "errors": 4,
+        "hits": 5,
+        "extras": 0
+      },
+      "audio_repair": {
+        "text": "来自美国普林斯顿大学和瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的勇地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "errors": 3,
+        "hits": 6,
+        "extras": 0
+      }
+    },
+    "repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 59,
+      "candidate_count": 6,
+      "prompt_terms": [
+        "勇地雀",
+        "海地",
+        "智利"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 1,
+      "changes": [
+        {
+          "start": 43,
+          "end": 46,
+          "observed": "永地雀",
+          "canonical": "勇地雀",
+          "entity_id": 16,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "勇地雀",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 1.418
+    },
+    "timings": {
+      "initial": 1.637523234821856,
+      "prompted": 1.3684955132193863
+    }
+  }
+]

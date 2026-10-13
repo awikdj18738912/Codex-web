@@ -1,0 +1,2578 @@
+{
+  "event": "final",
+  "raw_text": "天南一个能打的都没有，这回咱们的零食我倒装不下了。兄弟们，我们要继续努力，壮大鬼灵门的版图，让他们知道鬼灵门的厉害。我们要做天南第一，你们这帮魔道打趴几个小宗门就是高手了，打赢最厉害那个再说吧。天南谁最能打呀？当然韩立了，难道我？你叫韩立吗？在下王禅，想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他五个法器。再不行，我让他十个，怎么样啊？谭道友，谭道友倒是天南第一，太让人失望了。他哪这么多修仙的，居然没有？闭嘴。别打烂家里的东西。要不要？落云宗。韩立。请。哼。这嘿。啊！你滚！滚！喂！我赔。好啊。臭小子，说话小心点。啊！哎！乌江！乌江！啊！爷爷！少主，少主。你。对。嗯，别过来！啊，少主，少主，少主。哎。王禅道友，没事吧？没事。嗯。这。喂，喂，走，走，走，走，走，走，走。来。行，行。阿萨。鱼。啊！怎么样，王禅道友，我的手斧还可以吧？不用说了。今天鬼灵门输。输给落云宗了。不是宗门的问题，修行之道只在个人。",
+  "clean_text": "天南一个能打的都没有，这回咱们的零食我倒装不下了。兄弟们，我们要继续努力，壮大鬼灵门的版图，让他们知道鬼灵门的厉害。我们要做天南第一，你们这帮魔道打趴几个小宗门就是高手了，打赢最厉害那个再说吧。天南谁最能打呀？当然韩立了，难道我？你叫韩立吗？在下王禅，想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。再不行，我让他10个，怎么样啊？谭道友倒是天南第一，太让人失望了。他哪这么多修仙的，居然没有？闭嘴。别打烂家里的东西。要不要？落云宗。韩立。请。哼。这嘿。啊！你滚！滚！喂！我赔。好啊。臭小子，说话小心点。乌江！啊！爷爷！少主。你。对，别过来！少主。哎。王禅道友，没事吧？没事。嗯。这。喂，走。来。行。阿萨。鱼。怎么样，王禅道友我的手斧还可以吧？不用说了。今天鬼灵门输给落云宗了。不是宗门的问题，修行之道只在个人。",
+  "asr_language": "Chinese",
+  "asr_confidence": 0.9926491178435591,
+  "asr_confidence_metadata": {
+    "calibrated": false,
+    "covers_full_text": false,
+    "scope": "current_state",
+    "source": "qwen_vllm_token_logprob",
+    "token_count": 12,
+    "min_probability": 0.9179820419557867
+  },
+  "refiner_latency_ms": 2475,
+  "numeric_rule_latency_ms": 24.207,
+  "refiner_executed": true,
+  "refiner_accepted": false,
+  "refiner_reject_reasons": [
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss"
+  ],
+  "placeholder_retry_count": 0,
+  "refiner_retry_count": 4,
+  "refiner_retry_reasons": [
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss"
+  ],
+  "refiner_masked_outputs": [
+    "滚！喂！我赔。",
+    "乌江！<KEY>[乌江]",
+    "对，别过来！",
+    "少主",
+    "王禅道友<KEY>[王禅]",
+    "王禅道友<KEY>[王禅]",
+    "没事。",
+    "没事。",
+    "走",
+    "走",
+    "走",
+    "走",
+    "走。来。行。",
+    "怎么样，王禅道友<KEY>[王禅]"
+  ],
+  "structured_patch_audits": [
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    },
+    {
+      "format": "legacy_text",
+      "accepted": true,
+      "issue": null,
+      "window_edit_policy": "compat"
+    }
+  ],
+  "window_edit_policy": "compat",
+  "strict_local_protocol_version": null,
+  "boundary_anomalies": [],
+  "boundary_reviews": [],
+  "refinement_gate_mode": "tri_state",
+  "refinement_gate_config": {
+    "mode": "tri_state",
+    "high_confidence": 0.92,
+    "refine_on_unverified_confidence": false
+  },
+  "refinement_gate_decisions": [
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.9985566068241641,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.9985566068241641,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 36,
+      "asr_confidence": 0.9999523828851687,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.9787100505995417,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.9981490799830479,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.9981490799830479,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.9981490799830479,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.9981490799830479,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.9981490799830479,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.9425687957692088,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.9739927616309744,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.9739927616309744,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.9999583924569723,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.726231830928336,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.726231830928336,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase",
+        "numeric_normalization"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8074999147547656,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.5025869943201542
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.726231830928336,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.8239987319083598,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 4,
+      "asr_confidence": 0.8239987319083598,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8194503021955359,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.2423191219568253
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.8239987319083598,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8267493743841814,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 0.7797330617904663
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 4,
+      "asr_confidence": 0.9977642518639962,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7222903037554042,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.3168989680707455
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 10,
+      "asr_confidence": 0.6243149573291271,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 4,
+      "asr_confidence": 0.6243149573291271,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7938038132086427,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.368408091366291
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.6243149573291271,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8013075369101365,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.3255579397082329
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.9096884103077686,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8188784217607296,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.2160688638687134
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.9096884103077686,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7500354812779145,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 0.7321629673242569
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.9096884103077686,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase",
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7275249423624374,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.2751179747283459
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 7,
+      "asr_confidence": 0.8746279972392538,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7544830782823944,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.2988680973649025
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 6,
+      "asr_confidence": 0.8746279972392538,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7050848412584838,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.3790982775390148
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 3,
+      "asr_confidence": 0.7922387945370423,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8099576704219047,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.6312762163579464
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 3,
+      "asr_confidence": 0.7922387945370423,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7603760683730134,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 0.7903631776571274
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 3,
+      "asr_confidence": 0.7922387945370423,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7603760683730134,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.3392791152000427
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 3,
+      "asr_confidence": 0.7362486284101928,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7826191774974568,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.2874780222773552
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "learned_window_gate_veto"
+      ],
+      "visible_chars": 4,
+      "asr_confidence": 0.7362486284101928,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "keep",
+        "suggested_action": "keep",
+        "applied": true,
+        "calibrated": false,
+        "score": 0.8219930421685206,
+        "threshold": 0.8,
+        "reason": "learned_window_veto",
+        "gate_ms": 1.3629789464175701
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 8,
+      "asr_confidence": 0.9705351249042602,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ],
+      "learned_window_gate": {
+        "mode": "on",
+        "action": "refine",
+        "suggested_action": "refine",
+        "applied": false,
+        "calibrated": false,
+        "score": 0.7298609408536341,
+        "threshold": 0.8,
+        "reason": "native_refine_retained",
+        "gate_ms": 1.4044479466974735
+      }
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.9705351249042602,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    {
+      "segment_index": 1,
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 21,
+      "asr_confidence": 0.9926491178435591,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    }
+  ],
+  "refinement_gate_skipped_segments": 26,
+  "entity_audit_issues": [],
+  "entity_refinement_hints": [],
+  "entity_normalizations": [],
+  "numeric_normalizations": [
+    {
+      "original": "五个",
+      "replacement": "5个",
+      "kind": "zh.quantity.structural_count_or_approximation",
+      "start": 17,
+      "end": 19,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    },
+    {
+      "original": "十个",
+      "replacement": "10个",
+      "kind": "zh.quantity.structural_count_or_approximation",
+      "start": 7,
+      "end": 9,
+      "segment_index": 1,
+      "engine": "zh-itn",
+      "rule_pack": "zh-itn-strict-conservative-v90"
+    }
+  ],
+  "numeric_rule_repairs": [],
+  "numeric_fallbacks": [],
+  "safe_numeric_repairs": [],
+  "safe_repetition_repairs": [],
+  "local_deletion_reviews": [],
+  "repetition_reviews": [
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -0.3964
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -0.6919
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -0.3928
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false,
+      "model_response": "UNRESOLVED",
+      "candidate_score_margin": -0.1879,
+      "plausibility_margin": -0.3023,
+      "plausibility_reason": "model_plausibility_uncertain",
+      "local_plausibility_margin": -1.1361,
+      "local_plausibility_reason": "local_model_plausibility_keep"
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -0.3192
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 340,
+      "end": 347,
+      "source": "谭道友，谭道友",
+      "target": "谭道友",
+      "kind": "punctuated_run",
+      "context": "你要是怕他输，我让他5个法器。再不行，我让他10个，怎么样啊？谭道友，谭道友倒是天南第一，太让人失望了。他哪这么多修仙的，居然没有？闭嘴。",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.6626
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "decision": "deferred",
+      "reason": "awaiting_five_sentence_context",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false,
+      "model_response": "KEEP",
+      "candidate_score_margin": -6.4347
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "decision": "deferred",
+      "reason": "incomplete_k3_group",
+      "applied": false,
+      "model_called": false
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 3.6593
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    },
+    {
+      "index": 1,
+      "start": 206,
+      "end": 208,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 2,
+      "start": 208,
+      "end": 210,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我要去消协告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 3,
+      "start": 250,
+      "end": 252,
+      "source": "跑跑",
+      "target": "跑",
+      "kind": "character_run",
+      "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 4,
+      "start": 275,
+      "end": 277,
+      "source": "打打",
+      "target": "打",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "local_model_plausibility_keep",
+      "applied": false
+    },
+    {
+      "index": 5,
+      "start": 277,
+      "end": 279,
+      "source": "杀杀",
+      "target": "杀",
+      "kind": "character_run",
+      "context": "我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。修仙不是打打杀杀，韩某只是习惯将众人护至身前。韩夫人，你放心，我不会打死他。你要是怕他输，我让他5个法器。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 6,
+      "start": 404,
+      "end": 407,
+      "source": "滚！滚",
+      "target": "滚",
+      "kind": "punctuated_run",
+      "context": "这嘿。啊！你滚！滚！喂！我赔。",
+      "decision": "unresolved",
+      "reason": "guard_rejected",
+      "applied": false,
+      "model_response": "REMOVE",
+      "candidate_score_margin": 0.2711,
+      "model_response_cache_hit": true
+    },
+    {
+      "index": 7,
+      "start": 431,
+      "end": 433,
+      "source": "爷爷",
+      "target": "爷",
+      "kind": "character_run",
+      "context": "乌江！啊！爷爷！少主。你。",
+      "decision": "keep",
+      "reason": "model_candidate_decision",
+      "applied": false
+    },
+    {
+      "index": 8,
+      "start": 445,
+      "end": 449,
+      "source": "少主少主",
+      "target": "少主",
+      "kind": "phrase_run",
+      "context": "你。对，别过来！少主少主。哎。王禅道友，没事吧？",
+      "decision": "remove",
+      "reason": "model_candidate_decision",
+      "applied": true
+    }
+  ],
+  "boundary_echo_repairs": [
+    {
+      "source": "输。输",
+      "target": "输",
+      "echo": "输",
+      "start": 517,
+      "end": 520,
+      "boundary_type": "sentence"
+    }
+  ],
+  "protected_entities": [
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_001__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "SPA",
+      "replacement": "SPA",
+      "entity_type": "ACRONYM",
+      "source": "rule",
+      "entity_id": null,
+      "match_type": "RULE",
+      "match_score": null,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "厉飞宇",
+      "replacement": "厉飞宇",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 9,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "SPA",
+      "replacement": "SPA",
+      "entity_type": "ACRONYM",
+      "source": "rule",
+      "entity_id": null,
+      "match_type": "RULE",
+      "match_score": null,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "厉飞宇",
+      "replacement": "厉飞宇",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 9,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    },
+    {
+      "placeholder": "__ENTITY_000__",
+      "original": "鬼灵门",
+      "replacement": "鬼灵门",
+      "entity_type": "TERM",
+      "source": "database:general",
+      "entity_id": 7,
+      "match_type": "EXACT_CANONICAL",
+      "match_score": 1,
+      "decision": "EXACT"
+    }
+  ],
+  "entity_candidates": [],
+  "entity_matcher_latency_ms": 31.191,
+  "entity_fuzzy_mode": "auto",
+  "entity_matching_config_version": 2,
+  "rule_protection_enabled": true,
+  "numeric_normalization_enabled": true,
+  "numeric_backend": "zh-itn",
+  "zh_itn_enabled": true,
+  "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+  "window_size": 3,
+  "window_max_chars": 80,
+  "committed_chunks": 108,
+  "pending_refinement_chunks": 0,
+  "refinement_batch_size": 3,
+  "refinement_state": "window_refined",
+  "refinement_source_spans": [
+    {
+      "source_text": "天南一个能打的都没有，这回咱们的零食我倒装不下了。兄弟们，",
+      "clean_text": "天南一个能打的都没有，这回咱们的零食我倒装不下了。兄弟们，",
+      "state": "committed"
+    },
+    {
+      "source_text": "我们要继续努力，壮大鬼灵门的版图，让他们知道鬼灵门的厉害。",
+      "clean_text": "我们要继续努力，壮大鬼灵门的版图，让他们知道鬼灵门的厉害。",
+      "state": "committed"
+    },
+    {
+      "source_text": "我们要做天南第一，你们这帮魔道打趴几个小宗门就是高手了，打赢最厉害那个再说吧。",
+      "clean_text": "我们要做天南第一，你们这帮魔道打趴几个小宗门就是高手了，打赢最厉害那个再说吧。",
+      "state": "committed"
+    },
+    {
+      "source_text": "天南谁最能打呀？当然韩立了，难道我？",
+      "clean_text": "天南谁最能打呀？当然韩立了，难道我？",
+      "state": "committed"
+    },
+    {
+      "source_text": "你叫韩立吗？在下王禅，想找你做个SPA，",
+      "clean_text": "你叫韩立吗？在下王禅，想找你做个SPA，",
+      "state": "committed"
+    },
+    {
+      "source_text": "你找错人了。在下厉飞宇，你当我傻？",
+      "clean_text": "你找错人了。在下厉飞宇，你当我傻？",
+      "state": "committed"
+    },
+    {
+      "source_text": "门牌上写着韩府，你是不是歧视我们魔道修士？我要去消协告你！",
+      "clean_text": "门牌上写着韩府，你是不是歧视我们魔道修士？我要去消协告你！",
+      "state": "committed"
+    },
+    {
+      "source_text": "吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，",
+      "clean_text": "吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，",
+      "state": "committed"
+    },
+    {
+      "source_text": "快给我滚！你听见了，我是不会跟你打的，",
+      "clean_text": "快给我滚！你听见了，我是不会跟你打的，",
+      "state": "committed"
+    },
+    {
+      "source_text": "请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "clean_text": "请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+      "state": "committed"
+    },
+    {
+      "source_text": "韩立，你就是个怂货。修仙不是打打杀杀，",
+      "clean_text": "韩立，你就是个怂货。修仙不是打打杀杀，",
+      "state": "committed"
+    },
+    {
+      "source_text": "韩某只是习惯将众人护至身前。韩夫人，你放心，",
+      "clean_text": "韩某只是习惯将众人护至身前。韩夫人，你放心，",
+      "state": "committed"
+    },
+    {
+      "source_text": "我不会打死他。你要是怕他输，我让他五个法器。",
+      "clean_text": "我不会打死他。你要是怕他输，我让他5个法器。",
+      "state": "committed"
+    },
+    {
+      "source_text": "再不行，我让他十个，怎么样啊？",
+      "clean_text": "再不行，我让他10个，怎么样啊？",
+      "state": "committed"
+    },
+    {
+      "source_text": "谭道友，谭道友倒是天南第一，太让人失望了。",
+      "clean_text": "谭道友倒是天南第一，太让人失望了。",
+      "state": "committed"
+    },
+    {
+      "source_text": "他哪这么多修仙的，居然没有？闭嘴。",
+      "clean_text": "他哪这么多修仙的，居然没有？闭嘴。",
+      "state": "committed"
+    },
+    {
+      "source_text": "别打烂家里的东西。要不要？落云宗。",
+      "clean_text": "别打烂家里的东西。要不要？落云宗。",
+      "state": "committed"
+    },
+    {
+      "source_text": "韩立。请。哼。",
+      "clean_text": "韩立。请。哼。",
+      "state": "committed"
+    },
+    {
+      "source_text": "这嘿。啊！你滚！",
+      "clean_text": "这嘿。啊！你滚！",
+      "state": "committed"
+    },
+    {
+      "source_text": "滚！喂！我赔。",
+      "clean_text": "滚！喂！我赔。",
+      "state": "committed"
+    },
+    {
+      "source_text": "好啊。臭小子，说话小心点。",
+      "clean_text": "好啊。臭小子，说话小心点。",
+      "state": "committed"
+    },
+    {
+      "source_text": "啊！哎！乌江！",
+      "clean_text": "乌江！",
+      "state": "committed"
+    },
+    {
+      "source_text": "乌江！啊！爷爷！",
+      "clean_text": "乌江！啊！爷爷！",
+      "state": "committed"
+    },
+    {
+      "source_text": "少主，少主。你。",
+      "clean_text": "少主。你。",
+      "state": "committed"
+    },
+    {
+      "source_text": "对。嗯，别过来！",
+      "clean_text": "对，别过来！",
+      "state": "committed"
+    },
+    {
+      "source_text": "啊，少主，少主，",
+      "clean_text": "少主",
+      "state": "committed"
+    },
+    {
+      "source_text": "少主。哎。王禅道友，",
+      "clean_text": "少主。哎。王禅道友，",
+      "state": "committed"
+    },
+    {
+      "source_text": "没事吧？没事。嗯。",
+      "clean_text": "没事吧？没事。嗯。",
+      "state": "committed"
+    },
+    {
+      "source_text": "这。喂，喂，",
+      "clean_text": "这。喂，",
+      "state": "committed"
+    },
+    {
+      "source_text": "走，走，走，",
+      "clean_text": "走，",
+      "state": "committed"
+    },
+    {
+      "source_text": "走，走，走，",
+      "clean_text": "走，",
+      "state": "committed"
+    },
+    {
+      "source_text": "走。来。行，",
+      "clean_text": "走。来。行。",
+      "state": "committed"
+    },
+    {
+      "source_text": "行。阿萨。鱼。",
+      "clean_text": "行。阿萨。鱼。",
+      "state": "committed"
+    },
+    {
+      "source_text": "啊！怎么样，王禅道友，",
+      "clean_text": "怎么样，王禅道友",
+      "state": "committed"
+    },
+    {
+      "source_text": "我的手斧还可以吧？不用说了。今天鬼灵门输。",
+      "clean_text": "我的手斧还可以吧？不用说了。今天鬼灵门输。",
+      "state": "committed"
+    },
+    {
+      "source_text": "输给落云宗了。不是宗门的问题，修行之道只在个人。",
+      "clean_text": "输给落云宗了。不是宗门的问题，修行之道只在个人。",
+      "state": "committed"
+    }
+  ],
+  "window_cache_reused_group_count": 36,
+  "window_cache_reused_gate_skip_group_count": 26,
+  "window_cache_reprocessed_group_count": 0,
+  "window_cache_reprocess_reasons": {},
+  "window_cache_partition": "vad_segments",
+  "final_vad_source_segment_count": 43,
+  "repetition_review_model_calls": 0,
+  "repetition_response_cache_hits": 1,
+  "repetition_restorations": [],
+  "refinement_revision": 18,
+  "final_refinement_mode": "off",
+  "entity_asr_context_requested": true,
+  "entity_asr_context_applied": true,
+  "entity_asr_context_term_count": 5,
+  "refiner_session_stats": {
+    "schema_version": 1,
+    "call_count": 23,
+    "initial_call_count": 19,
+    "retry_call_count": 4,
+    "intermediate_call_count": 23,
+    "final_call_count": 0,
+    "completed_call_count": 23,
+    "failed_call_count": 0,
+    "inflight_call_count": 0,
+    "completed_wall_latency_ms": 3516.394,
+    "gate_skipped_segment_count": 30,
+    "busy_segment_count": 0,
+    "closed_call_rejection_count": 0,
+    "observed_initial_opportunity_count": 49,
+    "accepting_new_calls": false,
+    "stats_complete": true
+  },
+  "session_refiner_call_count": 23,
+  "session_refiner_initial_call_count": 19,
+  "session_refiner_retry_call_count": 4,
+  "session_refiner_intermediate_call_count": 23,
+  "session_refiner_final_call_count": 0,
+  "session_gate_skipped_segment_count": 30,
+  "entity_audio_repair_requested": false,
+  "entity_asr_context_guard": {
+    "enabled": true,
+    "fallback_active": false,
+    "revision": 0,
+    "checks": 0,
+    "events": []
+  }
+}

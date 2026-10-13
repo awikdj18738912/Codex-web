@@ -286,8 +286,20 @@ def context_omission_evidence(text, start, end, definition, namespace):
     if any(w in surrounding for w in ('写法','拼写','写成','读作','字形','这个词','错别字')):
         return ()
     tokenizer = _tokenizer()
-    if tokenizer is None or not tokenizer.FREQ.get(canonical, 0) or tokenizer.FREQ.get(observed, 0):
+    if tokenizer is None or tokenizer.FREQ.get(observed, 0):
         return ()
+    if not tokenizer.FREQ.get(canonical, 0):
+        # Rare verified monoclonal names are often absent from Jieba. Their
+        # stable 单抗 suffix plus a local drug role supplies independent
+        # evidence; the opt-in, uniqueness and insertion guards still apply.
+        if definition.domain != 'medical' or not canonical.endswith('单抗') or not observed.endswith('单抗'):
+            return ()
+        left=_SENTENCE_END.split(text[max(0,start-24):start])[-1]
+        right=_SENTENCE_END.split(text[end:end+24])[0]
+        if medical_person_slot(text,start,end) or re.match(r'^的?(医生|医师|护士|主任|教授|先生|女士)',right):
+            return ()
+        if not any(w in left+right for w in ('药物','靶向药','抗体药','用药','抑制剂','抗体','抑制','治疗')):
+            return ()
     insertion = start + positions[0]
     if any(a < insertion < b for _, a, b in _tokens(text)):
         return ()

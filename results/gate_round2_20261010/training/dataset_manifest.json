@@ -1,0 +1,160 @@
+{
+  "train": {
+    "cases": 582,
+    "eligible": 519,
+    "labels": {
+      "benefit": 117,
+      "neutral": 374,
+      "harm": 28,
+      "uncertain": 63
+    },
+    "templates": 47,
+    "recordings": 402,
+    "by_task": {
+      "window_refine": {
+        "labels": {
+          "benefit": 65,
+          "neutral": 319,
+          "harm": 14,
+          "uncertain": 42
+        },
+        "harm_templates": 3
+      },
+      "local_edit_review": {
+        "labels": {
+          "neutral": 55,
+          "benefit": 52,
+          "harm": 14,
+          "uncertain": 21
+        },
+        "harm_templates": 3
+      }
+    }
+  },
+  "validation": {
+    "cases": 222,
+    "eligible": 198,
+    "labels": {
+      "neutral": 132,
+      "benefit": 46,
+      "uncertain": 24,
+      "harm": 20
+    },
+    "templates": 30,
+    "recordings": 157,
+    "by_task": {
+      "window_refine": {
+        "labels": {
+          "neutral": 107,
+          "benefit": 26,
+          "uncertain": 18,
+          "harm": 6
+        },
+        "harm_templates": 6
+      },
+      "local_edit_review": {
+        "labels": {
+          "harm": 14,
+          "benefit": 20,
+          "neutral": 25,
+          "uncertain": 6
+        },
+        "harm_templates": 7
+      }
+    }
+  },
+  "old_internal_test_excluded": true,
+  "original_source_dev_test_used": false,
+  "new_source_dev_used_for_validation": true,
+  "new_source_test_generated": false,
+  "teacher": {
+    "refiner_weights": {
+      "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+    },
+    "refiner_config": "1e2212f0a509a6f7746b3adbff9d0f23d3807e803d55c2e173eb7ff1617ddf9f",
+    "dtype": "torch.float32",
+    "operation_settings": {
+      "gate": "tri_state",
+      "zh_itn": true,
+      "entity_fuzzy_mode": "auto",
+      "final_refinement": "off",
+      "window_size": 3,
+      "max_new_tokens": 256,
+      "window_edit_policy": "compat"
+    },
+    "entity_snapshot": "f6359f5bcb1fe93601c513d77436255db2878f2135959a248c5937aac0d7dba3",
+    "itn": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+    "closures": {
+      "refine_update": "46a43b326dff45c47a5fbb19c861cbd33a82c6bc7a0171e56018cf78bea7d971",
+      "review_final_repetition_text": "ecd673b85de3f327534a516cedf46bc622318b68c1aaf323f97e2b05f204cd16"
+    },
+    "dependencies": {
+      "refinement_gate.py": "04a03be369bff4277e844d79357f7ce6269d128c8524413a5e219910d49042ca",
+      "refinement_guard.py": "e27001cb79d0eb3790a903caf50746a044b2c81a4eca674cdd4740ea13f0c12a",
+      "refinement_protocol.py": "aa5fc11bcf27e2cc22606b82f9f955676f6ac0663fa5729089f7591e50dd6ef1",
+      "protection.py": "494a9791157f7bdea3bff6e27422bc08e09918fd8e77470e8e41b0373a0d7abd",
+      "numeric_normalizer.py": "80e1112be6fe382038ae20cc97b9b347cb7bddae625f6c01140ae81c95d7b17b",
+      "zh_itn_bridge.py": "8099dbd8119bc05c052552b0a876197cc732209c1712dbb0fe387d8b28a42dfd",
+      "window_refinement.py": "2018bcfc8b9d459317678f84d284a648fa8340c2c0460bc8989aef2fe1f8ffcf",
+      "entity_pipeline.py": "e221b81486d33692100ff457cd61b74c2ab14e295ba40304da93fb89db749f8f",
+      "entity_store.py": "a3a099eb6fdff15ea3a84119cca848b92e6274cad37228ab6f4bd893d819eec6",
+      "entity_matcher.py": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8"
+    }
+  },
+  "source_paths": {
+    "old_experiment": "/home/aim0/桌面/tan/ASR/Codex-web/results/learned_gate_weak_prototype_20261010",
+    "old_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen_tts_asr_gpu_pilot_20261010",
+    "new_train": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_template_expansion_20261010",
+    "dev_data": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/dev_data",
+    "risk_dev_data": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/risk_dev_data"
+  },
+  "source_hashes": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/learned_gate_weak_prototype_20261010/train.jsonl": "e92c0aa36e322874a54151962aa86c577e64edb1b1598f71114290ccc317339c",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/learned_gate_weak_prototype_20261010/validation.jsonl": "8c11592bc9a76c6efb9c49f04236452bca584080f7bd9a3bdf1c390fe6fa9164",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_template_expansion_20261010/weak_gate_labels_train_all.jsonl": "037bcfe932fef2ef19a48acabd429f9f60d1294c0e0d0a2c6ffa8d1341b737f2",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/dev_data/weak_gate_labels_dev_all.jsonl": "49eddc378edb6edf98ff3a1a6de811c4e14033fbd2754e34a01cb7bcd68f1edd",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/risk_dev_data/weak_gate_labels_dev_all.jsonl": "91937faacd5a5b130c066df8f1cc998f2e3d6ee551547f2a144c870bb2fb99b4"
+  },
+  "fit_script_sha256": "0f097ab72a6e270b9d71f62b85b1767d30d4f84dab682a7f9b49ccb18144b11b",
+  "runtime_sha256": "ea560ffe8ba389a41bb41e41f164344fdfd0f503ff8a8e003724f0a1d1b3b830",
+  "encoder_weights_sha256": "c60f6fde023a817b263dab52a4d0767ae139be98971da4a1a070c695ad24612e",
+  "encoder_config_sha256": "e0c8ad2f73ad1e93565e972486985a168087adddc998168dca19c4188265b661",
+  "torch_version": "2.11.0+cu130",
+  "transformers_version": "5.14.1",
+  "device": "cuda:0",
+  "batch_size": 32,
+  "baseline_weights_sha256": "749bacd0656c168e77791a567a6b4c275445b2891bbde3a5d81f0e621be62c11",
+  "baseline_metadata_sha256": "282b769d5fd8eed6f7f19e0f3f257376945776573a0edfe583f364dbb235faaf",
+  "epochs": 3,
+  "train_only_class_weighting": true,
+  "neutral_grid": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.99,
+    1.01
+  ],
+  "harm_grid": [
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    0.95,
+    1.01
+  ],
+  "minimum_benefit_retention": 0.95,
+  "declared_models": [
+    "linear_tfidf",
+    "encoder_unweighted",
+    "encoder_weighted"
+  ],
+  "declared_routes": [
+    "direct",
+    "native_veto"
+  ],
+  "human_gold": 0,
+  "uncertain_training": "excluded",
+  "uncertain_evaluation": "included"
+}

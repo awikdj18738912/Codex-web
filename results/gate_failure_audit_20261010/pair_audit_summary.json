@@ -1,0 +1,278 @@
+{
+  "packs": {
+    "test": {
+      "cases": 27,
+      "recordings": 22,
+      "labels": {
+        "neutral": 20,
+        "benefit": 3,
+        "uncertain": 3,
+        "harm": 1
+      },
+      "tags": {
+        "neutral_operation_but_transcript_not_exact": 7,
+        "native_gate_missed_beneficial_operation": 1,
+        "student_vetoed_beneficial_operation": 1,
+        "partial_cleanup_success_with_unrelated_residual_error": 2,
+        "audio_or_asr_or_reference_mismatch_unresolved": 3,
+        "script_preserves_content_refiner_changes_it": 1
+      },
+      "benefit_recordings": 2,
+      "duplicate_cross_task_repairs": [
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00062",
+          "baseline": "培训的报名链接由徐平发到工作工作群",
+          "refined": "培训的报名链接由徐平发到工作群",
+          "case_ids": [
+            "6e5728afc7567b660b0c1dbd",
+            "18a34444eddcedf26e473cb8"
+          ],
+          "labels": [
+            "benefit",
+            "benefit"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00008",
+          "baseline": "这张工作单需要需要郭鑫签字确认",
+          "refined": "这张工作单需要郭鑫签字确认",
+          "case_ids": [
+            "fd2b20a716d9c4b5bd9a4207",
+            "d32476a57fddfeb1ce418baf"
+          ],
+          "labels": [
+            "uncertain",
+            "uncertain"
+          ]
+        }
+      ]
+    },
+    "new_dev": {
+      "cases": 30,
+      "recordings": 22,
+      "labels": {
+        "benefit": 5,
+        "neutral": 21,
+        "uncertain": 4
+      },
+      "tags": {
+        "neutral_operation_but_transcript_not_exact": 9,
+        "partial_cleanup_success_with_unrelated_residual_error": 3,
+        "audio_or_asr_or_reference_mismatch_unresolved": 3,
+        "native_gate_missed_beneficial_operation": 2
+      },
+      "benefit_recordings": 3,
+      "duplicate_cross_task_repairs": [
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00059",
+          "baseline": "接线完成后请曹英检查端端子是否松动",
+          "refined": "接线完成后请曹英检查端子是否松动",
+          "case_ids": [
+            "c6724ab4a31e0cb341fb082b",
+            "a857911b0c15c128221b83a1"
+          ],
+          "labels": [
+            "uncertain",
+            "uncertain"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00029",
+          "baseline": "请在箱子上注明长沙的收收货地址",
+          "refined": "请在箱子上注明长沙的收货地址",
+          "case_ids": [
+            "91d6b32ad11e8ad7a4d90967",
+            "ce8f77ed0f16c38a995c90a7"
+          ],
+          "labels": [
+            "benefit",
+            "benefit"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00068",
+          "baseline": "月底之前潘秋需要完成账账目核对",
+          "refined": "月底之前潘秋需要完成账目核对",
+          "case_ids": [
+            "cefb3f04dd2bd6ee961be57b",
+            "d784accb88211e50fd3dcc64"
+          ],
+          "labels": [
+            "benefit",
+            "benefit"
+          ]
+        }
+      ]
+    },
+    "risk_dev": {
+      "cases": 28,
+      "recordings": 14,
+      "labels": {
+        "uncertain": 2,
+        "harm": 12,
+        "neutral": 14
+      },
+      "tags": {
+        "audio_or_asr_or_reference_mismatch_unresolved": 2,
+        "script_preserves_content_refiner_changes_it": 12,
+        "neutral_operation_but_transcript_not_exact": 6
+      },
+      "benefit_recordings": 0,
+      "duplicate_cross_task_repairs": [
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_011",
+          "baseline": "文件不能删除不能删除记录中保留了2次完整警告",
+          "refined": "文件不能删除记录中保留了2次完整警告",
+          "case_ids": [
+            "c1cd93ad3d6b8282ec1956a0",
+            "2c0f25a3e6a107ef61300519"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_010",
+          "baseline": "这个结论不一定成立不一定成立讲师重复提醒了2次",
+          "refined": "这个结论不一定成立讲师重复提醒了2次",
+          "case_ids": [
+            "b22274398a4f0d48d2eed056",
+            "aacbf9d2735161c6a39e55be"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_012",
+          "baseline": "这不是通行证不是通行证工作人员重复说明",
+          "refined": "这不是通行证工作人员重复说明",
+          "case_ids": [
+            "a59017d5b46d0571667aa3c1",
+            "6a034592a7e842564fc21ae2"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_004",
+          "baseline": "这个校验步骤特别特别关键讲解者反复强调",
+          "refined": "这个校验步骤特别关键讲解者反复强调",
+          "case_ids": [
+            "0850638c28d314d3c0666256",
+            "57c4201b70fffa05c218f5a8"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_005",
+          "baseline": "邮件里注明附件特别特别重要请保留原始文件",
+          "refined": "邮件里注明附件特别重要请保留原始文件",
+          "case_ids": [
+            "981afd3153bdc35294647b03",
+            "2bf76c13b51876fc30038fe8"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        }
+      ]
+    },
+    "new_train": {
+      "cases": 86,
+      "recordings": 62,
+      "labels": {
+        "neutral": 63,
+        "harm": 4,
+        "uncertain": 11,
+        "benefit": 8
+      },
+      "tags": {
+        "neutral_operation_but_transcript_not_exact": 36,
+        "script_preserves_content_refiner_changes_it": 4,
+        "audio_or_asr_or_reference_mismatch_unresolved": 10,
+        "partial_cleanup_success_with_unrelated_residual_error": 5
+      },
+      "benefit_recordings": 7,
+      "duplicate_cross_task_repairs": [
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00083",
+          "baseline": "请邓辉把2个方案逐条逐条对照",
+          "refined": "请邓辉把2个方案逐条对照",
+          "case_ids": [
+            "e1c59868af486b313c1690fd",
+            "42a2f01aab050b5ae1514038"
+          ],
+          "labels": [
+            "harm",
+            "harm"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00085",
+          "baseline": "梁宇说又一遍一遍听录音每一遍都检查不同的细节",
+          "refined": "梁宇说又一遍听录音每一遍都检查不同的细节",
+          "case_ids": [
+            "e832506960fbbaae634c6e94",
+            "04f3bbc606de4d4c1263976c"
+          ],
+          "labels": [
+            "uncertain",
+            "uncertain"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00002",
+          "baseline": "上线之前请请李安再检查一次配置",
+          "refined": "上线之前请李安再检查一次配置",
+          "case_ids": [
+            "457f61f3c667f4d63c615dc8",
+            "f4d52931937a64d4b2e2744e"
+          ],
+          "labels": [
+            "benefit",
+            "benefit"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00017",
+          "baseline": "请罗帆回回复这条故障工单",
+          "refined": "请罗帆回复这条故障工单",
+          "case_ids": [
+            "2ff60f1f4688278ef98b349f",
+            "05a8aad628da497cf6adfa8f"
+          ],
+          "labels": [
+            "uncertain",
+            "uncertain"
+          ]
+        },
+        {
+          "recording_group": "synthetic_text:expand_gate_20261011_00072",
+          "baseline": "田璐强调这次期限非常非常紧不能再延期",
+          "refined": "田璐强调这次期限非常紧不能再延期",
+          "case_ids": [
+            "4917e2412ed70ee8d57fec59",
+            "b44e6922415f4cd2a7fc4a98"
+          ],
+          "labels": [
+            "uncertain",
+            "uncertain"
+          ]
+        }
+      ]
+    }
+  },
+  "scope": "post_test_diagnostic_not_new_acceptance_test",
+  "new_training_labels": false,
+  "policy_frozen_sha256": "9ce5e1273946bcc00eb5c36803386d51cea739e8acb73f9241d77f0f0868eee0",
+  "warning": "Decision pairs cannot estimate sequential final-output utility; references are unverified synthesis scripts."
+}

@@ -1,0 +1,23 @@
+{
+  "selection_sha256": "fcf277c8dd566260f6e361113311ad2bf2565d59d2eaf76bd5093e36c64e58ef",
+  "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+  "threshold": 0.8,
+  "runtime_protocol_sha256": "cf8d83be19a1d17b21c68adfd5b35829b76d0cd2b667a5f84ddbb45f52b741b7",
+  "adapter_sha256": "4b8a169917014aec268f4eccb925817250efb3fb75579b7832a30674a5daac8f",
+  "session_protocol": "0.5sec packets paced by capture clock, max2 unacknowledged chunks",
+  "order": "per-clip hashed order, reversed in second repetition",
+  "repetitions": 2,
+  "human_source_sha256": "26f7fe2cc8f60b595b9874d006c60769e2994602436b952a7b45b7cd321d5239",
+  "tts_source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "dtype": "torch.float32",
+  "refiner_weights_sha256": {
+    "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+  },
+  "asr_url": "http://127.0.0.1:8766",
+  "confidence": "disabled",
+  "scope": "actual_paced_WebSocket_and_HTTP_ASR_new_downstream_holdout",
+  "caches": "fresh_per_session",
+  "warmups": "Refiner,MLM,classifier,ASR prewarmed on old train fixtures",
+  "no_test_tuning": true,
+  "online_production_enabled": false
+}

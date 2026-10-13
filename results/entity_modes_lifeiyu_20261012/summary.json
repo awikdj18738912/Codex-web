@@ -1,0 +1,98 @@
+{
+  "no_library": {
+    "label": "不使用登记词库",
+    "runs": 3,
+    "asr_stage_target_runs": 0,
+    "final_target_runs": 0,
+    "keeps_zai_xia_runs": 0,
+    "elapsed_median_seconds": 14.709,
+    "elapsed_range_seconds": [
+      14.565,
+      14.787
+    ],
+    "refiner_calls": [
+      23,
+      23,
+      23
+    ],
+    "entity_projection_target_runs": 0,
+    "original_audio_changes_runs": 0,
+    "audio_reasons": {},
+    "audio_replay_modes": {},
+    "unique_raw_full_texts": 1,
+    "unique_final_full_texts": 1
+  },
+  "post_only": {
+    "label": "仅实体替换（含新正文确认）",
+    "runs": 3,
+    "asr_stage_target_runs": 0,
+    "final_target_runs": 3,
+    "keeps_zai_xia_runs": 3,
+    "elapsed_median_seconds": 14.867,
+    "elapsed_range_seconds": [
+      14.827,
+      14.937
+    ],
+    "refiner_calls": [
+      24,
+      24,
+      24
+    ],
+    "entity_projection_target_runs": 3,
+    "original_audio_changes_runs": 0,
+    "audio_reasons": {},
+    "audio_replay_modes": {},
+    "unique_raw_full_texts": 1,
+    "unique_final_full_texts": 1
+  },
+  "context": {
+    "label": "词库辅助识别＋实体替换",
+    "runs": 3,
+    "asr_stage_target_runs": 3,
+    "final_target_runs": 3,
+    "keeps_zai_xia_runs": 3,
+    "elapsed_median_seconds": 14.813,
+    "elapsed_range_seconds": [
+      14.745,
+      15.045
+    ],
+    "refiner_calls": [
+      22,
+      24,
+      22
+    ],
+    "entity_projection_target_runs": 0,
+    "original_audio_changes_runs": 0,
+    "audio_reasons": {},
+    "audio_replay_modes": {},
+    "unique_raw_full_texts": 2,
+    "unique_final_full_texts": 2
+  },
+  "audio": {
+    "label": "实体原音复核＋实体替换",
+    "runs": 3,
+    "asr_stage_target_runs": 0,
+    "final_target_runs": 3,
+    "keeps_zai_xia_runs": 3,
+    "elapsed_median_seconds": 32.953,
+    "elapsed_range_seconds": [
+      32.576,
+      33.369
+    ],
+    "refiner_calls": [
+      24,
+      24,
+      24
+    ],
+    "entity_projection_target_runs": 3,
+    "original_audio_changes_runs": 0,
+    "audio_reasons": {
+      "replay_prompt_echo": 3
+    },
+    "audio_replay_modes": {
+      "full": 3
+    },
+    "unique_raw_full_texts": 1,
+    "unique_final_full_texts": 1
+  }
+}

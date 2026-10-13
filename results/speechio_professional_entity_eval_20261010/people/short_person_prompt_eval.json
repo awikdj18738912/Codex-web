@@ -1,0 +1,160 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "split": "same 16 heldout audio files from the person evaluation",
+  "prompt_terms": [
+    "Hans",
+    "刘德",
+    "蒋韬",
+    "罗剑",
+    "童世豪",
+    "张涛"
+  ],
+  "condition_metrics": {
+    "no_prompt": {
+      "semantic_hits": "10/18",
+      "canonical_hits": "7/18",
+      "raw_normalized_CER": "7.08%",
+      "unreferenced_dictionary_names": 0
+    },
+    "person_short_name_prompt": {
+      "semantic_hits": "16/18",
+      "canonical_hits": "13/18",
+      "raw_normalized_CER": "5.35%",
+      "unreferenced_dictionary_names": 0
+    }
+  },
+  "cer_method": "NFKC + casefold + remove punctuation/space/control characters; raw output, no ITN/OpenCC; paired within this run",
+  "samples": [
+    {
+      "reference": "终于有一次我们跑到一家银行的时候今天我们不能说这家银行是谁啊嗯嗯哎哟那我还过去还认识他他说刘德这可不行这东西是犯法的不能谈我说难道我们错了吗对吧后来我们说也许我们应该找更先锋的银行",
+      "expected_names": {
+        "刘德": 1
+      },
+      "no_prompt": "终于有一次，我们跑到一家银行的时候，今天我们不能说这家银行是谁啊？嗯嗯，哎呦，那我还过去还认识他。他说：“刘德，这可不行，这东西是犯法的，不能谈。”我们说：“难道我们错了吗？对吧？”后来我们说：“也许我们应该找更先锋的银行。”",
+      "two_character_person_prompt": "终于有一次，我们跑到一家银行的时候，今天我们不能说这家银行是谁啊？嗯嗯，哎呦，那我还过去还认识他。他说：“刘德，这可不行，这东西是犯法的，不能谈。”我们说：“难道我们错了吗？对吧？”后来我们说：“也许我们应该找更先锋的银行。”"
+    },
+    {
+      "reference": "本期我们请到的嘉宾是学科启蒙教育平台火花思维的创始人罗剑",
+      "expected_names": {
+        "罗剑": 1
+      },
+      "no_prompt": "本期我们请到的嘉宾是学科启蒙教育平台“火花思维”的创始人罗建。",
+      "two_character_person_prompt": "本期我们请到的嘉宾是学科启蒙教育平台“火花思维”的创始人罗剑。"
+    },
+    {
+      "reference": "罗剑有一点很牛的地方就是他改变的能力很强发现问题之后我快速能迭代啊",
+      "expected_names": {
+        "罗剑": 1
+      },
+      "no_prompt": "罗健有一点很牛的地方，就是他改变的能力很强。发现问题之后，我快速能迭代啊。",
+      "two_character_person_prompt": "罗剑有一点很牛的地方，就是他改变的能力很强。发现问题之后，我快速能迭代啊。"
+    },
+    {
+      "reference": "所以这种下决心作出一个不是一般人能能够作出决定的是不容易的所以刚才刘德提到的就他在大重大决定上面能够做出对的判断而且是这个成功几率比较高",
+      "expected_names": {
+        "刘德": 1
+      },
+      "no_prompt": "所以，这种下决心做出一个不是一般人能够做出决定的，是不容易的。所以刚才刘的提到的，就是他在大重大决定上面能够做出对的判断，而且这个成功几率比较高。",
+      "two_character_person_prompt": "所以，这种下决心做出一个不是一般人能够做出决定的，是不容易的。所以刚才刘德提到的，就是他在大重大决定上面能够做出对的判断，而且这个成功几率比较高。"
+    },
+    {
+      "reference": "哎不得不嘛这个我今天早上跟 Hans 聊天他还讲过很就是这样的很多决策是不得不做出来的",
+      "expected_names": {
+        "Hans": 1
+      },
+      "no_prompt": "不得不嘛，这个我今天早上跟汉子聊天，他还讲过，很就是这样的，很多决策是不得不做出来的。",
+      "two_character_person_prompt": "不得不嘛，这个我今天早上跟 Hans 聊天，他还讲过，很就是这样的，很多决策是不得不做出来的。"
+    },
+    {
+      "reference": "刘德说谈起今天小米的成功任何一个员工都可以说的头头是道啦",
+      "expected_names": {
+        "刘德": 1
+      },
+      "no_prompt": "刘德说：“谈起今天小米的成功，任何一个员工都可以说得头头是道了。”",
+      "two_character_person_prompt": "刘德说：“谈起今天小米的成功，任何一个员工都可以说得头头是道了。”"
+    },
+    {
+      "reference": "二零一零年刘德回国加入小米",
+      "expected_names": {
+        "刘德": 1
+      },
+      "no_prompt": "二零一零年，刘德回国，加入小米。",
+      "two_character_person_prompt": "二零一零年，刘德回国，加入小米。"
+    },
+    {
+      "reference": "但我们的担心确实也是就说它的天花板其实我当时在看游戏所以呢没跟那个张涛花太多时间在吃方面其实我不是个吃货",
+      "expected_names": {
+        "张涛": 1
+      },
+      "no_prompt": "但我们的担心确实也是，就说它的天花板。其实我当时在看游戏，所以呢，没跟那个张涛花太多时间在吃方面。其实我不是个吃货。",
+      "two_character_person_prompt": "但我们的担心确实也是，就说它的天花板。其实我当时在看游戏，所以呢，没跟那个张涛花太多时间在吃方面。其实我不是个吃货。"
+    },
+    {
+      "reference": "大家好呃我是张涛很高兴有机会过来和大家交流",
+      "expected_names": {
+        "张涛": 1
+      },
+      "no_prompt": "大家好，我我是张涛，很高兴有机会过来和大家交流。",
+      "two_character_person_prompt": "大家好，我我是张涛，很高兴有机会过来和大家交流。"
+    },
+    {
+      "reference": "同时呢我们这期还有一个额外的嘉宾跟我一起来访谈德哥他呢是 G G V 的管理合伙人啊 Hans 童世豪",
+      "expected_names": {
+        "Hans": 1,
+        "童世豪": 1
+      },
+      "no_prompt": "同时呢，我们这期还有一个额外的嘉宾跟我一起来访谈德哥，他呢是GGV的管理合伙人，嗯，哈斯同事豪。",
+      "two_character_person_prompt": "同时呢，我们这期还有一个额外的嘉宾跟我一起来访谈德哥，他呢是GGV的管理合伙人，嗯，哈斯童世豪。"
+    },
+    {
+      "reference": "本期我们请到的嘉宾是点评的创始人也是天使投资人张涛",
+      "expected_names": {
+        "张涛": 1
+      },
+      "no_prompt": "本期我们请到的嘉宾是点评的创始人，也是天使投资人张涛。",
+      "two_character_person_prompt": "本期我们请到的嘉宾是点评的创始人，也是天使投资人张涛。"
+    },
+    {
+      "reference": "Hans 啊他和德哥有多年的这个交往和感情哈然后呢也见证了小米的发展这 Hans 您能不能聊一聊就是您跟德哥怎么认识",
+      "expected_names": {
+        "Hans": 2
+      },
+      "no_prompt": "汉斯啊，他和德哥有多年的这个交往和感情哈，然后呢，也见证了小米的发展。就是汉斯，您能不能聊一聊，就是您跟德哥怎么认识？",
+      "two_character_person_prompt": "汉斯啊，他和德哥有多年的这个交往和感情哈，然后呢，也见证了小米的发展。这个汉斯，您能不能聊一聊，就是您跟德哥怎么认识？"
+    },
+    {
+      "reference": "是孵化啊比如说我们嗯小米出钱在用我们的平台优势帮忙创业者他不是纯投资我我举例子比如我跟 Hans 做投资的思路",
+      "expected_names": {
+        "Hans": 1
+      },
+      "no_prompt": "是孵化啊，比如说我们呃小米出钱，在用我们的平台优势帮忙创业者，它不是纯投资。我我举例子，比如我跟汉斯做投资思路。",
+      "two_character_person_prompt": "是孵化啊，比如说我们呃小米出钱，在用我们的平台优势帮忙创业者，它不是纯投资。我我举例子，比如我跟汉斯做投资思路。"
+    },
+    {
+      "reference": "刘德小米集团联合创始人之一现任小米集团高级副总裁组织部部长",
+      "expected_names": {
+        "刘德": 1
+      },
+      "no_prompt": "刘德，小米集团联合创始人之一，现任小米集团高级副总裁、组织部部长。",
+      "two_character_person_prompt": "刘德，小米集团联合创始人之一，现任小米集团高级副总裁、组织部部长。"
+    },
+    {
+      "reference": "但好在就是我们一直在这个过程当中跟 Jackal 跟创始人蒋韬一直保持",
+      "expected_names": {
+        "蒋韬": 1
+      },
+      "no_prompt": "但好在，就是我们一直在这个过程当中，跟Jacko、跟创始人蒋涛一直保持。",
+      "two_character_person_prompt": "但好在就是我们一直在这个过程当中，跟 Jacko、跟创始人蒋涛一直保持。"
+    },
+    {
+      "reference": "各位听众大家好我是火花思维创始人兼 C E O 罗剑",
+      "expected_names": {
+        "罗剑": 1
+      },
+      "no_prompt": "各位听众，大家好，我是火花思维创始人兼CEO罗健。",
+      "two_character_person_prompt": "各位听众，大家好，我是火花思维创始人兼 CEO 罗剑。"
+    }
+  ],
+  "caveat": "Only 16 utterances and an utterance-level split; use as a promising targeted result, not a general-purpose accuracy claim."
+}

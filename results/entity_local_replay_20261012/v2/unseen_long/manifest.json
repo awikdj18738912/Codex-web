@@ -1,0 +1,1041 @@
+{
+  "dataset": "entity_local_replay_v2_unseen_long",
+  "seed": "entity-local-unseen-long-20261012-v2",
+  "selection": "fixed SHA-256 rank over source IDs, references, and duration only; excludes source IDs in the 96-row pilot manifest",
+  "excluded_pilot_source_id_count": 96,
+  "case_count": 5,
+  "unique_component_source_id_count": 83,
+  "missing_required_scenes": [
+    {
+      "id": "football_san_siro",
+      "registered_entity": "圣西罗",
+      "reason": "no exact target in supplied source references",
+      "source_total_exact_matches": 0,
+      "excluded_exact_match_count": 0
+    },
+    {
+      "id": "auto_lexus",
+      "registered_entity": "雷克萨斯",
+      "reason": "no exact target in supplied source references",
+      "source_total_exact_matches": 0,
+      "excluded_exact_match_count": 0
+    },
+    {
+      "id": "auto_turbo",
+      "registered_entity": "涡轮增压",
+      "reason": "no exact target in supplied source references",
+      "source_total_exact_matches": 0,
+      "excluded_exact_match_count": 0
+    }
+  ],
+  "cases": [
+    {
+      "id": "football_baggio",
+      "kind": "positive",
+      "positive": true,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/football_baggio.f32le",
+      "pcm_sha256": "ab9942be07706431f2bd0825d1f053c57aabe41fd09b0a58cfe76b082700cbef",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 96.217625,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/libraries/football_baggio/entities.db",
+      "library_sha256": "068eb3af8c1a36dee5b69229e03a9d33b1942dae3fdf88b258d99782590c1026",
+      "registered_entity": "巴乔",
+      "entity_type": "PERSON",
+      "target_insertion_index": 0,
+      "focus_reference_candidate": null,
+      "components": [
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_71-1069",
+          "raw_audio_sha256": "644aafe1bff9b2af46d9445af11abc5f0fdb04dc79d020bb86ef83be7bd483c6",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 65040,
+          "duration_seconds": 4.065,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_71-1069.wav"
+        },
+        {
+          "source_id": "GEJTrggnMAU__2018_5_7_-_12-358",
+          "raw_audio_sha256": "140991868d1475719d3d7bbcb5e55233e86b3010126395b2786224cd647894e9",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 99520,
+          "duration_seconds": 6.22,
+          "speaker": "GEJTrggnMAU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/GEJ/GEJTrggnMAU__2018_5_7_-_12-358.wav"
+        },
+        {
+          "source_id": "Nch5ieDZs3A____50-902",
+          "raw_audio_sha256": "5bced2b5f7096efd3b7095a7ac05674bca4f69b6240355af1e294af316cca4fe",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 47760,
+          "duration_seconds": 2.985,
+          "speaker": "Nch5ieDZs3A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Nch/Nch5ieDZs3A____50-902.wav"
+        },
+        {
+          "source_id": "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_21-1203",
+          "raw_audio_sha256": "69dc9f64ad46b49ed6641140a9a5dd26d94429a02303e08a57614bb130de4035",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 70720,
+          "duration_seconds": 4.42,
+          "speaker": "YQ-tg8rjgec",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/YQ-/YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_21-1203.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____10-1607",
+          "raw_audio_sha256": "5ba7bbb3c434cf8bacc869c3ec307548a649bf3b02f6f7758a1f80e0505860aa",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 141121,
+          "duration_seconds": 8.8200625,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____10-1607.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_58-830",
+          "raw_audio_sha256": "9213331ad3382287fb645aa98cf27db822220b561a24bd182aadb1a55535a89b",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 59760,
+          "duration_seconds": 3.735,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_58-830.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____69-1650",
+          "raw_audio_sha256": "d03e8c46c16099de3eb481dd456b3dcea34ff7dfe1a3364858b50f28bd5faef7",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 73200,
+          "duration_seconds": 4.575,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____69-1650.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_71-1162",
+          "raw_audio_sha256": "fe300bfc63d0fdf68edc841850047879cc19e91415bcdb48469fd14d0f114133",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 97600,
+          "duration_seconds": 6.1,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_71-1162.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____18-1614",
+          "raw_audio_sha256": "2af7f5f3c21c99a459eb273bc10242681baae75723ae0a9a5eed7b481eddb5df",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 62640,
+          "duration_seconds": 3.915,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____18-1614.wav"
+        },
+        {
+          "source_id": "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_9-1233",
+          "raw_audio_sha256": "89e7caf8509a09067fa6d070763aa51fccf1d076d36add60c5c589727e31c993",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 107281,
+          "duration_seconds": 6.7050625,
+          "speaker": "YQ-tg8rjgec",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/YQ-/YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_9-1233.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_97-1187",
+          "raw_audio_sha256": "2fb421f27a2bd97a62605cc48f47d447a6ba342218b01c72d207b01efa46dec0",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 45600,
+          "duration_seconds": 2.85,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_97-1187.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_9-1402",
+          "raw_audio_sha256": "f548238d7943a717f4081cf7e344772485d4a7eee63c73a0f0eac8b7f6175ddc",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 83040,
+          "duration_seconds": 5.19,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_9-1402.wav"
+        },
+        {
+          "source_id": "ctPsMaWH94k____24-1428",
+          "raw_audio_sha256": "ba5d7070c9e78afff7ab5f400c9ae6a8177a81a96a588638b7db9aee6538f3a6",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 117480,
+          "duration_seconds": 7.3425,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____24-1428.wav"
+        },
+        {
+          "source_id": "Nch5ieDZs3A____19-871",
+          "raw_audio_sha256": "5a3fab76529b8dcd63c81d109467b81eb584a267ee2a8cbd096c35bf19ec0e80",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 126960,
+          "duration_seconds": 7.935,
+          "speaker": "Nch5ieDZs3A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Nch/Nch5ieDZs3A____19-871.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_112-151",
+          "raw_audio_sha256": "61c320b33589be5e400083cf7f68e9a17e95fbb7ba4765599d0ea9700366b8ed",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 67360,
+          "duration_seconds": 4.21,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_112-151.wav"
+        },
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_37-1031",
+          "raw_audio_sha256": "977f88b0669d610ba4c40774ccfac0acf6fe515bd1ad7be4e885a47a6a2f2928",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 69600,
+          "duration_seconds": 4.35,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_37-1031.wav"
+        }
+      ],
+      "source_ids": [
+        "VniQwSVS_CQ__2018_4_16_71-1069",
+        "GEJTrggnMAU__2018_5_7_-_12-358",
+        "Nch5ieDZs3A____50-902",
+        "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_21-1203",
+        "jmFa1R5CFP0____10-1607",
+        "Myb_P5Yui60__2018_5_7_-_58-830",
+        "jmFa1R5CFP0____69-1650",
+        "WeSZX0lAvyg__2018_4_30_71-1162",
+        "jmFa1R5CFP0____18-1614",
+        "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_9-1233",
+        "WeSZX0lAvyg__2018_4_30_97-1187",
+        "bFXyEWzFSpk__2018_4_30_9-1402",
+        "ctPsMaWH94k____24-1428",
+        "Nch5ieDZs3A____19-871",
+        "9Gz_rAUeLFA__2_112-151",
+        "VniQwSVS_CQ__2018_4_16_37-1031"
+      ]
+    },
+    {
+      "id": "football_inter_milan",
+      "kind": "positive",
+      "positive": true,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/football_inter_milan.f32le",
+      "pcm_sha256": "84c8e6ec67b9eb9f380a7275cfe8f0ea46d68a8ee82192e0a2fcdbbd5853ae34",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 103.41025,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/libraries/football_inter_milan/entities.db",
+      "library_sha256": "ce74d634be98ab89ea9a4de85c6d6ded8f05aa72ccbfa174a581e17b2904a4bd",
+      "registered_entity": "国际米兰",
+      "entity_type": "ORG",
+      "target_insertion_index": 8,
+      "focus_reference_candidate": null,
+      "components": [
+        {
+          "source_id": "lRyMaicUSGU____6-1679",
+          "raw_audio_sha256": "75b54efccc1ace141dc585735f2ee15347db51f4a49d69f1d2d9df35e53c4266",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 69684,
+          "duration_seconds": 4.35525,
+          "speaker": "lRyMaicUSGU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/lRy/lRyMaicUSGU____6-1679.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_76-234",
+          "raw_audio_sha256": "d1d71a437b4598d52e8105f86bdb1cbceeb62d047e3558268e2fd351ab8bb14f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 65040,
+          "duration_seconds": 4.065,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_76-234.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_62-219",
+          "raw_audio_sha256": "41ea400b2b8b5106c2dca10747dac6bba69ae40ef3bf1f82294139c1e617861d",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 66880,
+          "duration_seconds": 4.18,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_62-219.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____49-1635",
+          "raw_audio_sha256": "e3e07be6dfedc5ecc65e522ec43eb1a785d00527e845dcd81dc7f03d0d5a06ea",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 72240,
+          "duration_seconds": 4.515,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____49-1635.wav"
+        },
+        {
+          "source_id": "GEJTrggnMAU__2018_5_7_-_58-401",
+          "raw_audio_sha256": "7bd7c8a84e5f9944f6585e361ff3e504eb3c1d9bc329b824e7f629c8df9ff831",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 88080,
+          "duration_seconds": 5.505,
+          "speaker": "GEJTrggnMAU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/GEJ/GEJTrggnMAU__2018_5_7_-_58-401.wav"
+        },
+        {
+          "source_id": "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_60-130",
+          "raw_audio_sha256": "61bb1963f313cbf0852e8f52d092069f8bc8e4e1cf4026b808a2172abc20745f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 82400,
+          "duration_seconds": 5.15,
+          "speaker": "2zW2-Ut",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/2zW/2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_60-130.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_30-22",
+          "raw_audio_sha256": "9a66041cb8c49f5ac737ffe5bab41810275dd69ef06b927c9b128fc403007505",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 42000,
+          "duration_seconds": 2.625,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_30-22.wav"
+        },
+        {
+          "source_id": "Ok9sCQ16s1c__1_21-945",
+          "raw_audio_sha256": "23a053d19dfd7d1e689433a05cee6f4aaf04bf2921df5f8d5861f9b77ba3642d",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 111680,
+          "duration_seconds": 6.98,
+          "speaker": "Ok9sCQ16s1c",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Ok9/Ok9sCQ16s1c__1_21-945.wav"
+        },
+        {
+          "source_id": "A0s8OWi7w44__20180410_29-281",
+          "raw_audio_sha256": "325c3134a21e3c1694a41c82b2f8dab2edda7d62f0857aa2f2ea3241fa8b9766",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 118480,
+          "duration_seconds": 7.405,
+          "speaker": "A0s8OWi7w44",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/A0s/A0s8OWi7w44__20180410_29-281.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_135-1271",
+          "raw_audio_sha256": "6f1de4f2d4d381abba5249ea6ffe93daf6ede45316321caad3aef329b4c5e99c",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 94560,
+          "duration_seconds": 5.91,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_135-1271.wav"
+        },
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_6-1056",
+          "raw_audio_sha256": "be87b2d51262a49d81bcd7fb8e323fd29ca2ec0dc3e4ddfd5de0c7cdbc7396b3",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 107159,
+          "duration_seconds": 6.6974375,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_6-1056.wav"
+        },
+        {
+          "source_id": "Ok9sCQ16s1c__1_40-963",
+          "raw_audio_sha256": "cff56fa8117572b34cb52e881b23a30d692d38ca74d94eba0a3389fba4286d61",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 54560,
+          "duration_seconds": 3.41,
+          "speaker": "Ok9sCQ16s1c",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Ok9/Ok9sCQ16s1c__1_40-963.wav"
+        },
+        {
+          "source_id": "GEJTrggnMAU__2018_5_7_-_56-399",
+          "raw_audio_sha256": "0f5efd34e5ac6f6105d09467d6726d0ce78749d763eddf1b2b7d60b84f9e76ee",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 64720,
+          "duration_seconds": 4.045,
+          "speaker": "GEJTrggnMAU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/GEJ/GEJTrggnMAU__2018_5_7_-_56-399.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____27-691",
+          "raw_audio_sha256": "522b91b91cf5317c13a0807e1be6d18ed24ec0499b9a5857d09d937046f8a843",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 97120,
+          "duration_seconds": 6.07,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____27-691.wav"
+        },
+        {
+          "source_id": "ctPsMaWH94k____65-1471",
+          "raw_audio_sha256": "f8ca403fec0cb562fdc5f58ad2babdec51ba889f03ecd0a96a795ff3bde89825",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 104280,
+          "duration_seconds": 6.5175,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____65-1471.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_29-810",
+          "raw_audio_sha256": "4fc3dfaf261d7397e48e5238492a00589956e71c2b961dcbe41677ded4e78426",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 79120,
+          "duration_seconds": 4.945,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_29-810.wav"
+        },
+        {
+          "source_id": "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_57-1225",
+          "raw_audio_sha256": "bb8aec56fbf6f9c1224ba66338e27b001f1f7bb77fe13fae5cd858a7d16a00d4",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 118961,
+          "duration_seconds": 7.4350625,
+          "speaker": "YQ-tg8rjgec",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/YQ-/YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_57-1225.wav"
+        }
+      ],
+      "source_ids": [
+        "lRyMaicUSGU____6-1679",
+        "9Gz_rAUeLFA__2_76-234",
+        "9Gz_rAUeLFA__2_62-219",
+        "jmFa1R5CFP0____49-1635",
+        "GEJTrggnMAU__2018_5_7_-_58-401",
+        "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_60-130",
+        "0AoLtRVZZPg__2018_4_16_30-22",
+        "Ok9sCQ16s1c__1_21-945",
+        "A0s8OWi7w44__20180410_29-281",
+        "bFXyEWzFSpk__2018_4_30_135-1271",
+        "VniQwSVS_CQ__2018_4_16_6-1056",
+        "Ok9sCQ16s1c__1_40-963",
+        "GEJTrggnMAU__2018_5_7_-_56-399",
+        "M3R9aCo3vYE____27-691",
+        "ctPsMaWH94k____65-1471",
+        "Myb_P5Yui60__2018_5_7_-_29-810",
+        "YQ-tg8rjgec__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_57-1225"
+      ]
+    },
+    {
+      "id": "football_uefa_cup",
+      "kind": "positive",
+      "positive": true,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/football_uefa_cup.f32le",
+      "pcm_sha256": "c836d6ad45baaa6b3a729935d7d9b8504c9b991f08dcb6efc2ad4a8fe58112c2",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 104.0783125,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/libraries/football_uefa_cup/entities.db",
+      "library_sha256": "c210776f25c82b5494accd9b13b35b5291bbda0f82d860326f89c1d547560e24",
+      "registered_entity": "欧洲联盟杯",
+      "entity_type": "TERM",
+      "target_insertion_index": 15,
+      "focus_reference_candidate": null,
+      "components": [
+        {
+          "source_id": "jWcyKg7edJw__2018_5_7_-_6-1595",
+          "raw_audio_sha256": "2f59fe2c3392af5409ea583eee590b04dd3330452400edf1353ef42c2d11ec37",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 113847,
+          "duration_seconds": 7.1154375,
+          "speaker": "jWcyKg7edJw",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jWc/jWcyKg7edJw__2018_5_7_-_6-1595.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____53-717",
+          "raw_audio_sha256": "4901c3fdeb39932e44ca72efef1daa202a1ff38775a3e9d4b6fb43617efbbe72",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 61920,
+          "duration_seconds": 3.87,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____53-717.wav"
+        },
+        {
+          "source_id": "Ok9sCQ16s1c__1_38-960",
+          "raw_audio_sha256": "e96505f22f071c5b023625a87dedfd44df25b7d718b20c36cc373a9b366412de",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 63600,
+          "duration_seconds": 3.975,
+          "speaker": "Ok9sCQ16s1c",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Ok9/Ok9sCQ16s1c__1_38-960.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____81-744",
+          "raw_audio_sha256": "ba588e385401337e4b738e00c34f9509b5d1cb16cd960ae136de7bc3001f88ca",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 53040,
+          "duration_seconds": 3.315,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____81-744.wav"
+        },
+        {
+          "source_id": "lRyMaicUSGU____15-1661",
+          "raw_audio_sha256": "f2e2759fd19b668329d7e26aa7826ad09a3e76a508b17f11bcd3c7a870e4a1a4",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 76885,
+          "duration_seconds": 4.8053125,
+          "speaker": "lRyMaicUSGU",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/lRy/lRyMaicUSGU____15-1661.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_65-838",
+          "raw_audio_sha256": "b54b6177bf65478a7c1221156c167dbe61256bc70cd3b90d512be89a46964f7a",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 131120,
+          "duration_seconds": 8.195,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_65-838.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_45-38",
+          "raw_audio_sha256": "5ecafd64dc476684d5cd53989cc68026fffb42a4805ef893fd66672a709298c4",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 54000,
+          "duration_seconds": 3.375,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_45-38.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____172-634",
+          "raw_audio_sha256": "16442ff76dcacbde8c5602201a443a1a00b7172f5d9d8b61ae9714846f45d083",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 83040,
+          "duration_seconds": 5.19,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____172-634.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_88-247",
+          "raw_audio_sha256": "cef64f0ec647bb544d32674596815660717f7c30fb887ce6c616a4808dd4eb4a",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 85040,
+          "duration_seconds": 5.315,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_88-247.wav"
+        },
+        {
+          "source_id": "HECC1FKi6V8____73-488",
+          "raw_audio_sha256": "12ace8de0e1f8fe8b6cc72661286a9b8c60ad10c5a9eeba49c74ed4f46f7df14",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 110960,
+          "duration_seconds": 6.935,
+          "speaker": "HECC1FKi6V8",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/HEC/HECC1FKi6V8____73-488.wav"
+        },
+        {
+          "source_id": "gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_35-1508",
+          "raw_audio_sha256": "d32835a97fb0d93f3bea87199efca80cc4e4c90c460ff286c8b65303e596668a",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 48000,
+          "duration_seconds": 3.0,
+          "speaker": "gT039W7ZKao",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/gT0/gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_35-1508.wav"
+        },
+        {
+          "source_id": "ctPsMaWH94k____54-1460",
+          "raw_audio_sha256": "96147b2b35710402211b1430694a31ed7bffe4652874a43c5d33879c449d62c8",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 121120,
+          "duration_seconds": 7.57,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____54-1460.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_137-1273",
+          "raw_audio_sha256": "4edc9a2b2486f2cbfff2c19d089137736ed755e1e4499a8b39dcb9cbadc2b078",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 60560,
+          "duration_seconds": 3.785,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_137-1273.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_89-1181",
+          "raw_audio_sha256": "4cbd62220b8f64c80da29aa1a893774c57a55fdcfd624d83c9762cea9c3836de",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 138280,
+          "duration_seconds": 8.6425,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_89-1181.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_20-1111",
+          "raw_audio_sha256": "b52f6ffe4794c1709dae88b05f36091314eee8e54b4ddd112b5a96c7e168f54f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 114080,
+          "duration_seconds": 7.13,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_20-1111.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_73-69",
+          "raw_audio_sha256": "facf498cfc1c929a6f8230776fa5773909c967cbc52eef8ef917bae13fa10548",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 144961,
+          "duration_seconds": 9.0600625,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_73-69.wav"
+        }
+      ],
+      "source_ids": [
+        "jWcyKg7edJw__2018_5_7_-_6-1595",
+        "M3R9aCo3vYE____53-717",
+        "Ok9sCQ16s1c__1_38-960",
+        "M3R9aCo3vYE____81-744",
+        "lRyMaicUSGU____15-1661",
+        "Myb_P5Yui60__2018_5_7_-_65-838",
+        "0AoLtRVZZPg__2018_4_16_45-38",
+        "M3R9aCo3vYE____172-634",
+        "9Gz_rAUeLFA__2_88-247",
+        "HECC1FKi6V8____73-488",
+        "gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_35-1508",
+        "ctPsMaWH94k____54-1460",
+        "bFXyEWzFSpk__2018_4_30_137-1273",
+        "WeSZX0lAvyg__2018_4_30_89-1181",
+        "WeSZX0lAvyg__2018_4_30_20-1111",
+        "0AoLtRVZZPg__2018_4_16_73-69"
+      ]
+    },
+    {
+      "id": "negative_haoyue",
+      "kind": "negative",
+      "positive": false,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/negative_haoyue.f32le",
+      "pcm_sha256": "0126a65e4c366f2499c4bce40396e56ba00d63872b35f68513101e5373ce6289",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 93.11,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/libraries/negative_haoyue/entities.db",
+      "library_sha256": "bf80d0dcf1e1ed9a844f02b0105c19a7d9311d1759cf2823f41832f8abb6af7e",
+      "registered_entity": "浩悦",
+      "entity_type": "TERM",
+      "target_insertion_index": null,
+      "focus_reference_candidate": null,
+      "components": [
+        {
+          "source_id": "Ok9sCQ16s1c__1_47-969",
+          "raw_audio_sha256": "5283e591ac8541a40781cd7e3278df43a3ad2e06850280fece0acce583f6d229",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 77520,
+          "duration_seconds": 4.845,
+          "speaker": "Ok9sCQ16s1c",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Ok9/Ok9sCQ16s1c__1_47-969.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____168-629",
+          "raw_audio_sha256": "5e8a94633727a19646d0f0a206d30af862ea7253471b38b9f46693d38ceb9186",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 87120,
+          "duration_seconds": 5.445,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____168-629.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_99-1189",
+          "raw_audio_sha256": "0cc8fcc353010ae737ecda5e6260704a6c34e8923b25e544af63c9eccc90b5a5",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 65280,
+          "duration_seconds": 4.08,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_99-1189.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____88-751",
+          "raw_audio_sha256": "510df263916f3630b1d4690fd194460930aad3fae2bcbcd96094b4377c246dca",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 56720,
+          "duration_seconds": 3.545,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____88-751.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____202-668",
+          "raw_audio_sha256": "42408130f7253425618e87d15bfb0bd9c01df06b5161e4777535a9ba872efb4b",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 80480,
+          "duration_seconds": 5.03,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____202-668.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_14-1276",
+          "raw_audio_sha256": "997687c143132e04c8492b127a02a67005d34ef965aa7c1466c6812efd33cfa5",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 62400,
+          "duration_seconds": 3.9,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_14-1276.wav"
+        },
+        {
+          "source_id": "ctPsMaWH94k____64-1470",
+          "raw_audio_sha256": "b159fd5e79c6f269632a59f468d541a89e0787d13f67dca92612314da30ef5fd",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 103200,
+          "duration_seconds": 6.45,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____64-1470.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____181-644",
+          "raw_audio_sha256": "05db6cde10802ac7cbd7da37d358ff327601d1fa8506dd4c87410964e276c322",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 44560,
+          "duration_seconds": 2.785,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____181-644.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____154-615",
+          "raw_audio_sha256": "64fb664d9d3d509aa9ede50ff9ba3cd5009f15bd055cbcdee4af7cbc1a5d60ae",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 71120,
+          "duration_seconds": 4.445,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____154-615.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_41-1133",
+          "raw_audio_sha256": "541c05e3c22982588fb743a493b96c4335ef17fb189e37814f2b156b70d7a953",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 91200,
+          "duration_seconds": 5.7,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_41-1133.wav"
+        },
+        {
+          "source_id": "gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_1-1484",
+          "raw_audio_sha256": "2710a5297e26c145967a561f825da232f5065adf357dc6ad84c7b126656ffab3",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 90360,
+          "duration_seconds": 5.6475,
+          "speaker": "gT039W7ZKao",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/gT0/gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_1-1484.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_76-1167",
+          "raw_audio_sha256": "bcb4cea0d0b6fb24bd1866c9d0f01f826ac0d07f15ea68c3834d90a2b205fd2d",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 71360,
+          "duration_seconds": 4.46,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_76-1167.wav"
+        },
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_16-1009",
+          "raw_audio_sha256": "67b33a68c31bd7d6d6b8108ef633b76fc3aa8fd38b10de8e7bf7f502a61e1f94",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 59640,
+          "duration_seconds": 3.7275,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_16-1009.wav"
+        },
+        {
+          "source_id": "Ok9sCQ16s1c__1_76-999",
+          "raw_audio_sha256": "26db3a137eafe6c703377b350fc1d8361978845de670629f60995d103cd25453",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 58640,
+          "duration_seconds": 3.665,
+          "speaker": "Ok9sCQ16s1c",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Ok9/Ok9sCQ16s1c__1_76-999.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_3-811",
+          "raw_audio_sha256": "f7988bd06526c83e9bf35c756dbd2334bc56a8973594ba25c3bc307588f76fb6",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 48880,
+          "duration_seconds": 3.055,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_3-811.wav"
+        },
+        {
+          "source_id": "VniQwSVS_CQ__2018_4_16_25-1019",
+          "raw_audio_sha256": "60679f43feb065e688b43a71c257aa82de12ac5b5a523df516329aa1a7eb1d42",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 66400,
+          "duration_seconds": 4.15,
+          "speaker": "VniQwSVS",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Vni/VniQwSVS_CQ__2018_4_16_25-1019.wav"
+        },
+        {
+          "source_id": "A0s8OWi7w44__20180410_55-305",
+          "raw_audio_sha256": "3d191ed2b816396819ce9812889e44fe6306d481689624858b0946d4c1229f82",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 60880,
+          "duration_seconds": 3.805,
+          "speaker": "A0s8OWi7w44",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/A0s/A0s8OWi7w44__20180410_55-305.wav"
+        },
+        {
+          "source_id": "0AoLtRVZZPg__2018_4_16_10-0",
+          "raw_audio_sha256": "894aacde861d3339909c27e50a626e66a937316de1a0a75bad4f7b919c80da61",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 63600,
+          "duration_seconds": 3.975,
+          "speaker": "0AoLtRVZZPg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/0Ao/0AoLtRVZZPg__2018_4_16_10-0.wav"
+        }
+      ],
+      "source_ids": [
+        "Ok9sCQ16s1c__1_47-969",
+        "M3R9aCo3vYE____168-629",
+        "WeSZX0lAvyg__2018_4_30_99-1189",
+        "M3R9aCo3vYE____88-751",
+        "M3R9aCo3vYE____202-668",
+        "bFXyEWzFSpk__2018_4_30_14-1276",
+        "ctPsMaWH94k____64-1470",
+        "M3R9aCo3vYE____181-644",
+        "M3R9aCo3vYE____154-615",
+        "WeSZX0lAvyg__2018_4_30_41-1133",
+        "gT039W7ZKao__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_1-1484",
+        "WeSZX0lAvyg__2018_4_30_76-1167",
+        "VniQwSVS_CQ__2018_4_16_16-1009",
+        "Ok9sCQ16s1c__1_76-999",
+        "Myb_P5Yui60__2018_5_7_-_3-811",
+        "VniQwSVS_CQ__2018_4_16_25-1019",
+        "A0s8OWi7w44__20180410_55-305",
+        "0AoLtRVZZPg__2018_4_16_10-0"
+      ]
+    },
+    {
+      "id": "negative_figo",
+      "kind": "negative",
+      "positive": false,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/negative_figo.f32le",
+      "pcm_sha256": "829bd3107e75470ed242d167954aecbef51ba33439b3b05679ff67b4331f1830",
+      "format": "f32le mono 16000 Hz",
+      "duration_seconds": 93.0175,
+      "library": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/libraries/negative_figo/entities.db",
+      "library_sha256": "3aecbc0da0ec7f1956f371c0475236e4210825babf627dd007fb0b7985acc660",
+      "registered_entity": "菲戈",
+      "entity_type": "TERM",
+      "target_insertion_index": null,
+      "focus_reference_candidate": null,
+      "components": [
+        {
+          "source_id": "ctPsMaWH94k____30-1435",
+          "raw_audio_sha256": "3be6caec71a9b65afd7feb17782429a6f297c97567fdf6b5c4a4da4f8a55f7d3",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 90000,
+          "duration_seconds": 5.625,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____30-1435.wav"
+        },
+        {
+          "source_id": "WeSZX0lAvyg__2018_4_30_107-1085",
+          "raw_audio_sha256": "4bebab8080442dcf611ccec168357ab076ad9d4de7eda273385f205392841d6f",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 92240,
+          "duration_seconds": 5.765,
+          "speaker": "WeSZX0lAvyg",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/WeS/WeSZX0lAvyg__2018_4_30_107-1085.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_77-235",
+          "raw_audio_sha256": "cd75b979318432109ca1989a55badfddbb22987ec30e152670ddd961413be710",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 112400,
+          "duration_seconds": 7.025,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_77-235.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_96-1408",
+          "raw_audio_sha256": "963a36748369aff82d089954ed239659fcd1f59db512e8f124e9e2635100e090",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 87120,
+          "duration_seconds": 5.445,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_96-1408.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_73-1384",
+          "raw_audio_sha256": "77c1d9d464925c513c5805591f6c1a37456fd4bcb4179933c8a01d8212f5c5b6",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 75280,
+          "duration_seconds": 4.705,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_73-1384.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____53-1639",
+          "raw_audio_sha256": "55fb34c5c52cad60a37f8e4708337c82d8cc0573d0c3479b8f3ddfe16ed1713c",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 76000,
+          "duration_seconds": 4.75,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____53-1639.wav"
+        },
+        {
+          "source_id": "jmFa1R5CFP0____70-1652",
+          "raw_audio_sha256": "8bd4659a331c75d938f533b182391e621ca556a8edd3c294c7e5048a67a794b3",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 75680,
+          "duration_seconds": 4.73,
+          "speaker": "jmFa1R5CFP0",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/jmF/jmFa1R5CFP0____70-1652.wav"
+        },
+        {
+          "source_id": "Myb_P5Yui60__2018_5_7_-_62-835",
+          "raw_audio_sha256": "96cde4c635c14026aa5e5f13472638848644372e6d6be794149e76c138670aad",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 58720,
+          "duration_seconds": 3.67,
+          "speaker": "Myb",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Myb/Myb_P5Yui60__2018_5_7_-_62-835.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_31-188",
+          "raw_audio_sha256": "2c96389b9fdd4519e52dddde36b6b5992afa034a671240dc6016f46b279e8658",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 64240,
+          "duration_seconds": 4.015,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_31-188.wav"
+        },
+        {
+          "source_id": "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_45-114",
+          "raw_audio_sha256": "488f8c87fb5de766b2f58b098766763ef9f1959fb7929e19ca21cdcc2851ddb5",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 81440,
+          "duration_seconds": 5.09,
+          "speaker": "2zW2-Ut",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/2zW/2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_45-114.wav"
+        },
+        {
+          "source_id": "Nch5ieDZs3A____26-878",
+          "raw_audio_sha256": "617b03120da01338303f28d167cc5407fc73937f3b38eb6ecc180356c9c80d90",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 85120,
+          "duration_seconds": 5.32,
+          "speaker": "Nch5ieDZs3A",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/Nch/Nch5ieDZs3A____26-878.wav"
+        },
+        {
+          "source_id": "M3R9aCo3vYE____174-636",
+          "raw_audio_sha256": "b8eba0151030efc2a1ebeb069631cf44a118a42a84842728f0e9ae2a989efac2",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 54000,
+          "duration_seconds": 3.375,
+          "speaker": "M3R9aCo3vYE",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/M3R/M3R9aCo3vYE____174-636.wav"
+        },
+        {
+          "source_id": "bFXyEWzFSpk__2018_4_30_180-1316",
+          "raw_audio_sha256": "620a151d374b179928780990e630400e0b245c44322a598d4b80ce2b2a4c1ccf",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 82320,
+          "duration_seconds": 5.145,
+          "speaker": "bFXyEWzFSpk",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/bFX/bFXyEWzFSpk__2018_4_30_180-1316.wav"
+        },
+        {
+          "source_id": "ctPsMaWH94k____58-1464",
+          "raw_audio_sha256": "24a8acd0f1488919fc6942f3daaf1b6dc4caddb38a9cba5582ab3e309524c936",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 122040,
+          "duration_seconds": 7.6275,
+          "speaker": "ctPsMaWH94k",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/ctP/ctPsMaWH94k____58-1464.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_38-195",
+          "raw_audio_sha256": "270f239e83f7e5de79d145cf82a63c353673e28ce74150b4b3e7d1e34d1a924e",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 58400,
+          "duration_seconds": 3.65,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_38-195.wav"
+        },
+        {
+          "source_id": "9Gz_rAUeLFA__2_23-182",
+          "raw_audio_sha256": "920722de7bcef12b25e953fc3cf90d1541d667276da01de1c0e717a7d6c2a999",
+          "sample_rate": 16000,
+          "channels": 1,
+          "frames": 68480,
+          "duration_seconds": 4.28,
+          "speaker": "9Gz",
+          "original_full_path": "data/speechio_cuts_SPEECHIO_ASR_ZH00003.00000000/9Gz/9Gz_rAUeLFA__2_23-182.wav"
+        }
+      ],
+      "source_ids": [
+        "ctPsMaWH94k____30-1435",
+        "WeSZX0lAvyg__2018_4_30_107-1085",
+        "9Gz_rAUeLFA__2_77-235",
+        "bFXyEWzFSpk__2018_4_30_96-1408",
+        "bFXyEWzFSpk__2018_4_30_73-1384",
+        "jmFa1R5CFP0____53-1639",
+        "jmFa1R5CFP0____70-1652",
+        "Myb_P5Yui60__2018_5_7_-_62-835",
+        "9Gz_rAUeLFA__2_31-188",
+        "2zW2-Ut_axA__2018_4_23_Miroslav_Josef_Klose_live_for_world_cup_45-114",
+        "Nch5ieDZs3A____26-878",
+        "M3R9aCo3vYE____174-636",
+        "bFXyEWzFSpk__2018_4_30_180-1316",
+        "ctPsMaWH94k____58-1464",
+        "9Gz_rAUeLFA__2_38-195",
+        "9Gz_rAUeLFA__2_23-182"
+      ]
+    }
+  ]
+}

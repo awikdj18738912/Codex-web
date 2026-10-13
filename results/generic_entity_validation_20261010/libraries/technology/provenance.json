@@ -1,0 +1,20 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "domain": "technology",
+  "training_split_seed": "speechio-professional-split-v1",
+  "train_rows": 1802,
+  "heldout_rows": 1191,
+  "vocabulary_size": 1,
+  "vocabulary_source": "60% deterministic training split only",
+  "integration_domain": "medical (temporary fixture so the existing web/entity route can load the isolated experiment library)",
+  "test_selection": "All heldout utterances with at least one exact training-known curated domain term",
+  "reference_at_inference": false,
+  "aliases_added": false,
+  "frozen_hashes": {
+    "entities.db": "ecef6231e0be170b464f74e0022ecf1f6a0b7c2cc888623644f8e9e294a5caf0",
+    "entities.json": "55a924c1c2d9135d7b8c4340374f8529b574f5dc204a7c4cfaaa65cb602ab246",
+    "sample_entities.json": "c5e0b043347822118bbf3251b51a9fc78027a04cd2cb1bc96c22d9d832dbed08",
+    "vocabulary_evidence.json": "0f22652942c570201d6da75b75c0a4d7c0dcb9e92ed602a6f6f2456c707920d4"
+  }
+}

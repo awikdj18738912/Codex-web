@@ -1,0 +1,79 @@
+{
+  "scope": {
+    "candidate_file": "results/entity_local_replay_20261012/candidate_entity_audio_repair.py",
+    "original_file": "results/entity_local_replay_20261012/original_entity_audio_repair.py",
+    "test_file": "experiments/tests/test_entity_local_replay.py",
+    "candidate_sha256": "590ab649bacef407d2b2c4277a5c45d19f25a67299d137bd85f03152a36036ad",
+    "original_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+    "production_or_candidate_modified": false,
+    "new181_data_read": false,
+    "model_asr_gpu_invoked": false,
+    "pytest_command": "pytest -q experiments/tests/test_entity_local_replay.py",
+    "pytest_result": {
+      "passed": 9,
+      "failed": 0,
+      "duration_seconds_approx": 0.33
+    }
+  },
+  "coverage": [
+    {
+      "area": "45-second threshold",
+      "test": "44.999 seconds declines local mapping; exactly 45.0 seconds permits it when other limits pass.",
+      "finding": "Matches frozen plan and current `<45*64000` implementation."
+    },
+    {
+      "area": "Timeline reliability",
+      "test": "Global segment-text mismatch, repeated segment ID rewritten to different text, and missing/non-consecutive segment ID all invalidate local mapping.",
+      "finding": "Local mapping falls back; no stale timeline accepted."
+    },
+    {
+      "area": "Cross-segment anchor preservation",
+      "test": "Candidate splits across adjacent events; left/right eight-character anchors are included in a window spanning both event audio ranges, and preserved-anchor replay confirmation succeeds.",
+      "finding": "Passes in pure mapping/verification test; no ASR invoked."
+    },
+    {
+      "area": "Window constraints",
+      "test": "More than two separated windows and a single window exceeding 60% audio both decline localized replay.",
+      "finding": "Passes."
+    },
+    {
+      "area": "Strong/weak candidates",
+      "test": "Weak candidate whose planned audio is contained in a strong window is retained in that window.",
+      "finding": "Passes. Weak candidates outside every selected strong window are not planned."
+    },
+    {
+      "area": "Short aliases and prior confirmation",
+      "test": "Registered short alias and complete edge-syllable example remain confirmable; unsupported short expansion is rejected by both original and candidate confirmation code.",
+      "finding": "The candidate retains the existing conservative short-expansion gate in tested controls."
+    },
+    {
+      "area": "Failure atomicity",
+      "test": "Fake async session returns a successful first local proposal then fails on a later window.",
+      "finding": "Whole session falls back to first-pass text; prior local proposal is not published."
+    },
+    {
+      "area": "Payload/segment event consistency",
+      "test": "Contained change updates only owning event and rejoined text matches; cross-boundary change publishes top-level text but clears completed_segments rather than leaving stale event text.",
+      "finding": "No contradictory segment text remains, but event granularity is lost for cross-boundary changes."
+    }
+  ],
+  "risks_not_fixed": [
+    {
+      "risk": "Weak candidates outside localized strong windows are skipped.",
+      "code": "candidate_entity_audio_repair.py:493-507; local windows are planned only from candidates scoring at least minimum_replay_score, then weak candidates are attached only when their required audio interval is fully contained in a merged strong window. If those windows resolve, _repair publishes local proposals without checking omitted weak candidates against a full replay (lines 401-426).",
+      "impact": "This bounds replay cost but is not recall-preserving for every retrieved candidate. The code should not be described as confirming all candidates under local replay.",
+      "test_evidence": "experiments/tests/test_entity_local_replay.py:test_weak_candidate_inside_strong_window_is_retained_but_weak_outside_is_not_planned"
+    },
+    {
+      "risk": "Cross-segment corrections clear the complete segment event list.",
+      "code": "candidate_entity_audio_repair.py:159-187; a change spanning two events is not applied to either segment-local slice, so applied != len(changes) and completed_segments becomes []. The corrected top-level text is still returned at lines 188-194.",
+      "impact": "This prevents stale/conflicting event text but removes per-segment detail for that final result. Confirm downstream consumers use the authoritative top-level text when completed_segments is empty.",
+      "test_evidence": "experiments/tests/test_entity_local_replay.py:test_payload_revision_updates_only_covered_segment_and_clears_unmappable_segments"
+    }
+  ],
+  "notes": [
+    "The exact-45 behavior was checked per the frozen plan: threshold is strictly less than 45 seconds, so 45.0 seconds may attempt localization subject to timeline/window/coverage guards.",
+    "All tests use pure methods or fake async requests; no audio model, ASR service, GPU, new181 references, or production code were involved.",
+    "The candidate and original copies were read for comparison only; neither was changed."
+  ]
+}

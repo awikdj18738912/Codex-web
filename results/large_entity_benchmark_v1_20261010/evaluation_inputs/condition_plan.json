@@ -1,0 +1,62 @@
+{
+  "conditions": [
+    {
+      "name": "baseline",
+      "entity_db": null,
+      "entity_fuzzy_mode": "off",
+      "entity_asr_context": false,
+      "entity_audio_repair": false
+    },
+    {
+      "name": "entity_rules",
+      "entity_db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+      "entity_fuzzy_mode": "auto",
+      "entity_asr_context": false,
+      "entity_audio_repair": false
+    },
+    {
+      "name": "entity_audio_repair",
+      "entity_db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+      "entity_fuzzy_mode": "auto",
+      "entity_asr_context": false,
+      "entity_audio_repair": true
+    }
+  ],
+  "shared_initial_asr": true,
+  "real_refiner_required": true,
+  "refinement_gate_mode": "tri_state",
+  "final_refinement_mode": "off",
+  "language": "Chinese",
+  "asr_chunk_seconds": 2.0,
+  "existing_number_and_repetition_rules_preserved": true,
+  "library_scopes": [
+    "global_1346",
+    "topic_specific"
+  ],
+  "topic_libraries": {
+    "体育文化": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_01_体育文化.db",
+    "农业生态": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_02_农业生态.db",
+    "医疗健康": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_03_医疗健康.db",
+    "历史教育": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_04_历史教育.db",
+    "工业交通": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_05_工业交通.db",
+    "新闻人物组织地理": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_06_新闻人物组织地理.db",
+    "法律政策": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_07_法律政策.db",
+    "科技计算机通信": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_08_科技计算机通信.db",
+    "自然科学化学": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_09_自然科学化学.db",
+    "金融经济": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_10_金融经济.db"
+  },
+  "report_metrics": [
+    "canonical_or_registered_alias_hits",
+    "entity_losses",
+    "new_unreferenced_names",
+    "CER",
+    "per_topic_micro_and_macro",
+    "candidate_top8_coverage",
+    "actual_replay_count",
+    "actual_ASR_latency",
+    "refiner_calls",
+    "final_text_change_audit"
+  ],
+  "inference_reference_used": false,
+  "execution_status": "DATA_READY_EVALUATION_NOT_RUN"
+}

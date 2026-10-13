@@ -1,0 +1,100 @@
+{
+  "by_policy": {
+    "rules": {
+      "recordings": 24,
+      "exact_intended": 7,
+      "intended_micro_cer": 0.15625,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0
+    },
+    "current": {
+      "recordings": 24,
+      "exact_intended": 10,
+      "intended_micro_cer": 0.1736111111111111,
+      "improved_vs_rules": 10,
+      "degraded_vs_rules": 7,
+      "logical_refiner_calls": 26,
+      "logical_plausibility_calls": 3
+    },
+    "student": {
+      "recordings": 24,
+      "exact_intended": 8,
+      "intended_micro_cer": 0.1736111111111111,
+      "improved_vs_rules": 5,
+      "degraded_vs_rules": 3,
+      "logical_refiner_calls": 10,
+      "logical_plausibility_calls": 3
+    }
+  },
+  "current_student_differences": [
+    {
+      "recording_group": "text_development:repetition_preservation_001",
+      "current": "这份档案很珍贵，请妥善保存。",
+      "student": "这份档案很珍贵很珍贵，请妥善保存。",
+      "current_distance": 3,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_002",
+      "current": "资源极其有限，优先处理告警。",
+      "student": "资源极其极其有限，优先处理告警。",
+      "current_distance": 2,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_004",
+      "current": "验收记录要1页一页阅读。",
+      "student": "验收记录要一页一页阅读。",
+      "current_distance": 1,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_012",
+      "current": "把附件发到采购组。",
+      "student": "把附件发到采购采购组。",
+      "current_distance": 0,
+      "student_distance": 2
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_013",
+      "current": "现场需要登记数量。",
+      "student": "现场需要需要登记数量。",
+      "current_distance": 0,
+      "student_distance": 2
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_017",
+      "current": "稍后在仓库门口碰面。",
+      "student": "稍后在仓仓库门口碰面。",
+      "current_distance": 0,
+      "student_distance": 1
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_019",
+      "current": "换班时需要记录温度。",
+      "student": "换班时需要记录记录温度。",
+      "current_distance": 0,
+      "student_distance": 2
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_020",
+      "current": "这份材料已由负责人签收。",
+      "student": "这份材料已已由负责人签收。",
+      "current_distance": 0,
+      "student_distance": 1
+    },
+    {
+      "recording_group": "text_development:repetition_preservation_022",
+      "current": "非常关键，请确认确认编号。",
+      "student": "非常非常关键，请确认确认编号。",
+      "current_distance": 4,
+      "student_distance": 2
+    }
+  ],
+  "normalized_same_current_student": 15,
+  "scope": "text_only_development_sequential_probe",
+  "complete": true,
+  "references": "developer_text_expectations_not_audio_gold"
+}

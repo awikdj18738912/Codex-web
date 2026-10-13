@@ -1,0 +1,109 @@
+{
+  "new_unique_recordings": 400,
+  "formal_database_unchanged": true,
+  "experiment_library_unchanged": true,
+  "final_module_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "live_service_health": {
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "live_entity_status": {
+    "8051": {
+      "enabled": true,
+      "phase": "capturing",
+      "reason": null,
+      "entity_count": 7,
+      "candidate_count": 0,
+      "max_candidate_score": 0.0,
+      "minimum_replay_score": 0.63,
+      "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+      "prompt_terms": [],
+      "checks": 0,
+      "replay_context_applied": false,
+      "applied": false,
+      "change_count": 0,
+      "changes": [],
+      "revision": 0,
+      "elapsed_seconds": 0.0
+    },
+    "8081": {
+      "enabled": true,
+      "phase": "capturing",
+      "reason": null,
+      "entity_count": 7,
+      "candidate_count": 0,
+      "max_candidate_score": 0.0,
+      "minimum_replay_score": 0.63,
+      "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+      "prompt_terms": [],
+      "checks": 0,
+      "replay_context_applied": false,
+      "applied": false,
+      "change_count": 0,
+      "changes": [],
+      "revision": 0,
+      "elapsed_seconds": 0.0
+    }
+  },
+  "source_hash_comparison": {
+    "system/entity_audio_repair.py": false,
+    "system/entity_pipeline.py": true,
+    "system/web_app.py": false,
+    "system/live_qwen_refiner.py": true,
+    "system/qwen_asr_stream_server.py": true,
+    "system/refinement_protocol.py": true,
+    "system/repetition_preservation.py": false,
+    "system/deterministic_cleanup.py": true
+  },
+  "scope_note": "This task edited only entity_audio_repair.py among production functions. Web and repetition_preservation changes belong to concurrent work and were preserved."
+}

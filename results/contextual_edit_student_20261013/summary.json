@@ -1,0 +1,85 @@
+{
+  "validation": {
+    "rows": 222,
+    "needs_review": 84,
+    "true_positive_windows": 84,
+    "keep_windows": 138,
+    "false_positive_keep_windows": 138,
+    "reference_locations": 186,
+    "predicted_locations": 3378,
+    "matched_locations": 186,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 1.0,
+    "location_recall": 1.0,
+    "location_precision": 0.055062166962699825,
+    "by_task": {
+      "disfluency": {
+        "edits": 48,
+        "located_edits": 48,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 36,
+        "located_edits": 36,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "recall": null
+      },
+      "local_typo": {
+        "recall": null
+      },
+      "boundary_punctuation": {
+        "recall": null
+      },
+      "entity_correction": {
+        "recall": null
+      }
+    },
+    "insertion_supported": false
+  },
+  "authored_test_regression": {
+    "rows": 294,
+    "needs_review": 120,
+    "true_positive_windows": 120,
+    "keep_windows": 174,
+    "false_positive_keep_windows": 174,
+    "reference_locations": 294,
+    "predicted_locations": 4872,
+    "matched_locations": 294,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 1.0,
+    "location_recall": 1.0,
+    "location_precision": 0.0603448275862069,
+    "by_task": {
+      "disfluency": {
+        "edits": 84,
+        "located_edits": 84,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 36,
+        "located_edits": 36,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "recall": null
+      },
+      "local_typo": {
+        "recall": null
+      },
+      "boundary_punctuation": {
+        "recall": null
+      },
+      "entity_correction": {
+        "recall": null
+      }
+    },
+    "insertion_supported": false
+  },
+  "threshold": 0.0,
+  "parameters": 44979461,
+  "test_status": "consumed_authored_regression",
+  "natural_audio_gold": 0,
+  "production_eligible": false
+}

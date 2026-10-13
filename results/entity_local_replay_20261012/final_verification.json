@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-12",
+  "checks": {
+    "production_sha_matches_installed": true,
+    "formal_database_unchanged": true,
+    "short_268_business_payloads_identical": true,
+    "dense_v2_all4_business_payloads_and_requests_identical": true,
+    "sparse_v2_text_and_changes_identical": true,
+    "new7_v2_text_and_changes_identical": true,
+    "live_ready_marker_loaded_both": true,
+    "services_healthy": true
+  },
+  "production_entity_module_sha256": "0c535eb943b6d76323438b307a41755f66d0e5847d90da4760330b544e36ba13",
+  "formal_database_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+  "production_entity_tests_passed": 33,
+  "service_health": {
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 0,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 0,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "source_scope": "Only entity_audio_repair.py changed among production functionality; new entity tests/experiments/docs; unrelated concurrent source changes preserved.",
+  "unseen_data_scope": "Seven new validation concatenations use113 source-recording-disjoint clips. Original181 not used for inference; agent broad search possible reference exposure is recorded in inventory audit.",
+  "limitations": [
+    "Timings are individual actual alternating pairs; shared ASR lock waiting varies.",
+    "Localized speed observed on two known sparse correction cases and one new no-change case. Dense/short/unmapped cases preserve full replay.",
+    "Local uncertainty can cause full_after_local, adding work; no universal non-regression guarantee."
+  ]
+}

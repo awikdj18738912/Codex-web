@@ -1,0 +1,180 @@
+{
+  "client_date": "2026-10-09",
+  "cpu": "AMD EPYC 7H12 64-Core Processor",
+  "logical_cpu_count": 36,
+  "python": "3.12.13",
+  "torch": "2.11.0+cu130",
+  "encoder": "/home/aim0/桌面/tan/ASR/Codex-web/models/entity_ranker/encoder",
+  "encoder_parameters": 8765696,
+  "load_ms": 413.282,
+  "device": "cpu",
+  "dtype": "float32",
+  "scope": "Pretrained encoder + untrained timing-only MLP head + tokenization. No ASR/Refiner GPU calls.",
+  "limitations": [
+    "Synthetic Chinese input, same source per measured configuration.",
+    "Thirty sequential measurements per configuration, no production concurrency test.",
+    "Does not measure real feature extraction, queueing, learned accuracy or full transcription latency."
+  ],
+  "rows": [
+    {
+      "threads": 1,
+      "batch_size": 1,
+      "sequence_length": 64,
+      "iterations": 30,
+      "p50_ms": 10.801,
+      "p95_ms": 10.98,
+      "mean_ms": 10.81,
+      "per_request_mean_ms": 10.81
+    },
+    {
+      "threads": 1,
+      "batch_size": 1,
+      "sequence_length": 128,
+      "iterations": 30,
+      "p50_ms": 17.762,
+      "p95_ms": 18.195,
+      "mean_ms": 17.8,
+      "per_request_mean_ms": 17.8
+    },
+    {
+      "threads": 1,
+      "batch_size": 1,
+      "sequence_length": 256,
+      "iterations": 30,
+      "p50_ms": 33.736,
+      "p95_ms": 34.274,
+      "mean_ms": 33.798,
+      "per_request_mean_ms": 33.798
+    },
+    {
+      "threads": 1,
+      "batch_size": 1,
+      "sequence_length": 512,
+      "iterations": 30,
+      "p50_ms": 73.228,
+      "p95_ms": 73.654,
+      "mean_ms": 73.235,
+      "per_request_mean_ms": 73.235
+    },
+    {
+      "threads": 1,
+      "batch_size": 4,
+      "sequence_length": 64,
+      "iterations": 30,
+      "p50_ms": 30.395,
+      "p95_ms": 30.785,
+      "mean_ms": 30.429,
+      "per_request_mean_ms": 7.607
+    },
+    {
+      "threads": 1,
+      "batch_size": 4,
+      "sequence_length": 128,
+      "iterations": 30,
+      "p50_ms": 58.867,
+      "p95_ms": 59.766,
+      "mean_ms": 58.958,
+      "per_request_mean_ms": 14.739
+    },
+    {
+      "threads": 1,
+      "batch_size": 4,
+      "sequence_length": 256,
+      "iterations": 30,
+      "p50_ms": 130.413,
+      "p95_ms": 135.223,
+      "mean_ms": 131.096,
+      "per_request_mean_ms": 32.774
+    },
+    {
+      "threads": 1,
+      "batch_size": 4,
+      "sequence_length": 512,
+      "iterations": 30,
+      "p50_ms": 299.211,
+      "p95_ms": 308.464,
+      "mean_ms": 299.821,
+      "per_request_mean_ms": 74.955
+    },
+    {
+      "threads": 2,
+      "batch_size": 1,
+      "sequence_length": 64,
+      "iterations": 30,
+      "p50_ms": 8.844,
+      "p95_ms": 9.204,
+      "mean_ms": 8.842,
+      "per_request_mean_ms": 8.842
+    },
+    {
+      "threads": 2,
+      "batch_size": 1,
+      "sequence_length": 128,
+      "iterations": 30,
+      "p50_ms": 13.073,
+      "p95_ms": 13.431,
+      "mean_ms": 13.042,
+      "per_request_mean_ms": 13.042
+    },
+    {
+      "threads": 2,
+      "batch_size": 1,
+      "sequence_length": 256,
+      "iterations": 30,
+      "p50_ms": 21.236,
+      "p95_ms": 21.517,
+      "mean_ms": 21.278,
+      "per_request_mean_ms": 21.278
+    },
+    {
+      "threads": 2,
+      "batch_size": 1,
+      "sequence_length": 512,
+      "iterations": 30,
+      "p50_ms": 42.13,
+      "p95_ms": 42.303,
+      "mean_ms": 42.149,
+      "per_request_mean_ms": 42.149
+    },
+    {
+      "threads": 2,
+      "batch_size": 4,
+      "sequence_length": 64,
+      "iterations": 30,
+      "p50_ms": 19.056,
+      "p95_ms": 19.256,
+      "mean_ms": 19.075,
+      "per_request_mean_ms": 4.769
+    },
+    {
+      "threads": 2,
+      "batch_size": 4,
+      "sequence_length": 128,
+      "iterations": 30,
+      "p50_ms": 34.344,
+      "p95_ms": 34.576,
+      "mean_ms": 34.349,
+      "per_request_mean_ms": 8.587
+    },
+    {
+      "threads": 2,
+      "batch_size": 4,
+      "sequence_length": 256,
+      "iterations": 30,
+      "p50_ms": 67.195,
+      "p95_ms": 71.585,
+      "mean_ms": 68.22,
+      "per_request_mean_ms": 17.055
+    },
+    {
+      "threads": 2,
+      "batch_size": 4,
+      "sequence_length": 512,
+      "iterations": 30,
+      "p50_ms": 165.553,
+      "p95_ms": 170.654,
+      "mean_ms": 165.15,
+      "per_request_mean_ms": 41.288
+    }
+  ]
+}

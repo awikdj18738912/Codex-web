@@ -1,0 +1,135 @@
+{
+  "scope": "synthetic_weak_exploratory_group_holdout_not_real_risk_calibration",
+  "human_gold": 0,
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen_tts_asr_gpu_pilot_20261010",
+  "labels_sha256": "65214a6d7942db488caf6bf5dec9e29fb41be14ca9e27818224cb6cca19aac01",
+  "input_version": 1,
+  "source_split_used": "train_only",
+  "source_dev_test_touched": false,
+  "split": {
+    "seed": 20261010,
+    "ratios": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "independent_components": 20,
+    "attempts": 12000,
+    "stratification_objective": 0.04203321480110971,
+    "constraints": [
+      "template",
+      "recording",
+      "identical_model_input"
+    ],
+    "selection_uses": "labels_and_group_sizes_only_before_training"
+  },
+  "counts": {
+    "train": {
+      "cases": 496,
+      "eligible": 444,
+      "labels": {
+        "benefit": 109,
+        "neutral": 311,
+        "harm": 24,
+        "uncertain": 52
+      },
+      "by_task": {
+        "window_refine": {
+          "benefit": 61,
+          "neutral": 267,
+          "harm": 12,
+          "uncertain": 36
+        },
+        "local_edit_review": {
+          "neutral": 44,
+          "benefit": 48,
+          "harm": 12,
+          "uncertain": 16
+        }
+      },
+      "template_groups": [
+        "basic:01",
+        "basic:04",
+        "basic:05",
+        "meaningful_repeat:02",
+        "meaningful_repeat:03",
+        "meaningful_repeat:04",
+        "protected_content:03",
+        "protected_content:05",
+        "protected_content:07",
+        "syntax_boundary:02",
+        "syntax_boundary:03",
+        "syntax_boundary:05"
+      ],
+      "recordings": 340
+    },
+    "validation": {
+      "cases": 164,
+      "eligible": 146,
+      "labels": {
+        "neutral": 97,
+        "benefit": 41,
+        "uncertain": 18,
+        "harm": 8
+      },
+      "by_task": {
+        "window_refine": {
+          "neutral": 84,
+          "benefit": 23,
+          "uncertain": 14
+        },
+        "local_edit_review": {
+          "harm": 8,
+          "benefit": 18,
+          "neutral": 13,
+          "uncertain": 4
+        }
+      },
+      "template_groups": [
+        "basic:02",
+        "meaningful_repeat:00",
+        "protected_content:01",
+        "syntax_boundary:01"
+      ],
+      "recordings": 121
+    },
+    "test": {
+      "cases": 173,
+      "eligible": 170,
+      "labels": {
+        "neutral": 118,
+        "benefit": 49,
+        "uncertain": 3,
+        "harm": 3
+      },
+      "by_task": {
+        "window_refine": {
+          "neutral": 97,
+          "benefit": 28,
+          "uncertain": 3,
+          "harm": 3
+        },
+        "local_edit_review": {
+          "neutral": 21,
+          "benefit": 21
+        }
+      },
+      "template_groups": [
+        "basic:00",
+        "meaningful_repeat:05",
+        "protected_content:00",
+        "syntax_boundary:07"
+      ],
+      "recordings": 115
+    }
+  },
+  "pair_hashes": {
+    "window_full": "ebf22b01250c6bac37c959230704704abf3d0908f13f53747a2f8d0367f15180",
+    "review_full": "114ea021126b2eb65ac21538727889fbbb621c755a5b3c004bafd231daec6460"
+  },
+  "split_file_hashes": {
+    "train": "e92c0aa36e322874a54151962aa86c577e64edb1b1598f71114290ccc317339c",
+    "validation": "8c11592bc9a76c6efb9c49f04236452bca584080f7bd9a3bdf1c390fe6fa9164",
+    "test": "698f4f850ce7d30eb06a784dcd43fcc855e6263d0b79ca9fdac8630e63222fe8"
+  }
+}

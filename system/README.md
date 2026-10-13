@@ -20,8 +20,8 @@ bash scripts/start_web.sh
 - 浏览器支持麦克风在线、音频文件整段离线、音频文件分块流式三种处理模式。
 - Web 精修入口当前有 off / conservative / tri_state 门控、实体准备与掩码恢复、模型数字规范化、固定数字成语保护、输出校验、重试和回退。
 - `system/quantifiers.py` 提供广覆盖量词安全词表；确定性去重保护“数词/限定词 + 量词 AA”（如 `一朵朵`、`一层层`），并以结构模式兜底未收录的量词。
-- 文件流式精修采用 latest-only 调度，降低后台积压；tri_state 另外根据 HypothesisTracker 输出 KEEP / DEFER / REFINE，并按逗号/句末标点切成单块，并将最近最多 3 个块组成活动窗口（仍受字符上限约束），最终阶段强制解析。
-- tri_state 会把每个窗口的原始末尾标点作为边界事实：Refiner 漏掉标点时自动恢复，未结束片段不补标点；口癖和确定性重复清理仍可移除其自身的冗余标点。
+- 文件流式精修采用 latest-only 调度。所有门控模式共用 `fixed_k3_v1`：从 ASR/VAD 已完成片段构造标点块，以 K=3 固定分组，缓存按原始分组复用；不足 K 的尾部等待终态，等待不计入门控跳过。tri_state 另外根据 HypothesisTracker 输出 KEEP / DEFER / REFINE。
+- 流式阶段不重跑原文未变的拒绝窗口；终态是否重跑只由 `--final-refinement-mode` 决定。仅有数字格式信号的模型调用保留原始窗口末尾标点，这一保护对所有门控模式相同；存在其他语言清理信号时仍可进行受约束的标点修改。
 - Qwen 可返回可选 token-logprob 派生分数；未经开发集温度校准前不能当作可靠概率。
 - sherpa-onnx + MLX、Qwen 麦克风客户端和浏览器 Web 属于不同运行路径，所需依赖也不同。
 
@@ -239,7 +239,7 @@ CUDA_VISIBLE_DEVICES=1 conda run --no-capture-output -n agentic-asr \
 
 The routing gate is a separate deterministic module and does not change entity
 normalization or the post-generation safety validator. Use
-`--refinement-gate-mode off` for the original always-refine baseline, and use
+`--refinement-gate-mode off` for the always-refine baseline with the same fixed K=3 windows, and use
 `--refinement-gate-mode conservative` for the gated experiment. Conservative
 mode skips complete high-confidence segments without
 cleanup signals. Missing ASR confidence fails open to the Refiner. Each Web

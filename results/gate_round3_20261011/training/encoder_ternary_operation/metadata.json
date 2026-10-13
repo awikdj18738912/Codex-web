@@ -1,0 +1,140 @@
+{
+  "input_version": 1,
+  "labels": [
+    "benefit",
+    "neutral",
+    "harm"
+  ],
+  "tasks": [
+    "window_refine",
+    "local_edit_review"
+  ],
+  "max_tokens": 256,
+  "veto_thresholds": {
+    "window_refine": {
+      "neutral": 0.7,
+      "harm": 1.01
+    },
+    "local_edit_review": {
+      "neutral": 0.6,
+      "harm": 1.01
+    }
+  },
+  "variant": "encoder_ternary_operation",
+  "recommended_route": "native_veto",
+  "calibrated": false,
+  "human_gold": 0,
+  "online_enabled": false,
+  "scope": "round3_synthetic_operation_weak_prototype",
+  "window_context": "empty_matches_Web_adapter",
+  "training_cases": 432,
+  "class_counts": {
+    "0": 235,
+    "1": 195,
+    "2": 2
+  },
+  "class_weights": [
+    0.33488309383392334,
+    0.24508605897426605,
+    2.4200308322906494
+  ],
+  "source_group_task_weighting": true,
+  "native_keep_not_fitted": true,
+  "unsupported_train": [],
+  "conflicting_training_inputs_excluded": 0,
+  "best_epoch": 1,
+  "epochs": 3,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.23631244401137033,
+      "validation_loss": 0.20578417900281074
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.13150567075030672,
+      "validation_loss": 0.21957540389819022
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.11571882628939217,
+      "validation_loss": 0.23694304930858123
+    }
+  ],
+  "train_seconds": 1.3569509978406131,
+  "validation_selection": {
+    "window_refine": {
+      "by_cohort": {
+        "risk_dev": {
+          "native": 1,
+          "retained": 1,
+          "required": 1,
+          "unit": "recording_group_all_beneficial_views"
+        },
+        "new_dev": {
+          "native": 2,
+          "retained": 2,
+          "required": 2,
+          "unit": "recording_group_all_beneficial_views"
+        },
+        "old_validation": {
+          "native": 28,
+          "retained": 28,
+          "required": 27,
+          "unit": "recording_group_all_beneficial_views"
+        }
+      },
+      "cost_ms": 40156.578,
+      "selected": 122
+    },
+    "local_edit_review": {
+      "by_cohort": {
+        "risk_dev": {
+          "native": 0,
+          "retained": 0,
+          "required": 0,
+          "unit": "recording_group_all_beneficial_views"
+        },
+        "new_dev": {
+          "native": 3,
+          "retained": 3,
+          "required": 3,
+          "unit": "recording_group_all_beneficial_views"
+        },
+        "old_validation": {
+          "native": 21,
+          "retained": 21,
+          "required": 20,
+          "unit": "recording_group_all_beneficial_views"
+        }
+      },
+      "cost_ms": 4379.667,
+      "selected": 51
+    }
+  },
+  "validation_metrics": {
+    "cases": 396,
+    "weak_eligible_cases": 395,
+    "selected_decisions": 173,
+    "selected_fraction": 0.43686868686868685,
+    "available_benefit": 104,
+    "captured_benefit": 101,
+    "benefit_recall": 0.9711538461538461,
+    "weak_harm": 0,
+    "weak_harm_fraction_all_cases": 0.0,
+    "weak_harm_fraction_selected": 0.0,
+    "selected_uncertain": 1,
+    "exact_intended": 270,
+    "exact_intended_fraction": 0.6818181818181818,
+    "intended_micro_cer": 0.04221635883905013,
+    "spoken_micro_cer": 0.07508878741755454,
+    "improved_intended": 101,
+    "degraded_intended": 0,
+    "logical_refiner_calls": 199,
+    "logical_plausibility_calls": 1,
+    "recorded_operation_cost_ms": 44536.245,
+    "gate_cpu_estimated_ms": 0.0,
+    "estimated_serial_cost_ms": 44536.245
+  },
+  "parameters": 8768035
+}

@@ -1,0 +1,9 @@
+# ASR mode comparison inputs (2026-10-13)
+
+This directory freezes 2,506 development recordings for paired glossary-assisted and audio-review evaluation: 2,410 from the large entity benchmark and 96 from the SpeechIO football/automotive pilot. No ASR or model was run during preparation.
+
+`inference_inputs.jsonl` has one record per PCM recording and contains no reference or gold annotations. `references.json` holds scoring-only references and frozen gold spans keyed by the same IDs. The known-vocabulary evaluation convention is retained: the already-frozen benchmark and pilot glossaries were originally curated from reference-supported terms before inference. The preparation did not select terms using an individual current sample’s gold.
+
+For the main benchmark, each frozen `sample.topics` list is preserved, and its first entry selects the corresponding already-existing topic-specific SQLite library from the frozen condition plan. Only one sample has multiple topics; this deterministic rule assigns it the first listed topic. Supplemental samples use the existing `football` or `automotive` pilot library matching their source. Every library was copied with SQLite backup into `library_snapshots/`; source and snapshot hashes, row counts, type/domain counts, context16 strings, and static exact-gold overlap are recorded in `library_metadata.json`. Context generation uses `build_entity_asr_context`, `selected_domain=general`, `max_terms=16`, `max_chars=1024`, matching the libraries’ stored domain. Coverage is descriptive only and did not affect input or library selection.
+
+`manifest.json` records source manifest/sidecar hashes, cohort and library counts, and selection policy. All 2,506 PCM files were present and verified against their frozen PCM hashes; IDs and PCM hashes are unique across the combined set. No protected 181 reference text was accessed.

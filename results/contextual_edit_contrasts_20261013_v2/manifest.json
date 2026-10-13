@@ -1,0 +1,57 @@
+{
+  "scope": "authored_context_contrasts_not_natural_audio_validation",
+  "counts": {
+    "train": {
+      "rows": 660,
+      "edits": 240,
+      "keeps": 420,
+      "concept_groups": 20,
+      "surface_strata": {
+        "seen_surfaces_new_context": 660
+      }
+    },
+    "validation": {
+      "rows": 198,
+      "edits": 72,
+      "keeps": 126,
+      "concept_groups": 6,
+      "surface_strata": {
+        "seen_surfaces_new_context": 198
+      }
+    },
+    "test": {
+      "rows": 270,
+      "edits": 108,
+      "keeps": 162,
+      "concept_groups": 6,
+      "surface_strata": {
+        "seen_surfaces_new_context": 198,
+        "unseen_surface_stress": 72
+      }
+    }
+  },
+  "anchor_train_rows": 417,
+  "anchor_overlap_excluded": 0,
+  "combined_training_rows": 1077,
+  "anchor_train_sha256": "fbbd4d7defa5358adf72942cab6a0eb87e475e1ecbaed30e029c51aee0030810",
+  "original_consumed_dev_test_not_fitted": true,
+  "quote_pairs_same_baseline_different_visible_context": true,
+  "annotation_metadata_not_model_input": true,
+  "train_validation_test_concept_and_baseline_disjoint": true,
+  "template_claim": "Authored frame banks differ; grammatical primitives and seen filler vocabulary shared deliberately",
+  "unseen_test_fillers": [
+    "额",
+    "就是说",
+    "呃呃"
+  ],
+  "human_audio_gold": 0,
+  "code_sha256": "3b063e0f827e70692c3ef2577d43686b0569f96a9f0a8bae113f232b2212eb15",
+  "output_sha256": {
+    "test.jsonl": "5e4acc6904fb1f6343acf32d31aadfd13741804dac1b9b3f0703ad6a3a4ef4a1",
+    "train.jsonl": "945b4d30d711a78b44740f6bd86a39e839176334718edda57dad4f1ff38b27f2",
+    "contrast_test.jsonl": "5e4acc6904fb1f6343acf32d31aadfd13741804dac1b9b3f0703ad6a3a4ef4a1",
+    "contrast_validation.jsonl": "bb084a883915072a45444b793b667050aae6beda363b430220b9a9c42c3e9d91",
+    "contrast_train.jsonl": "dc758697331042a43984eb3ccd426c21f6b8dc41a300e27240614c5dc59f4e5a",
+    "validation.jsonl": "bb084a883915072a45444b793b667050aae6beda363b430220b9a9c42c3e9d91"
+  }
+}

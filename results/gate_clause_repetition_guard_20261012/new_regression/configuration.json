@@ -1,0 +1,21 @@
+{
+  "manifest_sha256": "3f9a9992e37a2b4a39776d2592765bc307c16ad918ec48ece41ce9e02d6ab1b1",
+  "dtype": "torch.float32",
+  "weights_sha256": {
+    "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+  },
+  "scope": "cold_final_snapshot_matched_old_new_not_streaming_accuracy_or_latency",
+  "device": "cuda:0",
+  "original_refiner": true,
+  "no_learned_gate": true,
+  "no_training": true,
+  "local_policy": "native",
+  "final_source_preservation": true,
+  "caches": "fresh per recording and arm",
+  "intervention": "native REFINE only; identical input key occurrences grouped; other decisions unchanged",
+  "repeated_native_control": true,
+  "confidence": "disabled",
+  "human_gold": false,
+  "timing": "model-call wall times include staging and shared GPU noise, not ASR or online latency",
+  "compute_proxy": "actual decoder input token positions; not FLOPs, plus separate MLM call count"
+}

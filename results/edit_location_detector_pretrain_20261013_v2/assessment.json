@@ -1,0 +1,15 @@
+{
+  "disposition": "failed_offline_prototype_do_not_deploy",
+  "validation_keep_false_positive_rate": 1.0,
+  "heldout_generalization_last_four_tasks": false,
+  "fresh_audio_evaluation": false,
+  "online_enabled": false,
+  "production_skip_allowed": false,
+  "reasons": [
+    "Validation KEEP false positive rate 100%",
+    "Template overfitting observed",
+    "Four tasks have only two training probes each",
+    "No positive insertion labels",
+    "No verified natural-audio cleanup gold"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "sample_count": 2506,
+  "unique_recording_ids": 2506,
+  "source_input_hashes": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/full_evaluation/manifest.json": "bfa79b61779b90387b9b309a8ff256aadea2640f91beca084f2596bffa8723b0",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/manifest.json": "5deed0180c1bbfe14a14bcd1e2a59040a130a9542b79900e5d312f27d2795dff",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/references.json": "5d11fd286d182a5620083e617b0f0fbb03685e972c8ec4d3ff9a657724bf4db9",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/sample_entities.json": "c5b2bd669d9f8d16b8ce8aeeb11219996087c867c2bdf2047b9de2777719685d",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/samples.jsonl": "f81ca98a84225e0053d50479107b37aa9532842167315e098e69276bd2b69f21",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/evaluation_inputs/condition_plan.json": "677a7fb89337ec0acff4d16164f9f65fd095bc321445de14092f35a80dd88a03",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/manifest.json": "734408aa82c9a89bbd489c3cd297ab04ea95e138a98e0ffcd400c87dc3e3e751",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/references.json": "afba5ed4e9fe266bfe9d044671960c849b7cc7d4db1eab519a20687cd23f778f"
+  },
+  "pcm_verified_count": 2506,
+  "pcm_hashes_unique": true,
+  "corpus_counts": {
+    "entity_reliable_data_20261012_pilot": 96,
+    "large_entity_benchmark_v1_20261010": 2410
+  },
+  "cohort_counts": {
+    "negative": 300,
+    "no_registered_target": 32,
+    "positive": 2174
+  },
+  "library_sample_counts": {
+    "automotive": 48,
+    "football": 48,
+    "topic_01_体育文化": 26,
+    "topic_02_农业生态": 27,
+    "topic_03_医疗健康": 86,
+    "topic_04_历史教育": 24,
+    "topic_05_工业交通": 23,
+    "topic_06_新闻人物组织地理": 2131,
+    "topic_07_法律政策": 20,
+    "topic_08_科技计算机通信": 24,
+    "topic_09_自然科学化学": 23,
+    "topic_10_金融经济": 26
+  },
+  "library_snapshot_hashes": {
+    "automotive": "89800f54a738e06c31986023650efc0471c05c7fdb372801189191bb0eabfd4d",
+    "football": "3ba846b264d40728811f95689f5b42ecebe577edd34ecbe9fcf252cb5d7e9af7",
+    "topic_01_体育文化": "4b8ac8d14a7de3539cf25172c217a3277f2b406054496f611a7f36ba0c74e26d",
+    "topic_02_农业生态": "76fc63189d9a3dd14ef62062b1ccf2c3b1f1fd6eac1770b0509f944e3d107094",
+    "topic_03_医疗健康": "dd17bdc0dd77310678c5bc66ed1628bc1534f13531e080481836360381ac4e11",
+    "topic_04_历史教育": "9bbc5bd43f76ff7744103d3287a16afc3d98479e608955ef2fc1dba3bad50248",
+    "topic_05_工业交通": "0c5a42f3da0a6637087e07a93de45782289c931afc708d34103574f6f6bbcb52",
+    "topic_06_新闻人物组织地理": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+    "topic_07_法律政策": "c26326c2c4043c0ed6792d04ed29e325e152d1dbe17a14f53bf25f42d32537ad",
+    "topic_08_科技计算机通信": "a09e2c9ca49501c1e240ae0bd36967a042a4344753be01cd4bdd4aa5e7c19489",
+    "topic_09_自然科学化学": "41f2b33e9d76d61f39f35c529a3b103b690ff7f6001662664037d14c99b206ec",
+    "topic_10_金融经济": "4d68ba260ee0cd3b9816d4f072bd6730acb1b32e87c8d83b672ec282baed8716"
+  },
+  "selection_policy": {
+    "main": "Existing frozen condition_plan topic_libraries. Select the sample.topics[0] entry from the ordered frozen full_evaluation manifest; no reference/gold lookup.",
+    "supplemental": "Select existing frozen per-source SpeechIO library (football or automotive).",
+    "reference_usage": "Scoring-only references and spans are written to references.json. Existing frozen glossary convention is retained; no current-clip gold term is newly selected for an inference input.",
+    "protected_holdout": "Untouched; no references or text read."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+  "not_full_streaming_session": true,
+  "not_online_latency": true,
+  "new_training": false,
+  "human_gold": false,
+  "confidence_metadata": {},
+  "policies": [
+    "rules",
+    "current",
+    "student"
+  ],
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/repetition_preservation_20261010/source_test_guard_prompt",
+  "checkpoint": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/training/encoder_weighted",
+  "gate_weights_sha256": "5cb445f1c37f21af259a3ad1797007ab560f0665e63cb62d05519891abe27cad",
+  "gate_metadata_sha256": "acfb9d76d9f35a5deaeb8bc98219816afc5c9148bc11bb0b418d37760b3f6694",
+  "selection_sha256": "9ce5e1273946bcc00eb5c36803386d51cea739e8acb73f9241d77f0f0868eee0",
+  "adapter_sha256": "2d343c360e09cbdb6a26a29c8d53e295aa81f921dc0b1d846489214426403fe1",
+  "protocol_sha256": "904521e5b43772b816f98655b76c7bf25c204e61366cad969e2b7b3ddad88720",
+  "refiner_weights_sha256": {
+    "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+  },
+  "dtype": "torch.float32",
+  "window_settings": {
+    "gate": "tri_state",
+    "zh_itn": true,
+    "entity_fuzzy_mode": "auto",
+    "final_refinement": "off",
+    "window_size": 3,
+    "max_new_tokens": 256,
+    "window_edit_policy": "compat"
+  },
+  "order": [
+    "fixed_K3_windows",
+    "final_entity_normalization_no_second_ITN",
+    "regenerate_local_candidates",
+    "actual_local_review",
+    "deterministic_cleanup"
+  ],
+  "caches": "fresh per recording and policy; no earlier streaming decisions",
+  "cost_scope": "logical Refiner calls include retries; weights staging overhead prevents online wall-time conclusions"
+}

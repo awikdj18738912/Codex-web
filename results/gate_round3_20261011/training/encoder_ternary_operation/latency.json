@@ -1,0 +1,23 @@
+{
+  "overall": {
+    "n": 396,
+    "mean_ms": 4.670215655362817,
+    "p50_ms": 0.005159992724657059,
+    "p95_ms": 10.62142406590283
+  },
+  "by_task": {
+    "window_refine": {
+      "n": 288,
+      "mean_ms": 4.7837599478144615,
+      "p50_ms": 0.005259877070784569,
+      "p95_ms": 10.661882045678794
+    },
+    "local_edit_review": {
+      "n": 108,
+      "mean_ms": 4.367430875491765,
+      "p50_ms": 0.004869885742664337,
+      "p95_ms": 9.276032471098004
+    }
+  },
+  "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+}

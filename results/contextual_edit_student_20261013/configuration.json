@@ -1,0 +1,71 @@
+{
+  "scope": "controlled_text_student_distillation_not_audio_acceptance",
+  "seed": 20261013,
+  "epochs": 8,
+  "batch_size": 32,
+  "temperature": 2.0,
+  "kd_weight": 0.5,
+  "teacher_path": "results/contextual_courtesy_teacher_20261013",
+  "teacher_weights_sha256": "da204c021e02020b6e35367bf1b573b4f636c50dc882b1b52899528ebe02483c",
+  "teacher_encoder_provenance": {
+    "model_id": "hfl/chinese-roberta-wwm-ext",
+    "revision": "5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "path": "/home/aim0/.cache/huggingface/hub/models--hfl--chinese-roberta-wwm-ext/snapshots/5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "source_url": "https://huggingface.co/hfl/chinese-roberta-wwm-ext",
+    "license": "apache-2.0",
+    "architecture": {
+      "architectures": [
+        "BertForMaskedLM"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "bos_token_id": 0,
+      "directionality": "bidi",
+      "eos_token_id": 2,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 768,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "output_past": true,
+      "pad_token_id": 0,
+      "pooler_fc_size": 768,
+      "pooler_num_attention_heads": 12,
+      "pooler_num_fc_layers": 3,
+      "pooler_size_per_head": 128,
+      "pooler_type": "first_token_transform",
+      "type_vocab_size": 2,
+      "vocab_size": 21128
+    },
+    "files_sha256": {
+      "config.json": "61609babfbada201546297d62f7f3a642d8fd2f1cefec5571c6cbd1e2e2132d9",
+      "pytorch_model.bin": "1ded5a5a1c7841dee6e47942f7b5bf2bcf6f73ff19197580f852f7f638f86b35",
+      "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c",
+      "tokenizer.json": "53ff61207898738bbdc000f38abebef01041c8d23b6270c11855fc692d0a3ad6",
+      "tokenizer_config.json": "61785aeaba176fba6d6489f27dccfd2ddee6aee2af0e590451cab7d8b57e0874"
+    },
+    "previous_small_encoder": "models/entity_ranker/encoder",
+    "previous_small_encoder_upstream_verified": false
+  },
+  "initialization": "teacher embeddings + selected layers + heads, then supervised/soft-target distillation",
+  "teacher_layer_indices": [
+    0,
+    3,
+    7,
+    11
+  ],
+  "full_four_layer_pretraining_not_claimed": true,
+  "partition_sha256": {
+    "train": "848f6d6df86f7ceb65ba5d416bce43aabc591be016002c408fa152a3b1f39506",
+    "validation": "fd7fc66224c2f5110ec2ac5ac8d6bcbc0ee89fd25abb736eb385ffe32526b65a",
+    "test": "7e8b91e9fd0f48ca14df461ee67668f5040e671a232d59114a2e315a70ee35fb"
+  },
+  "teacher_targets_from_train_only": true,
+  "selection_from_new_validation_only": true,
+  "test_status": "consumed_authored_regression",
+  "no_online_changes": true
+}

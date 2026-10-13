@@ -1,0 +1,17 @@
+{
+  "seed": 20261010,
+  "epochs": 5,
+  "batch_size": 32,
+  "device": "cuda:0",
+  "encoder": "/home/aim0/桌面/tan/ASR/Codex-web/models/entity_ranker/encoder",
+  "encoder_sha256": "c60f6fde023a817b263dab52a4d0767ae139be98971da4a1a070c695ad24612e",
+  "script_sha256": "bcf1e6e7ffa6653b71eb6b5ffe641c1d552734b1f9817206d77589ed08497fc6",
+  "input_module_sha256": "ae1b82fc3e15d7f58778e6824ef9ccc9f2f3ea8df099c7301cd950ac82232de2",
+  "max_tokens": 256,
+  "online_enabled": false,
+  "models_declared_before_test": [
+    "linear_tfidf",
+    "encoder_unweighted",
+    "encoder_weighted"
+  ]
+}

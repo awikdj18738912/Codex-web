@@ -1,0 +1,15 @@
+{
+  "samples": 64,
+  "development_only": true,
+  "choice": "All seven known absent-canonical diagnostics plus deterministic hash controls; no claim of random population accuracy",
+  "target_reference_at_inference": false,
+  "input_sha256": "3efa7bb12b3b5702ca2e3e585c0b8e2ff5b2eb7c13c1e4f17703afe91b289f08",
+  "prompt": "你审核语音转录中的实体替换，不改写原句，不生成新实体。\n目标候选和其他候选都不是已确认事实；字形相似、词库中存在、另一个句子出现过该名称，都不能单独证明本句提到了它。\n独立资料是其他录音的上下文，不一定提供完整身份；不得编造额外背景。\nSUPPORT：当前语境和资料明确支持目标候选且没有冲突。\nREJECT：资料与当前语境明确冲突，或目标候选不适合这个位置，并有具体依据。\nUNCERTAIN：证据不足、有歧义、或资料无法确定身份。缺少资料不能当成反证。\n只输出一个JSON对象：{\"decision\":\"SUPPORT或REJECT或UNCERTAIN\",\"evidence_ids\":[\"资料ID\"],\"reason\":\"简短理由\"}。",
+  "prompt_sha256": "e1327a2167c092f78a3b6f01d89acf237221a3535e047e9d5f80d66bd4ffa6b5",
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "conditions": [
+    "explicit_review",
+    "native_patch_with_background"
+  ],
+  "evidence_policy": "Exclude target recording, use at most3 other recording snippets; not externally verified identity profiles"
+}

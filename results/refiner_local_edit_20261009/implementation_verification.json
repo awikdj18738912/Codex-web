@@ -1,0 +1,23 @@
+{
+  "policy": "strict_local",
+  "default_policy": "compat",
+  "model_weights_trained": false,
+  "live_service_switched": false,
+  "validation": {
+    "related_regression_passed": 171,
+    "latest_focused_passed": 30
+  },
+  "new_policy_evaluation": "stored_old_prompt_schema_audit_and_stub_runtime_tests_only",
+  "format_training_role": "controlled_text_warmup_not_real_asr_supervision",
+  "source_hashes": {
+    "system/refinement_protocol.py": "b17a216773c6420130a7317d8d4884cf6e45821b83bc9171552b46e7f8141649",
+    "system/live_qwen_refiner.py": "a0dd03a736b9ff50dd013589b48e5d8a52e24502bae1081a323550c852c7841d",
+    "system/web_app.py": "e5581e1d19170304725c28203a61b9a37ad7015e81734f9ccefcc54b3f3c3f7e",
+    "scripts/start_web.sh": "a70612c595e8adcc64b71db714f8de7fcaa9a53a4c3621cbf477e347888e8ccf",
+    "experiments/scripts/collect_gate_pairs.py": "13f86af01495c40a535be573703b770b896850480fe83c4234db2b8860fb1705",
+    "experiments/scripts/prepare_local_edit_sft.py": "5b0149ef4f78cc7880e3974e5eb2d922d0a44e53a9ddc7c39cb3c15cccf1524d",
+    "experiments/scripts/audit_local_edit_protocol.py": "0cdb7fe2c7f00dd113600dc8e9c08764aade658b873050edc589e316a9bf73c7"
+  },
+  "training_manifest_sha256": "ee622392171a8479ab0e9c1d615c36189d9de6eb223aaa425fd24fd4c9901647",
+  "response_audit_summary_sha256": "fc1791008697b97fbd7eb9aa1cc14e7734951bda788b5710f48632a175507426"
+}

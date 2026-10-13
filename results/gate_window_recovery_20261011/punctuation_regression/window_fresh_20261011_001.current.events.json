@@ -1,0 +1,580 @@
+[
+  {
+    "elapsed_seconds": 1.343484717886895,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 1.8478687047027051,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 2.909007988870144,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 2.909611374605447,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.7049036636549737
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读。",
+      "display_text": "雨量计的读。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.9344664099626243,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 3.4260222958400846,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 3.4263790948316455,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读数。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.970248898560511
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0769,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读数。",
+      "display_text": "雨量计的读数。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.770457892678678,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 4.410551939625293,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 4.411096288822591,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读数，嗯，要。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 12,
+        "min_probability": 0.8123416641382666
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2222,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读数，嗯，要。",
+      "display_text": "雨量计的读数，嗯，要。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.1361612738110125,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 5.444697120692581,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 5.445198903791606,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读数，嗯，要填在交接表。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 16,
+        "min_probability": 0.9137385666986158
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1852,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读数，嗯，要填在交接表。",
+      "display_text": "雨量计的读数，嗯，要填在交接表。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.793887717649341,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 6.653637712821364,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 6.654044550843537,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9999464778947144
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0588,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "display_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.799527951981872,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 7.0693410988897085,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999628080845125
+      },
+      "refiner_deferred": true,
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "display_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 7.4698810367845,
+    "payload": {
+      "event": "update",
+      "raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "clean_text": "雨量计的读数要填在交接表末尾。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999628080845125
+      },
+      "refiner_latency_ms": 381,
+      "numeric_rule_latency_ms": 0.513,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "雨量计的读数要填在交接表末尾。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 15,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "disfluency",
+            "embedded_disfluency",
+            "isolated_single_character_clause"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 0.729,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 3,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "雨量计的读数，嗯，要填在交接表末尾。",
+          "clean_text": "雨量计的读数要填在交接表末尾。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "雨量计的读数要填在交接表末尾。",
+      "active_clean_text": "",
+      "display_refined_text": "雨量计的读数要填在交接表末尾。",
+      "pending_raw_text": "",
+      "display_text": "雨量计的读数要填在交接表末尾。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 391.16,
+        "gate_skipped_segment_count": 0,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 0,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 7.472881258931011,
+    "payload": {
+      "event": "final",
+      "raw_text": "雨量计的读数，嗯，要填在交接表末尾。",
+      "clean_text": "雨量计的读数要填在交接表末尾。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999628080845125
+      },
+      "refiner_latency_ms": 381,
+      "numeric_rule_latency_ms": 0.513,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "雨量计的读数要填在交接表末尾。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 15,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "disfluency",
+            "embedded_disfluency",
+            "isolated_single_character_clause"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.345,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 3,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "雨量计的读数，嗯，要填在交接表末尾。",
+          "clean_text": "雨量计的读数要填在交接表末尾。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 1,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 1,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "repetition_restorations": [],
+      "refinement_revision": 1,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 391.16,
+        "gate_skipped_segment_count": 0,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 0,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

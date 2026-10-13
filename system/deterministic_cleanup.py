@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 
 from .transcript_repairs import apply_known_transcript_repairs
+from .repetition_preservation import preserve_repetition_cleanup
 
 
 _UTTERANCE_RE = re.compile(r"[^。！？!?\uff1b;\n]+(?:[。！？!?\uff1b;]+|\n+|$)")
@@ -85,23 +86,18 @@ def _flatten_numbered_list_line_breaks(text: str) -> str:
 def clean_transcript_deterministically(text: str) -> str:
     """Apply only exact, low-ambiguity cleanup rules to refined text."""
 
-    return collapse_repeated_short_utterances(
-        collapse_sentence_boundary_echoes(
-            collapse_boundary_echo_fields(
-                collapse_repeated_comma_items(
-                    collapse_repeated_pronoun_stutters(
-                        collapse_sentence_boundary_fillers(
-                            collapse_standalone_fillers(
-                                apply_known_transcript_repairs(
-                                    _flatten_numbered_list_line_breaks(text)
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        )
-    )
+    # Commit each transformation separately. A prohibited repeat deletion must
+    # not undo a safe filler cleanup performed by another transformation.
+    result = text
+    for transform in (
+        _flatten_numbered_list_line_breaks, apply_known_transcript_repairs,
+        collapse_standalone_fillers, collapse_sentence_boundary_fillers,
+        collapse_repeated_pronoun_stutters, collapse_repeated_comma_items,
+        collapse_boundary_echo_fields, collapse_sentence_boundary_echoes,
+        collapse_repeated_short_utterances,
+    ):
+        result = preserve_repetition_cleanup(result, transform(result))
+    return result
 
 
 def collapse_boundary_echo_fields(text: str) -> str:
@@ -245,7 +241,7 @@ def collapse_repeated_comma_items(
     if not text or min_repetitions < 2 or max_visible_chars < 1:
         return text
 
-    return "".join(
+    repaired = "".join(
         _collapse_comma_items_in_utterance(
             match.group(0),
             min_repetitions=min_repetitions,
@@ -253,6 +249,7 @@ def collapse_repeated_comma_items(
         )
         for match in _UTTERANCE_RE.finditer(text)
     )
+    return preserve_repetition_cleanup(text, repaired)
 
 
 def _collapse_comma_items_in_utterance(
@@ -315,8 +312,8 @@ def collapse_repeated_short_utterances(
     Sentence punctuation is a chunk boundary in the streaming pipeline, so a
     run such as ``可恶！可恶！可恶！`` cannot reliably be handled by a
     per-chunk neural cleanup pass. This exact-match rule runs after chunks are
-    joined. Every exact adjacent repetition from the second occurrence onward
-    is removed, including deliberate spoken emphasis.
+    joined. Source evidence of emphasis, negation or distributive meaning
+    prevents a deletion even when the utterances are identical.
     """
 
     if not text or min_repetitions < 2 or max_visible_chars < 1:
@@ -339,7 +336,7 @@ def collapse_repeated_short_utterances(
         else:
             output.extend(utterances[index:end])
         index = end
-    return "".join(output)
+    return preserve_repetition_cleanup(text, "".join(output))
 
 
 def _utterance_key(value: str) -> str:

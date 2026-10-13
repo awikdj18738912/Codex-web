@@ -1,0 +1,93 @@
+{
+  "created_from": "frozen inputs only; no training, inference, or integration",
+  "frozen_inputs": {
+    "audio_jsonl": {
+      "path": "results/large_entity_benchmark_v1_20261010/full_evaluation/audio.jsonl",
+      "rows": 2410,
+      "sha256": "210df677288df97232756b640d6a7e688985b7dc70c988d83379d34b98a94a41"
+    },
+    "entity_database": {
+      "definitions": 1346,
+      "path": "results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+      "sha256": "5f089285409d71495e13a37bc077d2613222992883e92b847a9e75a7dba58306"
+    },
+    "samples_jsonl": {
+      "path": "results/large_entity_benchmark_v1_20261010/dataset/samples.jsonl",
+      "rows": 2410,
+      "sha256": "f81ca98a84225e0053d50479107b37aa9532842167315e098e69276bd2b69f21"
+    },
+    "selector_source": {
+      "system/entity_audio_repair.py": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+      "system/entity_boundaries.py": "0500367744738ed6e5a63f09ad2e8c2f551e18a232e1f59ccc20e552077db1b3",
+      "system/entity_matcher.py": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8",
+      "system/entity_retrieval.py": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e",
+      "system/entity_store.py": "a3a099eb6fdff15ea3a84119cca848b92e6274cad37228ab6f4bd893d819eec6"
+    }
+  },
+  "integrity_checks": {
+    "all_human_verdicts_null": true,
+    "all_weak_labels_reference_absent_candidate": true,
+    "excluded_conflict_recordings_absent_from_hypotheses": true,
+    "four_expected_actual_conflicts_present": true,
+    "one_new_candidate_per_recording": true,
+    "queue_sha256": "082287bc40108bc68c5ea1dac891686c18c0a83dbfd4274a4b0390a82e697b50",
+    "samples_and_audio_ids_exact_match": true
+  },
+  "notes": [
+    "Reference absence is only a weak text-match label, not audio truth.",
+    "Actual accepted changes and newly retrieved hypotheses are separately marked.",
+    "Human listening and adjudication are required before any learning use."
+  ],
+  "queue_counts": {
+    "actual_accepted_conflicts": 4,
+    "actually_accepted": 4,
+    "by_entity_type": {
+      "LOC": {
+        "actual_accepted": 1,
+        "count": 50,
+        "hypothesis": 49
+      },
+      "ORG": {
+        "actual_accepted": 2,
+        "count": 51,
+        "hypothesis": 49
+      },
+      "PERSON": {
+        "actual_accepted": 1,
+        "count": 50,
+        "hypothesis": 49
+      },
+      "TERM": {
+        "actual_accepted": 0,
+        "count": 49,
+        "hypothesis": 49
+      }
+    },
+    "new_hypotheses": 196,
+    "priority": {
+      "actual_accepted_conflict": 4,
+      "hypothesis": 196
+    },
+    "total": 200
+  },
+  "queue_path": "results/entity_conflict_veto_20261012/review_queue.jsonl",
+  "schema_version": 1,
+  "screening": {
+    "eligible_candidate_recordings_in_hash_scan_pool": 392,
+    "hash_scan_pool_capped": true,
+    "selector_calls_with_nonblank_initial_and_absent_prompt_terms": 392
+  },
+  "selection": {
+    "actual_accepted_conflicts": "Include the four inventoried applied entity_audio_repair changes whose canonical string is absent from the exact reference string.",
+    "fixed_hash_salt": "entity-review-queue-v1-20261012",
+    "hash_scan_target_recordings": 392,
+    "hypotheses": "Preorder recordings by fixed SHA-256 hash. Skip blank initial text, the four conflict recordings, and recordings with no saved prompt_terms absent from reference. Run current GenericEntitySelector on each eligible initial text and keep matching recorded prompt_terms whose canonical is absent from reference; retain the highest retrieval_score candidate per recording. Stop after 392 recordings produce candidates, then order each entity type by fixed SHA-256 hash and round-robin types; cap at 196.",
+    "hypotheses_are_not_actual_errors": true,
+    "max_new_hypotheses": 196,
+    "weak_label_is_not_training_truth": true
+  },
+  "selector": {
+    "class": "system.entity_audio_repair.GenericEntitySelector",
+    "definitions_loaded": 1346
+  }
+}

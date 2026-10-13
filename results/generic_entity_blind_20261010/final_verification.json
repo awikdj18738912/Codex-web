@@ -1,0 +1,68 @@
+{
+  "completed_samples": 128,
+  "completed_web_sessions": 384,
+  "real_asr_sessions": 218,
+  "actual_refiner_calls": 29,
+  "condition_calls": {
+    "no_dictionary": 7,
+    "dictionary_rules": 12,
+    "audio_repair": 10
+  },
+  "frozen_sources_and_data_hashes_match": true,
+  "formal_entity_database_unchanged": true,
+  "no_CER_regression_observed": true,
+  "service_health": {
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  }
+}

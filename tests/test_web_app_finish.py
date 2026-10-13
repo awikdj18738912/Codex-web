@@ -338,6 +338,30 @@ class _GrowingStreamRequest:
         raise AssertionError(f"unexpected endpoint: {endpoint}")
 
 
+def _complete_window_stream_request(*args, **kwargs):
+    payload = _stable_stream_request(*args, **kwargs)
+    if "text" in payload:
+        text = "第一段原始文本。第二段原始文本。第三段原始文本。"
+        payload["text"] = text
+        if "completed_segments" in payload:
+            payload["completed_segments"][0]["text"] = text
+    return payload
+
+
+class _GrowingGroupStreamRequest(_GrowingStreamRequest):
+    """Each event completes a K=3 group, so neural streaming can run."""
+
+    FIRST = "第一句原始文本。附件已经检查。会议即将开始。"
+    SECOND = "第二句原始文本。资料已经准备。工作正常进行。"
+    TRANSCRIPTS = (FIRST, FIRST + SECOND)
+
+    def __call__(self, *args, **kwargs):
+        payload = super().__call__(*args, **kwargs)
+        for event in payload.get("completed_segments", []):
+            event["text"] = self.FIRST if event["segment_id"] == 1 else self.SECOND
+        return payload
+
+
 class _VadEventStreamRequest:
     SEGMENTS = ("甲段原始，", "乙段原始。", "丙段原始。")
 
@@ -628,6 +652,171 @@ def _multi_stage_correction_stream_request(
 
 @unittest.skipIf(web_app is None, "FastAPI is not installed")
 class WebAppFinishTest(unittest.TestCase):
+    def test_learned_window_switch_shadow_on_and_health(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+        from system.learned_window_gate import LearnedWindowGate
+        class _SkipClassifier:
+            def predict_proba(self, values):return [[0.05, 0.95]]
+        for mode in ('shadow', 'on'):
+            with self.subTest(mode=mode):
+                gate = LearnedWindowGate('off')
+                gate.mode, gate.model, gate.threshold, gate._column = mode, _SkipClassifier(), .8, 1
+                with patch.object(web_app, 'LearnedWindowGate', return_value=gate), \
+                     patch.object(web_app, 'TransformersRefiner', _CountingRefiner):
+                    app = web_app.create_app(Path('/tmp/fake-refiner'), 'cpu', 'http://fake-asr',
+                        'Chinese', 32, None, refinement_gate_mode='tri_state', learned_window_gate_mode=mode)
+                endpoint = next(r.endpoint for r in app.routes if getattr(r, 'path', None) == '/ws/stream')
+                refine = closure_value(endpoint, 'refine_update')
+                result = refine('请确认确认编号。', 'Chinese', True, web_app.EntityProtector([]), None, single_window=True)
+                decision = result['refinement_gate_decisions'][0]['learned_window_gate']
+                self.assertEqual(decision['suggested_action'], 'keep')
+                self.assertEqual(result['refiner_executed'], mode == 'shadow')
+                self.assertEqual(len(_CountingRefiner.calls), int(mode == 'shadow'))
+                with TestClient(app) as client:
+                    status = client.get('/health').json()['learned_window_gate']
+                self.assertEqual(status['mode'], mode)
+                self.assertEqual(status['vetoed_windows'], int(mode == 'on'))
+
+    def test_learned_gate_switch_keeps_local_repair_enabled(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+        class _LocalRepairRefiner(_IdentityRefiner):
+            def review_repetition_candidate_with_status(self, context, source, target, local_start):
+                return 'REMOVE', 1.0, True, .5
+        with patch.object(web_app, 'TransformersRefiner', _LocalRepairRefiner):
+            app = web_app.create_app(Path('/tmp/fake-refiner'), 'cpu', 'http://fake-asr',
+                'Chinese', 32, None, refinement_gate_mode='tri_state',
+                learned_window_gate_mode='on', learned_window_gate_model_dir=Path('/missing-model'))
+        endpoint = next(r.endpoint for r in app.routes if getattr(r, 'path', None) == '/ws/stream')
+        review = closure_value(endpoint, 'review_final_repetition_text')
+        text, _, _, calls, _ = review('请确确认编号。', final=True, call_stats=web_app._RefinerSessionStats())
+        self.assertEqual(text, '请确认编号。')
+        self.assertEqual(calls, 1)
+
+    def test_original_clause_shield_precedes_cached_remove_after_boundary_erasure(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+        class _ForbiddenReviewer(_IdentityRefiner):
+            def review_repetition_candidate_with_status(self,*a):raise AssertionError('Source-protected span was reviewed')
+        with patch.object(web_app,'TransformersRefiner',_ForbiddenReviewer):
+            app=web_app.create_app(Path('/tmp/fake-refiner'),'cpu','http://fake-asr','Chinese',32,None)
+        endpoint=next(r.endpoint for r in app.routes if getattr(r,'path',None)=='/ws/stream')
+        review=closure_value(endpoint,'review_final_repetition_text')
+        raw='随后检查索引，索引交给值班员。'
+        prepared='随后检查索引索引交给值班员。'
+        candidate=web_app.find_repetition_review_candidates(prepared)[0]
+        cache={web_app._repetition_review_cache_key(candidate):{'action':'remove'}}
+        result,records,_,calls,_=review(prepared,final=True,call_stats=web_app._RefinerSessionStats(),
+                                      review_cache=cache,source_text=raw)
+        self.assertEqual(result,prepared)
+        self.assertEqual(calls,0)
+        self.assertEqual(records[0]['reason'],'source_repetition_preservation')
+        self.assertIn('cross_clause_noun_reuse',records[0]['preservation_reasons'])
+
+    def test_window_router_cannot_veto_local_repair_by_default(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+        observed=[]
+        class _LocalRepairRefiner(_IdentityRefiner):
+            def review_repetition_candidate_with_status(self, context, source, target, local_start):
+                return "REMOVE", 1.0, True, .5
+        def router(value,native):
+            observed.append(value);return {'action':'keep'}
+        with patch.object(web_app,'TransformersRefiner',_LocalRepairRefiner):
+            app=web_app.create_app(Path('/tmp/fake-refiner'),'cpu','http://fake-asr','Chinese',32,None,
+                                  experimental_gate_router=router)
+        endpoint=next(r.endpoint for r in app.routes if getattr(r,'path',None)=='/ws/stream')
+        review=closure_value(endpoint,'review_final_repetition_text')
+        text, _, _, calls, _=review('请确确认编号。',final=True,call_stats=web_app._RefinerSessionStats())
+        self.assertEqual(text,'请确认编号。')
+        self.assertEqual(calls,1)
+        self.assertEqual(observed,[])
+
+    def test_final_recovery_rebuilds_source_spans_for_late_named_intent(self) -> None:
+        raw='接收完成，接收完成。接下来登记编号。记录存入档案盒。前面的接收完成说了两遍，需要原样保留。'
+        def request(asr_url,endpoint,session_id=None,data=b'',params=None):
+            if endpoint=='/stream/start':return {'session_id':'late-intent-test'}
+            if endpoint=='/stream/finish':return {'text':raw,'language':'Chinese'}
+            if endpoint=='/stream/cancel':return {'cancelled':True}
+            raise AssertionError(endpoint)
+        # Simulate an already committed early window deletion: the terminal
+        # entity pass receives a transcript missing the protected copy.
+        original_cleanup=web_app.clean_transcript_deterministically
+        def early_cleanup(text):
+            return original_cleanup(text).replace('接收完成，接收完成','接收完成',1)
+        with patch.object(web_app,'TransformersRefiner',_IdentityRefiner), \
+             patch.object(web_app,'_stream_request',request), \
+             patch.object(web_app,'clean_transcript_deterministically',early_cleanup):
+            app=web_app.create_app(Path('/tmp/fake-refiner'),'cpu','http://fake-asr','Chinese',32,None)
+            with TestClient(app) as client:
+                with client.websocket_connect('/ws/stream?mode=streaming') as ws:
+                    ws.receive_json();ws.send_json({'event':'finish'})
+                    while True:
+                        final=ws.receive_json()
+                        if final.get('event')=='final':break
+        self.assertEqual(final['clean_text'],raw)
+        self.assertTrue(final['repetition_restorations'])
+        spans=final['refinement_source_spans']
+        self.assertEqual(spans,[{'source_text':raw,'clean_text':raw,'state':'final'}])
+
+    def test_experimental_router_vetoes_tri_state_window(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+        observed=[]
+        class _ForbiddenRefiner(_IdentityRefiner):
+            def refine(self,*args,**kwargs):raise AssertionError('A vetoed window must not invoke the Refiner')
+        def router(value,native):observed.append((value,native));return {'action':'keep'}
+        with patch.object(web_app,'TransformersRefiner',_ForbiddenRefiner):
+            app=web_app.create_app(Path('/tmp/fake-refiner'),'cpu','http://fake-asr','Chinese',32,None,refinement_gate_mode='tri_state',experimental_gate_router=router)
+        endpoint=next(r.endpoint for r in app.routes if getattr(r,'path',None)=='/ws/stream')
+        refine=closure_value(endpoint,'refine_update')
+        result=refine('请确认确认编号。','Chinese',True,web_app.EntityProtector([]),None,single_window=True)
+        self.assertEqual(result['clean_text'],'请确认确认编号。')
+        self.assertEqual(observed[0][1],'refine')
+        self.assertEqual(observed[0][0]['available_context'],'')
+        self.assertFalse(result['refiner_executed'])
+
+    def test_preservation_precedes_cached_remove_and_neural_review(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+
+        class _CandidateRefiner(_IdentityRefiner):
+            requests = []
+
+            def review_repetition_candidate_with_status(self, context, source, target, local_start):
+                self.requests.append(source)
+                return "REMOVE", 1.0, True, 0.5
+
+        with patch.object(web_app, "TransformersRefiner", _CandidateRefiner):
+            app = web_app.create_app(Path("/tmp/fake-refiner"), "cpu", "http://fake-asr", "Chinese", 32, None)
+        endpoint = next(r.endpoint for r in app.routes if getattr(r, "path", None) == "/ws/stream")
+        review = closure_value(endpoint, "review_final_repetition_text")
+        source = "特别特别重要。请确确认编号。"
+        protected = web_app.find_repetition_review_candidates(source)[0]
+        cache = {web_app._repetition_review_cache_key(protected): {"action": "remove"}}
+        text, records, _, calls, _ = review(source, final=True, call_stats=web_app._RefinerSessionStats(), review_cache=cache)
+        self.assertEqual(text, "特别特别重要。请确认编号。")
+        self.assertEqual(_CandidateRefiner.requests, ["确确"])
+        self.assertEqual(calls, 1)
+        kept = next(r for r in records if r["source"] == "特别特别")
+        self.assertEqual(kept["reason"], "source_repetition_preservation")
+        self.assertFalse(kept["model_called"])
+
+    def test_rejected_window_does_not_review_known_prohibited_deletion_again(self) -> None:
+        from experiments.scripts.collect_gate_pairs import closure_value
+
+        class _DeletingRefiner(_IdentityRefiner):
+            def refine(self, text, **kwargs):
+                return text.replace("不能拍照，不能拍照，", "不能拍照，"), 1.0
+
+            def review_repetition_candidate_with_status(self, *args):
+                raise AssertionError("A known prohibited deletion must not call the model")
+
+        with patch.object(web_app, "TransformersRefiner", _DeletingRefiner):
+            app = web_app.create_app(Path("/tmp/fake-refiner"), "cpu", "http://fake-asr", "Chinese", 32, None)
+        endpoint = next(r.endpoint for r in app.routes if getattr(r, "path", None) == "/ws/stream")
+        refine = closure_value(endpoint, "refine_update")
+        source = "不能拍照，不能拍照，请确认编号。"
+        result = refine(source, "Chinese", True, web_app.EntityProtector([]), None, single_window=True)
+        self.assertEqual(result["clean_text"], source)
+        self.assertTrue(result["local_deletion_reviews"])
+        self.assertTrue(all(r.get("model_called") is False for r in result["local_deletion_reviews"]))
+
     def test_rejected_window_can_salvage_only_model_approved_local_deletion(self) -> None:
         source = "哎，春秋晚年晚期嘛，所以礼坏乐崩嘛，"
 
@@ -1615,7 +1804,7 @@ class WebAppFinishTest(unittest.TestCase):
         with (
             patch.object(web_app, "TransformersRefiner", _SlowRefiner),
             patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 0.0),
-            patch.object(web_app, "_stream_request", _GrowingStreamRequest()),
+            patch.object(web_app, "_stream_request", _GrowingGroupStreamRequest()),
         ):
             app = web_app.create_app(
                 Path("/tmp/fake-refiner"),
@@ -1637,27 +1826,27 @@ class WebAppFinishTest(unittest.TestCase):
                     first_transcript = self._await_event(websocket, "transcript")
                     self.assertEqual(first_transcript["display_refined_text"], "")
                     self.assertEqual(
-                        first_transcript["pending_raw_text"], "第一句原始文本。"
+                        first_transcript["pending_raw_text"], _GrowingGroupStreamRequest.FIRST
                     )
                     second_transcript = self._await_event(websocket, "transcript")
                     self.assertEqual(
                         second_transcript["pending_raw_text"],
-                        "第一句原始文本。第二句原始文本。",
+                        _GrowingGroupStreamRequest.FIRST + _GrowingGroupStreamRequest.SECOND,
                     )
                     first = self._await_event(websocket, "update")
-                    self.assertEqual(first["clean_text"], "第一句精修文本。")
+                    self.assertEqual(first["clean_text"], _GrowingGroupStreamRequest.FIRST.replace("原始", "精修"))
                     self.assertEqual(
-                        first["display_refined_text"], "第一句精修文本。"
+                        first["display_refined_text"], _GrowingGroupStreamRequest.FIRST.replace("原始", "精修")
                     )
-                    self.assertEqual(first["pending_raw_text"], "第二句原始文本。")
+                    self.assertEqual(first["pending_raw_text"], _GrowingGroupStreamRequest.SECOND)
                     self.assertEqual(
                         first["display_text"],
-                        "第一句精修文本。第二句原始文本。",
+                        _GrowingGroupStreamRequest.FIRST.replace("原始", "精修") + _GrowingGroupStreamRequest.SECOND,
                     )
                     second = self._await_event(websocket, "update")
                     self.assertEqual(
                         second["clean_text"],
-                        "第一句精修文本。第二句精修文本。",
+                        (_GrowingGroupStreamRequest.FIRST + _GrowingGroupStreamRequest.SECOND).replace("原始", "精修"),
                     )
                     self.assertEqual(second["pending_raw_text"], "")
                     self.assertFalse(second["has_pending_refinement"])
@@ -2101,7 +2290,7 @@ class WebAppFinishTest(unittest.TestCase):
         with (
             patch.object(web_app, "TransformersRefiner", _CountingRefiner),
             patch.object(web_app, "STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS", 1.0),
-            patch.object(web_app, "_stream_request", _GrowingStreamRequest()),
+            patch.object(web_app, "_stream_request", _GrowingGroupStreamRequest()),
         ):
             app = web_app.create_app(
                 Path("/tmp/fake-refiner"),
@@ -2129,13 +2318,13 @@ class WebAppFinishTest(unittest.TestCase):
                     final = self._await_event(websocket, "final")
                     self.assertEqual(
                         final["clean_text"],
-                        "第一句精修文本。第二句精修文本。",
+                        (_GrowingGroupStreamRequest.FIRST + _GrowingGroupStreamRequest.SECOND).replace("原始", "精修"),
                     )
 
     def test_offline_mode_reuses_completed_window_refinement(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _CountingRefiner),
-            patch.object(web_app, "_stream_request", _stable_stream_request),
+            patch.object(web_app, "_stream_request", _complete_window_stream_request),
         ):
             app = web_app.create_app(
                 Path("/tmp/fake-refiner"),
@@ -2164,7 +2353,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
                         final["clean_text"],
-                        "第一段精修文本。第二段精修文本。",
+                        "第一段精修文本。第二段精修文本。第三段精修文本。",
                     )
                     self.assertEqual(len(_CountingRefiner.calls), calls_before_finish)
                     self.assertEqual(
@@ -2172,11 +2361,11 @@ class WebAppFinishTest(unittest.TestCase):
                     )
                     self.assertEqual(
                         final["session_refiner_intermediate_call_count"],
-                        0,
+                        calls_before_finish,
                     )
                     self.assertEqual(
                         final["session_refiner_final_call_count"],
-                        calls_before_finish,
+                        0,
                     )
 
     def test_online_final_uses_sentence_bounded_window(self) -> None:
@@ -2509,7 +2698,7 @@ class WebAppFinishTest(unittest.TestCase):
     def test_streaming_final_reuses_completed_window_refinement(self) -> None:
         with (
             patch.object(web_app, "TransformersRefiner", _CountingRefiner),
-            patch.object(web_app, "_stream_request", _stable_stream_request),
+            patch.object(web_app, "_stream_request", _complete_window_stream_request),
         ):
             app = web_app.create_app(
                 Path("/tmp/fake-refiner"),
@@ -2538,7 +2727,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
                         final["clean_text"],
-                        "第一段精修文本。第二段精修文本。",
+                        "第一段精修文本。第二段精修文本。第三段精修文本。",
                     )
                     self.assertEqual(len(_CountingRefiner.calls), calls_before_finish)
 
@@ -2852,13 +3041,13 @@ class WebAppFinishTest(unittest.TestCase):
                         final["refiner_reject_reasons"],
                     )
                     stats = final["refiner_session_stats"]
-                    # The final ASR snapshot is now run through the streaming
-                    # worker before the separate final-refinement stage.
-                    self.assertEqual(stats["call_count"], 2)
-                    self.assertEqual(stats["intermediate_call_count"], 1)
+                    # An incomplete K=3 group waits until finalization. Only
+                    # that final neural call fails; pending preparation is free.
+                    self.assertEqual(stats["call_count"], 1)
+                    self.assertEqual(stats["intermediate_call_count"], 0)
                     self.assertEqual(stats["final_call_count"], 1)
-                    self.assertEqual(stats["completed_call_count"], 2)
-                    self.assertEqual(stats["failed_call_count"], 2)
+                    self.assertEqual(stats["completed_call_count"], 1)
+                    self.assertEqual(stats["failed_call_count"], 1)
                     self.assertEqual(stats["inflight_call_count"], 0)
                     self.assertTrue(stats["stats_complete"])
 

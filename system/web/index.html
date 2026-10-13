@@ -104,6 +104,7 @@
     .form-field input, .form-field select, .form-field textarea { width: 100%; color: #17201f; }
     .checkbox-field { display: flex; align-items: center; gap: 8px; color: #17201f; }
     .field-help { margin: 0; color: #53615f; font-size: 12px; line-height: 1.45; }
+    #file-timing[hidden], #download-file-timing[hidden] { display: none; }
     @media (max-width: 620px) { main { padding-top: 32px; } .header-row, .control, .panel-header { align-items: flex-start; flex-direction: column; } .session-metrics, .refiner-status, .results, .form-grid { grid-template-columns: 1fr; gap: 12px; } .results { gap: 22px; } .form-field.full { grid-column: auto; } button:not(.secondary):not(.small-button) { width: 100%; } }
   </style>
 </head>
@@ -130,6 +131,7 @@
         </select>
       </label>
       <label class="mode"><input id="entity-asr-context" type="checkbox">词库辅助识别 <small id="entity-context-status"></small></label>
+      <label class="mode"><input id="entity-audio-repair" type="checkbox">实体原音复核 <small id="entity-audio-status"></small></label>
       <label class="mode" for="transcription-domain">术语领域
         <select id="transcription-domain">
           <option value="general">通用</option><option value="medical">医疗</option><option value="legal">法律</option><option value="education">教育</option><option value="finance">金融</option><option value="technology">科技</option>
@@ -149,6 +151,8 @@
         <small>按跳过的精修句块累计</small>
       </div>
     </dl>
+    <p id="file-timing" class="field-help" hidden></p>
+    <button id="download-file-timing" class="secondary" type="button" hidden>下载本次耗时记录</button>
     <dl class="refiner-status" aria-label="精修执行状态">
       <div><dt>Refiner 是否执行</dt><dd id="refiner-executed">未执行</dd></div>
       <div><dt>执行结果</dt><dd id="refiner-result">等待识别文本</dd></div>
@@ -204,7 +208,7 @@
         <label class="form-field">优先级 <input id="entity-priority" name="priority" type="number" value="0" step="1"></label>
         <label class="form-field full">别名（每行一个）<textarea id="entity-aliases" name="aliases" maxlength="2000" placeholder="例如 Qwen ASR&#10;Qwen3 ASR"></textarea></label>
         <label class="checkbox-field full"><input id="entity-enabled" type="checkbox" checked> 启用此实体</label>
-        <p class="field-help full">“统一为标准名称”会在 ASR 精确命中别名后，向 Refiner 提供标准术语并规范最终显示文本。</p>
+        <p class="field-help full">需要实体纠错时选择“统一为标准名称”。原音复核会在转录结束时核对词库候选并规范写法；“保留原写法”只保护已识别内容。</p>
       </div>
       <p id="entity-form-error" class="entity-notice error" role="alert"></p>
       <div class="dialog-actions"><button id="cancel-entity" class="secondary" type="button">取消</button><button type="submit">保存</button></div>
@@ -216,11 +220,23 @@
     const modeSelect = document.querySelector('#mode');
     const transcriptionDomain = document.querySelector('#transcription-domain');
     const entityAsrContext = document.querySelector('#entity-asr-context');
+    const entityAudioRepair = document.querySelector('#entity-audio-repair');
     let entityContextTouched = false;
-    entityAsrContext.addEventListener('change', () => { entityContextTouched = true; });
+    let entityAudioTouched = false;
+    entityAsrContext.addEventListener('change', () => {
+      entityContextTouched = true;
+      if (entityAsrContext.checked) { entityAudioRepair.checked = false; entityAudioTouched = true; }
+    });
+    entityAudioRepair.addEventListener('change', () => {
+      entityAudioTouched = true;
+      if (entityAudioRepair.checked) { entityAsrContext.checked = false; entityContextTouched = true; }
+    });
     fetch('/health').then(response => response.json()).then(data => {
       if (!entityContextTouched && !running && !finishing) {
         entityAsrContext.checked = data.entity_asr_context_enabled === true;
+      }
+      if (!entityAudioTouched && !running && !finishing) {
+        entityAudioRepair.checked = data.entity_audio_repair_enabled === true && !entityAsrContext.checked;
       }
     }).catch(() => {});
     const status = document.querySelector('#status');
@@ -262,6 +278,7 @@
     // recordings without changing the model's streaming cadence.
     const microphoneChunkSamples = 8000;
     const fileChunkSamples = 16000;
+    const FILE_UPLOAD_WINDOW = 4;
     const FILE_CHUNK_TIMEOUT_MS = 330000;
     // ASR finalization can take longer than a single Refiner pass (notably
     // for Whisper rolling windows). Keep the client alive long enough to
@@ -270,6 +287,51 @@
     // backend sends periodic progress events and has its own hard deadline.
     const FINISH_WATCHDOG_MS = 360000;
     let context, source, processor, stream, socket, buffered = new Float32Array(0), running = false, finishing = false, startedAt, ticker, finishWatchdog, selectedMode = 'online', entities = [], refinementHistory = [], seenRefinementChanges = new Set(), latestRefinedText = '', lastAppliedRefinementRevision = 0;
+    let fileRunSerial = 0, currentFileTiming = null;
+    const fileTimingLabel = document.querySelector('#file-timing');
+    const downloadFileTiming = document.querySelector('#download-file-timing');
+
+    function saveFileTiming(outcome) {
+      const timing = currentFileTiming;
+      if (!timing) return;
+      if (timing.finishedAt == null) { timing.finishedAt = performance.now(); timing.outcome = outcome; }
+      const duration = (end, start) => end != null && start != null
+        ? Math.round((end - start) * 1000) / 1000 : null;
+      const summary = {
+        schema_version: 1, outcome: timing.outcome, trace_id: timing.traceId || null,
+        mode: timing.mode, entity_asr_context: timing.contextEnabled,
+        entity_audio_repair: timing.repairEnabled, upload_window: FILE_UPLOAD_WINDOW,
+        audio_seconds: timing.samples == null ? null : timing.samples / targetRate,
+        total_chunks: timing.totalChunks || 0, acknowledged_chunks: timing.acks.length,
+        preparation_ms: duration(timing.firstSendAt, timing.startedAt),
+        decode_ms: duration(timing.decodedAt, timing.startedAt),
+        upload_and_recognition_ms: duration(timing.allAckedAt, timing.firstSendAt),
+        finish_wait_ms: duration(timing.finishedAt, timing.finishSentAt),
+        total_ms: duration(timing.finishedAt, timing.startedAt),
+        message_handler_ms: timing.handlerMs, messages: timing.messages,
+        chunks: timing.acks.map(ack => ({
+          index: ack.index, sent_ms: duration(ack.sentAt, timing.startedAt),
+          acknowledged_ms: duration(ack.ackAt, timing.startedAt),
+          round_trip_ms: duration(ack.ackAt, ack.sentAt), bytes: ack.bytes,
+        })),
+      };
+      // Client-only diagnostics: no transcript/audio is included or uploaded.
+      window.__asrLastFileTransfer = summary;
+      const seconds = value => value == null ? '—' : (value / 1000).toFixed(2);
+      fileTimingLabel.textContent = `文件准备 ${seconds(summary.preparation_ms)} 秒 · 传输与识别 ${seconds(summary.upload_and_recognition_ms)} 秒 · 收尾 ${seconds(summary.finish_wait_ms)} 秒`;
+      fileTimingLabel.hidden = false;
+      downloadFileTiming.hidden = false;
+    }
+
+    downloadFileTiming.addEventListener('click', () => {
+      if (!window.__asrLastFileTransfer) return;
+      const url = URL.createObjectURL(new Blob([
+        JSON.stringify(window.__asrLastFileTransfer, null, 2),
+      ], { type: 'application/json' }));
+      const link = document.createElement('a');
+      link.href = url; link.download = 'asr-file-timing.json'; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
 
     function escapeHtml(value) {
       return String(value).replace(/[&<>'"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
@@ -460,7 +522,7 @@
       historyEmpty.hidden = refinementHistory.length > 0;
       refinementList.innerHTML = refinementHistory.map((entry, index) => {
         const notes = [];
-        if (entry.entityChanges.length) notes.push(...entry.entityChanges.map(change => `<span class="entity-change">实体规范：${escapeHtml(change.observed)} → ${escapeHtml(change.canonical)}</span>`));
+        if (entry.entityChanges.length) notes.push(...entry.entityChanges.map(change => `<span class="entity-change">${change.stage === 'asr_audio_repair' ? '原音实体修正' : '实体规范'}：${escapeHtml(change.observed)} → ${escapeHtml(change.canonical)}</span>`));
         if (entry.entityCandidates.length) notes.push(`<details><summary>实体候选 ${entry.entityCandidates.length} 条（Matcher ${entry.matcherLatency} ms）</summary>${entry.entityCandidates.map(candidate => `<span>${escapeHtml(candidate.observed)} → ${escapeHtml(candidate.canonical)} · 拼音 ${Number(candidate.pinyin_score || 0).toFixed(2)} / 字符 ${Number(candidate.char_score || 0).toFixed(2)} / 总分 ${Number(candidate.final_score || 0).toFixed(3)} / 间隔 ${candidate.margin == null ? '—' : Number(candidate.margin).toFixed(3)} · ${escapeHtml(candidate.decision)}</span>`).join('')}</details>`);
         if (entry.entityHints.length) notes.push(`<span>术语提示：${escapeHtml(entry.entityHints.join('、'))}</span>`);
         if (entry.detectedEntities.length) notes.push(`<span>命中实体：${escapeHtml(entry.detectedEntities.join('、'))}</span>`);
@@ -596,6 +658,7 @@
     }
 
     function completeTranscription(status = '已完成', isError = false, preserveRaw = false) {
+      saveFileTiming(isError ? 'error' : (preserveRaw ? 'fallback' : 'complete'));
       if (preserveRaw) {
         const rawText = raw.textContent.trim();
         // A partial/older refinement is not a valid final result. When the
@@ -667,7 +730,7 @@
     function websocketUrl(asrChunkSeconds) {
       const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
       const decodeInterval = asrChunkSeconds === undefined ? '' : '&asr_chunk_seconds=' + encodeURIComponent(asrChunkSeconds);
-      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + '&entity_asr_context=' + (entityAsrContext.checked ? '1' : '0') + decodeInterval;
+      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + '&entity_asr_context=' + (entityAsrContext.checked ? '1' : '0') + '&entity_audio_repair=' + (entityAudioRepair.checked ? '1' : '0') + decodeInterval;
     }
 
     function connectSocket(asrChunkSeconds) {
@@ -675,11 +738,16 @@
         socket = new WebSocket(websocketUrl(asrChunkSeconds));
         const currentSocket = socket;
         socket.binaryType = 'arraybuffer';
-        const timeout = setTimeout(() => reject(new Error('连接超时')), 10000);
-        socket.onopen = () => { clearTimeout(timeout); resolve(); };
-        socket.onerror = () => { clearTimeout(timeout); reject(new Error('无法连接识别服务')); };
+        if (currentFileTiming && currentFileTiming.finishedAt == null) currentFileTiming.socket = currentSocket;
+        let connected = false;
+        const timeout = setTimeout(() => {
+          reject(new Error('连接超时')); currentSocket.close();
+        }, 10000);
+        socket.onopen = () => { connected = true; clearTimeout(timeout); resolve(currentSocket); };
+        socket.onerror = () => { clearTimeout(timeout); reject(new Error('无法连接识别服务')); currentSocket.close(); };
         socket.onclose = () => {
           clearTimeout(timeout);
+          if (!connected) reject(new Error('识别连接未能建立'));
           if (socket !== currentSocket) return;
           socket = null;
           if (!running && !finishing) return;
@@ -695,10 +763,51 @@
           // update the shared transcript panes and refinement history.
           if (socket !== currentSocket) return;
           const data = JSON.parse(event.data);
-          updateSessionMetrics(data);
+          // Refill the bounded send window before any transcript/history DOM
+          // work. Each ACK acknowledges exactly its own frame index.
           if (data.event === 'chunk_ack') {
-            currentSocket.dispatchEvent(new Event('chunk-ack'));
+            currentSocket.dispatchEvent(new CustomEvent('chunk-ack', {
+              detail: { chunkIndex: data.chunk_index },
+            }));
             return;
+          }
+          if (data.event === 'ready' && currentFileTiming && currentFileTiming.socket === currentSocket) {
+            currentFileTiming.traceId = data.trace_id;
+            currentFileTiming.contextEnabled = data.entity_asr_context_requested;
+            currentFileTiming.repairEnabled = data.entity_audio_repair_requested;
+          }
+          const handlerStarted = performance.now();
+          try {
+          updateSessionMetrics(data);
+          if (data.entity_audio_repair) {
+            const repair = data.entity_audio_repair;
+            const reasonMessages = {
+              no_normalizable_entities: '该领域暂无可复核实体',
+              backend_context_unsupported: '当前识别后端不支持原音复核',
+              source_text_limit: '转录过长，本次保留初稿',
+              audio_cache_limit: '音频过长，本次保留初稿',
+              no_candidates: '未检索到待复核词条',
+              weak_candidates: '候选证据较弱，已保留初稿',
+            };
+            let message;
+            if (repair.phase === 'capturing') {
+              message = '已开启，结束时复核';
+            } else if (repair.phase === 'retrieving' || repair.phase === 'verifying') {
+              message = `原音复核中 · ${repair.elapsed_seconds || 0} 秒`;
+            } else if (repair.applied) {
+              message = `原音已修正 ${repair.change_count || 0} 处`;
+            } else if (repair.phase === 'fallback') {
+              message = '复核未完成，已保留初稿';
+            } else {
+              message = reasonMessages[repair.reason]
+                || (repair.phase === 'skipped' ? '本次未复核，已保留初稿' : '未确认可替换实体');
+            }
+            document.querySelector('#entity-audio-status').textContent = message;
+          } else if (data.event === 'ready') {
+            document.querySelector('#entity-audio-status').textContent = '';
+          }
+          if (data.entity_asr_context_guard?.fallback_active) {
+            document.querySelector('#entity-context-status').textContent = '检测到提示复述，已用原音关闭词库重新识别';
           }
           // Keep validated streaming refinements visible through stream drain
           // and final reconciliation; suppress only stale ASR hypotheses.
@@ -711,6 +820,10 @@
             return;
           }
           if (data.event === 'error') { completeTranscription('识别服务错误：' + data.detail, true); return; }
+          if (data.event === 'status' && data.stage === 'entity_audio_repair') {
+            setStatus('正在用原音核对实体 · ' + (data.elapsed_seconds || 0) + ' 秒');
+            return;
+          }
           if (data.event === 'status' && data.stage === 'stream_refinement_drain') {
             refinerExecuted.textContent = 'ASR 已结束 · 流式精修收尾中';
             refinerResult.textContent = '正在完成活动窗口和最终 ASR 文本的流式精修';
@@ -780,6 +893,13 @@
             );
           }
           if (data.event === 'final') completeTranscription('已完成');
+          } finally {
+            if (currentFileTiming && currentFileTiming.socket === currentSocket) {
+              currentFileTiming.handlerMs += performance.now() - handlerStarted;
+              currentFileTiming.messages += 1;
+              if (currentFileTiming.finishedAt != null) saveFileTiming(currentFileTiming.outcome);
+            }
+          }
         };
       });
     }
@@ -817,40 +937,90 @@
     async function sendFileChunks(samples) {
       const fileSocket = socket;
       const totalChunks = Math.ceil(samples.length / fileChunkSamples);
-      for (let offset = 0, chunkIndex = 1; offset < samples.length; offset += fileChunkSamples, chunkIndex += 1) {
-        if (socket !== fileSocket || fileSocket.readyState !== WebSocket.OPEN) throw new Error('音频传输连接已关闭');
-        setStatus(`正在传输并识别音频块 ${chunkIndex}/${totalChunks}`);
-        await new Promise((resolve, reject) => {
-          const cleanup = () => {
-            clearTimeout(timeout);
-            fileSocket.removeEventListener('chunk-ack', acknowledged);
-            fileSocket.removeEventListener('close', closed);
-          };
-          const acknowledged = () => { cleanup(); resolve(); };
-          const closed = () => { cleanup(); reject(new Error('音频传输连接已关闭')); };
-          const timeout = setTimeout(() => {
-            cleanup();
-            reject(new Error(`音频块 ${chunkIndex}/${totalChunks} 处理超时（等待 ${Math.round(FILE_CHUNK_TIMEOUT_MS / 1000)} 秒）`));
-          }, FILE_CHUNK_TIMEOUT_MS);
-          fileSocket.addEventListener('chunk-ack', acknowledged);
-          fileSocket.addEventListener('close', closed);
+      const timing = currentFileTiming;
+      if (timing) { timing.samples = samples.length; timing.totalChunks = totalChunks; }
+      await new Promise((resolve, reject) => {
+        const pending = new Map();
+        let sent = 0, acknowledgedCount = 0, settled = false, timeout;
+        const cleanup = () => {
+          clearTimeout(timeout);
+          fileSocket.removeEventListener('chunk-ack', acknowledged);
+          fileSocket.removeEventListener('close', closed);
+        };
+        const fail = error => {
+          if (settled) return;
+          settled = true; cleanup(); reject(error);
+        };
+        const armTimeout = () => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => fail(new Error('音频传输确认超时，连接已停止')), FILE_CHUNK_TIMEOUT_MS);
+        };
+        const pump = () => {
+          if (settled) return;
+          if (socket !== fileSocket || fileSocket.readyState !== WebSocket.OPEN) {
+            fail(new Error('音频传输连接已关闭')); return;
+          }
           try {
-            fileSocket.send(samples.slice(offset, Math.min(offset + fileChunkSamples, samples.length)).buffer);
-          } catch (error) { cleanup(); reject(error); }
-        });
-      }
+            while (!settled && sent < totalChunks && pending.size < FILE_UPLOAD_WINDOW) {
+              const offset = sent * fileChunkSamples;
+              const bytes = samples.slice(offset, Math.min(offset + fileChunkSamples, samples.length)).buffer;
+              const index = ++sent;
+              const sentAt = performance.now();
+              if (timing && timing.firstSendAt == null) timing.firstSendAt = sentAt;
+              pending.set(index, { sentAt, bytes: bytes.byteLength });
+              fileSocket.send(bytes);
+            }
+            if (sent === totalChunks && !pending.size) {
+              if (timing) timing.allAckedAt = performance.now();
+              settled = true; cleanup(); resolve();
+            }
+          } catch (error) { fail(error); }
+        };
+        const acknowledged = event => {
+          if (settled || socket !== fileSocket) return;
+          const index = Number(event.detail?.chunkIndex);
+          if (!Number.isInteger(index) || index < 1 || index > sent) {
+            fail(new Error('收到无效的音频确认编号')); return;
+          }
+          const frame = pending.get(index);
+          if (!frame) return; // duplicate ACK; never frees another frame
+          pending.delete(index); acknowledgedCount += 1;
+          if (timing) timing.acks.push({ index, ...frame, ackAt: performance.now() });
+          setStatus(`正在传输并识别音频 · 已确认 ${acknowledgedCount}/${totalChunks} 块`);
+          armTimeout(); pump();
+        };
+        const closed = () => fail(new Error('音频传输连接已关闭'));
+        fileSocket.addEventListener('chunk-ack', acknowledged);
+        fileSocket.addEventListener('close', closed);
+        armTimeout(); pump();
+      });
     }
 
     async function startFile(file) {
+      const generation = ++fileRunSerial;
+      const previousSocket = socket;
+      socket = null;
+      if (previousSocket && previousSocket.readyState !== WebSocket.CLOSED) previousSocket.close();
+      running = false; clearInterval(ticker);
+      selectedMode = modeSelect.value;
+      const timing = { startedAt: performance.now(), acks: [], handlerMs: 0, messages: 0,
+        mode: selectedMode, contextEnabled: entityAsrContext.checked, repairEnabled: entityAudioRepair.checked };
+      currentFileTiming = timing; fileTimingLabel.hidden = true; downloadFileTiming.hidden = true;
+      window.__asrLastFileTransfer = null;
+      let fileSocket;
       try {
         finishing = false;
         clearTimeout(finishWatchdog);
         modeSelect.disabled = true; transcriptionDomain.disabled = true; entityAsrContext.disabled = true;
         setButton(false, true); setStatus(`正在读取文件：${file.name}`);
         const samples = await decodeAudioFile(file);
+        timing.decodedAt = performance.now();
+        if (generation !== fileRunSerial) return;
         // File uploads decode every two audio seconds; transport stays at one
         // second per block. Microphone sessions retain the server default.
-        await connectSocket(2);
+        fileSocket = await connectSocket(2);
+        timing.socket = fileSocket;
+        if (generation !== fileRunSerial) { fileSocket.close(); return; }
         raw.textContent = ''; clean.textContent = ''; latestRefinedText = ''; lastAppliedRefinementRevision = 0; resetRefinerStatus(); resetRefinementHistory();
         running = true; startedAt = Date.now(); ticker = setInterval(updateTimer, 250); updateTimer();
         setButton(false, true);
@@ -860,10 +1030,11 @@
           setStatus('离线流式转录中，精修异步跟进');
         }
         await sendFileChunks(samples);
-        if (socket && socket.readyState === WebSocket.OPEN) {
+        if (socket === fileSocket && fileSocket.readyState === WebSocket.OPEN) {
           finishing = true;
           setStatus('音频已发送，等待 ASR 最终结果；流式精修继续运行');
-          socket.send(JSON.stringify({ event: 'finish' }));
+          timing.finishSentAt = performance.now();
+          fileSocket.send(JSON.stringify({ event: 'finish' }));
           // A broken proxy or dropped WebSocket must not leave the timer running forever.
           finishWatchdog = setTimeout(() => {
             if (finishing) completeTranscription(
@@ -876,13 +1047,17 @@
           }, FINISH_WATCHDOG_MS);
         }
       } catch (error) {
+        if (generation !== fileRunSerial || timing.finishedAt != null) return;
+        saveFileTiming('error');
         running = false; finishing = false; clearInterval(ticker); clearTimeout(finishWatchdog); modeSelect.disabled = false; transcriptionDomain.disabled = false; entityAsrContext.disabled = false; setButton(false);
         setStatus('文件处理失败：' + error.message, true);
-        if (socket) socket.close(); socket = null;
+        if (socket === fileSocket) { if (socket) socket.close(); socket = null; }
       }
     }
 
     async function startMicrophone() {
+      fileRunSerial += 1; currentFileTiming = null;
+      fileTimingLabel.hidden = true; downloadFileTiming.hidden = true;
       try {
         finishing = false;
         clearTimeout(finishWatchdog);

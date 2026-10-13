@@ -1,0 +1,292 @@
+{
+  "新闻人物组织地理": {
+    "baseline": {
+      "samples": 2131,
+      "hits": 2140,
+      "expected_mentions": 2445,
+      "errors": 871,
+      "reference_chars": 32987,
+      "CER": 0.0264043411040713,
+      "entity_recall": 0.8752556237218814
+    },
+    "entity_rules": {
+      "samples": 2131,
+      "hits": 2142,
+      "expected_mentions": 2445,
+      "errors": 872,
+      "reference_chars": 32987,
+      "CER": 0.02643465607663625,
+      "entity_recall": 0.8760736196319019
+    },
+    "entity_audio_repair": {
+      "samples": 2131,
+      "hits": 2308,
+      "expected_mentions": 2445,
+      "errors": 653,
+      "reference_chars": 32987,
+      "CER": 0.019795677084912238,
+      "entity_recall": 0.9439672801635992
+    }
+  },
+  "自然科学化学": {
+    "baseline": {
+      "samples": 24,
+      "hits": 23,
+      "expected_mentions": 25,
+      "errors": 10,
+      "reference_chars": 523,
+      "CER": 0.019120458891013385,
+      "entity_recall": 0.92
+    },
+    "entity_rules": {
+      "samples": 24,
+      "hits": 23,
+      "expected_mentions": 25,
+      "errors": 10,
+      "reference_chars": 523,
+      "CER": 0.019120458891013385,
+      "entity_recall": 0.92
+    },
+    "entity_audio_repair": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 25,
+      "errors": 9,
+      "reference_chars": 523,
+      "CER": 0.017208413001912046,
+      "entity_recall": 0.96
+    }
+  },
+  "金融经济": {
+    "baseline": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 31,
+      "reference_chars": 741,
+      "CER": 0.04183535762483131,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 32,
+      "reference_chars": 741,
+      "CER": 0.043184885290148446,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 32,
+      "reference_chars": 741,
+      "CER": 0.043184885290148446,
+      "entity_recall": 1.0
+    }
+  },
+  "科技计算机通信": {
+    "baseline": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 25,
+      "reference_chars": 631,
+      "CER": 0.039619651347068144,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 28,
+      "reference_chars": 631,
+      "CER": 0.044374009508716325,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 28,
+      "reference_chars": 631,
+      "CER": 0.044374009508716325,
+      "entity_recall": 1.0
+    }
+  },
+  "医疗健康": {
+    "baseline": {
+      "samples": 86,
+      "hits": 99,
+      "expected_mentions": 105,
+      "errors": 54,
+      "reference_chars": 2059,
+      "CER": 0.026226323457989316,
+      "entity_recall": 0.9428571428571428
+    },
+    "entity_rules": {
+      "samples": 86,
+      "hits": 99,
+      "expected_mentions": 105,
+      "errors": 55,
+      "reference_chars": 2059,
+      "CER": 0.026711996114618747,
+      "entity_recall": 0.9428571428571428
+    },
+    "entity_audio_repair": {
+      "samples": 86,
+      "hits": 102,
+      "expected_mentions": 105,
+      "errors": 51,
+      "reference_chars": 2059,
+      "CER": 0.02476930548810102,
+      "entity_recall": 0.9714285714285714
+    }
+  },
+  "历史教育": {
+    "baseline": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 18,
+      "reference_chars": 516,
+      "CER": 0.03488372093023256,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 19,
+      "reference_chars": 516,
+      "CER": 0.03682170542635659,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 24,
+      "hits": 24,
+      "expected_mentions": 24,
+      "errors": 19,
+      "reference_chars": 516,
+      "CER": 0.03682170542635659,
+      "entity_recall": 1.0
+    }
+  },
+  "农业生态": {
+    "baseline": {
+      "samples": 27,
+      "hits": 26,
+      "expected_mentions": 28,
+      "errors": 33,
+      "reference_chars": 590,
+      "CER": 0.05593220338983051,
+      "entity_recall": 0.9285714285714286
+    },
+    "entity_rules": {
+      "samples": 27,
+      "hits": 26,
+      "expected_mentions": 28,
+      "errors": 33,
+      "reference_chars": 590,
+      "CER": 0.05593220338983051,
+      "entity_recall": 0.9285714285714286
+    },
+    "entity_audio_repair": {
+      "samples": 27,
+      "hits": 27,
+      "expected_mentions": 28,
+      "errors": 31,
+      "reference_chars": 590,
+      "CER": 0.05254237288135593,
+      "entity_recall": 0.9642857142857143
+    }
+  },
+  "体育文化": {
+    "baseline": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 10,
+      "reference_chars": 570,
+      "CER": 0.017543859649122806,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 10,
+      "reference_chars": 570,
+      "CER": 0.017543859649122806,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 26,
+      "hits": 26,
+      "expected_mentions": 26,
+      "errors": 10,
+      "reference_chars": 570,
+      "CER": 0.017543859649122806,
+      "entity_recall": 1.0
+    }
+  },
+  "工业交通": {
+    "baseline": {
+      "samples": 23,
+      "hits": 23,
+      "expected_mentions": 23,
+      "errors": 7,
+      "reference_chars": 503,
+      "CER": 0.013916500994035786,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 23,
+      "hits": 23,
+      "expected_mentions": 23,
+      "errors": 7,
+      "reference_chars": 503,
+      "CER": 0.013916500994035786,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 23,
+      "hits": 23,
+      "expected_mentions": 23,
+      "errors": 7,
+      "reference_chars": 503,
+      "CER": 0.013916500994035786,
+      "entity_recall": 1.0
+    }
+  },
+  "法律政策": {
+    "baseline": {
+      "samples": 20,
+      "hits": 21,
+      "expected_mentions": 21,
+      "errors": 19,
+      "reference_chars": 702,
+      "CER": 0.027065527065527065,
+      "entity_recall": 1.0
+    },
+    "entity_rules": {
+      "samples": 20,
+      "hits": 21,
+      "expected_mentions": 21,
+      "errors": 19,
+      "reference_chars": 702,
+      "CER": 0.027065527065527065,
+      "entity_recall": 1.0
+    },
+    "entity_audio_repair": {
+      "samples": 20,
+      "hits": 21,
+      "expected_mentions": 21,
+      "errors": 19,
+      "reference_chars": 702,
+      "CER": 0.027065527065527065,
+      "entity_recall": 1.0
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "records": 1000,
+  "actions": {
+    "keep": 666,
+    "replace": 334
+  },
+  "splits": {
+    "train": {
+      "keep": 418,
+      "replace": 210
+    },
+    "dev": {
+      "keep": 82,
+      "replace": 40
+    },
+    "test": {
+      "keep": 166,
+      "replace": 84
+    }
+  },
+  "categories": {
+    "clean": 167,
+    "filler": 167,
+    "stutter": 167,
+    "meaningful_repeat": 167,
+    "protected_content": 166,
+    "syntax_boundary": 166
+  },
+  "unique_template_groups": 32,
+  "protocol_version": "v1-strict-local-window-edit",
+  "all_targets_roundtrip_validated": true,
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_synthetic_20261009/texts.jsonl",
+  "source_sha256": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+  "source_code_sha256": "0cd888379ef87c64a9ea73caacd342386c41afd5d9792a201794cc55e38cb49f",
+  "output_sha256": {
+    "train": "370ada43ee5467eb9c86e3c6f87a2b45612b10a3caa48130754aab64cdb7bc0a",
+    "dev": "1bec9264e5debdba4d427a51a543ef033668fbd8c85c0d16b246ec6dd485e458",
+    "test": "bf332a8b7e5dd6698e00c45a3af08a685cfb3a2df8cbc8891648d89c4caf4e10"
+  },
+  "scope": "synthetic_format_and_preservation_warmup_not_real_asr_quality_evaluation"
+}

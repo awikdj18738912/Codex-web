@@ -1,0 +1,114 @@
+{
+  "medical": {
+    "baseline": {
+      "samples": 225,
+      "refiner_calls": 231,
+      "normalization_events": 0,
+      "changed_samples": 0,
+      "reference_chars": 9470,
+      "character_errors": 4993,
+      "expected_mentions": 63,
+      "recovered_mentions": 58,
+      "unreferenced_mentions": 0,
+      "outside_entity_chars": 9233,
+      "outside_entity_errors": 4983,
+      "prompted_expected": 27,
+      "prompted_recovered": 25,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "improved_samples": 0,
+      "regressed_samples": 0,
+      "CER": 0.5272439281942978,
+      "outside_entity_CER": 0.5396945738113289
+    },
+    "post_only": {
+      "samples": 225,
+      "refiner_calls": 231,
+      "normalization_events": 0,
+      "changed_samples": 1,
+      "reference_chars": 9470,
+      "character_errors": 4992,
+      "expected_mentions": 63,
+      "recovered_mentions": 58,
+      "unreferenced_mentions": 0,
+      "outside_entity_chars": 9233,
+      "outside_entity_errors": 4982,
+      "prompted_expected": 27,
+      "prompted_recovered": 25,
+      "entity_gains": 0,
+      "entity_losses": 0,
+      "improved_samples": 1,
+      "regressed_samples": 0,
+      "CER": 0.5271383315733896,
+      "outside_entity_CER": 0.5395862666522258
+    },
+    "context_only": {
+      "samples": 225,
+      "refiner_calls": 207,
+      "normalization_events": 0,
+      "changed_samples": 92,
+      "reference_chars": 9470,
+      "character_errors": 5036,
+      "expected_mentions": 63,
+      "recovered_mentions": 59,
+      "unreferenced_mentions": 4,
+      "outside_entity_chars": 9233,
+      "outside_entity_errors": 5027,
+      "prompted_expected": 27,
+      "prompted_recovered": 26,
+      "entity_gains": 2,
+      "entity_losses": 1,
+      "improved_samples": 34,
+      "regressed_samples": 29,
+      "CER": 0.5317845828933474,
+      "outside_entity_CER": 0.5444600888118705
+    },
+    "combined": {
+      "samples": 225,
+      "refiner_calls": 208,
+      "normalization_events": 0,
+      "changed_samples": 93,
+      "reference_chars": 9470,
+      "character_errors": 5034,
+      "expected_mentions": 63,
+      "recovered_mentions": 59,
+      "unreferenced_mentions": 4,
+      "outside_entity_chars": 9233,
+      "outside_entity_errors": 5025,
+      "prompted_expected": 27,
+      "prompted_recovered": 26,
+      "entity_gains": 2,
+      "entity_losses": 1,
+      "improved_samples": 35,
+      "regressed_samples": 28,
+      "CER": 0.5315733896515311,
+      "outside_entity_CER": 0.5442434744936641
+    }
+  },
+  "podcast": {
+    "baseline": {
+      "samples": 11,
+      "refiner_calls": 7,
+      "normalization_events": 0,
+      "changed_samples": 0
+    },
+    "post_only": {
+      "samples": 11,
+      "refiner_calls": 9,
+      "normalization_events": 21,
+      "changed_samples": 7
+    },
+    "context_only": {
+      "samples": 11,
+      "refiner_calls": 8,
+      "normalization_events": 0,
+      "changed_samples": 10
+    },
+    "combined": {
+      "samples": 11,
+      "refiner_calls": 9,
+      "normalization_events": 14,
+      "changed_samples": 10
+    }
+  }
+}

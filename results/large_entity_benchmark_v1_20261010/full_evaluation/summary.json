@@ -1,0 +1,37 @@
+{
+  "baseline": {
+    "samples": 2410,
+    "hits": 2431,
+    "expected_mentions": 2745,
+    "errors": 1077,
+    "reference_chars": 39806,
+    "refiner_calls": 111,
+    "text_refinement_calls": 111,
+    "session_refiner_calls": 265,
+    "CER": 0.02705622267999799
+  },
+  "entity_rules": {
+    "samples": 2410,
+    "hits": 2433,
+    "expected_mentions": 2745,
+    "errors": 1084,
+    "reference_chars": 39806,
+    "refiner_calls": 278,
+    "text_refinement_calls": 278,
+    "session_refiner_calls": 430,
+    "CER": 0.027232075566497514
+  },
+  "entity_audio_repair": {
+    "samples": 2410,
+    "hits": 2603,
+    "expected_mentions": 2745,
+    "errors": 859,
+    "reference_chars": 39806,
+    "refiner_calls": 187,
+    "text_refinement_calls": 187,
+    "session_refiner_calls": 340,
+    "improved": 167,
+    "regressed": 3,
+    "CER": 0.021579661357584285
+  }
+}

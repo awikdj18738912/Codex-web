@@ -4,6 +4,7 @@
 __pycache__/
 *.py[cod]
 .runtime/
+/LLaMA-Factory/
 zh-itn/zh-itn/build/
 
 # Generated training data, caches, and experiment outputs
@@ -36,3 +37,50 @@ saves/
 # Local dataset files
 *.parquet
 *.pcm
+
+# Raw audio and downloaded media used only by local experiments
+*.f32le
+/【视频播客】*.mp3
+
+# Generated experiment rows, traces, and process state; keep reports and models
+/results/**/*.jsonl
+/results/**/*.log
+/results/**/*.patch
+/results/**/*.pid
+/results/**/*.before
+/results/**/*.before_*
+/results/**/refinement_windows_grouped_*.md
+
+# Reproducible datasets, service captures, and copied runtime/build snapshots
+/results/**/service_logs/**
+/results/**/logs/**
+/results/**/runtime/**
+/results/**/native/**
+/results/**/frozen/**
+/results/**/source_snapshot/**
+/results/**/dataset/**
+/results/**/source/**
+/results/**/audio/**
+/results/**/Audio/**
+/results/**/data/**
+/results/**/models/**
+/results/**/saves/**
+/results/**/__pycache__/**
+/results/**/.runtime/**
+/results/**/.pytest_cache/**
+/results/**/.ruff_cache/**
+/results/**/*.so
+
+# Large intermediate training/calibration files and duplicated tokenizers
+/results/**/calibration_epoch*.json
+/results/**/test_manifest.json
+/results/**/test_evaluation_rows.json
+/results/refiner_lora*/tokenizer.json
+/results/refiner_lora*/checkpoint-*/**
+
+# Allow traversal so experiment reports remain versioned inside generated folders
+!/results/**/
+!/results/**/REPORT.md
+!/results/**/report.md
+!/results/**/README.md
+!/results/**/readme.md

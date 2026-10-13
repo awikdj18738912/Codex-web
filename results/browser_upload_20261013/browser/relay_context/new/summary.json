@@ -1,0 +1,2299 @@
+{
+  "case": "relay_context",
+  "arm": "new",
+  "browser_total_seconds": 18.909,
+  "upload_seconds": 15.236,
+  "tail_seconds": 1.63,
+  "prepare_seconds": 2.044,
+  "target_corrected": true,
+  "trace_id": "7745fdffb24e43deaa11c50bd2b43d85",
+  "frames": 323,
+  "acks": 323,
+  "client_timing": {
+    "schema_version": 1,
+    "outcome": "complete",
+    "trace_id": "7745fdffb24e43deaa11c50bd2b43d85",
+    "mode": "streaming",
+    "entity_asr_context": true,
+    "entity_audio_repair": false,
+    "upload_window": 4,
+    "audio_seconds": 322.6876875,
+    "total_chunks": 323,
+    "acknowledged_chunks": 323,
+    "preparation_ms": 2037.5,
+    "decode_ms": 2032.4,
+    "upload_and_recognition_ms": 15235.6,
+    "finish_wait_ms": 1630.6,
+    "total_ms": 18903.8,
+    "message_handler_ms": 26.90000057220459,
+    "messages": 111,
+    "chunks": [
+      {
+        "index": 1,
+        "sent_ms": 2037.5,
+        "acknowledged_ms": 2155.2,
+        "round_trip_ms": 117.7,
+        "bytes": 64000
+      },
+      {
+        "index": 2,
+        "sent_ms": 2038,
+        "acknowledged_ms": 2225.7,
+        "round_trip_ms": 187.7,
+        "bytes": 64000
+      },
+      {
+        "index": 3,
+        "sent_ms": 2038.2,
+        "acknowledged_ms": 2236.5,
+        "round_trip_ms": 198.3,
+        "bytes": 64000
+      },
+      {
+        "index": 4,
+        "sent_ms": 2038.4,
+        "acknowledged_ms": 2350.8,
+        "round_trip_ms": 312.4,
+        "bytes": 64000
+      },
+      {
+        "index": 5,
+        "sent_ms": 2155.3,
+        "acknowledged_ms": 2361.2,
+        "round_trip_ms": 205.9,
+        "bytes": 64000
+      },
+      {
+        "index": 6,
+        "sent_ms": 2225.8,
+        "acknowledged_ms": 2516.5,
+        "round_trip_ms": 290.7,
+        "bytes": 64000
+      },
+      {
+        "index": 7,
+        "sent_ms": 2236.5,
+        "acknowledged_ms": 2527.8,
+        "round_trip_ms": 291.3,
+        "bytes": 64000
+      },
+      {
+        "index": 8,
+        "sent_ms": 2350.9,
+        "acknowledged_ms": 2708.3,
+        "round_trip_ms": 357.4,
+        "bytes": 64000
+      },
+      {
+        "index": 9,
+        "sent_ms": 2361.2,
+        "acknowledged_ms": 2720.6,
+        "round_trip_ms": 359.4,
+        "bytes": 64000
+      },
+      {
+        "index": 10,
+        "sent_ms": 2516.6,
+        "acknowledged_ms": 2817.1,
+        "round_trip_ms": 300.5,
+        "bytes": 64000
+      },
+      {
+        "index": 11,
+        "sent_ms": 2527.9,
+        "acknowledged_ms": 2828.5,
+        "round_trip_ms": 300.6,
+        "bytes": 64000
+      },
+      {
+        "index": 12,
+        "sent_ms": 2708.6,
+        "acknowledged_ms": 2954.8,
+        "round_trip_ms": 246.2,
+        "bytes": 64000
+      },
+      {
+        "index": 13,
+        "sent_ms": 2720.7,
+        "acknowledged_ms": 2964.7,
+        "round_trip_ms": 244,
+        "bytes": 64000
+      },
+      {
+        "index": 14,
+        "sent_ms": 2817.3,
+        "acknowledged_ms": 3020.1,
+        "round_trip_ms": 202.8,
+        "bytes": 64000
+      },
+      {
+        "index": 15,
+        "sent_ms": 2828.5,
+        "acknowledged_ms": 3030.7,
+        "round_trip_ms": 202.2,
+        "bytes": 64000
+      },
+      {
+        "index": 16,
+        "sent_ms": 2954.9,
+        "acknowledged_ms": 3137.4,
+        "round_trip_ms": 182.5,
+        "bytes": 64000
+      },
+      {
+        "index": 17,
+        "sent_ms": 2964.8,
+        "acknowledged_ms": 3147.9,
+        "round_trip_ms": 183.1,
+        "bytes": 64000
+      },
+      {
+        "index": 18,
+        "sent_ms": 3020.2,
+        "acknowledged_ms": 3287.3,
+        "round_trip_ms": 267.1,
+        "bytes": 64000
+      },
+      {
+        "index": 19,
+        "sent_ms": 3030.9,
+        "acknowledged_ms": 3297.7,
+        "round_trip_ms": 266.8,
+        "bytes": 64000
+      },
+      {
+        "index": 20,
+        "sent_ms": 3137.4,
+        "acknowledged_ms": 3476.9,
+        "round_trip_ms": 339.5,
+        "bytes": 64000
+      },
+      {
+        "index": 21,
+        "sent_ms": 3148.1,
+        "acknowledged_ms": 3531,
+        "round_trip_ms": 382.9,
+        "bytes": 64000
+      },
+      {
+        "index": 22,
+        "sent_ms": 3287.4,
+        "acknowledged_ms": 3540.3,
+        "round_trip_ms": 252.9,
+        "bytes": 64000
+      },
+      {
+        "index": 23,
+        "sent_ms": 3297.8,
+        "acknowledged_ms": 3549.8,
+        "round_trip_ms": 252,
+        "bytes": 64000
+      },
+      {
+        "index": 24,
+        "sent_ms": 3477,
+        "acknowledged_ms": 3639.2,
+        "round_trip_ms": 162.2,
+        "bytes": 64000
+      },
+      {
+        "index": 25,
+        "sent_ms": 3531.1,
+        "acknowledged_ms": 3648.8,
+        "round_trip_ms": 117.7,
+        "bytes": 64000
+      },
+      {
+        "index": 26,
+        "sent_ms": 3540.3,
+        "acknowledged_ms": 3862.8,
+        "round_trip_ms": 322.5,
+        "bytes": 64000
+      },
+      {
+        "index": 27,
+        "sent_ms": 3549.8,
+        "acknowledged_ms": 3871.3,
+        "round_trip_ms": 321.5,
+        "bytes": 64000
+      },
+      {
+        "index": 28,
+        "sent_ms": 3639.4,
+        "acknowledged_ms": 3882.1,
+        "round_trip_ms": 242.7,
+        "bytes": 64000
+      },
+      {
+        "index": 29,
+        "sent_ms": 3648.9,
+        "acknowledged_ms": 3890.8,
+        "round_trip_ms": 241.9,
+        "bytes": 64000
+      },
+      {
+        "index": 30,
+        "sent_ms": 3862.8,
+        "acknowledged_ms": 3961.8,
+        "round_trip_ms": 99,
+        "bytes": 64000
+      },
+      {
+        "index": 31,
+        "sent_ms": 3871.4,
+        "acknowledged_ms": 3976.2,
+        "round_trip_ms": 104.8,
+        "bytes": 64000
+      },
+      {
+        "index": 32,
+        "sent_ms": 3882.2,
+        "acknowledged_ms": 3985.6,
+        "round_trip_ms": 103.4,
+        "bytes": 64000
+      },
+      {
+        "index": 33,
+        "sent_ms": 3890.9,
+        "acknowledged_ms": 3994.1,
+        "round_trip_ms": 103.2,
+        "bytes": 64000
+      },
+      {
+        "index": 34,
+        "sent_ms": 3961.9,
+        "acknowledged_ms": 4056.4,
+        "round_trip_ms": 94.5,
+        "bytes": 64000
+      },
+      {
+        "index": 35,
+        "sent_ms": 3976.2,
+        "acknowledged_ms": 4070.4,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 36,
+        "sent_ms": 3985.7,
+        "acknowledged_ms": 4079.5,
+        "round_trip_ms": 93.8,
+        "bytes": 64000
+      },
+      {
+        "index": 37,
+        "sent_ms": 3994.2,
+        "acknowledged_ms": 4089.6,
+        "round_trip_ms": 95.4,
+        "bytes": 64000
+      },
+      {
+        "index": 38,
+        "sent_ms": 4056.5,
+        "acknowledged_ms": 4153.3,
+        "round_trip_ms": 96.8,
+        "bytes": 64000
+      },
+      {
+        "index": 39,
+        "sent_ms": 4070.4,
+        "acknowledged_ms": 4164.4,
+        "round_trip_ms": 94,
+        "bytes": 64000
+      },
+      {
+        "index": 40,
+        "sent_ms": 4079.5,
+        "acknowledged_ms": 4174.4,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 41,
+        "sent_ms": 4089.7,
+        "acknowledged_ms": 4183.2,
+        "round_trip_ms": 93.5,
+        "bytes": 64000
+      },
+      {
+        "index": 42,
+        "sent_ms": 4153.3,
+        "acknowledged_ms": 4248.7,
+        "round_trip_ms": 95.4,
+        "bytes": 64000
+      },
+      {
+        "index": 43,
+        "sent_ms": 4164.4,
+        "acknowledged_ms": 4259,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 44,
+        "sent_ms": 4174.5,
+        "acknowledged_ms": 4364.6,
+        "round_trip_ms": 190.1,
+        "bytes": 64000
+      },
+      {
+        "index": 45,
+        "sent_ms": 4183.3,
+        "acknowledged_ms": 4374.1,
+        "round_trip_ms": 190.8,
+        "bytes": 64000
+      },
+      {
+        "index": 46,
+        "sent_ms": 4248.8,
+        "acknowledged_ms": 4382.6,
+        "round_trip_ms": 133.8,
+        "bytes": 64000
+      },
+      {
+        "index": 47,
+        "sent_ms": 4259,
+        "acknowledged_ms": 4455.9,
+        "round_trip_ms": 196.9,
+        "bytes": 64000
+      },
+      {
+        "index": 48,
+        "sent_ms": 4364.7,
+        "acknowledged_ms": 4466.3,
+        "round_trip_ms": 101.6,
+        "bytes": 64000
+      },
+      {
+        "index": 49,
+        "sent_ms": 4374.3,
+        "acknowledged_ms": 4595.3,
+        "round_trip_ms": 221,
+        "bytes": 64000
+      },
+      {
+        "index": 50,
+        "sent_ms": 4382.6,
+        "acknowledged_ms": 4605.2,
+        "round_trip_ms": 222.6,
+        "bytes": 64000
+      },
+      {
+        "index": 51,
+        "sent_ms": 4455.9,
+        "acknowledged_ms": 4794.8,
+        "round_trip_ms": 338.9,
+        "bytes": 64000
+      },
+      {
+        "index": 52,
+        "sent_ms": 4466.3,
+        "acknowledged_ms": 4806.2,
+        "round_trip_ms": 339.9,
+        "bytes": 64000
+      },
+      {
+        "index": 53,
+        "sent_ms": 4595.5,
+        "acknowledged_ms": 5002.9,
+        "round_trip_ms": 407.4,
+        "bytes": 64000
+      },
+      {
+        "index": 54,
+        "sent_ms": 4605.3,
+        "acknowledged_ms": 5014.6,
+        "round_trip_ms": 409.3,
+        "bytes": 64000
+      },
+      {
+        "index": 55,
+        "sent_ms": 4794.9,
+        "acknowledged_ms": 5151.7,
+        "round_trip_ms": 356.8,
+        "bytes": 64000
+      },
+      {
+        "index": 56,
+        "sent_ms": 4806.2,
+        "acknowledged_ms": 5163.7,
+        "round_trip_ms": 357.5,
+        "bytes": 64000
+      },
+      {
+        "index": 57,
+        "sent_ms": 5003.1,
+        "acknowledged_ms": 5307.2,
+        "round_trip_ms": 304.1,
+        "bytes": 64000
+      },
+      {
+        "index": 58,
+        "sent_ms": 5014.6,
+        "acknowledged_ms": 5317.8,
+        "round_trip_ms": 303.2,
+        "bytes": 64000
+      },
+      {
+        "index": 59,
+        "sent_ms": 5151.9,
+        "acknowledged_ms": 5437.7,
+        "round_trip_ms": 285.8,
+        "bytes": 64000
+      },
+      {
+        "index": 60,
+        "sent_ms": 5163.8,
+        "acknowledged_ms": 5451.5,
+        "round_trip_ms": 287.7,
+        "bytes": 64000
+      },
+      {
+        "index": 61,
+        "sent_ms": 5307.3,
+        "acknowledged_ms": 5548.7,
+        "round_trip_ms": 241.4,
+        "bytes": 64000
+      },
+      {
+        "index": 62,
+        "sent_ms": 5317.9,
+        "acknowledged_ms": 5562.3,
+        "round_trip_ms": 244.4,
+        "bytes": 64000
+      },
+      {
+        "index": 63,
+        "sent_ms": 5437.9,
+        "acknowledged_ms": 5655.7,
+        "round_trip_ms": 217.8,
+        "bytes": 64000
+      },
+      {
+        "index": 64,
+        "sent_ms": 5451.5,
+        "acknowledged_ms": 5711.8,
+        "round_trip_ms": 260.3,
+        "bytes": 64000
+      },
+      {
+        "index": 65,
+        "sent_ms": 5548.9,
+        "acknowledged_ms": 5721.1,
+        "round_trip_ms": 172.2,
+        "bytes": 64000
+      },
+      {
+        "index": 66,
+        "sent_ms": 5562.4,
+        "acknowledged_ms": 5807.1,
+        "round_trip_ms": 244.7,
+        "bytes": 64000
+      },
+      {
+        "index": 67,
+        "sent_ms": 5655.7,
+        "acknowledged_ms": 5818.3,
+        "round_trip_ms": 162.6,
+        "bytes": 64000
+      },
+      {
+        "index": 68,
+        "sent_ms": 5712,
+        "acknowledged_ms": 5928.7,
+        "round_trip_ms": 216.7,
+        "bytes": 64000
+      },
+      {
+        "index": 69,
+        "sent_ms": 5721.2,
+        "acknowledged_ms": 6046,
+        "round_trip_ms": 324.8,
+        "bytes": 64000
+      },
+      {
+        "index": 70,
+        "sent_ms": 5807.3,
+        "acknowledged_ms": 6057.9,
+        "round_trip_ms": 250.6,
+        "bytes": 64000
+      },
+      {
+        "index": 71,
+        "sent_ms": 5818.4,
+        "acknowledged_ms": 6124.4,
+        "round_trip_ms": 306,
+        "bytes": 64000
+      },
+      {
+        "index": 72,
+        "sent_ms": 5928.9,
+        "acknowledged_ms": 6262.8,
+        "round_trip_ms": 333.9,
+        "bytes": 64000
+      },
+      {
+        "index": 73,
+        "sent_ms": 6046.2,
+        "acknowledged_ms": 6272.1,
+        "round_trip_ms": 225.9,
+        "bytes": 64000
+      },
+      {
+        "index": 74,
+        "sent_ms": 6058,
+        "acknowledged_ms": 6281.9,
+        "round_trip_ms": 223.9,
+        "bytes": 64000
+      },
+      {
+        "index": 75,
+        "sent_ms": 6124.6,
+        "acknowledged_ms": 6350.9,
+        "round_trip_ms": 226.3,
+        "bytes": 64000
+      },
+      {
+        "index": 76,
+        "sent_ms": 6263,
+        "acknowledged_ms": 6362,
+        "round_trip_ms": 99,
+        "bytes": 64000
+      },
+      {
+        "index": 77,
+        "sent_ms": 6272.2,
+        "acknowledged_ms": 6467.5,
+        "round_trip_ms": 195.3,
+        "bytes": 64000
+      },
+      {
+        "index": 78,
+        "sent_ms": 6281.9,
+        "acknowledged_ms": 6715.1,
+        "round_trip_ms": 433.2,
+        "bytes": 64000
+      },
+      {
+        "index": 79,
+        "sent_ms": 6351,
+        "acknowledged_ms": 6735,
+        "round_trip_ms": 384,
+        "bytes": 64000
+      },
+      {
+        "index": 80,
+        "sent_ms": 6362,
+        "acknowledged_ms": 6745.1,
+        "round_trip_ms": 383.1,
+        "bytes": 64000
+      },
+      {
+        "index": 81,
+        "sent_ms": 6467.6,
+        "acknowledged_ms": 6861.2,
+        "round_trip_ms": 393.6,
+        "bytes": 64000
+      },
+      {
+        "index": 82,
+        "sent_ms": 6715.3,
+        "acknowledged_ms": 6871.8,
+        "round_trip_ms": 156.5,
+        "bytes": 64000
+      },
+      {
+        "index": 83,
+        "sent_ms": 6735,
+        "acknowledged_ms": 7109.1,
+        "round_trip_ms": 374.1,
+        "bytes": 64000
+      },
+      {
+        "index": 84,
+        "sent_ms": 6745.2,
+        "acknowledged_ms": 7117.7,
+        "round_trip_ms": 372.5,
+        "bytes": 64000
+      },
+      {
+        "index": 85,
+        "sent_ms": 6861.4,
+        "acknowledged_ms": 7127.2,
+        "round_trip_ms": 265.8,
+        "bytes": 64000
+      },
+      {
+        "index": 86,
+        "sent_ms": 6871.8,
+        "acknowledged_ms": 7137.2,
+        "round_trip_ms": 265.4,
+        "bytes": 64000
+      },
+      {
+        "index": 87,
+        "sent_ms": 7109.2,
+        "acknowledged_ms": 7249.7,
+        "round_trip_ms": 140.5,
+        "bytes": 64000
+      },
+      {
+        "index": 88,
+        "sent_ms": 7117.8,
+        "acknowledged_ms": 7260.2,
+        "round_trip_ms": 142.4,
+        "bytes": 64000
+      },
+      {
+        "index": 89,
+        "sent_ms": 7127.3,
+        "acknowledged_ms": 7431.3,
+        "round_trip_ms": 304,
+        "bytes": 64000
+      },
+      {
+        "index": 90,
+        "sent_ms": 7137.3,
+        "acknowledged_ms": 7440.2,
+        "round_trip_ms": 302.9,
+        "bytes": 64000
+      },
+      {
+        "index": 91,
+        "sent_ms": 7249.8,
+        "acknowledged_ms": 7515.4,
+        "round_trip_ms": 265.6,
+        "bytes": 64000
+      },
+      {
+        "index": 92,
+        "sent_ms": 7260.2,
+        "acknowledged_ms": 7523.9,
+        "round_trip_ms": 263.7,
+        "bytes": 64000
+      },
+      {
+        "index": 93,
+        "sent_ms": 7431.5,
+        "acknowledged_ms": 7604.3,
+        "round_trip_ms": 172.8,
+        "bytes": 64000
+      },
+      {
+        "index": 94,
+        "sent_ms": 7440.3,
+        "acknowledged_ms": 7614.9,
+        "round_trip_ms": 174.6,
+        "bytes": 64000
+      },
+      {
+        "index": 95,
+        "sent_ms": 7515.5,
+        "acknowledged_ms": 7753,
+        "round_trip_ms": 237.5,
+        "bytes": 64000
+      },
+      {
+        "index": 96,
+        "sent_ms": 7523.9,
+        "acknowledged_ms": 7764.4,
+        "round_trip_ms": 240.5,
+        "bytes": 64000
+      },
+      {
+        "index": 97,
+        "sent_ms": 7604.4,
+        "acknowledged_ms": 7999.3,
+        "round_trip_ms": 394.9,
+        "bytes": 64000
+      },
+      {
+        "index": 98,
+        "sent_ms": 7615,
+        "acknowledged_ms": 8011.2,
+        "round_trip_ms": 396.2,
+        "bytes": 64000
+      },
+      {
+        "index": 99,
+        "sent_ms": 7753.2,
+        "acknowledged_ms": 8123.3,
+        "round_trip_ms": 370.1,
+        "bytes": 64000
+      },
+      {
+        "index": 100,
+        "sent_ms": 7764.4,
+        "acknowledged_ms": 8234.1,
+        "round_trip_ms": 469.7,
+        "bytes": 64000
+      },
+      {
+        "index": 101,
+        "sent_ms": 7999.5,
+        "acknowledged_ms": 8244.6,
+        "round_trip_ms": 245.1,
+        "bytes": 64000
+      },
+      {
+        "index": 102,
+        "sent_ms": 8011.4,
+        "acknowledged_ms": 8254.1,
+        "round_trip_ms": 242.7,
+        "bytes": 64000
+      },
+      {
+        "index": 103,
+        "sent_ms": 8123.4,
+        "acknowledged_ms": 8264.5,
+        "round_trip_ms": 141.1,
+        "bytes": 64000
+      },
+      {
+        "index": 104,
+        "sent_ms": 8234.2,
+        "acknowledged_ms": 8380.6,
+        "round_trip_ms": 146.4,
+        "bytes": 64000
+      },
+      {
+        "index": 105,
+        "sent_ms": 8244.7,
+        "acknowledged_ms": 8441.2,
+        "round_trip_ms": 196.5,
+        "bytes": 64000
+      },
+      {
+        "index": 106,
+        "sent_ms": 8254.2,
+        "acknowledged_ms": 8451.1,
+        "round_trip_ms": 196.9,
+        "bytes": 64000
+      },
+      {
+        "index": 107,
+        "sent_ms": 8264.6,
+        "acknowledged_ms": 8459.3,
+        "round_trip_ms": 194.7,
+        "bytes": 64000
+      },
+      {
+        "index": 108,
+        "sent_ms": 8380.7,
+        "acknowledged_ms": 8476.9,
+        "round_trip_ms": 96.2,
+        "bytes": 64000
+      },
+      {
+        "index": 109,
+        "sent_ms": 8441.3,
+        "acknowledged_ms": 8535.2,
+        "round_trip_ms": 93.9,
+        "bytes": 64000
+      },
+      {
+        "index": 110,
+        "sent_ms": 8451.3,
+        "acknowledged_ms": 8544.7,
+        "round_trip_ms": 93.4,
+        "bytes": 64000
+      },
+      {
+        "index": 111,
+        "sent_ms": 8459.4,
+        "acknowledged_ms": 8554.3,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 112,
+        "sent_ms": 8477.1,
+        "acknowledged_ms": 8619.7,
+        "round_trip_ms": 142.6,
+        "bytes": 64000
+      },
+      {
+        "index": 113,
+        "sent_ms": 8535.3,
+        "acknowledged_ms": 8629,
+        "round_trip_ms": 93.7,
+        "bytes": 64000
+      },
+      {
+        "index": 114,
+        "sent_ms": 8544.8,
+        "acknowledged_ms": 8638.3,
+        "round_trip_ms": 93.5,
+        "bytes": 64000
+      },
+      {
+        "index": 115,
+        "sent_ms": 8554.3,
+        "acknowledged_ms": 8648.3,
+        "round_trip_ms": 94,
+        "bytes": 64000
+      },
+      {
+        "index": 116,
+        "sent_ms": 8619.9,
+        "acknowledged_ms": 8717.7,
+        "round_trip_ms": 97.8,
+        "bytes": 64000
+      },
+      {
+        "index": 117,
+        "sent_ms": 8629.1,
+        "acknowledged_ms": 8736.1,
+        "round_trip_ms": 107,
+        "bytes": 64000
+      },
+      {
+        "index": 118,
+        "sent_ms": 8638.4,
+        "acknowledged_ms": 8745.2,
+        "round_trip_ms": 106.8,
+        "bytes": 64000
+      },
+      {
+        "index": 119,
+        "sent_ms": 8648.3,
+        "acknowledged_ms": 8754.2,
+        "round_trip_ms": 105.9,
+        "bytes": 64000
+      },
+      {
+        "index": 120,
+        "sent_ms": 8717.9,
+        "acknowledged_ms": 8812.3,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 121,
+        "sent_ms": 8736.2,
+        "acknowledged_ms": 8830.1,
+        "round_trip_ms": 93.9,
+        "bytes": 64000
+      },
+      {
+        "index": 122,
+        "sent_ms": 8745.2,
+        "acknowledged_ms": 8952.2,
+        "round_trip_ms": 207,
+        "bytes": 64000
+      },
+      {
+        "index": 123,
+        "sent_ms": 8754.2,
+        "acknowledged_ms": 8962,
+        "round_trip_ms": 207.8,
+        "bytes": 64000
+      },
+      {
+        "index": 124,
+        "sent_ms": 8812.4,
+        "acknowledged_ms": 9103.9,
+        "round_trip_ms": 291.5,
+        "bytes": 64000
+      },
+      {
+        "index": 125,
+        "sent_ms": 8830.2,
+        "acknowledged_ms": 9114.8,
+        "round_trip_ms": 284.6,
+        "bytes": 64000
+      },
+      {
+        "index": 126,
+        "sent_ms": 8952.3,
+        "acknowledged_ms": 9221.6,
+        "round_trip_ms": 269.3,
+        "bytes": 64000
+      },
+      {
+        "index": 127,
+        "sent_ms": 8962,
+        "acknowledged_ms": 9224.8,
+        "round_trip_ms": 262.8,
+        "bytes": 64000
+      },
+      {
+        "index": 128,
+        "sent_ms": 9104.1,
+        "acknowledged_ms": 9282.3,
+        "round_trip_ms": 178.2,
+        "bytes": 64000
+      },
+      {
+        "index": 129,
+        "sent_ms": 9114.9,
+        "acknowledged_ms": 9291.8,
+        "round_trip_ms": 176.9,
+        "bytes": 64000
+      },
+      {
+        "index": 130,
+        "sent_ms": 9221.6,
+        "acknowledged_ms": 9316.1,
+        "round_trip_ms": 94.5,
+        "bytes": 64000
+      },
+      {
+        "index": 131,
+        "sent_ms": 9224.9,
+        "acknowledged_ms": 9325.9,
+        "round_trip_ms": 101,
+        "bytes": 64000
+      },
+      {
+        "index": 132,
+        "sent_ms": 9282.4,
+        "acknowledged_ms": 9375.7,
+        "round_trip_ms": 93.3,
+        "bytes": 64000
+      },
+      {
+        "index": 133,
+        "sent_ms": 9291.8,
+        "acknowledged_ms": 9385.8,
+        "round_trip_ms": 94,
+        "bytes": 64000
+      },
+      {
+        "index": 134,
+        "sent_ms": 9316.1,
+        "acknowledged_ms": 9410.3,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 135,
+        "sent_ms": 9326.1,
+        "acknowledged_ms": 9419.8,
+        "round_trip_ms": 93.7,
+        "bytes": 64000
+      },
+      {
+        "index": 136,
+        "sent_ms": 9375.8,
+        "acknowledged_ms": 9468.7,
+        "round_trip_ms": 92.9,
+        "bytes": 64000
+      },
+      {
+        "index": 137,
+        "sent_ms": 9385.8,
+        "acknowledged_ms": 9480.2,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 138,
+        "sent_ms": 9410.4,
+        "acknowledged_ms": 9505.3,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 139,
+        "sent_ms": 9419.9,
+        "acknowledged_ms": 9579.1,
+        "round_trip_ms": 159.2,
+        "bytes": 64000
+      },
+      {
+        "index": 140,
+        "sent_ms": 9468.9,
+        "acknowledged_ms": 9589.1,
+        "round_trip_ms": 120.2,
+        "bytes": 64000
+      },
+      {
+        "index": 141,
+        "sent_ms": 9480.3,
+        "acknowledged_ms": 9598.2,
+        "round_trip_ms": 117.9,
+        "bytes": 64000
+      },
+      {
+        "index": 142,
+        "sent_ms": 9505.3,
+        "acknowledged_ms": 9607.2,
+        "round_trip_ms": 101.9,
+        "bytes": 64000
+      },
+      {
+        "index": 143,
+        "sent_ms": 9579.3,
+        "acknowledged_ms": 9673.1,
+        "round_trip_ms": 93.8,
+        "bytes": 64000
+      },
+      {
+        "index": 144,
+        "sent_ms": 9589.2,
+        "acknowledged_ms": 9998.8,
+        "round_trip_ms": 409.6,
+        "bytes": 64000
+      },
+      {
+        "index": 145,
+        "sent_ms": 9598.3,
+        "acknowledged_ms": 10009.2,
+        "round_trip_ms": 410.9,
+        "bytes": 64000
+      },
+      {
+        "index": 146,
+        "sent_ms": 9607.3,
+        "acknowledged_ms": 10020.1,
+        "round_trip_ms": 412.8,
+        "bytes": 64000
+      },
+      {
+        "index": 147,
+        "sent_ms": 9673.3,
+        "acknowledged_ms": 10029.4,
+        "round_trip_ms": 356.1,
+        "bytes": 64000
+      },
+      {
+        "index": 148,
+        "sent_ms": 9998.9,
+        "acknowledged_ms": 10162.1,
+        "round_trip_ms": 163.2,
+        "bytes": 64000
+      },
+      {
+        "index": 149,
+        "sent_ms": 10009.3,
+        "acknowledged_ms": 10172,
+        "round_trip_ms": 162.7,
+        "bytes": 64000
+      },
+      {
+        "index": 150,
+        "sent_ms": 10020.2,
+        "acknowledged_ms": 10181.2,
+        "round_trip_ms": 161,
+        "bytes": 64000
+      },
+      {
+        "index": 151,
+        "sent_ms": 10029.4,
+        "acknowledged_ms": 10226.3,
+        "round_trip_ms": 196.9,
+        "bytes": 64000
+      },
+      {
+        "index": 152,
+        "sent_ms": 10162.3,
+        "acknowledged_ms": 10257.1,
+        "round_trip_ms": 94.8,
+        "bytes": 64000
+      },
+      {
+        "index": 153,
+        "sent_ms": 10172.1,
+        "acknowledged_ms": 10337.4,
+        "round_trip_ms": 165.3,
+        "bytes": 64000
+      },
+      {
+        "index": 154,
+        "sent_ms": 10181.3,
+        "acknowledged_ms": 10345.2,
+        "round_trip_ms": 163.9,
+        "bytes": 64000
+      },
+      {
+        "index": 155,
+        "sent_ms": 10226.4,
+        "acknowledged_ms": 10355.4,
+        "round_trip_ms": 129,
+        "bytes": 64000
+      },
+      {
+        "index": 156,
+        "sent_ms": 10257.2,
+        "acknowledged_ms": 10363.7,
+        "round_trip_ms": 106.5,
+        "bytes": 64000
+      },
+      {
+        "index": 157,
+        "sent_ms": 10337.6,
+        "acknowledged_ms": 10433.7,
+        "round_trip_ms": 96.1,
+        "bytes": 64000
+      },
+      {
+        "index": 158,
+        "sent_ms": 10345.2,
+        "acknowledged_ms": 10442.4,
+        "round_trip_ms": 97.2,
+        "bytes": 64000
+      },
+      {
+        "index": 159,
+        "sent_ms": 10355.5,
+        "acknowledged_ms": 10452.9,
+        "round_trip_ms": 97.4,
+        "bytes": 64000
+      },
+      {
+        "index": 160,
+        "sent_ms": 10363.7,
+        "acknowledged_ms": 10463.1,
+        "round_trip_ms": 99.4,
+        "bytes": 64000
+      },
+      {
+        "index": 161,
+        "sent_ms": 10433.8,
+        "acknowledged_ms": 10589.1,
+        "round_trip_ms": 155.3,
+        "bytes": 64000
+      },
+      {
+        "index": 162,
+        "sent_ms": 10442.5,
+        "acknowledged_ms": 10599.5,
+        "round_trip_ms": 157,
+        "bytes": 64000
+      },
+      {
+        "index": 163,
+        "sent_ms": 10452.9,
+        "acknowledged_ms": 10608.9,
+        "round_trip_ms": 156,
+        "bytes": 64000
+      },
+      {
+        "index": 164,
+        "sent_ms": 10463.2,
+        "acknowledged_ms": 10617.3,
+        "round_trip_ms": 154.1,
+        "bytes": 64000
+      },
+      {
+        "index": 165,
+        "sent_ms": 10589.3,
+        "acknowledged_ms": 10683.1,
+        "round_trip_ms": 93.8,
+        "bytes": 64000
+      },
+      {
+        "index": 166,
+        "sent_ms": 10599.6,
+        "acknowledged_ms": 10694,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 167,
+        "sent_ms": 10609,
+        "acknowledged_ms": 10703.6,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 168,
+        "sent_ms": 10617.3,
+        "acknowledged_ms": 10716.9,
+        "round_trip_ms": 99.6,
+        "bytes": 64000
+      },
+      {
+        "index": 169,
+        "sent_ms": 10683.3,
+        "acknowledged_ms": 10778.3,
+        "round_trip_ms": 95,
+        "bytes": 64000
+      },
+      {
+        "index": 170,
+        "sent_ms": 10694.1,
+        "acknowledged_ms": 10788,
+        "round_trip_ms": 93.9,
+        "bytes": 64000
+      },
+      {
+        "index": 171,
+        "sent_ms": 10703.7,
+        "acknowledged_ms": 10798.1,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 172,
+        "sent_ms": 10716.9,
+        "acknowledged_ms": 10811.1,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 173,
+        "sent_ms": 10778.3,
+        "acknowledged_ms": 10873.6,
+        "round_trip_ms": 95.3,
+        "bytes": 64000
+      },
+      {
+        "index": 174,
+        "sent_ms": 10788.1,
+        "acknowledged_ms": 10884.1,
+        "round_trip_ms": 96,
+        "bytes": 64000
+      },
+      {
+        "index": 175,
+        "sent_ms": 10798.2,
+        "acknowledged_ms": 10892.6,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 176,
+        "sent_ms": 10811.2,
+        "acknowledged_ms": 10903.5,
+        "round_trip_ms": 92.3,
+        "bytes": 64000
+      },
+      {
+        "index": 177,
+        "sent_ms": 10873.6,
+        "acknowledged_ms": 10998.4,
+        "round_trip_ms": 124.8,
+        "bytes": 64000
+      },
+      {
+        "index": 178,
+        "sent_ms": 10884.1,
+        "acknowledged_ms": 11001.2,
+        "round_trip_ms": 117.1,
+        "bytes": 64000
+      },
+      {
+        "index": 179,
+        "sent_ms": 10892.6,
+        "acknowledged_ms": 11010.2,
+        "round_trip_ms": 117.6,
+        "bytes": 64000
+      },
+      {
+        "index": 180,
+        "sent_ms": 10903.6,
+        "acknowledged_ms": 11019.3,
+        "round_trip_ms": 115.7,
+        "bytes": 64000
+      },
+      {
+        "index": 181,
+        "sent_ms": 10998.5,
+        "acknowledged_ms": 11093.1,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 182,
+        "sent_ms": 11001.2,
+        "acknowledged_ms": 11101.5,
+        "round_trip_ms": 100.3,
+        "bytes": 64000
+      },
+      {
+        "index": 183,
+        "sent_ms": 11010.3,
+        "acknowledged_ms": 11111,
+        "round_trip_ms": 100.7,
+        "bytes": 64000
+      },
+      {
+        "index": 184,
+        "sent_ms": 11019.3,
+        "acknowledged_ms": 11120.3,
+        "round_trip_ms": 101,
+        "bytes": 64000
+      },
+      {
+        "index": 185,
+        "sent_ms": 11093.2,
+        "acknowledged_ms": 11189.3,
+        "round_trip_ms": 96.1,
+        "bytes": 64000
+      },
+      {
+        "index": 186,
+        "sent_ms": 11101.6,
+        "acknowledged_ms": 11197.1,
+        "round_trip_ms": 95.5,
+        "bytes": 64000
+      },
+      {
+        "index": 187,
+        "sent_ms": 11111.1,
+        "acknowledged_ms": 11206.2,
+        "round_trip_ms": 95.1,
+        "bytes": 64000
+      },
+      {
+        "index": 188,
+        "sent_ms": 11120.4,
+        "acknowledged_ms": 11215.2,
+        "round_trip_ms": 94.8,
+        "bytes": 64000
+      },
+      {
+        "index": 189,
+        "sent_ms": 11189.4,
+        "acknowledged_ms": 11283,
+        "round_trip_ms": 93.6,
+        "bytes": 64000
+      },
+      {
+        "index": 190,
+        "sent_ms": 11197.2,
+        "acknowledged_ms": 11292.6,
+        "round_trip_ms": 95.4,
+        "bytes": 64000
+      },
+      {
+        "index": 191,
+        "sent_ms": 11206.3,
+        "acknowledged_ms": 11300.9,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 192,
+        "sent_ms": 11215.3,
+        "acknowledged_ms": 11309,
+        "round_trip_ms": 93.7,
+        "bytes": 64000
+      },
+      {
+        "index": 193,
+        "sent_ms": 11283.2,
+        "acknowledged_ms": 11378.1,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 194,
+        "sent_ms": 11292.7,
+        "acknowledged_ms": 11454.1,
+        "round_trip_ms": 161.4,
+        "bytes": 64000
+      },
+      {
+        "index": 195,
+        "sent_ms": 11301.1,
+        "acknowledged_ms": 11463.4,
+        "round_trip_ms": 162.3,
+        "bytes": 64000
+      },
+      {
+        "index": 196,
+        "sent_ms": 11309.1,
+        "acknowledged_ms": 11473.9,
+        "round_trip_ms": 164.8,
+        "bytes": 64000
+      },
+      {
+        "index": 197,
+        "sent_ms": 11378.2,
+        "acknowledged_ms": 11482.1,
+        "round_trip_ms": 103.9,
+        "bytes": 64000
+      },
+      {
+        "index": 198,
+        "sent_ms": 11454.2,
+        "acknowledged_ms": 11549.6,
+        "round_trip_ms": 95.4,
+        "bytes": 64000
+      },
+      {
+        "index": 199,
+        "sent_ms": 11463.6,
+        "acknowledged_ms": 11600.4,
+        "round_trip_ms": 136.8,
+        "bytes": 64000
+      },
+      {
+        "index": 200,
+        "sent_ms": 11474,
+        "acknowledged_ms": 11720,
+        "round_trip_ms": 246,
+        "bytes": 64000
+      },
+      {
+        "index": 201,
+        "sent_ms": 11482.1,
+        "acknowledged_ms": 11731.4,
+        "round_trip_ms": 249.3,
+        "bytes": 64000
+      },
+      {
+        "index": 202,
+        "sent_ms": 11549.7,
+        "acknowledged_ms": 11740.9,
+        "round_trip_ms": 191.2,
+        "bytes": 64000
+      },
+      {
+        "index": 203,
+        "sent_ms": 11600.5,
+        "acknowledged_ms": 11750.1,
+        "round_trip_ms": 149.6,
+        "bytes": 64000
+      },
+      {
+        "index": 204,
+        "sent_ms": 11720.1,
+        "acknowledged_ms": 11814.3,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 205,
+        "sent_ms": 11731.4,
+        "acknowledged_ms": 11828.3,
+        "round_trip_ms": 96.9,
+        "bytes": 64000
+      },
+      {
+        "index": 206,
+        "sent_ms": 11740.9,
+        "acknowledged_ms": 11837.1,
+        "round_trip_ms": 96.2,
+        "bytes": 64000
+      },
+      {
+        "index": 207,
+        "sent_ms": 11750.1,
+        "acknowledged_ms": 11847.2,
+        "round_trip_ms": 97.1,
+        "bytes": 64000
+      },
+      {
+        "index": 208,
+        "sent_ms": 11814.4,
+        "acknowledged_ms": 11924.1,
+        "round_trip_ms": 109.7,
+        "bytes": 64000
+      },
+      {
+        "index": 209,
+        "sent_ms": 11828.4,
+        "acknowledged_ms": 12064.7,
+        "round_trip_ms": 236.3,
+        "bytes": 64000
+      },
+      {
+        "index": 210,
+        "sent_ms": 11837.3,
+        "acknowledged_ms": 12072.1,
+        "round_trip_ms": 234.8,
+        "bytes": 64000
+      },
+      {
+        "index": 211,
+        "sent_ms": 11847.2,
+        "acknowledged_ms": 12126.3,
+        "round_trip_ms": 279.1,
+        "bytes": 64000
+      },
+      {
+        "index": 212,
+        "sent_ms": 11924.3,
+        "acknowledged_ms": 12308.6,
+        "round_trip_ms": 384.3,
+        "bytes": 64000
+      },
+      {
+        "index": 213,
+        "sent_ms": 12064.7,
+        "acknowledged_ms": 12322.4,
+        "round_trip_ms": 257.7,
+        "bytes": 64000
+      },
+      {
+        "index": 214,
+        "sent_ms": 12072.1,
+        "acknowledged_ms": 12380.1,
+        "round_trip_ms": 308,
+        "bytes": 64000
+      },
+      {
+        "index": 215,
+        "sent_ms": 12126.4,
+        "acknowledged_ms": 12436.6,
+        "round_trip_ms": 310.2,
+        "bytes": 64000
+      },
+      {
+        "index": 216,
+        "sent_ms": 12308.6,
+        "acknowledged_ms": 12447.5,
+        "round_trip_ms": 138.9,
+        "bytes": 64000
+      },
+      {
+        "index": 217,
+        "sent_ms": 12322.4,
+        "acknowledged_ms": 12456,
+        "round_trip_ms": 133.6,
+        "bytes": 64000
+      },
+      {
+        "index": 218,
+        "sent_ms": 12380.1,
+        "acknowledged_ms": 12474.2,
+        "round_trip_ms": 94.1,
+        "bytes": 64000
+      },
+      {
+        "index": 219,
+        "sent_ms": 12436.7,
+        "acknowledged_ms": 12531.6,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 220,
+        "sent_ms": 12447.5,
+        "acknowledged_ms": 12591.9,
+        "round_trip_ms": 144.4,
+        "bytes": 64000
+      },
+      {
+        "index": 221,
+        "sent_ms": 12456,
+        "acknowledged_ms": 12601.7,
+        "round_trip_ms": 145.7,
+        "bytes": 64000
+      },
+      {
+        "index": 222,
+        "sent_ms": 12474.2,
+        "acknowledged_ms": 12609.9,
+        "round_trip_ms": 135.7,
+        "bytes": 64000
+      },
+      {
+        "index": 223,
+        "sent_ms": 12531.6,
+        "acknowledged_ms": 12677.8,
+        "round_trip_ms": 146.2,
+        "bytes": 64000
+      },
+      {
+        "index": 224,
+        "sent_ms": 12592,
+        "acknowledged_ms": 12687.3,
+        "round_trip_ms": 95.3,
+        "bytes": 64000
+      },
+      {
+        "index": 225,
+        "sent_ms": 12601.7,
+        "acknowledged_ms": 12698.3,
+        "round_trip_ms": 96.6,
+        "bytes": 64000
+      },
+      {
+        "index": 226,
+        "sent_ms": 12610,
+        "acknowledged_ms": 12768.7,
+        "round_trip_ms": 158.7,
+        "bytes": 64000
+      },
+      {
+        "index": 227,
+        "sent_ms": 12677.9,
+        "acknowledged_ms": 12778.9,
+        "round_trip_ms": 101,
+        "bytes": 64000
+      },
+      {
+        "index": 228,
+        "sent_ms": 12687.3,
+        "acknowledged_ms": 12889.3,
+        "round_trip_ms": 202,
+        "bytes": 64000
+      },
+      {
+        "index": 229,
+        "sent_ms": 12698.3,
+        "acknowledged_ms": 12899.9,
+        "round_trip_ms": 201.6,
+        "bytes": 64000
+      },
+      {
+        "index": 230,
+        "sent_ms": 12768.7,
+        "acknowledged_ms": 13251.4,
+        "round_trip_ms": 482.7,
+        "bytes": 64000
+      },
+      {
+        "index": 231,
+        "sent_ms": 12779,
+        "acknowledged_ms": 13265.2,
+        "round_trip_ms": 486.2,
+        "bytes": 64000
+      },
+      {
+        "index": 232,
+        "sent_ms": 12889.4,
+        "acknowledged_ms": 13273.8,
+        "round_trip_ms": 384.4,
+        "bytes": 64000
+      },
+      {
+        "index": 233,
+        "sent_ms": 12900.1,
+        "acknowledged_ms": 13285.2,
+        "round_trip_ms": 385.1,
+        "bytes": 64000
+      },
+      {
+        "index": 234,
+        "sent_ms": 13251.4,
+        "acknowledged_ms": 13383.4,
+        "round_trip_ms": 132,
+        "bytes": 64000
+      },
+      {
+        "index": 235,
+        "sent_ms": 13265.3,
+        "acknowledged_ms": 13463.7,
+        "round_trip_ms": 198.4,
+        "bytes": 64000
+      },
+      {
+        "index": 236,
+        "sent_ms": 13273.8,
+        "acknowledged_ms": 13473.7,
+        "round_trip_ms": 199.9,
+        "bytes": 64000
+      },
+      {
+        "index": 237,
+        "sent_ms": 13285.2,
+        "acknowledged_ms": 13562.2,
+        "round_trip_ms": 277,
+        "bytes": 64000
+      },
+      {
+        "index": 238,
+        "sent_ms": 13383.5,
+        "acknowledged_ms": 13696.2,
+        "round_trip_ms": 312.7,
+        "bytes": 64000
+      },
+      {
+        "index": 239,
+        "sent_ms": 13463.8,
+        "acknowledged_ms": 13707.8,
+        "round_trip_ms": 244,
+        "bytes": 64000
+      },
+      {
+        "index": 240,
+        "sent_ms": 13473.8,
+        "acknowledged_ms": 13747.2,
+        "round_trip_ms": 273.4,
+        "bytes": 64000
+      },
+      {
+        "index": 241,
+        "sent_ms": 13562.3,
+        "acknowledged_ms": 13888.6,
+        "round_trip_ms": 326.3,
+        "bytes": 64000
+      },
+      {
+        "index": 242,
+        "sent_ms": 13696.3,
+        "acknowledged_ms": 13898.3,
+        "round_trip_ms": 202,
+        "bytes": 64000
+      },
+      {
+        "index": 243,
+        "sent_ms": 13707.8,
+        "acknowledged_ms": 13908.4,
+        "round_trip_ms": 200.6,
+        "bytes": 64000
+      },
+      {
+        "index": 244,
+        "sent_ms": 13747.2,
+        "acknowledged_ms": 13919,
+        "round_trip_ms": 171.8,
+        "bytes": 64000
+      },
+      {
+        "index": 245,
+        "sent_ms": 13888.7,
+        "acknowledged_ms": 14061,
+        "round_trip_ms": 172.3,
+        "bytes": 64000
+      },
+      {
+        "index": 246,
+        "sent_ms": 13898.3,
+        "acknowledged_ms": 14071.6,
+        "round_trip_ms": 173.3,
+        "bytes": 64000
+      },
+      {
+        "index": 247,
+        "sent_ms": 13908.4,
+        "acknowledged_ms": 14082,
+        "round_trip_ms": 173.6,
+        "bytes": 64000
+      },
+      {
+        "index": 248,
+        "sent_ms": 13919,
+        "acknowledged_ms": 14091.1,
+        "round_trip_ms": 172.1,
+        "bytes": 64000
+      },
+      {
+        "index": 249,
+        "sent_ms": 14061.1,
+        "acknowledged_ms": 14155.1,
+        "round_trip_ms": 94,
+        "bytes": 64000
+      },
+      {
+        "index": 250,
+        "sent_ms": 14071.7,
+        "acknowledged_ms": 14166.1,
+        "round_trip_ms": 94.4,
+        "bytes": 64000
+      },
+      {
+        "index": 251,
+        "sent_ms": 14082,
+        "acknowledged_ms": 14176.7,
+        "round_trip_ms": 94.7,
+        "bytes": 64000
+      },
+      {
+        "index": 252,
+        "sent_ms": 14091.1,
+        "acknowledged_ms": 14185.7,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 253,
+        "sent_ms": 14155.1,
+        "acknowledged_ms": 14283.8,
+        "round_trip_ms": 128.7,
+        "bytes": 64000
+      },
+      {
+        "index": 254,
+        "sent_ms": 14166.1,
+        "acknowledged_ms": 14326.3,
+        "round_trip_ms": 160.2,
+        "bytes": 64000
+      },
+      {
+        "index": 255,
+        "sent_ms": 14176.7,
+        "acknowledged_ms": 14335.6,
+        "round_trip_ms": 158.9,
+        "bytes": 64000
+      },
+      {
+        "index": 256,
+        "sent_ms": 14185.8,
+        "acknowledged_ms": 14440.3,
+        "round_trip_ms": 254.5,
+        "bytes": 64000
+      },
+      {
+        "index": 257,
+        "sent_ms": 14284,
+        "acknowledged_ms": 14450.9,
+        "round_trip_ms": 166.9,
+        "bytes": 64000
+      },
+      {
+        "index": 258,
+        "sent_ms": 14326.5,
+        "acknowledged_ms": 14678.8,
+        "round_trip_ms": 352.3,
+        "bytes": 64000
+      },
+      {
+        "index": 259,
+        "sent_ms": 14335.7,
+        "acknowledged_ms": 14690.3,
+        "round_trip_ms": 354.6,
+        "bytes": 64000
+      },
+      {
+        "index": 260,
+        "sent_ms": 14440.4,
+        "acknowledged_ms": 14763.7,
+        "round_trip_ms": 323.3,
+        "bytes": 64000
+      },
+      {
+        "index": 261,
+        "sent_ms": 14451,
+        "acknowledged_ms": 14774,
+        "round_trip_ms": 323,
+        "bytes": 64000
+      },
+      {
+        "index": 262,
+        "sent_ms": 14678.9,
+        "acknowledged_ms": 14900.5,
+        "round_trip_ms": 221.6,
+        "bytes": 64000
+      },
+      {
+        "index": 263,
+        "sent_ms": 14690.3,
+        "acknowledged_ms": 14911.1,
+        "round_trip_ms": 220.8,
+        "bytes": 64000
+      },
+      {
+        "index": 264,
+        "sent_ms": 14763.7,
+        "acknowledged_ms": 15064.3,
+        "round_trip_ms": 300.6,
+        "bytes": 64000
+      },
+      {
+        "index": 265,
+        "sent_ms": 14774.1,
+        "acknowledged_ms": 15072.8,
+        "round_trip_ms": 298.7,
+        "bytes": 64000
+      },
+      {
+        "index": 266,
+        "sent_ms": 14900.5,
+        "acknowledged_ms": 15082.9,
+        "round_trip_ms": 182.4,
+        "bytes": 64000
+      },
+      {
+        "index": 267,
+        "sent_ms": 14911.2,
+        "acknowledged_ms": 15096.2,
+        "round_trip_ms": 185,
+        "bytes": 64000
+      },
+      {
+        "index": 268,
+        "sent_ms": 15064.3,
+        "acknowledged_ms": 15159.8,
+        "round_trip_ms": 95.5,
+        "bytes": 64000
+      },
+      {
+        "index": 269,
+        "sent_ms": 15072.9,
+        "acknowledged_ms": 15173.2,
+        "round_trip_ms": 100.3,
+        "bytes": 64000
+      },
+      {
+        "index": 270,
+        "sent_ms": 15082.9,
+        "acknowledged_ms": 15181.8,
+        "round_trip_ms": 98.9,
+        "bytes": 64000
+      },
+      {
+        "index": 271,
+        "sent_ms": 15096.3,
+        "acknowledged_ms": 15195.1,
+        "round_trip_ms": 98.8,
+        "bytes": 64000
+      },
+      {
+        "index": 272,
+        "sent_ms": 15159.9,
+        "acknowledged_ms": 15347.9,
+        "round_trip_ms": 188,
+        "bytes": 64000
+      },
+      {
+        "index": 273,
+        "sent_ms": 15173.3,
+        "acknowledged_ms": 15356.2,
+        "round_trip_ms": 182.9,
+        "bytes": 64000
+      },
+      {
+        "index": 274,
+        "sent_ms": 15181.8,
+        "acknowledged_ms": 15366.8,
+        "round_trip_ms": 185,
+        "bytes": 64000
+      },
+      {
+        "index": 275,
+        "sent_ms": 15195.2,
+        "acknowledged_ms": 15378.1,
+        "round_trip_ms": 182.9,
+        "bytes": 64000
+      },
+      {
+        "index": 276,
+        "sent_ms": 15348.1,
+        "acknowledged_ms": 15444.1,
+        "round_trip_ms": 96,
+        "bytes": 64000
+      },
+      {
+        "index": 277,
+        "sent_ms": 15356.3,
+        "acknowledged_ms": 15484.8,
+        "round_trip_ms": 128.5,
+        "bytes": 64000
+      },
+      {
+        "index": 278,
+        "sent_ms": 15366.9,
+        "acknowledged_ms": 15528.1,
+        "round_trip_ms": 161.2,
+        "bytes": 64000
+      },
+      {
+        "index": 279,
+        "sent_ms": 15378.2,
+        "acknowledged_ms": 15586.5,
+        "round_trip_ms": 208.3,
+        "bytes": 64000
+      },
+      {
+        "index": 280,
+        "sent_ms": 15444.2,
+        "acknowledged_ms": 15595.8,
+        "round_trip_ms": 151.6,
+        "bytes": 64000
+      },
+      {
+        "index": 281,
+        "sent_ms": 15484.9,
+        "acknowledged_ms": 15605,
+        "round_trip_ms": 120.1,
+        "bytes": 64000
+      },
+      {
+        "index": 282,
+        "sent_ms": 15528.2,
+        "acknowledged_ms": 15622.2,
+        "round_trip_ms": 94,
+        "bytes": 64000
+      },
+      {
+        "index": 283,
+        "sent_ms": 15586.6,
+        "acknowledged_ms": 15680.8,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 284,
+        "sent_ms": 15595.9,
+        "acknowledged_ms": 15691.3,
+        "round_trip_ms": 95.4,
+        "bytes": 64000
+      },
+      {
+        "index": 285,
+        "sent_ms": 15605,
+        "acknowledged_ms": 15700.7,
+        "round_trip_ms": 95.7,
+        "bytes": 64000
+      },
+      {
+        "index": 286,
+        "sent_ms": 15622.3,
+        "acknowledged_ms": 15747.8,
+        "round_trip_ms": 125.5,
+        "bytes": 64000
+      },
+      {
+        "index": 287,
+        "sent_ms": 15681,
+        "acknowledged_ms": 15774.6,
+        "round_trip_ms": 93.6,
+        "bytes": 64000
+      },
+      {
+        "index": 288,
+        "sent_ms": 15691.3,
+        "acknowledged_ms": 15785,
+        "round_trip_ms": 93.7,
+        "bytes": 64000
+      },
+      {
+        "index": 289,
+        "sent_ms": 15700.7,
+        "acknowledged_ms": 15795.2,
+        "round_trip_ms": 94.5,
+        "bytes": 64000
+      },
+      {
+        "index": 290,
+        "sent_ms": 15747.8,
+        "acknowledged_ms": 15841.4,
+        "round_trip_ms": 93.6,
+        "bytes": 64000
+      },
+      {
+        "index": 291,
+        "sent_ms": 15774.7,
+        "acknowledged_ms": 15869.2,
+        "round_trip_ms": 94.5,
+        "bytes": 64000
+      },
+      {
+        "index": 292,
+        "sent_ms": 15785,
+        "acknowledged_ms": 15880.6,
+        "round_trip_ms": 95.6,
+        "bytes": 64000
+      },
+      {
+        "index": 293,
+        "sent_ms": 15795.2,
+        "acknowledged_ms": 15890.8,
+        "round_trip_ms": 95.6,
+        "bytes": 64000
+      },
+      {
+        "index": 294,
+        "sent_ms": 15841.6,
+        "acknowledged_ms": 15934.6,
+        "round_trip_ms": 93,
+        "bytes": 64000
+      },
+      {
+        "index": 295,
+        "sent_ms": 15869.2,
+        "acknowledged_ms": 15963.4,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 296,
+        "sent_ms": 15880.6,
+        "acknowledged_ms": 15974.9,
+        "round_trip_ms": 94.3,
+        "bytes": 64000
+      },
+      {
+        "index": 297,
+        "sent_ms": 15891,
+        "acknowledged_ms": 15984.8,
+        "round_trip_ms": 93.8,
+        "bytes": 64000
+      },
+      {
+        "index": 298,
+        "sent_ms": 15934.7,
+        "acknowledged_ms": 16027.8,
+        "round_trip_ms": 93.1,
+        "bytes": 64000
+      },
+      {
+        "index": 299,
+        "sent_ms": 15963.5,
+        "acknowledged_ms": 16058.4,
+        "round_trip_ms": 94.9,
+        "bytes": 64000
+      },
+      {
+        "index": 300,
+        "sent_ms": 15975,
+        "acknowledged_ms": 16068.5,
+        "round_trip_ms": 93.5,
+        "bytes": 64000
+      },
+      {
+        "index": 301,
+        "sent_ms": 15984.9,
+        "acknowledged_ms": 16079.5,
+        "round_trip_ms": 94.6,
+        "bytes": 64000
+      },
+      {
+        "index": 302,
+        "sent_ms": 16027.9,
+        "acknowledged_ms": 16120.8,
+        "round_trip_ms": 92.9,
+        "bytes": 64000
+      },
+      {
+        "index": 303,
+        "sent_ms": 16058.5,
+        "acknowledged_ms": 16152.7,
+        "round_trip_ms": 94.2,
+        "bytes": 64000
+      },
+      {
+        "index": 304,
+        "sent_ms": 16068.7,
+        "acknowledged_ms": 16162.8,
+        "round_trip_ms": 94.1,
+        "bytes": 64000
+      },
+      {
+        "index": 305,
+        "sent_ms": 16079.5,
+        "acknowledged_ms": 16173.3,
+        "round_trip_ms": 93.8,
+        "bytes": 64000
+      },
+      {
+        "index": 306,
+        "sent_ms": 16120.8,
+        "acknowledged_ms": 16217.1,
+        "round_trip_ms": 96.3,
+        "bytes": 64000
+      },
+      {
+        "index": 307,
+        "sent_ms": 16152.8,
+        "acknowledged_ms": 16313.2,
+        "round_trip_ms": 160.4,
+        "bytes": 64000
+      },
+      {
+        "index": 308,
+        "sent_ms": 16163,
+        "acknowledged_ms": 16322.6,
+        "round_trip_ms": 159.6,
+        "bytes": 64000
+      },
+      {
+        "index": 309,
+        "sent_ms": 16173.4,
+        "acknowledged_ms": 16438,
+        "round_trip_ms": 264.6,
+        "bytes": 64000
+      },
+      {
+        "index": 310,
+        "sent_ms": 16217.3,
+        "acknowledged_ms": 16654.2,
+        "round_trip_ms": 436.9,
+        "bytes": 64000
+      },
+      {
+        "index": 311,
+        "sent_ms": 16313.3,
+        "acknowledged_ms": 16664,
+        "round_trip_ms": 350.7,
+        "bytes": 64000
+      },
+      {
+        "index": 312,
+        "sent_ms": 16322.8,
+        "acknowledged_ms": 16675.4,
+        "round_trip_ms": 352.6,
+        "bytes": 64000
+      },
+      {
+        "index": 313,
+        "sent_ms": 16438.2,
+        "acknowledged_ms": 16777.7,
+        "round_trip_ms": 339.5,
+        "bytes": 64000
+      },
+      {
+        "index": 314,
+        "sent_ms": 16654.3,
+        "acknowledged_ms": 16788,
+        "round_trip_ms": 133.7,
+        "bytes": 64000
+      },
+      {
+        "index": 315,
+        "sent_ms": 16664.1,
+        "acknowledged_ms": 16889.2,
+        "round_trip_ms": 225.1,
+        "bytes": 64000
+      },
+      {
+        "index": 316,
+        "sent_ms": 16675.4,
+        "acknowledged_ms": 16898.7,
+        "round_trip_ms": 223.3,
+        "bytes": 64000
+      },
+      {
+        "index": 317,
+        "sent_ms": 16777.8,
+        "acknowledged_ms": 16907.9,
+        "round_trip_ms": 130.1,
+        "bytes": 64000
+      },
+      {
+        "index": 318,
+        "sent_ms": 16788.1,
+        "acknowledged_ms": 16918.2,
+        "round_trip_ms": 130.1,
+        "bytes": 64000
+      },
+      {
+        "index": 319,
+        "sent_ms": 16889.2,
+        "acknowledged_ms": 17027.8,
+        "round_trip_ms": 138.6,
+        "bytes": 64000
+      },
+      {
+        "index": 320,
+        "sent_ms": 16898.7,
+        "acknowledged_ms": 17038.3,
+        "round_trip_ms": 139.6,
+        "bytes": 64000
+      },
+      {
+        "index": 321,
+        "sent_ms": 16908,
+        "acknowledged_ms": 17105.8,
+        "round_trip_ms": 197.8,
+        "bytes": 64000
+      },
+      {
+        "index": 322,
+        "sent_ms": 16918.3,
+        "acknowledged_ms": 17264.9,
+        "round_trip_ms": 346.6,
+        "bytes": 64000
+      },
+      {
+        "index": 323,
+        "sent_ms": 17027.9,
+        "acknowledged_ms": 17273.1,
+        "round_trip_ms": 245.2,
+        "bytes": 44012
+      }
+    ]
+  },
+  "page_errors": [],
+  "raw_sha256": "297fa4935e4e2088f8fc43e5f5044580931d9d25ee19fcea04a9ff10bdf6aa71",
+  "clean_sha256": "fd3c596c13e0d704b38e57cd1fb6ee11e0ca521fdc59155b150773edadef6d33",
+  "entity_normalizations": [],
+  "audio_repair": null
+}

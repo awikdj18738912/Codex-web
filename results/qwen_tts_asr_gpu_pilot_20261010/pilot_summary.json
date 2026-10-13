@@ -1,0 +1,64 @@
+{
+  "examples": 100,
+  "asr_transcripts": 200,
+  "all_train_split": true,
+  "tts_device_counts": {
+    "cuda:0": 100
+  },
+  "tts_speaker_counts": {
+    "Vivian": 100
+  },
+  "mean_tts_seconds": 7.67,
+  "tts_audio_seconds": 395.44,
+  "exact_spoken": 38,
+  "exact_intended": 34,
+  "mean_cer_spoken": 0.056,
+  "clean_noise_same": 86,
+  "by_category": {
+    "clean": {
+      "n": 17,
+      "exact_spoken": 9,
+      "exact_intended": 9,
+      "mean_cer_spoken": 0.0163,
+      "clean_noise_same": 16
+    },
+    "filler": {
+      "n": 17,
+      "exact_spoken": 4,
+      "exact_intended": 3,
+      "mean_cer_spoken": 0.0434,
+      "clean_noise_same": 11
+    },
+    "meaningful_repeat": {
+      "n": 16,
+      "exact_spoken": 7,
+      "exact_intended": 7,
+      "mean_cer_spoken": 0.0271,
+      "clean_noise_same": 13
+    },
+    "protected_content": {
+      "n": 17,
+      "exact_spoken": 1,
+      "exact_intended": 1,
+      "mean_cer_spoken": 0.2179,
+      "clean_noise_same": 15
+    },
+    "stutter": {
+      "n": 17,
+      "exact_spoken": 3,
+      "exact_intended": 0,
+      "mean_cer_spoken": 0.018,
+      "clean_noise_same": 15
+    },
+    "syntax_boundary": {
+      "n": 16,
+      "exact_spoken": 14,
+      "exact_intended": 14,
+      "mean_cer_spoken": 0.0088,
+      "clean_noise_same": 16
+    }
+  },
+  "test_sha256": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+  "human_audio_gold": false,
+  "audio_script_verified": false
+}

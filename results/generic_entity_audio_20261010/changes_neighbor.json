@@ -1,0 +1,314 @@
+[
+  {
+    "id": "speechio_law_rIfA-JnK798_0106-861",
+    "domain": "law",
+    "reference": "这也不叫因为小偷的死跟我有关系吗没有任何关系小偷的死怪谁啊怪扔香蕉皮的人怪粪坑盖不盖的人跟我没有任何关系那什么叫防卫过当呢",
+    "baseline": "这也不叫，因为小偷的屎跟我有关系吗？没有任何关系。小偷的屎怪谁呀？怪扔香蕉皮的人，怪粪坑盖不盖的人，跟我没有任何关系。那什么叫防面过大呢？",
+    "generic": "这也不叫，因为小偷的屎跟我有关系吗？没有任何关系。小偷的屎怪谁呀？怪扔香蕉皮的人，怪粪坑盖不盖的人，跟我没有任何关系。那什么叫防卫过当呢？",
+    "character_errors": {
+      "baseline": 5,
+      "generic": 3
+    },
+    "accepted_changes": [
+      {
+        "start": 63,
+        "end": 67,
+        "observed": "防面过大",
+        "canonical": "防卫过当",
+        "entity_id": 8,
+        "phonetic_score": 0.60625,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.635,
+        "boundary_issue": null,
+        "evidence_surface": "防卫过当"
+      }
+    ]
+  },
+  {
+    "id": "speechio_law_BL_mKtLdBK0_0066-66",
+    "domain": "law",
+    "reference": "那各位也想一想终身监禁对行为人有利还是不利其实也不好说对吧他其实也是在生死之间搞了一个缓冲好附加刑附加刑有四种",
+    "baseline": "那各位也想一想，终身监禁对行为人有利还是不利？其实也不好说，对吧？他其实也是在生死之间搞了一个缓冲。好，附加型，附加型有四种。",
+    "generic": "那各位也想一想，终身监禁对行为人有利还是不利？其实也不好说，对吧？他其实也是在生死之间搞了一个缓冲。好，附加刑，附加刑有四种。",
+    "character_errors": {
+      "baseline": 2,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 52,
+        "end": 55,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 20,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 56,
+        "end": 59,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 20,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_huohuasiwei_0017-383",
+    "domain": "people",
+    "reference": "本期我们请到的嘉宾是学科启蒙教育平台火花思维的创始人罗剑",
+    "baseline": "本期我们请到的嘉宾是学科启蒙教育平台“火花思维”的创始人罗建。",
+    "generic": "本期我们请到的嘉宾是学科启蒙教育平台“火花思维”的创始人罗剑。",
+    "character_errors": {
+      "baseline": 1,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 28,
+        "end": 30,
+        "observed": "罗建",
+        "canonical": "罗剑",
+        "entity_id": 4,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "罗剑"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_huohuasiwei_0006-374",
+    "domain": "people",
+    "reference": "罗剑有一点很牛的地方就是他改变的能力很强发现问题之后我快速能迭代啊",
+    "baseline": "罗健有一点很牛的地方，就是他改变的能力很强。发现问题之后，我快速能迭代啊。",
+    "generic": "罗剑有一点很牛的地方，就是他改变的能力很强。发现问题之后，我快速能迭代啊。",
+    "character_errors": {
+      "baseline": 1,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "罗健",
+        "canonical": "罗剑",
+        "entity_id": 4,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "罗剑"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_xiaomi_0106-1747",
+    "domain": "people",
+    "reference": "所以这种下决心作出一个不是一般人能能够作出决定的是不容易的所以刚才刘德提到的就他在大重大决定上面能够做出对的判断而且是这个成功几率比较高",
+    "baseline": "所以，这种下决心做出一个不是一般人能够做出决定的，是不容易的。所以刚才刘的提到的，就是他在大重大决定上面能够做出对的判断，而且这个成功几率比较高。",
+    "generic": "所以，这种下决心做出一个不是一般人能够做出决定的，是不容易的。所以刚才刘德提到的，就是他在大重大决定上面能够做出对的判断，而且这个成功几率比较高。",
+    "character_errors": {
+      "baseline": 6,
+      "generic": 5
+    },
+    "accepted_changes": [
+      {
+        "start": 35,
+        "end": 37,
+        "observed": "刘的",
+        "canonical": "刘德",
+        "entity_id": 2,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "刘德"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_xiaomi_0042-1703",
+    "domain": "people",
+    "reference": "哎不得不嘛这个我今天早上跟 Hans 聊天他还讲过很就是这样的很多决策是不得不做出来的",
+    "baseline": "不得不嘛，这个我今天早上跟汉子聊天，他还讲过，很就是这样的，很多决策是不得不做出来的。",
+    "generic": "不得不嘛，这个我今天早上跟Hans聊天，他还讲过，很就是这样的，很多决策是不得不做出来的。",
+    "character_errors": {
+      "baseline": 5,
+      "generic": 1
+    },
+    "accepted_changes": [
+      {
+        "start": 13,
+        "end": 15,
+        "observed": "汉子",
+        "canonical": "Hans",
+        "entity_id": 1,
+        "phonetic_score": 0.7125,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.72,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "汉斯"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_xiaomi_0010-1690",
+    "domain": "people",
+    "reference": "同时呢我们这期还有一个额外的嘉宾跟我一起来访谈德哥他呢是 G G V 的管理合伙人啊 Hans 童世豪",
+    "baseline": "同时呢，我们这期还有一个额外的嘉宾跟我一起来访谈德哥，他呢是GGV的管理合伙人，嗯，哈斯同事豪。",
+    "generic": "同时呢，我们这期还有一个额外的嘉宾跟我一起来访谈德哥，他呢是GGV的管理合伙人，嗯，Hans童世豪。",
+    "character_errors": {
+      "baseline": 7,
+      "generic": 1
+    },
+    "accepted_changes": [
+      {
+        "start": 44,
+        "end": 47,
+        "observed": "同事豪",
+        "canonical": "童世豪",
+        "entity_id": 5,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "童世豪"
+      },
+      {
+        "start": 42,
+        "end": 44,
+        "observed": "哈斯",
+        "canonical": "Hans",
+        "entity_id": 1,
+        "phonetic_score": 0.783333,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.776667,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "汉斯"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_tongdunkeji_0241-1458",
+    "domain": "people",
+    "reference": "但好在就是我们一直在这个过程当中跟 Jackal 跟创始人蒋韬一直保持",
+    "baseline": "但好在，就是我们一直在这个过程当中，跟Jacko、跟创始人蒋涛一直保持。",
+    "generic": "但好在，就是我们一直在这个过程当中，跟Jacko、跟创始人蒋韬一直保持。",
+    "character_errors": {
+      "baseline": 3,
+      "generic": 2
+    },
+    "accepted_changes": [
+      {
+        "start": 29,
+        "end": 31,
+        "observed": "蒋涛",
+        "canonical": "蒋韬",
+        "entity_id": 3,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "蒋韬"
+      }
+    ]
+  },
+  {
+    "id": "speechio_people_startup_insider_huohuasiwei_0018-384",
+    "domain": "people",
+    "reference": "各位听众大家好我是火花思维创始人兼 C E O 罗剑",
+    "baseline": "各位听众，大家好，我是火花思维创始人兼CEO罗健。",
+    "generic": "各位听众，大家好，我是火花思维创始人兼CEO罗剑。",
+    "character_errors": {
+      "baseline": 1,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 22,
+        "end": 24,
+        "observed": "罗健",
+        "canonical": "罗剑",
+        "entity_id": 4,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "罗剑"
+      }
+    ]
+  },
+  {
+    "id": "er_faq_waiting_010",
+    "domain": "medical_faq",
+    "reference": "什么是检伤分级？",
+    "baseline": "什么是减伤分级？",
+    "generic": "什么是检伤分级？",
+    "character_errors": {
+      "baseline": 1,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 3,
+        "end": 7,
+        "observed": "减伤分级",
+        "canonical": "检伤分级",
+        "entity_id": 16,
+        "phonetic_score": 1.0,
+        "character_score": 0.75,
+        "length_score": 1.0,
+        "retrieval_score": 0.975,
+        "boundary_issue": null,
+        "evidence_surface": "检伤分级"
+      }
+    ]
+  },
+  {
+    "id": "er_faq_examination_019",
+    "domain": "medical_faq",
+    "reference": "健保卡要不要交给您们？",
+    "baseline": "现保卡要不要交给您们？",
+    "generic": "健保卡要不要交给您们？",
+    "character_errors": {
+      "baseline": 1,
+      "generic": 0
+    },
+    "accepted_changes": [
+      {
+        "start": 0,
+        "end": 3,
+        "observed": "现保卡",
+        "canonical": "健保卡",
+        "entity_id": 20,
+        "phonetic_score": 0.879167,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.87,
+        "boundary_issue": null,
+        "evidence_surface": "健保卡"
+      }
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "spoken_pairs": 3000,
+  "statuses": {
+    "project_integrity_guard_conflict": 1734,
+    "author_unchanged_not_global_keep_gold": 449,
+    "bounded_deletion_candidate_not_gold": 358,
+    "high_deletion_ratio_requires_review": 265,
+    "unsupported_or_malformed_markup": 91,
+    "non_deletion_standardization_requires_review": 1,
+    "numeric_integrity_conflict": 90,
+    "large_deletion_requires_review": 12
+  },
+  "bounded_deletion_candidates": 358,
+  "untyped_candidate_operations": 528,
+  "distinct_deleted_strings": 111,
+  "spelling_benchmark_quarantine": 1100,
+  "benchmark_used_for_training": false,
+  "positive_only_supervision_proposals": true,
+  "global_KEEP_gold_created": false,
+  "human_audio_gold": 0,
+  "training_eligible_records": 0,
+  "document_groups_unknown": true,
+  "source_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/chinese_disfluency/data/chinese_disfluency/dis.raw.3k": "0a50f245f2b8f09ebac7716a39ae8ff5fc00db97a77f6c097c98e84760fb5901",
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/chinese_disfluency/data/chinese_disfluency/flu.raw.3k": "187d01e3f80e3b3d794933d8155c6dc8ac068f7d68018e0ed8d274ff56c095b7",
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/chinese_disfluency/data/chinese_disfluency/chinese_annotation_rules_2018.pdf": "9872d2c5e542436259049227327daad6a9fcf62c305c1d6003d70d48a62f5f49",
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/decopy/data/output/sighan2015/char_ty_ys_xs.json": "0de4c906a243cee1bfad975f468838e5174c868e261fbe0a45ae7b18ae120ad3",
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/source_registry.json": "aade25509610afcfc35e35051f65d35519622c9bf66f1cf1132792a9329d8ad3",
+    "/home/aim0/桌面/tan/ASR/Codex-web/data/public_edit_sources_20261013/encoder_registry.json": "0f08e2ef91f33cdb06d184a49bcb7f8f01c9398c46eca110712bc633f186d2e4"
+  },
+  "code_sha256": "196ee44c54792b716e735512a89bb9a3832889f3d5f5ee651e9bc19b427b4352",
+  "output_sha256": {
+    "spelling_benchmark_quarantine.jsonl": "66b205cc8af188a2e4fa3b52c479bb24d9bde7a697414d914c76ed497fbeaace",
+    "spoken_pairs.jsonl": "08938193618ff042a131bb42f9466a705347a6d1b7acbb755fe932ae64d0b193",
+    "bounded_deletion_review.jsonl": "e2be35337c32dc95d0b2d4cd8fd631719bba5f6ba8c75f6d78ec4eaeec2b1a06"
+  },
+  "limitations": [
+    "Public spoken targets include simplification and grammatical rewriting",
+    "Source license not declared; candidates remain review-only",
+    "No audio or verified speaker/document boundaries",
+    "Algorithmic integrity pass is not proof of intended deletion",
+    "Full mixed Decopy train file not downloaded or hash-verified"
+  ]
+}

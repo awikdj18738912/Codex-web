@@ -1,0 +1,849 @@
+"""Sentence-bounded refinement for revisable cumulative ASR hypotheses.
+
+Committed source chunks and their outputs have explicit ownership. The
+legacy rolling window keeps a bounded active tail; fixed-group mode waits
+for three punctuation chunks before calling the Refiner, and flushes a short
+tail on finalization.
+"""
+import re
+from threading import Lock
+from .chunking import (
+    Chunk,
+    ChunkManager,
+    merge_boundary_anomaly_chunks,
+    merge_self_correction_chunks,
+)
+from .deterministic_cleanup import (
+    clean_transcript_deterministically,
+    detect_boundary_echo_repairs,
+)
+from .refinement_guard import has_numeric_value_mention, join_refined_segments
+
+
+_SELF_CORRECTION = re.compile(
+    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|而是)"
+)
+
+
+class StreamingRefinementDisplay:
+    """Compose validated refinements with the newest unrefined ASR tail.
+
+    The Refiner works on an older cumulative hypothesis while ASR continues to
+    advance.  This state keeps source ownership for the last published result,
+    so a newer hypothesis can retain only refinements whose raw source still
+    matches.  Revised source is always shown as pending raw text until a newer
+    refinement validates it.
+    """
+
+    def __init__(self) -> None:
+        self._revision = 0
+        self._raw_text = ""
+        self._clean_text = ""
+        self._spans: tuple[dict[str, str], ...] = ()
+
+    def accept(self, result: dict[str, object], revision: int) -> bool:
+        """Store a completed result unless a newer revision is already known."""
+
+        if revision < self._revision:
+            return False
+        spans = result.get("refinement_source_spans", ())
+        if not isinstance(spans, (list, tuple)):
+            spans = ()
+        validated_spans: list[dict[str, str]] = []
+        for span in spans:
+            if not isinstance(span, dict):
+                continue
+            source_text = span.get("source_text")
+            clean_text = span.get("clean_text")
+            state = span.get("state")
+            if not isinstance(source_text, str) or not isinstance(clean_text, str):
+                continue
+            validated_spans.append(
+                {
+                    "source_text": source_text,
+                    "clean_text": clean_text,
+                    "state": "committed" if state == "committed" else "active",
+                }
+            )
+        self._revision = revision
+        self._raw_text = str(result.get("raw_text", ""))
+        self._clean_text = str(result.get("clean_text", ""))
+        self._spans = tuple(validated_spans)
+        return True
+
+    def compose(self, raw_text: str) -> dict[str, object]:
+        """Return browser display fields for the latest cumulative hypothesis."""
+
+        current_raw = raw_text.strip()
+        if not current_raw:
+            return self._payload("", "", "", "")
+        if not self._raw_text or not self._spans:
+            return self._payload("", "", current_raw, current_raw)
+
+        # The common streaming case is append-only growth.  Preserve the exact
+        # aggregate clean result, including deterministic cleanup that may have
+        # acted across a sentence boundary.
+        if current_raw.startswith(self._raw_text):
+            pending = current_raw[len(self._raw_text) :]
+            display, pending_display = self._join_pending(self._clean_text, pending)
+            committed, active = self._clean_parts(self._spans)
+            return self._payload(
+                committed,
+                active,
+                pending_display,
+                display,
+                refined_text=self._clean_text,
+            )
+
+        # ASR may revise its active tail.  Match complete source-owned spans
+        # from the start and drop the first affected span plus everything after
+        # it.  Refined-text character offsets are intentionally never used.
+        cursor = 0
+        matched: list[dict[str, str]] = []
+        for span in self._spans:
+            source = span["source_text"]
+            if not source or not current_raw.startswith(source, cursor):
+                break
+            cursor += len(source)
+            matched.append(span)
+
+        committed, active = self._clean_parts(matched)
+        refined = clean_transcript_deterministically(
+            join_refined_segments(span["clean_text"] for span in matched)
+        )
+        pending = current_raw[cursor:]
+        display, pending_display = self._join_pending(refined, pending)
+        return self._payload(
+            committed,
+            active,
+            pending_display,
+            display,
+            refined_text=refined,
+        )
+
+    @staticmethod
+    def _clean_parts(
+        spans: list[dict[str, str]] | tuple[dict[str, str], ...]
+    ) -> tuple[str, str]:
+        committed = join_refined_segments(
+            span["clean_text"] for span in spans if span["state"] == "committed"
+        )
+        active = join_refined_segments(
+            span["clean_text"] for span in spans if span["state"] == "active"
+        )
+        return committed, active
+
+    @staticmethod
+    def _join_pending(refined: str, pending: str) -> tuple[str, str]:
+        if not pending:
+            return refined, ""
+        display = join_refined_segments((refined, pending))
+        # join_refined_segments may add one necessary ASCII word separator.
+        pending_display = (
+            display[len(refined) :] if display.startswith(refined) else pending
+        )
+        return display, pending_display
+
+    def _payload(
+        self,
+        committed: str,
+        active: str,
+        pending: str,
+        display: str,
+        *,
+        refined_text: str | None = None,
+    ) -> dict[str, object]:
+        display_refined = (
+            join_refined_segments((committed, active))
+            if refined_text is None
+            else refined_text
+        )
+        return {
+            "display_revision": self._revision,
+            "committed_clean_text": committed,
+            "active_clean_text": active,
+            "display_refined_text": clean_transcript_deterministically(
+                display_refined
+            ),
+            "pending_raw_text": pending,
+            "display_text": clean_transcript_deterministically(display),
+            "has_pending_refinement": bool(pending),
+        }
+
+
+class CumulativeWindowRefinement:
+    def __init__(
+        self, refine, window_size=3, window_max_chars=80,
+        *, one_punctuation_window: bool = False,
+        fixed_groups: bool = False,
+        prepare_pending=None,
+        group_numeric_self_corrections: bool = False,
+    ):
+        if window_size < 1:
+            raise ValueError("window_size must be at least 1")
+        if window_max_chars < 1:
+            raise ValueError("window_max_chars must be at least 1")
+        self.refine = refine
+        self.window_size = window_size
+        self.window_max_chars = window_max_chars
+        self.one_punctuation_window = one_punctuation_window
+        self.fixed_groups = fixed_groups
+        self.prepare_pending = prepare_pending
+        self.group_numeric_self_corrections = group_numeric_self_corrections
+        self.committed = []
+        self.active = None
+        self.group_cache = []
+        self.boundary_reviews = []
+        self.lock = Lock()
+
+    @property
+    def has_cached_result(self):
+        """Return whether at least one window refinement has completed."""
+
+        with self.lock:
+            return bool(self.group_cache) if self.fixed_groups else self.active is not None
+
+    def update(
+        self,
+        text,
+        language,
+        final,
+        protector,
+        confidence,
+        matcher=None,
+        *,
+        confidence_metadata=None,
+        source_chunks=None,
+        preserve_cached_partition=False,
+        reprocess_rejected=None,
+    ):
+        if reprocess_rejected is None:
+            reprocess_rejected = final
+        with self.lock:
+            if self.fixed_groups:
+                return self._update_fixed(
+                    text, language, final, protector, confidence, matcher,
+                    confidence_metadata=confidence_metadata,
+                    source_chunks=source_chunks,
+                    preserve_cached_partition=preserve_cached_partition,
+                    reprocess_rejected=reprocess_rejected,
+                )
+            if source_chunks is None:
+                manager = ChunkManager(
+                    max_chars=self.window_max_chars,
+                    one_punctuation_window=self.one_punctuation_window,
+                )
+                chunks = [
+                    c.text
+                    for c in merge_boundary_anomaly_chunks(
+                        merge_self_correction_chunks(
+                            manager.update(text, vad_boundary=True),
+                            self.window_max_chars,
+                        ),
+                        self.window_max_chars,
+                    )
+                ]
+            else:
+                # Real VAD-finalized segments already carry source ownership.
+                # Preserve those boundaries instead of reconstructing them
+                # from punctuation in the cumulative transcript.  Only split
+                # an unusually long segment to keep model input bounded.
+                chunks = []
+                for source_chunk in source_chunks:
+                    value = str(source_chunk).strip()
+                    if not value:
+                        continue
+                    if len(value) <= self.window_max_chars:
+                        chunks.append(value)
+                        continue
+                    manager = ChunkManager(max_chars=self.window_max_chars)
+                    chunks.extend(
+                        chunk.text
+                        for chunk in manager.update(value, vad_boundary=True)
+                    )
+            start = self._active_start(chunks)
+            # A recognizer may revise earlier text. Invalidate affected cached
+            # spans using source equality, never refined-text character offsets.
+            # Keep a source-indexed view of the old cache as well: a small
+            # punctuation revision can change the first chunk and otherwise
+            # needlessly force every unchanged committed chunk through the
+            # Refiner again.
+            previous_committed = list(self.committed)
+            shared = 0
+            while (shared < min(start, len(self.committed))
+                   and self.committed[shared][0] == chunks[shared]):
+                shared += 1
+            used_cached_indices = set(range(shared))
+            self.committed = self.committed[:shared]
+            for chunk in chunks[shared:start]:
+                result = self._reuse_cached_chunk(
+                    chunk, previous_committed, used_cached_indices
+                )
+                # A streaming hypothesis can be shorter or less stable than
+                # the final hypothesis.  Do not carry a rejected intermediate
+                # result into the final transcript: give that source window a
+                # fresh final pass before deciding whether to fall back.
+                if result is None or (
+                    reprocess_rejected and not result.get("refiner_accepted", True)
+                ):
+                    result = self.refine(
+                        chunk,
+                        language,
+                        final,
+                        protector,
+                        confidence,
+                        matcher,
+                        single_window=True,
+                        confidence_metadata=confidence_metadata,
+                    )
+                self.committed.append((chunk, result))
+            source = join_refined_segments(chunks[start:])
+            active_needs_refresh = (
+                self.active is not None
+                and reprocess_rejected
+                and self.active[0] == source
+                and not self.active[1].get("refiner_accepted", True)
+            )
+            if (
+                self.active is None
+                or self.active[0] != source
+                or active_needs_refresh
+            ):
+                active_chunks = chunks[start:]
+                split_self_correction = (
+                    len(active_chunks) > 1
+                    and _SELF_CORRECTION.search(source) is not None
+                    and not (
+                        self.group_numeric_self_corrections
+                        and has_numeric_value_mention(source)
+                    )
+                )
+                if split_self_correction:
+                    # Keep each complete self-correction clause together, but
+                    # do not ask one generation to rewrite several corrections
+                    # and numeric edits at once.
+                    refined_parts = [
+                        self.refine(
+                            chunk,
+                            language,
+                            final,
+                            protector,
+                            confidence,
+                            matcher,
+                            single_window=True,
+                            confidence_metadata=confidence_metadata,
+                        )
+                        for chunk in active_chunks
+                    ]
+                    result = self._aggregate(
+                        refined_parts,
+                        source,
+                        final=final,
+                        committed_chunks=0,
+                    )
+                else:
+                    result = self.refine(
+                        source,
+                        language,
+                        final,
+                        protector,
+                        confidence,
+                        matcher,
+                        single_window=True,
+                        confidence_metadata=confidence_metadata,
+                    )
+                # A long active window can trigger the content-loss guard even
+                # when most of its individual chunks are safe. Recover it at
+                # chunk granularity so one bad generation does not restore the
+                # entire rolling window to raw ASR text.
+                if (
+                    not result.get("refiner_accepted", True)
+                    and len(active_chunks) > 1
+                    and not split_self_correction
+                ):
+                    recovered = [
+                        self.refine(
+                            chunk,
+                            language,
+                            final,
+                            protector,
+                            confidence,
+                            matcher,
+                            single_window=True,
+                            confidence_metadata=confidence_metadata,
+                        )
+                        for chunk in chunks[start:]
+                    ]
+                    result = self._aggregate(
+                        recovered,
+                        source,
+                        final=final,
+                        committed_chunks=0,
+                    )
+                if source_chunks is not None:
+                    review = {
+                        "source_chunk_indices": list(
+                            range(start + 1, len(chunks) + 1)
+                        ),
+                        "source_text": source,
+                        "clean_text": result.get("clean_text", source),
+                        "accepted": result.get("refiner_accepted", True),
+                        "reject_reasons": list(
+                            result.get("refiner_reject_reasons", [])
+                        ),
+                    }
+                    if (
+                        not self.boundary_reviews
+                        or self.boundary_reviews[-1] != review
+                    ):
+                        self.boundary_reviews.append(review)
+                self.active = (source, result)
+            parts = [result for _, result in self.committed] + [self.active[1]]
+            result = self._aggregate(
+                parts,
+                text,
+                final=final,
+                committed_chunks=start,
+            )
+            result["refinement_source_spans"] = self._source_spans(
+                text,
+                chunks,
+                start,
+                parts,
+            )
+            if source_chunks is not None:
+                result["boundary_reviews"] = list(self.boundary_reviews)
+            return result
+
+    def complete_group_signature(self, text, *, source_chunks=None):
+        """Return complete fixed groups without changing cache or model state."""
+
+        groups, _pending = self.streaming_input_signature(
+            text, source_chunks=source_chunks,
+        )
+        return groups
+
+    def streaming_input_signature(self, text, *, source_chunks=None):
+        """Return complete groups and the uncommitted tail for stream scheduling."""
+
+        chunks, _pending = self._fixed_chunks(
+            text,
+            source_chunks=source_chunks,
+            final=False,
+            preserve_cached_partition=False,
+        )
+        complete_count = len(chunks) // self.window_size * self.window_size
+        groups = tuple(
+            tuple(chunks[index:index + self.window_size])
+            for index in range(0, complete_count, self.window_size)
+        )
+        pending_text = join_refined_segments(
+            (*chunks[complete_count:], _pending)
+        )
+        return groups, pending_text
+
+    def remember_reviewed_source_spans(self, source_spans):
+        """Carry accepted review edits into exact matching fixed-group cache entries."""
+
+        if not self.fixed_groups or not isinstance(source_spans, (list, tuple)):
+            return 0
+        updated_count = 0
+        with self.lock:
+            updated = []
+            for (group, cached), span in zip(self.group_cache, source_spans):
+                if not isinstance(span, dict):
+                    updated.append((group, cached))
+                    continue
+                source = join_refined_segments(group)
+                reviewed = span.get("clean_text")
+                if (
+                    span.get("source_text") == source
+                    and isinstance(reviewed, str)
+                    and cached.get("refiner_accepted", True)
+                    and reviewed != cached.get("clean_text")
+                ):
+                    cached = {**cached, "clean_text": reviewed}
+                    updated_count += 1
+                updated.append((group, cached))
+            self.group_cache = updated
+        return updated_count
+
+    def _fixed_chunks(
+        self, text, *, source_chunks, final, preserve_cached_partition,
+    ):
+        if source_chunks is None or preserve_cached_partition:
+            manager = ChunkManager(
+                max_chars=self.window_max_chars,
+                one_punctuation_window=self.one_punctuation_window,
+            )
+            chunks = [
+                chunk.text for chunk in merge_boundary_anomaly_chunks(
+                    merge_self_correction_chunks(
+                        manager.update(text, vad_boundary=final),
+                        self.window_max_chars,
+                    ),
+                    self.window_max_chars,
+                )
+            ]
+            pending = manager.pending_text if not final else ""
+        else:
+            chunks = []
+            for source_chunk in source_chunks:
+                value = str(source_chunk).strip()
+                if not value:
+                    continue
+                manager = ChunkManager(
+                    max_chars=self.window_max_chars,
+                    one_punctuation_window=self.one_punctuation_window,
+                )
+                chunks.extend(
+                    chunk.text
+                    for chunk in merge_boundary_anomaly_chunks(
+                        merge_self_correction_chunks(
+                            manager.update(value, vad_boundary=True),
+                            self.window_max_chars,
+                        ),
+                        self.window_max_chars,
+                    )
+                )
+            pending = ""
+        if self.group_numeric_self_corrections and len(chunks) > 1:
+            chunks = [
+                chunk.text
+                for chunk in merge_self_correction_chunks(
+                    [
+                        Chunk(index=index, text=value)
+                        for index, value in enumerate(chunks)
+                    ],
+                    self.window_max_chars,
+                    allow_merge=(
+                        has_numeric_value_mention
+                        if self.group_numeric_self_corrections
+                        else None
+                    ),
+                )
+            ]
+        return chunks, pending
+
+    def _update_fixed(
+        self, text, language, final, protector, confidence, matcher,
+        *, confidence_metadata, source_chunks, preserve_cached_partition,
+        reprocess_rejected,
+    ):
+        """Refine complete groups of K source chunks without splitting a group."""
+        chunks, pending = self._fixed_chunks(
+            text,
+            source_chunks=source_chunks,
+            final=final,
+            preserve_cached_partition=preserve_cached_partition,
+        )
+
+        complete_count = len(chunks) // self.window_size * self.window_size
+        if final:
+            complete_count = len(chunks)
+        group_chunks = [
+            tuple(chunks[index:index + self.window_size])
+            for index in range(0, complete_count, self.window_size)
+        ]
+        previous = self.group_cache
+        used_cache_indices: set[int] = set()
+        updated = []
+        reused_group_count = 0
+        reused_gate_skip_group_count = 0
+        reprocessed_group_count = 0
+        reprocess_reasons: dict[str, int] = {}
+        for index, group in enumerate(group_chunks):
+            source = join_refined_segments(group)
+            # Final ASR punctuation/VAD boundaries can regroup the same source
+            # text.  Matching only by position turns an already accepted
+            # streaming result into a new model request.  Prefer the old
+            # position for the common append-only case, then fall back to an
+            # unused exact source-group match.  The source tuple remains part
+            # of the key, so this does not reuse a result for revised text.
+            cache_index = None
+            if (
+                index < len(previous)
+                and index not in used_cache_indices
+                and previous[index][0] == group
+            ):
+                cache_index = index
+            else:
+                cache_index = next(
+                    (
+                        candidate_index
+                        for candidate_index, (candidate_group, _result)
+                        in enumerate(previous)
+                        if candidate_index not in used_cache_indices
+                        and candidate_group == group
+                    ),
+                    None,
+                )
+            cached = (
+                previous[cache_index][1]
+                if cache_index is not None
+                else None
+            )
+            if cache_index is not None:
+                used_cache_indices.add(cache_index)
+            reprocess_reason = None
+            if cached is None:
+                reprocess_reason = "no_exact_source_group_match"
+            elif reprocess_rejected and not cached.get("refiner_accepted", True):
+                reprocess_reason = "previous_result_rejected"
+            if reprocess_reason is not None:
+                reprocessed_group_count += 1
+                reprocess_reasons[reprocess_reason] = (
+                    reprocess_reasons.get(reprocess_reason, 0) + 1
+                )
+                cached = self.refine(
+                    source, language, final, protector, confidence, matcher,
+                    single_window=True,
+                    confidence_metadata=confidence_metadata,
+                    _trace_window_chunks=len(group),
+                    _trace_required_chunks=self.window_size,
+                )
+            else:
+                reused_group_count += 1
+                if not cached.get("refiner_executed", True):
+                    reused_gate_skip_group_count += 1
+            updated.append((group, cached))
+        self.group_cache = updated
+
+        pending_source = join_refined_segments((*chunks[complete_count:], pending))
+        parts = [result for _, result in updated]
+        sources = [join_refined_segments(group) for group, _ in updated]
+        if pending_source or not parts:
+            pending_result = (
+                self.prepare_pending(
+                    pending_source, language, False, protector, confidence, matcher,
+                    single_window=True,
+                    confidence_metadata=confidence_metadata,
+                    _trace_window_chunks=max(0, len(chunks) - complete_count),
+                    _trace_required_chunks=self.window_size,
+                )
+                if self.prepare_pending is not None and pending_source
+                else self._unrefined_part(
+                    pending_source, language, confidence, confidence_metadata,
+                    exemplar=parts[-1] if parts else None,
+                )
+            )
+            parts.append(pending_result)
+            sources.append(pending_source)
+        result = self._aggregate(
+            parts, text, final=final, committed_chunks=complete_count,
+        )
+        result["pending_refinement_chunks"] = max(
+            0, len(chunks) - complete_count
+        )
+        result["refinement_batch_size"] = self.window_size
+        result["refinement_state"] = (
+            "waiting_for_group"
+            if result["pending_refinement_chunks"]
+            else "window_refined"
+        )
+        result["refinement_source_spans"] = self._source_spans(
+            text, sources, len(updated), parts,
+        )
+        if source_chunks is not None and not preserve_cached_partition:
+            result["boundary_reviews"] = list(self.boundary_reviews)
+        result["window_cache_reused_group_count"] = reused_group_count
+        result["window_cache_reused_gate_skip_group_count"] = (
+            reused_gate_skip_group_count
+        )
+        result["window_cache_reprocessed_group_count"] = reprocessed_group_count
+        result["window_cache_reprocess_reasons"] = reprocess_reasons
+        return result
+
+    @staticmethod
+    def _unrefined_part(text, language, confidence, metadata, *, exemplar):
+        """Represent an incomplete group as visible raw text, without a model call."""
+
+        part = dict(exemplar or {})
+        part.update(
+            raw_text=text,
+            clean_text=text,
+            asr_language=language,
+            asr_confidence=confidence,
+            asr_confidence_metadata=dict(metadata or {}),
+            refiner_latency_ms=0,
+            numeric_rule_latency_ms=0.0,
+            refiner_executed=False,
+            refiner_accepted=True,
+            placeholder_retry_count=0,
+            refiner_retry_count=0,
+            refinement_gate_skipped_segments=0,
+            entity_matcher_latency_ms=0.0,
+        )
+        for key in (
+            "refiner_reject_reasons", "entity_audit_issues",
+            "entity_refinement_hints", "entity_normalizations",
+            "numeric_normalizations", "numeric_rule_repairs", "numeric_fallbacks",
+            "safe_numeric_repairs", "safe_repetition_repairs",
+            "local_deletion_reviews",
+            "repetition_reviews", "protected_entities", "entity_candidates",
+            "refiner_masked_outputs", "refiner_retry_reasons",
+            "refinement_gate_decisions", "structured_patch_audits",
+            "boundary_anomalies", "boundary_reviews",
+        ):
+            part[key] = []
+        return part
+
+    def update_segments(
+        self,
+        segments,
+        language,
+        final,
+        protector,
+        confidence,
+        matcher=None,
+        *,
+        confidence_metadata=None,
+        raw_text=None,
+        preserve_cached_partition=False,
+        reprocess_rejected=None,
+    ):
+        """Refine stable ASR/VAD source segments through one persistent K-window."""
+
+        source_chunks = tuple(
+            value for value in (str(segment).strip() for segment in segments) if value
+        )
+        source_text = (
+            str(raw_text).strip()
+            if raw_text is not None
+            else join_refined_segments(source_chunks)
+        )
+        return self.update(
+            source_text,
+            language,
+            final,
+            protector,
+            confidence,
+            matcher,
+            confidence_metadata=confidence_metadata,
+            source_chunks=source_chunks,
+            preserve_cached_partition=preserve_cached_partition,
+            reprocess_rejected=reprocess_rejected,
+        )
+
+    def _aggregate(self, parts, raw_text, *, final, committed_chunks):
+        result = dict(parts[-1])
+        joined_clean = join_refined_segments(p["clean_text"] for p in parts)
+        boundary_echo_repairs = detect_boundary_echo_repairs(joined_clean)
+        result.update(
+            event="final" if final else "update",
+            raw_text=raw_text,
+            clean_text=clean_transcript_deterministically(joined_clean),
+            refiner_accepted=all(p["refiner_accepted"] for p in parts),
+            refiner_executed=any(p.get("refiner_executed", True) for p in parts),
+            refiner_latency_ms=sum(p["refiner_latency_ms"] for p in parts),
+            numeric_rule_latency_ms=sum(
+                p.get("numeric_rule_latency_ms", 0.0) for p in parts
+            ),
+            placeholder_retry_count=sum(
+                p.get("placeholder_retry_count", 0) for p in parts
+            ),
+            refiner_retry_count=sum(p.get("refiner_retry_count", 0) for p in parts),
+            refinement_gate_skipped_segments=sum(
+                p.get("refinement_gate_skipped_segments", 0) for p in parts
+            ),
+            window_size=self.window_size,
+            window_max_chars=self.window_max_chars,
+            committed_chunks=committed_chunks,
+        )
+        for key in (
+            "refiner_reject_reasons",
+            "entity_audit_issues",
+            "entity_refinement_hints",
+            "entity_normalizations",
+            "numeric_normalizations",
+            "numeric_rule_repairs",
+            "numeric_fallbacks",
+            "safe_numeric_repairs",
+            "safe_repetition_repairs",
+            "local_deletion_reviews",
+            "repetition_reviews",
+            "protected_entities",
+            "entity_candidates",
+            "refiner_masked_outputs",
+            "refiner_retry_reasons",
+            "refinement_gate_decisions",
+            "structured_patch_audits",
+            "boundary_anomalies",
+            "boundary_reviews",
+        ):
+            result[key] = [item for p in parts for item in p.get(key, [])]
+        result["entity_matcher_latency_ms"] = sum(
+            p.get("entity_matcher_latency_ms", 0.0) for p in parts
+        )
+        result["boundary_echo_repairs"] = list(boundary_echo_repairs)
+        return result
+
+    @staticmethod
+    def _reuse_cached_chunk(chunk, cached, used_indices):
+        """Reuse an unchanged committed source chunk after a prefix revision."""
+
+        for index, (source, result) in enumerate(cached):
+            if index in used_indices or source != chunk:
+                continue
+            used_indices.add(index)
+            return result
+        return None
+
+    def _active_start(self, chunks):
+        """Choose a sentence-oriented tail bounded by count and characters."""
+
+        start = len(chunks)
+        total_chars = 0
+        active_count = 0
+        while start > 0 and active_count < self.window_size:
+            candidate = chunks[start - 1]
+            candidate_chars = len(candidate)
+            if active_count and total_chars + candidate_chars > self.window_max_chars:
+                break
+            start -= 1
+            total_chars += candidate_chars
+            active_count += 1
+        return start
+
+    @staticmethod
+    def _source_spans(text, chunks, active_start, parts):
+        """Map cached outputs back to exact source-owned character spans."""
+
+        if not chunks or not parts:
+            return []
+        starts = []
+        cursor = 0
+        for chunk in chunks:
+            position = text.find(chunk, cursor)
+            if position < 0 or text[cursor:position].strip():
+                return [
+                    {
+                        "source_text": text,
+                        "clean_text": join_refined_segments(
+                            part["clean_text"] for part in parts
+                        ),
+                        "state": "active",
+                    }
+                ]
+            starts.append(cursor)
+            cursor = position + len(chunk)
+
+        spans = []
+        for index in range(active_start):
+            end = starts[index + 1] if index + 1 < len(starts) else len(text)
+            spans.append(
+                {
+                    "source_text": text[starts[index]:end],
+                    "clean_text": parts[index]["clean_text"],
+                    "state": "committed",
+                }
+            )
+        if active_start < len(chunks):
+            spans.append(
+                {
+                    "source_text": text[starts[active_start]:],
+                    "clean_text": parts[-1]["clean_text"],
+                    "state": "active",
+                }
+            )
+        return spans

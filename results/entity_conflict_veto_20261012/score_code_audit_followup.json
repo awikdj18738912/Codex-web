@@ -1,0 +1,188 @@
+{
+  "audit_type": "read-only follow-up to score_code_audit.json",
+  "scope": {
+    "source_file": "experiments/scripts/probe_entity_contrastive_score.py",
+    "frozen_plan_and_inputs_checked": true,
+    "completed_scores_read": true,
+    "completed_score_summaries_read": true,
+    "no_model_or_ASR_run": true,
+    "no_new181_or_production_files_accessed_or_modified": true,
+    "only_new_file_written": "results/entity_conflict_veto_20261012/score_code_audit_followup.json"
+  },
+  "repair_checks": {
+    "exact_input_condition_pair_assertion_present": "script:136-137; exact expected Cartesian set is checked after count/uniqueness.",
+    "finite_margin_assertion_present": "script:138-139, checks both source/changed margins with math.isfinite.",
+    "per_sample_source_matches_baseline_initial": "script:143-147; verified for all input rows.",
+    "input_rows": 64,
+    "unique_input_ids": 64,
+    "unique_sample_ids": 63,
+    "score_records": 128,
+    "unique_score_pairs": 128,
+    "observed_pairs_equal_expected": true,
+    "all_score_margins_finite": true,
+    "baseline_source_match_all_inputs": true,
+    "relative_baseline_acceptance": "script:148,194-197 uses background_asr_summary baseline metrics (hits/errors/absent_changes) rather than 100/33/6 literals; also requires lost_reference_present_changes == 0.",
+    "frozen_baseline_metrics": {
+      "hits": 100,
+      "expected_mentions": 105,
+      "errors": 33,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "CER": 0.0323846908734053
+    },
+    "background_and_entity_module_hashes_checked_in_infer": "script:72-74.",
+    "average_exploration_hash_binding": "script:140-142 verifies post_score_exploration and current scores.jsonl SHA against the separate plan."
+  },
+  "forward_accounting": {
+    "successful_forward_counter_present": "script:82-98 increments after each completed model scoring forward.",
+    "per_record_count_uses_counter_delta": "script:104-116.",
+    "completed_score_records": 128,
+    "historical_forward_calls_field_distribution": {
+      "4": 128
+    },
+    "historical_forward_calls_sum": 512,
+    "interpretation": "The 128 historical records still store forward_calls=4 each and sum to 512. They were not rerun for the new hook; do not describe this as a hook-instrumented count. The updated counter applies to future inference only."
+  },
+  "post_score_exploration": {
+    "separate_plan_file": "results/entity_conflict_veto_20261012/score_average_plan.json",
+    "post_score_exploration": true,
+    "reason": "Symmetric both-prompts veto produced no changes; examine averaged margins as copying-bias diagnostic. Not independently preregistered.",
+    "decision": "Average of target-minus-source mean token log probabilities under both hypothetical inputs <= -threshold. Veto existing changes only.",
+    "scores_sha256_matches": true,
+    "classification": "Post-score development exploration, not preregistered and not part of original both-prompts rule."
+  },
+  "summary_cross_check": {
+    "both_prompts_summary_rows": 10,
+    "both_prompts_all_unchanged_baseline": true,
+    "average_summary_rows": 10,
+    "average_threshold_metrics_by_condition_and_threshold": [
+      {
+        "condition": "context_only",
+        "threshold": 0.1,
+        "hits": 79,
+        "expected_mentions": 105,
+        "errors": 64,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 22,
+        "lost_reference_present_changes": 22,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "context_only",
+        "threshold": 0.25,
+        "hits": 87,
+        "expected_mentions": 105,
+        "errors": 52,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 13,
+        "lost_reference_present_changes": 13,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "context_only",
+        "threshold": 0.5,
+        "hits": 95,
+        "expected_mentions": 105,
+        "errors": 39,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 5,
+        "lost_reference_present_changes": 5,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "context_only",
+        "threshold": 1.0,
+        "hits": 99,
+        "expected_mentions": 105,
+        "errors": 34,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 1,
+        "lost_reference_present_changes": 1,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "context_only",
+        "threshold": 2.0,
+        "hits": 100,
+        "expected_mentions": 105,
+        "errors": 33,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 0,
+        "lost_reference_present_changes": 0,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "official_background",
+        "threshold": 0.1,
+        "hits": 79,
+        "expected_mentions": 105,
+        "errors": 64,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 22,
+        "lost_reference_present_changes": 22,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "official_background",
+        "threshold": 0.25,
+        "hits": 87,
+        "expected_mentions": 105,
+        "errors": 52,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 13,
+        "lost_reference_present_changes": 13,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "official_background",
+        "threshold": 0.5,
+        "hits": 95,
+        "expected_mentions": 105,
+        "errors": 39,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 5,
+        "lost_reference_present_changes": 5,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "official_background",
+        "threshold": 1.0,
+        "hits": 99,
+        "expected_mentions": 105,
+        "errors": 34,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 1,
+        "lost_reference_present_changes": 1,
+        "qualifies_on_development": false
+      },
+      {
+        "condition": "official_background",
+        "threshold": 2.0,
+        "hits": 100,
+        "expected_mentions": 105,
+        "errors": 33,
+        "reference_chars": 1019,
+        "absent_changes": 6,
+        "vetoed_changes": 0,
+        "lost_reference_present_changes": 0,
+        "qualifies_on_development": false
+      }
+    ],
+    "all_average_thresholds_unqualified": true,
+    "average_threshold_pattern": "For each condition thresholds 0.1/0.25/0.5/1.0/2.0 yield hits 79/87/95/99/100; errors 64/52/39/34/33; absent_changes stays 6. This matches the baseline constraints and yields no qualifying threshold."
+  },
+  "residual_audit_notes": [
+    "The report stage now has strong input/score integrity checks, but it does not repeat the background/entity-module hash checks itself; if report is run separately later, those hashes were validated during infer, not revalidated at report entry.",
+    "lost_reference_present_changes remains a canonical-substring-in-reference test, not a span-aligned annotation test; total target hits and CER remain the principal gates.",
+    "The score_average summary was inspected only after the parent reported it complete; no partial/running outputs were read."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "raw_asr": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 5043,
+    "expected_mentions": 63,
+    "recovered_mentions": 58,
+    "unreferenced_mentions": 0,
+    "CER": 0.5325237592397043,
+    "entity_retention": 0.9206349206349206
+  },
+  "live_baseline": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 4993,
+    "expected_mentions": 63,
+    "recovered_mentions": 58,
+    "unreferenced_mentions": 0,
+    "refiner_calls": 231,
+    "entity_normalizations": 0,
+    "CER": 0.5272439281942978,
+    "entity_retention": 0.9206349206349206
+  },
+  "baseline": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 4993,
+    "expected_mentions": 63,
+    "recovered_mentions": 58,
+    "unreferenced_mentions": 0,
+    "refiner_calls": 231,
+    "entity_normalizations": 0,
+    "CER": 0.5272439281942978,
+    "entity_retention": 0.9206349206349206
+  },
+  "entity_library": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 4992,
+    "expected_mentions": 63,
+    "recovered_mentions": 58,
+    "unreferenced_mentions": 0,
+    "changed_samples": 1,
+    "improved_samples": 1,
+    "regressed_samples": 0,
+    "entity_gains": 0,
+    "entity_losses": 0,
+    "refiner_calls": 231,
+    "entity_normalizations": 0,
+    "CER": 0.5271383315733896,
+    "entity_retention": 0.9206349206349206
+  }
+}

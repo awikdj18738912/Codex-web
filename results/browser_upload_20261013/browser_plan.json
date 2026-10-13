@@ -1,0 +1,45 @@
+{
+  "browser": "Chromium headless",
+  "audio": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频3.mp3",
+  "audio_sha256": "4e144ecee8d29a026688624eef281684f5df6b7bee48c4cf7a393265c349506d",
+  "cases": [
+    {
+      "id": "direct_context",
+      "delay": 0,
+      "context": true,
+      "audio": false,
+      "order": [
+        "old",
+        "new"
+      ]
+    },
+    {
+      "id": "relay_context",
+      "delay": 0.04,
+      "context": true,
+      "audio": false,
+      "order": [
+        "new",
+        "old"
+      ]
+    },
+    {
+      "id": "relay_audio",
+      "delay": 0.04,
+      "context": false,
+      "audio": true,
+      "order": [
+        "old",
+        "new"
+      ]
+    }
+  ],
+  "HTML_sha256": {
+    "old": "cf3a34f3200c66d687a71b203b51ef678df927a6c31c79f67f844915be59536e",
+    "new": "f8c462813d7a46213382ea35bb77d7beac28e1ce15c4d86971a2d0c098eb8abb"
+  },
+  "proxy_port": 37753,
+  "delay_definition": "Controlled propagation delay per direction; queued messages retain arrival-time deadlines, not a fixed per-frame bandwidth throttle. Direct case has no artificial delay.",
+  "same_actual_ASR_refiner_backend": "127.0.0.1:8081",
+  "scope": "Local real browser; does not reproduce the user desktop proxy route or prove its latency."
+}

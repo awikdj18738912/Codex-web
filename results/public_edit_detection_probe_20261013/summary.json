@@ -1,0 +1,44 @@
+{
+  "models": {
+    "small": {
+      "selected_rows": 128,
+      "supported_rows": 128,
+      "annotated_positive_positions": 239,
+      "matched_positive_positions": 231,
+      "proposed_positions": 3842,
+      "unlabelled_proposed_positions": 3611,
+      "rows_with_any_candidate": 128,
+      "author_deletions": 200,
+      "located_author_deletions": 194,
+      "author_positive_position_recall": 0.9665271966527197,
+      "author_deletion_hit_rate": 0.97,
+      "batch_forward_and_postprocess_seconds": 0.21728303423151374,
+      "note": "Unlabelled proposed positions are unknown, not proven false positives; target is not project gold"
+    },
+    "traceable": {
+      "selected_rows": 128,
+      "supported_rows": 128,
+      "annotated_positive_positions": 239,
+      "matched_positive_positions": 173,
+      "proposed_positions": 842,
+      "unlabelled_proposed_positions": 669,
+      "rows_with_any_candidate": 126,
+      "author_deletions": 200,
+      "located_author_deletions": 159,
+      "author_positive_position_recall": 0.7238493723849372,
+      "author_deletion_hit_rate": 0.795,
+      "batch_forward_and_postprocess_seconds": 0.16789039596915245,
+      "note": "Unlabelled proposed positions are unknown, not proven false positives; target is not project gold"
+    }
+  },
+  "rows": 128,
+  "label_scope": "author standardization positive-only deletion proposals",
+  "evaluation_status": "new_source_partial_diagnostic_consumed_after_this_run",
+  "production_eligible": false,
+  "limitations": [
+    "Author deletion intent may not match faithful ASR cleanup",
+    "No negative/gold KEEP labels",
+    "No paired audio or verified document/speaker split",
+    "No overall precision, accuracy or speed claim"
+  ]
+}

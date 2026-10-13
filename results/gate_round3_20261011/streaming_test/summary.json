@@ -1,0 +1,64 @@
+{
+  "by_policy": {
+    "current": {
+      "sessions": 32,
+      "exact_intended": 22,
+      "intended_micro_cer": 0.03383458646616541,
+      "logical_refiner_calls": 24,
+      "plausibility_calls": 3,
+      "gate_total_ms": 0,
+      "finish_tail_p50_seconds": 0.30582507187500596,
+      "finish_tail_p95_seconds": 0.7852183943148703,
+      "failed_refiner_calls": 0
+    },
+    "learned": {
+      "sessions": 32,
+      "exact_intended": 18,
+      "intended_micro_cer": 0.043233082706766915,
+      "logical_refiner_calls": 19,
+      "plausibility_calls": 1,
+      "gate_total_ms": 267.8733426146209,
+      "finish_tail_p50_seconds": 0.13450510101392865,
+      "finish_tail_p95_seconds": 0.7818479880923405,
+      "failed_refiner_calls": 0
+    }
+  },
+  "differences": [
+    {
+      "seed_id": "round3_fresh_20261011_008",
+      "raw_equal": true,
+      "current": "冷却液的剩余量写在白板右侧。",
+      "learned": "冷却液的剩剩余量写在白板右侧。",
+      "current_distance": 0,
+      "learned_distance": 1
+    },
+    {
+      "seed_id": "round3_fresh_20261011_023",
+      "raw_equal": true,
+      "current": "推车经过坡道时，要控制速度。",
+      "learned": "推车经过坡道时，要控控制速度。",
+      "current_distance": 0,
+      "learned_distance": 1
+    },
+    {
+      "seed_id": "round3_fresh_20261011_014",
+      "raw_equal": true,
+      "current": "样品架的位置已经标在平面图上。",
+      "learned": "样品架的位置已经标标在平面图上。",
+      "current_distance": 0,
+      "learned_distance": 1
+    },
+    {
+      "seed_id": "round3_fresh_20261011_002",
+      "raw_equal": true,
+      "current": "备用电池已经放进应急柜的下层。",
+      "learned": "备用电池已经已经放进应急柜的下层。",
+      "current_distance": 0,
+      "learned_distance": 2
+    }
+  ],
+  "ASR_equal_pairs": 32,
+  "complete": true,
+  "references": "unverified_synthesis_scripts",
+  "scope": "actual_WebSocket_and_HTTP_ASR_synthetic_streaming_diagnostic"
+}

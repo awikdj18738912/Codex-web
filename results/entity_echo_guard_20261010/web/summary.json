@@ -1,0 +1,24 @@
+{
+  "legacy": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 5034,
+    "expected_mentions": 63,
+    "recovered_mentions": 59,
+    "unreferenced_mentions": 4,
+    "instruction_echo_samples": 2,
+    "refiner_calls": 208,
+    "CER": 0.5315733896515311
+  },
+  "guarded": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 4961,
+    "expected_mentions": 63,
+    "recovered_mentions": 59,
+    "unreferenced_mentions": 0,
+    "instruction_echo_samples": 0,
+    "refiner_calls": 209,
+    "CER": 0.5238648363252376
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "initial": {
+    "samples": 200,
+    "hits": 197,
+    "expected_mentions": 199,
+    "errors": 73,
+    "reference_chars": 3656,
+    "replays": 0,
+    "short_confirmation_checks": 0,
+    "absent_changes": 0,
+    "CER": 0.019967177242888403,
+    "entity_recall": 0.9899497487437185
+  },
+  "baseline": {
+    "samples": 200,
+    "hits": 199,
+    "expected_mentions": 199,
+    "errors": 72,
+    "reference_chars": 3656,
+    "replays": 179,
+    "short_confirmation_checks": 0,
+    "absent_changes": 1,
+    "CER": 0.019693654266958426,
+    "entity_recall": 1.0
+  },
+  "proposed": {
+    "samples": 200,
+    "hits": 198,
+    "expected_mentions": 199,
+    "errors": 74,
+    "reference_chars": 3656,
+    "replays": 180,
+    "short_confirmation_checks": 1,
+    "absent_changes": 1,
+    "CER": 0.02024070021881838,
+    "entity_recall": 0.9949748743718593
+  }
+}

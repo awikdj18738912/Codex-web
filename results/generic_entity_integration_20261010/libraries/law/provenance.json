@@ -1,0 +1,19 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "domain": "law",
+  "training_split_seed": "speechio-professional-split-v1",
+  "train_rows": 626,
+  "heldout_rows": 427,
+  "vocabulary_size": 21,
+  "vocabulary_source": "60% deterministic training split only",
+  "test_selection": "All heldout utterances with at least one exact training-known curated domain term",
+  "reference_at_inference": false,
+  "aliases_added": false,
+  "frozen_hashes": {
+    "entities.db": "9749ee430f35cab8265e40e5a605716e4266120756e702c30bc36855b9914125",
+    "entities.json": "aeaa7ff24ec1f333420ddcbbfbf3e7e94390101913c8b10ca05a03b2f9fcd218",
+    "sample_entities.json": "3787b2e43cdaa1897b593c1fa7b81fb6c77305f876a8269b27c48ed10b71e068",
+    "vocabulary_evidence.json": "274ef421eea06e6bd2c3d24db746909fe935fad9dcd7c49d0c5d1d68e530649d"
+  }
+}

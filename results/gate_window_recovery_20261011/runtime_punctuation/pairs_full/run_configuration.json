@@ -1,0 +1,19 @@
+{
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "device": "cuda:0",
+  "dtype": "torch.float32",
+  "model_parameters": 1080632832,
+  "torch": "2.11.0+cu130",
+  "config_sha256": "1e2212f0a509a6f7746b3adbff9d0f23d3807e803d55c2e173eb7ff1617ddf9f",
+  "weights_sha256": {
+    "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+  },
+  "protocol_sha256": "fd5d723b32fd30954d2247dedf0361a4967e9ad27a58c146daa9a2aa9b7d0e2b",
+  "cpu_threads": 2,
+  "warmup_ms": 3640.98,
+  "scope": "Real isolated Refiner at original precision; GPU may be shared. Decision cost is not full transcription latency.",
+  "plausibility_memory_policy": "CPU weight staging; unchanged float32 CUDA scoring. Transfers are recorded separately and are experiment overhead.",
+  "adapter_sha256": "c1c0a5b797c6d22a18a9050a6681abbc558282f849a50bf32a82d70de568283d",
+  "window_edit_policy": "compat",
+  "identical_arm_rule": "Always arm shares current execution only when current already selects exactly the same operation."
+}

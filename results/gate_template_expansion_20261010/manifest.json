@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "count": 108,
+  "seed": 20261011,
+  "slots_per_template": 1,
+  "texts_sha256": "79b1977207c7ed4d68944ee1b2dadced2ffc1859e60bfc73524bd594b32debee",
+  "generator_sha256": "2c690629c627624c37a90a1e0ffb569d161087078b142fe63322328572a21ef7",
+  "prior_texts_sha256": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+  "prior_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen_tts_asr_gpu_pilot_20261010",
+  "categories": {
+    "clean": 24,
+    "filler": 24,
+    "stutter": 24,
+    "meaningful_expand": 16,
+    "protected_expand": 12,
+    "syntax_expand": 8
+  },
+  "synthetic_splits": {
+    "train": 64,
+    "test": 22,
+    "dev": 22
+  },
+  "unique_template_groups": 60,
+  "template_groups_by_split": {
+    "train": 36,
+    "dev": 12,
+    "test": 12
+  },
+  "split_unit": "scenario_family_with_all_slots_and_disfluency_counterparts",
+  "prior_delexicalized_template_overlap": 0,
+  "reference_role": "unverified_synthesis_scripts_not_human_gold",
+  "intended_policy": "remove_marked_filler_stutter_preserve_emphasis_negation_numbers_and_syntax",
+  "predeclared_label_rule": "existing_conservative_pair_effect_labels_not_scenario_categories",
+  "scope": "new_template_train_expansion_reserved_dev_test_not_synthesized"
+}

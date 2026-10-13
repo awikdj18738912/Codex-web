@@ -1,0 +1,56 @@
+{
+  "elapsed_seconds": 18.995,
+  "actual_audio_inference": true,
+  "previous_raw_excerpt": "在下王禅，想找你做个SPA，你找错人了。在下厉飞羽，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧县",
+  "previous_clean_excerpt": "在下王禅，想找你做个SPA，你找错人了。在下厉飞羽，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧县",
+  "raw_excerpt": "在下王禅，想找你做个SPA，你找错人了。在下厉飞羽，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家",
+  "clean_excerpt": "在下王禅，想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家",
+  "raw_text_identical_to_previous": false,
+  "entity_normalizations": [
+    {
+      "observed": "厉飞羽",
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667,
+      "decision": "CONTEXT_CONFIRMED",
+      "confirmation_method": "bounded_prose_entity_projection_v1",
+      "discarded_response_reasons": [
+        "entity_confirmation_required:厉飞宇",
+        "semantic_content_loss"
+      ]
+    }
+  ],
+  "target_corrected": true,
+  "event_counts": {
+    "chunk_ack": 323,
+    "transcript": 94,
+    "update": 14,
+    "final": 1
+  },
+  "refiner_reject_reasons": [
+    "segment_1:severe_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss",
+    "segment_1:semantic_content_loss"
+  ],
+  "refiner_session_stats": {
+    "schema_version": 1,
+    "call_count": 20,
+    "initial_call_count": 17,
+    "retry_call_count": 3,
+    "intermediate_call_count": 19,
+    "final_call_count": 1,
+    "completed_call_count": 20,
+    "failed_call_count": 0,
+    "inflight_call_count": 0,
+    "completed_wall_latency_ms": 4186.83,
+    "gate_skipped_segment_count": 35,
+    "busy_segment_count": 0,
+    "closed_call_rejection_count": 0,
+    "observed_initial_opportunity_count": 52,
+    "accepting_new_calls": false,
+    "stats_complete": true
+  }
+}

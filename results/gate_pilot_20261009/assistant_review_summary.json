@@ -1,0 +1,61 @@
+{
+  "total": 500,
+  "changed_reviewed": 157,
+  "identical_output_neutral": 343,
+  "auxiliary_label_counts": {
+    "uncertain": 22,
+    "neutral": 76,
+    "benefit": 32,
+    "harm": 27
+  },
+  "auxiliary_harm_severity": {
+    "minor": 26,
+    "major": 1
+  },
+  "needs_audio_to_judge": 26,
+  "audio_checked": 0,
+  "auxiliary_train_eligible": 0,
+  "human_labels_present": 0,
+  "human_labels_on_changed": 0,
+  "unique_recordings_changed": 64,
+  "by_task": {
+    "local_edit_review": {
+      "uncertain": 9,
+      "benefit": 10,
+      "harm": 1
+    },
+    "window_refine": {
+      "uncertain": 13,
+      "neutral": 76,
+      "benefit": 22,
+      "harm": 26
+    }
+  },
+  "by_data_kind": {
+    "demo_without_reference": {
+      "benefit": 10,
+      "neutral": 22,
+      "harm": 10,
+      "uncertain": 6
+    },
+    "human_medical": {
+      "uncertain": 13,
+      "neutral": 9,
+      "benefit": 21,
+      "harm": 4
+    },
+    "human_news": {
+      "neutral": 8,
+      "uncertain": 2,
+      "benefit": 1,
+      "harm": 1
+    },
+    "public_tts": {
+      "neutral": 37,
+      "harm": 12,
+      "uncertain": 1
+    }
+  },
+  "manifest_sha256": "1e72b4d905055d95c00fd2210034bbaab8a25d4bb727cbd4c66a20b503675728",
+  "review_method": "individual_text_comparison_no_audio"
+}

@@ -1,0 +1,1106 @@
+[
+  {
+    "elapsed_seconds": 0.08120496617630124,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.5823454838246107,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 1.1128847571089864,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.113316245842725,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把赞。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.9031002146038244
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把赞。",
+      "display_text": "先把赞。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.583692653104663,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 2.12574323406443,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.1260909950360656,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9980187408758312
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.4545,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录。",
+      "display_text": "先把暂存目录。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.581813014112413,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 3.142508218996227,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.1430262881331146,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.9991950321149213
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2632,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组。",
+      "display_text": "先把暂存目录交给值班组。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.5824318528175354,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.15404288796708,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.154475416988134,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 11,
+        "min_probability": 0.9741344700484872
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1111,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录。",
+      "display_text": "先把暂存目录交给值班组，目录。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.582482362166047,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 15.078228548169136,
+    "payload": {
+      "event": "status",
+      "stage": "asr_chunk",
+      "chunk_index": 11,
+      "elapsed_seconds": 10
+    }
+  },
+  {
+    "elapsed_seconds": 25.089362151920795,
+    "payload": {
+      "event": "status",
+      "stage": "asr_chunk",
+      "chunk_index": 11,
+      "elapsed_seconds": 20
+    }
+  },
+  {
+    "elapsed_seconds": 35.10030225478113,
+    "payload": {
+      "event": "status",
+      "stage": "asr_chunk",
+      "chunk_index": 11,
+      "elapsed_seconds": 30
+    }
+  },
+  {
+    "elapsed_seconds": 35.24819267122075,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 35.248968889936805,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.7301204557188306
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1667,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 35.87788681406528,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 36.85215750709176,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 13
+    }
+  },
+  {
+    "elapsed_seconds": 36.852821475826204,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.9442413456632159
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0455,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 38.040559325832874,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 14
+    }
+  },
+  {
+    "elapsed_seconds": 38.901883529964834,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 15
+    }
+  },
+  {
+    "elapsed_seconds": 38.90254287002608,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.9746018890171375
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.08,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 40.09225019905716,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 16
+    }
+  },
+  {
+    "elapsed_seconds": 41.809005891904235,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 17
+    }
+  },
+  {
+    "elapsed_seconds": 41.80948858195916,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9980722942682311
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0847,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 41.8360855281353,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 18
+    }
+  },
+  {
+    "elapsed_seconds": 41.925933286082,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 19
+    }
+  },
+  {
+    "elapsed_seconds": 41.92644769605249,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。复。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.4598323749948167
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0588,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。复。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。复。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 42.110427849926054,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 20
+    }
+  },
+  {
+    "elapsed_seconds": 42.2405118229799,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 21
+    }
+  },
+  {
+    "elapsed_seconds": 42.24101807316765,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9996174845543703
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0909,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 42.96937617613003,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 22
+    }
+  },
+  {
+    "elapsed_seconds": 43.22255012812093,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 23
+    }
+  },
+  {
+    "elapsed_seconds": 43.22315781796351,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.7702113828513054
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0353,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 43.725004395935684,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 24
+    }
+  },
+  {
+    "elapsed_seconds": 43.96416387101635,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 25
+    }
+  },
+  {
+    "elapsed_seconds": 43.96467180084437,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.5726367882503219
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0435,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 44.005754292942584,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 26
+    }
+  },
+  {
+    "elapsed_seconds": 44.27545153023675,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 27
+    }
+  },
+  {
+    "elapsed_seconds": 44.27620042907074,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.995894074678054
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0303,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 44.513114486820996,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9951294625449658
+      },
+      "refiner_deferred": true,
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "display_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 45.27260041190311,
+    "payload": {
+      "event": "update",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "clean_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9951294625449658
+      },
+      "refiner_latency_ms": 726,
+      "numeric_rule_latency_ms": 1.71,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:repetition_intent_loss"
+      ],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。",
+        "负责人又提醒，不能删除。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        },
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 31,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 14,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 39,
+          "end": 48,
+          "source": "不能删除，不能删除",
+          "target": "不能删除",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 2.6820000000000004,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 6,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。",
+          "clean_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。",
+          "state": "committed"
+        },
+        {
+          "source_text": "负责人又提醒，不能删除，不能删除。",
+          "clean_text": "负责人又提醒，不能删除，不能删除。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 2,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 2
+      },
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "active_clean_text": "",
+      "display_refined_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "pending_raw_text": "",
+      "display_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 2,
+        "initial_call_count": 2,
+        "retry_call_count": 0,
+        "intermediate_call_count": 2,
+        "final_call_count": 0,
+        "completed_call_count": 2,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 742.763,
+        "gate_skipped_segment_count": 0,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 2,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 2,
+      "session_refiner_initial_call_count": 2,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 2,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 0,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 45.278166817035526,
+    "payload": {
+      "event": "final",
+      "raw_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "clean_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9951294625449658
+      },
+      "refiner_latency_ms": 726,
+      "numeric_rule_latency_ms": 1.71,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:repetition_intent_loss"
+      ],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。",
+        "负责人又提醒，不能删除。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        },
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 31,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 14,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 39,
+          "end": 48,
+          "source": "不能删除，不能删除",
+          "target": "不能删除",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 39,
+          "end": 48,
+          "source": "不能删除，不能删除",
+          "target": "不能删除",
+          "kind": "punctuated_run",
+          "context": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。负责人又提醒，不能删除，不能删除。",
+          "decision": "keep",
+          "reason": "source_repetition_preservation",
+          "preservation_reasons": [
+            "repeated_negated_content"
+          ],
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 3.94,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 6,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "先把暂存目录交给值班组，目录目录暂时不能删除，等备份校验结束再清理。",
+          "clean_text": "先把暂存目录交给值班组，目录暂时不能删除，等备份校验结束再清理。",
+          "state": "committed"
+        },
+        {
+          "source_text": "负责人又提醒，不能删除，不能删除。",
+          "clean_text": "负责人又提醒，不能删除，不能删除。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 2,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 1,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "repetition_restorations": [],
+      "refinement_revision": 1,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 2,
+        "initial_call_count": 2,
+        "retry_call_count": 0,
+        "intermediate_call_count": 2,
+        "final_call_count": 0,
+        "completed_call_count": 2,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 742.763,
+        "gate_skipped_segment_count": 0,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 2,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 2,
+      "session_refiner_initial_call_count": 2,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 2,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 0,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

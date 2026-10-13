@@ -1,0 +1,62 @@
+{
+  "off": {
+    "samples": 9,
+    "character_errors": 252,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 4,
+    "unreferenced_mentions": 0,
+    "instruction_echo_samples": 0,
+    "CER": 0.6072289156626506
+  },
+  "legacy": {
+    "samples": 9,
+    "character_errors": 323,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 5,
+    "unreferenced_mentions": 4,
+    "instruction_echo_samples": 2,
+    "CER": 0.7783132530120482
+  },
+  "json_terms": {
+    "samples": 9,
+    "character_errors": 314,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 5,
+    "unreferenced_mentions": 18,
+    "instruction_echo_samples": 0,
+    "CER": 0.7566265060240964
+  },
+  "comma_terms": {
+    "samples": 9,
+    "character_errors": 311,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 4,
+    "unreferenced_mentions": 18,
+    "instruction_echo_samples": 0,
+    "CER": 0.7493975903614458
+  },
+  "english_guard": {
+    "samples": 9,
+    "character_errors": 267,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 4,
+    "unreferenced_mentions": 7,
+    "instruction_echo_samples": 0,
+    "CER": 0.6433734939759036
+  },
+  "suffix_guard": {
+    "samples": 9,
+    "character_errors": 258,
+    "reference_chars": 415,
+    "expected_mentions": 7,
+    "recovered_mentions": 4,
+    "unreferenced_mentions": 0,
+    "instruction_echo_samples": 0,
+    "CER": 0.6216867469879518
+  }
+}

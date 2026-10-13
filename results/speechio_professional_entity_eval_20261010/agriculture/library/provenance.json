@@ -1,0 +1,20 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "domain": "agriculture",
+  "training_split_seed": "speechio-professional-split-v1",
+  "train_rows": 1203,
+  "heldout_rows": 727,
+  "vocabulary_size": 6,
+  "vocabulary_source": "60% deterministic training split only",
+  "integration_domain": "medical (temporary fixture so the existing web/entity route can load the isolated experiment library)",
+  "test_selection": "All heldout utterances with at least one exact training-known curated domain term",
+  "reference_at_inference": false,
+  "aliases_added": false,
+  "frozen_hashes": {
+    "entities.db": "25ec0215a029000834a116e61cf65c86a12ed8721f54aa9f92aaef9af3ef925a",
+    "entities.json": "5a966b456427b6bd5321c08133120f866f84af7f6be9dfd84bd7f9edacc013cc",
+    "sample_entities.json": "fa0a7a549374b75ac42fae20f75b9208381061f9fda57ad6f95551ae980999fc",
+    "vocabulary_evidence.json": "70c50139c2e7bbb0b292da0085bfa1662f036ac6962e16fdc75c4b4b70434ab0"
+  }
+}

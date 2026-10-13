@@ -1,0 +1,474 @@
+{
+  "selected_implementation": "shared_preservation_guard_and_web_preflight_original_prompt_frozen_gate",
+  "original_audio_diagnostic": {
+    "by_policy": {
+      "rules": {
+        "recordings": 22,
+        "exact_intended": 11,
+        "intended_micro_cer": 0.05172413793103448,
+        "improved_vs_rules": 0,
+        "degraded_vs_rules": 0,
+        "logical_refiner_calls": 0,
+        "logical_plausibility_calls": 0
+      },
+      "current": {
+        "recordings": 22,
+        "exact_intended": 11,
+        "intended_micro_cer": 0.04885057471264368,
+        "improved_vs_rules": 2,
+        "degraded_vs_rules": 1,
+        "logical_refiner_calls": 11,
+        "logical_plausibility_calls": 2
+      },
+      "student": {
+        "recordings": 22,
+        "exact_intended": 11,
+        "intended_micro_cer": 0.04885057471264368,
+        "improved_vs_rules": 2,
+        "degraded_vs_rules": 1,
+        "logical_refiner_calls": 6,
+        "logical_plausibility_calls": 2
+      },
+      "always": {
+        "recordings": 22,
+        "exact_intended": 12,
+        "intended_micro_cer": 0.04310344827586207,
+        "improved_vs_rules": 4,
+        "degraded_vs_rules": 1,
+        "logical_refiner_calls": 28,
+        "logical_plausibility_calls": 2
+      }
+    },
+    "current_student_differences": [],
+    "normalized_same_current_student": 22,
+    "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+    "complete": true,
+    "references": "unverified_synthesis_scripts_not_human_gold"
+  },
+  "original_risk_diagnostic": {
+    "by_policy": {
+      "rules": {
+        "recordings": 14,
+        "exact_intended": 10,
+        "intended_micro_cer": 0.014134275618374558,
+        "improved_vs_rules": 0,
+        "degraded_vs_rules": 0,
+        "logical_refiner_calls": 0,
+        "logical_plausibility_calls": 0
+      },
+      "current": {
+        "recordings": 14,
+        "exact_intended": 3,
+        "intended_micro_cer": 0.09540636042402827,
+        "improved_vs_rules": 0,
+        "degraded_vs_rules": 8,
+        "logical_refiner_calls": 26,
+        "logical_plausibility_calls": 0
+      },
+      "student": {
+        "recordings": 14,
+        "exact_intended": 10,
+        "intended_micro_cer": 0.014134275618374558,
+        "improved_vs_rules": 0,
+        "degraded_vs_rules": 0,
+        "logical_refiner_calls": 2,
+        "logical_plausibility_calls": 0
+      }
+    },
+    "current_student_differences": [
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_003",
+        "current": "这条记录真的不能丢失。发言人刻意说了两遍。",
+        "student": "啊，这条记录真的真的不能丢失。发言人刻意说了两遍。",
+        "current_distance": 2,
+        "student_distance": 1
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_004",
+        "current": "这个校验步骤特别关键，讲解者反复强调。",
+        "student": "这个校验步骤特别特别关键，讲解者反复强调。",
+        "current_distance": 2,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_005",
+        "current": "邮件里注明附件特别重要，请保留原始文件。",
+        "student": "邮件里注明附件特别特别重要，请保留原始文件。",
+        "current_distance": 2,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_006",
+        "current": "大家要仔细再仔细，提醒语里的重复不能省去。",
+        "student": "大家要仔细，仔细再仔细，提醒语里的重复不能省去。",
+        "current_distance": 2,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_007",
+        "current": "我们等了很久才拿到审核结果。",
+        "student": "我们等了很久很久，才拿到审核结果。",
+        "current_distance": 2,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_010",
+        "current": "这个结论不一定成立。讲师重复提醒了2次。",
+        "student": "这个结论不一定成立，不一定成立。讲师重复提醒了2次。",
+        "current_distance": 5,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_011",
+        "current": "文件不能删除，记录中保留了2次完整警告。",
+        "student": "文件不能删除，不能删除，记录中保留了2次完整警告。",
+        "current_distance": 4,
+        "student_distance": 0
+      },
+      {
+        "recording_group": "synthetic_text:risk_dev_20261010_012",
+        "current": "这不是通行证。工作人员重复说明。",
+        "student": "这不是通行证，不是通行证。工作人员重复说明。",
+        "current_distance": 5,
+        "student_distance": 0
+      }
+    ],
+    "normalized_same_current_student": 6,
+    "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+    "complete": true,
+    "references": "unverified_synthesis_scripts_not_human_gold"
+  },
+  "current_results": {
+    "final_guard_test": {
+      "by_policy": {
+        "rules": {
+          "recordings": 22,
+          "exact_intended": 11,
+          "intended_micro_cer": 0.05172413793103448,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0
+        },
+        "current": {
+          "recordings": 22,
+          "exact_intended": 12,
+          "intended_micro_cer": 0.040229885057471264,
+          "improved_vs_rules": 2,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 9,
+          "logical_plausibility_calls": 2
+        },
+        "student": {
+          "recordings": 22,
+          "exact_intended": 12,
+          "intended_micro_cer": 0.040229885057471264,
+          "improved_vs_rules": 2,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 5,
+          "logical_plausibility_calls": 2
+        }
+      },
+      "current_student_differences": [],
+      "normalized_same_current_student": 22,
+      "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+      "complete": true,
+      "references": "unverified_synthesis_scripts_not_human_gold"
+    },
+    "final_guard_risk": {
+      "by_policy": {
+        "rules": {
+          "recordings": 14,
+          "exact_intended": 10,
+          "intended_micro_cer": 0.014134275618374558,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0
+        },
+        "current": {
+          "recordings": 14,
+          "exact_intended": 11,
+          "intended_micro_cer": 0.01060070671378092,
+          "improved_vs_rules": 1,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 22,
+          "logical_plausibility_calls": 0
+        },
+        "student": {
+          "recordings": 14,
+          "exact_intended": 10,
+          "intended_micro_cer": 0.014134275618374558,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 1,
+          "logical_plausibility_calls": 0
+        }
+      },
+      "current_student_differences": [
+        {
+          "recording_group": "synthetic_text:risk_dev_20261010_003",
+          "current": "这条记录真的真的不能丢失。发言人刻意说了两遍。",
+          "student": "啊，这条记录真的真的不能丢失。发言人刻意说了两遍。",
+          "current_distance": 0,
+          "student_distance": 1
+        }
+      ],
+      "normalized_same_current_student": 13,
+      "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+      "complete": true,
+      "references": "unverified_synthesis_scripts_not_human_gold"
+    },
+    "text_original": {
+      "by_policy": {
+        "rules": {
+          "recordings": 24,
+          "exact_intended": 7,
+          "intended_micro_cer": 0.15625,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0
+        },
+        "current": {
+          "recordings": 24,
+          "exact_intended": 10,
+          "intended_micro_cer": 0.1736111111111111,
+          "improved_vs_rules": 10,
+          "degraded_vs_rules": 7,
+          "logical_refiner_calls": 26,
+          "logical_plausibility_calls": 3
+        },
+        "student": {
+          "recordings": 24,
+          "exact_intended": 8,
+          "intended_micro_cer": 0.1736111111111111,
+          "improved_vs_rules": 5,
+          "degraded_vs_rules": 3,
+          "logical_refiner_calls": 10,
+          "logical_plausibility_calls": 3
+        }
+      },
+      "current_student_differences": [
+        {
+          "recording_group": "text_development:repetition_preservation_001",
+          "current": "这份档案很珍贵，请妥善保存。",
+          "student": "这份档案很珍贵很珍贵，请妥善保存。",
+          "current_distance": 3,
+          "student_distance": 0
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_002",
+          "current": "资源极其有限，优先处理告警。",
+          "student": "资源极其极其有限，优先处理告警。",
+          "current_distance": 2,
+          "student_distance": 0
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_004",
+          "current": "验收记录要1页一页阅读。",
+          "student": "验收记录要一页一页阅读。",
+          "current_distance": 1,
+          "student_distance": 0
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_012",
+          "current": "把附件发到采购组。",
+          "student": "把附件发到采购采购组。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_013",
+          "current": "现场需要登记数量。",
+          "student": "现场需要需要登记数量。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_017",
+          "current": "稍后在仓库门口碰面。",
+          "student": "稍后在仓仓库门口碰面。",
+          "current_distance": 0,
+          "student_distance": 1
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_019",
+          "current": "换班时需要记录温度。",
+          "student": "换班时需要记录记录温度。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_020",
+          "current": "这份材料已由负责人签收。",
+          "student": "这份材料已已由负责人签收。",
+          "current_distance": 0,
+          "student_distance": 1
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_022",
+          "current": "非常关键，请确认确认编号。",
+          "student": "非常非常关键，请确认确认编号。",
+          "current_distance": 4,
+          "student_distance": 2
+        }
+      ],
+      "normalized_same_current_student": 15,
+      "scope": "text_only_development_sequential_probe",
+      "complete": true,
+      "references": "developer_text_expectations_not_audio_gold"
+    },
+    "text_final_guard": {
+      "by_policy": {
+        "rules": {
+          "recordings": 24,
+          "exact_intended": 12,
+          "intended_micro_cer": 0.06597222222222222,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0
+        },
+        "current": {
+          "recordings": 24,
+          "exact_intended": 22,
+          "intended_micro_cer": 0.010416666666666666,
+          "improved_vs_rules": 10,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 25,
+          "logical_plausibility_calls": 3
+        },
+        "student": {
+          "recordings": 24,
+          "exact_intended": 17,
+          "intended_micro_cer": 0.03819444444444445,
+          "improved_vs_rules": 5,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 7,
+          "logical_plausibility_calls": 3
+        }
+      },
+      "current_student_differences": [
+        {
+          "recording_group": "text_development:repetition_preservation_012",
+          "current": "把附件发到采购组。",
+          "student": "把附件发到采购采购组。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_013",
+          "current": "现场需要登记数量。",
+          "student": "现场需要需要登记数量。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_017",
+          "current": "稍后在仓库门口碰面。",
+          "student": "稍后在仓仓库门口碰面。",
+          "current_distance": 0,
+          "student_distance": 1
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_019",
+          "current": "换班时需要记录温度。",
+          "student": "换班时需要记录记录温度。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_020",
+          "current": "这份材料已由负责人签收。",
+          "student": "这份材料已已由负责人签收。",
+          "current_distance": 0,
+          "student_distance": 1
+        }
+      ],
+      "normalized_same_current_student": 19,
+      "scope": "text_only_development_sequential_probe",
+      "complete": true,
+      "references": "developer_text_expectations_not_audio_gold"
+    },
+    "text_final_prompt": {
+      "by_policy": {
+        "rules": {
+          "recordings": 24,
+          "exact_intended": 12,
+          "intended_micro_cer": 0.06597222222222222,
+          "improved_vs_rules": 0,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0
+        },
+        "current": {
+          "recordings": 24,
+          "exact_intended": 22,
+          "intended_micro_cer": 0.010416666666666666,
+          "improved_vs_rules": 10,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 26,
+          "logical_plausibility_calls": 3
+        },
+        "student": {
+          "recordings": 24,
+          "exact_intended": 17,
+          "intended_micro_cer": 0.03819444444444445,
+          "improved_vs_rules": 5,
+          "degraded_vs_rules": 0,
+          "logical_refiner_calls": 7,
+          "logical_plausibility_calls": 3
+        }
+      },
+      "current_student_differences": [
+        {
+          "recording_group": "text_development:repetition_preservation_012",
+          "current": "把附件发到采购组。",
+          "student": "把附件发到采购采购组。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_013",
+          "current": "现场需要登记数量。",
+          "student": "现场需要需要登记数量。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_017",
+          "current": "稍后在仓库门口碰面。",
+          "student": "稍后在仓仓库门口碰面。",
+          "current_distance": 0,
+          "student_distance": 1
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_019",
+          "current": "换班时需要记录温度。",
+          "student": "换班时需要记录记录温度。",
+          "current_distance": 0,
+          "student_distance": 2
+        },
+        {
+          "recording_group": "text_development:repetition_preservation_020",
+          "current": "这份材料已由负责人签收。",
+          "student": "这份材料已已由负责人签收。",
+          "current_distance": 0,
+          "student_distance": 1
+        }
+      ],
+      "normalized_same_current_student": 19,
+      "scope": "text_only_development_sequential_probe",
+      "complete": true,
+      "references": "developer_text_expectations_not_audio_gold"
+    }
+  },
+  "limitations": [
+    "post_test_development_diagnostics",
+    "unverified_audio_scripts",
+    "text_probes_are_not_audio_gold",
+    "risk_dev_was_used_for_selection",
+    "no_full_streaming_cache_or_online_latency"
+  ]
+}

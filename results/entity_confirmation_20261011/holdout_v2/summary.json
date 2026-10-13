@@ -1,0 +1,42 @@
+{
+  "seed": "entity-confirmation-holdout-20261011-v1",
+  "pre_ASR_selection": true,
+  "fixed_library_size": 1346,
+  "pools": {
+    "negative": 4097,
+    "新闻人物组织地理": 1117,
+    "历史教育": 101,
+    "体育文化": 36,
+    "工业交通": 35,
+    "科技计算机通信": 1,
+    "自然科学化学": 1
+  },
+  "quotas": {
+    "体育文化": 12,
+    "历史教育": 12,
+    "工业交通": 12,
+    "科技计算机通信": 12,
+    "自然科学化学": 12,
+    "新闻人物组织地理": 112,
+    "negative": 50
+  },
+  "accepted": {
+    "体育文化": 12,
+    "历史教育": 12,
+    "工业交通": 12,
+    "科技计算机通信": 1,
+    "自然科学化学": 1,
+    "新闻人物组织地理": 112,
+    "negative": 50
+  },
+  "samples": 200,
+  "cohorts": {
+    "positive": 150,
+    "negative": 50
+  },
+  "limitations": [
+    "Reference literal annotations do not establish semantic NER identity.",
+    "Fixed known-word library, same source corpora; not speaker or model-pretraining independence.",
+    "Only AISHELL and Common Voice used; quotas may have source availability shortfalls."
+  ]
+}

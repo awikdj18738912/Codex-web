@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ec2_6d69ea498293fa9cf0d8",
+    "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_confirmation_20261011/holdout/pcm/ec2_6d69ea498293fa9cf0d8.f32le",
+    "db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+    "expected_old": "柏林越秀区博物馆是位于德国柏林的一座博物馆。",
+    "expected_new": "柏林乐曲博物馆是位于德国柏林的一座博物馆。",
+    "reference": "柏林乐器博物馆是位于德国柏林的一座博物馆。",
+    "cohort": "development_200"
+  },
+  {
+    "id": "fleurs:data-00000-of-00002.arrow:358:1730",
+    "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/generic_entity_optimization_20261010/holdout/audio/fleurs:data-00000-of-00002.arrow:358:1730.pcm",
+    "db": "/home/aim0/桌面/tan/ASR/Codex-web/results/generic_entity_optimization_20261010/holdout/libraries/fleurs_zh-CN_test/entities.db",
+    "expected_old": "全天都有公交车从城区间公交站跨河发车，但大部分车次，特别是开往东部和贾卡尔尔布姆唐的公交车，都在六点半到七点半之间发车。",
+    "expected_new": "全天都有公交车从城区间公交站跨河发车，但大部分车次，特别是开往东部和贾卡尔尔布姆唐的公交车，都在六点半到七点半之间发车。",
+    "cohort": "historical_endpoint_omission"
+  },
+  {
+    "id": "leb1_005a4068ad48e06eedac",
+    "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_005a4068ad48e06eedac.f32le",
+    "db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+    "expected_old": "华商报讯记者杨德合买了两个肉夹馍。",
+    "expected_new": "华商报讯记者杨德合买了两个肉夹馍。",
+    "reference": "华商报讯记者杨德合买了两个肉夹馍",
+    "cohort": "unchanged_control"
+  },
+  {
+    "id": "leb1_1ef4d56ce461f58ef3da",
+    "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1ef4d56ce461f58ef3da.f32le",
+    "db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+    "expected_old": "高浓度的硫磺，再加水杨酸。",
+    "expected_new": "高浓度的硫磺，再加水杨酸。",
+    "reference": "高浓度的硫磺再加水杨酸",
+    "cohort": "unchanged_control"
+  },
+  {
+    "id": "leb1_8c2510722ec5a19f9656",
+    "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8c2510722ec5a19f9656.f32le",
+    "db": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+    "expected_old": "中传是好友谢霆锋的创作。",
+    "expected_new": "中传是好友谢霆锋的创作。",
+    "reference": "终站是好友谢霆锋的创作",
+    "cohort": "unchanged_control"
+  }
+]

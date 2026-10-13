@@ -1,0 +1,128 @@
+{
+  "event": "round3_policy_frozen_before_test_audio",
+  "primary_model": "encoder_ternary_operation",
+  "primary_route": "native_veto",
+  "variants": {
+    "encoder_ternary_strict": {
+      "metrics": {
+        "cases": 396,
+        "weak_eligible_cases": 395,
+        "selected_decisions": 183,
+        "selected_fraction": 0.4621212121212121,
+        "available_benefit": 104,
+        "captured_benefit": 101,
+        "benefit_recall": 0.9711538461538461,
+        "weak_harm": 0,
+        "weak_harm_fraction_all_cases": 0.0,
+        "weak_harm_fraction_selected": 0.0,
+        "selected_uncertain": 1,
+        "exact_intended": 270,
+        "exact_intended_fraction": 0.6818181818181818,
+        "intended_micro_cer": 0.04221635883905013,
+        "spoken_micro_cer": 0.07508878741755454,
+        "improved_intended": 101,
+        "degraded_intended": 0,
+        "logical_refiner_calls": 210,
+        "logical_plausibility_calls": 1,
+        "recorded_operation_cost_ms": 49934.553,
+        "gate_cpu_estimated_ms": 1872.7192040532827,
+        "estimated_serial_cost_ms": 51807.27220405328
+      },
+      "thresholds": {
+        "veto_thresholds": {
+          "window_refine": {
+            "neutral": 0.9,
+            "harm": 1.01
+          },
+          "local_edit_review": {
+            "neutral": 0.6,
+            "harm": 1.01
+          }
+        }
+      },
+      "weights_sha256": "efe51ff5afb0d887e461fae5b5db2014a14545794bf99118c7d6a4b4967fe1f8",
+      "metadata_sha256": "fd773697626f75cce447350d226a03ac704c7cfd6a6d9966a8287df3e2a31e04"
+    },
+    "encoder_ternary_operation": {
+      "metrics": {
+        "cases": 396,
+        "weak_eligible_cases": 395,
+        "selected_decisions": 173,
+        "selected_fraction": 0.43686868686868685,
+        "available_benefit": 104,
+        "captured_benefit": 101,
+        "benefit_recall": 0.9711538461538461,
+        "weak_harm": 0,
+        "weak_harm_fraction_all_cases": 0.0,
+        "weak_harm_fraction_selected": 0.0,
+        "selected_uncertain": 1,
+        "exact_intended": 270,
+        "exact_intended_fraction": 0.6818181818181818,
+        "intended_micro_cer": 0.04221635883905013,
+        "spoken_micro_cer": 0.07508878741755454,
+        "improved_intended": 101,
+        "degraded_intended": 0,
+        "logical_refiner_calls": 199,
+        "logical_plausibility_calls": 1,
+        "recorded_operation_cost_ms": 44536.245,
+        "gate_cpu_estimated_ms": 1849.4053995236757,
+        "estimated_serial_cost_ms": 46385.65039952368
+      },
+      "thresholds": {
+        "veto_thresholds": {
+          "window_refine": {
+            "neutral": 0.7,
+            "harm": 1.01
+          },
+          "local_edit_review": {
+            "neutral": 0.6,
+            "harm": 1.01
+          }
+        }
+      },
+      "weights_sha256": "88ed313aabd7edb033af0e5bf33c7b362d9e146d9ea6524bb63e9afa00711592",
+      "metadata_sha256": "d6e13053fd4e6afe06eb10c8c73923ae8065c0bb3076e2ada8d14fb7b94564e9"
+    },
+    "encoder_binary_operation": {
+      "metrics": {
+        "cases": 396,
+        "weak_eligible_cases": 395,
+        "selected_decisions": 186,
+        "selected_fraction": 0.4696969696969697,
+        "available_benefit": 104,
+        "captured_benefit": 101,
+        "benefit_recall": 0.9711538461538461,
+        "weak_harm": 0,
+        "weak_harm_fraction_all_cases": 0.0,
+        "weak_harm_fraction_selected": 0.0,
+        "selected_uncertain": 1,
+        "exact_intended": 270,
+        "exact_intended_fraction": 0.6818181818181818,
+        "intended_micro_cer": 0.04221635883905013,
+        "spoken_micro_cer": 0.07508878741755454,
+        "improved_intended": 101,
+        "degraded_intended": 0,
+        "logical_refiner_calls": 214,
+        "logical_plausibility_calls": 1,
+        "recorded_operation_cost_ms": 50946.169,
+        "gate_cpu_estimated_ms": 1862.72316519171,
+        "estimated_serial_cost_ms": 52808.89216519171
+      },
+      "thresholds": {
+        "gain_thresholds": {
+          "window_refine": 0.2,
+          "local_edit_review": 0.4
+        }
+      },
+      "weights_sha256": "09c815ffd370154b0a0e063aece886130fe877a61453bff59fd96ed48bb88919",
+      "metadata_sha256": "b5761fa49cd1aae44984f1e0147cb7effc7cd36a023630bf474840134e6a0cef"
+    }
+  },
+  "freeze_unix": 1791699193.8912861,
+  "dataset_manifest_sha256": "d9d64243bf0de2a32c4e5d8d3d7092258e79dc82f4dbb29baff469d9a8dcc77b",
+  "test_not_opened": true,
+  "cohort_task_minimum_retention": 0.95,
+  "old_dev_is_reused": true,
+  "retention_unit": "recording_group_all_beneficial_views_per_cohort_task",
+  "criterion": "minimum_development_recorded_model_cost_plus_CPU_gate_cost_after_retention_constraints"
+}

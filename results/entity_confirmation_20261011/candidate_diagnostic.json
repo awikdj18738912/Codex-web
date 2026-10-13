@@ -1,0 +1,480 @@
+{
+  "source_snapshot": "results/large_entity_benchmark_v1_20261010/full_evaluation/source_snapshot/system/entity_audio_repair.py",
+  "database": "results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+  "method": "GenericEntitySelector.select(initial.text), loaded with SQLite mode=ro",
+  "selector_settings": {
+    "retrieval_minimum_score": 0.52,
+    "max_candidates_per_span": 5,
+    "max_prompt_terms": 8,
+    "audio_replay_minimum_score": 0.63
+  },
+  "score_note": "Retrieval/character/phonetic scores are lexical and pinyin retrieval evidence, not calibrated correctness probabilities.",
+  "cases": [
+    {
+      "id": "leb1_38459bb96fdd7d36ecc1",
+      "initial_text": "庞清、董剑仍肩负着扛起中国双人滑大旗的重任。",
+      "production_final_text": "庞清、董健仍肩负着扛起中国双人滑大旗的重任。",
+      "actual_prompt_terms": [
+        "董健",
+        "中国双人滑军团",
+        "佟健",
+        "中国队",
+        "英国",
+        "韩国",
+        "东京",
+        "东莞"
+      ],
+      "recomputed_prompt_terms": [
+        "董健",
+        "中国双人滑军团",
+        "佟健",
+        "中国队",
+        "英国",
+        "韩国",
+        "东京",
+        "东莞"
+      ],
+      "prompt_terms_match_recorded": true,
+      "selector_candidate_count": 12,
+      "max_candidate_score": 0.95,
+      "corrections": [
+        {
+          "wrong_correction": {
+            "start": 3,
+            "end": 5,
+            "observed": "董剑",
+            "selected_canonical": "董健"
+          },
+          "exact_span_candidate_count": 4,
+          "exact_span_ambiguity": true,
+          "overlap_candidate_count": 6,
+          "overlap_candidates": [
+            {
+              "start": 3,
+              "end": 5,
+              "observed": "董剑",
+              "canonical": "董健",
+              "evidence_surface": "董健",
+              "entity_id": 1087,
+              "retrieval_score": 0.95,
+              "character_score": 0.5,
+              "phonetic_score": 1.0,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "observed": "董剑",
+              "canonical": "佟健",
+              "evidence_surface": "佟健",
+              "entity_id": 137,
+              "retrieval_score": 0.755,
+              "character_score": 0.0,
+              "phonetic_score": 0.81875,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 3,
+              "end": 6,
+              "observed": "董剑仍",
+              "canonical": "董健",
+              "evidence_surface": "董健",
+              "entity_id": 1087,
+              "retrieval_score": 0.686667,
+              "character_score": 0.333333,
+              "phonetic_score": 0.733333,
+              "length_score": 0.666667,
+              "boundary_issue": null,
+              "included_in_prompt": true,
+              "same_exact_span": false
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "observed": "董剑",
+              "canonical": "东京",
+              "evidence_surface": "东京",
+              "entity_id": 23,
+              "retrieval_score": 0.67,
+              "character_score": 0.0,
+              "phonetic_score": 0.7125,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "observed": "董剑",
+              "canonical": "东莞",
+              "evidence_surface": "东莞",
+              "entity_id": 30,
+              "retrieval_score": 0.67,
+              "character_score": 0.0,
+              "phonetic_score": 0.7125,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 3,
+              "end": 6,
+              "observed": "董剑仍",
+              "canonical": "佟健",
+              "evidence_surface": "佟健",
+              "entity_id": 137,
+              "retrieval_score": 0.556667,
+              "character_score": 0.0,
+              "phonetic_score": 0.6125,
+              "length_score": 0.666667,
+              "boundary_issue": null,
+              "included_in_prompt": true,
+              "same_exact_span": false
+            }
+          ],
+          "all_exact_span_candidates_in_prompt": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_6c86c4a79561e0611e5e",
+      "initial_text": "广东惠州惊爆，港商杀情妇碎尸凶案。",
+      "production_final_text": "广东惠州金报，港商杀情妇碎尸凶案。",
+      "actual_prompt_terms": [
+        "冈山",
+        "兴安",
+        "金报",
+        "瑞士",
+        "新京报",
+        "广安",
+        "西安",
+        "唐山"
+      ],
+      "recomputed_prompt_terms": [
+        "冈山",
+        "兴安",
+        "金报",
+        "瑞士",
+        "新京报",
+        "广安",
+        "西安",
+        "唐山"
+      ],
+      "prompt_terms_match_recorded": true,
+      "selector_candidate_count": 10,
+      "max_candidate_score": 0.772,
+      "corrections": [
+        {
+          "wrong_correction": {
+            "start": 4,
+            "end": 6,
+            "observed": "惊爆",
+            "selected_canonical": "金报"
+          },
+          "exact_span_candidate_count": 2,
+          "exact_span_ambiguity": true,
+          "overlap_candidate_count": 2,
+          "overlap_candidates": [
+            {
+              "start": 4,
+              "end": 6,
+              "observed": "惊爆",
+              "canonical": "金报",
+              "evidence_surface": "金报",
+              "entity_id": 1198,
+              "retrieval_score": 0.755,
+              "character_score": 0.0,
+              "phonetic_score": 0.81875,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "observed": "惊爆",
+              "canonical": "新京报",
+              "evidence_surface": "新京报",
+              "entity_id": 584,
+              "retrieval_score": 0.653333,
+              "character_score": 0.0,
+              "phonetic_score": 0.733333,
+              "length_score": 0.666667,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            }
+          ],
+          "all_exact_span_candidates_in_prompt": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_8c2510722ec5a19f9656",
+      "initial_text": "终战是好友谢霆锋的创作。",
+      "production_final_text": "中传是好友谢霆锋的创作。",
+      "actual_prompt_terms": [
+        "中传",
+        "钟欣",
+        "嵩山",
+        "中国战队",
+        "商洛",
+        "郑州",
+        "世茂",
+        "德国"
+      ],
+      "recomputed_prompt_terms": [
+        "中传",
+        "钟欣",
+        "嵩山",
+        "中国战队",
+        "商洛",
+        "郑州",
+        "世茂",
+        "德国"
+      ],
+      "prompt_terms_match_recorded": true,
+      "selector_candidate_count": 8,
+      "max_candidate_score": 0.704,
+      "corrections": [
+        {
+          "wrong_correction": {
+            "start": 0,
+            "end": 2,
+            "observed": "终战",
+            "selected_canonical": "中传"
+          },
+          "exact_span_candidate_count": 5,
+          "exact_span_ambiguity": true,
+          "overlap_candidate_count": 5,
+          "overlap_candidates": [
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "终战",
+              "canonical": "中传",
+              "evidence_surface": "中传",
+              "entity_id": 35,
+              "retrieval_score": 0.704,
+              "character_score": 0.0,
+              "phonetic_score": 0.755,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "终战",
+              "canonical": "钟欣",
+              "evidence_surface": "钟欣",
+              "entity_id": 1204,
+              "retrieval_score": 0.585,
+              "character_score": 0.0,
+              "phonetic_score": 0.60625,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "终战",
+              "canonical": "嵩山",
+              "evidence_surface": "嵩山",
+              "entity_id": 446,
+              "retrieval_score": 0.559,
+              "character_score": 0.0,
+              "phonetic_score": 0.57375,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "终战",
+              "canonical": "中国战队",
+              "evidence_surface": "中国战队",
+              "entity_id": 47,
+              "retrieval_score": 0.555,
+              "character_score": 0.25,
+              "phonetic_score": 0.6,
+              "length_score": 0.5,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "终战",
+              "canonical": "郑州",
+              "evidence_surface": "郑州",
+              "entity_id": 1178,
+              "retrieval_score": 0.542,
+              "character_score": 0.0,
+              "phonetic_score": 0.5525,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            }
+          ],
+          "all_exact_span_candidates_in_prompt": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_d39d7292a9660cc1eef6",
+      "initial_text": "冈商疑恼，羞成怒，将他杀害。",
+      "production_final_text": "冈山疑恼，羞成怒，将他杀害。",
+      "actual_prompt_terms": [
+        "冈山",
+        "刘澄",
+        "成都",
+        "上海",
+        "权义",
+        "唐山",
+        "央行",
+        "伊萨"
+      ],
+      "recomputed_prompt_terms": [
+        "冈山",
+        "刘澄",
+        "成都",
+        "上海",
+        "权义",
+        "唐山",
+        "央行",
+        "伊萨"
+      ],
+      "prompt_terms_match_recorded": true,
+      "selector_candidate_count": 12,
+      "max_candidate_score": 0.822,
+      "corrections": [
+        {
+          "wrong_correction": {
+            "start": 0,
+            "end": 2,
+            "observed": "冈商",
+            "selected_canonical": "冈山"
+          },
+          "exact_span_candidate_count": 3,
+          "exact_span_ambiguity": true,
+          "overlap_candidate_count": 6,
+          "overlap_candidates": [
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "冈商",
+              "canonical": "冈山",
+              "evidence_surface": "冈山",
+              "entity_id": 174,
+              "retrieval_score": 0.822,
+              "character_score": 0.5,
+              "phonetic_score": 0.84,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 1,
+              "end": 3,
+              "observed": "商疑",
+              "canonical": "权义",
+              "evidence_surface": "权义",
+              "entity_id": 642,
+              "retrieval_score": 0.636,
+              "character_score": 0.0,
+              "phonetic_score": 0.67,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": false
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "冈商",
+              "canonical": "唐山",
+              "evidence_surface": "唐山",
+              "entity_id": 305,
+              "retrieval_score": 0.627,
+              "character_score": 0.0,
+              "phonetic_score": 0.65875,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 0,
+              "end": 2,
+              "observed": "冈商",
+              "canonical": "央行",
+              "evidence_surface": "央行",
+              "entity_id": 377,
+              "retrieval_score": 0.627,
+              "character_score": 0.0,
+              "phonetic_score": 0.65875,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": true
+            },
+            {
+              "start": 1,
+              "end": 3,
+              "observed": "商疑",
+              "canonical": "上海",
+              "evidence_surface": "上海",
+              "entity_id": 12,
+              "retrieval_score": 0.613333,
+              "character_score": 0.0,
+              "phonetic_score": 0.641667,
+              "length_score": 1.0,
+              "boundary_issue": "short_chinese_span_requires_alias",
+              "included_in_prompt": true,
+              "same_exact_span": false
+            },
+            {
+              "start": 0,
+              "end": 3,
+              "observed": "冈商疑",
+              "canonical": "冈山",
+              "evidence_surface": "冈山",
+              "entity_id": 174,
+              "retrieval_score": 0.601333,
+              "character_score": 0.333333,
+              "phonetic_score": 0.626667,
+              "length_score": 0.666667,
+              "boundary_issue": null,
+              "included_in_prompt": true,
+              "same_exact_span": false
+            }
+          ],
+          "all_exact_span_candidates_in_prompt": true
+        }
+      ]
+    }
+  ],
+  "assessment": {
+    "competition_veto_counterfactual": "A veto for multiple selected candidates on the exact changed span would have rejected all four observed erroneous edits: each has at least two exact-span candidates, and every exact-span alternative was in the recorded prompt.",
+    "current_behavior": "The selector includes competing terms in the prompt but does not itself veto them. verify_entity_audio_changes accepts non-overlapping candidates that appear in the replay text and are context-supported; it rejects overlap only when multiple alternatives are independently confirmed, so a single wrong replay spelling can pass.",
+    "generalization_risk": "A broad ambiguity veto may reject correct repairs for common names, short spans, dense dictionaries, or phonetic collisions. Four retrospective examples do not justify a threshold; quantify coverage and false rejection on the full set before tuning."
+  }
+}

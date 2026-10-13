@@ -1,0 +1,531 @@
+{
+  "schema_version": 1,
+  "context_builder": "system.entity_asr_context.build_entity_asr_context",
+  "context_builder_parameters": {
+    "selected_domain": "general",
+    "max_terms": 16,
+    "max_chars": 1024
+  },
+  "selection": "Existing topic-specific benchmark SQLite by first topic in frozen sample.topics; supplemental SpeechIO SQLite by source. No per-sample gold-based library selection.",
+  "libraries": {
+    "automotive": {
+      "library_key": "automotive",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/libraries/automotive/entities.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/automotive.db",
+      "source_sha256": "99242e976959377a65b1568d373f1b5f89d01bdb98129a48949e833a83f47b4a",
+      "snapshot_sha256": "89800f54a738e06c31986023650efc0471c05c7fdb372801189191bb0eabfd4d",
+      "entity_count": 33,
+      "enabled_count": 33,
+      "entity_type_counts": {
+        "ORG": 10,
+        "PERSON": 1,
+        "TERM": 22
+      },
+      "domain_counts": {
+        "general": 33
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "主动刹车",
+        "分时四驱",
+        "双离合变速箱",
+        "发动机",
+        "变速箱",
+        "四驱系统",
+        "多连杆",
+        "探险者",
+        "无线充电",
+        "日间行车灯",
+        "涡轮增压",
+        "独立悬架",
+        "米其林",
+        "自动驾驶",
+        "自适应巡航",
+        "车道保持"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"主动刹车\", \"分时四驱\", \"双离合变速箱\", \"发动机\", \"变速箱\", \"四驱系统\", \"多连杆\", \"探险者\", \"无线充电\", \"日间行车灯\", \"涡轮增压\", \"独立悬架\", \"米其林\", \"自动驾驶\", \"自适应巡航\", \"车道保持\"]",
+      "context16_sha256": "797fb328489742a961e72ae8f4ea1b10e6a2f4c21f3f5e12b6d380a1d0cc3e6a",
+      "static_gold_coverage": {
+        "mentions": 47,
+        "covered_mentions": 20,
+        "unique_gold": 32,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "football": {
+      "library_key": "football",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/libraries/football/entities.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/football.db",
+      "source_sha256": "50f2ec8fdbc2c59af994ba2cbc25c85145890dfe1e39dd31fe4d4703634c886e",
+      "snapshot_sha256": "3ba846b264d40728811f95689f5b42ecebe577edd34ecbe9fcf252cb5d7e9af7",
+      "entity_count": 57,
+      "enabled_count": 57,
+      "entity_type_counts": {
+        "LOC": 11,
+        "ORG": 10,
+        "PERSON": 23,
+        "TERM": 13
+      },
+      "domain_counts": {
+        "general": 57
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "世界杯",
+        "世界足球先生",
+        "乌拉圭",
+        "任意球",
+        "伯纳乌",
+        "佛罗伦萨",
+        "克林斯曼",
+        "克洛泽",
+        "兰帕德",
+        "南斯拉夫",
+        "博卡青年",
+        "卡纳瓦罗",
+        "哥伦比亚",
+        "国际米兰",
+        "图拉姆",
+        "圣埃蒂安"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"世界杯\", \"世界足球先生\", \"乌拉圭\", \"任意球\", \"伯纳乌\", \"佛罗伦萨\", \"克林斯曼\", \"克洛泽\", \"兰帕德\", \"南斯拉夫\", \"博卡青年\", \"卡纳瓦罗\", \"哥伦比亚\", \"国际米兰\", \"图拉姆\", \"圣埃蒂安\"]",
+      "context16_sha256": "2e3a21d1e1fb1f06cb216c80d477ee86de57644f38192a55fa14aaf9a07adfa6",
+      "static_gold_coverage": {
+        "mentions": 68,
+        "covered_mentions": 17,
+        "unique_gold": 52,
+        "unique_covered": 15,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_01_体育文化": {
+      "library_key": "topic_01_体育文化",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_01_体育文化.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_01_体育文化.db",
+      "source_sha256": "d6c8de21cff0a18a0f17356af8a9ce984fa93a70a6376db8cc2aba087c0a90d4",
+      "snapshot_sha256": "4b8ac8d14a7de3539cf25172c217a3277f2b406054496f611a7f36ba0c74e26d",
+      "entity_count": 26,
+      "enabled_count": 26,
+      "entity_type_counts": {
+        "TERM": 26
+      },
+      "domain_counts": {
+        "general": 26
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "中国传统戏曲",
+        "中国戏曲",
+        "亚运会",
+        "体育场",
+        "体育赛事",
+        "体育馆",
+        "博物馆",
+        "古典音乐",
+        "国家篮球协会",
+        "国际足联",
+        "太极拳",
+        "奥林匹克运动会",
+        "戏剧艺术",
+        "文化遗产",
+        "文物保护",
+        "民间传说"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"中国传统戏曲\", \"中国戏曲\", \"亚运会\", \"体育场\", \"体育赛事\", \"体育馆\", \"博物馆\", \"古典音乐\", \"国家篮球协会\", \"国际足联\", \"太极拳\", \"奥林匹克运动会\", \"戏剧艺术\", \"文化遗产\", \"文物保护\", \"民间传说\"]",
+      "context16_sha256": "522285df9ba002ebc3789d64ebcbaaed643c71ff906269646256cd7d3878e13c",
+      "static_gold_coverage": {
+        "mentions": 26,
+        "covered_mentions": 16,
+        "unique_gold": 26,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_02_农业生态": {
+      "library_key": "topic_02_农业生态",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_02_农业生态.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_02_农业生态.db",
+      "source_sha256": "6620e9813af205cb6cbf40466043cad90b6e3b9338164cee0613cc7271b07ccb",
+      "snapshot_sha256": "76fc63189d9a3dd14ef62062b1ccf2c3b1f1fd6eac1770b0509f944e3d107094",
+      "entity_count": 28,
+      "enabled_count": 28,
+      "entity_type_counts": {
+        "TERM": 28
+      },
+      "domain_counts": {
+        "general": 28
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "农业技术",
+        "农家肥",
+        "农药残留",
+        "有机肥",
+        "杀菌剂",
+        "杀虫剂",
+        "温室气体",
+        "畜牧业",
+        "经济作物",
+        "自然保护区",
+        "除草剂"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"农业技术\", \"农家肥\", \"农药残留\", \"有机肥\", \"杀菌剂\", \"杀虫剂\", \"温室气体\", \"畜牧业\", \"经济作物\", \"自然保护区\", \"除草剂\"]",
+      "context16_sha256": "a14e48d3b3c6ee6cc7fc8bd7d9564a3282d9e0447911f9c90211299b06c1db69",
+      "static_gold_coverage": {
+        "mentions": 28,
+        "covered_mentions": 11,
+        "unique_gold": 28,
+        "unique_covered": 11,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_03_医疗健康": {
+      "library_key": "topic_03_医疗健康",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_03_医疗健康.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_03_医疗健康.db",
+      "source_sha256": "3bbe96ddde5954196a95e3e430b39c3d16f9bb5c335a55d9e43d50cfa6a2f05f",
+      "snapshot_sha256": "dd17bdc0dd77310678c5bc66ed1628bc1534f13531e080481836360381ac4e11",
+      "entity_count": 101,
+      "enabled_count": 101,
+      "entity_type_counts": {
+        "TERM": 101
+      },
+      "domain_counts": {
+        "general": 101
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "严重烧伤",
+        "乙酰胆碱",
+        "乙酰胆碱受体",
+        "人类免疫缺陷病毒",
+        "代谢疾病",
+        "传染病",
+        "低血压",
+        "促肾上腺皮质激素",
+        "免疫球蛋白",
+        "关节炎",
+        "兴奋剂",
+        "内分泌",
+        "内质网",
+        "冠心病",
+        "冠状病毒",
+        "半胱氨酸"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"严重烧伤\", \"乙酰胆碱\", \"乙酰胆碱受体\", \"人类免疫缺陷病毒\", \"代谢疾病\", \"传染病\", \"低血压\", \"促肾上腺皮质激素\", \"免疫球蛋白\", \"关节炎\", \"兴奋剂\", \"内分泌\", \"内质网\", \"冠心病\", \"冠状病毒\", \"半胱氨酸\"]",
+      "context16_sha256": "5a129237b5dc2a4589762c84294a4555e00c869504e90b49517830eb6a50de0b",
+      "static_gold_coverage": {
+        "mentions": 105,
+        "covered_mentions": 17,
+        "unique_gold": 102,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_04_历史教育": {
+      "library_key": "topic_04_历史教育",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_04_历史教育.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_04_历史教育.db",
+      "source_sha256": "73238cff2140aafd79b4ba3f3046739b73653bdcb6f58f5be59a73405f23dbde",
+      "snapshot_sha256": "9bbc5bd43f76ff7744103d3287a16afc3d98479e608955ef2fc1dba3bad50248",
+      "entity_count": 24,
+      "enabled_count": 24,
+      "entity_type_counts": {
+        "TERM": 24
+      },
+      "domain_counts": {
+        "general": 24
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "世界历史",
+        "中国历史",
+        "义务教育",
+        "冷战时期",
+        "拜占庭帝国",
+        "教育学",
+        "文艺复兴",
+        "春秋战国",
+        "法国大革命",
+        "科举制度",
+        "第一次世界大战",
+        "第二次世界大战",
+        "素质教育",
+        "罗马帝国",
+        "职业教育",
+        "近代史"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"世界历史\", \"中国历史\", \"义务教育\", \"冷战时期\", \"拜占庭帝国\", \"教育学\", \"文艺复兴\", \"春秋战国\", \"法国大革命\", \"科举制度\", \"第一次世界大战\", \"第二次世界大战\", \"素质教育\", \"罗马帝国\", \"职业教育\", \"近代史\"]",
+      "context16_sha256": "d21e5a40de8b8ad712982145985c9c49d134e92b01418eb4bdeef67f46b10e8c",
+      "static_gold_coverage": {
+        "mentions": 24,
+        "covered_mentions": 16,
+        "unique_gold": 24,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_05_工业交通": {
+      "library_key": "topic_05_工业交通",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_05_工业交通.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_05_工业交通.db",
+      "source_sha256": "e7edd0d0a5e88ede31163823848e75e1eeb80767c9599be092bf54be41966012",
+      "snapshot_sha256": "0c5a42f3da0a6637087e07a93de45782289c931afc708d34103574f6f6bbcb52",
+      "entity_count": 23,
+      "enabled_count": 23,
+      "entity_type_counts": {
+        "TERM": 23
+      },
+      "domain_counts": {
+        "general": 23
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "交通运输",
+        "公共交通",
+        "内燃机车",
+        "城市轨道交通",
+        "工业设计",
+        "无人机",
+        "有轨电车",
+        "机械制造",
+        "机械工程",
+        "机车车辆",
+        "核电站",
+        "汽车制造",
+        "电动机",
+        "电动汽车",
+        "航空运输",
+        "蒸汽机"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"交通运输\", \"公共交通\", \"内燃机车\", \"城市轨道交通\", \"工业设计\", \"无人机\", \"有轨电车\", \"机械制造\", \"机械工程\", \"机车车辆\", \"核电站\", \"汽车制造\", \"电动机\", \"电动汽车\", \"航空运输\", \"蒸汽机\"]",
+      "context16_sha256": "e67d8e65d174d284b33c082da69e4813432a97e02646cbd8b7970567b1cb1aa4",
+      "static_gold_coverage": {
+        "mentions": 23,
+        "covered_mentions": 16,
+        "unique_gold": 23,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_06_新闻人物组织地理": {
+      "library_key": "topic_06_新闻人物组织地理",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_06_新闻人物组织地理.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+      "source_sha256": "c4d20d78bdb47165e4f3735d141f5df27b3f6d338e133f3a02fa33fcb3b7fcdd",
+      "snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+      "entity_count": 1051,
+      "enabled_count": 1051,
+      "entity_type_counts": {
+        "LOC": 310,
+        "ORG": 384,
+        "PERSON": 357
+      },
+      "domain_counts": {
+        "general": 1051
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "一汽大众",
+        "丁香湖公园",
+        "七五村",
+        "三江源",
+        "三藩市纪事报",
+        "上海市公积金管理中心",
+        "上海易居房地产研究院",
+        "上海易居研究所",
+        "上集镇",
+        "上集镇派出所",
+        "世界反兴奋剂机构",
+        "世界贸易组织",
+        "世纪互联",
+        "东地产财经",
+        "东地产财经周刊",
+        "东山派出所"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"一汽大众\", \"丁香湖公园\", \"七五村\", \"三江源\", \"三藩市纪事报\", \"上海市公积金管理中心\", \"上海易居房地产研究院\", \"上海易居研究所\", \"上集镇\", \"上集镇派出所\", \"世界反兴奋剂机构\", \"世界贸易组织\", \"世纪互联\", \"东地产财经\", \"东地产财经周刊\", \"东山派出所\"]",
+      "context16_sha256": "85bce3665d622e2b0e58ff7310d109c82579046cc01630eb7b4c7656486ef74d",
+      "static_gold_coverage": {
+        "mentions": 2445,
+        "covered_mentions": 17,
+        "unique_gold": 1051,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_07_法律政策": {
+      "library_key": "topic_07_法律政策",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_07_法律政策.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_07_法律政策.db",
+      "source_sha256": "6f88ba5919eb3d1d43fb4cef897a41cb4f9413749f502f26f0edc859cef1dcc8",
+      "snapshot_sha256": "c26326c2c4043c0ed6792d04ed29e325e152d1dbe17a14f53bf25f42d32537ad",
+      "entity_count": 21,
+      "enabled_count": 21,
+      "entity_type_counts": {
+        "ORG": 1,
+        "TERM": 20
+      },
+      "domain_counts": {
+        "general": 21
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "人民法院",
+        "刑事诉讼",
+        "刑事责任",
+        "司法机关",
+        "司法解释",
+        "国务院",
+        "宪法修正案",
+        "常务委员会",
+        "律师事务所",
+        "最高人民法院",
+        "正当防卫",
+        "民事案件",
+        "民事法",
+        "法律制度",
+        "法律规范",
+        "法律顾问"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"人民法院\", \"刑事诉讼\", \"刑事责任\", \"司法机关\", \"司法解释\", \"国务院\", \"宪法修正案\", \"常务委员会\", \"律师事务所\", \"最高人民法院\", \"正当防卫\", \"民事案件\", \"民事法\", \"法律制度\", \"法律规范\", \"法律顾问\"]",
+      "context16_sha256": "15cb200b576f7acca7d18a672ab248589bcec9ee819498c9caca014077b8e294",
+      "static_gold_coverage": {
+        "mentions": 21,
+        "covered_mentions": 16,
+        "unique_gold": 21,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_08_科技计算机通信": {
+      "library_key": "topic_08_科技计算机通信",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_08_科技计算机通信.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_08_科技计算机通信.db",
+      "source_sha256": "c9fa7d7b3d73b57a728d5acb9c2de86280fe7ef2e26db4b6f5d4d1c49f627720",
+      "snapshot_sha256": "a09e2c9ca49501c1e240ae0bd36967a042a4344753be01cd4bdd4aa5e7c19489",
+      "entity_count": 24,
+      "enabled_count": 24,
+      "entity_type_counts": {
+        "TERM": 24
+      },
+      "domain_counts": {
+        "general": 24
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "互联网",
+        "人脸识别",
+        "信息技术",
+        "光刻机",
+        "区块链",
+        "半导体",
+        "大数据",
+        "密码学",
+        "搜索引擎",
+        "操作系统",
+        "数据库",
+        "机器人",
+        "移动互联网",
+        "程序设计",
+        "编程语言",
+        "自动驾驶"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"互联网\", \"人脸识别\", \"信息技术\", \"光刻机\", \"区块链\", \"半导体\", \"大数据\", \"密码学\", \"搜索引擎\", \"操作系统\", \"数据库\", \"机器人\", \"移动互联网\", \"程序设计\", \"编程语言\", \"自动驾驶\"]",
+      "context16_sha256": "4ff09bdacf938a5ffeaa328c398d219338f9c0815abdf5a3fc117cbab2b458dc",
+      "static_gold_coverage": {
+        "mentions": 24,
+        "covered_mentions": 16,
+        "unique_gold": 24,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_09_自然科学化学": {
+      "library_key": "topic_09_自然科学化学",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_09_自然科学化学.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_09_自然科学化学.db",
+      "source_sha256": "4254d31605a7bf0431df237e97f47abe7bcbbe32559c9155f7299884f6218304",
+      "snapshot_sha256": "41f2b33e9d76d61f39f35c529a3b103b690ff7f6001662664037d14c99b206ec",
+      "entity_count": 24,
+      "enabled_count": 24,
+      "entity_type_counts": {
+        "TERM": 24
+      },
+      "domain_counts": {
+        "general": 24
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "二氧化碳",
+        "光合作用",
+        "化学反应",
+        "化学工业",
+        "化学工程",
+        "化学物质",
+        "原子核",
+        "同位素",
+        "太阳系",
+        "广义相对论",
+        "引力波",
+        "有机化合物",
+        "染色体",
+        "热力学第二定律",
+        "物理化学",
+        "狭义相对论"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"二氧化碳\", \"光合作用\", \"化学反应\", \"化学工业\", \"化学工程\", \"化学物质\", \"原子核\", \"同位素\", \"太阳系\", \"广义相对论\", \"引力波\", \"有机化合物\", \"染色体\", \"热力学第二定律\", \"物理化学\", \"狭义相对论\"]",
+      "context16_sha256": "5c782f13ca9d37ef2d8551a0e8d00973ceab74bb30f04d7793faf5237756458f",
+      "static_gold_coverage": {
+        "mentions": 23,
+        "covered_mentions": 15,
+        "unique_gold": 23,
+        "unique_covered": 15,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    },
+    "topic_10_金融经济": {
+      "library_key": "topic_10_金融经济",
+      "source_library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/library/topic_10_金融经济.db",
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_10_金融经济.db",
+      "source_sha256": "afca5dc3f69d1fc41db5dbefb0d78bcbdb374923d8266d6fa25231118d5cec87",
+      "snapshot_sha256": "4d68ba260ee0cd3b9816d4f072bd6730acb1b32e87c8d83b672ec282baed8716",
+      "entity_count": 26,
+      "enabled_count": 26,
+      "entity_type_counts": {
+        "TERM": 26
+      },
+      "domain_counts": {
+        "general": 26
+      },
+      "selected_domain": "general",
+      "context16_terms": [
+        "中央银行",
+        "商业银行",
+        "国际贸易",
+        "外汇储备",
+        "失业率",
+        "数字人民币",
+        "数字货币",
+        "比特币",
+        "电子支付",
+        "移动支付",
+        "经济增长",
+        "经济学",
+        "股票市场",
+        "证券交易所",
+        "财政政策",
+        "货币供应量"
+      ],
+      "context16_text": "参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"中央银行\", \"商业银行\", \"国际贸易\", \"外汇储备\", \"失业率\", \"数字人民币\", \"数字货币\", \"比特币\", \"电子支付\", \"移动支付\", \"经济增长\", \"经济学\", \"股票市场\", \"证券交易所\", \"财政政策\", \"货币供应量\"]",
+      "context16_sha256": "b6f8c5b6e7e7b01b2f442dd0ad5c1c044b42af8d988cf0b918628b829a708c69",
+      "static_gold_coverage": {
+        "mentions": 26,
+        "covered_mentions": 16,
+        "unique_gold": 26,
+        "unique_covered": 16,
+        "interpretation": "Exact canonical overlap with reference annotations; static inventory only, not ASR inference or effect."
+      }
+    }
+  }
+}

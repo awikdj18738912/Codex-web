@@ -1,22 +1,0 @@
-Loading weights:   0%|          | 0/69 [00:00<?, ?it/s]Loading weights: 100%|██████████| 69/69 [00:00<00:00, 23667.56it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: /home/aim0/桌面/tan/ASR/Codex-web/models/entity_ranker/verifier/encoder
-Key                                        | Status     | 
--------------------------------------------+------------+-
-cls.predictions.transform.dense.weight     | UNEXPECTED | 
-cls.predictions.transform.dense.bias       | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
-cls.predictions.decoder.bias               | UNEXPECTED | 
-cls.predictions.bias                       | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
-cls.predictions.decoder.weight             | UNEXPECTED | 
-pooler.dense.weight                        | MISSING    | 
-pooler.dense.bias                          | MISSING    | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
-medical_dev 1 54
-medical_dev 41 29
-medical_dev 81 21
-medical_dev 121 12
-medical_dev 161 17

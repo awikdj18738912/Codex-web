@@ -1,0 +1,34 @@
+{
+  "scope": "predefined_authored_contrast_partitions_with_frozen_old_train_anchor",
+  "source_manifest_sha256": "7b0f218267b6745e991ad202ff0a73cd425b4eb871d3ecf61a08fa742424b16c",
+  "counts": {
+    "train": {
+      "rows": 1157,
+      "keeps": 739,
+      "tasks": {
+        "disfluency": 225,
+        "repetition": 185,
+        "self_correction": 2,
+        "local_typo": 2,
+        "boundary_punctuation": 2,
+        "entity_correction": 2
+      }
+    },
+    "validation": {
+      "rows": 222,
+      "keeps": 138,
+      "tasks": {
+        "repetition": 36,
+        "disfluency": 48
+      }
+    },
+    "test": {
+      "rows": 294,
+      "keeps": 174,
+      "tasks": {
+        "repetition": 36,
+        "disfluency": 84
+      }
+    }
+  }
+}

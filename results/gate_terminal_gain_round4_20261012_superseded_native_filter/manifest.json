@@ -1,0 +1,84 @@
+{
+  "partitions": {
+    "train": {
+      "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round3_20261011/train_data",
+      "asr_sha256": "afdea90844aad97d500b1c987deebd6d215ce803dde42542a07ce6d6af03ed1c",
+      "sampling_inputs_sha256": "10988734db5f3ccc8818ad81fd08a50723b8bd18b199434d384839d6680bb313",
+      "total_source_views": 818,
+      "selected_views": 291,
+      "variants": {
+        "clean": 155,
+        "noise": 136
+      }
+    },
+    "dev": {
+      "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round3_20261011/dev_data",
+      "asr_sha256": "7c870a372927789b7af678eb6b33d560a65b622c7ce37f7b87e54a643fbbff31",
+      "sampling_inputs_sha256": "71e0ea9f723ac85c5be88634965f4731e5011520d80eba6262666b77f4cabb1e",
+      "total_source_views": 288,
+      "selected_views": 143,
+      "variants": {
+        "clean": 81,
+        "noise": 62
+      }
+    }
+  },
+  "excluded_test_templates": [
+    "basic:00",
+    "basic_expand_v1:copy_backup",
+    "basic_expand_v1:experiment_schedule",
+    "basic_expand_v1:group_notice",
+    "basic_expand_v1:prototype_ship",
+    "basic_expand_v1:work_order",
+    "fresh_round3_v1:battery",
+    "fresh_round3_v1:cabinet_key",
+    "fresh_round3_v1:cart_path",
+    "fresh_round3_v1:clock_check",
+    "fresh_round3_v1:coolant",
+    "fresh_round3_v1:folder_warning",
+    "fresh_round3_v1:fragile_seal",
+    "fresh_round3_v1:late_intent",
+    "fresh_round3_v1:packing_photo",
+    "fresh_round3_v1:power_warning",
+    "fresh_round3_v1:pressure_steps",
+    "fresh_round3_v1:quantity_correction",
+    "fresh_round3_v1:quoted_pause",
+    "fresh_round3_v1:sample_rack",
+    "fresh_round3_v1:seal_label",
+    "fresh_round3_v1:volume_scan",
+    "meaningful_expand_v1:emphasis_source",
+    "meaningful_expand_v1:every_person",
+    "meaningful_expand_v1:page_compare",
+    "meaningful_repeat:05",
+    "protected_content:00",
+    "protected_expand_v1:no_double_negative",
+    "protected_expand_v1:original_decimal",
+    "protected_expand_v1:two_prices",
+    "syntax_boundary:07",
+    "syntax_expand_v1:either_path",
+    "window_fresh_v1:clean_sequence",
+    "window_fresh_v1:late_named_alarm",
+    "window_fresh_v1:late_named_receipt",
+    "window_fresh_v1:mixed_cleanup",
+    "window_fresh_v1:never_open",
+    "window_fresh_v1:night_lamp",
+    "window_fresh_v1:quote",
+    "window_fresh_v1:rain_gauge",
+    "window_fresh_v1:rolls",
+    "window_fresh_v1:sealed_bag",
+    "window_fresh_v1:urgent_delivery",
+    "window_fresh_v1:vent_mesh"
+  ],
+  "consumed_texts_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_template_expansion_20261010/texts.jsonl": "79b1977207c7ed4d68944ee1b2dadced2ffc1859e60bfc73524bd594b32debee",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round3_20261011/test_data/texts.jsonl": "d9a5e79f73546d9595b13c73e9282caa4f8450e693c2c78b88377d264ed8d9bd",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_window_recovery_20261011/test_data/texts.jsonl": "df8ffd62277bb74647ff473d42901cc5f81e6b2594b1c7798bc3914afbf718a4"
+  },
+  "train_dev_disjoint": true,
+  "development_is_reused_not_fresh": true,
+  "sampler_sha256": "536a2ffbee466b4a88b48b750e85bdefb8932c34c633199250c9c78ecf9e889e",
+  "runtime_protocol_sha256": "f78c504750d385e203695679528eb6ffdae77092769f6dbec7854e7743c70802",
+  "pilot_reexecuted_not_merged": true,
+  "original_gate_unchanged": true,
+  "created_unix": 1791734975.9766712
+}

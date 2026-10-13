@@ -1,0 +1,1473 @@
+{
+  "seed_count": 492,
+  "reviewed_unique_entities": 213,
+  "sample_count": 213,
+  "missing_seed_count": 279,
+  "excluded_commonvoice_sample_ids": 112,
+  "excluded_commonvoice_references": 112,
+  "excluded_speechio_identifiers": 416,
+  "excluded_speechio_references": 205,
+  "by_topic": {
+    "科技计算机通信": 28,
+    "工业交通": 23,
+    "金融经济": 27,
+    "法律政策": 27,
+    "自然科学化学": 24,
+    "农业生态": 28,
+    "历史教育": 27,
+    "体育文化": 29
+  },
+  "by_source": {
+    "common_voice_zh-CN_test": 148,
+    "SpeechIO": 65
+  },
+  "by_topic_source": {
+    "科技计算机通信": {
+      "common_voice_zh-CN_test": 21,
+      "SpeechIO": 7
+    },
+    "工业交通": {
+      "common_voice_zh-CN_test": 20,
+      "SpeechIO": 3
+    },
+    "金融经济": {
+      "common_voice_zh-CN_test": 9,
+      "SpeechIO": 18
+    },
+    "法律政策": {
+      "common_voice_zh-CN_test": 17,
+      "SpeechIO": 10
+    },
+    "自然科学化学": {
+      "common_voice_zh-CN_test": 19,
+      "SpeechIO": 5
+    },
+    "农业生态": {
+      "SpeechIO": 16,
+      "common_voice_zh-CN_test": 12
+    },
+    "历史教育": {
+      "common_voice_zh-CN_test": 23,
+      "SpeechIO": 4
+    },
+    "体育文化": {
+      "common_voice_zh-CN_test": 27,
+      "SpeechIO": 2
+    }
+  },
+  "duration_seconds_total": 1501.537,
+  "missing_by_topic": {
+    "科技计算机通信": 28,
+    "工业交通": 35,
+    "金融经济": 31,
+    "法律政策": 42,
+    "自然科学化学": 34,
+    "农业生态": 40,
+    "历史教育": 35,
+    "体育文化": 34
+  },
+  "missing_seeds": [
+    {
+      "canonical": "机器学习",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "深度学习",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "神经网络",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "云计算",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "边缘计算",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "数据挖掘",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "开源软件",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "物联网",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "无线通信",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "光纤通信",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "卫星通信",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "第五代移动通信",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "第四代移动通信",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "电子商务",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "网络安全",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "信息安全",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "计算机程序",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "集成电路",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "微处理器",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "液晶显示器",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "触摸屏",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "增强现实",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "操作系统内核",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "计算机网络",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "数字信号处理",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "计算机图形学",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "人工神经网络",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "机器翻译",
+      "topic": "科技计算机通信",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "高速铁路",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "铁路运输",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "磁悬浮列车",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "混合动力汽车",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "燃料电池汽车",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "自动驾驶汽车",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "涡轮发动机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "喷气发动机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "航空发动机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "船舶工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "造船工业",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "起重机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "挖掘机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "推土机",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "数控机床",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "工业机器人",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "自动化生产线",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "智能制造",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "土木工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "建筑工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "桥梁工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "隧道工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "水利工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "水力发电",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "风力发电",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "太阳能发电",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "输电线路",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "电力系统",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "变压器",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "液压系统",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "制冷系统",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "电气工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "航空航天工程",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "卫星导航",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "全球定位系统",
+      "topic": "工业交通",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "国内生产总值",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "国民生产总值",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "债券市场",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "期货市场",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "外汇市场",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "投资银行",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "货币基金",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "指数基金",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "共同基金",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "私募股权",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "资产证券化",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "量化交易",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "高频交易",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "股票指数",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "消费者价格指数",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生产者价格指数",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "劳动生产率",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "基准利率",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "存款准备金率",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "贸易逆差",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "经济衰退",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "宏观经济",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "微观经济",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "供给侧改革",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "国民收入",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "税收政策",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "社会保险",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "养老保险",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "住房公积金",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "区块链金融",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "公司债券",
+      "topic": "金融经济",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中华人民共和国宪法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "民法典",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "刑事诉讼法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "民事诉讼法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "行政诉讼法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "行政处罚法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "劳动合同法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "消费者权益保护法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "著作权法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "专利法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "商标法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "反垄断法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "个人信息保护法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "数据安全法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "网络安全法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "环境保护法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "物权法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "合同法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "公司法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "选举法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "立法法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "国家赔偿法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "法律援助",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "行政许可",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "行政复议",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "民事责任",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "行政责任",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "无罪推定",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "证据规则",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "司法鉴定",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "人民检察院",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "最高人民检察院",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "全国人民代表大会",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "全国人民代表大会常务委员会",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "法律责任",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "知识产权",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "诉讼时效",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "法定代表人",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "劳动争议",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "仲裁委员会",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "国际法",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "公共政策",
+      "topic": "法律政策",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "元素周期表",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "化学元素",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "质子",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "放射性元素",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "化学键",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "共价键",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "离子键",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "氢键",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "氧化还原反应",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "酸碱反应",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "化学平衡",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "化学方程式",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "有机化学",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "无机化学",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "分析化学",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "高分子化学",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生物化学",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "暗物质",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "暗能量",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "恒星行星",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "地球大气层",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "板块构造",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "火山喷发",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "地震波",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "细胞分裂",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "脱氧核糖核酸",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "核糖核酸",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "基因组",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "进化论",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生态系统",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生物多样性",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "电磁感应",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "能量守恒定律",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "牛顿运动定律",
+      "topic": "自然科学化学",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "杂交水稻",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "水稻种植",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "小麦育种",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "玉米育种",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "转基因作物",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "有机农业",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生态农业",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "精准农业",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业机械化",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业灌溉",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "滴灌技术",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "喷灌技术",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "土壤肥力",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "土壤改良",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "土壤侵蚀",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "水土保持",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农作物病虫害",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "植物病理学",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业气象学",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业生态学",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业生物技术",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "植物保护",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生物农药",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "有机肥料",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "化学肥料",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农业合作社",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农产品加工",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "粮食安全",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "粮食储备",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "轮作制度",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "间作套种",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "设施农业",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "温室栽培",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "水产养殖",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "生态保护区",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "湿地保护",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "森林生态学",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "碳循环",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "可持续农业",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "农田生态系统",
+      "topic": "农业生态",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "古代史",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "现代史",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中国近代史",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "欧洲中世纪",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "工业革命",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "美国独立战争",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "丝绸之路",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "郑和下西洋",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "甲骨文",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "秦始皇兵马俑",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "敦煌莫高窟",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "京杭大运河",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "活字印刷术",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "四大发明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中华文明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "古希腊文明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "古罗马文明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "玛雅文明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "古埃及文明",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "考古学",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "历史地理学",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "教育心理学",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "学前教育",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "远程教育",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "教育改革",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "教育公平",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "课程标准",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "教学大纲",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "学分制",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "学位制度",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "普通高等学校",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "全国高等学校",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "研究生教育",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "师范教育",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "教育技术学",
+      "topic": "历史教育",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "夏季奥林匹克运动会",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "冬季奥林匹克运动会",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "亚洲运动会",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "世界杯足球赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "世界田径锦标赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中国足球协会",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "篮球联赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "羽毛球世界锦标赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "温布尔登网球锦标赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "马拉松比赛",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "竞技体操",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "艺术体操",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "速度滑冰",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "花样滑冰",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "越野滑雪",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "运动生理学",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "体育心理学",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "体育教育",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "全民健身",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "竞技体育",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "体育锻炼",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中国传统音乐",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "昆曲",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "黄梅戏",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "皮影戏",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中国书法",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "中国画",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "非物质文化遗产",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "交响乐团",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "民间音乐",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "民间文学",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "现代舞",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "芭蕾舞",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    },
+    {
+      "canonical": "电影艺术",
+      "topic": "体育文化",
+      "reason": "not_found_in_eligible_reference"
+    }
+  ],
+  "validation": {
+    "all_spans_match_reference": true,
+    "all_cv_audio_exists": true,
+    "all_cv_durations_positive": true,
+    "all_speechio_rows_and_audio_valid": true,
+    "speechio_audio_rows_checked": 65
+  }
+}

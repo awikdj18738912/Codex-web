@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "unique_canonical_names": 1346,
+  "audio_recordings": 2410,
+  "cohorts": {
+    "negative": 300,
+    "positive": 2110
+  },
+  "entity_types": {
+    "ORG": 384,
+    "PERSON": 357,
+    "LOC": 310,
+    "TERM": 295
+  },
+  "supported_gold_mentions": 2745,
+  "all_entities_have_audio_support": true,
+  "all_audio_and_float32_pcm_hashes_match": true,
+  "all_frozen_inputs_and_outputs_match": true,
+  "global_and_topic_databases_match": true,
+  "all_gold_spans_match": true,
+  "negative_samples_have_no_registered_surface": true,
+  "no_source_or_decoded_audio_duplicates": true,
+  "reference_and_gold_sidecars_match": true,
+  "sample_and_entity_counts_match": true,
+  "limitations": "Reference/annotation/codec verification, not per-item acoustic or authoritative real-world entity identity review"
+}

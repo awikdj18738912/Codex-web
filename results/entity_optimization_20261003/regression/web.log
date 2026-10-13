@@ -1,44 +1,0 @@
-Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:30,  7.26it/s]Loading weights:   1%|          | 2/219 [00:00<00:29,  7.32it/s]Loading weights:  21%|██▏       | 47/219 [00:00<00:00, 175.83it/s]Loading weights:  46%|████▌     | 100/219 [00:00<00:00, 299.88it/s]Loading weights:  71%|███████   | 156/219 [00:00<00:00, 375.69it/s]Loading weights:  97%|█████████▋| 212/219 [00:00<00:00, 428.41it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 314.65it/s]
-Loading AgenticASR Refiner...
-Loading AgenticASR Refiner...
-WEB 1/14 no_dictionary MultiMed_Chinese_test_0013 clean: 除了开刀部位有些不适以外，瑞森的身体状况基本上良好。very relieved now that everything is over. He's doing good. He was asking for Rafael. That is his his precious son. Yeah. Oh, you are. Yeah. No, no, not me. Yeah. No, just kidding. Yeah. He's massaging him now, Actually. [calls=1]
-WEB 1/14 medical_auto MultiMed_Chinese_test_0013 clean: 除了开刀部位有些不适以外，瑞森的身体状况基本上良好。very relieved now that everything is over. He's doing good. He was asking for Rafael. That is his his precious son. Yeah. Oh, you are. Yeah. No, no, not me. Yeah. No, just kidding. Yeah. He's massaging him now, Actually. [calls=1]
-WEB 2/14 no_dictionary MultiMed_Chinese_test_0013 noise: 除了开刀部位有些不适以外，沃森的身体状况基本上良好。very relieved now that everything is over.他 is doing good. He was asking for Rafael. That is his his precious son. Yeah. Oh, you are. Yeah. No, no, not me. Yeah. No, just kidding. Yeah. Is massaging him now, Actually. [calls=1]
-WEB 2/14 medical_auto MultiMed_Chinese_test_0013 noise: 除了开刀部位有些不适以外，沃森的身体状况基本上良好。very relieved now that everything is over.他 is doing good. He was asking for Rafael. That is his his precious son. Yeah. Oh, you are. Yeah. No, no, not me. Yeah. No, just kidding. Yeah. Is massaging him now, Actually. [calls=1]
-WEB 3/14 no_dictionary MultiMed_Chinese_test_0015 clean: 帮助的，所以我们必须给他们更多的资料，探坏或者是手术失败的可能性其实是非常的低大。 [calls=0]
-/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-  import pkg_resources
-WEB 3/14 medical_auto MultiMed_Chinese_test_0015 clean: 帮助的，所以我们必须给他们更多的资料，探坏或者是手术失败的可能性其实是非常的低大。 [calls=0]
-WEB 4/14 no_dictionary MultiMed_Chinese_test_0015 noise: 帮助的，所以我们必须给他们更多的资料，瘫痪或者是手术失败的可能性其实是非常的低大。 [calls=0]
-WEB 4/14 medical_auto MultiMed_Chinese_test_0015 noise: 帮助的，所以我们必须给他们更多的资料，瘫痪或者是手术失败的可能性其实是非常的低大。 [calls=0]
-WEB 5/14 no_dictionary MultiMed_Chinese_test_0048 clean: 虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。 [calls=1]
-WEB 5/14 medical_auto MultiMed_Chinese_test_0048 clean: 虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。 [calls=1]
-WEB 6/14 no_dictionary MultiMed_Chinese_test_0048 noise: 虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。 [calls=1]
-WEB 6/14 medical_auto MultiMed_Chinese_test_0048 noise: 虽然这手术是比较复杂，跟富有挑战性的，但是我觉得它蛮成功，病人术后只是在这个高度医疗。 [calls=1]
-Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 13233.09it/s]
-[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
-Key                         | Status     |  | 
-----------------------------+------------+--+-
-cls.seq_relationship.bias   | UNEXPECTED |  | 
-bert.pooler.dense.bias      | UNEXPECTED |  | 
-cls.seq_relationship.weight | UNEXPECTED |  | 
-bert.pooler.dense.weight    | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-WEB 7/14 no_dictionary MultiMed_Chinese_test_0101 clean: 好，这个就是续断，就是断了的东西才能够接回去，这个叫做骨碎补啊，骨碎了之后还能够补回去。 [calls=3]
-WEB 7/14 medical_auto MultiMed_Chinese_test_0101 clean: 好，这个就是续断，就是断了的东西才能够接回去，这个叫做骨碎补啊，骨碎了之后还能够补回去。 [calls=3]
-WEB 8/14 no_dictionary MultiMed_Chinese_test_0101 noise: 好，这个就是续断，就是断了的东西，它能够接回去，这个叫做骨碎补啊，骨碎了之后，能够补回去。 [calls=2]
-WEB 8/14 medical_auto MultiMed_Chinese_test_0101 noise: 好，这个就是续断，就是断了的东西，它能够接回去，这个叫做骨碎补啊，骨碎了之后，能够补回去。 [calls=2]
-WEB 9/14 no_dictionary MultiMed_Chinese_test_0118 clean: 穿戴无菌的手术衣跟手术手套哦，这样子才能够保持这个手术视野里面的菌落量在最低的数目。 [calls=0]
-WEB 9/14 medical_auto MultiMed_Chinese_test_0118 clean: 穿戴无菌的手术衣跟手术手套哦，这样子才能够保持这个手术视野里面的菌落量在最低的数目。 [calls=0]
-WEB 10/14 no_dictionary MultiMed_Chinese_test_0118 noise: 穿戴无菌的手术医先手术手套哦，这样子才能够保持这个手术视野里面的菌落量在最低的数目。 [calls=0]
-WEB 10/14 medical_auto MultiMed_Chinese_test_0118 noise: 穿戴无菌的手术医先手术手套哦，这样子才能够保持这个手术视野里面的菌落量在最低的数目。 [calls=0]
-WEB 11/14 no_dictionary MultiMed_Chinese_test_0185 clean: 哦，您的精神气质可以呀，我记得毛主任跟我跟你说过，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得的啊。 [calls=2]
-WEB 11/14 medical_auto MultiMed_Chinese_test_0185 clean: 哦，您的精神气质可以呀，我记得毛主任跟我跟你说过，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得的啊。 [calls=2]
-WEB 12/14 no_dictionary MultiMed_Chinese_test_0185 noise: 哦，你个京城汽车可以呀！我记得毛主任跟我跟你说过啊，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得了啊。 [calls=2]
-WEB 12/14 medical_auto MultiMed_Chinese_test_0185 noise: 哦，你个京城汽车可以呀！我记得毛主任跟我跟你说过啊，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得了啊。 [calls=2]
-WEB 13/14 no_dictionary MultiMed_Chinese_test_0216 clean: 自从接受手术以来，Cedric瘦了约14公斤。嗨，啊，nice to see you again. I feel I'm actually losing with a very comfortable pace. A lot people lose weight, like they try to motivate themselves, but people lose motivation. But if you yourself is self-discipline, then you tend to, you know, do things every day. [calls=3]
-WEB 13/14 medical_auto MultiMed_Chinese_test_0216 clean: 自从接受手术以来，Cedric瘦了约14公斤。嗨，啊，nice to see you again. I feel I'm actually losing with a very comfortable pace. A lot people lose weight, like they try to motivate themselves, but people lose motivation. But if you yourself is self-discipline, then you tend to, you know, do things every day. [calls=3]
-WEB 14/14 no_dictionary MultiMed_Chinese_test_0216 noise: 自从接受手术以来，Cidic瘦了约14公斤。嗨，nice to see you again. I feel I'm actually losing in a very comfortable place. A lot people lose weight, like they try to motivate themselves, but people lose motivation. But if you yourself, you self-discipline, then you tend to, you know, do things every day. [calls=4]
-WEB 14/14 medical_auto MultiMed_Chinese_test_0216 noise: 自从接受手术以来，Cidic瘦了约14公斤。嗨，nice to see you again. I feel I'm actually losing in a very comfortable place. A lot people lose weight, like they try to motivate themselves, but people lose motivation. But if you yourself, you self-discipline, then you tend to, you know, do things every day. [calls=4]

@@ -1,0 +1,665 @@
+[
+  {
+    "elapsed_seconds": 0.08395473705604672,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.5862089283764362,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 1.1341283894143999,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.1346884383819997,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.9992733517333366
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接。",
+      "display_text": "不要直接。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.5859751561656594,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 2.147456469014287,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.1477789282798767,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9988073047189923
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1667,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电。",
+      "display_text": "不要直接通电。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.5861772620119154,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 3.158716123085469,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.15919540124014,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电！不要直接通电！",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 11,
+        "min_probability": 0.6848004228301307
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.4286,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电！不要直接通电！",
+      "display_text": "不要直接通电！不要直接通电！",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.585204538423568,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.171257510315627,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.171711960341781,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电！不要直接通电，说明。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 13,
+        "min_probability": 0.4844213903361643
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1613,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电！不要直接通电，说明。",
+      "display_text": "不要直接通电！不要直接通电，说明。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.586483367253095,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 5.148643986321986,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 5.148989685345441,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电！不要直接通电！说明书把这条警。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.6718827510386571
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1795,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电！不要直接通电！说明书把这条警。",
+      "display_text": "不要直接通电！不要直接通电！说明书把这条警。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.586900747381151,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 6.144355173222721,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 13
+    }
+  },
+  {
+    "elapsed_seconds": 6.144770541228354,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9996645384165465
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.102,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "display_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.572351253125817,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9997963128222394
+      },
+      "refiner_deferred": true,
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "display_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.578212690073997,
+    "payload": {
+      "event": "update",
+      "raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "clean_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9997963128222394
+      },
+      "refiner_latency_ms": 0,
+      "numeric_rule_latency_ms": 1.376,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [],
+      "structured_patch_audits": [],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "numeric_handled_by_rule_pack"
+          ],
+          "visible_chars": 24,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [
+        {
+          "original": "两次",
+          "replacement": "2次",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 24,
+          "end": 26,
+          "segment_index": 1,
+          "engine": "zh-itn",
+          "rule_pack": "zh-itn-strict-conservative-v90"
+        }
+      ],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 0,
+          "end": 13,
+          "source": "不要直接通电！不要直接通电",
+          "target": "不要直接通电",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 0.774,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 3,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+          "clean_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+      "active_clean_text": "",
+      "display_refined_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+      "pending_raw_text": "",
+      "display_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 0,
+        "initial_call_count": 0,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 0,
+        "completed_call_count": 0,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 0.0,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 0,
+      "session_refiner_initial_call_count": 0,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 6.582975211087614,
+    "payload": {
+      "event": "final",
+      "raw_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+      "clean_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9997963128222394
+      },
+      "refiner_latency_ms": 0,
+      "numeric_rule_latency_ms": 1.376,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [],
+      "structured_patch_audits": [],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "numeric_handled_by_rule_pack"
+          ],
+          "visible_chars": 24,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [
+        {
+          "original": "两次",
+          "replacement": "2次",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 24,
+          "end": 26,
+          "segment_index": 1,
+          "engine": "zh-itn",
+          "rule_pack": "zh-itn-strict-conservative-v90"
+        }
+      ],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 0,
+          "end": 13,
+          "source": "不要直接通电！不要直接通电",
+          "target": "不要直接通电",
+          "kind": "punctuated_run",
+          "decision": "deferred",
+          "reason": "awaiting_five_sentence_context",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 0,
+          "end": 13,
+          "source": "不要直接通电！不要直接通电",
+          "target": "不要直接通电",
+          "kind": "punctuated_run",
+          "context": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+          "decision": "keep",
+          "reason": "source_repetition_preservation",
+          "preservation_reasons": [
+            "repeated_negated_content"
+          ],
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.622,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 3,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "不要直接通电！不要直接通电！说明书把这条警告写了两次。",
+          "clean_text": "不要直接通电！不要直接通电！说明书把这条警告写了2次。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 1,
+      "window_cache_reused_gate_skip_group_count": 1,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 1,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "refinement_revision": 1,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 0,
+        "initial_call_count": 0,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 0,
+        "completed_call_count": 0,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 0.0,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 0,
+      "session_refiner_initial_call_count": 0,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

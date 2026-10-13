@@ -1,0 +1,1171 @@
+[
+  {
+    "elapsed_seconds": 0.08224545000120997,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.5840887520462275,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 1.129259825218469,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.1298113213852048,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.9991934848642076
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收。",
+      "display_text": "凭证收。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.5827039871364832,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 2.129099825397134,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.1296377209946513,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.9947731945212119
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "stable_clean_segment"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1111,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到。",
+      "display_text": "凭证收到。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.5832737679593265,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 3.147732940968126,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.1482738070189953,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.9857338646586323
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.3333,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到。",
+      "display_text": "凭证收到。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.5830919262953103,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.168710840400308,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.169229886960238,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9832135611325974
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1304,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到，先核。",
+      "display_text": "凭证收到，先核。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.582883737049997,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 5.15790931833908,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 5.158450435381383,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9398734131743586
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1034,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到，先核对印章。",
+      "display_text": "凭证收到，先核对印章。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.5828204061836,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 6.16967715928331,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 13
+    }
+  },
+  {
+    "elapsed_seconds": 6.17015343811363,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填行。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.8807874263850728
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1351,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到，先核对印章，接着填行。",
+      "display_text": "凭证收到，先核对印章，接着填行。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.58291893126443,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 14
+    }
+  },
+  {
+    "elapsed_seconds": 7.156429509166628,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 15
+    }
+  },
+  {
+    "elapsed_seconds": 7.1570062739774585,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9999759203026506
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1304,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。",
+      "display_text": "凭证收到，先核对印章，接着填写收件日期。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 7.583959108218551,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 16
+    }
+  },
+  {
+    "elapsed_seconds": 8.214362579397857,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 17
+    }
+  },
+  {
+    "elapsed_seconds": 8.215272540226579,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999814036965474
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 1,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 1057.9,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。",
+      "display_text": "凭证收到，先核对印章，接着填写收件日期。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 8.381843750365078,
+    "payload": {
+      "event": "update",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。",
+      "clean_text": "凭证收到，先核对印章接着填写收件日期。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999814036965474
+      },
+      "refiner_latency_ms": 152,
+      "numeric_rule_latency_ms": 1.466,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "凭证收到，先核对印章"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 8,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 0.9490000000000001,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 3,
+      "pending_refinement_chunks": 1,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "凭证收到，凭证收到，先核对印章，",
+          "clean_text": "凭证收到，先核对印章",
+          "state": "committed"
+        },
+        {
+          "source_text": "接着填写收件日期。",
+          "clean_text": "接着填写收件日期。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 157.797,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 2,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 8.632634438108653,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 18
+    }
+  },
+  {
+    "elapsed_seconds": 8.633029081393033,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的皮。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 5,
+        "min_probability": 0.9555192902110476
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0909,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "前面的皮。",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的皮。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 9.084110042080283,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 19
+    }
+  },
+  {
+    "elapsed_seconds": 9.652789660263807,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 20
+    }
+  },
+  {
+    "elapsed_seconds": 9.653271628078073,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9334397090633724
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1077,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "前面的凭证收到，说。",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 10.083697444293648,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 21
+    }
+  },
+  {
+    "elapsed_seconds": 10.665595495142043,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 22
+    }
+  },
+  {
+    "elapsed_seconds": 10.666126003023237,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9948776054267046
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0411,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "前面的凭证收到，说了两遍。",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 11.084386731032282,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 23
+    }
+  },
+  {
+    "elapsed_seconds": 11.69570141332224,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 24
+    }
+  },
+  {
+    "elapsed_seconds": 11.696154853329062,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "current_state",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 15,
+        "min_probability": 0.7038542463432438
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0952,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "前面的凭证收到，说了两遍，需要保留，重复。",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 12.083922379184514,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 25
+    }
+  },
+  {
+    "elapsed_seconds": 12.581477615050972,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 26
+    }
+  },
+  {
+    "elapsed_seconds": 12.844762319233268,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6490636763724108
+      },
+      "refiner_deferred": true,
+      "display_revision": 1,
+      "committed_clean_text": "凭证收到，先核对印章",
+      "active_clean_text": "接着填写收件日期。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。",
+      "pending_raw_text": "前面的凭证收到，说了两遍，需要保留，重复。",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 12.852958442177624,
+    "payload": {
+      "event": "update",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "clean_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6490636763724108
+      },
+      "refiner_latency_ms": 152,
+      "numeric_rule_latency_ms": 4.444,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "凭证收到，先核对印章"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 19,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "refinement_gate_skipped_segments": 2,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.578,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 6,
+      "pending_refinement_chunks": 2,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "凭证收到，凭证收到，先核对印章，",
+          "clean_text": "凭证收到，先核对印章",
+          "state": "committed"
+        },
+        {
+          "source_text": "接着填写收件日期。前面的凭证收到，说了两遍，",
+          "clean_text": "接着填写收件日期。前面的凭证收到，说了两遍，",
+          "state": "committed"
+        },
+        {
+          "source_text": "需要保留，重复。",
+          "clean_text": "需要保留，重复。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 1,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "refinement_revision": 2,
+      "display_revision": 2,
+      "committed_clean_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，",
+      "active_clean_text": "需要保留，重复。",
+      "display_refined_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "pending_raw_text": "",
+      "display_text": "凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 157.797,
+        "gate_skipped_segment_count": 3,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 4,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 3,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 12.862165553029627,
+    "payload": {
+      "event": "final",
+      "raw_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "clean_text": "凭证收到，凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6490636763724108
+      },
+      "refiner_latency_ms": 152,
+      "numeric_rule_latency_ms": 4.651,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "凭证收到，先核对印章"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 13,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 19,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "confidence_unverified_safe_keep"
+          ],
+          "visible_chars": 6,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        }
+      ],
+      "refinement_gate_skipped_segments": 2,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 5.184,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 8,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "凭证收到，凭证收到，先核对印章，接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+          "clean_text": "凭证收到，凭证收到，先核对印章接着填写收件日期。前面的凭证收到，说了两遍，需要保留，重复。",
+          "state": "final"
+        }
+      ],
+      "window_cache_reused_group_count": 2,
+      "window_cache_reused_gate_skip_group_count": 1,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 2,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "repetition_restorations": [
+        {
+          "start": 0,
+          "end": 0,
+          "target": "凭证收到，",
+          "source": "",
+          "source_start": 0,
+          "source_end": 5,
+          "reason": "explicit_repetition_intent"
+        }
+      ],
+      "refinement_revision": 2,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 1,
+        "final_call_count": 0,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 157.797,
+        "gate_skipped_segment_count": 4,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 5,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 1,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 4,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

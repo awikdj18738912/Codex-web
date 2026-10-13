@@ -1,0 +1,39 @@
+{
+  "records": 86,
+  "original_labels": {
+    "neutral": 63,
+    "harm": 4,
+    "uncertain": 11,
+    "benefit": 8
+  },
+  "proposed_labels": {
+    "neutral": 63,
+    "harm": 4,
+    "uncertain": 6,
+    "benefit": 13
+  },
+  "changed_cases": [
+    "658face2d7de8c952be09f36",
+    "2ff60f1f4688278ef98b349f",
+    "05a8aad628da497cf6adfa8f",
+    "7812e22f8a85eccd878502c4",
+    "bf8f1655b27d0d2c6ecd2d85"
+  ],
+  "source_fingerprints": {
+    "pairs_full": {
+      "protocol_sha256": "d489e9d19f4e29a893acdb7996a0229b5e80d5a517dfdd5f1891e3e3dd16a7f3",
+      "pair_sha256": "97665c91ff697b363f0a3bcd0bb3e313c9ed19de73c38af22e24586458b1bca2",
+      "label_sha256": "ebfa326555b2fa4f6863532cbd74ff80a356fa58db116a99402ce45ebfe40d8d"
+    },
+    "pairs_review_full": {
+      "protocol_sha256": "1559bb1aa6ed11ce6b6d6ad95304dd797f06c564dde45fe89c2de5a130f1a610",
+      "pair_sha256": "12b2c047b5eb277ea74999f3cb1536656b88ac0a7659bd9e5305412c0a4f9346",
+      "label_sha256": "5a83d0465f6353dd7eba3ff71a475050bc5613fd4932b5b98c100dd56513a71b"
+    }
+  },
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_template_expansion_20261010",
+  "test_or_dev_included": false,
+  "scope": "training_source_operation_proposals_only_not_relabelled_gold_or_current_teacher",
+  "automatic_training_enabled": false,
+  "next_step": "Recapture outcomes with the new teacher; do not mix teacher versions or use proposals as audio gold."
+}

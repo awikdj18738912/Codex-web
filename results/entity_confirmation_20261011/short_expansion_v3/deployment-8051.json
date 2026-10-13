@@ -1,0 +1,38 @@
+{
+  "port": 8051,
+  "pid": 1282602,
+  "health": {
+    "ok": true,
+    "window_edit_policy": "compat",
+    "strict_local_protocol_version": null,
+    "entity_db": true,
+    "entity_asr_context_enabled": false,
+    "entity_audio_repair_enabled": true,
+    "refinement_gate_mode": "tri_state",
+    "asr_api_style": "current",
+    "numeric_normalization_enabled": true,
+    "numeric_backend": "zh-itn",
+    "zh_itn_enabled": true,
+    "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+    "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+  },
+  "ready_entity_status": {
+    "enabled": true,
+    "phase": "capturing",
+    "reason": null,
+    "entity_count": 7,
+    "candidate_count": 0,
+    "max_candidate_score": 0.0,
+    "minimum_replay_score": 0.63,
+    "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+    "prompt_terms": [],
+    "checks": 0,
+    "replay_context_applied": false,
+    "applied": false,
+    "change_count": 0,
+    "changes": [],
+    "revision": 0,
+    "elapsed_seconds": 0.0
+  },
+  "module_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c"
+}

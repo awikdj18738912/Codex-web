@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "trace_id": "89674c51eddc41cf80ec31a20e2d4261",
+      "session_seconds": 79.64,
+      "first_chunk_after_start_seconds": 0.065,
+      "chunk_phase_seconds": 78.622,
+      "web_chunk_round_trip_sum_seconds": 13.937,
+      "between_chunk_unmeasured_sum_seconds": 64.629,
+      "between_chunk_unmeasured_median_ms": 90.554,
+      "last_chunk_to_final_seconds": 1.018,
+      "server_ASR_request_sum_seconds": 13.045,
+      "server_ASR_model_sum_seconds": 10.706,
+      "server_ASR_lock_wait_sum_seconds": 0.000457,
+      "chunk_interval_median_ms": 134.052,
+      "max_unmeasured_gap_seconds": 2.851
+    },
+    {
+      "trace_id": "abe70c7dbfaf4612bd7db6814fca3ebf",
+      "session_seconds": 84.768,
+      "first_chunk_after_start_seconds": 0.011,
+      "chunk_phase_seconds": 83.712,
+      "web_chunk_round_trip_sum_seconds": 11.807,
+      "between_chunk_unmeasured_sum_seconds": 71.904,
+      "between_chunk_unmeasured_median_ms": 94.278,
+      "last_chunk_to_final_seconds": 1.057,
+      "server_ASR_request_sum_seconds": 10.811,
+      "server_ASR_model_sum_seconds": 8.456,
+      "server_ASR_lock_wait_sum_seconds": 0.000476,
+      "chunk_interval_median_ms": 131.429,
+      "max_unmeasured_gap_seconds": 4.494
+    },
+    {
+      "trace_id": "0647559c683948849e109ea72419bda4",
+      "session_seconds": 70.371,
+      "first_chunk_after_start_seconds": 0.115,
+      "chunk_phase_seconds": 51.637,
+      "web_chunk_round_trip_sum_seconds": 11.645,
+      "between_chunk_unmeasured_sum_seconds": 39.887,
+      "between_chunk_unmeasured_median_ms": 73.467,
+      "last_chunk_to_final_seconds": 18.734,
+      "server_ASR_request_sum_seconds": 10.758,
+      "server_ASR_model_sum_seconds": 8.463,
+      "server_ASR_lock_wait_sum_seconds": 0.000492,
+      "chunk_interval_median_ms": 100.581,
+      "max_unmeasured_gap_seconds": 2.964
+    }
+  ],
+  "interpretation": "Time between chunk responses minus subsequent timed Web-ASR round trip includes client acknowledgement/event processing, upload/network/proxy delays and Web event-loop work. No browser timestamps: cannot isolate individual contributions. Refiner wall times run concurrently and must not be added to the whole-session total."
+}

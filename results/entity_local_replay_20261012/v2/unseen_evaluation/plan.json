@@ -1,0 +1,25 @@
+{
+  "development_only": true,
+  "cases": 7,
+  "input_sha256": "ab3a9cf8dfdeafbd1e7e6c98605796e1868fbdacffd5199ce7ac78294d2750ed",
+  "original_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "candidate_sha256": "0f26aca16f00f382f3df113d246a114723e797e8fbb0e93e050ac065257e6825",
+  "settings": {
+    "min_seconds": 45,
+    "max_audio_fraction": 0.6,
+    "max_windows": 2,
+    "audio_margin_seconds": 2,
+    "candidate_planning": "All candidates passing the existing short expansion rule, including weak scores. Other candidates remain usable as verification anchors."
+  },
+  "target_reference_at_inference": false,
+  "acceptance": "All existing corrections retained, no higher CER on gold cases, no new absent-canonical replacements, actual repair time improves. Need independent validation before deployment.",
+  "asr_url": "http://127.0.0.1:8766",
+  "scope": "Seven source-recording-disjoint real clip concatenations. Five positives/two negatives. References not used in first pass or replay.",
+  "version": "v2_no_individual_score_gate",
+  "frozen_selection_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long/manifest.json": "5611d713781518d8269bbdcde7b7150aea013bf05eeefb284cbcf793a8b8ed27",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_local_replay_20261012/v2/unseen_long_supplement/manifest.json": "7b8445f3eda54e9207ef593acc63f6a0df26ed3dbf478306c204c4f2e7b3f439"
+  },
+  "independent_audio_components": true,
+  "source_component_count": 113
+}

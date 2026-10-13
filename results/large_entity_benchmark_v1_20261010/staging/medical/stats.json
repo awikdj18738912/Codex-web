@@ -1,0 +1,26 @@
+{
+  "dataset": "large_entity_benchmark_v1_20261010 medical staging",
+  "primary_target_reached": true,
+  "main_unique_entity_count": 107,
+  "main_sample_count": 90,
+  "main_samples_by_source": {
+    "commonvoice_zh-CN_test": 64,
+    "wenetspeech_TEST_NET": 26
+  },
+  "main_occurrences": 110,
+  "seen_regression_sample_count": 103,
+  "seen_regression_entity_spans": 4,
+  "seen_regression_excluded_from_main_count": true,
+  "cmeee_candidate_count_after_length_script_filter_and_generic_rejects": 18212,
+  "cv_prior_excluded_sentence_id_count": 112,
+  "cv_prior_excluded_reference_count": 112,
+  "matching": "Exact CMeEE standard-form substring matches; left-to-right longest non-overlapping; half-open Python character offsets.",
+  "reference_status": "Matched against supplied standard references, not native speech NER labels; no ASR output used to select terms.",
+  "audio_review": "Selected file paths checked; Common Voice durations checked with ffprobe; selected WenetSpeech clips SHA-256 hashed. No per-item human listening audit performed.",
+  "medical_faq_status": "Prior emergency-room FAQ retained only as seen_regression cohort; never counted toward new-main entity coverage.",
+  "known_limitations": [
+    "Common Voice and WenetSpeech reference matches establish textual evidence, not independently audited acoustic realization.",
+    "CMeEE category labels are preserved as source provenance; benchmark entities are uniformly exported as TERM.",
+    "MultiMed is excluded from the main set due to incomplete long-reference/audio-range concerns."
+  ]
+}

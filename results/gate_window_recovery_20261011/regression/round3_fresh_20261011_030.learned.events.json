@@ -1,0 +1,913 @@
+[
+  {
+    "elapsed_seconds": 0.07718133088201284,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.5795742589980364,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 1.1167937749996781,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.1171585242263973,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 5,
+        "min_probability": 0.999958755287689
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七。",
+      "display_text": "先读第七。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.5795808280818164,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 2.128857193980366,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.129193453118205,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.9999767547297425
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2308,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签。",
+      "display_text": "先读第七号标签。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.579152808059007,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 3.1381066041067243,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.138563193846494,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.9960227284390923
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1579,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际。",
+      "display_text": "先读第七号标签，实际。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.579629647079855,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.1581439059227705,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.158596026245505,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 12,
+        "min_probability": 0.9992050296584573
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1538,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两。",
+      "display_text": "先读第七号标签，实际数量是两。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.5798569759353995,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 5.1404018718749285,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 5.140764080919325,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.970684737503044
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "keep",
+      "refinement_gate_state": "KEEP",
+      "refinement_gate_reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1429,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.579691065941006,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 6.132637348026037,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 13
+    }
+  },
+  {
+    "elapsed_seconds": 6.133101616986096,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9475124284922322
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0698,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 6.579645854886621,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 14
+    }
+  },
+  {
+    "elapsed_seconds": 7.155983596108854,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 15
+    }
+  },
+  {
+    "elapsed_seconds": 7.156404465902597,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.8399184276509626
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0417,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 7.578951234929264,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 16
+    }
+  },
+  {
+    "elapsed_seconds": 8.14212866825983,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 17
+    }
+  },
+  {
+    "elapsed_seconds": 8.142538708169013,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.6714749327026159
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0909,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 8.579550714232028,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 18
+    }
+  },
+  {
+    "elapsed_seconds": 9.141025978140533,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 19
+    }
+  },
+  {
+    "elapsed_seconds": 9.141370428260416,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 9,
+        "min_probability": 0.8807620828469814
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0625,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 9.58021956216544,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 20
+    }
+  },
+  {
+    "elapsed_seconds": 10.129465447273105,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 21
+    }
+  },
+  {
+    "elapsed_seconds": 10.129854967817664,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 7,
+        "min_probability": 0.9991916996226384
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0286,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 10.579547722823918,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 22
+    }
+  },
+  {
+    "elapsed_seconds": 11.15266353590414,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 23
+    }
+  },
+  {
+    "elapsed_seconds": 11.153129004873335,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 11,
+        "min_probability": 0.8805362281442084
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0769,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 11.58031631121412,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 24
+    }
+  },
+  {
+    "elapsed_seconds": 12.076594043988734,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 25
+    }
+  },
+  {
+    "elapsed_seconds": 12.248880899045616,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6781052895879478
+      },
+      "refiner_deferred": true,
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 12.254719372838736,
+    "payload": {
+      "event": "update",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "clean_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6781052895879478
+      },
+      "refiner_latency_ms": 0,
+      "numeric_rule_latency_ms": 0.0,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [],
+      "structured_patch_audits": [],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "defer",
+          "state": "DEFER",
+          "reasons": [
+            "incomplete_fixed_group"
+          ],
+          "visible_chars": 40,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "self_correction",
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 2.441,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 0,
+      "pending_refinement_chunks": 2,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+          "clean_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "display_refined_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "pending_raw_text": "",
+      "display_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 0,
+        "initial_call_count": 0,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 0,
+        "completed_call_count": 0,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 0.0,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 0,
+      "session_refiner_initial_call_count": 0,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 12.73462428105995,
+    "payload": {
+      "event": "final",
+      "raw_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+      "clean_text": "先读第7号标签，实际数量是2431，请在末栏注明单位。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.6781052895879478
+      },
+      "refiner_latency_ms": 440,
+      "numeric_rule_latency_ms": 8.037,
+      "refiner_executed": true,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [
+        "先读第7号标签，实际数量是2431，请在末栏注明单位。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 40,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "self_correction",
+            "numeric_normalization"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [
+        {
+          "original": "第七号",
+          "replacement": "第7号",
+          "kind": "zh.number.complete_numeric_object",
+          "start": 2,
+          "end": 5,
+          "segment_index": 1,
+          "engine": "zh-itn",
+          "rule_pack": "zh-itn-strict-conservative-v90"
+        },
+        {
+          "original": "两千四百三十",
+          "replacement": "2430",
+          "kind": "zh.number.complete_scalar",
+          "start": 13,
+          "end": 19,
+          "segment_index": 1,
+          "engine": "zh-itn",
+          "rule_pack": "zh-itn-strict-conservative-v90"
+        },
+        {
+          "original": "两千四百三十一",
+          "replacement": "2431",
+          "kind": "zh.number.complete_scalar",
+          "start": 28,
+          "end": 35,
+          "segment_index": 1,
+          "engine": "zh-itn",
+          "rule_pack": "zh-itn-strict-conservative-v90"
+        }
+      ],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 2.572,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 2,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "先读第七号标签，实际数量是两千四百三十，不对，正确数量是两千四百三十一，请在末栏注明单位。",
+          "clean_text": "先读第7号标签，实际数量是2431，请在末栏注明单位。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 1,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "repetition_restorations": [],
+      "refinement_revision": 1,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 1,
+        "initial_call_count": 1,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 1,
+        "completed_call_count": 1,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 446.442,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 2,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 1,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 1,
+      "session_gate_skipped_segment_count": 1,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

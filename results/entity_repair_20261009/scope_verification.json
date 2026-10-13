@@ -1,0 +1,28 @@
+{
+  "changed_existing_python_files": [
+    "system/entity_pipeline.py",
+    "system/entity_pronunciation.py",
+    "system/protection.py"
+  ],
+  "new_entity_python_files": [
+    "system/entity_acronym.py"
+  ],
+  "unrelated_production_code_unchanged": true,
+  "formal_library_unchanged": true,
+  "glossary_names_unchanged": true,
+  "error_aliases_added": false,
+  "tests": 549,
+  "medical_outputs_unchanged": 225,
+  "reference_negative_samples_unchanged": 225,
+  "service_health": {
+    "8766": true,
+    "8051": true,
+    "8081": true,
+    "8082": true
+  },
+  "new_rules_loaded_on_ports": [
+    8051,
+    8081
+  ],
+  "optimized_library_import_verified_terms": 141
+}

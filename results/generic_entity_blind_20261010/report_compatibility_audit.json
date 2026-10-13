@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-10T13:30:39.877400+00:00",
+  "old_evaluator_hash": "ed8c701b58ce49840f68524ab56af16d47155054d058b103df6f5e8c1248cb1b",
+  "new_evaluator_hash": "3253b236129900a7db6f9d297d1d677db7459fff839476d33a74da638db355e9",
+  "changed_functions": [
+    "report"
+  ],
+  "inference_preparation_collection_and_pipeline_AST_unchanged": true,
+  "production_rules_and_glossaries_unchanged": true,
+  "reason": "Web intentionally omits clean_text for empty ASR output; report now scores this as an empty hypothesis rather than raising KeyError; no sample omitted",
+  "completed_web_sessions": 384
+}

@@ -1,0 +1,112 @@
+{
+  "all": {
+    "baseline": {
+      "samples": 96,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 69,
+      "reference_chars": 2795,
+      "replays": 24,
+      "absent_changes": 0,
+      "CER": 0.024686940966010734
+    },
+    "padded": {
+      "samples": 96,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 69,
+      "reference_chars": 2795,
+      "replays": 24,
+      "absent_changes": 0,
+      "CER": 0.024686940966010734
+    }
+  },
+  "football": {
+    "baseline": {
+      "samples": 48,
+      "hits": 68,
+      "expected_mentions": 68,
+      "errors": 3,
+      "reference_chars": 1067,
+      "replays": 14,
+      "absent_changes": 0,
+      "CER": 0.0028116213683223993
+    },
+    "padded": {
+      "samples": 48,
+      "hits": 68,
+      "expected_mentions": 68,
+      "errors": 3,
+      "reference_chars": 1067,
+      "replays": 14,
+      "absent_changes": 0,
+      "CER": 0.0028116213683223993
+    }
+  },
+  "positive": {
+    "baseline": {
+      "samples": 64,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 51,
+      "reference_chars": 1833,
+      "replays": 18,
+      "absent_changes": 0,
+      "CER": 0.027823240589198037
+    },
+    "padded": {
+      "samples": 64,
+      "hits": 112,
+      "expected_mentions": 115,
+      "errors": 51,
+      "reference_chars": 1833,
+      "replays": 18,
+      "absent_changes": 0,
+      "CER": 0.027823240589198037
+    }
+  },
+  "no_registered_target": {
+    "baseline": {
+      "samples": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "errors": 18,
+      "reference_chars": 962,
+      "replays": 6,
+      "absent_changes": 0,
+      "CER": 0.018711018711018712
+    },
+    "padded": {
+      "samples": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "errors": 18,
+      "reference_chars": 962,
+      "replays": 6,
+      "absent_changes": 0,
+      "CER": 0.018711018711018712
+    }
+  },
+  "automotive": {
+    "baseline": {
+      "samples": 48,
+      "hits": 44,
+      "expected_mentions": 47,
+      "errors": 66,
+      "reference_chars": 1728,
+      "replays": 10,
+      "absent_changes": 0,
+      "CER": 0.03819444444444445
+    },
+    "padded": {
+      "samples": 48,
+      "hits": 44,
+      "expected_mentions": 47,
+      "errors": 66,
+      "reference_chars": 1728,
+      "replays": 10,
+      "absent_changes": 0,
+      "CER": 0.03819444444444445
+    }
+  }
+}

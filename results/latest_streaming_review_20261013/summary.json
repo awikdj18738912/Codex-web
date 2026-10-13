@@ -1,0 +1,46 @@
+{
+  "trace_id": "dbdea845618a4cd69babe909d714c617",
+  "finished_local": "2026-10-13T01:15:33.614094+08:00",
+  "settings": {
+    "entity_asr_context": false,
+    "entity_audio_repair": true,
+    "mode": "streaming",
+    "domain": "general"
+  },
+  "timing": {
+    "total_seconds": 101.421,
+    "chunk_phase_seconds": 100.279,
+    "tail_seconds": 1.142,
+    "web_chunk_request_sum_seconds": 19.136,
+    "between_chunk_wait_sum_seconds": 81.101,
+    "asr_server_request_sum_seconds": 12.905
+  },
+  "raw_target": "厉飞羽",
+  "final_target": "在下厉飞宇",
+  "normalizations": [
+    {
+      "observed": "厉飞羽",
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667,
+      "decision": "CONTEXT_CONFIRMED",
+      "confirmation_method": "bounded_prose_entity_projection_v1",
+      "discarded_response_reasons": [
+        "entity_confirmation_required:厉飞宇",
+        "semantic_content_loss"
+      ]
+    }
+  ],
+  "audio_repair_snapshot_persisted": false,
+  "ASR_access_evidence": [
+    "127.0.0.1 - - [13/Oct/2026 01:13:52] \"POST /stream/start?language=Chinese&chunk_seconds=2 HTTP/1.1\" 200 -",
+    "127.0.0.1 - - [13/Oct/2026 01:14:11] \"POST /stream/start?language=Chinese&chunk_seconds=2&context=参考术语仅用于辅助拼写，不代表音频内容；未在音频中听到的词不要补充。术语列表：[\"鬼灵门\",+\"乌东德\",+\"厉飞宇\",+\"不业之杖\",+\"误工\"] HTTP/1.1\" 200 -",
+    "127.0.0.1 - - [13/Oct/2026 01:14:46] \"POST /stream/start?language=Chinese&chunk_seconds=2 HTTP/1.1\" 200 -",
+    "127.0.0.1 - - [13/Oct/2026 01:14:55] \"POST /stream/cancel?session_id=29e465baea7b47358a13d70ce2cdc7a6 HTTP/1.1\" 200 -",
+    "127.0.0.1 - - [13/Oct/2026 01:15:32] \"POST /stream/finish?session_id=c07deb1b7d2046ddaccf23dd473727e2 HTTP/1.1\" 200 -",
+    "127.0.0.1 - - [13/Oct/2026 01:15:32] \"POST /stream/finish?session_id=6dbbdbd8ff41416cad5aed25cafd2443 HTTP/1.1\" 200 -"
+  ],
+  "refinement_log": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/refinement_windows_grouped_20261012_171533_612520_dbdea845618a4cd69babe909d714c617.md"
+}

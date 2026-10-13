@@ -1,0 +1,137 @@
+{
+  "validation": {
+    "rows": 126,
+    "needs_review": 42,
+    "true_positive_windows": 42,
+    "keep_windows": 84,
+    "false_positive_keep_windows": 84,
+    "reference_locations": 84,
+    "predicted_locations": 574,
+    "matched_locations": 63,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 1.0,
+    "location_recall": 0.75,
+    "location_precision": 0.10975609756097561,
+    "by_task": {
+      "disfluency": {
+        "edits": 21,
+        "located_edits": 21,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 21,
+        "located_edits": 21,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "recall": null
+      },
+      "local_typo": {
+        "recall": null
+      },
+      "boundary_punctuation": {
+        "recall": null
+      },
+      "entity_correction": {
+        "recall": null
+      }
+    },
+    "insertion_supported": false
+  },
+  "internal_text_test": {
+    "rows": 145,
+    "needs_review": 42,
+    "true_positive_windows": 42,
+    "keep_windows": 103,
+    "false_positive_keep_windows": 95,
+    "reference_locations": 84,
+    "predicted_locations": 907,
+    "matched_locations": 84,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 0.9223300970873787,
+    "location_recall": 1.0,
+    "location_precision": 0.0926130099228225,
+    "by_task": {
+      "disfluency": {
+        "edits": 21,
+        "located_edits": 21,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 21,
+        "located_edits": 21,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "recall": null
+      },
+      "local_typo": {
+        "recall": null
+      },
+      "boundary_punctuation": {
+        "recall": null
+      },
+      "entity_correction": {
+        "recall": null
+      }
+    },
+    "insertion_supported": false
+  },
+  "trained_task_probe_fit": {
+    "rows": 18,
+    "needs_review": 12,
+    "true_positive_windows": 12,
+    "keep_windows": 6,
+    "false_positive_keep_windows": 6,
+    "reference_locations": 30,
+    "predicted_locations": 149,
+    "matched_locations": 28,
+    "window_recall": 1.0,
+    "keep_false_positive_rate": 1.0,
+    "location_recall": 0.9333333333333333,
+    "location_precision": 0.18791946308724833,
+    "by_task": {
+      "disfluency": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "repetition": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "self_correction": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "local_typo": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      },
+      "boundary_punctuation": {
+        "edits": 2,
+        "located_edits": 0,
+        "recall": 0.0
+      },
+      "entity_correction": {
+        "edits": 2,
+        "located_edits": 2,
+        "recall": 1.0
+      }
+    },
+    "insertion_supported": false
+  },
+  "parameters": 8701701,
+  "threshold": 0.01,
+  "unsupported_validation_or_test": 0,
+  "internal_test_status": "consumed_regression_not_fresh",
+  "limitations": [
+    "Internal heldout synthetic templates, not independent natural audio",
+    "Last four tasks have only two trained probes each; no heldout generalization evidence",
+    "No positive insertion examples; insertion detection is disabled",
+    "Scores uncalibrated; no production skip permission"
+  ]
+}

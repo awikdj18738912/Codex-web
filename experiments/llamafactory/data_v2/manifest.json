@@ -1,0 +1,60 @@
+{
+  "version": 2,
+  "source_manifest_sha256": "87b00fbaa0ca7c8f2efa5ed204b6fe09f74197f893425dff878cb4a06eb00786",
+  "source_train_sha256": "b70d5f9b7ffdb490cd35dd026cf2b86420c091fa6bbd8638666305238393d5c9",
+  "frozen_dev_sha256": "2a2320080a3d5601d12424db3ffbb05d5e3ece7b309f56ea80ae05a5c22f9c53",
+  "frozen_test_sha256": "de151046b1a7b746b8c0250ac3a6c6fcf351a0b2e6effe407919c47c0107d71e",
+  "frozen_test_records": 250,
+  "original_split_counts": {
+    "train": 628,
+    "dev": 122,
+    "test": 250
+  },
+  "added_train_records": 188,
+  "augmentation_type_counts": {
+    "character_restart": 95,
+    "filler_prefix": 21,
+    "word_repeat": 72
+  },
+  "skipped_counts": {
+    "no_safe_lexical_span": 125
+  },
+  "result_split_counts": {
+    "train": 816,
+    "dev": 122,
+    "test": 250
+  },
+  "result_action_counts": {
+    "added_train": {
+      "replace": 188
+    },
+    "train": {
+      "keep": 418,
+      "replace": 398
+    }
+  },
+  "output_sha256": {
+    "train.jsonl": "72634cdd888a3227d08276c2112185854f9e3b1817cc7e9965c5173869caa45c",
+    "dev.jsonl": "2a2320080a3d5601d12424db3ffbb05d5e3ece7b309f56ea80ae05a5c22f9c53",
+    "test.jsonl": "de151046b1a7b746b8c0250ac3a6c6fcf351a0b2e6effe407919c47c0107d71e",
+    "data_audit.jsonl": "6e93980f6db67324f3ef7a0a3098e3bd7ff6014594ff5ad444d97e3248882aeb",
+    "augmentation_audit.jsonl": "4b2ba50de0197b818d987cadc86a563f2bf63a9c9f68e3f42d8219e85cc39dea",
+    "dataset_info.json": "8412842340e13517b34e3426e5eff163d5d91e537fbca94e7bd05145bfefead8"
+  },
+  "strict_local_roundtrip_validated": true,
+  "human_audio_gold": false,
+  "real_asr_pair": false,
+  "scope": "synthetic_train_only_format_augmentation; frozen original dev and test",
+  "split_counts": {
+    "train": 816,
+    "dev": 122,
+    "test": 250
+  },
+  "exported_sha256": {
+    "train.jsonl": "72634cdd888a3227d08276c2112185854f9e3b1817cc7e9965c5173869caa45c",
+    "dev.jsonl": "2a2320080a3d5601d12424db3ffbb05d5e3ece7b309f56ea80ae05a5c22f9c53",
+    "test.jsonl": "de151046b1a7b746b8c0250ac3a6c6fcf351a0b2e6effe407919c47c0107d71e",
+    "data_audit.jsonl": "6e93980f6db67324f3ef7a0a3098e3bd7ff6014594ff5ad444d97e3248882aeb",
+    "dataset_info.json": "8412842340e13517b34e3426e5eff163d5d91e537fbca94e7bd05145bfefead8"
+  }
+}

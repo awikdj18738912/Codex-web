@@ -1,0 +1,826 @@
+{
+  "objective": "terminal_quality",
+  "classes": [
+    "refine_required",
+    "skip_allowed"
+  ],
+  "training_examples": 292,
+  "target_counts": {
+    "skip_allowed": 244,
+    "refine_required": 48
+  },
+  "features": "pre-action window text only, char TF-IDF 1-3grams",
+  "group_and_template_weights": true,
+  "fit_seconds": 0.43517083767801523,
+  "cpu_score_mean_ms": 0.6471106919323231,
+  "cpu_score_p95_ms": 0.6791641935706139,
+  "threshold": 0.8,
+  "development": {
+    "recording_views": 288,
+    "exact_script": 206,
+    "intended_micro_cer": 0.0438266967192587,
+    "intended_distance": 175,
+    "degraded_views": 0,
+    "beneficial_windows": 14,
+    "beneficial_windows_kept": 14,
+    "by_cohort": {
+      "old_validation": {
+        "benefit": 11,
+        "kept": 11
+      },
+      "new_dev": {
+        "benefit": 2,
+        "kept": 2
+      },
+      "risk_dev": {
+        "benefit": 1,
+        "kept": 1
+      }
+    },
+    "window_vetoes": 15,
+    "window_retained": 128,
+    "refiner_calls": 166,
+    "plausibility_calls": 1,
+    "token_positions": 65176,
+    "forward_passes": 1853,
+    "recorded_model_ms": 45681.073404848576,
+    "estimated_gate_ms": 92.5368289463222,
+    "estimated_serial_model_plus_gate_ms": 45773.6102337949
+  },
+  "threshold_grid": [
+    {
+      "threshold": 0.0,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.05,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.1,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.15,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.2,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.25,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.3,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.35,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.4,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 143,
+        "window_retained": 0,
+        "refiner_calls": 53,
+        "plausibility_calls": 1,
+        "token_positions": 25770,
+        "forward_passes": 106,
+        "recorded_model_ms": 3731.80400300771,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 3824.340831954032
+      }
+    },
+    {
+      "threshold": 0.45,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 142,
+        "window_retained": 1,
+        "refiner_calls": 54,
+        "plausibility_calls": 1,
+        "token_positions": 26138,
+        "forward_passes": 115,
+        "recorded_model_ms": 3967.5461621955037,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 4060.082991141826
+      }
+    },
+    {
+      "threshold": 0.5,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.0473328324567994,
+        "intended_distance": 189,
+        "degraded_views": 14,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 0,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 0
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 142,
+        "window_retained": 1,
+        "refiner_calls": 54,
+        "plausibility_calls": 1,
+        "token_positions": 26138,
+        "forward_passes": 115,
+        "recorded_model_ms": 3967.5461621955037,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 4060.082991141826
+      }
+    },
+    {
+      "threshold": 0.55,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 194,
+        "intended_micro_cer": 0.047082394189832205,
+        "intended_distance": 188,
+        "degraded_views": 13,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 1,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 0
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 1
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 139,
+        "window_retained": 4,
+        "refiner_calls": 55,
+        "plausibility_calls": 1,
+        "token_positions": 26286,
+        "forward_passes": 146,
+        "recorded_model_ms": 4689.831811003387,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 4782.368639949709
+      }
+    },
+    {
+      "threshold": 0.6,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 199,
+        "intended_micro_cer": 0.04557976458802905,
+        "intended_distance": 182,
+        "degraded_views": 7,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 7,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 6
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 1
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 131,
+        "window_retained": 12,
+        "refiner_calls": 61,
+        "plausibility_calls": 1,
+        "token_positions": 28266,
+        "forward_passes": 224,
+        "recorded_model_ms": 6568.82649846375,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 6661.363327410072
+      }
+    },
+    {
+      "threshold": 0.65,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 199,
+        "intended_micro_cer": 0.04557976458802905,
+        "intended_distance": 182,
+        "degraded_views": 7,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 7,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 6
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 1
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 115,
+        "window_retained": 28,
+        "refiner_calls": 64,
+        "plausibility_calls": 1,
+        "token_positions": 27833,
+        "forward_passes": 352,
+        "recorded_model_ms": 9499.60970878601,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 9592.146537732333
+      }
+    },
+    {
+      "threshold": 0.7,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 205,
+        "intended_micro_cer": 0.0440771349862259,
+        "intended_distance": 176,
+        "degraded_views": 1,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 13,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 80,
+        "window_retained": 63,
+        "refiner_calls": 75,
+        "plausibility_calls": 1,
+        "token_positions": 29097,
+        "forward_passes": 610,
+        "recorded_model_ms": 15471.032758709043,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 15563.569587655365
+      }
+    },
+    {
+      "threshold": 0.75,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 205,
+        "intended_micro_cer": 0.0440771349862259,
+        "intended_distance": 176,
+        "degraded_views": 1,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 13,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 0
+          }
+        },
+        "window_vetoes": 20,
+        "window_retained": 123,
+        "refiner_calls": 157,
+        "plausibility_calls": 1,
+        "token_positions": 61444,
+        "forward_passes": 1732,
+        "recorded_model_ms": 42733.794587664306,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 42826.33141661063
+      }
+    },
+    {
+      "threshold": 0.8,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 15,
+        "window_retained": 128,
+        "refiner_calls": 166,
+        "plausibility_calls": 1,
+        "token_positions": 65176,
+        "forward_passes": 1853,
+        "recorded_model_ms": 45681.073404848576,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 45773.6102337949
+      }
+    },
+    {
+      "threshold": 0.85,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 2,
+        "window_retained": 141,
+        "refiner_calls": 183,
+        "plausibility_calls": 1,
+        "token_positions": 71835,
+        "forward_passes": 2076,
+        "recorded_model_ms": 51114.07040152699,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 51206.60723047331
+      }
+    },
+    {
+      "threshold": 0.9,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 0,
+        "window_retained": 143,
+        "refiner_calls": 185,
+        "plausibility_calls": 1,
+        "token_positions": 72588,
+        "forward_passes": 2102,
+        "recorded_model_ms": 51740.91592663899,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 51833.45275558531
+      }
+    },
+    {
+      "threshold": 0.95,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 0,
+        "window_retained": 143,
+        "refiner_calls": 185,
+        "plausibility_calls": 1,
+        "token_positions": 72588,
+        "forward_passes": 2102,
+        "recorded_model_ms": 51740.91592663899,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 51833.45275558531
+      }
+    },
+    {
+      "threshold": 0.99,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 0,
+        "window_retained": 143,
+        "refiner_calls": 185,
+        "plausibility_calls": 1,
+        "token_positions": 72588,
+        "forward_passes": 2102,
+        "recorded_model_ms": 51740.91592663899,
+        "estimated_gate_ms": 92.5368289463222,
+        "estimated_serial_model_plus_gate_ms": 51833.45275558531
+      }
+    },
+    {
+      "threshold": 1.01,
+      "metrics": {
+        "recording_views": 288,
+        "exact_script": 206,
+        "intended_micro_cer": 0.0438266967192587,
+        "intended_distance": 175,
+        "degraded_views": 0,
+        "beneficial_windows": 14,
+        "beneficial_windows_kept": 14,
+        "by_cohort": {
+          "old_validation": {
+            "benefit": 11,
+            "kept": 11
+          },
+          "new_dev": {
+            "benefit": 2,
+            "kept": 2
+          },
+          "risk_dev": {
+            "benefit": 1,
+            "kept": 1
+          }
+        },
+        "window_vetoes": 0,
+        "window_retained": 143,
+        "refiner_calls": 185,
+        "plausibility_calls": 1,
+        "token_positions": 72588,
+        "forward_passes": 2102,
+        "recorded_model_ms": 51740.91592663899,
+        "estimated_gate_ms": 0,
+        "estimated_serial_model_plus_gate_ms": 51740.91592663899
+      }
+    }
+  ],
+  "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+  "calibrated": false,
+  "online_enabled": false,
+  "source_dataset_manifest_sha256": "068b3c211910fac9cfb00e283fc1dc237b84e62e8485b309e162a28b61899d9f"
+}

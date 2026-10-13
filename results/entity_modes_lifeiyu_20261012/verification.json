@@ -1,0 +1,66 @@
+{
+  "actual_complete_sessions": 12,
+  "baseline_worker_stopped": true,
+  "formal_entity_db_unchanged": true,
+  "production_code_modified": false,
+  "health_after": {
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 173,
+        "would_skip_windows": 68,
+        "vetoed_windows": 68,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 0,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    }
+  }
+}

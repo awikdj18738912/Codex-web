@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-10-10T14:29:55.969526+00:00",
+  "file": "system/web_app.py",
+  "old_sha256": "9bc6001c69ff500e2e73a7d694795634b37d72fd26afd9438dc82b726cdbf171",
+  "new_sha256": "a165b981abc97c6ead36989db95ba5334020cf027ad9765ef76c54289fe0f2b4",
+  "reason": "Concurrent filesystem modification outside this task; author unknown. Holdout collection and entity-wrapper regression do not import Web.",
+  "entity_inference_dependencies_and_data_unchanged": true,
+  "production_web_file_not_modified_by_this_task": true,
+  "affected_scope": "Broad checksum monitor only; no exemption for any entity inference dependency"
+}

@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "seed": 20261014,
+  "inputs": [
+    {
+      "original": "results/repetition_preservation_20261010/text_source_final_guard/asr.jsonl",
+      "frozen": "inputs/text_probes.jsonl",
+      "sha256": "18c776cc56bde5480aef0250a1ff8afe4d2ebe92c1cfe7ebe8fdd8cb90dc50c6"
+    }
+  ],
+  "frozen_hashes": {
+    "frozen/system/__init__.py": "7f869168bd615ec31111ef53ebbbead8c3acb13a78c528a7dd92633e471a8953",
+    "frozen/system/asr_confidence.py": "891d456e7e4bc474b4d4129ddfed32f8193c0a812f50230aa62861d4864ad65b",
+    "frozen/system/audio_activity.py": "396d8688c130f46d7f1d11757f33b7a4cba04bface60d705a9744a77b015a08c",
+    "frozen/system/backends.py": "4a7d9b7aa2c64ec1dcfb00e8a0e0987ebb14d7a4d1de1564d1cee28d9dc747b6",
+    "frozen/system/chunking.py": "b44e2489bcc15831eb494d1c51f79838c70ff2272164179146a692aff86de3c3",
+    "frozen/system/configs/entity_matching.json": "68272b1a92e3883cad73a8ba1a3a78c4afa094f86789939cc9caaf36fd6ce852",
+    "frozen/system/deterministic_cleanup.py": "27fde90673e997667f79d18fa9f7d7a452d5122ac2075019003a6404eb73498c",
+    "frozen/system/entity_acronym.py": "56a9a09c147b3c0a41a96b57bd76f652e49d4779858cb671cbfab85545fc9216",
+    "frozen/system/entity_asr_context.py": "d232fd70a046266c87016b23c635d706d97714961708b748a7501983051f73ff",
+    "frozen/system/entity_asr_echo_guard.py": "7f71cc5f5aeaa2aaf159e2dee294fb4cdf22f0d157f8012603fe3303fc9042d6",
+    "frozen/system/entity_audio_repair.py": "26b1af6131cd909ae9eb75cf806aa0b008c73ec847639c52070728fedf7cf77b",
+    "frozen/system/entity_boundaries.py": "0500367744738ed6e5a63f09ad2e8c2f551e18a232e1f59ccc20e552077db1b3",
+    "frozen/system/entity_context_cli.py": "2614607aee2252039ebcb9f5d2e5bfe7baa1fa547ec34673768aa3c39986b19c",
+    "frozen/system/entity_matcher.py": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8",
+    "frozen/system/entity_pipeline.py": "e221b81486d33692100ff457cd61b74c2ab14e295ba40304da93fb89db749f8f",
+    "frozen/system/entity_pronunciation.py": "53953a872417e62ee9882edc688607071221ba30a3391a144b07aad7cb659ee5",
+    "frozen/system/entity_ranker.py": "16e853d0f2449e724b8b1029634aad8d9035a13a7c8a7d9d648c536f3bb905cb",
+    "frozen/system/entity_retrieval.py": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e",
+    "frozen/system/entity_store.py": "a3a099eb6fdff15ea3a84119cca848b92e6274cad37228ab6f4bd893d819eec6",
+    "frozen/system/live_asr.py": "5c40d7fd4cc83143154ce6f56be409231a29f6b0e597e0a26f963aae6040f000",
+    "frozen/system/live_qwen_refiner.py": "a0dd03a736b9ff50dd013589b48e5d8a52e24502bae1081a323550c852c7841d",
+    "frozen/system/manage_entities.py": "972145f3cc78e73e4ae48dbde1b25b3c8a87abf181a57e635a44e5d03b63fda0",
+    "frozen/system/numeric_normalizer.py": "80e1112be6fe382038ae20cc97b9b347cb7bddae625f6c01140ae81c95d7b17b",
+    "frozen/system/protection.py": "494a9791157f7bdea3bff6e27422bc08e09918fd8e77470e8e41b0373a0d7abd",
+    "frozen/system/quantifiers.py": "86a73ec7e69e6526e4ff4869807731f2388026c47492654bf28ed72b80527398",
+    "frozen/system/qwen_asr_server.py": "81b13377c7da8bd72d22740edad7e9c72bc00281a4bbbbb794c992d0b6f9dac4",
+    "frozen/system/qwen_asr_stream_server.py": "e0c6aa713eb44b9329f556a11d3878635965e8ce46451a239c489e178765123f",
+    "frozen/system/qwen_confidence.py": "58e1d94afb82372455778959fc361c190754b8c129df5f19910f768a7eae8036",
+    "frozen/system/refinement_gate.py": "04a03be369bff4277e844d79357f7ce6269d128c8524413a5e219910d49042ca",
+    "frozen/system/refinement_guard.py": "6e031737cdd66679be8b03044c8406254d10e95991290e85255eeaecaad51c3e",
+    "frozen/system/refinement_protocol.py": "aa5fc11bcf27e2cc22606b82f9f955676f6ac0663fa5729089f7591e50dd6ef1",
+    "frozen/system/refiner.py": "0cbee4a527ecfdbbc5155ee0f44bc306e39e02d6f52d208116353d227a54c26f",
+    "frozen/system/repetition_plausibility.py": "60daa3649922374f10ee7b20b43bb686c428e0c0676a12988505266ff52bdd41",
+    "frozen/system/session_memory.py": "b360545bdf870640376f560251d88f7787ae9627c81407e1f5002c4d670840dd",
+    "frozen/system/stream_vad.py": "3a1ae6162e23ba14dfab19f0627cd3e2808eadae3f2bdc59654e779d151fd8d0",
+    "frozen/system/transcript_repairs.py": "21546946cbe4b5e0fb30277bd4084ff5108e1fcea0111e7f6462537fa2674df3",
+    "frozen/system/weak_refinement_gate.py": "ea560ffe8ba389a41bb41e41f164344fdfd0f503ff8a8e003724f0a1d1b3b830",
+    "frozen/system/web/index.html": "8f52b7af25fab82c06264c3e840b29fe0a3b88ca0fd50cde290127b350e764fb",
+    "frozen/system/web/refinement_log.html": "b7dc543a470512a96d640b1ed7a3713cd23223558b006dc51ca76490757d295d",
+    "frozen/system/web_app.py": "a165b981abc97c6ead36989db95ba5334020cf027ad9765ef76c54289fe0f2b4",
+    "frozen/system/whisper_backend.py": "5b1aac2bcecb17db66e52672fd16770695f4921c6744c66619a04eaff0f1e67b",
+    "frozen/system/whisper_stream_server.py": "5a1642221934f84c1a314862903147c78ff8e2ed6b75ab7e6754dc65657791dc",
+    "frozen/system/window_refinement.py": "2018bcfc8b9d459317678f84d284a648fa8340c2c0460bc8989aef2fe1f8ffcf",
+    "frozen/system/zh_itn_bridge.py": "8099dbd8119bc05c052552b0a876197cc732209c1712dbb0fe387d8b28a42dfd",
+    "entities_snapshot.db": "f6359f5bcb1fe93601c513d77436255db2878f2135959a248c5937aac0d7dba3",
+    "native/libzh_itn_bridge.so": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+    "cases.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "frozen/system/repetition_preservation.py": "0abf53841df4e59ebacd93602f14e97ef8c441cbf5d2d8df9cbfc2a7e9f2ac93"
+  },
+  "entity_source": "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db",
+  "library_source": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+  "settings": {
+    "gate": "tri_state",
+    "zh_itn": true,
+    "entity_fuzzy_mode": "auto",
+    "final_refinement": "off",
+    "window_size": 3,
+    "max_new_tokens": 256,
+    "window_edit_policy": "compat"
+  },
+  "source_records_after_dedup": 24,
+  "pool": {
+    "window_refine": 22,
+    "local_edit_review": 5
+  },
+  "selected": {
+    "window_refine": 22
+  },
+  "unique_recordings": 22,
+  "unique_speakers": 1,
+  "strata": {
+    "synthetic_tts|refine": 6,
+    "synthetic_tts|keep": 16
+  },
+  "sampling": "Balanced exploratory input-side strata; not population prevalence.",
+  "scope": "Frozen final-snapshot decision pilot, not streaming/end-to-end latency or independent heldout acceptance.",
+  "annotation_status": "All human labels are initially blank.",
+  "development_patch": {
+    "parent_protocol_sha256": "4747837b281fa434414799773951fddcbf5e3051f75d3345e3217f79068a0db8",
+    "changes": {
+      "refinement_guard.py": {
+        "parent_sha256": "e27001cb79d0eb3790a903caf50746a044b2c81a4eca674cdd4740ea13f0c12a",
+        "patched_sha256": "6e031737cdd66679be8b03044c8406254d10e95991290e85255eeaecaad51c3e"
+      },
+      "deterministic_cleanup.py": {
+        "parent_sha256": "d92e0ab6cf1759e7096abd0bc04380b386afe237ba614630c5bfe9fb2f3adb8b",
+        "patched_sha256": "27fde90673e997667f79d18fa9f7d7a452d5122ac2075019003a6404eb73498c"
+      },
+      "repetition_preservation.py": {
+        "parent_sha256": null,
+        "patched_sha256": "0abf53841df4e59ebacd93602f14e97ef8c441cbf5d2d8df9cbfc2a7e9f2ac93"
+      },
+      "web_app.py": {
+        "parent_sha256": "9bc6001c69ff500e2e73a7d694795634b37d72fd26afd9438dc82b726cdbf171",
+        "patched_sha256": "a165b981abc97c6ead36989db95ba5334020cf027ad9765ef76c54289fe0f2b4"
+      }
+    },
+    "scope": "text_only_development_probe_no_audio_no_ASR_not_fresh_holdout",
+    "original_policy_and_weights_unchanged": true
+  }
+}

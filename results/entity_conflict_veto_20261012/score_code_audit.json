@@ -1,0 +1,126 @@
+{
+  "audit_scope": {
+    "mode": "read-only code/input audit",
+    "source_files": [
+      "experiments/scripts/probe_entity_contrastive_score.py",
+      "results/entity_conflict_veto_20261012/score_plan.json",
+      "results/entity_conflict_veto_20261012/score_inputs.jsonl"
+    ],
+    "also_checked_completed_score_records": "results/entity_conflict_veto_20261012/scores.jsonl (128 rows; not the score summaries)",
+    "post_score_output_summaries_read": false,
+    "no_source_or_frozen_input_modified": true
+  },
+  "reference_boundary": {
+    "prepare_infer_target_reference_read": false,
+    "score_input_rows": 64,
+    "unique_input_ids": 64,
+    "unique_sample_ids": 63,
+    "input_has_reference_or_gold_fields": false,
+    "reference_like_score_fields": [],
+    "pilot_input_key_union": [
+      "context_with_slot",
+      "id",
+      "observed",
+      "profiles",
+      "sample_id",
+      "source_text",
+      "target_candidate",
+      "target_has_independent_evidence"
+    ],
+    "pilot_input_reference_like_keys": [],
+    "all_changed_texts_replace_only_declared_span": true,
+    "target_reference_boundary": "prepare reads verified backgrounds and pilot_inputs (which has no reference/gold fields), serializing only ID, sample_id, source/changed span, target candidate, and backgrounds. infer reads score_plan and score_inputs only. report() separately opens pilot_labels and dataset/holdout sample references after scoring (script lines 127-135, 160-163).",
+    "official_background_rows": 7,
+    "rows_without_backgrounds": 57,
+    "official_background_arm_same_system_prompt_as_context_only_for_empty_background_rows": true
+  },
+  "input_plan_checks": {
+    "plan_cases": 64,
+    "input_rows": 64,
+    "inputs_sha256_matches_plan": true,
+    "background_sha256_matches_verified_backgrounds": true,
+    "entity_module_sha256_matches_current_system_file": true,
+    "plan_conditions": [
+      "context_only",
+      "official_background"
+    ],
+    "thresholds": [
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ]
+  },
+  "scoring_design": {
+    "scoring_matrix": "For each condition, score both completions (source, changed) under both user-prompt hypotheses (source, changed): four causal-LM forward calls per input/condition.",
+    "score_records": 128,
+    "score_pairs_unique": 128,
+    "expected_condition_pairs": 128,
+    "observed_pairs_exactly_match_input_x_conditions": true,
+    "per_record_forward_calls_annotation_distribution": {
+      "4": 128
+    },
+    "sum_forward_calls_recorded": 512,
+    "completed_successful_forwards_inferred_from_all_128_completed_matrix_records": true,
+    "forward_count_instrumentation_caveat": "forward_calls=4 is hardcoded after the 4 score() calls, not incremented by a model-call hook. Every successfully appended row has run 4 score() calls, but interrupted attempts before append would not appear in scores.jsonl.",
+    "score_hash_matches_post_score_plan": true,
+    "score_rows_have_reference_fields": false
+  },
+  "strategy_audit": {
+    "frozen_plan_rule": "Veto only when the changed-minus-source mean-token score is <= -threshold under BOTH input hypotheses; baseline replacements are only removed.",
+    "implementation_lines": "probe_entity_contrastive_score.py:102-112 creates the cross-scoring matrix; :141-148 applies veto; :150-159 reconstructs from initial text using kept existing changes.",
+    "only_vetoes_existing_changes": true,
+    "new_replacements_created": false,
+    "non_preregistered_extension": {
+      "separate_file": "results/entity_conflict_veto_20261012/score_average_plan.json",
+      "post_score_exploration": true,
+      "reason": "Symmetric both-prompts veto produced no changes; examine averaged margins as copying-bias diagnostic. Not independently preregistered.",
+      "decision": "Average of target-minus-source mean token log probabilities under both hypothetical inputs <= -threshold. Veto existing changes only.",
+      "scores_sha256_matches": true,
+      "interpretation": "This averages the two margins instead of requiring both to cross the threshold. It is a post-score development diagnostic, not a preregistered change to score_plan or score_inputs.",
+      "reported_outcome_not_independently_checked": "The parent reports that no average threshold qualifies; this audit did not read score_average_summary/score_average_changes."
+    }
+  },
+  "concrete_limitations": [
+    {
+      "topic": "Mean token score",
+      "finding": "score() returns logs.mean() over every completion token (script lines 86-92); margins compare these whole-transcript means. Unchanged context can dominate/dilute a local entity signal, candidate/source token counts can differ, and tokenizer segmentation changes the denominator. Mean token log probability is not a calibrated likelihood ratio or entity-span score."
+    },
+    {
+      "topic": "Copying bias",
+      "finding": "Each user prompt is literally one complete hypothesis and each completion is one complete hypothesis. Cross-scoring both hypotheses is symmetric and useful as a copying-bias diagnostic, but self-copying remains possible. The official-background system prompt also contains the canonical name and its description, so a score gain can reflect lexical prior/copying rather than evidence from audio."
+    },
+    {
+      "topic": "Evidence modality",
+      "finding": "The scorer is text-only and receives no waveform or ASR confidence. It measures model compatibility with text prompts, not whether the candidate was heard."
+    },
+    {
+      "topic": "Development coverage",
+      "finding": "64 candidate inputs cover 63 sample IDs; one recording contributes two separate candidate spans. 57/64 rows have no background, making official_background identical to context_only for those cases. Threshold behavior is exploratory on a small development set."
+    },
+    {
+      "topic": "Reconstruction",
+      "finding": "report() reconstructs text from the frozen initial transcript plus kept baseline changes rather than rerunning the production/audio path. This is suitable for an offline veto simulation but is not an end-to-end deployed result or regenerated payload."
+    },
+    {
+      "topic": "Acceptance and labels",
+      "finding": "The plan states relative non-regression, while code uses hard-coded absolute gates hits>=100, errors<=33, absent_changes<6 and lost_reference_present_changes==0 (script lines 176-180). The latter lost-change test is canonical substring presence anywhere in the reference, not span-aligned gold support; report also uses reference-substring absent_changes. Prefer computing explicit per-target baseline deltas and aligned gold changes."
+    },
+    {
+      "topic": "Integrity assertions",
+      "finding": "report() checks score row count and uniqueness but not that exact (id,condition) pairs equal the Cartesian input-by-condition set (script line 129). This audit found the completed score file has the exact expected pair set. Add an exact-set assertion to protect future runs."
+    },
+    {
+      "topic": "Frozen provenance",
+      "finding": "infer() validates the score_inputs hash (script line 71), but does not revalidate background_sha256 or entity_module_sha256; report() imports the current system normalizer. The model path is recorded without a weights/tokenizer digest."
+    }
+  ],
+  "recommended_followups_not_applied": [
+    "Keep score_average_plan explicitly post-score and out of the frozen plan/inputs; do not describe it as preregistered.",
+    "Assert the exact set of expected (input id, condition) pairs before report aggregation.",
+    "Instrument forward-call counts rather than writing a constant, and record model/tokenizer identity.",
+    "Report mean and total log probability separately, plus a span-focused score or calibrated validation if such a score will drive a veto.",
+    "Compare acceptance gates directly against computed baseline metrics and align lost-target checks to annotated spans."
+  ]
+}

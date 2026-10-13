@@ -1,0 +1,139 @@
+{
+  "threshold": 0.63,
+  "summary": {
+    "all": {
+      "ungated": {
+        "samples": 96,
+        "hits": 54,
+        "expected_mentions": 55,
+        "errors": 140,
+        "reference_chars": 2713,
+        "replays": 69,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.05160339107998525
+      },
+      "gated": {
+        "samples": 96,
+        "hits": 54,
+        "expected_mentions": 55,
+        "errors": 140,
+        "reference_chars": 2713,
+        "replays": 33,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.05160339107998525
+      }
+    },
+    "commonvoice_zh-CN_test": {
+      "ungated": {
+        "samples": 48,
+        "hits": 36,
+        "expected_mentions": 36,
+        "errors": 30,
+        "reference_chars": 904,
+        "replays": 31,
+        "changed_samples": 0,
+        "changes": 0,
+        "extra_mentions": 0,
+        "CER": 0.033185840707964605
+      },
+      "gated": {
+        "samples": 48,
+        "hits": 36,
+        "expected_mentions": 36,
+        "errors": 30,
+        "reference_chars": 904,
+        "replays": 16,
+        "changed_samples": 0,
+        "changes": 0,
+        "extra_mentions": 0,
+        "CER": 0.033185840707964605
+      }
+    },
+    "lexicon_absent": {
+      "ungated": {
+        "samples": 52,
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 77,
+        "reference_chars": 1529,
+        "replays": 37,
+        "changed_samples": 0,
+        "changes": 0,
+        "extra_mentions": 0,
+        "CER": 0.050359712230215826
+      },
+      "gated": {
+        "samples": 52,
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 77,
+        "reference_chars": 1529,
+        "replays": 15,
+        "changed_samples": 0,
+        "changes": 0,
+        "extra_mentions": 0,
+        "CER": 0.050359712230215826
+      }
+    },
+    "lexicon_present": {
+      "ungated": {
+        "samples": 44,
+        "hits": 54,
+        "expected_mentions": 55,
+        "errors": 63,
+        "reference_chars": 1184,
+        "replays": 32,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.05320945945945946
+      },
+      "gated": {
+        "samples": 44,
+        "hits": 54,
+        "expected_mentions": 55,
+        "errors": 63,
+        "reference_chars": 1184,
+        "replays": 18,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.05320945945945946
+      }
+    },
+    "fleurs_zh-CN_test": {
+      "ungated": {
+        "samples": 48,
+        "hits": 18,
+        "expected_mentions": 19,
+        "errors": 110,
+        "reference_chars": 1809,
+        "replays": 38,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.06080707573244887
+      },
+      "gated": {
+        "samples": 48,
+        "hits": 18,
+        "expected_mentions": 19,
+        "errors": 110,
+        "reference_chars": 1809,
+        "replays": 17,
+        "changed_samples": 1,
+        "changes": 2,
+        "extra_mentions": 0,
+        "CER": 0.06080707573244887
+      }
+    }
+  },
+  "quality_losses": [],
+  "authoritative_payloads_identical": 96,
+  "avoided_real_request_seconds_from_recordings": 22.09697667369619,
+  "note": "Avoided time is the measured original prompted-ASR time of skipped trials, not a newly measured latency speedup"
+}

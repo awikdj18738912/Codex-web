@@ -1,0 +1,185 @@
+{
+  "input_version": "contextual_char_gap_v1",
+  "labels": [
+    "KEEP",
+    "DELETE_CANDIDATE",
+    "CORRECTION_CANDIDATE"
+  ],
+  "max_tokens": 512,
+  "threshold": 0.7,
+  "calibrated": false,
+  "online_enabled": false,
+  "production_skip_allowed": false,
+  "weights_sha256": "da204c021e02020b6e35367bf1b573b4f636c50dc882b1b52899528ebe02483c",
+  "parameters": 101682437,
+  "best_epoch": 7,
+  "training_seconds": 37.806954816915095,
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.1919013112175698,
+      "validation_loss": 0.0883333602131487,
+      "elapsed_seconds": 3.9085705745965242,
+      "validation_threshold": 0.15,
+      "validation_keep_false_positives": 72,
+      "validation_location_precision": 0.5013550135501355,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 0.9722222222222222
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.019257983270126604,
+      "validation_loss": 0.07192003500421305,
+      "elapsed_seconds": 8.229048404842615,
+      "validation_threshold": 0.05,
+      "validation_keep_false_positives": 34,
+      "validation_location_precision": 0.6716981132075471,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 0.9722222222222222
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.00554840814050262,
+      "validation_loss": 0.11559557809855218,
+      "elapsed_seconds": 15.002561104018241,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 138,
+      "validation_location_precision": 0.055062166962699825,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.0014617700884409462,
+      "validation_loss": 0.1937433059688087,
+      "elapsed_seconds": 18.8896635719575,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 138,
+      "validation_location_precision": 0.055062166962699825,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0014193205815153224,
+      "validation_loss": 0.08145230665366661,
+      "elapsed_seconds": 22.767606476787478,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 138,
+      "validation_location_precision": 0.055062166962699825,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.0009149757432298198,
+      "validation_loss": 0.14053458826163331,
+      "elapsed_seconds": 26.621041017584503,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 138,
+      "validation_location_precision": 0.055062166962699825,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.0015827408134260125,
+      "validation_loss": 0.0652739695936173,
+      "elapsed_seconds": 30.500593958888203,
+      "validation_threshold": 0.7,
+      "validation_keep_false_positives": 26,
+      "validation_location_precision": 0.736,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 0.9722222222222222
+      }
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.0021148100223794923,
+      "validation_loss": 0.05245615734911717,
+      "elapsed_seconds": 36.83204717282206,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 138,
+      "validation_location_precision": 0.055062166962699825,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    }
+  ],
+  "class_counts": {
+    "0": 16241,
+    "1": 898,
+    "2": 4
+  },
+  "class_weights": [
+    1.0,
+    4.252734184265137,
+    6.0
+  ],
+  "gap_positive_training_rows": 0,
+  "insertion_detection_supported": false,
+  "task_probes_train_only": true,
+  "selection_mode": "edit_recall",
+  "validation_selection": ">=95% window/per-observed-task meaningful edit recall, then fewer KEEP false positives; character recall constraint only in loss mode",
+  "human_audio_gold": 0,
+  "scope": "controlled_text_group_holdout_only_not_audio_gold",
+  "encoder_provenance": {
+    "model_id": "hfl/chinese-roberta-wwm-ext",
+    "revision": "5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "path": "/home/aim0/.cache/huggingface/hub/models--hfl--chinese-roberta-wwm-ext/snapshots/5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "source_url": "https://huggingface.co/hfl/chinese-roberta-wwm-ext",
+    "license": "apache-2.0",
+    "architecture": {
+      "architectures": [
+        "BertForMaskedLM"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "bos_token_id": 0,
+      "directionality": "bidi",
+      "eos_token_id": 2,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 768,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "output_past": true,
+      "pad_token_id": 0,
+      "pooler_fc_size": 768,
+      "pooler_num_attention_heads": 12,
+      "pooler_num_fc_layers": 3,
+      "pooler_size_per_head": 128,
+      "pooler_type": "first_token_transform",
+      "type_vocab_size": 2,
+      "vocab_size": 21128
+    },
+    "files_sha256": {
+      "config.json": "61609babfbada201546297d62f7f3a642d8fd2f1cefec5571c6cbd1e2e2132d9",
+      "pytorch_model.bin": "1ded5a5a1c7841dee6e47942f7b5bf2bcf6f73ff19197580f852f7f638f86b35",
+      "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c",
+      "tokenizer.json": "53ff61207898738bbdc000f38abebef01041c8d23b6270c11855fc692d0a3ad6",
+      "tokenizer_config.json": "61785aeaba176fba6d6489f27dccfd2ddee6aee2af0e590451cab7d8b57e0874"
+    },
+    "previous_small_encoder": "models/entity_ranker/encoder",
+    "previous_small_encoder_upstream_verified": false
+  },
+  "upstream_pretraining_source_recorded": true
+}

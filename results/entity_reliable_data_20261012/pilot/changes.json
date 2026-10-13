@@ -1,0 +1,77 @@
+[
+  {
+    "id": "rel_1f7fd7064cdc1e3fff8a",
+    "source": "football",
+    "reference": "巴乔在二十七岁时毫无争议地包揽了欧洲金球奖和世界足球先生",
+    "before": "八角在二十七岁时，毫无争议地包揽了欧洲金球奖和世界足球先生。",
+    "after": "巴乔在二十七岁时，毫无争议地包揽了欧洲金球奖和世界足球先生。",
+    "error_delta": -2,
+    "changes": [
+      {
+        "start": 0,
+        "end": 2,
+        "observed": "八角",
+        "canonical": "巴乔",
+        "entity_id": 20,
+        "phonetic_score": 0.81875,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.755,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "巴乔",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "id": "rel_a460fb0e55583bf5c17a",
+    "source": "football",
+    "reference": "他送走了又一位前队友菲戈齐达内也实现了对自己的诺言",
+    "before": "他送走了又一位前队友，飞哥，齐达内也实现了对自己的诺言。",
+    "after": "他送走了又一位前队友，菲戈，齐达内也实现了对自己的诺言。",
+    "error_delta": -2,
+    "changes": [
+      {
+        "start": 11,
+        "end": 13,
+        "observed": "飞哥",
+        "canonical": "菲戈",
+        "entity_id": 45,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "菲戈",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  },
+  {
+    "id": "rel_e54655fd8e07cf3bef13",
+    "source": "automotive",
+    "reference": "看起来也是更有力量感更好看一点儿呃轮胎的品牌完全没有问题啊是米其林的浩悦四",
+    "before": "看起来也是更有力量感，更好看一点。呃，轮胎的品牌完全没有问题啊，是米其林的皓月四。",
+    "after": "看起来也是更有力量感，更好看一点。呃，轮胎的品牌完全没有问题啊，是米其林的浩悦四。",
+    "error_delta": -2,
+    "changes": [
+      {
+        "start": 37,
+        "end": 39,
+        "observed": "皓月",
+        "canonical": "浩悦",
+        "entity_id": 19,
+        "phonetic_score": 1.0,
+        "character_score": 0.0,
+        "length_score": 1.0,
+        "retrieval_score": 0.9,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "浩悦",
+        "entity_type": "TERM",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ]
+  }
+]

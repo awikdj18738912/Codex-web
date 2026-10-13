@@ -1,0 +1,94 @@
+{
+  "factory_commit": "ce9dc9e072f80fa3abe0989d4ab90da25f083438",
+  "factory_source": "/home/aim0/桌面/tan/ASR/Codex-web/LLaMA-Factory",
+  "environment": "/home/aim0/桌面/tan/ASR/Codex-web/.runtime/llamafactory-env",
+  "dependency_check": "passed",
+  "original_asr_environment": {
+    "torch": "2.11.0",
+    "transformers": "5.14.1",
+    "accelerate": "1.14.0"
+  },
+  "source_hashes": {
+    "experiments/llamafactory/constraints.txt": "a2279f1fcac89da60e5b5e1b6c8a23d82682293ef2b71f76e5711b80f01fcf42",
+    "experiments/llamafactory/refiner_local_lora.yaml": "eb978a908c2c5e5a0ab610e3f40aead6075fa70d014bb214d7a4c650a2542029",
+    "experiments/scripts/run_refiner_llamafactory.py": "ff1c20eeda8a25090868f42c5cde6c3d5c5985c0778c94a7e0302501186a69d5",
+    "experiments/scripts/export_refiner_llamafactory_data.py": "41a02a02541d7900163317e96e7015e4025f269b586a3dcd00ac1d573f6f3926",
+    "experiments/scripts/isolate_llamafactory_env.py": "4e1f665be11fa194428612ccb845ad668d30f85610fbbda699f667f4631bdcef",
+    "scripts/llamafactory_refiner.sh": "0b243ee0ce750dd6e98bdfe245a2fbe43a842385ea046987f10dbb30af846941",
+    "scripts/setup_llamafactory_refiner.sh": "6583bf50bf14026e5f8a81eaa5d71af4effe7e75291c460f6f8799f163938301",
+    "system/refinement_protocol.py": "aa5fc11bcf27e2cc22606b82f9f955676f6ac0663fa5729089f7591e50dd6ef1",
+    "experiments/scripts/evaluate_refiner_lora_format.py": "f9deddfde772ffae35fd9df9818e467791087a5238bde5cdec08d1ce5dbe3c47",
+    "experiments/scripts/prepare_local_edit_sft.py": "5b0149ef4f78cc7880e3974e5eb2d922d0a44e53a9ddc7c39cb3c15cccf1524d"
+  },
+  "preflight_sha256": "06aa53e99b931f068f6372d8291b1b9dba9bc912472ca9dd32c1033449d6f246",
+  "smoke": {
+    "global_step": 1,
+    "train_loss": 1.9689762592315674,
+    "trainer_runtime_seconds": 12.2487,
+    "adapter_sha256": "5440f7d89d6b72b96be40d6a6111e860bd17d6310e714e2458ac4552e20a4a91",
+    "adapter_bytes": 4141368,
+    "purpose": "one_cpu_step_integration_check_not_a_candidate_model"
+  },
+  "focused_tests_passed": 28,
+  "full_training_started": true,
+  "live_service_modified": false,
+  "full_training": {
+    "completed": true,
+    "epochs": 3.0,
+    "optimizer_steps": 237,
+    "train_runtime_seconds": 312.9376,
+    "train_loss": 0.35973851726968076,
+    "eval_loss_by_epoch": [
+      0.17040911316871643,
+      0.17498178780078888,
+      0.16251811385154724
+    ],
+    "best_checkpoint": "results/refiner_lora_20261010/checkpoint-237",
+    "adapter_sha256": "5408a42944150a4917781193db8b80b74d02feb6ccd07c2133163823483af4c7",
+    "adapter_bytes": 4141368,
+    "gpu": 0,
+    "smoke_adapter_not_promoted": true,
+    "adapter_suitable_for_ASR_refinement": false,
+    "reason": "zero protocol-accepted replacement edits on the 250-example synthetic holdout"
+  },
+  "synthetic_holdout_evaluation": {
+    "summary_file": "results/refiner_lora_20261010/format_eval_guarded_20261010/summary.json",
+    "summary_sha256": "283956fddaf954b42c3dcadb5ef7d8a633a403ba5fffc3bc1b651b96520eaca1",
+    "prediction_file_sha256": "0e1691dedb321e3367d3326d1adea2f3e9a9d7fc62280b16de244c111372f965",
+    "examples": 250,
+    "valid_json_rate": 0.916,
+    "exact_target_rate": 0.664,
+    "accepted_replace_count": 0,
+    "model_generated_replace_count": 21,
+    "real_audio": false,
+    "human_gold": false,
+    "passed_real_asr_acceptance": false
+  },
+  "project_services_stopped_by_user_request": {
+    "web_ports": [
+      8081,
+      8051,
+      8082
+    ],
+    "asr_port": 8766
+  },
+  "services_at_report_time": {
+    "8081": "stopped",
+    "8051": "stopped",
+    "8082": "stopped",
+    "8766": "running_after_other_codex_managed_process_restarted"
+  },
+  "format_holdout_report_sha256": "dff1ee08e4c869b6ddb9a4a4b40a4920fbad0816466c5f93dc3fefc74e37825f",
+  "adapter_not_for_refiner_inference": true,
+  "project_services_stopped_for_training": {
+    "web_ports": [
+      8081,
+      8051,
+      8082
+    ],
+    "asr_port": 8766
+  },
+  "other_project_services_stopped": false,
+  "services_start_event_note": "The ASR service was stopped for training; another Codex-managed process restarted port 8766 after training.",
+  "holdout_report_sha256": "dff1ee08e4c869b6ddb9a4a4b40a4920fbad0816466c5f93dc3fefc74e37825f"
+}

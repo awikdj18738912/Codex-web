@@ -1,0 +1,192 @@
+[
+  {
+    "condition": "context_only",
+    "threshold": 0.1,
+    "metrics": {
+      "samples": 63,
+      "hits": 79,
+      "expected_mentions": 105,
+      "errors": 64,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 22,
+      "lost_reference_present_changes": 22,
+      "improved": 0,
+      "regressed": 21,
+      "CER": 0.06280667320902845
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.25,
+    "metrics": {
+      "samples": 63,
+      "hits": 87,
+      "expected_mentions": 105,
+      "errors": 52,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 13,
+      "lost_reference_present_changes": 13,
+      "improved": 0,
+      "regressed": 13,
+      "CER": 0.05103042198233562
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "context_only",
+    "threshold": 0.5,
+    "metrics": {
+      "samples": 63,
+      "hits": 95,
+      "expected_mentions": 105,
+      "errors": 39,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 5,
+      "lost_reference_present_changes": 5,
+      "improved": 0,
+      "regressed": 5,
+      "CER": 0.038272816486751716
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "context_only",
+    "threshold": 1.0,
+    "metrics": {
+      "samples": 63,
+      "hits": 99,
+      "expected_mentions": 105,
+      "errors": 34,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 1,
+      "lost_reference_present_changes": 1,
+      "improved": 0,
+      "regressed": 1,
+      "CER": 0.033366045142296366
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "context_only",
+    "threshold": 2.0,
+    "metrics": {
+      "samples": 63,
+      "hits": 100,
+      "expected_mentions": 105,
+      "errors": 33,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 0,
+      "lost_reference_present_changes": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0323846908734053
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.1,
+    "metrics": {
+      "samples": 63,
+      "hits": 79,
+      "expected_mentions": 105,
+      "errors": 64,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 22,
+      "lost_reference_present_changes": 22,
+      "improved": 0,
+      "regressed": 21,
+      "CER": 0.06280667320902845
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.25,
+    "metrics": {
+      "samples": 63,
+      "hits": 87,
+      "expected_mentions": 105,
+      "errors": 52,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 13,
+      "lost_reference_present_changes": 13,
+      "improved": 0,
+      "regressed": 13,
+      "CER": 0.05103042198233562
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "official_background",
+    "threshold": 0.5,
+    "metrics": {
+      "samples": 63,
+      "hits": 95,
+      "expected_mentions": 105,
+      "errors": 39,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 5,
+      "lost_reference_present_changes": 5,
+      "improved": 0,
+      "regressed": 5,
+      "CER": 0.038272816486751716
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "official_background",
+    "threshold": 1.0,
+    "metrics": {
+      "samples": 63,
+      "hits": 99,
+      "expected_mentions": 105,
+      "errors": 34,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 1,
+      "lost_reference_present_changes": 1,
+      "improved": 0,
+      "regressed": 1,
+      "CER": 0.033366045142296366
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  },
+  {
+    "condition": "official_background",
+    "threshold": 2.0,
+    "metrics": {
+      "samples": 63,
+      "hits": 100,
+      "expected_mentions": 105,
+      "errors": 33,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "vetoed_changes": 0,
+      "lost_reference_present_changes": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0323846908734053
+    },
+    "aggregation": "average_diagnostic",
+    "qualifies_on_development": false
+  }
+]

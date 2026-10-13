@@ -1,0 +1,43 @@
+{
+  "seed": 20261013,
+  "independent_components": 38,
+  "ordinary_components": 20,
+  "task_probe_components_train_only": 18,
+  "searches": 3000,
+  "split_uses": "labels_and_group_sizes_before_fit_only",
+  "constraints": [
+    "template",
+    "recording",
+    "identical_baseline"
+  ],
+  "counts": {
+    "train": {
+      "rows": 417,
+      "keeps": 279,
+      "tasks": {
+        "disfluency": 65,
+        "repetition": 65,
+        "self_correction": 2,
+        "local_typo": 2,
+        "boundary_punctuation": 2,
+        "entity_correction": 2
+      }
+    },
+    "validation": {
+      "rows": 126,
+      "keeps": 84,
+      "tasks": {
+        "disfluency": 21,
+        "repetition": 21
+      }
+    },
+    "test": {
+      "rows": 145,
+      "keeps": 103,
+      "tasks": {
+        "disfluency": 21,
+        "repetition": 21
+      }
+    }
+  }
+}

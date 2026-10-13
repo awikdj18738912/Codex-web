@@ -1,0 +1,436 @@
+{
+  "all": {
+    "raw_initial": {
+      "samples": 128,
+      "reference_chars": 3864,
+      "errors": 345,
+      "hits": 131,
+      "expected_mentions": 141,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.08928571428571429,
+      "entity_recall": 0.9290780141843972
+    },
+    "raw_repair": {
+      "samples": 128,
+      "reference_chars": 3864,
+      "errors": 339,
+      "hits": 137,
+      "expected_mentions": 141,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08773291925465838,
+      "entity_recall": 0.9716312056737588
+    },
+    "no_dictionary": {
+      "samples": 128,
+      "reference_chars": 3864,
+      "errors": 338,
+      "hits": 131,
+      "expected_mentions": 141,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08747412008281573,
+      "entity_recall": 0.9290780141843972
+    },
+    "dictionary_rules": {
+      "samples": 128,
+      "reference_chars": 3864,
+      "errors": 338,
+      "hits": 131,
+      "expected_mentions": 141,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08747412008281573,
+      "entity_recall": 0.9290780141843972
+    },
+    "audio_repair": {
+      "samples": 128,
+      "reference_chars": 3864,
+      "errors": 332,
+      "hits": 137,
+      "expected_mentions": 141,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08592132505175984,
+      "entity_recall": 0.9716312056737588
+    }
+  },
+  "commonvoice_zh-CN_test": {
+    "raw_initial": {
+      "samples": 64,
+      "reference_chars": 1135,
+      "errors": 96,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.08458149779735682,
+      "entity_recall": 0.9615384615384616
+    },
+    "raw_repair": {
+      "samples": 64,
+      "reference_chars": 1135,
+      "errors": 96,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.08458149779735682,
+      "entity_recall": 0.9615384615384616
+    },
+    "no_dictionary": {
+      "samples": 64,
+      "reference_chars": 1135,
+      "errors": 95,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 1,
+      "regressed": 0,
+      "CER": 0.08370044052863436,
+      "entity_recall": 0.9615384615384616
+    },
+    "dictionary_rules": {
+      "samples": 64,
+      "reference_chars": 1135,
+      "errors": 95,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 1,
+      "regressed": 0,
+      "CER": 0.08370044052863436,
+      "entity_recall": 0.9615384615384616
+    },
+    "audio_repair": {
+      "samples": 64,
+      "reference_chars": 1135,
+      "errors": 95,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.08370044052863436,
+      "entity_recall": 0.9615384615384616
+    }
+  },
+  "commonvoice_zh-CN_test:lexicon_absent": {
+    "raw_initial": {
+      "samples": 16,
+      "reference_chars": 238,
+      "errors": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.13445378151260504,
+      "entity_recall": null
+    },
+    "raw_repair": {
+      "samples": 16,
+      "reference_chars": 238,
+      "errors": 32,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.13445378151260504,
+      "entity_recall": null
+    },
+    "no_dictionary": {
+      "samples": 16,
+      "reference_chars": 238,
+      "errors": 31,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 1,
+      "regressed": 0,
+      "CER": 0.13025210084033614,
+      "entity_recall": null
+    },
+    "dictionary_rules": {
+      "samples": 16,
+      "reference_chars": 238,
+      "errors": 31,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 1,
+      "regressed": 0,
+      "CER": 0.13025210084033614,
+      "entity_recall": null
+    },
+    "audio_repair": {
+      "samples": 16,
+      "reference_chars": 238,
+      "errors": 31,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.13025210084033614,
+      "entity_recall": null
+    }
+  },
+  "commonvoice_zh-CN_test:lexicon_present": {
+    "raw_initial": {
+      "samples": 48,
+      "reference_chars": 897,
+      "errors": 64,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0713489409141583,
+      "entity_recall": 0.9615384615384616
+    },
+    "raw_repair": {
+      "samples": 48,
+      "reference_chars": 897,
+      "errors": 64,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0713489409141583,
+      "entity_recall": 0.9615384615384616
+    },
+    "no_dictionary": {
+      "samples": 48,
+      "reference_chars": 897,
+      "errors": 64,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0713489409141583,
+      "entity_recall": 0.9615384615384616
+    },
+    "dictionary_rules": {
+      "samples": 48,
+      "reference_chars": 897,
+      "errors": 64,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0713489409141583,
+      "entity_recall": 0.9615384615384616
+    },
+    "audio_repair": {
+      "samples": 48,
+      "reference_chars": 897,
+      "errors": 64,
+      "hits": 50,
+      "expected_mentions": 52,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0713489409141583,
+      "entity_recall": 0.9615384615384616
+    }
+  },
+  "fleurs_zh-CN_test": {
+    "raw_initial": {
+      "samples": 64,
+      "reference_chars": 2729,
+      "errors": 249,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.0912422132649322,
+      "entity_recall": 0.9101123595505618
+    },
+    "raw_repair": {
+      "samples": 64,
+      "reference_chars": 2729,
+      "errors": 243,
+      "hits": 87,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08904360571637962,
+      "entity_recall": 0.9775280898876404
+    },
+    "no_dictionary": {
+      "samples": 64,
+      "reference_chars": 2729,
+      "errors": 243,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 4,
+      "regressed": 0,
+      "CER": 0.08904360571637962,
+      "entity_recall": 0.9101123595505618
+    },
+    "dictionary_rules": {
+      "samples": 64,
+      "reference_chars": 2729,
+      "errors": 243,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 4,
+      "regressed": 0,
+      "CER": 0.08904360571637962,
+      "entity_recall": 0.9101123595505618
+    },
+    "audio_repair": {
+      "samples": 64,
+      "reference_chars": 2729,
+      "errors": 237,
+      "hits": 87,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.08684499816782704,
+      "entity_recall": 0.9775280898876404
+    }
+  },
+  "fleurs_zh-CN_test:lexicon_absent": {
+    "raw_initial": {
+      "samples": 16,
+      "reference_chars": 531,
+      "errors": 14,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.026365348399246705,
+      "entity_recall": null
+    },
+    "raw_repair": {
+      "samples": 16,
+      "reference_chars": 531,
+      "errors": 14,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.026365348399246705,
+      "entity_recall": null
+    },
+    "no_dictionary": {
+      "samples": 16,
+      "reference_chars": 531,
+      "errors": 14,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.026365348399246705,
+      "entity_recall": null
+    },
+    "dictionary_rules": {
+      "samples": 16,
+      "reference_chars": 531,
+      "errors": 14,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.026365348399246705,
+      "entity_recall": null
+    },
+    "audio_repair": {
+      "samples": 16,
+      "reference_chars": 531,
+      "errors": 14,
+      "hits": 0,
+      "expected_mentions": 0,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.026365348399246705,
+      "entity_recall": null
+    }
+  },
+  "fleurs_zh-CN_test:lexicon_present": {
+    "raw_initial": {
+      "samples": 48,
+      "reference_chars": 2198,
+      "errors": 235,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 0,
+      "regressed": 0,
+      "CER": 0.10691537761601456,
+      "entity_recall": 0.9101123595505618
+    },
+    "raw_repair": {
+      "samples": 48,
+      "reference_chars": 2198,
+      "errors": 229,
+      "hits": 87,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.10418562329390355,
+      "entity_recall": 0.9775280898876404
+    },
+    "no_dictionary": {
+      "samples": 48,
+      "reference_chars": 2198,
+      "errors": 229,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 4,
+      "regressed": 0,
+      "CER": 0.10418562329390355,
+      "entity_recall": 0.9101123595505618
+    },
+    "dictionary_rules": {
+      "samples": 48,
+      "reference_chars": 2198,
+      "errors": 229,
+      "hits": 81,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 4,
+      "regressed": 0,
+      "CER": 0.10418562329390355,
+      "entity_recall": 0.9101123595505618
+    },
+    "audio_repair": {
+      "samples": 48,
+      "reference_chars": 2198,
+      "errors": 223,
+      "hits": 87,
+      "expected_mentions": 89,
+      "unreferenced_mentions": 0,
+      "improved": 5,
+      "regressed": 0,
+      "CER": 0.10145586897179254,
+      "entity_recall": 0.9775280898876404
+    }
+  }
+}

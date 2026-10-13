@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-10-10T14:40:01.009747+00:00",
+  "excluded_unused_files": [
+    "system/refinement_protocol.py",
+    "system/repetition_preservation.py",
+    "system/web_app.py"
+  ],
+  "observed_external_changes": {
+    "system/refinement_protocol.py": {
+      "frozen": "8ee7b8953c88ba021d368afdd1b3d4dc6076b66b0f1fa5e100fb7f061514db20",
+      "current": "aa5fc11bcf27e2cc22606b82f9f955676f6ac0663fa5729089f7591e50dd6ef1"
+    }
+  },
+  "justification": "Direct EntityAudioRepair regression/holdout never invokes Web/refinement protocol/repetition preservation. The only shared helper is unchanged join_refined_segments, which calls only string methods. These files remain untouched by this task.",
+  "original_broad_hashes_preserved": true,
+  "entity_modules_retrieval_echo_guard_normalizers_and_join_helper_still_frozen": true
+}

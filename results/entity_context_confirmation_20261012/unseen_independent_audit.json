@@ -1,0 +1,465 @@
+{
+  "audit_type": "independent_read_only_confirmation_audit",
+  "inputs": {
+    "unseen_samples_sha256": "f7823eef940583ad7d9962ef5d2101b86707d2a045f1c396e1bed5cff55999ed",
+    "unseen_references_sha256": "b9231c07db16e30e35ee2d563b910a81d1534f6f32a270c9bfd88e27c43772a7",
+    "fixed_library_entities_sha256": "880bff3b888214ecef34747b215c489cff24c5a780e6f9a6fd71b3af2cce5295",
+    "aishell_staging_samples_sha256": "b5dfa9bdd653308f98c5236dcb6b8557784ef7fbcd0a1cf7bdd35496b9c13b47",
+    "normalization": "system libopencc t2s.json, followed by NFKC, whitespace/punctuation/control removal and casefold"
+  },
+  "counts": {
+    "samples": 181,
+    "fixed_library_size": 1346,
+    "gold_mentions": 172,
+    "gold_type_mismatch_mentions": 29,
+    "canonical_not_found_after_traditional_simplified_normalization": 0,
+    "negative_samples_with_known_canonical_after_normalization": 0,
+    "library_out_or_near_sound_samples_with_known_canonical_after_normalization": 3,
+    "library_out_or_near_sound_official_span_check_issues": 0,
+    "library_out_or_near_sound_entities_by_official_ner_type": {
+      "LOC": 20,
+      "ORG": 18,
+      "PERSON": 3
+    },
+    "library_out_or_near_sound_samples_by_type": {
+      "PERSON": 3,
+      "ORG": 18,
+      "LOC": 20,
+      "OTHER": 0,
+      "UNKNOWN": 0
+    },
+    "gold_type_mismatch_samples": 24,
+    "negative_and_library_out_known_canonical_samples_total": 3
+  },
+  "gold_type_mismatches": [
+    {
+      "id": "ecu_8254b77e9090fc75756a",
+      "canonical": "上海",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_467b1732e23b9bde2477",
+      "canonical": "法国",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_7c046d8a8d4a97de5857",
+      "canonical": "台湾",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_3eca8a3e7ffaf98877b4",
+      "canonical": "天津",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_a0265de98d6098053e1b",
+      "canonical": "北京",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_a0265de98d6098053e1b",
+      "canonical": "北京市",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_b807bae15b151783deca",
+      "canonical": "法国",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_455becad5a28128001be",
+      "canonical": "东京",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_f3ab5669d257010570d1",
+      "canonical": "河南",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_967a1893ef1daaf88569",
+      "canonical": "浙江省",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_967a1893ef1daaf88569",
+      "canonical": "奉化",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_1f5ed18f4c9ef4906029",
+      "canonical": "英国",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_bb6a3ab3881a912afdd3",
+      "canonical": "南昌",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_f59fa12f0ea055c28be3",
+      "canonical": "北京",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_31e695ca38204af022df",
+      "canonical": "上海",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_b641462fbf031c670cb7",
+      "canonical": "北京",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_1f15a29aee4691f8ca8b",
+      "canonical": "山东",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_cc6f4bd8a590abce6f19",
+      "canonical": "湖南",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_a83c207cd35c7f0bb032",
+      "canonical": "江苏",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_6324ebe0b86c42a37674",
+      "canonical": "印度",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_6324ebe0b86c42a37674",
+      "canonical": "南海",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_10aa8460076582f03aac",
+      "canonical": "天津",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_9ceeb84a988aa26f1925",
+      "canonical": "武汉",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_9ceeb84a988aa26f1925",
+      "canonical": "武汉",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_9ceeb84a988aa26f1925",
+      "canonical": "武汉",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_0c5ad299be90bd904906",
+      "canonical": "安徽",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_5ffceb060a3b7dace944",
+      "canonical": "法国",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_ed4f4a3df252e279505d",
+      "canonical": "平阳",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    },
+    {
+      "id": "ecu_94d394f2b04eed0f8083",
+      "canonical": "浙江",
+      "stored_entity_type": "TERM",
+      "fixed_library_entity_type": "LOC",
+      "source": "Common Voice zh-CN test"
+    }
+  ],
+  "canonical_missing_after_t2s": [],
+  "negative_known_canonical_hits": [],
+  "library_out_or_near_sound_known_canonical_hits": [
+    {
+      "id": "ecu_34276d0085b6cfa22e75",
+      "cohort": "library_out",
+      "source": "AISHELL-1 test",
+      "known_canonical_hits": [
+        "人大"
+      ],
+      "known_canonical_occurrences": [
+        {
+          "canonical": "人大",
+          "normalized_span": [
+            8,
+            10
+          ],
+          "overlaps_out_of_library_gold": true,
+          "overlapping_gold": [
+            {
+              "canonical": "华江瑶族乡十四届人大代表会",
+              "span": [
+                0,
+                13
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecu_e14ca57bae4abefb11e7",
+      "cohort": "library_out",
+      "source": "AISHELL-1 test",
+      "known_canonical_hits": [
+        "上海",
+        "香港"
+      ],
+      "known_canonical_occurrences": [
+        {
+          "canonical": "上海",
+          "normalized_span": [
+            3,
+            5
+          ],
+          "overlaps_out_of_library_gold": true,
+          "overlapping_gold": [
+            {
+              "canonical": "上海迪尼士",
+              "span": [
+                3,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "canonical": "香港",
+          "normalized_span": [
+            12,
+            14
+          ],
+          "overlaps_out_of_library_gold": true,
+          "overlapping_gold": [
+            {
+              "canonical": "香港迪尼士",
+              "span": [
+                12,
+                17
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecu_d64592e6b16aeaa8b225",
+      "cohort": "library_out",
+      "source": "AISHELL-1 test",
+      "known_canonical_hits": [
+        "比特币"
+      ],
+      "known_canonical_occurrences": [
+        {
+          "canonical": "比特币",
+          "normalized_span": [
+            18,
+            21
+          ],
+          "overlaps_out_of_library_gold": false,
+          "overlapping_gold": []
+        }
+      ]
+    }
+  ],
+  "library_out_or_near_sound_span_issues": [],
+  "library_out_or_near_sound_official_ner_types_by_sample": {
+    "ecu_a8fc4b359983606e3ed5": [
+      "LOC"
+    ],
+    "ecu_f3f1d979f7396e97bc1f": [
+      "LOC"
+    ],
+    "ecu_61f8c255a99d0af24c93": [
+      "LOC"
+    ],
+    "ecu_256d5ad8e8d927fac3d5": [
+      "LOC"
+    ],
+    "ecu_6427a7115280bed199fe": [
+      "LOC"
+    ],
+    "ecu_78fd80977f46a46b9226": [
+      "ORG"
+    ],
+    "ecu_cee67097a923d7e96e0f": [
+      "LOC"
+    ],
+    "ecu_853e565cabd36ff4886d": [
+      "LOC"
+    ],
+    "ecu_eed850345c1a944cb373": [
+      "LOC"
+    ],
+    "ecu_18ddb771f3189b549ea4": [
+      "LOC"
+    ],
+    "ecu_8d1ede76b74f6a684c35": [
+      "ORG"
+    ],
+    "ecu_03309a6a1ecee648ea6e": [
+      "LOC"
+    ],
+    "ecu_b156a1f4a9f202b0ead4": [
+      "LOC"
+    ],
+    "ecu_348fc598e7f98b3f4c78": [
+      "LOC"
+    ],
+    "ecu_31ff8784746615f3f747": [
+      "LOC"
+    ],
+    "ecu_c45b63447b2b20bcba58": [
+      "LOC"
+    ],
+    "ecu_cae6990e53763274b204": [
+      "ORG"
+    ],
+    "ecu_e54b7705cc82c1eb23e2": [
+      "LOC"
+    ],
+    "ecu_65e389dc3b56b297cb66": [
+      "LOC"
+    ],
+    "ecu_0fb74844404b461b805c": [
+      "LOC"
+    ],
+    "ecu_9e8e5501da7609454ea5": [
+      "ORG"
+    ],
+    "ecu_c66ec69f625a2b8cc2b4": [
+      "ORG"
+    ],
+    "ecu_dd9fd4f5a7dd25478394": [
+      "ORG"
+    ],
+    "ecu_a7f27b88e30e1188c8af": [
+      "PERSON"
+    ],
+    "ecu_4f9cc86868ac2770d2d0": [
+      "ORG"
+    ],
+    "ecu_34276d0085b6cfa22e75": [
+      "ORG"
+    ],
+    "ecu_d1a306db92f85431a7cf": [
+      "ORG"
+    ],
+    "ecu_00a522dbd63dc6910d8a": [
+      "ORG"
+    ],
+    "ecu_0e59a62439630a7d74d9": [
+      "LOC"
+    ],
+    "ecu_0b72637b038b79c34afe": [
+      "ORG"
+    ],
+    "ecu_893127f5346c100639b4": [
+      "LOC"
+    ],
+    "ecu_c7c7e8b477ff5ba2ea88": [
+      "ORG"
+    ],
+    "ecu_badecf8200ce4055f8fb": [
+      "PERSON"
+    ],
+    "ecu_e90de120f5b84cabbeff": [
+      "ORG"
+    ],
+    "ecu_014eeef5c1ed9c927a9c": [
+      "ORG"
+    ],
+    "ecu_172fe373cf00f533117b": [
+      "ORG"
+    ],
+    "ecu_b08e89db18e3a4962a8b": [
+      "ORG"
+    ],
+    "ecu_e14ca57bae4abefb11e7": [
+      "ORG"
+    ],
+    "ecu_d64592e6b16aeaa8b225": [
+      "LOC"
+    ],
+    "ecu_013433cd31d14deac773": [
+      "PERSON"
+    ],
+    "ecu_21ab7da08c377ad3d155": [
+      "ORG"
+    ]
+  },
+  "interpretation": [
+    "A reference hit is lexical evidence only and does not establish that a surface is a semantic entity in context.",
+    "AISHELL library-out spans are checked against the source staging official AISHELL-NER text and offsets.",
+    "Official NER labels PERSON, ORG, LOC provide the only available name/organization/place distinction for these out-of-library candidates; this is not a new human review."
+  ]
+}

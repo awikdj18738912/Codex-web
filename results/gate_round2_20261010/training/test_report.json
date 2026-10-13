@@ -1,0 +1,1439 @@
+{
+  "primary_policy": "encoder_weighted_native_veto",
+  "counts": {
+    "cases": 27,
+    "eligible": 24,
+    "labels": {
+      "neutral": 20,
+      "benefit": 3,
+      "uncertain": 3,
+      "harm": 1
+    },
+    "templates": 12,
+    "recordings": 22,
+    "by_task": {
+      "window_refine": {
+        "labels": {
+          "neutral": 18,
+          "benefit": 2,
+          "uncertain": 2
+        },
+        "harm_templates": 0
+      },
+      "local_edit_review": {
+        "labels": {
+          "uncertain": 1,
+          "harm": 1,
+          "neutral": 2,
+          "benefit": 1
+        },
+        "harm_templates": 1
+      }
+    }
+  },
+  "policies": {
+    "rules": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 0,
+      "selected_fraction": 0.0,
+      "available_benefit": 3,
+      "captured_benefit": 0,
+      "benefit_recall": 0.0,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 0,
+      "exact_intended": 14,
+      "exact_intended_fraction": 0.5185185185185185,
+      "intended_micro_cer": 0.053738317757009345,
+      "spoken_micro_cer": 0.02242152466367713,
+      "improved_intended": 0,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0,
+      "recorded_operation_cost_ms": 0,
+      "gate_cpu_estimated_ms": 0.0,
+      "estimated_serial_cost_ms": 0.0
+    },
+    "current": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 11,
+      "selected_fraction": 0.4074074074074074,
+      "available_benefit": 3,
+      "captured_benefit": 2,
+      "benefit_recall": 0.6666666666666666,
+      "weak_harm": 1,
+      "weak_harm_fraction_all_cases": 0.037037037037037035,
+      "weak_harm_fraction_selected": 0.09090909090909091,
+      "selected_uncertain": 2,
+      "exact_intended": 15,
+      "exact_intended_fraction": 0.5555555555555556,
+      "intended_micro_cer": 0.04205607476635514,
+      "spoken_micro_cer": 0.04708520179372197,
+      "improved_intended": 4,
+      "degraded_intended": 1,
+      "logical_refiner_calls": 13,
+      "logical_plausibility_calls": 2,
+      "recorded_operation_cost_ms": 3014.867,
+      "gate_cpu_estimated_ms": 0.0,
+      "estimated_serial_cost_ms": 3014.867
+    },
+    "always": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 27,
+      "selected_fraction": 1.0,
+      "available_benefit": 3,
+      "captured_benefit": 3,
+      "benefit_recall": 1.0,
+      "weak_harm": 1,
+      "weak_harm_fraction_all_cases": 0.037037037037037035,
+      "weak_harm_fraction_selected": 0.037037037037037035,
+      "selected_uncertain": 3,
+      "exact_intended": 16,
+      "exact_intended_fraction": 0.5925925925925926,
+      "intended_micro_cer": 0.037383177570093455,
+      "spoken_micro_cer": 0.04708520179372197,
+      "improved_intended": 6,
+      "degraded_intended": 1,
+      "logical_refiner_calls": 30,
+      "logical_plausibility_calls": 2,
+      "recorded_operation_cost_ms": 8609.889000000001,
+      "gate_cpu_estimated_ms": 0.0,
+      "estimated_serial_cost_ms": 8609.889000000001
+    },
+    "linear_tfidf_direct": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 0,
+      "selected_fraction": 0.0,
+      "available_benefit": 3,
+      "captured_benefit": 0,
+      "benefit_recall": 0.0,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 0,
+      "exact_intended": 14,
+      "exact_intended_fraction": 0.5185185185185185,
+      "intended_micro_cer": 0.053738317757009345,
+      "spoken_micro_cer": 0.02242152466367713,
+      "improved_intended": 0,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0,
+      "recorded_operation_cost_ms": 0,
+      "gate_cpu_estimated_ms": 18.317242618650198,
+      "estimated_serial_cost_ms": 18.317242618650198,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 0,
+          "selected_fraction": 0.0,
+          "available_benefit": 2,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 11,
+          "exact_intended_fraction": 0.5,
+          "intended_micro_cer": 0.05172413793103448,
+          "spoken_micro_cer": 0.024861878453038673,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 0,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 0.0
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 0,
+          "selected_fraction": 0.0,
+          "available_benefit": 1,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 3,
+          "exact_intended_fraction": 0.6,
+          "intended_micro_cer": 0.0625,
+          "spoken_micro_cer": 0.011904761904761904,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 0,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 0.0
+        }
+      }
+    },
+    "linear_tfidf_native_veto": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 11,
+      "selected_fraction": 0.4074074074074074,
+      "available_benefit": 3,
+      "captured_benefit": 2,
+      "benefit_recall": 0.6666666666666666,
+      "weak_harm": 1,
+      "weak_harm_fraction_all_cases": 0.037037037037037035,
+      "weak_harm_fraction_selected": 0.09090909090909091,
+      "selected_uncertain": 2,
+      "exact_intended": 15,
+      "exact_intended_fraction": 0.5555555555555556,
+      "intended_micro_cer": 0.04205607476635514,
+      "spoken_micro_cer": 0.04708520179372197,
+      "improved_intended": 4,
+      "degraded_intended": 1,
+      "logical_refiner_calls": 13,
+      "logical_plausibility_calls": 2,
+      "recorded_operation_cost_ms": 3014.867,
+      "gate_cpu_estimated_ms": 7.36673641949892,
+      "estimated_serial_cost_ms": 3022.233736419499,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 6,
+          "selected_fraction": 0.2727272727272727,
+          "available_benefit": 2,
+          "captured_benefit": 1,
+          "benefit_recall": 0.5,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 1,
+          "exact_intended": 12,
+          "exact_intended_fraction": 0.5454545454545454,
+          "intended_micro_cer": 0.040229885057471264,
+          "spoken_micro_cer": 0.03591160220994475,
+          "improved_intended": 2,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 8,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 2529.677,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 2529.677
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 5,
+          "selected_fraction": 1.0,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 1,
+          "weak_harm_fraction_all_cases": 0.2,
+          "weak_harm_fraction_selected": 0.2,
+          "selected_uncertain": 1,
+          "exact_intended": 3,
+          "exact_intended_fraction": 0.6,
+          "intended_micro_cer": 0.05,
+          "spoken_micro_cer": 0.09523809523809523,
+          "improved_intended": 2,
+          "degraded_intended": 1,
+          "logical_refiner_calls": 5,
+          "logical_plausibility_calls": 2,
+          "recorded_operation_cost_ms": 485.19,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 485.19
+        }
+      }
+    },
+    "encoder_unweighted_direct": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 1,
+      "selected_fraction": 0.037037037037037035,
+      "available_benefit": 3,
+      "captured_benefit": 1,
+      "benefit_recall": 0.3333333333333333,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 0,
+      "exact_intended": 15,
+      "exact_intended_fraction": 0.5555555555555556,
+      "intended_micro_cer": 0.04906542056074766,
+      "spoken_micro_cer": 0.026905829596412557,
+      "improved_intended": 1,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 1,
+      "logical_plausibility_calls": 0,
+      "recorded_operation_cost_ms": 69.215,
+      "gate_cpu_estimated_ms": 235.27774261310697,
+      "estimated_serial_cost_ms": 304.492742613107,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 0,
+          "selected_fraction": 0.0,
+          "available_benefit": 2,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 11,
+          "exact_intended_fraction": 0.5,
+          "intended_micro_cer": 0.05172413793103448,
+          "spoken_micro_cer": 0.024861878453038673,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 0,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 0,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 0.0
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 1,
+          "selected_fraction": 0.2,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 4,
+          "exact_intended_fraction": 0.8,
+          "intended_micro_cer": 0.0375,
+          "spoken_micro_cer": 0.03571428571428571,
+          "improved_intended": 1,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 1,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 69.215,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 69.215
+        }
+      }
+    },
+    "encoder_unweighted_native_veto": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 6,
+      "selected_fraction": 0.2222222222222222,
+      "available_benefit": 3,
+      "captured_benefit": 2,
+      "benefit_recall": 0.6666666666666666,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 1,
+      "exact_intended": 16,
+      "exact_intended_fraction": 0.5925925925925926,
+      "intended_micro_cer": 0.0397196261682243,
+      "spoken_micro_cer": 0.03587443946188341,
+      "improved_intended": 3,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 7,
+      "logical_plausibility_calls": 2,
+      "recorded_operation_cost_ms": 1608.147,
+      "gate_cpu_estimated_ms": 98.53054583072662,
+      "estimated_serial_cost_ms": 1706.6775458307266,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 3,
+          "selected_fraction": 0.13636363636363635,
+          "available_benefit": 2,
+          "captured_benefit": 1,
+          "benefit_recall": 0.5,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 12,
+          "exact_intended_fraction": 0.5454545454545454,
+          "intended_micro_cer": 0.04597701149425287,
+          "spoken_micro_cer": 0.03038674033149171,
+          "improved_intended": 1,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 4,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 1333.707,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 1333.707
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 3,
+          "selected_fraction": 0.6,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 1,
+          "exact_intended": 4,
+          "exact_intended_fraction": 0.8,
+          "intended_micro_cer": 0.0125,
+          "spoken_micro_cer": 0.05952380952380952,
+          "improved_intended": 2,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 3,
+          "logical_plausibility_calls": 2,
+          "recorded_operation_cost_ms": 274.44,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 274.44
+        }
+      }
+    },
+    "encoder_weighted_direct": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 2,
+      "selected_fraction": 0.07407407407407407,
+      "available_benefit": 3,
+      "captured_benefit": 1,
+      "benefit_recall": 0.3333333333333333,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 0,
+      "exact_intended": 15,
+      "exact_intended_fraction": 0.5555555555555556,
+      "intended_micro_cer": 0.04906542056074766,
+      "spoken_micro_cer": 0.026905829596412557,
+      "improved_intended": 1,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 3,
+      "logical_plausibility_calls": 0,
+      "recorded_operation_cost_ms": 832.243,
+      "gate_cpu_estimated_ms": 259.12104267627,
+      "estimated_serial_cost_ms": 1091.36404267627,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 1,
+          "selected_fraction": 0.045454545454545456,
+          "available_benefit": 2,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 11,
+          "exact_intended_fraction": 0.5,
+          "intended_micro_cer": 0.05172413793103448,
+          "spoken_micro_cer": 0.024861878453038673,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 2,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 763.028,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 763.028
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 1,
+          "selected_fraction": 0.2,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 4,
+          "exact_intended_fraction": 0.8,
+          "intended_micro_cer": 0.0375,
+          "spoken_micro_cer": 0.03571428571428571,
+          "improved_intended": 1,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 1,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 69.215,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 69.215
+        }
+      }
+    },
+    "encoder_weighted_native_veto": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 5,
+      "selected_fraction": 0.18518518518518517,
+      "available_benefit": 3,
+      "captured_benefit": 1,
+      "benefit_recall": 0.3333333333333333,
+      "weak_harm": 1,
+      "weak_harm_fraction_all_cases": 0.037037037037037035,
+      "weak_harm_fraction_selected": 0.2,
+      "selected_uncertain": 1,
+      "exact_intended": 14,
+      "exact_intended_fraction": 0.5185185185185185,
+      "intended_micro_cer": 0.0514018691588785,
+      "spoken_micro_cer": 0.03811659192825112,
+      "improved_intended": 2,
+      "degraded_intended": 1,
+      "logical_refiner_calls": 6,
+      "logical_plausibility_calls": 2,
+      "recorded_operation_cost_ms": 1180.502,
+      "gate_cpu_estimated_ms": 107.73846926167607,
+      "estimated_serial_cost_ms": 1288.240469261676,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 1,
+          "selected_fraction": 0.045454545454545456,
+          "available_benefit": 2,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 11,
+          "exact_intended_fraction": 0.5,
+          "intended_micro_cer": 0.05172413793103448,
+          "spoken_micro_cer": 0.024861878453038673,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 2,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 763.028,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 763.028
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 4,
+          "selected_fraction": 0.8,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 1,
+          "weak_harm_fraction_all_cases": 0.2,
+          "weak_harm_fraction_selected": 0.25,
+          "selected_uncertain": 1,
+          "exact_intended": 3,
+          "exact_intended_fraction": 0.6,
+          "intended_micro_cer": 0.05,
+          "spoken_micro_cer": 0.09523809523809523,
+          "improved_intended": 2,
+          "degraded_intended": 1,
+          "logical_refiner_calls": 4,
+          "logical_plausibility_calls": 2,
+          "recorded_operation_cost_ms": 417.474,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 417.474
+        }
+      }
+    },
+    "previous_frozen_direct": {
+      "cases": 27,
+      "weak_eligible_cases": 24,
+      "selected_decisions": 2,
+      "selected_fraction": 0.07407407407407407,
+      "available_benefit": 3,
+      "captured_benefit": 1,
+      "benefit_recall": 0.3333333333333333,
+      "weak_harm": 0,
+      "weak_harm_fraction_all_cases": 0.0,
+      "weak_harm_fraction_selected": 0.0,
+      "selected_uncertain": 0,
+      "exact_intended": 15,
+      "exact_intended_fraction": 0.5555555555555556,
+      "intended_micro_cer": 0.04906542056074766,
+      "spoken_micro_cer": 0.026905829596412557,
+      "improved_intended": 1,
+      "degraded_intended": 0,
+      "logical_refiner_calls": 3,
+      "logical_plausibility_calls": 0,
+      "recorded_operation_cost_ms": 832.243,
+      "gate_cpu_estimated_ms": 257.1360357105732,
+      "estimated_serial_cost_ms": 1089.3790357105731,
+      "by_task": {
+        "window_refine": {
+          "cases": 22,
+          "weak_eligible_cases": 20,
+          "selected_decisions": 1,
+          "selected_fraction": 0.045454545454545456,
+          "available_benefit": 2,
+          "captured_benefit": 0,
+          "benefit_recall": 0.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 11,
+          "exact_intended_fraction": 0.5,
+          "intended_micro_cer": 0.05172413793103448,
+          "spoken_micro_cer": 0.024861878453038673,
+          "improved_intended": 0,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 2,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 763.028,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 763.028
+        },
+        "local_edit_review": {
+          "cases": 5,
+          "weak_eligible_cases": 4,
+          "selected_decisions": 1,
+          "selected_fraction": 0.2,
+          "available_benefit": 1,
+          "captured_benefit": 1,
+          "benefit_recall": 1.0,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 0,
+          "exact_intended": 4,
+          "exact_intended_fraction": 0.8,
+          "intended_micro_cer": 0.0375,
+          "spoken_micro_cer": 0.03571428571428571,
+          "improved_intended": 1,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 1,
+          "logical_plausibility_calls": 0,
+          "recorded_operation_cost_ms": 69.215,
+          "gate_cpu_estimated_ms": 0.0,
+          "estimated_serial_cost_ms": 69.215
+        }
+      }
+    }
+  },
+  "classification": {
+    "linear_tfidf": {
+      "cases": 24,
+      "labels": [
+        "benefit",
+        "neutral",
+        "harm"
+      ],
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.30303030303030304,
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          20,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    "encoder_unweighted": {
+      "cases": 24,
+      "labels": [
+        "benefit",
+        "neutral",
+        "harm"
+      ],
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.30303030303030304,
+      "confusion_matrix": [
+        [
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          20,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    "encoder_weighted": {
+      "cases": 24,
+      "labels": [
+        "benefit",
+        "neutral",
+        "harm"
+      ],
+      "accuracy": 0.875,
+      "macro_f1": 0.4767441860465116,
+      "confusion_matrix": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          0,
+          20,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    "previous_frozen": {
+      "cases": 24,
+      "labels": [
+        "benefit",
+        "neutral",
+        "harm"
+      ],
+      "accuracy": 0.8333333333333334,
+      "macro_f1": 0.43492063492063493,
+      "confusion_matrix": [
+        [
+          1,
+          2,
+          0
+        ],
+        [
+          1,
+          19,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ]
+    }
+  },
+  "latency": {
+    "linear_tfidf_direct": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 0.6784163932833407,
+        "p50_ms": 0.6753052584826946,
+        "p95_ms": 0.7102943956851959
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 0.6750275973569263,
+          "p50_ms": 0.6712551694363356,
+          "p95_ms": 0.703825056552887
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 0.6933270953595638,
+          "p50_ms": 0.6882748566567898,
+          "p95_ms": 0.7203887216746807
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "linear_tfidf_native_veto": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 0.27284208961107115,
+        "p50_ms": 0.0005401670932769775,
+        "p95_ms": 0.6907284259796143
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 0.179256841709668,
+          "p50_ms": 0.0005199108272790909,
+          "p95_ms": 0.6629012990742922
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 0.684617180377245,
+          "p50_ms": 0.6887759082019329,
+          "p95_ms": 0.6928049959242344
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "encoder_unweighted_direct": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 8.71399046715211,
+        "p50_ms": 8.620788808912039,
+        "p95_ms": 9.463870991021395
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 8.72689762830057,
+          "p50_ms": 8.67419340647757,
+          "p95_ms": 9.49305584654212
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 8.657198958098888,
+          "p50_ms": 8.409202098846436,
+          "p95_ms": 9.246138576418161
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "encoder_unweighted_native_veto": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 3.649279475212097,
+        "p50_ms": 0.0038598664104938507,
+        "p95_ms": 9.34909237548709
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 2.4260215418921276,
+          "p50_ms": 0.003669876605272293,
+          "p95_ms": 9.285912686027586
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 9.031614381819963,
+          "p50_ms": 9.005097672343254,
+          "p95_ms": 9.444479644298553
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "encoder_weighted_direct": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 9.597075654676667,
+        "p50_ms": 9.54529270529747,
+        "p95_ms": 10.372746270149946
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 9.65697191316973,
+          "p50_ms": 9.57943219691515,
+          "p95_ms": 10.377970989793539
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 9.333532117307186,
+          "p50_ms": 9.06185619533062,
+          "p95_ms": 10.007012728601694
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "encoder_weighted_native_veto": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 3.990313676358373,
+        "p50_ms": 0.003930181264877319,
+        "p95_ms": 10.504429508000612
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 2.735076154666868,
+          "p50_ms": 0.0037797726690769196,
+          "p95_ms": 9.9706687964499
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 9.513358771800995,
+          "p50_ms": 9.352333843708038,
+          "p95_ms": 10.457329731434584
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    },
+    "previous_frozen_direct": {
+      "overall": {
+        "n": 27,
+        "mean_ms": 9.523556878169378,
+        "p50_ms": 9.404344018548727,
+        "p95_ms": 10.449142521247268
+      },
+      "by_task": {
+        "window_refine": {
+          "n": 22,
+          "mean_ms": 9.597369554367932,
+          "p50_ms": 9.433973813429475,
+          "p95_ms": 10.474962391890585
+        },
+        "local_edit_review": {
+          "n": 5,
+          "mean_ms": 9.198781102895737,
+          "p50_ms": 9.273184929043055,
+          "p95_ms": 9.705587662756443
+        }
+      },
+      "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+    }
+  },
+  "validation_selection": {
+    "event": "round2_policy_frozen_before_test_generation",
+    "policy_freeze_unix": 1791638974.5487154,
+    "primary_model": "encoder_weighted",
+    "primary_route": "native_veto",
+    "variants": {
+      "linear_tfidf": {
+        "direct_thresholds": {
+          "window_refine": {
+            "benefit": 1.01,
+            "harm": 0.02
+          },
+          "local_edit_review": {
+            "benefit": 0.4,
+            "harm": 0.05
+          }
+        },
+        "direct_evidence": {
+          "by_task": {
+            "window_refine": {
+              "selected": 0,
+              "captured_benefit": 0,
+              "selected_harm": 0,
+              "utility": 0.0,
+              "validation_harm_cases": 6
+            },
+            "local_edit_review": {
+              "selected": 3,
+              "captured_benefit": 1,
+              "selected_harm": 0,
+              "utility": 0.85,
+              "validation_harm_cases": 14
+            }
+          },
+          "utility": 0.85,
+          "grid": {
+            "benefit": [
+              0.25,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.01
+            ],
+            "harm": [
+              0.02,
+              0.05,
+              0.1,
+              0.2,
+              0.4
+            ]
+          },
+          "criterion": "max_benefit_minus_0.05_calls_with_zero_observed_validation_weak_harm",
+          "calibrated": false,
+          "real_risk_guarantee": false
+        },
+        "veto_thresholds": {
+          "window_refine": {
+            "neutral": 1.01,
+            "harm": 0.2
+          },
+          "local_edit_review": {
+            "neutral": 0.7,
+            "harm": 0.6
+          }
+        },
+        "veto_evidence": {
+          "by_task": {
+            "window_refine": {
+              "native_benefit": 24,
+              "required_benefit": 23,
+              "retained_benefit": 24,
+              "native_harm": 6,
+              "selected_harm": 4,
+              "recorded_operation_cost_ms": 28166.692,
+              "harm_examples": 6,
+              "weak_benefit_retention": 1.0
+            },
+            "local_edit_review": {
+              "native_benefit": 20,
+              "required_benefit": 19,
+              "retained_benefit": 20,
+              "native_harm": 14,
+              "selected_harm": 12,
+              "recorded_operation_cost_ms": 4512.018,
+              "harm_examples": 14,
+              "weak_benefit_retention": 1.0
+            }
+          },
+          "minimum_retention": 0.95,
+          "constraint": "per_task_retain_at_least_95pct_current_weak_benefit_and_no_added_weak_harm",
+          "selection": "minimum_recorded_operation_cost_after_constraints",
+          "real_risk_calibrated": false
+        },
+        "validation_native_veto": {
+          "cases": 222,
+          "weak_eligible_cases": 198,
+          "selected_decisions": 141,
+          "selected_fraction": 0.6351351351351351,
+          "available_benefit": 46,
+          "captured_benefit": 44,
+          "benefit_recall": 0.9565217391304348,
+          "weak_harm": 16,
+          "weak_harm_fraction_all_cases": 0.07207207207207207,
+          "weak_harm_fraction_selected": 0.11347517730496454,
+          "selected_uncertain": 23,
+          "exact_intended": 130,
+          "exact_intended_fraction": 0.5855855855855856,
+          "intended_micro_cer": 0.06259541984732825,
+          "spoken_micro_cer": 0.08975868157739847,
+          "improved_intended": 52,
+          "degraded_intended": 30,
+          "logical_refiner_calls": 157,
+          "logical_plausibility_calls": 1,
+          "recorded_operation_cost_ms": 32678.71,
+          "gate_cpu_estimated_ms": 99.20155303552747,
+          "estimated_serial_cost_ms": 32777.91155303553
+        },
+        "validation_classification": {
+          "cases": 198,
+          "labels": [
+            "benefit",
+            "neutral",
+            "harm"
+          ],
+          "accuracy": 0.6717171717171717,
+          "macro_f1": 0.3301533857089413,
+          "confusion_matrix": [
+            [
+              0,
+              46,
+              0
+            ],
+            [
+              1,
+              131,
+              0
+            ],
+            [
+              3,
+              15,
+              2
+            ]
+          ]
+        },
+        "validation_latency": {
+          "overall": {
+            "n": 222,
+            "mean_ms": 0.446853842502376,
+            "p50_ms": 0.6434954702854156,
+            "p95_ms": 0.6985095795243979
+          },
+          "by_task": {
+            "window_refine": {
+              "n": 157,
+              "mean_ms": 0.34637158368803134,
+              "p50_ms": 0.613365788012743,
+              "p95_ms": 0.683791097253561
+            },
+            "local_edit_review": {
+              "n": 65,
+              "mean_ms": 0.6895571445616392,
+              "p50_ms": 0.6707762368023396,
+              "p95_ms": 0.73168920353055
+            }
+          },
+          "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+        },
+        "validation_loss": null
+      },
+      "encoder_unweighted": {
+        "direct_thresholds": {
+          "window_refine": {
+            "benefit": 1.01,
+            "harm": 0.02
+          },
+          "local_edit_review": {
+            "benefit": 0.4,
+            "harm": 0.4
+          }
+        },
+        "direct_evidence": {
+          "by_task": {
+            "window_refine": {
+              "selected": 0,
+              "captured_benefit": 0,
+              "selected_harm": 0,
+              "utility": 0.0,
+              "validation_harm_cases": 6
+            },
+            "local_edit_review": {
+              "selected": 11,
+              "captured_benefit": 6,
+              "selected_harm": 0,
+              "utility": 5.45,
+              "validation_harm_cases": 14
+            }
+          },
+          "utility": 5.45,
+          "grid": {
+            "benefit": [
+              0.25,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.01
+            ],
+            "harm": [
+              0.02,
+              0.05,
+              0.1,
+              0.2,
+              0.4
+            ]
+          },
+          "criterion": "max_benefit_minus_0.05_calls_with_zero_observed_validation_weak_harm",
+          "calibrated": false,
+          "real_risk_guarantee": false
+        },
+        "veto_thresholds": {
+          "window_refine": {
+            "neutral": 0.9,
+            "harm": 1.01
+          },
+          "local_edit_review": {
+            "neutral": 0.6,
+            "harm": 0.8
+          }
+        },
+        "veto_evidence": {
+          "by_task": {
+            "window_refine": {
+              "native_benefit": 24,
+              "required_benefit": 23,
+              "retained_benefit": 24,
+              "native_harm": 6,
+              "selected_harm": 3,
+              "recorded_operation_cost_ms": 23438.906,
+              "harm_examples": 6,
+              "weak_benefit_retention": 1.0
+            },
+            "local_edit_review": {
+              "native_benefit": 20,
+              "required_benefit": 19,
+              "retained_benefit": 20,
+              "native_harm": 14,
+              "selected_harm": 10,
+              "recorded_operation_cost_ms": 3901.622,
+              "harm_examples": 14,
+              "weak_benefit_retention": 1.0
+            }
+          },
+          "minimum_retention": 0.95,
+          "constraint": "per_task_retain_at_least_95pct_current_weak_benefit_and_no_added_weak_harm",
+          "selection": "minimum_recorded_operation_cost_after_constraints",
+          "real_risk_calibrated": false
+        },
+        "validation_native_veto": {
+          "cases": 222,
+          "weak_eligible_cases": 198,
+          "selected_decisions": 123,
+          "selected_fraction": 0.5540540540540541,
+          "available_benefit": 46,
+          "captured_benefit": 44,
+          "benefit_recall": 0.9565217391304348,
+          "weak_harm": 13,
+          "weak_harm_fraction_all_cases": 0.05855855855855856,
+          "weak_harm_fraction_selected": 0.10569105691056911,
+          "selected_uncertain": 21,
+          "exact_intended": 133,
+          "exact_intended_fraction": 0.5990990990990991,
+          "intended_micro_cer": 0.05709923664122137,
+          "spoken_micro_cer": 0.08446144791053561,
+          "improved_intended": 52,
+          "degraded_intended": 25,
+          "logical_refiner_calls": 134,
+          "logical_plausibility_calls": 1,
+          "recorded_operation_cost_ms": 27340.528,
+          "gate_cpu_estimated_ms": 1413.4368323720992,
+          "estimated_serial_cost_ms": 28753.964832372098
+        },
+        "validation_classification": {
+          "cases": 198,
+          "labels": [
+            "benefit",
+            "neutral",
+            "harm"
+          ],
+          "accuracy": 0.7626262626262627,
+          "macro_f1": 0.5302501417323725,
+          "confusion_matrix": [
+            [
+              19,
+              26,
+              1
+            ],
+            [
+              2,
+              130,
+              0
+            ],
+            [
+              0,
+              18,
+              2
+            ]
+          ]
+        },
+        "validation_latency": {
+          "overall": {
+            "n": 222,
+            "mean_ms": 6.366832578252699,
+            "p50_ms": 8.8362623937428,
+            "p95_ms": 10.994492517784238
+          },
+          "by_task": {
+            "window_refine": {
+              "n": 157,
+              "mean_ms": 5.089011061106138,
+              "p50_ms": 8.5962088778615,
+              "p95_ms": 11.14634172990918
+            },
+            "local_edit_review": {
+              "n": 65,
+              "mean_ms": 9.453263011975931,
+              "p50_ms": 9.257264900952578,
+              "p95_ms": 10.958023928105831
+            }
+          },
+          "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+        },
+        "validation_loss": 0.7053470600987982
+      },
+      "encoder_weighted": {
+        "direct_thresholds": {
+          "window_refine": {
+            "benefit": 0.25,
+            "harm": 0.4
+          },
+          "local_edit_review": {
+            "benefit": 0.4,
+            "harm": 0.4
+          }
+        },
+        "direct_evidence": {
+          "by_task": {
+            "window_refine": {
+              "selected": 60,
+              "captured_benefit": 23,
+              "selected_harm": 0,
+              "utility": 20.0,
+              "validation_harm_cases": 6
+            },
+            "local_edit_review": {
+              "selected": 15,
+              "captured_benefit": 10,
+              "selected_harm": 0,
+              "utility": 9.25,
+              "validation_harm_cases": 14
+            }
+          },
+          "utility": 29.25,
+          "grid": {
+            "benefit": [
+              0.25,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.01
+            ],
+            "harm": [
+              0.02,
+              0.05,
+              0.1,
+              0.2,
+              0.4
+            ]
+          },
+          "criterion": "max_benefit_minus_0.05_calls_with_zero_observed_validation_weak_harm",
+          "calibrated": false,
+          "real_risk_guarantee": false
+        },
+        "veto_thresholds": {
+          "window_refine": {
+            "neutral": 0.7,
+            "harm": 0.2
+          },
+          "local_edit_review": {
+            "neutral": 0.6,
+            "harm": 0.6
+          }
+        },
+        "veto_evidence": {
+          "by_task": {
+            "window_refine": {
+              "native_benefit": 24,
+              "required_benefit": 23,
+              "retained_benefit": 23,
+              "native_harm": 6,
+              "selected_harm": 0,
+              "recorded_operation_cost_ms": 9246.708,
+              "harm_examples": 6,
+              "weak_benefit_retention": 0.9583333333333334
+            },
+            "local_edit_review": {
+              "native_benefit": 20,
+              "required_benefit": 19,
+              "retained_benefit": 20,
+              "native_harm": 14,
+              "selected_harm": 0,
+              "recorded_operation_cost_ms": 2030.49,
+              "harm_examples": 14,
+              "weak_benefit_retention": 1.0
+            }
+          },
+          "minimum_retention": 0.95,
+          "constraint": "per_task_retain_at_least_95pct_current_weak_benefit_and_no_added_weak_harm",
+          "selection": "minimum_recorded_operation_cost_after_constraints",
+          "real_risk_calibrated": false
+        },
+        "validation_native_veto": {
+          "cases": 222,
+          "weak_eligible_cases": 198,
+          "selected_decisions": 69,
+          "selected_fraction": 0.3108108108108108,
+          "available_benefit": 46,
+          "captured_benefit": 43,
+          "benefit_recall": 0.9347826086956522,
+          "weak_harm": 0,
+          "weak_harm_fraction_all_cases": 0.0,
+          "weak_harm_fraction_selected": 0.0,
+          "selected_uncertain": 9,
+          "exact_intended": 145,
+          "exact_intended_fraction": 0.6531531531531531,
+          "intended_micro_cer": 0.04030534351145038,
+          "spoken_micro_cer": 0.06709829311359623,
+          "improved_intended": 51,
+          "degraded_intended": 0,
+          "logical_refiner_calls": 69,
+          "logical_plausibility_calls": 1,
+          "recorded_operation_cost_ms": 11277.198,
+          "gate_cpu_estimated_ms": 1410.485077649355,
+          "estimated_serial_cost_ms": 12687.683077649355
+        },
+        "validation_classification": {
+          "cases": 198,
+          "labels": [
+            "benefit",
+            "neutral",
+            "harm"
+          ],
+          "accuracy": 0.696969696969697,
+          "macro_f1": 0.5940811338221875,
+          "confusion_matrix": [
+            [
+              23,
+              21,
+              2
+            ],
+            [
+              14,
+              105,
+              13
+            ],
+            [
+              0,
+              10,
+              10
+            ]
+          ]
+        },
+        "validation_latency": {
+          "overall": {
+            "n": 222,
+            "mean_ms": 6.353536385807905,
+            "p50_ms": 8.916441118344665,
+            "p95_ms": 10.785742430016398
+          },
+          "by_task": {
+            "window_refine": {
+              "n": 157,
+              "mean_ms": 5.0828063498684175,
+              "p50_ms": 8.653828874230385,
+              "p95_ms": 10.816267970949411
+            },
+            "local_edit_review": {
+              "n": 65,
+              "mean_ms": 9.422838164923283,
+              "p50_ms": 9.328994899988174,
+              "p95_ms": 10.503994952887297
+            }
+          },
+          "scope": "CPU_2_threads_single_request_includes_tokenization_no_cache_no_ASR_no_Refiner"
+        },
+        "validation_loss": 0.6871528199110692
+      }
+    },
+    "selection_partition": "old_validation_plus_new_dev",
+    "test_predictions_generated_at_selection": false,
+    "old_internal_test_used_for_selection": false,
+    "real_risk_calibrated": false,
+    "checkpoint_hashes": {
+      "encoder_unweighted": "f960a61412e870b7fa4d79b5bf7af99f6f7a207e1621fcfdf6d51f4987dadfbc",
+      "encoder_weighted": "5cb445f1c37f21af259a3ad1797007ab560f0665e63cb62d05519891abe27cad"
+    },
+    "metadata_hashes": {
+      "encoder_unweighted": "f94bfdb2dd173f69f0a795dad43f629cb0dc3a33f060239136aaf110b974d568",
+      "encoder_weighted": "acfb9d76d9f35a5deaeb8bc98219816afc5c9148bc11bb0b418d37760b3f6694"
+    },
+    "linear_hash": "2c0f74a61374b94d89ca841782678b0888728821f52cb39d8c15c818f6e96955"
+  },
+  "old_internal_test_excluded": true,
+  "new_test_generated_after_freeze": true,
+  "policy_retuned_after_test": false,
+  "human_gold": 0,
+  "online_enabled": false,
+  "limits": [
+    "Unverified synthetic weak targets; no real-speech risk guarantee",
+    "Per-decision counterfactual replay, not sequential full-session quality",
+    "Operation costs are saved timings plus CPU estimate, not streaming latency"
+  ],
+  "adoption_assessment": {
+    "status": "do_not_replace_current_gate",
+    "weak_benefit_retention_vs_current": 0.5,
+    "required_retention": 0.95,
+    "benefit_target_passed": false,
+    "no_added_weak_harm": true,
+    "logical_call_reduction": 0.5384615384615384,
+    "primary_thresholds_retuned": false,
+    "real_risk_calibrated": false,
+    "next_protocol": "source_stratified_validation_retention_guard_added_after_evaluation_not_applied_to_frozen_round2"
+  }
+}

@@ -1,0 +1,276 @@
+[
+  {
+    "id": "generic_long_060",
+    "audio_seconds": 67.405,
+    "baseline_asr_seconds": 6.421062044799328,
+    "extra_asr_seconds": 5.562520678155124,
+    "extra_asr_rtf": 0.08252385844010272,
+    "prompt_terms": [
+      "附加刑",
+      "罗剑",
+      "童世豪",
+      "刘德",
+      "Hans",
+      "急救室",
+      "出院",
+      "检体"
+    ],
+    "changes": [
+      {
+        "start": 121,
+        "end": 124,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 125,
+        "end": 128,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 361,
+        "end": 364,
+        "observed": "同事豪",
+        "canonical": "童世豪",
+        "entity_id": 67,
+        "phonetic_score": 1.0,
+        "character_score": 0.333333,
+        "length_score": 1.0,
+        "retrieval_score": 0.933333,
+        "boundary_issue": null,
+        "evidence_surface": "童世豪"
+      },
+      {
+        "start": 287,
+        "end": 289,
+        "observed": "汉子",
+        "canonical": "Hans",
+        "entity_id": 63,
+        "phonetic_score": 0.7125,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.72,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "汉斯"
+      },
+      {
+        "start": 359,
+        "end": 361,
+        "observed": "汉子",
+        "canonical": "Hans",
+        "entity_id": 63,
+        "phonetic_score": 0.7125,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.72,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "汉斯"
+      }
+    ],
+    "baseline_web_seconds": 4.979781946633011,
+    "generic_web_seconds": 5.958944581914693,
+    "cpu_retrieval_seconds": 0.9884399599395692,
+    "cpu_patch_verification_seconds": 0.004207401070743799,
+    "stage_metrics": {
+      "baseline": {
+        "final_hits": 4,
+        "mentions": 11,
+        "CER": 0.07854984894259819
+      },
+      "generic": {
+        "final_hits": 9,
+        "mentions": 11,
+        "CER": 0.04229607250755287
+      }
+    }
+  },
+  {
+    "id": "generic_long_180",
+    "audio_seconds": 183.976,
+    "baseline_asr_seconds": 15.55753062106669,
+    "extra_asr_seconds": 16.262799778021872,
+    "extra_asr_rtf": 0.0883963113559479,
+    "prompt_terms": [
+      "附加刑",
+      "检伤分级",
+      "罗剑",
+      "蒋韬",
+      "童世豪",
+      "健保卡",
+      "住院",
+      "张涛"
+    ],
+    "changes": [
+      {
+        "start": 121,
+        "end": 124,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 125,
+        "end": 128,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 428,
+        "end": 432,
+        "observed": "减商分级",
+        "canonical": "检伤分级",
+        "entity_id": 84,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": null,
+        "evidence_surface": "检伤分级"
+      },
+      {
+        "start": 393,
+        "end": 395,
+        "observed": "蒋涛",
+        "canonical": "蒋韬",
+        "entity_id": 65,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "蒋韬"
+      }
+    ],
+    "baseline_web_seconds": 6.958800672087818,
+    "generic_web_seconds": 10.244178086984903,
+    "cpu_retrieval_seconds": 0.33162598172202706,
+    "cpu_patch_verification_seconds": 0.010492726229131222,
+    "stage_metrics": {
+      "baseline": {
+        "final_hits": 23,
+        "mentions": 34,
+        "CER": 0.0471584038694075
+      },
+      "generic": {
+        "final_hits": 27,
+        "mentions": 34,
+        "CER": 0.041112454655380895
+      }
+    }
+  },
+  {
+    "id": "generic_long_300",
+    "audio_seconds": 301.44,
+    "baseline_asr_seconds": 23.444317661225796,
+    "extra_asr_seconds": 25.784361731261015,
+    "extra_asr_rtf": 0.08553729342907715,
+    "prompt_terms": [
+      "附加刑",
+      "检伤分级",
+      "罗剑",
+      "蒋韬",
+      "童世豪",
+      "健保卡",
+      "住院",
+      "检体"
+    ],
+    "changes": [
+      {
+        "start": 121,
+        "end": 124,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 125,
+        "end": 128,
+        "observed": "附加型",
+        "canonical": "附加刑",
+        "entity_id": 40,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "附加刑"
+      },
+      {
+        "start": 430,
+        "end": 434,
+        "observed": "减商分级",
+        "canonical": "检伤分级",
+        "entity_id": 84,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": null,
+        "evidence_surface": "检伤分级"
+      },
+      {
+        "start": 395,
+        "end": 397,
+        "observed": "蒋涛",
+        "canonical": "蒋韬",
+        "entity_id": 65,
+        "phonetic_score": 1.0,
+        "character_score": 0.5,
+        "length_score": 1.0,
+        "retrieval_score": 0.95,
+        "boundary_issue": "short_chinese_span_requires_alias",
+        "evidence_surface": "蒋韬"
+      }
+    ],
+    "baseline_web_seconds": 7.588907239027321,
+    "generic_web_seconds": 10.471933851018548,
+    "cpu_retrieval_seconds": 0.4532758640125394,
+    "cpu_patch_verification_seconds": 0.015846549067646265,
+    "stage_metrics": {
+      "baseline": {
+        "final_hits": 37,
+        "mentions": 48,
+        "CER": 0.03935185185185185
+      },
+      "generic": {
+        "final_hits": 41,
+        "mentions": 48,
+        "CER": 0.035493827160493825
+      }
+    }
+  }
+]

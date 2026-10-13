@@ -1,0 +1,59 @@
+{
+  "round": 3,
+  "arm": "post_only",
+  "label": "仅实体替换（含新正文确认）",
+  "trace_id": "019c59ee23cc4142baf537a67713aa28",
+  "elapsed_seconds": 14.867,
+  "asr_context_applied": false,
+  "raw_excerpt": "想找你做个SPA，你找错人了。在下厉飞羽，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修",
+  "clean_excerpt": "想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修",
+  "raw_target_count": 0,
+  "raw_wrong_count": 1,
+  "clean_target_count": 1,
+  "clean_wrong_count": 0,
+  "target_corrected": true,
+  "keeps_zai_xia": true,
+  "normalizations": [
+    {
+      "observed": "厉飞羽",
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667,
+      "decision": "CONTEXT_CONFIRMED",
+      "confirmation_method": "bounded_prose_entity_projection_v1",
+      "discarded_response_reasons": [
+        "entity_confirmation_required:厉飞宇",
+        "semantic_content_loss"
+      ]
+    }
+  ],
+  "audio_repair": null,
+  "refiner_stats": {
+    "schema_version": 1,
+    "call_count": 24,
+    "initial_call_count": 18,
+    "retry_call_count": 6,
+    "intermediate_call_count": 23,
+    "final_call_count": 1,
+    "completed_call_count": 24,
+    "failed_call_count": 0,
+    "inflight_call_count": 0,
+    "completed_wall_latency_ms": 4709.399,
+    "gate_skipped_segment_count": 34,
+    "busy_segment_count": 0,
+    "closed_call_rejection_count": 0,
+    "observed_initial_opportunity_count": 52,
+    "accepting_new_calls": false,
+    "stats_complete": true
+  },
+  "event_counts": {
+    "chunk_ack": 323,
+    "transcript": 94,
+    "update": 14,
+    "final": 1
+  },
+  "final_sha256": "5b89b4c41b5d41d4b33b7d8d5f2239d8856f98d346c94f0a2ff3b3aad1b8e052",
+  "raw_sha256": "2e06712856a23c5a7d3c50ddae0e70c848abe5629c3060f39af0ab0ed49ca259"
+}

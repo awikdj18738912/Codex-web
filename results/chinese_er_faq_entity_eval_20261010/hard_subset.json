@@ -1,0 +1,74 @@
+{
+  "selection": "all exact standard-term misses in the no-context raw ASR arm; same four audio samples; selected post hoc",
+  "summary": {
+    "samples": 4,
+    "expected_mentions": 4,
+    "baseline_hits": 0,
+    "post_only_hits": 0,
+    "context_only_hits": 3,
+    "combined_hits": 3,
+    "raw_with_context_hits": 3
+  },
+  "samples": [
+    {
+      "id": "er_faq_waiting_010",
+      "reference": "什么是检伤分级？",
+      "expected_terms": {
+        "检伤分级": 1
+      },
+      "raw_without_context": "什么是减伤分级？",
+      "raw_with_context": "什么是检伤分级？",
+      "results": {
+        "baseline": "什么是减伤分级？",
+        "post_only": "什么是减伤分级？",
+        "context_only": "什么是检伤分级？",
+        "combined": "什么是检伤分级？"
+      }
+    },
+    {
+      "id": "er_faq_examination_019",
+      "reference": "健保卡要不要交给您们？",
+      "expected_terms": {
+        "健保卡": 1
+      },
+      "raw_without_context": "现保卡要不要交给您们？",
+      "raw_with_context": "健保卡要不要交给您们？",
+      "results": {
+        "baseline": "现保卡要不要交给您们？",
+        "post_only": "现保卡要不要交给您们？",
+        "context_only": "健保卡要不要交给您们？",
+        "combined": "健保卡要不要交给您们？"
+      }
+    },
+    {
+      "id": "er_faq_examination_022",
+      "reference": "请问我的检体要交到哪里？",
+      "expected_terms": {
+        "检体": 1
+      },
+      "raw_without_context": "请问我的简体要交到哪里？",
+      "raw_with_context": "请问我的简体要交到哪里？",
+      "results": {
+        "baseline": "请问我的简体要交到哪里？",
+        "post_only": "请问我的简体要交到哪里？",
+        "context_only": "请问我的简体要交到哪里？",
+        "combined": "请问我的简体要交到哪里？"
+      }
+    },
+    {
+      "id": "er_faq_observation_040",
+      "reference": "点滴架哪里拿？",
+      "expected_terms": {
+        "点滴": 1
+      },
+      "raw_without_context": "点低价哪里拿？",
+      "raw_with_context": "点滴价哪里拿？",
+      "results": {
+        "baseline": "点低价哪里拿？",
+        "post_only": "点低价哪里拿？",
+        "context_only": "点滴价哪里拿？",
+        "combined": "点滴价哪里拿？"
+      }
+    }
+  ]
+}

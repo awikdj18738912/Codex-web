@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from dataclasses import replace
 from difflib import SequenceMatcher
 import json
 import re
@@ -28,6 +29,8 @@ from .live_qwen_refiner import TransformersRefiner, _append_record
 from .entity_store import EntityDefinition, EntityStore
 from .entity_asr_context import build_entity_asr_context
 from .deterministic_cleanup import clean_transcript_deterministically
+from .repetition_preservation import (repetition_preservation_violations, restore_preserved_repetitions,
+                                      source_repetition_edit_violations,warm_source_repetition_analysis)
 from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
 from .entity_pipeline import (
     fallback_entity_segment,
@@ -69,9 +72,13 @@ from .window_refinement import (
 from .session_memory import SessionEntityMemory
 from .refinement_protocol import (
     NUMERIC_RULES_PROTOCOL_VERSION,
+    STRICT_LOCAL_PROTOCOL_VERSION,
+    WINDOW_EDIT_POLICIES,
     apply_structured_patch,
+    parse_window_edit_policy,
 )
 from .repetition_plausibility import RepetitionPlausibility
+from .learned_window_gate import DEFAULT_MODEL_DIR, GATE_MODES, LearnedWindowGate
 
 WEB_DIR = Path(__file__).resolve().parent / "web"
 REFINEMENT_LOG_DIR = Path(__file__).resolve().parents[1] / "results" / "web"
@@ -1008,7 +1015,25 @@ def create_app(
     final_refinement_mode: str = "off",
     zh_itn_library: Path | None = None,
     entity_asr_context: bool = False,
+    window_edit_policy: str = "compat",
+    entity_asr_echo_guard: bool = True,
+    entity_audio_repair: bool = False,
+    experimental_gate_router=None,
+    experimental_gate_tasks: tuple[str, ...] = ("window_refine",),
+    learned_window_gate_mode: str = "off",
+    learned_window_gate_model_dir: Path = DEFAULT_MODEL_DIR,
 ) -> FastAPI:
+    if not set(experimental_gate_tasks).issubset({"window_refine", "local_edit_review"}):
+        raise ValueError("Unknown experimental gate task")
+    if learned_window_gate_mode != "off" and experimental_gate_router is not None:
+        raise ValueError("Cannot combine the learned window gate with an experimental router")
+    if learned_window_gate_mode != "off" and RefinementGateMode.parse(refinement_gate_mode) is not RefinementGateMode.TRI_STATE:
+        raise ValueError("The learned window gate requires refinement_gate_mode=tri_state")
+    learned_window_gate = LearnedWindowGate(learned_window_gate_mode, learned_window_gate_model_dir)
+    if learned_window_gate.load_error:
+        print(f"Learned window gate unavailable; preserving native routing: {learned_window_gate.load_error}", flush=True)
+    warm_source_repetition_analysis()
+    window_edit_policy = parse_window_edit_policy(window_edit_policy)
     final_refinement_mode = str(final_refinement_mode).strip().lower()
     if final_refinement_mode not in {"on", "off"}:
         raise ValueError("final_refinement_mode must be 'on' or 'off'")
@@ -1017,7 +1042,8 @@ def create_app(
         raise ValueError("zh-itn and legacy numeric normalization cannot both be enabled")
     app = FastAPI(docs_url=None, redoc_url=None)
     print("Loading AgenticASR Refiner...", flush=True)
-    refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens)
+    refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens,
+                                 **({"window_edit_policy": window_edit_policy} if window_edit_policy != "compat" else {}))
     refiner_lock = threading.Lock()
     repetition_plausibility = RepetitionPlausibility(refiner_device)
 
@@ -1034,6 +1060,7 @@ def create_app(
         response_cache: dict[
             tuple[str, int, str, str], tuple[str, float | None]
         ] | None = None,
+        source_text: str | None = None,
     ) -> tuple[str, list[dict[str, object]], float, int, int]:
         """Review structural repetitions in a stable stream window or final text."""
 
@@ -1092,6 +1119,42 @@ def create_app(
                     })
             candidates = ready_candidates
 
+        if not candidates:
+            return text, deferred_records, 0.0, 0, 0
+
+        reviewable_candidates = []
+        for candidate in candidates:
+            projected = text[:candidate.start] + candidate.target + text[candidate.end:]
+            preservation = repetition_preservation_violations(text, projected)
+            if source_text is not None:
+                preservation=tuple(dict.fromkeys((*preservation,
+                    *source_repetition_edit_violations(source_text,text,projected))))
+            if preservation:
+                # Resolve source-evidenced KEEP before cached REMOVE decisions
+                # or neural scoring. The commit guard remains a second check.
+                deferred_records.append({
+                    **candidate.public_dict(), "decision": "keep",
+                    "reason": "source_repetition_preservation",
+                    "preservation_reasons": list(preservation),
+                    "applied": False, "model_called": False,
+                })
+            else:
+                if experimental_gate_router is not None and "local_edit_review" in experimental_gate_tasks:
+                    routed = experimental_gate_router(dict(
+                        task_kind="local_edit_review", domain="general",
+                        baseline_text=candidate.context, available_context=candidate.context,
+                        candidate_local_start=_repetition_candidate_context_offset(text, candidate),
+                        candidate={key:getattr(candidate,key) for key in ("source","target","kind")},
+                    ), "refine")
+                    if routed.get("action") == "keep":
+                        deferred_records.append({
+                            **candidate.public_dict(), "decision":"keep",
+                            "reason":"experimental_gate_veto", "applied":False,
+                            "model_called":False,
+                        })
+                        continue
+                reviewable_candidates.append(candidate)
+        candidates = reviewable_candidates
         if not candidates:
             return text, deferred_records, 0.0, 0, 0
 
@@ -1490,9 +1553,18 @@ def create_app(
             is not RefinementGateMode.TRI_STATE
         ),
     )
-    use_punctuation_windows = (
-        refinement_gate.mode is RefinementGateMode.TRI_STATE
-    )
+    # Window ownership and cache/retry semantics must not change when only
+    # the routing gate is switched. Use the established fixed K=3 pipeline
+    # for every gate mode, including the full-Refiner (off) baseline.
+    window_pipeline_config = {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": True,
+        "fixed_groups": True,
+        "stream_reprocess_rejected": False,
+        "final_reprocess_rejected": final_refinement_mode == "on",
+        "group_numeric_self_corrections": zh_itn is not None,
+    }
     numeric_normalizer = ContextualNumericNormalizer()
     selected_asr_api_style = ASRApiStyle.parse(asr_api_style)
 
@@ -1641,7 +1713,7 @@ def create_app(
             return repaired
 
         segments = (raw_text,) if single_window and raw_text else split_for_refinement(
-            raw_text, one_punctuation_window=use_punctuation_windows
+            raw_text, one_punctuation_window=True
         )
         for segment_index, segment in enumerate(segments):
             # Normalize a completed ASR window once, before entity masking and
@@ -1707,7 +1779,7 @@ def create_app(
                 numeric_rule_mode=zh_itn is not None,
                 numeric_rule_text=baseline_text if zh_result is not None else None,
             )
-            if pending_only and gate_decision.should_refine:
+            if pending_only:
                 gate_decision = RefinementGateDecision(
                     mode=gate_decision.mode,
                     should_refine=False,
@@ -1719,19 +1791,37 @@ def create_app(
                     covers_segment=gate_decision.covers_segment,
                     action="defer",
                 )
+            if (experimental_gate_router is not None and "window_refine" in experimental_gate_tasks
+                    and gate_decision.action == "refine"):
+                routed = experimental_gate_router(dict(
+                    task_kind="window_refine", domain=getattr(matcher,"selected_domain","general"),
+                    raw_text=segment, baseline_text=baseline_text, available_context="",
+                ), gate_decision.action)
+                if routed.get("action") == "keep":
+                    gate_decision = replace(gate_decision,should_refine=False,action="keep",
+                                            reasons=("experimental_gate_veto",))
             # A numeric-only call has no evidence for changing the punctuation
             # that separates this group from the next one. Keep its terminal
             # mark while leaving genuine cleanup and boundary-repair calls free
             # to revise ASR punctuation.
             preserve_numeric_boundary = (
                 gate_decision.should_refine
-                and gate_decision.reasons == ("cleanup_signal_present",)
                 and gate_decision.cleanup_signals == ("numeric_normalization",)
                 and not hints
             )
-            refinement_gate_decisions.append(
-                {"segment_index": segment_index + 1, **gate_decision.public_dict()}
-            )
+            learned_decision = None
+            if learned_window_gate.mode != "off" and gate_decision.action == "refine":
+                learned_decision = learned_window_gate.decide(dict(
+                    task_kind="window_refine", domain=getattr(matcher,"selected_domain","general"),
+                    raw_text=segment, baseline_text=baseline_text, available_context="",
+                ), gate_decision.action)
+                if learned_decision["action"] == "keep":
+                    gate_decision = replace(gate_decision, should_refine=False, action="keep",
+                                            reasons=("learned_window_gate_veto",))
+            gate_record = {"segment_index": segment_index + 1, **gate_decision.public_dict()}
+            if learned_decision is not None:
+                gate_record["learned_window_gate"] = learned_decision
+            refinement_gate_decisions.append(gate_record)
             trace_segment = (
                 {"segment_index": segment_index + 1, "source": segment,
                  "baseline": baseline_text, "masked_input": masked_text,
@@ -1758,9 +1848,13 @@ def create_app(
                     for change in zh_result.changes
                 )
             if not gate_decision.should_refine:
-                refinement_gate_skipped_segments += 1
-                if call_stats is not None:
-                    call_stats.record_gate_skip()
+                # Waiting for a complete source group is shared scheduling,
+                # not a gate saving. In particular, gate=off must not report
+                # incomplete tails as windows skipped by a routing gate.
+                if gate_decision.action != "defer":
+                    refinement_gate_skipped_segments += 1
+                    if call_stats is not None:
+                        call_stats.record_gate_skip()
                 clean_segment = baseline_text
                 if not numeric_normalization and zh_itn is None:
                     approximate_fallback = numeric_normalizer.normalize_approximate(
@@ -1794,7 +1888,10 @@ def create_app(
                     protector.audit_unmasked(clean_segment, protection)
                 )
                 if trace_segment is not None:
-                    trace_segment.update({"outcome": "gate_skip", "output": clean_segment})
+                    trace_segment.update({
+                        "outcome": "deferred" if pending_only else "gate_skip",
+                        "output": clean_segment,
+                    })
                 continue
             # A stale browser connection must not be able to block the final
             # result forever.  After one timeout, preserve all remaining source
@@ -1845,7 +1942,7 @@ def create_app(
                     total_latency_ms += latency_ms
                     refiner_masked_outputs.append(refined_candidate)
                     structured_candidate, patch_payload, structured_issue = apply_structured_patch(
-                        masked_text, refined_candidate
+                        masked_text, refined_candidate, policy=window_edit_policy
                     )
                     structured_patch_audits.append(
                         _patch_audit(patch_payload, structured_issue)
@@ -1883,7 +1980,7 @@ def create_app(
                         refiner_masked_outputs.append(retry_candidate)
                         candidate_for_numeric_salvage = retry_candidate
                         structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
-                            masked_text, retry_candidate
+                            masked_text, retry_candidate, policy=window_edit_policy
                         )
                         structured_patch_audits.append(
                             _patch_audit(retry_payload, structured_retry_issue)
@@ -1907,7 +2004,7 @@ def create_app(
                     refiner_lock.release()
                 clean_segment = finalized.text
                 salvaged_candidate: str | None = None
-                if finalized.reject_reasons and candidate_for_numeric_salvage:
+                if finalized.reject_reasons and candidate_for_numeric_salvage and window_edit_policy == "compat":
                     restored_candidate = protector.restore(
                         candidate_for_numeric_salvage,
                         protection,
@@ -2022,6 +2119,20 @@ def create_app(
                             "applied": False,
                         }
                         local_deletion_reviews.append(review_record)
+                        projected = (
+                            prepared.baseline_text[:candidate.start]
+                            + candidate.target
+                            + prepared.baseline_text[candidate.end:]
+                        )
+                        preservation = repetition_preservation_violations(
+                            prepared.baseline_text, projected,
+                        )
+                        if preservation:
+                            review_record.update(
+                                decision="keep", reason="source_repetition_preservation",
+                                preservation_reasons=list(preservation), model_called=False,
+                            )
+                            continue
                         if not callable(reviewer):
                             continue
                         local_start = _repetition_candidate_context_offset(
@@ -2139,6 +2250,8 @@ def create_app(
             "refiner_retry_reasons": refiner_retry_reasons,
             "refiner_masked_outputs": refiner_masked_outputs,
             "structured_patch_audits": structured_patch_audits,
+            "window_edit_policy": window_edit_policy,
+            "strict_local_protocol_version": STRICT_LOCAL_PROTOCOL_VERSION if window_edit_policy == "strict_local" else None,
             "boundary_anomalies": boundary_anomalies,
             "boundary_reviews": [],
             "refinement_gate_mode": refinement_gate.mode.value,
@@ -2180,6 +2293,7 @@ def create_app(
                 "format": "legacy_text",
                 "accepted": issue is None,
                 "issue": issue,
+                "window_edit_policy": window_edit_policy,
             }
         return {
             "format": "json_patch",
@@ -2189,6 +2303,7 @@ def create_app(
             "reason": payload.get("reason", ""),
             "accepted": issue is None,
             "issue": issue,
+            "window_edit_policy": window_edit_policy,
         }
 
     def fallback_update(
@@ -2217,7 +2332,7 @@ def create_app(
         matcher_latency_ms = 0.0
         numeric_rule_latency_ms = 0.0
         for segment in split_for_refinement(
-            raw_text, one_punctuation_window=use_punctuation_windows
+            raw_text, one_punctuation_window=True
         ):
             zh_result = None
             if zh_itn is not None and apply_zh_itn:
@@ -2301,7 +2416,7 @@ def create_app(
             "boundary_anomalies": [
                 anomaly
                 for segment in split_for_refinement(
-                    raw_text, one_punctuation_window=use_punctuation_windows
+                    raw_text, one_punctuation_window=True
                 )
                 for anomaly in (
                     {
@@ -2395,10 +2510,16 @@ def create_app(
     def health() -> dict[str, object]:
         return {
             "ok": True,
+            "window_edit_policy": window_edit_policy,
+            "strict_local_protocol_version": STRICT_LOCAL_PROTOCOL_VERSION if window_edit_policy == "strict_local" else None,
             "entity_db": entity_store is not None,
             "entity_asr_context_enabled": entity_asr_context,
+            "entity_audio_repair_enabled": entity_audio_repair and entity_store is not None,
             "refinement_gate_mode": refinement_gate.mode.value,
             "asr_api_style": selected_asr_api_style.value,
+            "window_pipeline": dict(window_pipeline_config),
+            "final_refinement_mode": final_refinement_mode,
+            "learned_window_gate": learned_window_gate.status(),
             "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
             "numeric_backend": "zh-itn" if zh_itn is not None else "python",
             "zh_itn_enabled": zh_itn is not None,
@@ -2519,6 +2640,17 @@ def create_app(
             await websocket.close()
             return
         context_enabled = context_option=="1" if context_option is not None else entity_asr_context
+        repair_option = websocket.query_params.get("entity_audio_repair")
+        if repair_option is not None and repair_option not in {"0", "1"}:
+            await send_json({"event": "error", "detail": "entity_audio_repair must be 0 or 1"})
+            await websocket.close()
+            return
+        # Explicit legacy prompting remains compatible with older clients.
+        repair_enabled = repair_option == "1" if repair_option is not None else entity_audio_repair and not context_enabled
+        if repair_enabled and context_enabled:
+            await send_json({"event": "error", "detail": "Choose entity audio repair or initial glossary prompting, not both"})
+            await websocket.close()
+            return
         asr_entity_context_applied=False
         requested_chunk_seconds = websocket.query_params.get("asr_chunk_seconds")
         if requested_chunk_seconds is not None:
@@ -2547,6 +2679,16 @@ def create_app(
         asr_activity: dict[str, object] = {}
         session_memory = SessionEntityMemory()
         refiner_session_stats = _RefinerSessionStats()
+        entity_context_guard = None
+        entity_audio_guard = None
+        entity_context_guard_revision = 0
+
+        async def request_entity_session_asr(endpoint,session_id=None,data=b"",params=None):
+            if entity_audio_guard is not None:
+                return await entity_audio_guard.request(endpoint,session_id,data,params)
+            if entity_context_guard is not None:
+                return await entity_context_guard.request(endpoint,session_id,data,params)
+            return await request_asr(endpoint,session_id,data,params)
         hypothesis_tracker = HypothesisTracker()
         trace_id = uuid.uuid4().hex
         trace_path = (
@@ -2582,6 +2724,7 @@ def create_app(
                 refiner_session_stats.close_new_calls()
             snapshot = refiner_session_stats.snapshot()
             result["refiner_session_stats"] = snapshot
+            result["window_pipeline"] = dict(window_pipeline_config)
             # Flat aliases keep JSONL analysis and the browser console simple.
             result["session_refiner_call_count"] = snapshot["call_count"]
             result["session_refiner_initial_call_count"] = snapshot[
@@ -2601,6 +2744,20 @@ def create_app(
             ]
             result["entity_asr_context_requested"] = context_enabled
             result["entity_asr_context_applied"] = asr_entity_context_applied
+            result["entity_audio_repair_requested"] = repair_enabled
+            if entity_audio_guard is not None:
+                result["entity_audio_repair"] = entity_audio_guard.snapshot()
+                if result.get("event") == "final" and entity_audio_guard.changes:
+                    # These are ASR-stage corrections, not extra free edits by
+                    # the Refiner; keep their origin visible in entity history.
+                    result["entity_normalizations"] = [
+                        *[change for change in result.get("entity_normalizations", []) if change.get("stage") != "asr_audio_repair"],
+                        *[dict(change, stage="asr_audio_repair") for change in entity_audio_guard.changes],
+                    ]
+            if entity_context_guard is not None:
+                result["entity_asr_context_guard"] = entity_context_guard.snapshot()
+                if entity_context_guard.fallback_active:
+                    result["entity_asr_context_applied"] = False
             return result
 
         def session_refine_update(*args, **kwargs) -> dict[str, object]:
@@ -2662,6 +2819,18 @@ def create_app(
             else ()
         )
         session_asr_context = build_entity_asr_context(definitions,requested_domain) if context_enabled else None
+        if repair_enabled:
+            from .entity_audio_repair import EntityAudioRepair
+
+            async def audio_repair_status(snapshot):
+                return await send_json({"event": "status", "stage": "entity_audio_repair",
+                                        "entity_audio_repair": snapshot,
+                                        "elapsed_seconds": snapshot["elapsed_seconds"]})
+
+            entity_audio_guard = EntityAudioRepair(request_asr, definitions, on_status=audio_repair_status)
+        if entity_asr_echo_guard and session_asr_context is not None and session_asr_context.text:
+            from .entity_asr_echo_guard import EntityASREchoGuard
+            entity_context_guard = EntityASREchoGuard(request_asr,session_asr_context)
         protector = EntityProtector(
             definitions,
             session_memory=session_memory,
@@ -2699,14 +2868,14 @@ def create_app(
         ) = None
         vad_source_segments: list[str] = []
         seen_vad_segment_ids: set[int] = set()
-        # In tri_state, derive punctuation chunks only from ASR/VAD-completed
-        # source segments, then refine each complete K=3 group together.
+        # Derive punctuation chunks only from ASR/VAD-completed source
+        # segments, then route each complete K=3 group in every gate mode.
         window_refinement = CumulativeWindowRefinement(
             session_refine_update,
             window_size=3,
-            one_punctuation_window=use_punctuation_windows,
-            fixed_groups=use_punctuation_windows,
-            prepare_pending=session_prepare_pending if use_punctuation_windows else None,
+            one_punctuation_window=True,
+            fixed_groups=True,
+            prepare_pending=session_prepare_pending,
             group_numeric_self_corrections=zh_itn is not None,
         )
         refinement_display = StreamingRefinementDisplay()
@@ -2720,7 +2889,15 @@ def create_app(
 
         def consume_completed_segments(payload: dict[str, object]) -> int:
             """Consume request-scoped ASR segment events exactly once."""
-
+            nonlocal entity_context_guard_revision
+            revision = payload.get("entity_asr_context_guard_revision",0)
+            audio_revision = payload.get("entity_audio_repair_revision", 0)
+            if isinstance(audio_revision, int) and not isinstance(audio_revision, bool):
+                revision = max(revision, audio_revision) if isinstance(revision, int) and not isinstance(revision, bool) else audio_revision
+            if isinstance(revision,int) and not isinstance(revision,bool) and revision > entity_context_guard_revision:
+                entity_context_guard_revision = revision
+                seen_vad_segment_ids.clear()
+                vad_source_segments.clear()
             events = payload.get("completed_segments")
             if not isinstance(events, list):
                 return 0
@@ -2925,6 +3102,7 @@ def create_app(
                     call_stats=refiner_session_stats,
                     review_cache=streaming_repetition_cache,
                     response_cache=streaming_repetition_response_cache,
+                    source_text=raw_text,
                 )
             )
             result["clean_text"] = clean_transcript_deterministically(
@@ -2943,6 +3121,16 @@ def create_app(
             )
             result["repetition_review_model_calls"] = review_model_calls
             result["repetition_response_cache_hits"] = response_cache_hits
+            if final:
+                restored, restorations = restore_preserved_repetitions(raw_text, str(result["clean_text"]))
+                result["repetition_restorations"] = restorations
+                if restorations:
+                    result["clean_text"] = restored
+                    # Final-only display ownership; do not write a full-source
+                    # restoration into a differently partitioned window cache.
+                    result["refinement_source_spans"] = [{
+                        "source_text": raw_text, "clean_text": restored, "state": "final",
+                    }]
             return result
 
         async def process_audio_chunk(audio: bytes) -> tuple[dict[str, object], int]:
@@ -2953,7 +3141,7 @@ def create_app(
             chunk_index = received_chunk_count
             started_at = time.perf_counter()
             task = asyncio.create_task(
-                request_asr("/stream/chunk", session_id, audio)
+                request_entity_session_asr("/stream/chunk", session_id, audio)
             )
             while True:
                 try:
@@ -3039,12 +3227,13 @@ def create_app(
                             window_refinement.update_segments,
                             source_segments_value,
                             language_value,
-                            not use_punctuation_windows,
+                            False,
                             protector,
                             confidence_value,
                             matcher,
                             confidence_metadata=confidence_metadata_value,
                             raw_text=owned_raw_value,
+                            reprocess_rejected=False,
                         )
                     else:
                         result = await asyncio.to_thread(
@@ -3056,6 +3245,7 @@ def create_app(
                             confidence_value,
                             matcher,
                             confidence_metadata=confidence_metadata_value,
+                            reprocess_rejected=False,
                         )
                     before_review = str(result["clean_text"])
                     eligible_prefix_length = (
@@ -3063,8 +3253,6 @@ def create_app(
                             before_review,
                             result.get("refinement_source_spans"),
                         )
-                        if use_punctuation_windows
-                        else None
                     )
                     (
                         reviewed_text,
@@ -3081,6 +3269,7 @@ def create_app(
                         call_stats=refiner_session_stats,
                         review_cache=streaming_repetition_cache,
                         response_cache=streaming_repetition_response_cache,
+                        source_text=full_raw_value,
                     )
                     result["clean_text"] = clean_transcript_deterministically(
                         reviewed_text
@@ -3183,7 +3372,7 @@ def create_app(
         ) -> None:
             nonlocal pending_refinement, streaming_refiner_task
             nonlocal last_streaming_group_signature
-            if use_punctuation_windows and not force:
+            if not force:
                 effective_source_segments = source_segments_value or None
                 group_signature, pending_signature = (
                     window_refinement.streaming_input_signature(
@@ -3331,7 +3520,7 @@ def create_app(
                 len(
                     split_for_refinement(
                         raw_text,
-                        one_punctuation_window=use_punctuation_windows,
+                        one_punctuation_window=True,
                     )
                 ),
             )
@@ -3375,7 +3564,7 @@ def create_app(
                 start_params["chunk_seconds"] = requested_chunk_seconds
             if session_asr_context is not None and session_asr_context.text:
                 start_params["context"] = session_asr_context.text
-            start = await request_asr(
+            start = await request_entity_session_asr(
                 "/stream/start",
                 params=start_params or None,
             )
@@ -3384,14 +3573,20 @@ def create_app(
             record_trace(
                 "asr_session_started", mode=requested_mode,
                 asr_chunk_seconds=start.get("chunk_seconds"),
+                window_pipeline=dict(window_pipeline_config),
+                refinement_gate_mode=refinement_gate.mode.value,
+                learned_window_gate_mode=learned_window_gate.mode,
             )
             await send_json({
                 "event": "ready", "trace_id": trace_id,
+                "window_pipeline": dict(window_pipeline_config),
                 "asr_chunk_seconds": start.get("chunk_seconds"),
                 "entity_asr_context_requested": context_enabled,
                 "entity_asr_context_applied": asr_entity_context_applied,
                 "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
                 "entity_asr_context_digest": start.get("context_digest"),
+                "entity_audio_repair_requested": repair_enabled,
+                "entity_audio_repair": entity_audio_guard.snapshot() if entity_audio_guard is not None else None,
             })
             while True:
                 message = await websocket.receive()
@@ -3403,7 +3598,7 @@ def create_app(
                     command = json.loads(text)
                     if command.get("event") != "finish":
                         continue
-                    payload = await request_asr("/stream/finish", session_id)
+                    payload = await request_entity_session_asr("/stream/finish", session_id)
                     consume_completed_segments(payload)
                     asr_activity = {
                         key: payload.get(key)
@@ -3625,6 +3820,7 @@ def create_app(
                                         "refinement_gate_config": result[
                                             "refinement_gate_config"
                                         ],
+                                        "window_pipeline": result["window_pipeline"],
                                         "refinement_gate_decisions": result[
                                             "refinement_gate_decisions"
                                         ],
@@ -3892,9 +4088,13 @@ def create_app(
                 streaming_refiner_task.cancel()
             if session_id is not None and not finished:
                 try:
-                    await request_asr("/stream/cancel", session_id)
+                    await request_entity_session_asr("/stream/cancel", session_id)
                 except (RuntimeError, TimeoutError):
                     pass
+            if entity_context_guard is not None:
+                entity_context_guard.close()
+            if entity_audio_guard is not None:
+                entity_audio_guard.close()
 
     return app
 
@@ -3919,6 +4119,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--language", default="Chinese", help="use auto for automatic detection")
     parser.add_argument("--max-new-tokens", type=int, default=256)
+    parser.add_argument("--window-edit-policy", choices=WINDOW_EDIT_POLICIES, default="compat",
+                        help="strict_local requires bounded JSON patches and preserves the source window boundary")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8081)
     parser.add_argument("--output", type=Path)
@@ -3935,11 +4137,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--enable-entity-asr-context",action="store_true",
                         help="default new sessions to bounded canonical ASR context; browser can opt out")
+    parser.add_argument("--enable-entity-audio-repair", action="store_true",
+                        help="default sessions to type-independent glossary candidate verification against the same audio")
     parser.add_argument(
         "--refinement-gate-mode",
         choices=[mode.value for mode in RefinementGateMode],
         default="off",
-        help="off preserves the baseline; conservative uses two-state gating; tri_state emits KEEP/DEFER/REFINE",
+        help="off refines every complete window; conservative uses two-state gating; tri_state emits KEEP/DEFER/REFINE; all modes share fixed K=3 windows",
     )
     parser.add_argument(
         "--final-refinement-mode",
@@ -3950,6 +4154,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             "window results and only processes changed source or the short tail"
         ),
     )
+    parser.add_argument("--learned-window-gate-mode", choices=GATE_MODES, default="off",
+                        help="off disables; shadow records window scores; on permits window-only vetoes")
+    parser.add_argument("--learned-window-gate-model-dir", type=Path, default=DEFAULT_MODEL_DIR,
+                        help="local linear_training directory containing frozen selection.json and model")
     parser.add_argument(
         "--disable-rule-protection",
         action="store_true",
@@ -4006,6 +4214,10 @@ def main(argv: list[str] | None = None) -> int:
         args.final_refinement_mode,
         args.zh_itn_library.resolve() if args.enable_zh_itn else None,
         args.enable_entity_asr_context,
+        args.window_edit_policy,
+        entity_audio_repair=args.enable_entity_audio_repair,
+        learned_window_gate_mode=args.learned_window_gate_mode,
+        learned_window_gate_model_dir=args.learned_window_gate_model_dir,
     )
     # Float32 audio gains little from deflate, while compressing each PCM
     # frame adds CPU work to the file-streaming critical path.

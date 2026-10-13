@@ -1,0 +1,84 @@
+{
+  "scope": "training_text_supervision_and_unverified_ASR_review_proposals",
+  "no_training_started": true,
+  "records": 1676,
+  "files": {
+    "records": 1676,
+    "controlled_text_train": 688,
+    "asr_review_queue": 931,
+    "verified_audio_train": 0,
+    "refiner_output_review": 54,
+    "text_regression": 3
+  },
+  "label_status": {
+    "controlled_script_text": 670,
+    "controlled_task_definition": 18,
+    "script_keep_candidate": 382,
+    "projected_script_deletion_unverified_audio": 286,
+    "ambiguous_script_projection": 22,
+    "reference_mismatch": 194,
+    "script_edit_not_aligned": 47,
+    "refiner_final_output_unverified": 50,
+    "cross_window_edit_requires_review": 4,
+    "numeric_integrity_requires_review": 2,
+    "text_fixture_not_audio_gold": 1
+  },
+  "origin": {
+    "controlled_text": 688,
+    "asr_script_proposal": 931,
+    "refiner_output_proposal": 54,
+    "text_regression": 3
+  },
+  "controlled_edit_tasks": {
+    "disfluency": 107,
+    "repetition": 107,
+    "self_correction": 2,
+    "local_typo": 2,
+    "boundary_punctuation": 2,
+    "entity_correction": 2
+  },
+  "asr_proposed_edit_tasks": {
+    "disfluency": 118,
+    "repetition": 105
+  },
+  "controlled_keep_windows": 466,
+  "numeric_rule_only_fixtures_excluded": 112,
+  "asr_source_views": 818,
+  "human_audio_gold": 0,
+  "original_dev_test_not_used_for_training": true,
+  "consumed_replay_is_review_only": true,
+  "no_independent_acceptance_data": true,
+  "window_pipeline": {
+    "version": "fixed_k3_v1",
+    "window_size": 3,
+    "one_punctuation_window": true,
+    "fixed_groups": true,
+    "stream_reprocess_rejected": false,
+    "final_reprocess_rejected": false,
+    "group_numeric_self_corrections": true
+  },
+  "source_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/train_collection/sources.jsonl": "afdea90844aad97d500b1c987deebd6d215ce803dde42542a07ce6d6af03ed1c",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_synthetic_20261009/texts.jsonl": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+    "/home/aim0/桌面/tan/ASR/Codex-web/experiments/fixtures/edit_detection_controlled.jsonl": "8d0bd236559031f1dd9a3e80e05e668ca4aabf4d3e87a5bd162f4175712ee760",
+    "/home/aim0/桌面/tan/ASR/Codex-web/experiments/fixtures/numeric_refinement_gold.jsonl": "30968f297ea94154d8560cfccaaec20e753389e05391cc639fd7b6641b1f9c14",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_fixed_pipeline_replay_20261013_v2/sessions.jsonl": "5168de443aec18a4d14f2b0ca441e208ba5a6d1485e07d6f673984ebc0ccd8f2",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/train_collection/runtime/entities_snapshot.db": "f6359f5bcb1fe93601c513d77436255db2878f2135959a248c5937aac0d7dba3",
+    "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1"
+  },
+  "code_sha256": {
+    "experiments/scripts/prepare_edit_detection_data.py": "7f4442c747432cea2915bf52af62bb9358870277369a49dfaf66cddcdc67cd43",
+    "system/edit_detection_data.py": "87e4d6f07722ab56adb5a697e85e3ca014e22b983c928171f7ff90e3a3daa992",
+    "system/window_refinement.py": "2018bcfc8b9d459317678f84d284a648fa8340c2c0460bc8989aef2fe1f8ffcf",
+    "system/entity_pipeline.py": "72938ca665bcda7dd6e53a1ea1af862f043004769068bcf7078120684bcd408c",
+    "system/refinement_guard.py": "6e031737cdd66679be8b03044c8406254d10e95991290e85255eeaecaad51c3e"
+  },
+  "output_sha256": {
+    "text_regression.jsonl": "d16246e5816469bd354be3a508dbbd1fb9a1a2b0f28a6c8aae52f84b9647a504",
+    "asr_review_queue.jsonl": "f79a85f3824327c8cae71e4ff902f9451df3dedc09f9c95c9f14506995c48ce3",
+    "verified_audio_train.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "controlled_text_train.jsonl": "69c9a863335f7e630df94bc19adf77d09f51901814be4bb449f70642c387720d",
+    "refiner_output_review.jsonl": "4b5480fde9c98f1620434f58e8160c8084f2be989117c7e41ce07c08c12ebffb",
+    "records.jsonl": "4e19f7cbb4feb9dc41eb8e94f007e740e793e9f78e45a90a84815f3026ffd760"
+  }
+}

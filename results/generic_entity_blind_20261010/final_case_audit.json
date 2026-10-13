@@ -1,0 +1,465 @@
+{
+  "as_of_utc": "2026-10-10T13:30:43Z",
+  "sample_count": 128,
+  "web_rows": 384,
+  "conditions": {
+    "no_dictionary": 128,
+    "dictionary_rules": 128,
+    "audio_repair": 128
+  },
+  "correction_retention": {
+    "replacements": 6,
+    "retained": 6,
+    "cases": [
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:328:1663",
+        "observed": "科查莫山谷",
+        "canonical": "科茶莫山谷",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "智利首选登山目的地科茶莫山谷被称为南美洲的优美圣地，这里有各式各样的花岗岩大石壁和峭壁。",
+        "reference": "智利首选登山目的地科茶莫山谷 (Cochamó Valley) 被称为南美洲的优胜美地 (Yosemite)，这里有各式各样的花岗岩大石壁和峭壁。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:358:1951",
+        "observed": "尼拉贡格火山",
+        "canonical": "尼拉贡戈火山",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "2002年，戈马被尼拉贡戈火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "reference": "2002 年，戈马被尼拉贡戈火山的熔岩所摧毁。火山熔岩掩埋了该镇的大部分街道，尤其是镇中心。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:358:1951",
+        "observed": "格马",
+        "canonical": "戈马",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "2002年，戈马被尼拉贡戈火山的熔岩所摧毁，火山熔岩掩埋了该镇的大部分街道，尤其是市中心。",
+        "reference": "2002 年，戈马被尼拉贡戈火山的熔岩所摧毁。火山熔岩掩埋了该镇的大部分街道，尤其是镇中心。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:176:1831",
+        "observed": "普利特维茨谷湖国家公园",
+        "canonical": "普利特维茨湖国家公园",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "普利特维茨湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，以高山和地中海植被混合为特色。",
+        "reference": "普利特维茨湖国家公园森林茂密，主要树种有山毛榉、云杉和冷杉，并以高山和地中海植被混合为特色。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:43:1729",
+        "observed": "北卡罗来纳州",
+        "canonical": "北卡罗莱纳州",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "例如，北卡罗莱纳州本尼特学校的学生每1年都会设计一个有关他们的州政府执行的网站，网站每年都会重新设计。但是老版本会在线保存，用作剪切簿。",
+        "reference": "例如，北卡罗莱纳州本尼特学校 ( Bennet School) 的学生每年都会设计一个有关他们的州府之行的网站。网站每年都会重新设计，但是老版本会在线保存，用作剪贴簿。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:68:1735",
+        "observed": "永地雀",
+        "canonical": "勇地雀",
+        "canonical_retained_in_final_clean_text": true,
+        "final_clean_text": "来自美国普林斯顿大学和瑞典乌萨乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀的勇地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代。尽管人们认为这一过程需要更长的时间。",
+        "reference": "来自美国普林斯顿大学和瑞典乌普萨拉大学的研究人员报告称，由于当地特有的达尔文雀中的勇地雀和外来的仙人掌大嘴地雀之间的繁殖，这个新物种只进化了两代，尽管人们认为这一过程需要更长的时间。",
+        "note": "Reference-based literal comparison only; not a semantic or acoustic accuracy judgment."
+      }
+    ]
+  },
+  "negative_output_audit": {
+    "samples": 32,
+    "samples_with_any_pairwise_change": 0,
+    "cases": [
+      {
+        "id": "commonvoice:02d9056f2ee362af348a719ac0660ba501525e0e2f85712c5972de066921581d",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "该队现参加西班牙足球乙奥级联赛。",
+          "dictionary_rules": "该队现参加西班牙足球乙奥级联赛。",
+          "audio_repair": "该队现参加西班牙足球乙奥级联赛。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:8f8972f1caed3773d9a16a9c927851dacd61dd78aaa23527d7fc2b5dfe3af3e1",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "而当时机场的金属探测器并没有探测出任何可疑物体。",
+          "dictionary_rules": "而当时机场的金属探测器并没有探测出任何可疑物体。",
+          "audio_repair": "而当时机场的金属探测器并没有探测出任何可疑物体。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:fdaa58e9852df9b615a894843cffe634813cf047c1546e3aa4b3acd3b22b30b3",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "印度库克文学会议致力于推广用。",
+          "dictionary_rules": "印度库克文学会议致力于推广用。",
+          "audio_repair": "印度库克文学会议致力于推广用。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:6e0b7a372534e907e02aef791754db1702148b33675b63bd47decf05dce19e01",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "盛源开通后，新设车站。",
+          "dictionary_rules": "盛源开通后，新设车站。",
+          "audio_repair": "盛源开通后，新设车站。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:9382f7b3d3113b310fd4d37c4184202a03cd0b2a1d133cc3e5b6b75da525a9cb",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "咽后脓肿组织中的脓肿。",
+          "dictionary_rules": "咽后脓肿组织中的脓肿。",
+          "audio_repair": "咽后脓肿组织中的脓肿。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:9be99f3a1bb5566e6c1e44ed251c5a675449bba91f28039646afeb4fdd56c0a9",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "光绪34年，自京都帝国大学法科毕业。",
+          "dictionary_rules": "光绪34年，自京都帝国大学法科毕业。",
+          "audio_repair": "光绪34年，自京都帝国大学法科毕业。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:8ea2556cc0bb1e9e1ef4c530f8b7d2d9eb6e772ad84ea3a2f55b2d8a85e6bee9",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "要严格执行。",
+          "dictionary_rules": "要严格执行。",
+          "audio_repair": "要严格执行。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:b3a6bb983cd61f8e03377e2298cb04fb9e5453fc610c68d3002ebff5f79d2eb4",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "芬兰自然史博物馆是位于芬兰首都赫尔辛基的一座博物馆。",
+          "dictionary_rules": "芬兰自然史博物馆是位于芬兰首都赫尔辛基的一座博物馆。",
+          "audio_repair": "芬兰自然史博物馆是位于芬兰首都赫尔辛基的一座博物馆。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:cffbdd2ae16c98e4df75b1598b94f82df45d0d74ca0eee2f5a21fc8d17784943",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "卡尔多索是巴西圣保罗州的一个市镇。",
+          "dictionary_rules": "卡尔多索是巴西圣保罗州的一个市镇。",
+          "audio_repair": "卡尔多索是巴西圣保罗州的一个市镇。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:b2dc21af77106873662c06fdba229d8ecd1f121ec40b67230a4fe1b0ed92f694",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "4门遗址的历史年代为新石器时代。",
+          "dictionary_rules": "4门遗址的历史年代为新石器时代。",
+          "audio_repair": "4门遗址的历史年代为新石器时代。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:6c670599b3d5849571fea58cb1e58137ecb7e611f6dd349c7bb81e72de4c5be0",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "与细菌性阴道炎和存在于阴道内的原生细菌失衡有关。",
+          "dictionary_rules": "与细菌性阴道炎和存在于阴道内的原生细菌失衡有关。",
+          "audio_repair": "与细菌性阴道炎和存在于阴道内的原生细菌失衡有关。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:61d5a97737797af733ee4d91b904d2e29ebb3426907af263bdff38e8f1e43c11",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "萨达二世是乔华三世之子。",
+          "dictionary_rules": "萨达二世是乔华三世之子。",
+          "audio_repair": "萨达二世是乔华三世之子。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:9b9bfcf660ca8edfff84474030f412b647cbcf01fadb4a940c8d4b0b2214db5a",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "十六国前赵以至许昌县。",
+          "dictionary_rules": "十六国前赵以至许昌县。",
+          "audio_repair": "十六国前赵以至许昌县。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:e2203ff037db018390e15785983a96b6d4802fec6445e1963b7c31ed08952117",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "艾格兰人口变化图示。",
+          "dictionary_rules": "艾格兰人口变化图示。",
+          "audio_repair": "艾格兰人口变化图示。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:5640da87d0218679959ad810d277ab90d51117a5144545b5c2427effeadf54b5",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "城市甲拉蜥同为微颈科甲拉属的动物。",
+          "dictionary_rules": "城市甲拉蜥同为微颈科甲拉属的动物。",
+          "audio_repair": "城市甲拉蜥同为微颈科甲拉属的动物。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "commonvoice:8759fc476244f01f4895840df5a9a1c4ecc2fdbcfeb67b9e18c1f2e1c48d629b",
+        "source": "commonvoice_zh-CN_test",
+        "texts": {
+          "no_dictionary": "你剛才在搞什麼？",
+          "dictionary_rules": "你剛才在搞什麼？",
+          "audio_repair": "你剛才在搞什麼？"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:234:1671",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "国会从二零零五财年开始资助该扫黄倡议，并规定联邦调查局（FBI）必须指派10名探员专门打击成人色情。",
+          "dictionary_rules": "国会从二零零五财年开始资助该扫黄倡议，并规定联邦调查局（FBI）必须指派10名探员专门打击成人色情。",
+          "audio_repair": "国会从二零零五财年开始资助该扫黄倡议，并规定联邦调查局（FBI）必须指派10名探员专门打击成人色情。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:40:1762",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "猪携带该疾病，然后通过蚊子传染给人类。",
+          "dictionary_rules": "猪携带该疾病，然后通过蚊子传染给人类。",
+          "audio_repair": "猪携带该疾病，然后通过蚊子传染给人类。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:239:1952",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "任何在高纬度地区开车或翻越山口的人，都应该考虑到可能遭遇下雪、结冰或冻结温度的情况。",
+          "dictionary_rules": "任何在高纬度地区开车或翻越山口的人，都应该考虑到可能遭遇下雪、结冰或冻结温度的情况。",
+          "audio_repair": "任何在高纬度地区开车或翻越山口的人，都应该考虑到可能遭遇下雪、结冰或冻结温度的情况。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:312:1667",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "一般来说，当管理者开始领导过去的同事时，会出现2种行为。一种情况是，他们会努力与团队成员保持亲密关系。",
+          "dictionary_rules": "一般来说，当管理者开始领导过去的同事时，会出现2种行为。一种情况是，他们会努力与团队成员保持亲密关系。",
+          "audio_repair": "一般来说，当管理者开始领导过去的同事时，会出现2种行为。一种情况是，他们会努力与团队成员保持亲密关系。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:427:1909",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "虚拟团队需要坚持与传统团队同样的质量标准，但也有细微的差别。",
+          "dictionary_rules": "虚拟团队需要坚持与传统团队同样的质量标准，但也有细微的差别。",
+          "audio_repair": "虚拟团队需要坚持与传统团队同样的质量标准，但也有细微的差别。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:404:1894",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "咖喱饭菜是一道以香草和香料为主的菜肴，并配肉类或蔬菜。",
+          "dictionary_rules": "咖喱饭菜是一道以香草和香料为主的菜肴，并配肉类或蔬菜。",
+          "audio_repair": "咖喱饭菜是一道以香草和香料为主的菜肴，并配肉类或蔬菜。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:143:1895",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "随着希腊知识的衰落，西方脱离了其希腊哲学和科学根源。",
+          "dictionary_rules": "随着希腊知识的衰落，西方脱离了其希腊哲学和科学根源。",
+          "audio_repair": "随着希腊知识的衰落，西方脱离了其希腊哲学和科学根源。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:437:1673",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "在独立战争期间，13个州最初根据联邦条例组成了弱小的中央政府。国会是其唯一的组成部分。",
+          "dictionary_rules": "在独立战争期间，13个州最初根据联邦条例组成了弱小的中央政府。国会是其唯一的组成部分。",
+          "audio_repair": "在独立战争期间，13个州最初根据联邦条例组成了弱小的中央政府。国会是其唯一的组成部分。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:241:1664",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "搅动2种干粉，使其混合，然后用干净的湿手把它们揉成一个球。",
+          "dictionary_rules": "搅动2种干粉，使其混合，然后用干净的湿手把它们揉成一个球。",
+          "audio_repair": "搅动2种干粉，使其混合，然后用干净的湿手把它们揉成一个球。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:331:1938",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "医院遵循了感染控制规定，包括把患者与他人隔离。以防感染到其他人。",
+          "dictionary_rules": "医院遵循了感染控制规定，包括把患者与他人隔离。以防感染到其他人。",
+          "audio_repair": "医院遵循了感染控制规定，包括把患者与他人隔离。以防感染到其他人。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:220:1719",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "恶劣天气是任何危险天气现象的总称。这种天气会造成破坏、严重社会混乱或人员伤亡。",
+          "dictionary_rules": "恶劣天气是任何危险天气现象的总称。这种天气会造成破坏、严重社会混乱或人员伤亡。",
+          "audio_repair": "恶劣天气是任何危险天气现象的总称。这种天气会造成破坏、严重社会混乱或人员伤亡。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:341:1934",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "平时你总能在这里听到游客和小摊贩的声音，声光交织，就像在讲述一个动人的故事。",
+          "dictionary_rules": "平时你总能在这里听到游客和小摊贩的声音，声光交织，就像在讲述一个动人的故事。",
+          "audio_repair": "平时你总能在这里听到游客和小摊贩的声音，声光交织，就像在讲述一个动人的故事。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:327:1927",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "天使二零零六将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法。",
+          "dictionary_rules": "天使二零零六将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法。",
+          "audio_repair": "天使二零零六将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:99:1808",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "战争结束2年后，曾经的盟友如今成了敌人，冷战随即开始。",
+          "dictionary_rules": "战争结束2年后，曾经的盟友如今成了敌人，冷战随即开始。",
+          "audio_repair": "战争结束2年后，曾经的盟友如今成了敌人，冷战随即开始。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00000-of-00002.arrow:71:1819",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "中国的古代的不同时期各有特点。中国的每个时期或每个执掌天下的家族，都是一个鲜明特点的王朝。",
+          "dictionary_rules": "中国的古代的不同时期各有特点。中国的每个时期或每个执掌天下的家族，都是一个鲜明特点的王朝。",
+          "audio_repair": "中国的古代的不同时期各有特点。中国的每个时期或每个执掌天下的家族，都是一个鲜明特点的王朝。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      },
+      {
+        "id": "fleurs:data-00001-of-00002.arrow:224:1785",
+        "source": "fleurs_zh-CN_test",
+        "texts": {
+          "no_dictionary": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。",
+          "dictionary_rules": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。",
+          "audio_repair": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。"
+        },
+        "any_pairwise_output_change": false,
+        "changed_pairs": []
+      }
+    ]
+  },
+  "empty_asr_samples": [
+    {
+      "id": "commonvoice:98ede9d0873e3be3c8a6ed395c34555db3b4a6629ed94af0132b41bfe195bf86",
+      "initial_asr_text": "",
+      "production_final_text": "",
+      "web_final_raw_text_fields": {
+        "no_dictionary": null,
+        "dictionary_rules": null,
+        "audio_repair": null
+      },
+      "web_final_clean_text_fields": {
+        "no_dictionary": null,
+        "dictionary_rules": null,
+        "audio_repair": null
+      },
+      "interpreted_final_texts": {
+        "no_dictionary": "",
+        "dictionary_rules": "",
+        "audio_repair": ""
+      },
+      "interpretation": "ASR initial and production final texts are empty; Web final omitted raw_text/clean_text, so treated as empty string."
+    }
+  ],
+  "north_carolina_glossary_normalization": [
+    {
+      "id": "fleurs:data-00000-of-00002.arrow:43:1729",
+      "observed": "北卡罗来纳州",
+      "canonical": "北卡罗莱纳州",
+      "retained": true,
+      "note": "This is spelling normalization to the frozen glossary; count as glossary literal-match gain, not automatically as a factual-error correction."
+    }
+  ],
+  "interpretation_limits": [
+    "文字与reference的对照属于reference-based字面核对，不是完整语义准确率或人工听音核验。",
+    "北卡罗来纳州到北卡罗莱纳州是预建词库规范拼写。",
+    "负例输出变化仅按三臂最终clean_text的精确字符串比较。"
+  ]
+}

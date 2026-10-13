@@ -1,0 +1,51 @@
+{
+  "counts": {
+    "train": {
+      "seeds": 441,
+      "asr_rows": 818,
+      "templates": 48,
+      "by_cohort": {
+        "old_train": 754,
+        "new_train": 64
+      }
+    },
+    "dev": {
+      "seeds": 162,
+      "asr_rows": 288,
+      "templates": 30,
+      "by_cohort": {
+        "old_validation": 252,
+        "new_dev": 22,
+        "risk_dev": 14
+      }
+    }
+  },
+  "source_hashes": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen_tts_asr_gpu_pilot_20261010/asr.jsonl": "13e43eb59c9d251e017984a6361105fe41503281f5d449e846f23a2781bacfa4",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_template_expansion_20261010/asr.jsonl": "5c7988caa1bc93b1e44c70b6cf0540f08def512b5b117ba454b32954b65a8d9c",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/dev_data/asr.jsonl": "15219299e72f221f58e52e34fc9a96a56e7007322c27c0cbe0804dee7ce408ac",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round2_20261010/risk_dev_data/asr.jsonl": "0ff9459c737f6eb04be88d6e6c158835a03c17e4fcbd8307d07cbb1d311183ca"
+  },
+  "excluded_test_templates": [
+    "basic:00",
+    "basic_expand_v1:copy_backup",
+    "basic_expand_v1:experiment_schedule",
+    "basic_expand_v1:group_notice",
+    "basic_expand_v1:prototype_ship",
+    "basic_expand_v1:work_order",
+    "meaningful_expand_v1:emphasis_source",
+    "meaningful_expand_v1:every_person",
+    "meaningful_expand_v1:page_compare",
+    "meaningful_repeat:05",
+    "protected_content:00",
+    "protected_expand_v1:no_double_negative",
+    "protected_expand_v1:original_decimal",
+    "protected_expand_v1:two_prices",
+    "syntax_boundary:07",
+    "syntax_expand_v1:either_path"
+  ],
+  "old_development_is_reused_not_fresh": true,
+  "clean_noise_share_recording_group": true,
+  "source_labels_not_reused": true,
+  "seed_hash_changed_only_for_declared_partition_provenance": true
+}

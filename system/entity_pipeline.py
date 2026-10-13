@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from .entity_matcher import EntityCandidateMatcher, EntityMatchReport, EntityDecision
 from .protection import EntityProtector, ProtectionResult
+from .entity_prose_projection import project_prose_entity
 from .refinement_guard import (
     permits_self_correction_punctuation_repair,
     preserve_terminal_punctuation,
@@ -13,7 +14,7 @@ from .refinement_guard import (
     source_punctuation_lost,
 )
 
-_TRUSTED_ENTITY_MATCH_TYPES = frozenset({'EXACT_ALIAS','EXACT_CANONICAL','CONTEXT_PINYIN','CONTEXT_OMISSION','CONTEXT_NEAR_PINYIN','CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'})
+_TRUSTED_ENTITY_MATCH_TYPES = frozenset({'EXACT_ALIAS','EXACT_CANONICAL','EXACT_ACRONYM_PRESENTATION','CONTEXT_PINYIN','CONTEXT_OMISSION','CONTEXT_NEAR_PINYIN','CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'})
 
 
 @dataclass(frozen=True, slots=True)
@@ -207,6 +208,37 @@ def finalize_entity_segment(
         ),
     )
     if reasons:
+        # Legacy checkpoints can propose the right entity spelling in prose
+        # while deleting a source character. Keep only a bounded entity edit;
+        # never accept their non-entity rewrite or copied hint annotation.
+        projection = (
+            project_prose_entity(prepared, restored_text)
+            if entity_patch is None else None
+        )
+        if projection is not None:
+            projected_text, match = projection
+            patch = {
+                "action": "replace", "source": match.observed,
+                "target": match.canonical, "reason": "entity_correction",
+            }
+            projection_reasons = (
+                *_introduced_hint_reasons(prepared, projected_text),
+                *_unconfirmed_entity_edit_reasons(prepared, projected_text, patch),
+                *reject_reasons(prepared.baseline_text, projected_text,
+                                numeric_rule_mode=numeric_rule_mode),
+            )
+            if not projection_reasons:
+                change = {
+                    "observed": match.observed, "canonical": match.canonical,
+                    "entity_type": match.entity_type, "entity_id": match.entity_id,
+                    "match_type": match.match_type, "match_score": match.final_score,
+                    "decision": "CONTEXT_CONFIRMED",
+                    "confirmation_method": "bounded_prose_entity_projection_v1",
+                    "discarded_response_reasons": reasons,
+                }
+                return FinalizedEntitySegment(
+                    projected_text, True, (), (*trusted_changes, change)
+                )
         return FinalizedEntitySegment(trusted_baseline, False, reasons, trusted_changes)
     confirmed_changes = tuple(
         {

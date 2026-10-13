@@ -1,0 +1,86 @@
+{
+  "short_prohibited_cold": {
+    "chars": 10,
+    "mean_ms": 0.04226257558912039,
+    "p95_ms": 0.04963995888829231,
+    "violations": [
+      "degree_reduplication"
+    ]
+  },
+  "short_prohibited_cached": {
+    "chars": 10,
+    "mean_ms": 0.02026595175266266,
+    "p95_ms": 0.026369933038949966,
+    "violations": [
+      "degree_reduplication"
+    ]
+  },
+  "short_safe_cold": {
+    "chars": 14,
+    "mean_ms": 0.04146763123571873,
+    "p95_ms": 0.03937026485800743,
+    "violations": []
+  },
+  "short_safe_cached": {
+    "chars": 14,
+    "mean_ms": 0.018721451051533222,
+    "p95_ms": 0.01874007284641266,
+    "violations": []
+  },
+  "long_safe_cold": {
+    "chars": 854,
+    "mean_ms": 1.2436956306919456,
+    "p95_ms": 1.2996508739888668,
+    "violations": []
+  },
+  "long_safe_cached": {
+    "chars": 854,
+    "mean_ms": 0.9733727248385549,
+    "p95_ms": 0.997892115265131,
+    "violations": []
+  },
+  "dense_prohibited_cold": {
+    "chars": 1405,
+    "mean_ms": 5.335679203271866,
+    "p95_ms": 5.559169687330723,
+    "violations": [
+      "degree_reduplication"
+    ]
+  },
+  "dense_prohibited_cached": {
+    "chars": 1405,
+    "mean_ms": 1.9283025059849024,
+    "p95_ms": 2.1497346460819244,
+    "violations": [
+      "degree_reduplication"
+    ]
+  },
+  "full_cleanup_approx_900_chars": {
+    "chars": 856,
+    "mean_ms": 2.7522306656464934,
+    "p95_ms": 3.1743058934807777
+  },
+  "scope": "CPU guard microbenchmark only; no model/ASR/gate or online latency",
+  "cleanup_baseline_comparison": {
+    "short": {
+      "original": {
+        "mean_ms": 0.013141538947820663,
+        "p95_ms": 0.014440156519412994
+      },
+      "optimized": {
+        "mean_ms": 0.03159530460834503,
+        "p95_ms": 0.04103872925043106
+      }
+    },
+    "long": {
+      "original": {
+        "mean_ms": 0.5111952777951956,
+        "p95_ms": 0.5363062955439091
+      },
+      "optimized": {
+        "mean_ms": 2.7936570439487696,
+        "p95_ms": 3.152318298816681
+      }
+    }
+  }
+}

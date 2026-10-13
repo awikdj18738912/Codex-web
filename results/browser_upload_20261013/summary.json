@@ -1,0 +1,53 @@
+{
+  "pairs": [
+    {
+      "case": "direct_context",
+      "old_total_seconds": 20.616,
+      "new_total_seconds": 15.618,
+      "reduction_percent": 24.24,
+      "old_upload_seconds": 16.877,
+      "new_upload_seconds": 12.67,
+      "old_tail_seconds": 1.613,
+      "new_tail_seconds": 0.887,
+      "same_pcm": true,
+      "same_raw_text": false,
+      "same_final_text": false,
+      "both_target_correct": true
+    },
+    {
+      "case": "relay_context",
+      "old_total_seconds": 41.896,
+      "new_total_seconds": 18.909,
+      "reduction_percent": 54.87,
+      "old_upload_seconds": 39.29,
+      "new_upload_seconds": 15.236,
+      "old_tail_seconds": 0.493,
+      "new_tail_seconds": 1.63,
+      "same_pcm": true,
+      "same_raw_text": true,
+      "same_final_text": true,
+      "both_target_correct": true
+    },
+    {
+      "case": "relay_audio",
+      "old_total_seconds": 49.925,
+      "new_total_seconds": 36.283,
+      "reduction_percent": 27.32,
+      "old_upload_seconds": 46.728,
+      "new_upload_seconds": 15.166,
+      "old_tail_seconds": 1.133,
+      "new_tail_seconds": 19.037,
+      "same_pcm": true,
+      "same_raw_text": false,
+      "same_final_text": false,
+      "both_target_correct": true
+    }
+  ],
+  "actual_browser_sessions": 6,
+  "model_backend_real": true,
+  "same_pcm_all_sessions": true,
+  "audio_bytes_each": 20652012,
+  "frames_each": 323,
+  "browser_tests_passed": 7,
+  "scope": "Local Chromium + actual ASR/refiner; relay cases intentionally add40ms each way. Not measurements of the user desktop7921 route."
+}

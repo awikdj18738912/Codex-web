@@ -1,0 +1,29 @@
+{
+  "source": "AISHELL-1 test audio with official AISHELL-NER annotations",
+  "annotation_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_library_20261003/source/aishell_ner_transcript.txt",
+  "official_transcript": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/transcript/aishell_transcript_v0.8.txt",
+  "historical_ids_excluded": 328,
+  "historical_ids_found_and_excluded": 328,
+  "aligned_test_recordings_available": 6848,
+  "aligned_mismatches": 0,
+  "samples_with_eligible_entities": 2013,
+  "samples_without_eligible_entities": 4835,
+  "eligible_distinct_canonical_names_global": 1108,
+  "eligible_distinct_names_by_type": {
+    "PERSON": 367,
+    "LOC": 330,
+    "ORG": 419
+  },
+  "names_with_cross_type_conflict": 8,
+  "entity_mentions_by_type": {
+    "LOC": 1024,
+    "ORG": 1043,
+    "PERSON": 663
+  },
+  "eligibility": "Official NER spans; 2-24 Han characters; explicit exact-match generic terms removed; no alias generation",
+  "audio_format": "mono 16 kHz PCM16 source WAV",
+  "audio_sha256_definition": "SHA-256 of source WAV file bytes",
+  "source_pcm16_sha256_definition": "SHA-256 of little-endian signed PCM16 frame bytes read from source WAV",
+  "pcm_sha256_definition": "SHA-256 of float32 little-endian PCM bytes from np.frombuffer(raw,dtype='<i2').astype('<f4') / 32768.0",
+  "span_convention": "Unicode code-point offsets [start,end) in official reference; removing whitespace from reference[start:end] yields the complete entity spelling"
+}

@@ -1,0 +1,31 @@
+{
+  "by_policy": {
+    "current": {
+      "sessions": 20,
+      "exact_intended": 13,
+      "intended_micro_cer": 0.034912718204488775,
+      "logical_refiner_calls": 17,
+      "plausibility_calls": 2,
+      "gate_total_ms": 0,
+      "finish_tail_p50_seconds": 0.48290860606357455,
+      "finish_tail_p95_seconds": 1.139302302733995,
+      "failed_refiner_calls": 0
+    },
+    "learned": {
+      "sessions": 20,
+      "exact_intended": 13,
+      "intended_micro_cer": 0.034912718204488775,
+      "logical_refiner_calls": 15,
+      "plausibility_calls": 2,
+      "gate_total_ms": 539.8595980368555,
+      "finish_tail_p50_seconds": 0.41919411439448595,
+      "finish_tail_p95_seconds": 1.0772923885378987,
+      "failed_refiner_calls": 0
+    }
+  },
+  "differences": [],
+  "ASR_equal_pairs": 20,
+  "complete": true,
+  "references": "unverified_synthesis_scripts",
+  "scope": "actual_WebSocket_and_HTTP_ASR_synthetic_streaming_diagnostic"
+}

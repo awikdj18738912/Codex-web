@@ -1,0 +1,93 @@
+{
+  "by_policy": {
+    "rules": {
+      "recordings": 14,
+      "exact_intended": 10,
+      "intended_micro_cer": 0.014134275618374558,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0
+    },
+    "current": {
+      "recordings": 14,
+      "exact_intended": 3,
+      "intended_micro_cer": 0.09540636042402827,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 8,
+      "logical_refiner_calls": 26,
+      "logical_plausibility_calls": 0
+    },
+    "student": {
+      "recordings": 14,
+      "exact_intended": 10,
+      "intended_micro_cer": 0.014134275618374558,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 2,
+      "logical_plausibility_calls": 0
+    }
+  },
+  "current_student_differences": [
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_003",
+      "current": "这条记录真的不能丢失。发言人刻意说了两遍。",
+      "student": "啊，这条记录真的真的不能丢失。发言人刻意说了两遍。",
+      "current_distance": 2,
+      "student_distance": 1
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_004",
+      "current": "这个校验步骤特别关键，讲解者反复强调。",
+      "student": "这个校验步骤特别特别关键，讲解者反复强调。",
+      "current_distance": 2,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_005",
+      "current": "邮件里注明附件特别重要，请保留原始文件。",
+      "student": "邮件里注明附件特别特别重要，请保留原始文件。",
+      "current_distance": 2,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_006",
+      "current": "大家要仔细再仔细，提醒语里的重复不能省去。",
+      "student": "大家要仔细，仔细再仔细，提醒语里的重复不能省去。",
+      "current_distance": 2,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_007",
+      "current": "我们等了很久才拿到审核结果。",
+      "student": "我们等了很久很久，才拿到审核结果。",
+      "current_distance": 2,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_010",
+      "current": "这个结论不一定成立。讲师重复提醒了2次。",
+      "student": "这个结论不一定成立，不一定成立。讲师重复提醒了2次。",
+      "current_distance": 5,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_011",
+      "current": "文件不能删除，记录中保留了2次完整警告。",
+      "student": "文件不能删除，不能删除，记录中保留了2次完整警告。",
+      "current_distance": 4,
+      "student_distance": 0
+    },
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_012",
+      "current": "这不是通行证。工作人员重复说明。",
+      "student": "这不是通行证，不是通行证。工作人员重复说明。",
+      "current_distance": 5,
+      "student_distance": 0
+    }
+  ],
+  "normalized_same_current_student": 6,
+  "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+  "complete": true,
+  "references": "unverified_synthesis_scripts_not_human_gold"
+}

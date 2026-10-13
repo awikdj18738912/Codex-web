@@ -1,0 +1,69 @@
+{
+  "examples": 250,
+  "by_category": {
+    "clean": {
+      "n": 42,
+      "valid_json": 39,
+      "exact_target": 21,
+      "source_preserved": 21,
+      "replace": 24,
+      "keep": 18
+    },
+    "filler": {
+      "n": 42,
+      "valid_json": 21,
+      "exact_target": 0,
+      "source_preserved": 42,
+      "replace": 21,
+      "keep": 21
+    },
+    "meaningful_repeat": {
+      "n": 41,
+      "valid_json": 41,
+      "exact_target": 41,
+      "source_preserved": 41,
+      "keep": 41
+    },
+    "protected_content": {
+      "n": 42,
+      "valid_json": 38,
+      "exact_target": 36,
+      "source_preserved": 36,
+      "replace": 10,
+      "keep": 32
+    },
+    "stutter": {
+      "n": 42,
+      "valid_json": 41,
+      "exact_target": 5,
+      "source_preserved": 25,
+      "replace": 17,
+      "keep": 24,
+      "invalid": 1
+    },
+    "syntax_boundary": {
+      "n": 41,
+      "valid_json": 20,
+      "exact_target": 41,
+      "source_preserved": 41,
+      "replace": 21,
+      "keep": 20
+    }
+  },
+  "valid_json_rate": 0.8,
+  "exact_target_rate": 0.576,
+  "accepted_replace_count": 44,
+  "response_outcome_counts": {
+    "strict_local_invalid_action_or_reason": 21,
+    "accepted": 200,
+    "strict_local_noop_replace": 27,
+    "structured_patch_source_not_unique": 1,
+    "strict_local_invalid_json": 1
+  },
+  "mean_model_latency_ms": 534.28,
+  "test_sha256": "de151046b1a7b746b8c0250ac3a6c6fcf351a0b2e6effe407919c47c0107d71e",
+  "adapter_sha256": "56e8984ee534387e38b34221594f5558fe125b11d2f59fc14b9c6091c67565d1",
+  "human_gold": false,
+  "real_asr_audio": false,
+  "scope": "synthetic text-format and controlled-target evaluation; not ASR/WER or live-speech accuracy"
+}

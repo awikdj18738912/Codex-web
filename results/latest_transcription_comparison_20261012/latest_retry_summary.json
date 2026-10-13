@@ -1,0 +1,81 @@
+{
+  "runs": [
+    {
+      "trace": "a40cb174d5dd4a3b993331f320e8b687",
+      "start": "16:34:36",
+      "end": "16:35:51",
+      "native_gate": "tri_state",
+      "raw_chars": 3010,
+      "clean_chars": 3004,
+      "audio_chunks": 725,
+      "vad_segments": 56,
+      "seconds": 75.113,
+      "until_last_chunk": 74.636,
+      "final_reconcile": 0.251,
+      "refiner_calls": 15,
+      "refiner_seconds": 5.014,
+      "failed": 0,
+      "retry_calls": 2,
+      "rejected_windows": 3,
+      "asr_model_seconds": 41.694,
+      "asr_lock_wait_seconds": 0.001,
+      "asr_request_seconds": 48.034,
+      "ASR_sessions_during_run": {
+        "b52b7ec024554ad086c77c8a35d87cf9": 726
+      }
+    },
+    {
+      "trace": "6bfe4bf8a5a04cba92946eadc0433b21",
+      "start": "16:39:30",
+      "end": "16:42:11",
+      "native_gate": "off",
+      "raw_chars": 3010,
+      "clean_chars": 3004,
+      "audio_chunks": 725,
+      "vad_segments": 56,
+      "seconds": 160.131,
+      "until_last_chunk": 158.577,
+      "final_reconcile": 0.247,
+      "refiner_calls": 173,
+      "refiner_seconds": 127.564,
+      "failed": 0,
+      "retry_calls": 20,
+      "rejected_windows": 9,
+      "asr_model_seconds": 57.186,
+      "asr_lock_wait_seconds": 76.866,
+      "asr_request_seconds": 141.098,
+      "ASR_sessions_during_run": {
+        "6bafffa7f9a64e5186015e52f57d03a0": 59,
+        "44dc04d0b95c47a4a6a2ba75d154d93f": 726,
+        "75876f522b6141ada4c70bcc8c871a2f": 304,
+        "d80f877daf93438abb558506b4e8d441": 302,
+        "7ef1449d3fe0474cac1483ac4df63117": 302
+      }
+    },
+    {
+      "trace": "44f81d70afd84ccc8b0e4a1cb69826aa",
+      "start": "17:07:59",
+      "end": "17:09:34",
+      "native_gate": "off",
+      "raw_chars": 3010,
+      "clean_chars": 3004,
+      "audio_chunks": 725,
+      "vad_segments": 56,
+      "seconds": 95.046,
+      "until_last_chunk": 87.892,
+      "final_reconcile": 0.25,
+      "refiner_calls": 130,
+      "refiner_seconds": 89.152,
+      "failed": 0,
+      "retry_calls": 13,
+      "rejected_windows": 9,
+      "asr_model_seconds": 61.384,
+      "asr_lock_wait_seconds": 0.001,
+      "asr_request_seconds": 67.313,
+      "ASR_sessions_during_run": {
+        "35220af325644cd287c56b17e6d547b5": 726
+      }
+    }
+  ],
+  "raw_all_equal": true
+}

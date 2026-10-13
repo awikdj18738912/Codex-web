@@ -1,0 +1,200 @@
+[
+  {
+    "trace_id": "89674c51eddc41cf80ec31a20e2d4261",
+    "mode_label": "仅实体替换",
+    "finished_local": "2026-10-13T00:04:18.210746+08:00",
+    "entity_asr_context_requested": false,
+    "entity_asr_context_applied": false,
+    "entity_audio_repair_requested_from_recent_access_log": false,
+    "total_session_seconds": 79.64,
+    "after_last_audio_chunk_seconds": 1.018,
+    "audio_chunks": 323,
+    "asr_request_sum_seconds": 13.045,
+    "asr_model_sum_seconds": 10.706,
+    "asr_lock_wait_sum_seconds": 0.000457,
+    "raw_target": false,
+    "raw_observed": true,
+    "final_target": true,
+    "entity_normalizations": [
+      {
+        "observed": "厉飞羽",
+        "canonical": "厉飞宇",
+        "entity_type": "TERM",
+        "entity_id": 9,
+        "match_type": "PINYIN_FUZZY",
+        "match_score": 0.8966666666666667,
+        "decision": "CONTEXT_CONFIRMED",
+        "confirmation_method": "bounded_prose_entity_projection_v1",
+        "discarded_response_reasons": [
+          "entity_confirmation_required:厉飞宇",
+          "semantic_content_loss"
+        ]
+      }
+    ],
+    "entity_windows": [
+      {
+        "source": "想找你做个SPA，你找错人了。在下厉飞羽，",
+        "model_calls": [
+          {
+            "input": "想找你做个__ENTITY_000__，你找错人了。在下厉飞羽，",
+            "output": "想找你做个__ENTITY_000__，你找错人了。下厉飞宇，\n<KEY>[厉飞宇]",
+            "strict_placeholders": false,
+            "numeric_policy": "zh-itn-surface-locked"
+          }
+        ],
+        "output": "想找你做个SPA，你找错人了。在下厉飞宇，",
+        "outcome": "accepted",
+        "reject_reasons": []
+      }
+    ],
+    "refiner_stats": {
+      "schema_version": 1,
+      "call_count": 18,
+      "initial_call_count": 15,
+      "retry_call_count": 3,
+      "intermediate_call_count": 18,
+      "final_call_count": 0,
+      "completed_call_count": 18,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 2880.037,
+      "gate_skipped_segment_count": 40,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 55,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "refiner_accepted": false,
+    "refiner_reject_reasons": [
+      "segment_1:severe_content_loss",
+      "segment_1:semantic_content_loss",
+      "segment_1:semantic_content_loss"
+    ],
+    "refinement_log_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/refinement_windows_grouped_20261012_160418_209430_89674c51eddc41cf80ec31a20e2d4261.md",
+    "entity_audio_status_persisted": false
+  },
+  {
+    "trace_id": "abe70c7dbfaf4612bd7db6814fca3ebf",
+    "mode_label": "词库辅助识别＋实体替换",
+    "finished_local": "2026-10-13T00:06:25.289497+08:00",
+    "entity_asr_context_requested": true,
+    "entity_asr_context_applied": true,
+    "entity_audio_repair_requested_from_recent_access_log": false,
+    "total_session_seconds": 84.768,
+    "after_last_audio_chunk_seconds": 1.057,
+    "audio_chunks": 323,
+    "asr_request_sum_seconds": 10.811,
+    "asr_model_sum_seconds": 8.456,
+    "asr_lock_wait_sum_seconds": 0.000476,
+    "raw_target": true,
+    "raw_observed": false,
+    "final_target": true,
+    "entity_normalizations": [],
+    "entity_windows": [],
+    "refiner_stats": {
+      "schema_version": 1,
+      "call_count": 22,
+      "initial_call_count": 16,
+      "retry_call_count": 6,
+      "intermediate_call_count": 22,
+      "final_call_count": 0,
+      "completed_call_count": 22,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 2559.125,
+      "gate_skipped_segment_count": 43,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 59,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "refiner_accepted": false,
+    "refiner_reject_reasons": [
+      "segment_1:semantic_content_loss",
+      "segment_1:severe_content_loss",
+      "segment_1:semantic_content_loss",
+      "segment_1:semantic_content_loss",
+      "segment_1:semantic_content_loss",
+      "segment_1:severe_content_loss"
+    ],
+    "refinement_log_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/refinement_windows_grouped_20261012_160625_287860_abe70c7dbfaf4612bd7db6814fca3ebf.md",
+    "entity_audio_status_persisted": false
+  },
+  {
+    "trace_id": "0647559c683948849e109ea72419bda4",
+    "mode_label": "原音复核＋实体替换",
+    "finished_local": "2026-10-13T00:08:39.049203+08:00",
+    "entity_asr_context_requested": false,
+    "entity_asr_context_applied": false,
+    "entity_audio_repair_requested_from_recent_access_log": true,
+    "total_session_seconds": 70.371,
+    "after_last_audio_chunk_seconds": 18.734,
+    "audio_chunks": 323,
+    "asr_request_sum_seconds": 10.758,
+    "asr_model_sum_seconds": 8.463,
+    "asr_lock_wait_sum_seconds": 0.000492,
+    "raw_target": false,
+    "raw_observed": true,
+    "final_target": true,
+    "entity_normalizations": [
+      {
+        "observed": "厉飞羽",
+        "canonical": "厉飞宇",
+        "entity_type": "TERM",
+        "entity_id": 9,
+        "match_type": "PINYIN_FUZZY",
+        "match_score": 0.8966666666666667,
+        "decision": "CONTEXT_CONFIRMED",
+        "confirmation_method": "bounded_prose_entity_projection_v1",
+        "discarded_response_reasons": [
+          "entity_confirmation_required:厉飞宇",
+          "semantic_content_loss"
+        ]
+      }
+    ],
+    "entity_windows": [
+      {
+        "source": "想找你做个SPA，你找错人了。在下厉飞羽，",
+        "model_calls": [
+          {
+            "input": "想找你做个__ENTITY_000__，你找错人了。在下厉飞羽，",
+            "output": "想找你做个__ENTITY_000__，你找错人了。下厉飞宇，\n<KEY>[厉飞宇]",
+            "strict_placeholders": false,
+            "numeric_policy": "zh-itn-surface-locked"
+          }
+        ],
+        "output": "想找你做个SPA，你找错人了。在下厉飞宇，",
+        "outcome": "accepted",
+        "reject_reasons": []
+      }
+    ],
+    "refiner_stats": {
+      "schema_version": 1,
+      "call_count": 18,
+      "initial_call_count": 15,
+      "retry_call_count": 3,
+      "intermediate_call_count": 18,
+      "final_call_count": 0,
+      "completed_call_count": 18,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 3023.235,
+      "gate_skipped_segment_count": 40,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 55,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "refiner_accepted": false,
+    "refiner_reject_reasons": [
+      "segment_1:severe_content_loss",
+      "segment_1:semantic_content_loss",
+      "segment_1:semantic_content_loss"
+    ],
+    "refinement_log_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/refinement_windows_grouped_20261012_160839_047673_0647559c683948849e109ea72419bda4.md",
+    "entity_audio_status_persisted": false
+  }
+]

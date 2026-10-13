@@ -1,0 +1,625 @@
+[
+  {
+    "elapsed_seconds": 0.07101950887590647,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 1
+    }
+  },
+  {
+    "elapsed_seconds": 0.5730550289154053,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 2
+    }
+  },
+  {
+    "elapsed_seconds": 1.1070634741336107,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 3
+    }
+  },
+  {
+    "elapsed_seconds": 1.1074032238684595,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 4,
+        "min_probability": 0.678739384058047
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.0,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必。",
+      "display_text": "档案必。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 1.574825151823461,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 4
+    }
+  },
+  {
+    "elapsed_seconds": 2.138350416906178,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 5
+    }
+  },
+  {
+    "elapsed_seconds": 2.138653326779604,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必须一册一册。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 8,
+        "min_probability": 0.9700720682429831
+      },
+      "refiner_deferred": true,
+      "refinement_gate_action": "defer",
+      "refinement_gate_state": "DEFER",
+      "refinement_gate_reasons": [
+        "tail_too_young"
+      ],
+      "refinement_hypothesis": {
+        "stable": false,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.3846,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必须一册一册。",
+      "display_text": "档案必须一册一册。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 2.5744730378501117,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 6
+    }
+  },
+  {
+    "elapsed_seconds": 3.1415565349161625,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 7
+    }
+  },
+  {
+    "elapsed_seconds": 3.141863394062966,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必须一册一册的扫描。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.8519513765813043
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1429,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必须一册一册的扫描。",
+      "display_text": "档案必须一册一册的扫描。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 3.573296132031828,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 8
+    }
+  },
+  {
+    "elapsed_seconds": 4.163403042126447,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 9
+    }
+  },
+  {
+    "elapsed_seconds": 4.163892941083759,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必须一册一册的扫描，每册结束后。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": true,
+        "scope": "full_text",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 14,
+        "min_probability": 0.9241411996000168
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.2,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必须一册一册的扫描，每册结束后。",
+      "display_text": "档案必须一册一册的扫描，每册结束后。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 4.57502806885168,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 10
+    }
+  },
+  {
+    "elapsed_seconds": 5.13970711780712,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 11
+    }
+  },
+  {
+    "elapsed_seconds": 5.139978097751737,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 10,
+        "min_probability": 0.9914183757565482
+      },
+      "refiner_deferred": false,
+      "refinement_gate_action": "refine",
+      "refinement_gate_state": "REFINE",
+      "refinement_gate_reasons": [
+        "cleanup_signal_present"
+      ],
+      "refinement_hypothesis": {
+        "stable": true,
+        "unchanged_updates": 0,
+        "revision_ratio": 0.1,
+        "tail_age_ms": 0.0,
+        "sentence_complete": true
+      },
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "display_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.571639223955572,
+    "payload": {
+      "event": "chunk_ack",
+      "chunk_index": 12
+    }
+  },
+  {
+    "elapsed_seconds": 5.674156467895955,
+    "payload": {
+      "event": "transcript",
+      "raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999885560391694
+      },
+      "refiner_deferred": true,
+      "display_revision": 0,
+      "committed_clean_text": "",
+      "active_clean_text": "",
+      "display_refined_text": "",
+      "pending_raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "display_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "has_pending_refinement": true
+    }
+  },
+  {
+    "elapsed_seconds": 5.678229109849781,
+    "payload": {
+      "event": "update",
+      "raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "clean_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999885560391694
+      },
+      "refiner_latency_ms": 0,
+      "numeric_rule_latency_ms": 0.0,
+      "refiner_executed": false,
+      "refiner_accepted": true,
+      "refiner_reject_reasons": [],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 0,
+      "refiner_retry_reasons": [],
+      "refiner_masked_outputs": [],
+      "structured_patch_audits": [],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "defer",
+          "state": "DEFER",
+          "reasons": [
+            "incomplete_fixed_group"
+          ],
+          "visible_chars": 20,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 1,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 4,
+          "end": 8,
+          "source": "一册一册",
+          "target": "一册",
+          "kind": "phrase_run",
+          "decision": "deferred",
+          "reason": "incomplete_k3_group",
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.112,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 0,
+      "pending_refinement_chunks": 2,
+      "refinement_batch_size": 3,
+      "refinement_state": "waiting_for_group",
+      "refinement_source_spans": [
+        {
+          "source_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+          "clean_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+          "state": "active"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 0,
+      "window_cache_reprocess_reasons": {},
+      "refinement_revision": 1,
+      "display_revision": 1,
+      "committed_clean_text": "",
+      "active_clean_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "display_refined_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "pending_raw_text": "",
+      "display_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "has_pending_refinement": false,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 0,
+        "initial_call_count": 0,
+        "retry_call_count": 0,
+        "intermediate_call_count": 0,
+        "final_call_count": 0,
+        "completed_call_count": 0,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 0.0,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 1,
+        "accepting_new_calls": true,
+        "stats_complete": false
+      },
+      "session_refiner_call_count": 0,
+      "session_refiner_initial_call_count": 0,
+      "session_refiner_retry_call_count": 0,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 0,
+      "session_gate_skipped_segment_count": 1,
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_audio_repair_requested": false
+    }
+  },
+  {
+    "elapsed_seconds": 6.468975274823606,
+    "payload": {
+      "event": "final",
+      "raw_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "clean_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+      "asr_language": "Chinese",
+      "asr_confidence": null,
+      "asr_confidence_metadata": {
+        "calibrated": false,
+        "covers_full_text": false,
+        "scope": "generated_suffix",
+        "source": "qwen_vllm_token_logprob",
+        "token_count": 6,
+        "min_probability": 0.9999885560391694
+      },
+      "refiner_latency_ms": 746,
+      "numeric_rule_latency_ms": 1.593,
+      "refiner_executed": true,
+      "refiner_accepted": false,
+      "refiner_reject_reasons": [
+        "segment_1:repetition_intent_loss",
+        "segment_1:numeric_value_mismatch",
+        "segment_1:numeric_rule_surface_mismatch",
+        "segment_1:semantic_content_loss"
+      ],
+      "placeholder_retry_count": 0,
+      "refiner_retry_count": 1,
+      "refiner_retry_reasons": [
+        "segment_1:repetition_intent_loss",
+        "segment_1:numeric_value_mismatch",
+        "segment_1:numeric_rule_surface_mismatch",
+        "segment_1:semantic_content_loss"
+      ],
+      "refiner_masked_outputs": [
+        "档案必须1本的扫描，每本结束后核对页码。",
+        "档案必须1本的扫描，每本结束后核对页码。"
+      ],
+      "structured_patch_audits": [
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        },
+        {
+          "format": "legacy_text",
+          "accepted": true,
+          "issue": null,
+          "window_edit_policy": "compat"
+        }
+      ],
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "boundary_anomalies": [],
+      "boundary_reviews": [],
+      "refinement_gate_mode": "tri_state",
+      "refinement_gate_config": {
+        "mode": "tri_state",
+        "high_confidence": 0.92,
+        "refine_on_unverified_confidence": false
+      },
+      "refinement_gate_decisions": [
+        {
+          "segment_index": 1,
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 20,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "repeated_phrase"
+          ]
+        }
+      ],
+      "refinement_gate_skipped_segments": 0,
+      "entity_audit_issues": [],
+      "entity_refinement_hints": [],
+      "entity_normalizations": [],
+      "numeric_normalizations": [],
+      "numeric_rule_repairs": [],
+      "numeric_fallbacks": [],
+      "safe_numeric_repairs": [],
+      "safe_repetition_repairs": [],
+      "local_deletion_reviews": [],
+      "repetition_reviews": [
+        {
+          "index": 1,
+          "start": 4,
+          "end": 8,
+          "source": "一册一册",
+          "target": "一册",
+          "kind": "phrase_run",
+          "decision": "deferred",
+          "reason": "incomplete_k3_group",
+          "applied": false,
+          "model_called": false
+        },
+        {
+          "index": 1,
+          "start": 4,
+          "end": 8,
+          "source": "一册一册",
+          "target": "一册",
+          "kind": "phrase_run",
+          "context": "档案必须一册一册的扫描，每册结束后核对页码。",
+          "decision": "keep",
+          "reason": "source_repetition_preservation",
+          "preservation_reasons": [
+            "distributive_reduplication"
+          ],
+          "applied": false,
+          "model_called": false
+        }
+      ],
+      "boundary_echo_repairs": [],
+      "protected_entities": [],
+      "entity_candidates": [],
+      "entity_matcher_latency_ms": 1.855,
+      "entity_fuzzy_mode": "auto",
+      "entity_matching_config_version": 2,
+      "rule_protection_enabled": true,
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+      "window_size": 3,
+      "window_max_chars": 80,
+      "committed_chunks": 2,
+      "pending_refinement_chunks": 0,
+      "refinement_batch_size": 3,
+      "refinement_state": "window_refined",
+      "refinement_source_spans": [
+        {
+          "source_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+          "clean_text": "档案必须一册一册的扫描，每册结束后核对页码。",
+          "state": "committed"
+        }
+      ],
+      "window_cache_reused_group_count": 0,
+      "window_cache_reused_gate_skip_group_count": 0,
+      "window_cache_reprocessed_group_count": 1,
+      "window_cache_reprocess_reasons": {
+        "no_exact_source_group_match": 1
+      },
+      "window_cache_partition": "vad_segments",
+      "final_vad_source_segment_count": 1,
+      "repetition_review_model_calls": 0,
+      "repetition_response_cache_hits": 0,
+      "refinement_revision": 1,
+      "final_refinement_mode": "off",
+      "entity_asr_context_requested": false,
+      "entity_asr_context_applied": false,
+      "entity_asr_context_term_count": 0,
+      "refiner_session_stats": {
+        "schema_version": 1,
+        "call_count": 2,
+        "initial_call_count": 1,
+        "retry_call_count": 1,
+        "intermediate_call_count": 0,
+        "final_call_count": 2,
+        "completed_call_count": 2,
+        "failed_call_count": 0,
+        "inflight_call_count": 0,
+        "completed_wall_latency_ms": 759.173,
+        "gate_skipped_segment_count": 1,
+        "busy_segment_count": 0,
+        "closed_call_rejection_count": 0,
+        "observed_initial_opportunity_count": 2,
+        "accepting_new_calls": false,
+        "stats_complete": true
+      },
+      "session_refiner_call_count": 2,
+      "session_refiner_initial_call_count": 1,
+      "session_refiner_retry_call_count": 1,
+      "session_refiner_intermediate_call_count": 0,
+      "session_refiner_final_call_count": 2,
+      "session_gate_skipped_segment_count": 1,
+      "entity_audio_repair_requested": false
+    }
+  }
+]

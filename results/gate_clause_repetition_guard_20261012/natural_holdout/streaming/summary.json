@@ -1,0 +1,131 @@
+{
+  "by_source": {
+    "human_spontaneous": {
+      "arms": {
+        "current": {
+          "sessions": 36,
+          "clips": 18,
+          "normalized_reference_exact": 20,
+          "normalized_micro_cer": 0.027586206896551724,
+          "lexical_micro_cer": 0.04498269896193772,
+          "refiner_calls": 24,
+          "plausibility_calls": 0,
+          "gate_calls": 0,
+          "gate_ms": 0,
+          "vetoes": 0,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.18465851700119673,
+              "p95": 0.8715205798922105,
+              "max": 1.3036045487821104
+            },
+            "finish_tail_seconds": {
+              "p50": 0.18396529974415898,
+              "p95": 0.8709094852674752,
+              "max": 1.3028697855770588
+            },
+            "send_overrun_seconds": {
+              "p50": 0.0008212985415010365,
+              "p95": 0.001366848445497837,
+              "max": 0.0014708288535478786
+            },
+            "backpressure_seconds": {
+              "p50": 4.564295522868633e-05,
+              "p95": 8.248689118772745e-05,
+              "max": 8.69501382112503e-05
+            }
+          }
+        },
+        "learned": {
+          "sessions": 36,
+          "clips": 18,
+          "normalized_reference_exact": 20,
+          "normalized_micro_cer": 0.027586206896551724,
+          "lexical_micro_cer": 0.04498269896193772,
+          "refiner_calls": 20,
+          "plausibility_calls": 0,
+          "gate_calls": 12,
+          "gate_ms": 22.01445261016488,
+          "vetoes": 4,
+          "model_errors": 0,
+          "timing": {
+            "completion_lag_from_audio_clock_seconds": {
+              "p50": 0.1341532812826336,
+              "p95": 0.9148394903577859,
+              "max": 1.2589709828458728
+            },
+            "finish_tail_seconds": {
+              "p50": 0.1331417125184089,
+              "p95": 0.9136910879751667,
+              "max": 1.2584985559806228
+            },
+            "send_overrun_seconds": {
+              "p50": 0.000762028779834445,
+              "p95": 0.0011749463342127786,
+              "max": 0.0012794882655136064
+            },
+            "backpressure_seconds": {
+              "p50": 4.0804967284202576e-05,
+              "p95": 7.770129013806581e-05,
+              "max": 8.913083001971245e-05
+            }
+          }
+        }
+      },
+      "paired": {
+        "pairs": 36,
+        "raw_asr_exact_equal": 36,
+        "asr_hypothesis_history_equal": 36,
+        "final_exact_equal": 34,
+        "learned_worse": 0,
+        "learned_better": 0
+      },
+      "paired_audio_clock_lag": {
+        "mean_difference_seconds": -0.0316397737349487,
+        "bootstrap95_seconds": [
+          -0.06922752276942548,
+          0.004866596945147548
+        ],
+        "blocks": 6,
+        "unit": "source_shard_equal_weight_not_independent_speaker"
+      }
+    }
+  },
+  "differences": [
+    {
+      "kind": "human_spontaneous",
+      "seed_id": "speechio_holdout:startup_insider_rongzi_0494-1206",
+      "repetition": 0,
+      "raw_equal": true,
+      "history_equal": true,
+      "current": "具体讲，如果今天投资人希望跟你签个TS，投资人给了一个盘查期啊，通常很多情况下，这个创业者不希望被绑定不希望自己的这个其他门关上。",
+      "learned": "具体讲，如果今天投资人希望跟你签个TS，投资人给了一个盘查期啊，通常很多情况下，这个创业者不希望被绑定，不希望自己的这个其他门关上。",
+      "current_distance": 7,
+      "learned_distance": 7
+    },
+    {
+      "kind": "human_spontaneous",
+      "seed_id": "speechio_holdout:startup_insider_rongzi_0494-1206",
+      "repetition": 1,
+      "raw_equal": true,
+      "history_equal": true,
+      "current": "具体讲，如果今天投资人希望跟你签个TS，投资人给了一个盘查期啊，通常很多情况下，这个创业者不希望被绑定不希望自己的这个其他门关上。",
+      "learned": "具体讲，如果今天投资人希望跟你签个TS，投资人给了一个盘查期啊，通常很多情况下，这个创业者不希望被绑定，不希望自己的这个其他门关上。",
+      "current_distance": 7,
+      "learned_distance": 7
+    }
+  ],
+  "sessions": 72,
+  "clips": 18,
+  "repetitions": 2,
+  "failures": 0,
+  "threshold": 0.8,
+  "no_test_tuning": true,
+  "production_enabled": false,
+  "complete": true,
+  "cross_clause_guard_trace_sessions": 0,
+  "reference_kind": "SpeechIO_dataset_verbatim_reference_not_cleaned_target",
+  "ASR_pretraining_overlap_unknown": true,
+  "audio_independently_reviewed": false
+}

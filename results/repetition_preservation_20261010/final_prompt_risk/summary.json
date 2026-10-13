@@ -1,0 +1,44 @@
+{
+  "by_policy": {
+    "rules": {
+      "recordings": 14,
+      "exact_intended": 10,
+      "intended_micro_cer": 0.014134275618374558,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 0,
+      "logical_plausibility_calls": 0
+    },
+    "current": {
+      "recordings": 14,
+      "exact_intended": 11,
+      "intended_micro_cer": 0.01060070671378092,
+      "improved_vs_rules": 1,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 22,
+      "logical_plausibility_calls": 0
+    },
+    "student": {
+      "recordings": 14,
+      "exact_intended": 10,
+      "intended_micro_cer": 0.014134275618374558,
+      "improved_vs_rules": 0,
+      "degraded_vs_rules": 0,
+      "logical_refiner_calls": 1,
+      "logical_plausibility_calls": 0
+    }
+  },
+  "current_student_differences": [
+    {
+      "recording_group": "synthetic_text:risk_dev_20261010_003",
+      "current": "这条记录真的真的不能丢失。发言人刻意说了两遍。",
+      "student": "啊，这条记录真的真的不能丢失。发言人刻意说了两遍。",
+      "current_distance": 0,
+      "student_distance": 1
+    }
+  ],
+  "normalized_same_current_student": 13,
+  "scope": "cold_authoritative_final_snapshot_sequential_post_test_diagnostic",
+  "complete": true,
+  "references": "unverified_synthesis_scripts_not_human_gold"
+}

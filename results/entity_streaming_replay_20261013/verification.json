@@ -1,0 +1,117 @@
+{
+  "production_files_changed": [
+    "system/entity_audio_repair.py",
+    "system/entity_streaming_replay.py"
+  ],
+  "tests_passed": 46,
+  "short_saved_trace_regressions": 268,
+  "actual_web_pairs": 3,
+  "referenced_long_pairs": 3,
+  "formal_entity_db_unchanged": true,
+  "deployed_ready": [
+    {
+      "port": 8081,
+      "ready": {
+        "event": "ready",
+        "trace_id": "f9251a12b83746649975d99ff9d557e3",
+        "asr_chunk_seconds": 1.0,
+        "entity_asr_context_requested": false,
+        "entity_asr_context_applied": false,
+        "entity_asr_context_term_count": 0,
+        "entity_asr_context_digest": null,
+        "entity_audio_repair_requested": true,
+        "entity_audio_repair": {
+          "enabled": true,
+          "phase": "capturing",
+          "reason": null,
+          "entity_count": 5,
+          "candidate_count": 0,
+          "max_candidate_score": 0.0,
+          "minimum_replay_score": 0.63,
+          "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+          "prompt_terms": [],
+          "checks": 0,
+          "replay_context_applied": false,
+          "applied": false,
+          "change_count": 0,
+          "changes": [],
+          "revision": 0,
+          "elapsed_seconds": 0.0,
+          "replay_mode": "pending",
+          "local_replay_reason": null,
+          "local_replay_enabled": true,
+          "local_replay_rule": "segment_windows_v1",
+          "source_audio_seconds": 0.0,
+          "replay_audio_seconds": 0.0,
+          "replay_windows": [],
+          "streaming_cache_used": false,
+          "streaming_replay": {
+            "rule": "isolated_idle_replay_v2",
+            "eligible": true,
+            "started": false,
+            "reason": "waiting_stable_candidate",
+            "processed_audio_seconds": 0.0,
+            "started_at_audio_seconds": null,
+            "complete": false,
+            "median_idle_gap_ms": null,
+            "wall_seconds": 0.0
+          }
+        }
+      }
+    },
+    {
+      "port": 8051,
+      "ready": {
+        "event": "ready",
+        "trace_id": "09802f704c2749fca835c76d8a4e364d",
+        "asr_chunk_seconds": 1.0,
+        "entity_asr_context_requested": false,
+        "entity_asr_context_applied": false,
+        "entity_asr_context_term_count": 0,
+        "entity_asr_context_digest": null,
+        "entity_audio_repair_requested": true,
+        "entity_audio_repair": {
+          "enabled": true,
+          "phase": "capturing",
+          "reason": null,
+          "entity_count": 5,
+          "candidate_count": 0,
+          "max_candidate_score": 0.0,
+          "minimum_replay_score": 0.63,
+          "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+          "prompt_terms": [],
+          "checks": 0,
+          "replay_context_applied": false,
+          "applied": false,
+          "change_count": 0,
+          "changes": [],
+          "revision": 0,
+          "elapsed_seconds": 0.0,
+          "replay_mode": "pending",
+          "local_replay_reason": null,
+          "local_replay_enabled": true,
+          "local_replay_rule": "segment_windows_v1",
+          "source_audio_seconds": 0.0,
+          "replay_audio_seconds": 0.0,
+          "replay_windows": [],
+          "streaming_cache_used": false,
+          "streaming_replay": {
+            "rule": "isolated_idle_replay_v2",
+            "eligible": true,
+            "started": false,
+            "reason": "waiting_stable_candidate",
+            "processed_audio_seconds": 0.0,
+            "started_at_audio_seconds": null,
+            "complete": false,
+            "median_idle_gap_ms": null,
+            "wall_seconds": 0.0
+          }
+        }
+      }
+    }
+  ],
+  "code_hashes": {
+    "system/entity_audio_repair.py": "aec0d8572d58759ae7eba1c7428bb9b32e6473c1bbb659cc67dcfb6023f27f12",
+    "system/entity_streaming_replay.py": "98d9e5e43c8dece4e5d89ec7fe39dafeff07d7e38981f321c6578228185861c6"
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "audit_type": "independent read-only quality audit of medical staging",
+  "audited_at_local_date": "2026-10-11",
+  "staging_paths": {
+    "entities": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/staging/medical/entities.json",
+    "samples": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/staging/medical/samples.jsonl",
+    "stats": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/staging/medical/stats.json"
+  },
+  "counts": {
+    "staged_unique_entities": 107,
+    "main_clips": 90,
+    "main_clip_source_counts": {
+      "commonvoice_zh-CN_test": 64,
+      "wenetspeech_TEST_NET": 26
+    },
+    "exact_CMeEE_entity_text_and_category_matches": 107,
+    "CMeEE_source_mismatches": [],
+    "whole_reference_matches_to_original_source": 90,
+    "source_reference_mismatches": [],
+    "selected_audio_paths_present": 90,
+    "missing_audio_paths": [],
+    "span_errors": [],
+    "clips_below_3_seconds": [],
+    "exact_span_count": 110,
+    "clips_with_all_spans_slicing_to_canonical": 90
+  },
+  "prior_commonvoice_exclusion_check": {
+    "prior_sets": [
+      "generic_entity_blind_20261010 (CV portion of 128 set)",
+      "generic_entity_optimization_20261010/holdout (CV portion of later 96 set)"
+    ],
+    "unique_prior_cv_sentence_ids": 112,
+    "unique_prior_cv_references": 112,
+    "prior_ids_found_in_original_test_tsv": 112,
+    "prior_references_found_in_original_test_tsv": 112,
+    "current_main_id_overlap": 0,
+    "current_main_reference_overlap": 0,
+    "result": "All 112 prior CV IDs and references were located in the source test TSV; none occur in the 64 current CV clips."
+  },
+  "wenetspeech_prior_use_search": {
+    "searched": "Text files under results/ (excluding new large_entity_benchmark_v1 staging) and experiments/ for TEST_NET_Y recording identifiers, including JSON/JSONL/protocol-like files and logs.",
+    "matches_found": 0,
+    "caveat": "This is limited to searchable text artifacts in the workspace; it does not establish that no clip was ever used in non-text stores, databases, archived files, or external sessions."
+  },
+  "reference_length_rate_check": {
+    "method": "Non-whitespace Unicode character count divided by sampled_duration_seconds.",
+    "min_chars_per_second": 1.854,
+    "median_chars_per_second": 3.346,
+    "max_chars_per_second": 6.174,
+    "under_0_5_chars_per_second": 0,
+    "over_8_chars_per_second": 0,
+    "assessment": "No extreme length/duration outliers by these broad thresholds. Some Wenet clips are discourse/movie/game fragments rather than complete medical encounters; transcript equality to the supplied segment reference was verified."
+  },
+  "span_and_lexical_boundary_review": {
+    "all_recorded_offsets_are_exact_half_open_slices": true,
+    "important_discrepancy": "The current staging still contains 核细胞 (107 entities), although the root-quality instruction says it was excluded. Its only evidence is “原核细胞骨架”, where 核细胞 is an internal substring.",
+    "clear_high_risk_partial_or_wrong-sense_matches": [
+      "核细胞",
+      "母细胞",
+      "真菌病",
+      "白血病"
+    ],
+    "additional_nested-boundary_review": [
+      "间质细胞",
+      "局部麻醉",
+      "酪氨酸激酶"
+    ],
+    "count_sensitivity": {
+      "as_staged": 107,
+      "after_known_root_quality_exclusion_of_核细胞_only": 106,
+      "after_removing_four_clear_high_risk_partial_or_wrong_sense_matches_including_核细胞": 103,
+      "note": "These are audit sensitivity counts only. No rows or files were deleted or rewritten.",
+      "after_also_removing_nested_boundary_case_间质细胞": 102
+    },
+    "context_specific_nonclinical_uses": [
+      {
+        "canonical": "神经病",
+        "reason": "WenetSpeech reference uses it as an insult (“发脾气就是神经病”), not as a clinical diagnosis.",
+        "sample_id": "medical_wenet_TEST_NET_Y0000000118_xjdbqvjjRmU_TEST_NET_Y0000000118_xjdbqvjjRmU_S00103",
+        "reference": "这是没办法儿的你以前发脾气就是神经病发脾气",
+        "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000118_xjdbqvjjRmU_TEST_NET_Y0000000118_xjdbqvjjRmU_S00103.wav"
+      },
+      {
+        "canonical": "止痛药",
+        "reason": "WenetSpeech reference is a gaming conversation about whether analgesics can counter poison in a game.",
+        "sample_id": "medical_wenet_TEST_NET_Y0000000119_yRLnMlKeM5s_TEST_NET_Y0000000119_yRLnMlKeM5s_S00018",
+        "reference": "对面不可能看到我的好吧我这些止痛药到底能不能抗毒吃鸡呢",
+        "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000119_yRLnMlKeM5s_TEST_NET_Y0000000119_yRLnMlKeM5s_S00018.wav"
+      },
+      {
+        "canonical": "兴奋剂",
+        "reason": "WenetSpeech reference discusses a sports cheating analogy, not a medical encounter.",
+        "sample_id": "medical_wenet_TEST_NET_Y0000000058_OVdgkot9I0o_TEST_NET_Y0000000058_OVdgkot9I0o_S00036",
+        "reference": "利用这个心理更大胆的去尝试一些新鲜事物我需要给大家科普一个概念开不开挂和职业选手是真的没啥关系因为他是职业选手所以不会开挂的逻辑就好比在说因为他是职业运动员所以他不会用兴奋剂一样扯淡",
+        "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000058_OVdgkot9I0o_TEST_NET_Y0000000058_OVdgkot9I0o_S00036.wav"
+      },
+      {
+        "canonical": "严重烧伤",
+        "reason": "WenetSpeech reference is a disaster/news narration; term is medically valid but not a clinical consultation.",
+        "sample_id": "medical_wenet_TEST_NET_Y0000000035_DJVtW_x0Y1k_TEST_NET_Y0000000035_DJVtW_x0Y1k_S00039",
+        "reference": "可走着走着自己也摔在了地上当地医院内人满为患哀嚎一片大量消防员被严重烧伤很快远在莫斯科的政府高官们召开了最高层会议",
+        "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000035_DJVtW_x0Y1k_TEST_NET_Y0000000035_DJVtW_x0Y1k_S00039.wav"
+      }
+    ],
+  "recommendation": "Keep the reference and span evidence, but mark the four clear substring/wrong-sense cases as excluded from quality-adjusted entity coverage. Review nested compound cases separately. Do not claim all 107 mentions are word-boundary-confirmed biomedical usages.",
+  "reference_completeness_caveat": "All references match the complete dataset row/segment exactly, but some dataset rows are syntactic fragments or end mid-thought (for example the WenetSpeech 内分泌 segment). Source-row completeness is not a guarantee of sentence-level discourse completeness."
+  },
+  "representative_examples": [
+    {
+      "canonical": "乙酰胆碱受体",
+      "source_categories": [
+        "bod"
+      ],
+      "sample_id": "medical_cv_7222d14d4a4e775d5a0f444c0b3b327a18ccaf2d37b7e6f4c211a279438a4791",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "7222d14d4a4e775d5a0f444c0b3b327a18ccaf2d37b7e6f4c211a279438a4791",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_22070568.mp3",
+      "reference": "乙酰胆碱受体是一种对乙酰胆碱这种神经递质的结合进行响应的内在膜蛋白。",
+      "span": {
+        "start": 0,
+        "end": 6
+      },
+      "duration_seconds": 10.536
+    },
+    {
+      "canonical": "人类免疫缺陷病毒",
+      "source_categories": [
+        "dis",
+        "mic"
+      ],
+      "sample_id": "medical_cv_51e7a029a78f4949d3e7024373960c56603773de335f2e5fe029c6ba90a66bd5",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "51e7a029a78f4949d3e7024373960c56603773de335f2e5fe029c6ba90a66bd5",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_21298670.mp3",
+      "reference": "与感染人类免疫缺陷病毒的人交换体液便有机会遭该种病毒感染。",
+      "span": {
+        "start": 3,
+        "end": 11
+      },
+      "duration_seconds": 8.352
+    },
+    {
+      "canonical": "慢性粒细胞性白血病",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_cv_612a99bf28f7e0ef7566a6555cb83a769217a32050b02231f5f1d33e40afba22",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "612a99bf28f7e0ef7566a6555cb83a769217a32050b02231f5f1d33e40afba22",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_22052843.mp3",
+      "reference": "酪氨酸激酶抑制剂则用于提高慢性粒细胞性白血病患者的控制预后。",
+      "span": {
+        "start": 13,
+        "end": 22
+      },
+      "duration_seconds": 8.472
+    },
+    {
+      "canonical": "并发症",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_cv_087dbafce12a08b28fef926f82d95fe3c900cb564469506e1ad35b54dba89ec9",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "087dbafce12a08b28fef926f82d95fe3c900cb564469506e1ad35b54dba89ec9",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_18774757.mp3",
+      "reference": "并发症包括植入性胎盘、可能会造成休克的低血压、或是产后出血。",
+      "span": {
+        "start": 0,
+        "end": 3
+      },
+      "duration_seconds": 10.08
+    },
+    {
+      "canonical": "冠心病",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_wenet_TEST_NET_Y0000000050_LOLTeK1BNMo_TEST_NET_Y0000000050_LOLTeK1BNMo_S00060",
+      "source": "wenetspeech_TEST_NET",
+      "recording_id": "TEST_NET_Y0000000050_LOLTeK1BNMo_TEST_NET_Y0000000050_LOLTeK1BNMo_S00060",
+      "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000050_LOLTeK1BNMo_TEST_NET_Y0000000050_LOLTeK1BNMo_S00060.wav",
+      "reference": "目前呢他有这个高血压呃冠心病",
+      "span": {
+        "start": 11,
+        "end": 14
+      },
+      "duration_seconds": 3.36
+    },
+    {
+      "canonical": "严重烧伤",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_wenet_TEST_NET_Y0000000035_DJVtW_x0Y1k_TEST_NET_Y0000000035_DJVtW_x0Y1k_S00039",
+      "source": "wenetspeech_TEST_NET",
+      "recording_id": "TEST_NET_Y0000000035_DJVtW_x0Y1k_TEST_NET_Y0000000035_DJVtW_x0Y1k_S00039",
+      "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000035_DJVtW_x0Y1k_TEST_NET_Y0000000035_DJVtW_x0Y1k_S00039.wav",
+      "reference": "可走着走着自己也摔在了地上当地医院内人满为患哀嚎一片大量消防员被严重烧伤很快远在莫斯科的政府高官们召开了最高层会议",
+      "span": {
+        "start": 32,
+        "end": 36
+      },
+      "duration_seconds": 11.83
+    },
+    {
+      "canonical": "核细胞",
+      "source_categories": [
+        "bod",
+        "ite"
+      ],
+      "sample_id": "medical_cv_5b3aa1de8aa8c7aaa8c381ab95c1e2d92a3dccaa25f702850938d211ead5325a",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "5b3aa1de8aa8c7aaa8c381ab95c1e2d92a3dccaa25f702850938d211ead5325a",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_33531965.mp3",
+      "reference": "原核细胞骨架是原核生物中所有结构的总称。",
+      "span": {
+        "start": 1,
+        "end": 4
+      },
+      "duration_seconds": 5.508
+    },
+    {
+      "canonical": "母细胞",
+      "source_categories": [
+        "bod"
+      ],
+      "sample_id": "medical_cv_7a5c15f82de9f264833c7ac214b68e1b679654f8fb315c3191a4e8be06558423",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "7a5c15f82de9f264833c7ac214b68e1b679654f8fb315c3191a4e8be06558423",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_22079474.mp3",
+      "reference": "酵母聚糖可以从酵母细胞壁中制备得到。",
+      "span": {
+        "start": 8,
+        "end": 11
+      },
+      "duration_seconds": 4.896
+    },
+    {
+      "canonical": "真菌病",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_cv_db6a53d080df7ee297998eac348d75ec632d7ce256c8860d64e7f60546f38fa4",
+      "source": "commonvoice_zh-CN_test",
+      "recording_id": "db6a53d080df7ee297998eac348d75ec632d7ce256c8860d64e7f60546f38fa4",
+      "audio_path": "/home/aim0/data/datasets/ASR/commonvoice_zh-CN/cv-corpus-26.0-2026-06-12/zh-CN/clips/common_voice_zh-CN_38379970.mp3",
+      "reference": "多数真菌病毒的外形呈等轴形。",
+      "span": {
+        "start": 2,
+        "end": 5
+      },
+      "duration_seconds": 4.464
+    },
+    {
+      "canonical": "神经病",
+      "source_categories": [
+        "dis"
+      ],
+      "sample_id": "medical_wenet_TEST_NET_Y0000000118_xjdbqvjjRmU_TEST_NET_Y0000000118_xjdbqvjjRmU_S00103",
+      "source": "wenetspeech_TEST_NET",
+      "recording_id": "TEST_NET_Y0000000118_xjdbqvjjRmU_TEST_NET_Y0000000118_xjdbqvjjRmU_S00103",
+      "audio_path": "/home/aim0/data/datasets/ASR/wenetspeech_test_net/segments/TEST_NET_Y0000000118_xjdbqvjjRmU_TEST_NET_Y0000000118_xjdbqvjjRmU_S00103.wav",
+      "reference": "这是没办法儿的你以前发脾气就是神经病发脾气",
+      "span": {
+        "start": 15,
+        "end": 18
+      },
+      "duration_seconds": 3.53
+    }
+  ],
+  "human_audio_review": "No clips were acoustically listened to in this audit; conclusions cover source metadata, reference equality, text spans, file presence, supplied durations, and selected Wenet hashes only."
+}

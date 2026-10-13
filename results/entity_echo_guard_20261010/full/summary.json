@@ -1,0 +1,35 @@
+{
+  "off": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 5043,
+    "expected_mentions": 63,
+    "recovered_mentions": 58,
+    "unreferenced_mentions": 0,
+    "instruction_echo_samples": 0,
+    "fallback_samples": 0,
+    "CER": 0.5325237592397043
+  },
+  "legacy": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 5085,
+    "expected_mentions": 63,
+    "recovered_mentions": 59,
+    "unreferenced_mentions": 4,
+    "instruction_echo_samples": 2,
+    "fallback_samples": 0,
+    "CER": 0.5369588173178458
+  },
+  "guarded": {
+    "samples": 225,
+    "reference_chars": 9470,
+    "character_errors": 4996,
+    "expected_mentions": 63,
+    "recovered_mentions": 59,
+    "unreferenced_mentions": 0,
+    "instruction_echo_samples": 0,
+    "fallback_samples": 2,
+    "CER": 0.5275607180570222
+  }
+}

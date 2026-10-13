@@ -1,0 +1,3868 @@
+[
+  {
+    "n": 1,
+    "id": "a6e8df69ba9e5465861af43c",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0184",
+    "input": "已经过去。老钱。哎，",
+    "hunks": [
+      {
+        "before": "哎，",
+        "after": "",
+        "left": "已经过去。老钱。",
+        "right": "你好呀。哎，我是王医生，哎，王医生。",
+        "position": 8
+      }
+    ],
+    "reference": "已经过去了。 通了。唉 老钱。 唉 你好 你好啊。 我是王医生 王医生 王医生。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "11",
+      "11"
+    ]
+  },
+  {
+    "n": 2,
+    "id": "3ee9a868b0c142ece83750c8",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0691",
+    "input": "他就是有急诊透析指征的，可能要做血滤的，所以我就联系了抢救室的二线，",
+    "hunks": [
+      {
+        "before": "二",
+        "after": "2",
+        "left": "就是有急诊透析指征的，可能要做血滤的，所以我就联系了抢救室的",
+        "right": "线，然后他们就说让他去急诊那边儿，就给他进一步的处理。",
+        "position": 78
+      },
+      {
+        "before": "，",
+        "after": "",
+        "left": "有急诊透析指征的，可能要做血滤的，所以我就联系了抢救室的二线",
+        "right": "然后他们就说让他去急诊那边儿，就给他进一步的处理。",
+        "position": 80
+      }
+    ],
+    "reference": "病人他就是他基础是一个慢性肾衰竭，然后现在又出现一个急性心衰加重。他就是有急诊透析指征的 可能要做血滤的，所以我就联系了抢救室的二线。然后他们就说让他去急诊那边就给他进一步地处理。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "16",
+      "17"
+    ]
+  },
+  {
+    "n": 3,
+    "id": "744da638ffa28b33f95bd5fe",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0081",
+    "input": "住院啊，什么什么变成居家照顾，我们就赶快把它转回去。其实我们有跟，诶市政府讲好，我们要立个绿色通道，我们转回去呢，我不用在那边跟人家排队了啦。哦，我们我们啊，已经case给我们的哈，那我们。",
+    "hunks": [
+      {
+        "before": "什么",
+        "after": "",
+        "left": "住院啊，",
+        "right": "什么变成居家照顾，我们就赶快把它转回去。其实我们有跟，诶市政",
+        "position": 4
+      }
+    ],
+    "reference": "那怎么怎么会变成居家照护 我们就赶快把他 转回去 其实我们有跟 市政府讲好 我们要有一个绿色通道。 我们转回去 不用再那边人家排队的。 我们 我们 已经case给我们 那我们回去",
+    "candidate_source": "什么什么",
+    "candidate_target": "什么",
+    "distance": [
+      "23",
+      "22"
+    ]
+  },
+  {
+    "n": 4,
+    "id": "2f9035d2f7b9178e59bad78a",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0146",
+    "input": "然后我们男人们一定要好好的保护我们这珍贵的资产。没错啊，好，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，然后我们男人们一定要好好的保护我们这珍贵的资产。没错啊，好",
+        "right": "在这里要谢谢我们的这个林医生，还有李医师，谢谢你们。各位主持",
+        "position": 112
+      }
+    ],
+    "reference": "这些都可以起到一个补肾的功效。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "130",
+      "130"
+    ]
+  },
+  {
+    "n": 5,
+    "id": "3ad81a1b2b028612c36eecc8",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "我们也要公平正义，对。它其实啊，出发点不一样，它结论可以一样。嗯哼，那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所有人都是。为了利的，那他就要明白一个道理：我是为了利的，你是为了利的，他是为了利的，他也是为了利，也为了利的，所有人都是为了利的。",
+    "hunks": [
+      {
+        "before": "来",
+        "after": "",
+        "left": "。它其实啊，出发点不一样，它结论可以一样。嗯哼，那我们现在来",
+        "right": "做一个推推演啊。嗯哼，我们我们就假设所有人都是。为了利的，那",
+        "position": 2381
+      }
+    ],
+    "reference": "",
+    "candidate_source": "来来",
+    "candidate_target": "来",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 6,
+    "id": "5948e300d41a624829fc3456",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "湖泊数量也锐减近半。而这里，是河南省开封市，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "寸草不生的黑土滩，湖泊数量也锐减近半。而这里，是河南省开封市",
+        "right": "位于黄河下游，广袤的平原上，河道宽阔，缓缓流淌。然而，在更大",
+        "position": 2376
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 7,
+    "id": "2fd839fffb1faa7e8e5170af",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "我今年六十三岁，觉得老人会瘦一些。医院检查结果还不错，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错",
+        "right": "之前做过一些检查，现在已经退休了。身体状态总体还可以，我最近",
+        "position": 193
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 8,
+    "id": "2570afc314e2d63f9994a727",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "由于泥沙逐渐淤积，河床与日俱高。甚至逐渐高于周围地面，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "视角下，由于泥沙逐渐淤积，河床与日俱高。甚至逐渐高于周围地面",
+        "right": "让黄河如同悬在空中。一旦决口，便会迅速淹没地势低洼的村庄城镇",
+        "position": 2438
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 9,
+    "id": "ed9dcfe904cb0ebe2596767b",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "结果显示缺钙和缺蛋白质，肝功能检查显示。有轻微脂肪肝，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示。有轻微脂肪肝",
+        "right": "眼部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器",
+        "position": 113
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 10,
+    "id": "405372f4438f983f5eef847e",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0004",
+    "input": "请具体说明不同部位的护理方法，比如臀部。手指缝、腋窝等，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "通风？请具体说明不同部位的护理方法，比如臀部。手指缝、腋窝等",
+        "right": "对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建",
+        "position": 88
+      }
+    ],
+    "reference": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转反而加重了，应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具体说明不同部位的护理方法，比如臀部、手指缝、腋窝等。对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建议？运动后是否需要频繁更换衣物？目前每天为老人更换两到三次衣物，这样的频率是否合适？为什么需要频繁更换衣物？请详细说明。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 11,
+    "id": "94ded98b9b0cce6b9e1e926a",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0081",
+    "input": "我们我们啊，已经case给我们的哈，那我们。",
+    "hunks": [
+      {
+        "before": "我们",
+        "after": "",
+        "left": "绿色通道，我们转回去呢，我不用在那边跟人家排队了啦。哦，我们",
+        "right": "啊，已经case给我们的哈，那我们。",
+        "position": 75
+      }
+    ],
+    "reference": "那怎么怎么会变成居家照护 我们就赶快把他 转回去 其实我们有跟 市政府讲好 我们要有一个绿色通道。 我们转回去 不用再那边人家排队的。 我们 我们 已经case给我们 那我们回去",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "23",
+      "23"
+    ]
+  },
+  {
+    "n": 12,
+    "id": "73657969ec3dd2876af6e4db",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "在我们熟悉的故事里，这些江河塑造地表，滋养生灵，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "富的国家之一。在我们熟悉的故事里，这些江河塑造地表，滋养生灵",
+        "right": "哺育出灿烂的华夏文明。但今天我们要讲述的是另一个版本的故事。",
+        "position": 133
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 13,
+    "id": "9548003559e7bbef5f7e5eb5",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0004",
+    "input": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转，反而加重了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转，反而加重了",
+        "right": "应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具",
+        "position": 32
+      }
+    ],
+    "reference": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转反而加重了，应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具体说明不同部位的护理方法，比如臀部、手指缝、腋窝等。对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建议？运动后是否需要频繁更换衣物？目前每天为老人更换两到三次衣物，这样的频率是否合适？为什么需要频繁更换衣物？请详细说明。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 14,
+    "id": "f15f8305e4992fb8beb6f4ae",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0041",
+    "input": "我有肝硬化，最近肚子变大，想通过减肥来改善，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我有肝硬化，最近肚子变大，想通过减肥来改善",
+        "right": "同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安",
+        "position": 21
+      }
+    ],
+    "reference": "我有肝硬化，最近肚子变大，想通过减肥来改善，同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全以及需要注意哪些方面。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 15,
+    "id": "f3a93f257c01464c1196360a",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢，",
+    "hunks": [
+      {
+        "before": "父",
+        "after": "",
+        "left": "法家的立场，认为真小人远比伪君子要好得多。他是。这个毛中纲父",
+        "right": "子的批语呢，可以得出这个结论的。对，真小人比伪君子好得多。对",
+        "position": 622
+      },
+      {
+        "before": "，",
+        "after": "",
+        "left": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢",
+        "right": "可以得出这个结论的。对，真小人比伪君子好得多。对，但是呃，毛",
+        "position": 628
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 16,
+    "id": "9e9d2f5d4cc0d3b03148bed3",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "这其实取决于。你的相信。你取决于什么？",
+    "hunks": [
+      {
+        "before": "。",
+        "after": "",
+        "left": "相信这个世界有天理，还是认为这个世界全都是利益？这其实取决于",
+        "right": "你的相信。你取决于什么？你的相信。苏格拉底跟色拉霍马叙斯他们",
+        "position": 1736
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 17,
+    "id": "f89b69353daa8fa97b42e2d3",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0013",
+    "input": "前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好",
+        "right": "该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？",
+        "position": 128
+      }
+    ],
+    "reference": "我有脚气已经有一年了，现在洗完脚后脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有白色脱屑应该用什么药？前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？有没有可能需要口服药？平时要注意什么？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 18,
+    "id": "2e94d4fb095ad31fccc4cdd6",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0770W0335",
+    "input": "浪潮与海关总署。启动战略合作。助推智慧海关，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "浪潮与海关总署。启动战略合作。助推智慧海关",
+        "right": "搜狐科技。",
+        "position": 21
+      }
+    ],
+    "reference": "浪潮与海关总署启动战略合作助推智慧海关搜狐科技",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 19,
+    "id": "23a172424e51b368b98dbaf1",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "沿途串联起一座座绿洲城市，抵御着不断扩张的沙漠。而在安徽，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "漠，沿途串联起一座座绿洲城市，抵御着不断扩张的沙漠。而在安徽",
+        "right": "数十座泵站将长江水不断举高，让江水一路逆流而上，跨越700多",
+        "position": 1800
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 20,
+    "id": "4af962d3ca294ce31ae7ce02",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "但之后又会反复。之前做过一些检查，包括抽血和验尿，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿",
+        "right": "结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝。脸部和眼",
+        "position": 86
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 21,
+    "id": "7d3f3970c6722c61c89f1a9e",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "我被确诊为糖尿病，空腹血糖有时低至五点八毫摩尔，有时高至十毫摩尔，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "确诊为糖尿病，空腹血糖有时低至五点八毫摩尔，有时高至十毫摩尔",
+        "right": "通常在七减八点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都",
+        "position": 32
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 22,
+    "id": "94ab510ad6aa720958b05183",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0493",
+    "input": "就还肉诶。”我多少便宜想安心，是啊，",
+    "hunks": [
+      {
+        "before": "”",
+        "after": "",
+        "left": "困难，他会说：“我回去问楚为郎，就还肉诶。",
+        "right": "我多少便宜想安心，是啊，家里面的人可能也觉得说，你最好在医院",
+        "position": 21
+      },
+      {
+        "before": "，",
+        "after": "。",
+        "left": "他会说：“我回去问楚为郎，就还肉诶。”我多少便宜想安心，是啊",
+        "right": "家里面的人可能也觉得说，你最好在医院哦，都到阴性，哦，你再回",
+        "position": 33
+      }
+    ],
+    "reference": "他会说我回去我家里人很担心 住医院最安心。是。 家里面的人可能也觉得说 你最好在医院 都阴性 你再回来。 所以我要讲 就是说 我们在从清零到与病毒共存的过程",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "24",
+      "24"
+    ]
+  },
+  {
+    "n": 23,
+    "id": "928026aeb8bd45572611d9e7",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "它一定是不分的人类经验。或者说，经验性的观察，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "是经验性的观察，它一定是不分的人类经验。或者说，经验性的观察",
+        "right": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+        "position": 1337
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 24,
+    "id": "8977b664c311f8f2f12831f9",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0064",
+    "input": "当一个医生啊，只有三到四分钟的时间去给一个孩子看病的时候，那这时候呢，",
+    "hunks": [
+      {
+        "before": "啊，",
+        "after": "",
+        "left": "当一个医生",
+        "right": "只有3到4分钟的时间去给一个孩子看病的时候，那这时候呢，最安",
+        "position": 5
+      },
+      {
+        "before": "，",
+        "after": "",
+        "left": "生啊，只有3到4分钟的时间去给一个孩子看病的时候，那这时候呢",
+        "right": "最安全，最保险。",
+        "position": 34
+      }
+    ],
+    "reference": "当一个医生只有3~4分钟的 时间去给一个孩子看病的时候 那这时候最安全 最保险也是最快",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "6"
+    ]
+  },
+  {
+    "n": 25,
+    "id": "4811b5a7a469dc3e1605f9dd",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0185",
+    "input": "等你完全康复了，我们结伴而行去爬那个珞珈山，我记得的啊。",
+    "hunks": [
+      {
+        "before": "啊",
+        "after": "",
+        "left": "你说过，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得的",
+        "right": "。",
+        "position": 53
+      }
+    ],
+    "reference": "你的精神起色可以啊。我记得毛主任跟你说过啊。 等你完全康复了，我们结伴而行去爬珞珈山。我记得的。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "13",
+      "12"
+    ]
+  },
+  {
+    "n": 26,
+    "id": "663592bdaed150853f3e1d27",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "他还建起一座座上天入地的水上立交，或从河床之下穿越黄河，或从水面之上跨越淮河，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "天入地的水上立交，或从河床之下穿越黄河，或从水面之上跨越淮河",
+        "right": "让这些原本相隔千里的大河终于有机会彼此相遇。而在更多你无法察",
+        "position": 2037
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 27,
+    "id": "ad2e31f6ed59163a751cf539",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0164",
+    "input": "医院。就这样了。",
+    "hunks": [
+      {
+        "before": "。",
+        "after": "，",
+        "left": "医院",
+        "right": "就这样了。",
+        "position": 2
+      }
+    ],
+    "reference": "医院。 就这样了。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 28,
+    "id": "1e445a848cf079b4b0bfff54",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0168",
+    "input": "给拔掉了。给他，给他拍，",
+    "hunks": [
+      {
+        "before": "，给他拍，",
+        "after": "",
+        "left": "塞了个这个东西，你看它塞在里面多难受啊，对吧？给拔掉了。给他",
+        "right": "拍一张照片给他看。",
+        "position": 39
+      }
+    ],
+    "reference": "本来在你气管里面塞了一个这个东西。你看看赛在里面多难受啊是吗？ 拔掉了。拍一张照片给他看。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "13",
+      "10"
+    ]
+  },
+  {
+    "n": 29,
+    "id": "df3e9c30d224cff130609e93",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "一定是有利益追求的。回到我们今天的话题，还是一样，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "跟你套近乎，一定是有利益追求的。回到我们今天的话题，还是一样",
+        "right": "这个人的批语很明显，他不是儒家的立场，他是赤裸裸法家的立场，",
+        "position": 567
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 30,
+    "id": "2f84e877312502c75027de3b",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "你还会在南岸看到一片农田广布的低洼区域。如果再放大，还能看到其中的多处水闸，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "到一片农田广布的低洼区域。如果再放大，还能看到其中的多处水闸",
+        "right": "这就是蓄滞洪区。一旦发生了超过水库群能力的超量洪水，这里的人",
+        "position": 1207
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 31,
+    "id": "3ffd5198302040b10aaedaea",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面",
+        "right": "应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你",
+        "position": 157
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 32,
+    "id": "0bb9f4e39ec55f93b8d89d20",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "之前做过一些检查，现在已经退休了。身体状态总体还可以，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "还不错，之前做过一些检查，现在已经退休了。身体状态总体还可以",
+        "right": "我最近半年体重下降了7到8斤，但没有出现明显不适。我是否需要",
+        "position": 220
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 33,
+    "id": "94c2050097f91cb5878536da",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0914W0447",
+    "input": "游客必须打乘船。因骨折，数日逝，",
+    "hunks": [
+      {
+        "before": "",
+        "after": "为",
+        "left": "游客必须打乘船。因",
+        "right": "骨折，数日逝，子。赔二零余万元。",
+        "position": 9
+      },
+      {
+        "before": "，",
+        "after": "",
+        "left": "游客必须打乘船。因骨折",
+        "right": "数日逝，子。赔二零余万元。",
+        "position": 11
+      },
+      {
+        "before": "，",
+        "after": "。",
+        "left": "游客必须打乘船。因骨折，数日逝",
+        "right": "子。赔二零余万元。",
+        "position": 15
+      }
+    ],
+    "reference": "游客晋吉岛乘船颠骨折诉旅社索赔二零馀万元",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "9",
+      "10"
+    ]
+  },
+  {
+    "n": 34,
+    "id": "90f46129f187ab926db09237",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "夫妻本是同林鸟，大难临头各自飞。就是每一派。",
+    "hunks": [
+      {
+        "before": "。",
+        "after": "，",
+        "left": "愿为连理枝。那马上又有人胡说，夫妻本是同林鸟，大难临头各自飞",
+        "right": "就是每一派。他都有经验性的追求，这就是为什么康德认为经验世界",
+        "position": 1461
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 35,
+    "id": "43da65e65ddf81465ecc988a",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0770W0335",
+    "input": "浪潮与海关总署。启动战略合作。助推智慧海关，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "浪潮与海关总署。启动战略合作。助推智慧海关",
+        "right": "搜狐科技。",
+        "position": 21
+      }
+    ],
+    "reference": "浪潮与海关总署启动战略合作助推智慧海关搜狐科技",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 36,
+    "id": "fe845908e67d6b02a947c32a",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0053",
+    "input": "如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈，如果颜色变淡，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈，如果颜色变淡",
+        "right": "就是血液循环问题。如果不变淡，才是黑色素沉淀，对吗？如果是黑",
+        "position": 102
+      }
+    ],
+    "reference": "我有六到七年的黑眼圈问题，经常熬夜。如果我能在晚上十一点前入睡，大概需要多久才能看到效果？肾虚是否会导致黑眼圈？睡觉前热敷是否有帮助？如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈如果颜色变淡，就是血液循环问题，如果不变淡才是黑色素沉淀，对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼圈是棕褐色的，如果是黑色素沉淀，那我即使不熬夜也会有吗？如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，大概需要多久才能看到一点效果？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 37,
+    "id": "8558adff6d7d3fcfb38ecfbe",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "它结论可以一样。嗯哼，那我们现在来来做一个推推演啊。",
+    "hunks": [
+      {
+        "before": "来",
+        "after": "",
+        "left": "。它其实啊，出发点不一样，它结论可以一样。嗯哼，那我们现在来",
+        "right": "做一个推推演啊。嗯哼，我们我们就假设所有人都是。为了利的，那",
+        "position": 2381
+      },
+      {
+        "before": "推",
+        "after": "",
+        "left": "啊，出发点不一样，它结论可以一样。嗯哼，那我们现在来来做一个",
+        "right": "推演啊。嗯哼，我们我们就假设所有人都是。为了利的，那他就要明",
+        "position": 2385
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 38,
+    "id": "595e796a2184b6ed456144c5",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "但过几天又会肿起来，抬高右腿后肿胀会减轻，甚至消失，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "己消下去，但过几天又会肿起来，抬高右腿后肿胀会减轻，甚至消失",
+        "right": "但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺",
+        "position": 61
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 39,
+    "id": "b2c119edf923ec2fa2d65e68",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "那儒家跟法家一个最大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的",
+        "right": "那商鞅就认为仁义就是搞笑，谈什么仁义，人没有仁义，只有赤裸裸",
+        "position": 405
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 40,
+    "id": "5b121b7be9e1998b7df8014c",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0765W0419",
+    "input": "搜狐娱乐讯，日前。",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "搜狐娱乐讯",
+        "right": "日前。",
+        "position": 5
+      }
+    ],
+    "reference": "搜狐娱乐讯日前",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 41,
+    "id": "0b56d061c356e946c74cb273",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0055",
+    "input": "我想知道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡",
+        "right": "可以推荐一些具体的减肥餐单吗？比如早餐、午餐和晚餐的搭配，以",
+        "position": 33
+      }
+    ],
+    "reference": "我想知道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡？可以推荐一些具体的减肥餐单吗？比如早餐、午餐和晚餐的搭配，以及每餐的大致热量数值。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 42,
+    "id": "d568113ad5df98aa66fc09c5",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0906W0344",
+    "input": "无疑是擂台上最能引爆肾上腺素的震撼一动。",
+    "hunks": [
+      {
+        "before": "动",
+        "after": "動",
+        "left": "无疑是擂台上最能引爆肾上腺素的震撼一",
+        "right": "。",
+        "position": 18
+      }
+    ],
+    "reference": "无疑是擂台上最能引爆肾上腺素的震撼一幕",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 43,
+    "id": "6de379eaeb884544bb1660c1",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0224",
+    "input": "我有高血压，最近出现头晕、走路不稳、有眩晕的感觉。症状是持续性的，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "高血压，最近出现头晕、走路不稳、有眩晕的感觉。症状是持续性的",
+        "right": "偶尔发作。我怀疑是美尼尔病，但没有耳鸣或听力下降。熬夜会不会",
+        "position": 32
+      }
+    ],
+    "reference": "我有高血压，最近出现头晕、走路不稳、有眩晕的感觉，症状是持续性的，偶尔发作。我怀疑是美尼尔病，但没有耳鸣或听力下降。熬夜会不会引起眼底出血？我经常凌晨才睡觉。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 44,
+    "id": "2bae0698f3af1f47484fd369",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0961",
+    "input": "十五床已经插了两周的呼吸机，仍然持续高烧，二氧化碳储留，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "下降。十五床已经插了2周的呼吸机，仍然持续高烧，二氧化碳储留",
+        "right": "潮气量很高。",
+        "position": 53
+      }
+    ],
+    "reference": "5床患有恶性肿瘤 抵抗力低下 氧合指数正在持续下降。 15床已经插了两周的呼吸机 仍然持续高烧，二氧化碳潴留 潮气量很高。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "4",
+      "4"
+    ]
+  },
+  {
+    "n": 45,
+    "id": "6fab65f0bed6d2ee6bd2c20f",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "但与此同时，新的挑战也接踵而来。这里是青海省玛多县，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "新的江河。但与此同时，新的挑战也接踵而来。这里是青海省玛多县",
+        "right": "位于黄河源区腹地，在这一县之内，5000多个大小湖泊和冰川、",
+        "position": 2256
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 46,
+    "id": "336c30cb8723c7da6675bd7d",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0176",
+    "input": "确实很开心，我们终于结束了。大家在这里这么多天，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "观潮啦！开心，确实很开心，我们终于结束了。大家在这里这么多天",
+        "right": "每天都过来。",
+        "position": 32
+      }
+    ],
+    "reference": "关舱了！很开心 就是很开心。 我们终于结束了。大家在这里这么多天。每天都过来。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "6",
+      "6"
+    ]
+  },
+  {
+    "n": 47,
+    "id": "833444dc08e7c446eebce03f",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "只看结果意义上的名利，那就没有必要区分任何专业了，因为所有的专业的目的都是为了赚钱，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "那就没有必要区分任何专业了，因为所有的专业的目的都是为了赚钱",
+        "right": "所以我们不需要区分任何专业，因为我只需要学赚钱专业，我将来要",
+        "position": 2030
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 48,
+    "id": "37666ee4403476d710ae7325",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0041",
+    "input": "我有肝硬化，最近肚子变大，想通过减肥来改善，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我有肝硬化，最近肚子变大，想通过减肥来改善",
+        "right": "同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安",
+        "position": 21
+      }
+    ],
+    "reference": "我有肝硬化，最近肚子变大，想通过减肥来改善，同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全以及需要注意哪些方面。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 49,
+    "id": "8607c9b31ae8499ee389c874",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0736",
+    "input": "也是特别特别自责的一件事情。两个月左右，老人家就。",
+    "hunks": [
+      {
+        "before": "特别",
+        "after": "",
+        "left": "利了，后来得了精神分裂症，这是让老人家特别特别遗憾，也是特别",
+        "right": "自责的一件事情。2个月左右，老人家就。",
+        "position": 32
+      }
+    ],
+    "reference": "后来得了精神分裂症。 这是让老人家特别特别遗憾， 也是特别特别自责的一件事情。 两个月左右，老人家就离世了。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "9"
+    ]
+  },
+  {
+    "n": 50,
+    "id": "15d37388615d7a6cdc0ec85a",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "但是确实我。受益匪浅啊！谢谢罗老师，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "的问题，可能也没有结论啊，但是确实我。受益匪浅啊！谢谢罗老师",
+        "right": "其实我最想告诉大家的一句话就是：没有结论就是最好的结论。为什",
+        "position": 3695
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 51,
+    "id": "bcee4bc11a8be881bd578b29",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0041",
+    "input": "同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全",
+        "right": "以及需要注意哪些方面？",
+        "position": 53
+      }
+    ],
+    "reference": "我有肝硬化，最近肚子变大，想通过减肥来改善，同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全以及需要注意哪些方面。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 52,
+    "id": "5b1c4af3efa219801374a4d9",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0005",
+    "input": "症状是逐渐加重的，现在越来越不舒服。我之前有颈部不适的情况，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "。症状是逐渐加重的，现在越来越不舒服。我之前有颈部不适的情况",
+        "right": "可能和这个有关吗？如何确定具体原因？",
+        "position": 60
+      }
+    ],
+    "reference": "我最近几天感觉头晕、乏力，还有想吐的症状，但不确定持续了多久。症状是逐渐加重的，现在越来越不舒服了。我之前有颈部不适的情况，可能和这个有关吗？如何确定具体原因？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 53,
+    "id": "4126b14a90838c0ea99fbf76",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0004",
+    "input": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转，反而加重了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转，反而加重了",
+        "right": "应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具",
+        "position": 32
+      }
+    ],
+    "reference": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转反而加重了，应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具体说明不同部位的护理方法，比如臀部、手指缝、腋窝等。对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建议？运动后是否需要频繁更换衣物？目前每天为老人更换两到三次衣物，这样的频率是否合适？为什么需要频繁更换衣物？请详细说明。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 54,
+    "id": "b18bbce8239c94f410d01a1f",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0013",
+    "input": "有时下蹲时间长了，脚底板会疼。我想知道该怎么治疗，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "后跟也发白。有时下蹲时间长了，脚底板会疼。我想知道该怎么治疗",
+        "right": "哪些药品效果明显？洗完脚后有白色脱屑，应该用什么药？前脚掌的",
+        "position": 68
+      }
+    ],
+    "reference": "我有脚气已经有一年了，现在洗完脚后脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有白色脱屑应该用什么药？前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？有没有可能需要口服药？平时要注意什么？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 55,
+    "id": "93002f5a8db0c44750780839",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0041",
+    "input": "同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全",
+        "right": "以及需要注意哪些方面？",
+        "position": 53
+      }
+    ],
+    "reference": "我有肝硬化，最近肚子变大，想通过减肥来改善，同时也想祛湿。请问这种情况下能否使用医用贴？我需要了解是否安全以及需要注意哪些方面。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 56,
+    "id": "ef871e1705ff8d55ad89f91f",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "让黄河如同悬在空中。一旦决口，便会迅速淹没地势低洼的村庄城镇，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "让黄河如同悬在空中。一旦决口，便会迅速淹没地势低洼的村庄城镇",
+        "right": "人称“地上悬河”。而这些泥沙大多来自这里，黄河中游的黄土高原",
+        "position": 2469
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 57,
+    "id": "e72f8064953e57e8ec92ed5c",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0011",
+    "input": "进行本来他们需要进行的运动，需要到九到十二个月，他们需要比较耐心，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "本来他们需要进行的运动，需要到9到12个月，他们需要比较耐心",
+        "right": "因为这个恢复的过程。",
+        "position": 32
+      }
+    ],
+    "reference": "本来他们需要进行的运动 需要九到十二个月。 他们需要比较耐心 因为这个恢复的过程",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "3",
+      "3"
+    ]
+  },
+  {
+    "n": 58,
+    "id": "c496efeefa5faba1497359b4",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "由于气候变化和过度放牧，这里百分之七十的草地都已退化。成为寸草不生的黑土滩，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "化和过度放牧，这里70%的草地都已退化。成为寸草不生的黑土滩",
+        "right": "湖泊数量也锐减近半。而这里，是河南省开封市，位于黄河下游，广",
+        "position": 2354
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 59,
+    "id": "d1a76aea81d02ccc9eada146",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0111",
+    "input": "五折，所以一般上我们要特别小心。如果是在按摩啊、推拿的时候呢，",
+    "hunks": [
+      {
+        "before": "啊、",
+        "after": "",
+        "left": "五折，所以一般上我们要特别小心。如果是在按摩",
+        "right": "推拿的时候呢，啊，就要特别注意，不然会引起一些病理性的骨折。",
+        "position": 22
+      },
+      {
+        "before": "，",
+        "after": "。",
+        "left": "五折，所以一般上我们要特别小心。如果是在按摩啊、推拿的时候呢",
+        "right": "啊，就要特别注意，不然会引起一些病理性的骨折。",
+        "position": 30
+      }
+    ],
+    "reference": "所以一般上我们要特别小心 如果是在按摩 推拿的时候呢 就要特别注意 不然会引起一些病理性的骨折。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "4",
+      "3"
+    ]
+  },
+  {
+    "n": 60,
+    "id": "f145aa5ff21fd5e296be8226",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往",
+        "right": "所以没有正义，强权即真理。但是苏格拉底不这么认为啊！苏格拉底",
+        "position": 223
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 61,
+    "id": "311de064aba61f0932052f73",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "应该做哪些检查？另外，我之前做过的一些检查结果，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果",
+        "right": "怎么才能给你看呢？",
+        "position": 181
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 62,
+    "id": "df5082e4fb878b4e0793a2f8",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0914W0447",
+    "input": "游客信息表，成团。出谷得数橘子，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "游客信息表，成团。出谷得数橘子",
+        "right": "子。从2015年。",
+        "position": 15
+      }
+    ],
+    "reference": "游客晋吉岛乘船颠骨折诉旅社索赔二零馀万元",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "18",
+      "18"
+    ]
+  },
+  {
+    "n": 63,
+    "id": "cc4098fa1b0d1da1496f89b2",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0090",
+    "input": "这样的数值是否需要进一步检查？是否已经达到糖尿病的诊断标准？准，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "样的数值是否需要进一步检查？是否已经达到糖尿病的诊断标准？准",
+        "right": "谢谢。",
+        "position": 120
+      }
+    ],
+    "reference": "我今天做了一个糖化血红蛋白检测，结果是6.2%，距离上次检测大约有半年，上次结果是5.9%。我的空腹血糖大约在7.0mmol/L，餐后两小时血糖在9.3到10.7mmol/L之间。这样的数值是否需要进一步检查？是否已经达到糖尿病的诊断标准？谢谢。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "16",
+      "16"
+    ]
+  },
+  {
+    "n": 64,
+    "id": "33aef038023e438d994c7b64",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0334",
+    "input": "这期间呢给他做了很多物理降温，也喝了。",
+    "hunks": [
+      {
+        "before": "呢",
+        "after": "",
+        "left": "不吃药了，然后是发烧，这个一烧呢就是4天，这期间",
+        "right": "给他做了很多物理降温，也喝了。",
+        "position": 24
+      }
+    ],
+    "reference": "然后是发烧 这个一烧就是四天 这期间给他做了很多物理降温 也喝了很多水",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "9",
+      "8"
+    ]
+  },
+  {
+    "n": 65,
+    "id": "381f827e2e8e1c732b6ad328",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0670",
+    "input": "它其中呃一部分的原因。",
+    "hunks": [
+      {
+        "before": "呃",
+        "after": "",
+        "left": "患，他是有骨质疏松，同时有脊椎侧弯的问题？脊椎侧弯呢，它其中",
+        "right": "一部分的原因。",
+        "position": 53
+      }
+    ],
+    "reference": "我想问一下医师。 就是你有没有遇过一些病患 他是有骨质疏松 同时有脊椎侧弯的问题？ 脊椎侧弯其中一部分的原因",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "6",
+      "5"
+    ]
+  },
+  {
+    "n": 66,
+    "id": "a883c6e484f0de9fb5a38417",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0088",
+    "input": "其实她心理上就说，哎，这个医师哈，",
+    "hunks": [
+      {
+        "before": "哎，",
+        "after": "",
+        "left": "实我们每天去跟她say个hello的时候，其实她心理上就说，",
+        "right": "这个医师哈，好像我们是他的主治医师，天天去查房去问候他，好像",
+        "position": 53
+      },
+      {
+        "before": "哈，",
+        "after": "。",
+        "left": "跟她say个hello的时候，其实她心理上就说，哎，这个医师",
+        "right": "好像我们是他的主治医师，天天去查房去问候他，好像我呃最近有几",
+        "position": 59
+      }
+    ],
+    "reference": "潘小姐在那边 那没有人关心我。 其实我们每天去跟他 say hello 的时候 其实他心理上说 这个医师就 好像我们是他的主治医师 天天去查房 问候他 像我最近 有几个case 其实我们没有",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "16",
+      "15"
+    ]
+  },
+  {
+    "n": 67,
+    "id": "ec3dfed7e20ecd3cc47c49da",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "会有一种我们看不到、摸不着，但它确定存在的？一种东西，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "外之上，会有一种我们看不到、摸不着，但它确定存在的？一种东西",
+        "right": "这又是有争议的。你这你存不存在那个东西，也是有争议。是啊，就",
+        "position": 1648
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 68,
+    "id": "ae513832633175540ba1745b",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0053",
+    "input": "如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用",
+        "right": "大概需要多久才能看到一点效果？",
+        "position": 215
+      }
+    ],
+    "reference": "我有六到七年的黑眼圈问题，经常熬夜。如果我能在晚上十一点前入睡，大概需要多久才能看到效果？肾虚是否会导致黑眼圈？睡觉前热敷是否有帮助？如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈如果颜色变淡，就是血液循环问题，如果不变淡才是黑色素沉淀，对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼圈是棕褐色的，如果是黑色素沉淀，那我即使不熬夜也会有吗？如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，大概需要多久才能看到一点效果？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 69,
+    "id": "e67cae651fc3b607ce09e3b4",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0133",
+    "input": "除了中药呢，其实针灸也是一个不错的选择啊。比如说有些病人术后啊漏尿的情况。",
+    "hunks": [
+      {
+        "before": "呢",
+        "after": "",
+        "left": "所以可以酌情的使用，了解好。那还有什么方法啊？除了中药",
+        "right": "，其实针灸也是一个不错的选择啊。比如说有些病人术后啊漏尿的情",
+        "position": 27
+      },
+      {
+        "before": "啊",
+        "after": "",
+        "left": "除了中药呢，其实针灸也是一个不错的选择啊。比如说有些病人术后",
+        "right": "漏尿的情况。",
+        "position": 53
+      }
+    ],
+    "reference": "所以可以酌情地使用 了解 那还有什么方法呢。 除了中药 其实针灸 也是一个不错的选择 比如说有一些病人术后有漏尿的情况。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "6"
+    ]
+  },
+  {
+    "n": 70,
+    "id": "b0ee2778c17afcd7062a17e5",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报",
+        "right": "马上又有人说你胡说八道，好人根本没好报。因为经验世界，它总是",
+        "position": 1367
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 71,
+    "id": "ada04c815b0846bb1929795b",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0274",
+    "input": "是替代传统手术，传统的颈动脉瘤手术需要切口，这一个手术只需要一个小的针孔，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "术，传统的颈动脉瘤手术需要切口，这一个手术只需要一个小的针孔",
+        "right": "所以 open it up 这个，使得 the blood ",
+        "position": 36
+      }
+    ],
+    "reference": "替代传统手术。 传统的动静脉瘘手术需要切口 这个手术只需要一个小的针孔。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "53",
+      "53"
+    ]
+  },
+  {
+    "n": 72,
+    "id": "b9fa25e74354b67805b4ec1f",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "之前做过一些检查，现在已经退休了。身体状态总体还可以，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "还不错，之前做过一些检查，现在已经退休了。身体状态总体还可以",
+        "right": "我最近半年体重下降了7到8斤，但没有出现明显不适，我是否需要",
+        "position": 220
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 73,
+    "id": "11b6c10ee47028da8e36890d",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0915W0442",
+    "input": "游客采。敦煌千年古城遗址。拍照，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "游客采。敦煌千年古城遗址。拍照",
+        "right": "反问：踩了会掉吗？",
+        "position": 15
+      }
+    ],
+    "reference": "游客踩敦煌千年古城遗址拍照反问踩了会掉吗",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 74,
+    "id": "9c4ff8f7549dbd2cbbea417e",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0093",
+    "input": "哈，这可能是接下来全台湾都一定要。",
+    "hunks": [
+      {
+        "before": "哈，",
+        "after": "",
+        "left": "的给他药物，我们才可以真正降低我们的中重症住院以及死亡率了。",
+        "right": "这可能是接下来全台湾都一定要。",
+        "position": 57
+      }
+    ],
+    "reference": "一个就是维持更大的医疗量能 第二个 及时 立即有效的给他药物 我们才可以真正降低我们的中重症住院 以及死亡率。 这可能是接下来 全台湾都一定要追求",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "6",
+      "5"
+    ]
+  },
+  {
+    "n": 75,
+    "id": "f4ecfa16843e0a0ac3d018d8",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0149",
+    "input": "我曾经还在想，这两天一直在想啊，好了以后干嘛干嘛。",
+    "hunks": [
+      {
+        "before": "干嘛",
+        "after": "",
+        "left": "。护照也办到了。我曾经还在想，这两天一直在想啊，好了以后干嘛",
+        "right": "。",
+        "position": 42
+      }
+    ],
+    "reference": "肺也慢慢的变好是好事。 护照也办到了。 我曾经还在想这两天一直在想啊 好了以后干嘛干嘛。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "n": 76,
+    "id": "356d97e5f70b23ac99ffc21c",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0246",
+    "input": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了",
+        "right": "还感觉心烦。我已经有3个月没来月经了，是不是更年期了？",
+        "position": 29
+      }
+    ],
+    "reference": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了，还感觉心烦。我已经有三个月没来月经了，是不是更年期了？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 77,
+    "id": "7e92e3587ddffc4a8c814007",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "显然无论从成本还是科学性上，都难以持续。要是能有一个巨大的水库，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "然无论从成本还是科学性上，都难以持续。要是能有一个巨大的水库",
+        "right": "把洪水都存蓄起来就好了。没错，你眼前的就是中国最大，至今都无",
+        "position": 652
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 78,
+    "id": "b11d87e716265c6ec416f8b8",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0019",
+    "input": "手术过程中，如果有使用X光扫描，医护人员都必须穿戴防辐射服，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "手术过程中，如果有使用X光扫描，医护人员都必须穿戴防辐射服",
+        "right": "以减低X光对身体的危害。",
+        "position": 29
+      }
+    ],
+    "reference": "手术过程中 如果有使用X光扫描， 医护人员都必须穿戴防辐射服， 以减低X光对身体的危害。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 79,
+    "id": "68b587696c64a9dbffe3b0be",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0053",
+    "input": "如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈，如果颜色变淡，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈，如果颜色变淡",
+        "right": "就是血液循环问题。如果不变淡，还是黑色素沉淀，对吗？如果是黑",
+        "position": 102
+      }
+    ],
+    "reference": "我有六到七年的黑眼圈问题，经常熬夜。如果我能在晚上十一点前入睡，大概需要多久才能看到效果？肾虚是否会导致黑眼圈？睡觉前热敷是否有帮助？如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈如果颜色变淡，就是血液循环问题，如果不变淡才是黑色素沉淀，对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼圈是棕褐色的，如果是黑色素沉淀，那我即使不熬夜也会有吗？如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，大概需要多久才能看到一点效果？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 80,
+    "id": "45b8451d33cde71ba3422474",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0032",
+    "input": "导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感。这种情况已经持续九十天了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "掌大的区域持续疼痛，左侧也有疼痛感。这种情况已经持续90天了",
+        "right": "一直没好转。请问需要服用什么药物？可以做哪些锻炼？",
+        "position": 74
+      }
+    ],
+    "reference": "我是一位57岁女性，腰部第三椎体滑脱，左侧下端关节突骨不连续，导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感。这种情况已经持续90天了，一直没好转。请问需要服用什么药物？可以做哪些锻炼？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 81,
+    "id": "684d276a0621246362a32068",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "血糖测量是每天进行的。去年我体重是一百三十八斤，现在是一百二十二斤，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "。血糖测量是每天进行的。去年我体重是138斤，现在是122斤",
+        "right": "瘦了十几斤。最近半年体重下降了大约7到8斤，目前是62公斤。",
+        "position": 137
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 82,
+    "id": "a876f8005f93463125eee0f0",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "但之后又会反复。之前做过一些检查，包括抽血和验尿，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿",
+        "right": "结果显示缺钙和缺蛋白质，肝功能检查显示。有轻微脂肪肝，眼部和",
+        "position": 86
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 83,
+    "id": "7b5801391322fa3d9ddad914",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0013",
+    "input": "我有脚气，已经有一年了。现在洗完脚后，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我有脚气，已经有一年了。现在洗完脚后",
+        "right": "脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白。有时下蹲时",
+        "position": 18
+      }
+    ],
+    "reference": "我有脚气已经有一年了，现在洗完脚后脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有白色脱屑应该用什么药？前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？有没有可能需要口服药？平时要注意什么？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 84,
+    "id": "bd2243efcdcc33744565164e",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0132",
+    "input": "这些这些中药呢，都有一些杀灭癌细胞或者抑制肿瘤细胞生长的功能。",
+    "hunks": [
+      {
+        "before": "这些",
+        "after": "",
+        "left": "还有就是，我们大家都熟知的灵芝，是啊，这些",
+        "right": "中药呢，都有一些杀灭癌细胞或者抑制肿瘤细胞生长的功能。",
+        "position": 21
+      },
+      {
+        "before": "呢，",
+        "after": "",
+        "left": "还有就是，我们大家都熟知的灵芝，是啊，这些这些中药",
+        "right": "都有一些杀灭癌细胞或者抑制肿瘤细胞生长的功能。",
+        "position": 25
+      }
+    ],
+    "reference": "还有这是我们大家都熟知的灵芝。 这些中药都有一些杀灭癌细胞 或者抑制肿瘤细胞生长的功效。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "4"
+    ]
+  },
+  {
+    "n": 85,
+    "id": "05f8d0429cb7e9367992fe55",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0032",
+    "input": "我是一位五十七岁女性，腰部第三椎体滑脱，左侧下段关节突骨不连续，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我是一位57岁女性，腰部第三椎体滑脱，左侧下段关节突骨不连续",
+        "right": "导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感",
+        "position": 30
+      }
+    ],
+    "reference": "我是一位57岁女性，腰部第三椎体滑脱，左侧下端关节突骨不连续，导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感。这种情况已经持续90天了，一直没好转。请问需要服用什么药物？可以做哪些锻炼？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 86,
+    "id": "078cbf19d3aa575f87f0b34a",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "这两个选择都是可能的。对，存在吧？",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "种是你死我活。嗯哼，要从利这个出发，这2个选择都是可能的。对",
+        "right": "存在吧？嗯哼，那么怎么选呢？嗯哼，就不能再从利的角度选了。嗯",
+        "position": 2518
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 87,
+    "id": "28c7696cd2ca41c98f76e0a8",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0229",
+    "input": "我是八岁的孩子，现在体重是八十斤。妈妈说我属于偏胖状态，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我是8岁的孩子，现在体重是80斤。妈妈说我属于偏胖状态",
+        "right": "我是不是真的偏胖？如果我现在大吃大喝，会不会影响身体健康？",
+        "position": 27
+      }
+    ],
+    "reference": "我是8岁的孩子，现在体重是80斤。妈妈说我属于偏胖状态，我是不是真的偏胖？如果我现在大吃大喝，会不会影响身体健康？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 88,
+    "id": "6d0ed4dac409673be6d5f295",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0005",
+    "input": "症状是逐渐加重的，现在越来越不舒服了。我之前有颈部不适的情况，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "症状是逐渐加重的，现在越来越不舒服了。我之前有颈部不适的情况",
+        "right": "可能和这个有关吗？如何确定具体原因？",
+        "position": 61
+      }
+    ],
+    "reference": "我最近几天感觉头晕、乏力，还有想吐的症状，但不确定持续了多久。症状是逐渐加重的，现在越来越不舒服了。我之前有颈部不适的情况，可能和这个有关吗？如何确定具体原因？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 89,
+    "id": "0dbdc414dd57e877939e7e55",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "我们让让渡一部分的利益，对，这样成立了一个社会共同体，",
+    "hunks": [
+      {
+        "before": "让",
+        "after": "",
+        "left": "家都会毁灭了。干脆大家坐下来聊一聊。对，坐下来聊一聊，我们让",
+        "right": "渡一部分的利益，对，这样成立了一个社会共同体，对，也可以保护",
+        "position": 2973
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 90,
+    "id": "9a36d134fc05f36e921f86e1",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "这是为何？在二零二零年夏天，即便从上游袭来的最大洪峰比一九九八年还要凶猛，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "2020年夏天，即便从上游袭来的最大洪峰比1998年还要凶猛",
+        "right": "但34%的洪峰都在进入三峡下游前被削减。也让湖北荆江的最高水",
+        "position": 1083
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 91,
+    "id": "0d6bcefe2370ceb034fa9ad9",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0013",
+    "input": "前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了",
+        "right": "脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有",
+        "position": 50
+      }
+    ],
+    "reference": "我有脚气已经有一年了，现在洗完脚后脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有白色脱屑应该用什么药？前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？有没有可能需要口服药？平时要注意什么？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 92,
+    "id": "8b66134c32fa53e46aee7c64",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "我今年六十三岁，觉得老人会瘦一些。医院检查结果还不错，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错",
+        "right": "之前做过一些检查，现在已经退休了。身体状态总体还可以，我最近",
+        "position": 193
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 93,
+    "id": "4ebe53d709a7d1bda25e770c",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0770W0163",
+    "input": "开发商均面临。不均衡的复苏前景。",
+    "hunks": [
+      {
+        "before": "。",
+        "after": "",
+        "left": "开发商均面临",
+        "right": "不均衡的复苏前景。",
+        "position": 6
+      }
+    ],
+    "reference": "开发商均面临不均衡的复苏前景",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 94,
+    "id": "a2f56ee8af48e0d9a84a69e9",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0246",
+    "input": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了",
+        "right": "还感觉心烦。我已经有3个月没来月经了，是不是更年期了？",
+        "position": 29
+      }
+    ],
+    "reference": "我最近动不动就容易出汗，不分白天和晚上，有时候突然就出汗了，还感觉心烦。我已经有三个月没来月经了，是不是更年期了？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 95,
+    "id": "968d50cd860b5b6bf7fe470f",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "把洪水都存蓄起来就好了。没错，你眼前的就是中国最大，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "大的水库，把洪水都存蓄起来就好了。没错，你眼前的就是中国最大",
+        "right": "至今都无故超越的三峡水库。它的最大库容有450亿立方米，足以",
+        "position": 678
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 96,
+    "id": "22298433a3d68c4c8006fb69",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0032",
+    "input": "我是一位五十七岁女性，腰部第三椎体滑脱，左侧下段关节突骨不连续，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我是一位57岁女性，腰部第三椎体滑脱，左侧下段关节突骨不连续",
+        "right": "导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感",
+        "position": 30
+      }
+    ],
+    "reference": "我是一位57岁女性，腰部第三椎体滑脱，左侧下端关节突骨不连续，导致腰第三椎体下方有一片巴掌大的区域持续疼痛，左侧也有疼痛感。这种情况已经持续90天了，一直没好转。请问需要服用什么药物？可以做哪些锻炼？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 97,
+    "id": "8ae5a85af7007a8628b26d31",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0906W0376",
+    "input": "浑身是血的波球，由于头部三处动脉。破裂，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "浑身是血的波球，由于头部3处动脉。破裂",
+        "right": "失血过多。",
+        "position": 19
+      }
+    ],
+    "reference": "浑身是血的播求由于头部三处动脉破裂失血过多",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "2",
+      "2"
+    ]
+  },
+  {
+    "n": 98,
+    "id": "c51da59fb3455249333ebf0f",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0013",
+    "input": "我脚气已经有一年了，现在洗完脚后，脚部有些白色脱屑，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我脚气已经有一年了，现在洗完脚后，脚部有些白色脱屑",
+        "right": "前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了，脚底板会疼",
+        "position": 25
+      }
+    ],
+    "reference": "我有脚气已经有一年了，现在洗完脚后脚部有些白色脱屑，前脚掌有红色小点，脚后跟也发白，有时下蹲时间长了脚底板会疼。我想知道该怎么治疗，哪些药品效果明显？洗完脚后有白色脱屑应该用什么药？前脚掌的红色小点该怎么处理？脚后跟发白是什么情况？如果脚气一直不好，该怎么解决？除了外用药，还有没有其他方法？需要多久才能治好？有没有可能需要口服药？平时要注意什么？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 99,
+    "id": "8ae019b9c79ee19f9da00f8d",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "我的右脚有一个月左右的时间反复肿胀，有时候肿了，过一段时间会自己消下去，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "1个月左右的时间反复肿胀，有时候肿了，过一段时间会自己消下去",
+        "right": "但过几天又会肿起来，抬高右腿后肿胀会减轻，甚至消失，但之后又",
+        "position": 35
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 100,
+    "id": "0a70cb3af6b53bd4f89749a9",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "眼部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关",
+        "right": "尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些",
+        "position": 147
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 101,
+    "id": "5501d9ca32b4309fcc246a47",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "不是他同样，你以那个都很难假假设的公平与正义为起点，以什么大义为起点，",
+    "hunks": [
+      {
+        "before": "他",
+        "after": "你",
+        "left": "还愿不愿意遵守这个契约？他肯定不愿意。当然，这些问题是，不是",
+        "right": "同样，你以那个都很难假假设的公平与正义为起点，以什么大义为起",
+        "position": 3397
+      },
+      {
+        "before": "，",
+        "after": "。",
+        "left": "样，你以那个都很难假假设的公平与正义为起点，以什么大义为起点",
+        "right": "他同样会走向那个结果。因为也还是就就会出现一大堆的伪君子，是",
+        "position": 3429
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 102,
+    "id": "37c25606ea0da67d6f4cfb07",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，谁是谁是老大。",
+    "hunks": [
+      {
+        "before": "谁是",
+        "after": "",
+        "left": "相骗，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，谁是",
+        "right": "老大。所以法家一直认为儒家太虚伪，对，但是儒家又认为法家太现",
+        "position": 3499
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 103,
+    "id": "c5412c6ff5a327f0a68c48a7",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0053",
+    "input": "就是血液循环问题。如果不变淡，才是黑色素沉淀，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，如果颜色变淡，就是血液循环问题。如果不变淡，才是黑色素沉淀",
+        "right": "对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼",
+        "position": 125
+      }
+    ],
+    "reference": "我有六到七年的黑眼圈问题，经常熬夜。如果我能在晚上十一点前入睡，大概需要多久才能看到效果？肾虚是否会导致黑眼圈？睡觉前热敷是否有帮助？如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈如果颜色变淡，就是血液循环问题，如果不变淡才是黑色素沉淀，对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼圈是棕褐色的，如果是黑色素沉淀，那我即使不熬夜也会有吗？如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，大概需要多久才能看到一点效果？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 104,
+    "id": "915d1a23e547bd4a6000c11a",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "因为他是基于对人性的一种经验性的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察",
+        "right": "它一定是不分的人类经验。或者说，经验性的观察，永远是互相矛盾",
+        "position": 1314
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 105,
+    "id": "a371ebc0fbeb6187b03c56a6",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝。脸部和眼部没有浮肿，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "钙和缺蛋白质，肝功能检查显示有轻微脂肪肝。脸部和眼部没有浮肿",
+        "right": "食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和",
+        "position": 122
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 106,
+    "id": "45cb81ea0e5bf0f845686199",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "但七十公里，在中国大地上也不过是沧海一粟。你眼前的这些，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "天河。但70公里，在中国大地上也不过是沧海一粟。你眼前的这些",
+        "right": "都是由人类开辟的江河，在这片水资源夏丰冬枯、南多北少的土地上",
+        "position": 1631
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 107,
+    "id": "88ba968dbf5a04bd504bbc08",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0229",
+    "input": "我是八岁的孩子，现在体重是八十斤。妈妈说我属于偏胖状态，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "我是8岁的孩子，现在体重是80斤。妈妈说我属于偏胖状态",
+        "right": "我是不是真的偏胖？如果我现在大吃大喝，会不会影响身体健康？",
+        "position": 27
+      }
+    ],
+    "reference": "我是8岁的孩子，现在体重是80斤。妈妈说我属于偏胖状态，我是不是真的偏胖？如果我现在大吃大喝，会不会影响身体健康？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 108,
+    "id": "6b2487c011f8dd37483867e1",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0915W0442",
+    "input": "有个菜。敦煌千年古城遗址。拍照，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "有个菜。敦煌千年古城遗址。拍照",
+        "right": "反问：踩了会掉吗？",
+        "position": 15
+      }
+    ],
+    "reference": "游客踩敦煌千年古城遗址拍照反问踩了会掉吗",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "3",
+      "3"
+    ]
+  },
+  {
+    "n": 109,
+    "id": "a77d59d77e882250406b61b7",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0097",
+    "input": "我被确诊为糖尿病，空腹血糖有时低至五点八毫摩尔，有时高至十毫摩尔，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "确诊为糖尿病，空腹血糖有时低至五点八毫摩尔，有时高至十毫摩尔",
+        "right": "通常在七点八点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都",
+        "position": 32
+      }
+    ],
+    "reference": "我被确诊为糖尿病，空腹血糖有时低至5.8mmol/L，有时高至10mmol/L，通常在7-8点时较高。我每天早上吃葛根粉和鸡蛋，中午和晚上都吃白米饭。我服用的降糖药物是格列美脲和达格列净片。我每天早上会走一万多步，然后回家吃早餐，血糖测量是每天进行的。去年我体重是138斤，现在是122斤，瘦了十几斤，最近半年体重下降了大约7-8斤，目前是62公斤。我今年63岁，觉得老人会瘦一些。医院检查结果还不错，之前做过一些检查，现在已经退休了，身体状态总体还可以。我最近半年体重下降了7-8斤，但没有出现明显不适。我是否需要进一步检查？我最近三个月做过糖化血红蛋白和甲状腺功能检查吗？我是否需要调整饮食或药物？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 110,
+    "id": "75f18dabef9aaea5055faf3b",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0074",
+    "input": "但过几天又会肿起来，抬高右腿后肿胀会减轻，甚至消失，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "己消下去，但过几天又会肿起来，抬高右腿后肿胀会减轻，甚至消失",
+        "right": "但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺",
+        "position": 61
+      }
+    ],
+    "reference": "我的右脚有一个月左右的时间反复肿胀，有时候肿了过一段时间会自己消下去，但过几天又会肿起来。抬高右腿后，肿胀会减轻甚至消失，但之后又会反复。之前做过一些检查，包括抽血和验尿，结果显示缺钙和缺蛋白质，肝功能检查显示有轻微脂肪肝，脸部和眼部没有浮肿，食欲也没有变化。我想知道脚肿可能和哪些器官有关，尤其是肾脏和心脏方面，应该做哪些检查？另外，我之前做过的一些检查结果，怎么才能给你看呢？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 111,
+    "id": "77c74536e6421b935eff7154",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "从而达到削峰错峰的目的，保证下游河道的安全。再加上覆盖全流域的三万多个监测站点，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "目的，保证下游河道的安全。再加上覆盖全流域的3万多个监测站点",
+        "right": "以及气象卫星等等，为科学家提供准确的降雨和洪水数据作为依据，",
+        "position": 999
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 112,
+    "id": "666b6daf2b3b7585e86f93fa",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0101",
+    "input": "它能够接回去，这个叫做骨碎补啊，骨碎了之后，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "这个就是续断，就是断了的东西，它能够接回去，这个叫做骨碎补啊",
+        "right": "骨碎了之后，能够补回去。",
+        "position": 33
+      },
+      {
+        "before": "，",
+        "after": "。",
+        "left": "，就是断了的东西，它能够接回去，这个叫做骨碎补啊，骨碎了之后",
+        "right": "能够补回去。",
+        "position": 39
+      }
+    ],
+    "reference": "这个就是续断 就是断了的东西 它能够接回去。 这个叫做骨碎补。 骨碎了之后 还能够补回去。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "4",
+      "4"
+    ]
+  },
+  {
+    "n": 113,
+    "id": "52bf05de0f43dff8017f3b32",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0901W0450",
+    "input": "清华附小。昨迎百年校庆。校长权势。",
+    "hunks": [
+      {
+        "before": "",
+        "after": "天",
+        "left": "清华附小。昨",
+        "right": "迎百年校庆。校长权势。诚治教育理念。",
+        "position": 6
+      }
+    ],
+    "reference": "清华附小昨迎百年校庆校长诠释成志教育理念",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "4",
+      "5"
+    ]
+  },
+  {
+    "n": 114,
+    "id": "d249cae13c9ff285901e00ca",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0121",
+    "input": "肌肉酸痛、疼痛等等的的一些症状了，呃，特别是在精神关注在手术的时候。",
+    "hunks": [
+      {
+        "before": "的",
+        "after": "",
+        "left": "步骤，所以也不会感觉到，肌肉酸痛、疼痛等等的",
+        "right": "一些症状了，特别是在精神关注在手术的时候。",
+        "position": 22
+      }
+    ],
+    "reference": "所以也不会感觉到 肌肉酸痛 疼痛等等的一些症状。 特别是在精神关注在手术的时候。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "4",
+      "3"
+    ]
+  },
+  {
+    "n": 115,
+    "id": "19d043bf87c2b41faeac3c13",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "不过，这仍然不够。当你放眼整个长江，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "以装得下3000多个西湖。不过，这仍然不够。当你放眼整个长江",
+        "right": "还会在干流上游看到向家坝、溪洛渡、白鹤滩、乌东德组成的四大梯",
+        "position": 738
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 116,
+    "id": "f15bb64af357497a3444ad6c",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0105",
+    "input": "它有一点点作用啊，除非你喝很多。OK，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "它有一点点作用啊，除非你喝很多。OK",
+        "right": "基本上我们还是要从一些正常的饮食里头去摄取。另外一个骨头汤的",
+        "position": 18
+      }
+    ],
+    "reference": "它有一点点作用 除非你喝很多。 基本上我们还是要从 一些正常的饮食里头去摄取。 另外一个骨头汤的问题就是因为",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "7"
+    ]
+  },
+  {
+    "n": 117,
+    "id": "d456365b684a9c697f0f07e3",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0224",
+    "input": "我有高血压，最近出现头晕、走路不稳、有眩晕的感觉。症状是持续性的，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "高血压，最近出现头晕、走路不稳、有眩晕的感觉。症状是持续性的",
+        "right": "偶尔发作。我怀疑是美尼尔病，但没有耳鸣或听力下降。熬夜会不会",
+        "position": 32
+      }
+    ],
+    "reference": "我有高血压，最近出现头晕、走路不稳、有眩晕的感觉，症状是持续性的，偶尔发作。我怀疑是美尼尔病，但没有耳鸣或听力下降。熬夜会不会引起眼底出血？我经常凌晨才睡觉。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 118,
+    "id": "68ebdf2b860ccbbc373de8c4",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "最好的是，我骗你，让渡了你的利益，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "己方便。但是从我的角度来说，最好的是，我骗你，让渡了你的利益",
+        "right": "但是老子的利益绝对不让。好，这个没问题，这个就必须要有一个惩",
+        "position": 3111
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 119,
+    "id": "7f76517b302e3d242b1bb60e",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "将汉江水调往人口密集的关中平原。在甘肃，黄河水穿越荒漠，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "秦岭，将汉江水调往人口密集的关中平原。在甘肃，黄河水穿越荒漠",
+        "right": "沿途串联起一座座绿洲城市，抵御着不断扩张的沙漠。而在安徽，数",
+        "position": 1771
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 120,
+    "id": "642c0913965383f96b510380",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0219",
+    "input": "不过，他已经开始慢慢体会到，拥有一个健康的身体，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "不过，他已经开始慢慢体会到",
+        "right": "拥有一个健康的身体，能为生活带来各种小确幸。Last tim",
+        "position": 13
+      },
+      {
+        "before": "，",
+        "after": "",
+        "left": "不过，他已经开始慢慢体会到，拥有一个健康的身体",
+        "right": "能为生活带来各种小确幸。Last time, you kno",
+        "position": 23
+      }
+    ],
+    "reference": "不过 他已经开始慢慢体会到 拥有一个健康的身体 能为生活带来各种小确幸。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "170",
+      "170"
+    ]
+  },
+  {
+    "n": 121,
+    "id": "8db0b33479d13e2108cc56d3",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "总共能拦截的水量，相当于建起了三座三峡。每年汛期来临之前，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "库。总共能拦截的水量，相当于建起了3座三峡。每年汛期来临之前",
+        "right": "这些水库都会提前腾出一部分库容，严阵以待。这部分就称作防洪库",
+        "position": 842
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 122,
+    "id": "c51c14a40310573082b02bbe",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "呃，然后互相骗，呃，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "因为也还是就就会出现一大堆的伪君子，是会有伪君子，然后互相骗",
+        "right": "骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，谁是谁是老",
+        "position": 3471
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 123,
+    "id": "a7f61edfa1962be37b4ab7e6",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0011",
+    "input": "进行本来他们需要进行的运动，需要到九到十二个月，他们需要比较耐心，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "本来他们需要进行的运动，需要到9到12个月，他们需要比较耐心",
+        "right": "因为这个恢复的过程。",
+        "position": 32
+      }
+    ],
+    "reference": "本来他们需要进行的运动 需要九到十二个月。 他们需要比较耐心 因为这个恢复的过程",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "3",
+      "3"
+    ]
+  },
+  {
+    "n": 124,
+    "id": "b1a6ab10eb153be96b14d927",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "将全球四大洋的水汽源源不断地送入中国，如同一条条天河。大地之上，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "全球四大洋的水汽源源不断地送入中国，如同一条条天河。大地之上",
+        "right": "天河之水又化作4.5万条江河，日夜奔流，让中国成为世界上河流",
+        "position": 65
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 125,
+    "id": "9501c303e72f11d94c0443bf",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0055",
+    "input": "我想知道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡",
+        "right": "可以推荐一些具体的减肥餐单吗？比如早餐、午餐和晚餐的搭配，以",
+        "position": 33
+      }
+    ],
+    "reference": "我想知道减肥期间应该吃什么食物，如何控制饮食热量，同时保证营养均衡？可以推荐一些具体的减肥餐单吗？比如早餐、午餐和晚餐的搭配，以及每餐的大致热量数值。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 126,
+    "id": "0b90478f59112e7a42004372",
+    "kind": "human_news",
+    "task": "window_refine",
+    "group": "AISHELL:BAC009S0901W0342",
+    "input": "成就了中国女排五连冠伟业。",
+    "hunks": [
+      {
+        "before": "五",
+        "after": "5",
+        "left": "成就了中国女排",
+        "right": "连冠伟业。",
+        "position": 7
+      }
+    ],
+    "reference": "成就了中国女排五连冠伟业",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "1"
+    ]
+  },
+  {
+    "n": 127,
+    "id": "55956e2755d5a0ce36ad853d",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0629",
+    "input": "比如说腰背痛啊、脊柱弯。",
+    "hunks": [
+      {
+        "before": "啊",
+        "after": "",
+        "left": "是说自己感觉不到哦，啊，所以它是导致很多老年人，比如说腰背痛",
+        "right": "、脊柱弯。",
+        "position": 47
+      }
+    ],
+    "reference": "另外呢它没有自觉症状 也就是说自己感觉不到。 所以它是导致很多老年人 比如腰背痛啊 脊柱弯 驼背",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "7",
+      "8"
+    ]
+  },
+  {
+    "n": 128,
+    "id": "f5c460e195fd6da1ac15027b",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0192",
+    "input": "我们找到了小肠里面破了一个洞，所以我们把这部分的小肠切除了，然后把剩余的小肠连接起来，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "个洞，所以我们把这部分的小肠切除了，然后把剩余的小肠连接起来",
+        "right": "病人等一下会去呃加护病房。",
+        "position": 42
+      }
+    ],
+    "reference": "小肠里面破了一个洞。 所以我们把这部分的小肠切除了。 然后把剩余的小肠连接起来。 病人等一下会去加护病房。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "6",
+      "6"
+    ]
+  },
+  {
+    "n": 129,
+    "id": "5619c76ce53a533a825d5e8b",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "非常有意思啊！今天跟易老师学了很多很多啊，尤其关于这个中国古代的义利之争，",
+    "hunks": [
+      {
+        "before": "很多",
+        "after": "",
+        "left": "来摆去，他没办法，对，嗯，非常有意思啊！今天跟易老师学了很多",
+        "right": "啊，尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们",
+        "position": 3629
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 130,
+    "id": "aa678bb9dbd56b02ada6cdc8",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0090",
+    "input": "上次结果是百分之五点九，我的空腹血糖大约在七点零毫摩尔/LL，餐后两小时血糖在九点三到十点七毫摩尔/LL之间，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "毫摩尔/LL，餐后2小时血糖在九点三到十点七毫摩尔/LL之间",
+        "right": "这样的数值是否需要进一步检查？是否已经达到糖尿病的诊断标准？",
+        "position": 88
+      }
+    ],
+    "reference": "我今天做了一个糖化血红蛋白检测，结果是6.2%，距离上次检测大约有半年，上次结果是5.9%。我的空腹血糖大约在7.0mmol/L，餐后两小时血糖在9.3到10.7mmol/L之间。这样的数值是否需要进一步检查？是否已经达到糖尿病的诊断标准？谢谢。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "16",
+      "16"
+    ]
+  },
+  {
+    "n": 131,
+    "id": "0ce3e40d2d93a6e738056524",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "数十座泵站将长江水不断举高，让江水一路逆流而上，跨越七百多公里，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "座泵站将长江水不断举高，让江水一路逆流而上，跨越700多公里",
+        "right": "流向安徽、河南等地。不过到这里，当代中国最壮观的人造江河还未",
+        "position": 1833
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 132,
+    "id": "bf6b372db693df01c5ee47d8",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio4",
+    "input": "如今，长江沿线的国家蓄滞洪区多达四十六处，这些不到万不得已不会轻易开启的区域，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "",
+        "left": "的国家蓄滞洪区多达46处，这些不到万不得已不会轻易开启的区域",
+        "right": "存蓄洪水的能力相当于2.6个三峡，也是迄今为止我们所拥有的最",
+        "position": 1309
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 133,
+    "id": "eee41c152dfa4b9ee153dead",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0366",
+    "input": "是不是有这个肺炎的可疑，然后再去检查，问一下这个这个大小。",
+    "hunks": [
+      {
+        "before": "这个",
+        "after": "",
+        "left": "这个呼吸音，是不是有这个肺炎的可疑，然后再去检查，问一下这个",
+        "right": "大小。",
+        "position": 59
+      }
+    ],
+    "reference": "口腔有没有上呼吸道感染。 接着再听一听肺部呼吸音是不是 有肺炎的可疑。 然后再去检查问一下这个这个大小便",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "12",
+      "14"
+    ]
+  },
+  {
+    "n": 134,
+    "id": "6154ae1a1dff1e8e3e9e79e9",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0053",
+    "input": "如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用",
+        "right": "大概需要多久才能看到一点效果？",
+        "position": 215
+      }
+    ],
+    "reference": "我有六到七年的黑眼圈问题，经常熬夜。如果我能在晚上十一点前入睡，大概需要多久才能看到效果？肾虚是否会导致黑眼圈？睡觉前热敷是否有帮助？如何分辨黑眼圈是黑色素沉淀还是其他原因？我听说按压黑眼圈如果颜色变淡，就是血液循环问题，如果不变淡才是黑色素沉淀，对吗？如果是黑色素沉淀的话，是不是只能去医院治疗？我现在黑眼圈是棕褐色的，如果是黑色素沉淀，那我即使不熬夜也会有吗？如果使用美白型眼霜，有没有推荐的成分或产品？如果我按照建议使用，大概需要多久才能看到一点效果？",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "1",
+      "1"
+    ]
+  },
+  {
+    "n": 135,
+    "id": "62b9f708ec8bd35970be86d5",
+    "kind": "public_tts",
+    "task": "window_refine",
+    "group": "MMedFD:MMedFD_user_0004",
+    "input": "请具体说明不同部位的护理方法，比如臀部。手指缝、腋窝等，",
+    "hunks": [
+      {
+        "before": "，",
+        "after": "。",
+        "left": "通风？请具体说明不同部位的护理方法，比如臀部。手指缝、腋窝等",
+        "right": "对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建",
+        "position": 88
+      }
+    ],
+    "reference": "九十八岁老人在护理院得了疥疮，使用硫软膏涂抹后没有好转反而加重了，应该如何应对？是否需要同步治疗？为什么需要保持干燥通风？请具体说明不同部位的护理方法，比如臀部、手指缝、腋窝等。对于饮食有什么要求？如何维持原有的饮食控制？运动方面有什么建议？运动后是否需要频繁更换衣物？目前每天为老人更换两到三次衣物，这样的频率是否合适？为什么需要频繁更换衣物？请详细说明。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "n": 136,
+    "id": "674c708d6f047579c24ab892",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0179",
+    "input": "哦，太近了，不了吧？我有个，有个有个感受，是一种，是一种感情嘞。",
+    "hunks": [
+      {
+        "before": "，是一种",
+        "after": "",
+        "left": "哦，太近了，不了吧？我有个，有个有个感受，是一种",
+        "right": "感情嘞。",
+        "position": 24
+      }
+    ],
+    "reference": "总归有点不舍。 有点感动。 有感情在里面。",
+    "candidate_source": "是一种，是一种",
+    "candidate_target": "是一种",
+    "distance": [
+      "21",
+      "18"
+    ]
+  },
+  {
+    "n": 137,
+    "id": "f3cd775b0f1e2794b457f596",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_train_0966",
+    "input": "到中国来怎么怎么去？昨天二氧化碳增加上来，肺的问题对它的威胁是紧迫的，马上就要不行了。这个其实每天是滚的，上午是平稳的，到了晚上、夜分总是出点问，都出点问。",
+    "hunks": [
+      {
+        "before": "怎么",
+        "after": "",
+        "left": "到中国来",
+        "right": "怎么去？昨天二氧化碳增加上来，肺的问题对它的威胁是紧迫的，马",
+        "position": 4
+      }
+    ],
+    "reference": "怎么琢磨来 怎么琢磨去？ 昨天二氧化碳分压上来了。肺的问题对他的威胁是紧迫的。 马上就要不行的了。这个病人每天都不稳定。上午是挺稳定的，到了晚上和夜分总是出点问题。",
+    "candidate_source": "怎么怎么",
+    "candidate_target": "怎么",
+    "distance": [
+      "24",
+      "24"
+    ]
+  },
+  {
+    "n": 138,
+    "id": "f0784c8ec43f283c6d03d634",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0081",
+    "input": "住院啊？怎么怎么变成居家照护？我们就赶快把它转回去。其实我们也有跟，哎，市政府讲好，我们要立一个绿色通道，我们转回去呢，不用在那边跟人家排队了啦。",
+    "hunks": [
+      {
+        "before": "怎么",
+        "after": "",
+        "left": "住院啊？",
+        "right": "怎么变成居家照护？我们就赶快把它转回去。其实我们也有跟，哎，",
+        "position": 4
+      }
+    ],
+    "reference": "那怎么怎么会变成居家照护 我们就赶快把他 转回去 其实我们有跟 市政府讲好 我们要有一个绿色通道。 我们转回去 不用再那边人家排队的。 我们 我们 已经case给我们 那我们回去",
+    "candidate_source": "怎么怎么",
+    "candidate_target": "怎么",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 139,
+    "id": "7320bc04b7605a3ddc4d4e26",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0168",
+    "input": "本来就在你血管里面塞了个这个东西，你看它塞在里面多难受啊，对吧？给拔掉了。给他，给他拍，拍一张照片给他看。",
+    "hunks": [
+      {
+        "before": "，拍",
+        "after": "",
+        "left": "个东西，你看它塞在里面多难受啊，对吧？给拔掉了。给他，给他拍",
+        "right": "一张照片给他看。",
+        "position": 43
+      }
+    ],
+    "reference": "本来在你气管里面塞了一个这个东西。你看看赛在里面多难受啊是吗？ 拔掉了。拍一张照片给他看。",
+    "candidate_source": "拍，拍",
+    "candidate_target": "拍",
+    "distance": [
+      "13",
+      "12"
+    ]
+  },
+  {
+    "n": 140,
+    "id": "19e9417fcdfd1200c4e92938",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio4",
+    "input": "它拥有世界规模最大的渡槽群，其中最长的一段，让长江水直接凌空而过9公里，以避免受到地表环境的影响。它拥有世界规模最大的泵站群。13级泵站一级一级地向高处提水，将长江水从江苏扬州一路送至黄河南岸。他还建起一座座上天入地的水上立交，或从河床之下穿越黄河，或从水面之上跨越淮河，让这些原本相隔千里的大河终于有机会彼此相遇。而在更多你无法察觉的地方，依靠遍布全县的自动化设备，这项跨越8个省份、四大流域，总计2000多公里的调水工程才能有条不紊地运行。",
+    "hunks": [
+      {
+        "before": "一级",
+        "after": "",
+        "left": "到地表环境的影响。它拥有世界规模最大的泵站群。13级泵站一级",
+        "right": "地向高处提水，将长江水从江苏扬州一路送至黄河南岸。他还建起一",
+        "position": 1972
+      }
+    ],
+    "reference": "",
+    "candidate_source": "一级一级",
+    "candidate_target": "一级",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 141,
+    "id": "8e6d797bd3cfdf9ef038f4d0",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_train_0996",
+    "input": "他可能会错过做埃克莫手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿6套勿一样，哎，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少老少，十几还要。",
+    "hunks": [
+      {
+        "before": "老少",
+        "after": "",
+        "left": "，我好像外头成功唻，总共成功唻，大概只有百分之十几。对，老少",
+        "right": "，十几还要。",
+        "position": 74
+      }
+    ],
+    "reference": "他可能会错过做ECMO手术的最佳窗口期。 明天会怎么样 谁都吃不准。新冠病人和以前的病人不一样的。 好像外面成功率总的成功率只有百分之十几。这百分之十几还要看",
+    "candidate_source": "老少老少",
+    "candidate_target": "老少",
+    "distance": [
+      "28",
+      "27"
+    ]
+  },
+  {
+    "n": 142,
+    "id": "b039fa418c503616958a02ee",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0183",
+    "input": "就是回到家的时候，有的时候空闲的时候，还会还会想起。在在上班的时候。就尽量不让。",
+    "hunks": [
+      {
+        "before": "在",
+        "after": "",
+        "left": "就是回到家的时候，有的时候空闲的时候，还会还会想起。在",
+        "right": "上班的时候。就尽量不让。",
+        "position": 27
+      }
+    ],
+    "reference": "回到家的时候，有空闲的时候，还会想起。 但是在上班的时候就尽量不让自己去想这个事情。",
+    "candidate_source": "在在",
+    "candidate_target": "在",
+    "distance": [
+      "17",
+      "17"
+    ]
+  },
+  {
+    "n": 143,
+    "id": "4548f609466b64b839055c5b",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "换言之，就这个世界上有没有正义的问题，正义。是人类的发现，还是人类的发明，还是一套纯粹的说辞？那你要用这个诡辩论者，或者说相对论者色拉叙马霍斯的观点，就认为正义那就是强人的利益，所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，所以没有正义，强权即真理。但是苏格拉底不这么认为啊！苏格拉底认为正义是客观存在的呀。",
+    "hunks": [
+      {
+        "before": "利",
+        "after": "",
+        "left": "的利益，所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为",
+        "right": "利往，所以没有正义，强权即真理。但是苏格拉底不这么认为啊！苏",
+        "position": 220
+      }
+    ],
+    "reference": "",
+    "candidate_source": "利利",
+    "candidate_target": "利",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 144,
+    "id": "ce3be20c17418c5ff43230a7",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0145",
+    "input": "哎，有吗？会吗？是是，可以。有一些真的，有一些穴位，比如说肾哪肝。",
+    "hunks": [
+      {
+        "before": "是",
+        "after": "",
+        "left": "按一按就能够增加性功能嘛？哎，有吗？会吗？",
+        "right": "是，可以。有一些真的，有一些穴位，比如说肾哪肝。",
+        "position": 21
+      }
+    ],
+    "reference": "就能够增加性功能吗？ 有吗？ 会吗？ 是的。 可以。 真的啊？ 有一些穴位 比如肾 肝",
+    "candidate_source": "是是",
+    "candidate_target": "是",
+    "distance": [
+      "12",
+      "12"
+    ]
+  },
+  {
+    "n": 145,
+    "id": "e3630b976a2239c1e5d82932",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "因为也还是就就会出现一大堆的伪君子，是会有伪君子，然后互相骗，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，谁是谁是老大。所以法家一直认为儒家太虚伪，对，但是儒家又认为法家太现实。不是，我要法法家太残忍或者太太堕落。对对，所以在某种意义上，他最后只好整个历史就是在他们2家之间摆嘛，对啊，他只好摆嘛，嗯，他只好摆来摆去，他没办法，对，嗯，非常有意思啊！今天跟易老师学了很多很多啊，尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，可能也没有结论啊，但是确实我。",
+    "hunks": [
+      {
+        "before": "太",
+        "after": "",
+        "left": "，对，但是儒家又认为法家太现实。不是，我要法法家太残忍或者太",
+        "right": "堕落。对对，所以在某种意义上，他最后只好整个历史就是在他们2",
+        "position": 3547
+      }
+    ],
+    "reference": "",
+    "candidate_source": "太太",
+    "candidate_target": "太",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 146,
+    "id": "e485d6dedee3886cbb187bee",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_test_0081",
+    "input": "哈，我们我们啊，已经case给我们的哈，",
+    "hunks": [
+      {
+        "before": "我们",
+        "after": "",
+        "left": "个绿色通道，我们转回去呢，不用在那边跟人家排队了啦。哈，我们",
+        "right": "啊，已经case给我们的哈，那我们。",
+        "position": 77
+      }
+    ],
+    "reference": "那怎么怎么会变成居家照护 我们就赶快把他 转回去 其实我们有跟 市政府讲好 我们要有一个绿色通道。 我们转回去 不用再那边人家排队的。 我们 我们 已经case给我们 那我们回去",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "19"
+    ]
+  },
+  {
+    "n": 147,
+    "id": "81c3757da694b0728b77d94e",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0845",
+    "input": "就是它的灵活性不高啊，啊，而且这个传统的那个内窥镜手术呢，",
+    "hunks": [
+      {
+        "before": "啊，",
+        "after": "",
+        "left": "线还有那个位置，OK，它的坏处呢，就是它的灵活性不高",
+        "right": "而且这个传统的那个内窥镜手术呢，就是用独立的影像，它没有那个",
+        "position": 26
+      }
+    ],
+    "reference": "还有那个位置。 它的坏处呢就是它的灵活性不高啊， 而且传统的腹腔镜手术呢 就是用二维的影像 它没有那个深度。",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "14",
+      "15"
+    ]
+  },
+  {
+    "n": 148,
+    "id": "d3528a711ca6bb76a1b8a5be",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0160",
+    "input": "算了哈，这些事情还是得自己去想吧，自己自己那个，只是跟大家分享一下。然后呢，明天。",
+    "hunks": [
+      {
+        "before": "自己",
+        "after": "",
+        "left": "算了哈，这些事情还是得自己去想吧，",
+        "right": "自己那个，只是跟大家分享一下。然后呢，明天。",
+        "position": 17
+      }
+    ],
+    "reference": "哎。 算了算了这些事情还是得自己去想吧 自己那个 只是跟大家分享一下（随想）。 然后呢明天吧",
+    "candidate_source": "自己自己",
+    "candidate_target": "自己",
+    "distance": [
+      "8",
+      "6"
+    ]
+  },
+  {
+    "n": 149,
+    "id": "9a0bf6d3c66f70a90980c408",
+    "kind": "human_medical",
+    "task": "window_refine",
+    "group": "MultiMed:MultiMed_Chinese_train_0517",
+    "input": "我们是呼吸道的专家了，哈，对这个筛检，",
+    "hunks": [
+      {
+        "before": "哈，",
+        "after": "",
+        "left": "我们耳鼻喉科医学会，哈，就我们对这个，我们是呼吸道的专家了，",
+        "right": "对这个筛检，这个我们是，最最专专精的了，哈，所以其实我们在4",
+        "position": 39
+      }
+    ],
+    "reference": "我们耳鼻喉科医学会好 就我们对这个 我们是呼吸道的专家 对这个筛检我们是 最最专精的。是。 所以其实我们在4月下旬的时候 我们有去",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "19",
+      "18"
+    ]
+  },
+  {
+    "n": 150,
+    "id": "c60ea89039a28ef0bbdb6857",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_train_0628",
+    "input": "预防是是好，广告过后，我们继续深入了解骨质疏松症，是还有中医是会加入讨论呢，我们稍后见。",
+    "hunks": [
+      {
+        "before": "是",
+        "after": "",
+        "left": "预防",
+        "right": "是好，广告过后，我们继续深入了解骨质疏松症，是还有中医是会加",
+        "position": 2
+      }
+    ],
+    "reference": "好 广告过后 我们继续深入了解 骨质疏松症。 还有中医师会加入讨论呢 我们稍后见。",
+    "candidate_source": "是是",
+    "candidate_target": "是",
+    "distance": [
+      "6",
+      "5"
+    ]
+  },
+  {
+    "n": 151,
+    "id": "36824c08aec42898cfd07cc8",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "对，但是呃，毛中纲父子是儒家法家，我们另当别论啊。对，实际上他们自己认为他们是儒家。对对对，这搞笑了，对吧？对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，他也不他们都说自己是儒家儒家啊，是儒家的跟法家，他其实。他确实有有有这个毅力之之争，对对对。",
+    "hunks": [
+      {
+        "before": "对对",
+        "after": "",
+        "left": "儒家法家，我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+        "right": "对，这搞笑了，对吧？对对对对对对，因为你因为他们他们那个时代",
+        "position": 694
+      }
+    ],
+    "reference": "",
+    "candidate_source": "对对对",
+    "candidate_target": "对",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 152,
+    "id": "2281d4c10822ca04e195005b",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0185",
+    "input": "哦，你个京城京城汽车可以呀！我记得毛主任跟我跟你说过啊，等你完全康复了，我们结伴而行去爬那个珞珈山，我记得了啊。",
+    "hunks": [
+      {
+        "before": "京城",
+        "after": "",
+        "left": "哦，你个",
+        "right": "京城汽车可以呀！我记得毛主任跟我跟你说过啊，等你完全康复了，",
+        "position": 4
+      }
+    ],
+    "reference": "你的精神起色可以啊。我记得毛主任跟你说过啊。 等你完全康复了，我们结伴而行去爬珞珈山。我记得的。",
+    "candidate_source": "京城京城",
+    "candidate_target": "京城",
+    "distance": [
+      "15",
+      "13"
+    ]
+  },
+  {
+    "n": 153,
+    "id": "f81559d7d2a1ab1b35b62434",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "对，实际上他们自己认为他们是儒家。对对对，这搞笑了，对吧？对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，他也不他们都说自己是儒家儒家啊，是儒家的跟法家，他其实。他确实有有有这个毅力之之争，对对对。那孟子就讨论人性是善还是恶，对，而和跟孟孟子争争论的人呢，是主张人性无善恶，这人性就是一张白纸嘛，嗯哼，叫实色性也，实色性也就是。",
+    "hunks": [
+      {
+        "before": "儒家",
+        "after": "",
+        "left": "他们那个时代没有人说自己是法家，不敢说，他也不他们都说自己是",
+        "right": "儒家啊，是儒家的跟法家，他其实。他确实有有有这个毅力之之争，",
+        "position": 750
+      }
+    ],
+    "reference": "",
+    "candidate_source": "儒家儒家",
+    "candidate_target": "儒家",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 154,
+    "id": "730a6f4434ad8a1f2284011d",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0158",
+    "input": "想想，那是谈什么未来，谈什么梦想。如果真的。家庭也是发生别别人那样子的情况。",
+    "hunks": [
+      {
+        "before": "别",
+        "after": "",
+        "left": "想想，那是谈什么未来，谈什么梦想。如果真的。家庭也是发生别",
+        "right": "人那样子的情况。",
+        "position": 29
+      }
+    ],
+    "reference": "想想 谈什么未来谈什么梦想。 如果真的 家庭也发生别人那样子的情况。",
+    "candidate_source": "别别",
+    "candidate_target": "别",
+    "distance": [
+      "4",
+      "3"
+    ]
+  },
+  {
+    "n": 155,
+    "id": "09c67d275ad3fdae26d99b28",
+    "kind": "human_medical",
+    "task": "local_edit_review",
+    "group": "MultiMed:MultiMed_Chinese_test_0081",
+    "input": "住院啊，什么什么变成居家照顾，我们就赶快把它转回去。其实我们有跟，诶市政府讲好，我们要立个绿色通道，我们转回去呢，我不用在那边跟人家排队了啦。哦，我们我们啊，已经case给我们的哈，那我们。",
+    "hunks": [
+      {
+        "before": "我们",
+        "after": "",
+        "left": "绿色通道，我们转回去呢，我不用在那边跟人家排队了啦。哦，我们",
+        "right": "啊，已经case给我们的哈，那我们。",
+        "position": 75
+      }
+    ],
+    "reference": "那怎么怎么会变成居家照护 我们就赶快把他 转回去 其实我们有跟 市政府讲好 我们要有一个绿色通道。 我们转回去 不用再那边人家排队的。 我们 我们 已经case给我们 那我们回去",
+    "candidate_source": "我们我们",
+    "candidate_target": "我们",
+    "distance": [
+      "23",
+      "23"
+    ]
+  },
+  {
+    "n": 156,
+    "id": "3e85929715b4e8ea46597174",
+    "kind": "demo_without_reference",
+    "task": "window_refine",
+    "group": "project_demo:project_audio5",
+    "input": "对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，",
+    "hunks": [
+      {
+        "before": "他们",
+        "after": "",
+        "left": "他们是儒家。对对对，这搞笑了，对吧？对对对对对对，因为你因为",
+        "right": "他们那个时代没有人说自己是法家，不敢说，他也不他们都说自己是",
+        "position": 718
+      }
+    ],
+    "reference": "",
+    "candidate_source": "",
+    "candidate_target": "",
+    "distance": [
+      "",
+      ""
+    ]
+  },
+  {
+    "n": 157,
+    "id": "6f9fa72615cff9fb469058e2",
+    "kind": "demo_without_reference",
+    "task": "local_edit_review",
+    "group": "project_demo:project_audio5",
+    "input": "对，初心是为了利嘛？对，你不能引入一个义的概念来选。嗯哼，那引引入一个什么概念呢？治。嗯哼。",
+    "hunks": [
+      {
+        "before": "引",
+        "after": "",
+        "left": "，初心是为了利嘛？对，你不能引入一个义的概念来选。嗯哼，那引",
+        "right": "入一个什么概念呢？治。嗯哼。就是你有一个聪明的选择和一个愚蠢",
+        "position": 2612
+      }
+    ],
+    "reference": "",
+    "candidate_source": "引引",
+    "candidate_target": "引",
+    "distance": [
+      "",
+      ""
+    ]
+  }
+]

@@ -1,0 +1,69 @@
+{
+  "test": {
+    "recordings": 22,
+    "unique_and_complete": true,
+    "model_failures": 0,
+    "frozen_protocols_verified": true,
+    "source_asr_matches_frozen": true,
+    "executed_code_verified": true,
+    "refiner_config_and_weights_verified": true,
+    "gate_weights_metadata_selection_unchanged": true,
+    "raw_final_same_current_student": 22
+  },
+  "risk_dev": {
+    "recordings": 14,
+    "unique_and_complete": true,
+    "model_failures": 0,
+    "frozen_protocols_verified": true,
+    "source_asr_matches_frozen": true,
+    "executed_code_verified": true,
+    "refiner_config_and_weights_verified": true,
+    "gate_weights_metadata_selection_unchanged": true,
+    "raw_final_same_current_student": 6
+  },
+  "risk_dev_validation_overlap": 28,
+  "asr_service_health": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "tests": {
+    "new_audit_pytest": 5,
+    "existing_gate_unittest_in_agentic_asr": 22,
+    "passed": true
+  },
+  "selection_sha256": "9ce5e1273946bcc00eb5c36803386d51cea739e8acb73f9241d77f0f0868eee0",
+  "artifact_hashes": {
+    "pair_audit_summary.json": "f408725e9cecdd1b55a4568c29e210b7a963bddf5a9b83dc0fe584bf25896fa9",
+    "REPORT.md": "7b2afeb5d6e270785a858ceeec1bf0ab2bc48633ff1d0243b0e02055dc647385",
+    "case_audit.jsonl": "b9942a1b534abff4afbb80d5db5cc32137641bd3b963e6a01bf419f5ed0cf15e",
+    "sequential_risk_dev.log": "420b58770903e076879b143de6ce094dd745b2c8f7c9a9d598be46c12d0e7273",
+    "LUNA_AUDIT.md": "66a637cd58b9e59418d1ca3ff20d941ca526043bec2de6b8e16e1db88beb60a7",
+    "sequential_test.log": "d7510cf7b30015c777bc7f0beb3f8d9456046ff3b248c85868b920123a25c039",
+    "sequential_risk_dev/configuration.json": "94e7175a1d09a22ff4489f6008c60e995abdafb31ed64212175bf01fe07d7c92",
+    "sequential_risk_dev/summary.json": "b92839ef11ab886b84db87690ace5a51e1e7952517e5b4271243b3c9d1aed7a0",
+    "sequential_risk_dev/replay.jsonl": "098d709000ec510839984a67ea0970b30aafba1d52f33dfed1fd0c7d2ec8115d",
+    "sequential_test/configuration.json": "8a7e25c875fec4e8091a4d547d70e5904311e8c8b50959d866891b4ebf7187f4",
+    "sequential_test/summary.json": "41ab4735a9cfe7ae11bb242abcd952bff22e912983a0b49d233b05e9f1b2300c",
+    "sequential_test/replay.jsonl": "5143aef0d819dd8011596aaae5ad1cda9a258f2fc3e069d1480809082f7bd51c",
+    "sequential_risk_dev/executed_code/replay_gate_pipeline.py": "2d343c360e09cbdb6a26a29c8d53e295aa81f921dc0b1d846489214426403fe1",
+    "sequential_test/executed_code/replay_gate_pipeline.py": "2d343c360e09cbdb6a26a29c8d53e295aa81f921dc0b1d846489214426403fe1"
+  }
+}

@@ -1,26 +1,0 @@
-Pairs 73301 17388 positive 15724
-Loading weights:   0%|          | 0/101 [00:00<?, ?it/s]Loading weights: 100%|██████████| 101/101 [00:00<00:00, 18098.98it/s]
-[transformers] [1mBertModel LOAD REPORT[0m from: /home/aim0/桌面/tan/ASR/Codex-web/models/entity_ranker/encoder_medium
-Key                                        | Status     | 
--------------------------------------------+------------+-
-cls.predictions.transform.dense.weight     | UNEXPECTED | 
-cls.predictions.decoder.bias               | UNEXPECTED | 
-cls.predictions.transform.dense.bias       | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
-cls.predictions.decoder.weight             | UNEXPECTED | 
-cls.predictions.bias                       | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
-pooler.dense.bias                          | MISSING    | 
-pooler.dense.weight                        | MISSING    | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
-EPOCH 1 loss 0.38451856151327873 seconds 71.79614202305675
-EPOCH 2 loss 0.2528483768058889 seconds 71.28305291198194
-EPOCH 3 loss 0.1803602729298597 seconds 71.2661492107436
-EPOCH 4 loss 0.1390417217504939 seconds 71.39586347574368
-EPOCH 5 loss 0.10995843208577356 seconds 71.46132680494338
-EPOCH 6 loss 0.09230896911040212 seconds 71.04942762898281
-EPOCH 7 loss 0.07494320226232637 seconds 70.89384954608977
-EPOCH 8 loss 0.061405898541063375 seconds 71.25206871097907

@@ -1,0 +1,40 @@
+# Independent score implementation audit
+
+Audit scope: read-only inspection of `score_modes.py`, `partial_summary.json`, `partial_comparisons.jsonl`, the corresponding final-result rows in `results.jsonl`, frozen references, and library snapshots. `audit_score_modes.py` independently recalculates the scored subset; it does not import or invoke the root scorer. No inference was run and protected unseen data was not read.
+
+## Result
+
+The audited partial snapshot contains exactly 501 paired IDs (1,002 final rows). The audit selects IDs from the saved `partial_comparisons.jsonl`, not every currently appended row in `results.jsonl`; it found exactly one result per arm and the same input PCM hash within every pair. Independently recomputed per-ID values and requested aggregate fields match the saved partial output exactly (no mismatches).
+
+Snapshot identifiers: the ID-set SHA-256 is computed from lexicographically sorted IDs joined with LF and no terminal LF: `2e6b12cc593ef3949e67fc31e2048a6bf3b2f2940978c00bdf700a44e6047d37`; comparisons-file SHA-256 `863f9b6d6e56a872bc26ded6eee5b43bb4321aa85070a293a2030a172116d4cc`; summary-file SHA-256 `6708eca377730c8d7bd717d15b7a4d9ca5e46555775bdde57aaee0fd09a7bf6a`. The JSON record is `audit_score_modes_report_partial_501_2e6b12cc593e.json`.
+
+| Metric over the same 501 IDs | Context | Audio review |
+|---|---:|---:|
+| Exact gold hits / expected mentions | 523 / 555 | 540 / 555 |
+| CER | 348 / 11,586 = 3.0036% | 312 / 11,586 = 2.6929% |
+| Session refiner calls | 106 | 106 |
+| Session refiner retry calls | 17 | 19 |
+| Mean `timing.total_seconds` | 0.9103 s | 1.0862 s |
+| Median `timing.total_seconds` | 0.7063 s | 1.0636 s |
+| Dictionary strings absent from the whole reference | 0 | 0 |
+| Dictionary excess mentions vs reference dictionary matches | 0 | 1 |
+
+These are partial-run, descriptive paired results, not the planned 2,506-pair final estimate. The independent machine-readable values are in the hash-named JSON file above. Use `audit_score_modes.py --full` only after full `summary.json` and `comparisons.jsonl` are available.
+
+## Checks and interpretation
+
+- **Gold multiplicity:** `score_modes.py` constructs `Counter(norm(e['canonical']) ...)`, so repeated gold mentions are retained and `expected_mentions` sums multiplicity. Each canonical’s hits are capped at its gold count using `min(count, normalized_text.count(canonical))`. This matches the prior exact-surface convention and avoids over-crediting repeated ASR output. Distinct overlapping canonicals can still both receive credit for overlapping characters; as in the prior reports, this is mention matching, not span-aligned detection or identity verification.
+- **Same output and normalization for both arms:** both arms use `row.result.clean_text` for primary hits/CER and `row.result.raw_text` for the separately labeled raw diagnostics. Reference and output share zh-ITN, OpenCC `t2s`, NFKC/casefold, and P/Z/C removal. The independent implementation used its own edit-distance routine and reproduced all per-ID and aggregate values.
+- **Missing glossary surfaces:** the scorer builds a longest-first, non-overlapping regex from each sample’s full active library, then computes library matches in the entire normalized reference and output. `dictionary_absent_mentions` counts output matches only when that exact canonical string is nowhere in the reference. `dictionary_excess_mentions` separately counts excess output library matches over reference library-match multiplicity. Both were independently recomputed and matched (zero in both arms for this partial subset). “Absent” is reference absence, not an acoustically adjudicated hallucination; an alias, valid variant, or annotation omission can still look absent. The longest-first regex is a lexical proxy and does not disambiguate nested terms semantically.
+- **Retries/call labels:** `refiner_calls` is sourced from `result.session_refiner_call_count`, and `refiner_retries` from `result.session_refiner_retry_call_count`. These are session-level logical call counters; prior audits distinguish them from narrowly traced text `refine*` invocations, and repetition-review calls can contribute. They are not ASR replay counts. The scorer reports replay checks separately. `refiner_retry_count` and `placeholder_retry_count` are present in final payloads but are not separately aggregated; if those concepts are needed in reporting, add clearly named summary columns rather than conflating them with the session retry-call counter.
+- **Library access:** the independent script opened snapshots with SQLite `mode=ro`. `score_modes.py` calls `EntityStore`, whose constructor initializes schema through a writable connection. The checked-in snapshots already have the expected schema, and all 12 snapshot SHA-256 hashes still match `protocol.json` after the saved scoring run; no mutation is observed. A read-only connection would make the scorer’s immutability guarantee explicit.
+- **Context exposure:** the scorer asserts that requested context matches the assigned arm, but it does not assert context was actually applied or that the context digest/term count matches the frozen context16. In the audited 501 context rows, all reported applied=true; 474 used 16 terms and 27 used 11 terms (some domain libraries generate fewer than 16 usable terms). All 501 `ready.entity_asr_context_digest` values matched the frozen library context digest, and all reported `entity_asr_context_guard.fallback_active=false`. Keep applied/fallback counts in the final audit, and consider asserting applied/count/digest so future failed prompts cannot be credited as prompt exposures. The final `result` omits the digest, so verify it from `ready`.
+- **Latency/cache scope:** the protocol states local WebSocket connect-to-final, serial sample concurrency, fresh ASR/refinement, with file-read/decode/browser/proxy time excluded and no cached ASR responses. `score_modes.py` computes mean/median/p90 from `row.timing` for each arm and paired differences from the same IDs. The independent mean/median matched. Do not mix the legacy smoke’s elapsed values or its cached/replayed artifacts into this result set; it is a different experiment and did not enable context.
+
+## `write_report.py` consistency review
+
+I inspected the root report writer without changing it. Its metric lookups match `score_modes.py`: recall/CER and mean/median/P90 use the same summary fields; the prompt partition uses the two `prompt_*`/`outside_prompt_*` counts; the type/domain tables use existing grouped summaries; and the bootstrap intervals are labeled audio minus context. Percentages are formatted from fractional values, and seconds are shown with three decimals. The 2,506-record/5,012-session claim is guarded by `summary.complete` and a 2,506-row comparison assertion.
+
+The timing paragraph agrees with `protocol.json` and `collect_modes.py`: one serial session per sample/arm, connect-to-final, fresh ASR, and file read/decode/browser/proxy time excluded. Arm order is deterministically pseudorandom by ID hash, and samples are interleaved by library. The one nuance is that `tail_seconds` starts after audio acknowledgements and measures finish-to-final, while setup-to-first-send overhead is not explicitly broken out; total wall time remains the correct end-to-end metric. “中位收尾” is accurate but could define this boundary in the prose.
+
+Two optional wording improvements: call `refiner_calls` “session logical Refiner calls (including repetition review when present)” to distinguish it from narrowly traced text-refiner invocations; and add `dictionary_excess_mentions` beside absent-surface counts so a repeated known glossary term can be distinguished from a novel surface. The current report’s narrower label “参考中不存在的词库词” is otherwise accurate, and its caveat correctly says this is not a human hallucination judgment. The known-vocabulary and short-clip limits, no protected unseen usage, and shared-pipeline attribution caveats are consistent with the score data and protocol.

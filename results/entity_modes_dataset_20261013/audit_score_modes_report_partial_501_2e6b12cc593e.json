@@ -1,0 +1,50 @@
+{
+  "scope": "partial",
+  "summary_completed_pairs": 501,
+  "audited_id_count": 501,
+  "id_set_sha256": "2e6b12cc593ef3949e67fc31e2048a6bf3b2f2940978c00bdf700a44e6047d37",
+  "comparison_snapshot_sha256": "863f9b6d6e56a872bc26ded6eee5b43bb4321aa85070a293a2030a172116d4cc",
+  "summary_snapshot_sha256": "6708eca377730c8d7bd717d15b7a4d9ca5e46555775bdde57aaee0fd09a7bf6a",
+  "selected_result_rows_sha256": "d8490e321c74be7ff7f47808b61644e90001ef44f095a459c6e64ada46fa42a1",
+  "available_current_result_rows_for_these_ids": 1002,
+  "independent_metrics": {
+    "context": {
+      "hits": 523,
+      "expected_mentions": 555,
+      "errors": 348,
+      "reference_chars": 11586,
+      "refiner_calls": 106,
+      "refiner_retries": 17,
+      "mean_total_seconds": 0.9103254396663588,
+      "median_total_seconds": 0.7063016090542078,
+      "CER": 0.03003625064733299,
+      "entity_recall": 0.9423423423423424,
+      "dictionary_absent_mentions": 0,
+      "dictionary_excess_mentions": 0
+    },
+    "audio": {
+      "hits": 540,
+      "expected_mentions": 555,
+      "errors": 312,
+      "reference_chars": 11586,
+      "refiner_calls": 106,
+      "refiner_retries": 19,
+      "mean_total_seconds": 1.0862001859055026,
+      "median_total_seconds": 1.0636488730087876,
+      "CER": 0.026929052304505437,
+      "entity_recall": 0.972972972972973,
+      "dictionary_absent_mentions": 0,
+      "dictionary_excess_mentions": 1
+    }
+  },
+  "per_sample_mismatches": [],
+  "summary_mismatches": [],
+  "status": "PASS",
+  "notes": [
+    "The audit ID set is exactly partial_comparisons.jsonl, not all rows currently appended to results.jsonl.",
+    "Gold multiplicity is recomputed with Counter(canonical) and each per-string hit is capped at that multiplicity.",
+    "Dictionary absence is recomputed against the full normalized reference: a recognized library canonical is absent only when that string occurs nowhere in the reference. Excess mentions separately counts output-library matches beyond reference-library match multiplicity.",
+    "CER uses an independent two-row edit-distance implementation after the documented zh-ITN, OpenCC t2s, NFKC/casefold, and P/Z/C removal pipeline."
+  ],
+  "report_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/audit_score_modes_report_partial_501_2e6b12cc593e.json"
+}

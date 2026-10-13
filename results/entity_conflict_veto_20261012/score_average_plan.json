@@ -1,0 +1,15 @@
+{
+  "development_only": true,
+  "post_score_exploration": true,
+  "reason": "Symmetric both-prompts veto produced no changes; examine averaged margins as copying-bias diagnostic. Not independently preregistered.",
+  "scores_sha256": "50c2f459b65011bd693a31d0846f58ef96eea379e171f4809493a4b8227bfe55",
+  "thresholds": [
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "decision": "Average of target-minus-source mean token log probabilities under both hypothetical inputs <= -threshold. Veto existing changes only.",
+  "production_deployment": false
+}

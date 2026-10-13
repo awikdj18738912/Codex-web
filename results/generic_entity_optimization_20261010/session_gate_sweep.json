@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "method": "Skip the entire session replay unless the maximum retrieval_score among this session's selected candidates is at least the threshold. Prompt terms are unchanged for sessions that pass.",
+  "thresholds": [
+    0.55,
+    0.6,
+    0.62,
+    0.635,
+    0.65,
+    0.67,
+    0.7,
+    0.72,
+    0.75,
+    0.8,
+    0.85,
+    0.9
+  ],
+  "old_candidate_phase": {
+    "source": "results/generic_entity_audio_20261010/plan.json + outputs_neighbor.jsonl",
+    "sample_count": 344,
+    "baseline_replay_opportunities": 170,
+    "successful_samples": 11,
+    "successful_changes": 13,
+    "minimum_successful_case_max_score": 0.635,
+    "minimum_score_success_cases": [
+      {
+        "id": "speechio_law_rIfA-JnK798_0106-861",
+        "domain": "law",
+        "max_candidate_score": 0.635,
+        "change_count": 1
+      }
+    ],
+    "threshold_sweep": [
+      {
+        "threshold": 0.55,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 9,
+        "saved_fraction": 0.052941176470588235,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      {
+        "threshold": 0.6,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 60,
+        "saved_fraction": 0.35294117647058826,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      {
+        "threshold": 0.62,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 74,
+        "saved_fraction": 0.43529411764705883,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      {
+        "threshold": 0.635,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 88,
+        "saved_fraction": 0.5176470588235295,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      {
+        "threshold": 0.65,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 101,
+        "saved_fraction": 0.5941176470588235,
+        "lost_successful_samples": 1,
+        "lost_successful_changes": 1,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.67,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 108,
+        "saved_fraction": 0.6352941176470588,
+        "lost_successful_samples": 1,
+        "lost_successful_changes": 1,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.7,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 128,
+        "saved_fraction": 0.7529411764705882,
+        "lost_successful_samples": 1,
+        "lost_successful_changes": 1,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.72,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 137,
+        "saved_fraction": 0.8058823529411765,
+        "lost_successful_samples": 1,
+        "lost_successful_changes": 1,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.75,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 155,
+        "saved_fraction": 0.9117647058823529,
+        "lost_successful_samples": 2,
+        "lost_successful_changes": 2,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          },
+          {
+            "id": "speechio_people_startup_insider_xiaomi_0042-1703",
+            "domain": "people",
+            "max_candidate_score": 0.72,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.8,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 158,
+        "saved_fraction": 0.9294117647058824,
+        "lost_successful_samples": 2,
+        "lost_successful_changes": 2,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          },
+          {
+            "id": "speechio_people_startup_insider_xiaomi_0042-1703",
+            "domain": "people",
+            "max_candidate_score": 0.72,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.85,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 159,
+        "saved_fraction": 0.9352941176470588,
+        "lost_successful_samples": 2,
+        "lost_successful_changes": 2,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          },
+          {
+            "id": "speechio_people_startup_insider_xiaomi_0042-1703",
+            "domain": "people",
+            "max_candidate_score": 0.72,
+            "change_count": 1
+          }
+        ]
+      },
+      {
+        "threshold": 0.9,
+        "baseline_replay_opportunities": 170,
+        "replays_skipped": 160,
+        "saved_fraction": 0.9411764705882353,
+        "lost_successful_samples": 3,
+        "lost_successful_changes": 3,
+        "lost_success_cases": [
+          {
+            "id": "speechio_law_rIfA-JnK798_0106-861",
+            "domain": "law",
+            "max_candidate_score": 0.635,
+            "change_count": 1
+          },
+          {
+            "id": "speechio_people_startup_insider_xiaomi_0042-1703",
+            "domain": "people",
+            "max_candidate_score": 0.72,
+            "change_count": 1
+          },
+          {
+            "id": "er_faq_examination_019",
+            "domain": "medical_faq",
+            "max_candidate_score": 0.87,
+            "change_count": 1
+          }
+        ]
+      }
+    ],
+    "selected_threshold": 0.635,
+    "selected_threshold_preserves_all_successes": true,
+    "selected_threshold_replays_skipped": 88,
+    "selected_threshold_saved_fraction": 0.5176470588235295
+  },
+  "new_source_regression": {
+    "source": "frozen entity DBs in generic_entity_blind_20261010/libraries; candidates recomputed with GenericEntitySelector from raw_initial transcript",
+    "sample_count": 128,
+    "cohorts": {
+      "lexicon_absent": {
+        "samples": 32,
+        "baseline_replay_opportunities": 23,
+        "thresholds": [
+          {
+            "threshold": 0.55,
+            "replays_skipped": 1,
+            "saved_fraction": 0.043478260869565216,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.6,
+            "replays_skipped": 12,
+            "saved_fraction": 0.5217391304347826,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.62,
+            "replays_skipped": 15,
+            "saved_fraction": 0.6521739130434783,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.635,
+            "replays_skipped": 16,
+            "saved_fraction": 0.6956521739130435,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.65,
+            "replays_skipped": 18,
+            "saved_fraction": 0.782608695652174,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.67,
+            "replays_skipped": 18,
+            "saved_fraction": 0.782608695652174,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.7,
+            "replays_skipped": 19,
+            "saved_fraction": 0.8260869565217391,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.72,
+            "replays_skipped": 19,
+            "saved_fraction": 0.8260869565217391,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.75,
+            "replays_skipped": 22,
+            "saved_fraction": 0.9565217391304348,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.8,
+            "replays_skipped": 22,
+            "saved_fraction": 0.9565217391304348,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.85,
+            "replays_skipped": 22,
+            "saved_fraction": 0.9565217391304348,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.9,
+            "replays_skipped": 22,
+            "saved_fraction": 0.9565217391304348,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          }
+        ]
+      },
+      "lexicon_present": {
+        "samples": 96,
+        "baseline_replay_opportunities": 67,
+        "thresholds": [
+          {
+            "threshold": 0.55,
+            "replays_skipped": 6,
+            "saved_fraction": 0.08955223880597014,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.6,
+            "replays_skipped": 21,
+            "saved_fraction": 0.31343283582089554,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.62,
+            "replays_skipped": 29,
+            "saved_fraction": 0.43283582089552236,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.635,
+            "replays_skipped": 32,
+            "saved_fraction": 0.47761194029850745,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.65,
+            "replays_skipped": 33,
+            "saved_fraction": 0.4925373134328358,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.67,
+            "replays_skipped": 40,
+            "saved_fraction": 0.5970149253731343,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.7,
+            "replays_skipped": 54,
+            "saved_fraction": 0.8059701492537313,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.72,
+            "replays_skipped": 57,
+            "saved_fraction": 0.8507462686567164,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.75,
+            "replays_skipped": 60,
+            "saved_fraction": 0.8955223880597015,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.8,
+            "replays_skipped": 61,
+            "saved_fraction": 0.9104477611940298,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.85,
+            "replays_skipped": 61,
+            "saved_fraction": 0.9104477611940298,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          },
+          {
+            "threshold": 0.9,
+            "replays_skipped": 62,
+            "saved_fraction": 0.9253731343283582,
+            "lost_successful_samples": 0,
+            "lost_successful_changes": 0,
+            "lost_success_cases": []
+          }
+        ]
+      }
+    },
+    "selected_threshold": 0.635,
+    "selected_threshold_by_cohort": {
+      "lexicon_absent": {
+        "threshold": 0.635,
+        "replays_skipped": 16,
+        "saved_fraction": 0.6956521739130435,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      },
+      "lexicon_present": {
+        "threshold": 0.635,
+        "replays_skipped": 32,
+        "saved_fraction": 0.47761194029850745,
+        "lost_successful_samples": 0,
+        "lost_successful_changes": 0,
+        "lost_success_cases": []
+      }
+    }
+  },
+  "interpretation": "Threshold was selected only from the old 344-sample candidate phase; the 128-sample new-source cohort is reported as regression evaluation and did not influence threshold selection."
+}

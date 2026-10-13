@@ -1,0 +1,26 @@
+{
+  "recordings": 288,
+  "role": "dev_terminal_gain_expansion",
+  "source_rows_sha256": "7c870a372927789b7af678eb6b33d560a65b622c7ce37f7b87e54a643fbbff31",
+  "adapter_sha256": "1d04a18534fd9209824619b8a2336412cb7194865a82a405a708afb52ec3881a",
+  "runtime_protocol_sha256": "f78c504750d385e203695679528eb6ffdae77092769f6dbec7854e7743c70802",
+  "source_provenance": {
+    "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_round3_20261011/dev_data",
+    "asr_sha256": "7c870a372927789b7af678eb6b33d560a65b622c7ce37f7b87e54a643fbbff31",
+    "sampling_inputs_sha256": "71e0ea9f723ac85c5be88634965f4731e5011520d80eba6262666b77f4cabb1e",
+    "total_source_views": 288,
+    "selected_views": 288,
+    "prepared_native_refine_views": 143,
+    "variants": {
+      "clean": 162,
+      "noise": 126
+    }
+  },
+  "templates": 30,
+  "sampling": "all partition views; native REFINE opportunities discovered by actual finalizer; no outcome-based sampling",
+  "synthetic_split": "dev",
+  "human_gold": false,
+  "audio_script_verified": false,
+  "confidence": "disabled",
+  "scope": "actual_WebSocket_final_snapshot_with_frozen_recorded_ASR_not_live_streaming_latency"
+}

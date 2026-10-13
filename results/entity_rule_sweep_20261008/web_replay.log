@@ -1,25 +1,0 @@
-Loading weights:   0%|          | 0/219 [00:00<?, ?it/s]Loading weights:   0%|          | 1/219 [00:00<00:29,  7.41it/s]Loading weights:   1%|          | 2/219 [00:00<00:28,  7.64it/s]Loading weights:  23%|██▎       | 50/219 [00:00<00:00, 190.65it/s]Loading weights:  48%|████▊     | 105/219 [00:00<00:00, 315.61it/s]Loading weights:  74%|███████▍  | 163/219 [00:00<00:00, 403.03it/s]Loading weights:  99%|█████████▊| 216/219 [00:00<00:00, 440.75it/s]Loading weights: 100%|██████████| 219/219 [00:00<00:00, 326.10it/s]
-Loading AgenticASR Refiner...
-/home/aim0/data/conda/envs/agentic-asr/lib/python3.12/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-  import pkg_resources
-MultiMed_Chinese_train_0993 clean baseline 急需生命支持，从常识判断，误闯应该得到这台埃克莫。因为救急就是救命。但从现实来讲，仅有一台。
-MultiMed_Chinese_train_0993 clean proposed 急需生命支持，从常识判断，误闯应该得到这台ECMO。因为救急就是救命。但从现实来讲，仅有一台。
-MultiMed_Chinese_train_0996 clean baseline 他可能会错过做埃克莫手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿6套勿一样，我好像外头成功唻总共成功唻，大概只有百分之十几。对，老少，十几还要。
-MultiMed_Chinese_train_0996 clean proposed 他可能会错过做ECMO手术的最佳窗口期，明天会怎么样，谁都吃不准。星光园和搿6套勿一样，我好像外头成功唻总共成功唻，大概只有百分之十几。对，老少，十几还要。
-MultiMed_Chinese_train_0987 clean baseline 但拼到一半，王维军才发现，第2台埃克莫不但没有套包耗材，连水箱管路都有了问题。哦。
-MultiMed_Chinese_train_0987 clean proposed 但拼到一半，王维军才发现，第2台ECMO不但没有套包耗材，连水箱管路都有了问题。哦。
-Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]Loading weights: 100%|██████████| 203/203 [00:00<00:00, 23457.04it/s]
-[transformers] [1mBertForMaskedLM LOAD REPORT[0m from: hfl/chinese-roberta-wwm-ext
-Key                         | Status     |  | 
-----------------------------+------------+--+-
-cls.seq_relationship.weight | UNEXPECTED |  | 
-bert.pooler.dense.weight    | UNEXPECTED |  | 
-bert.pooler.dense.bias      | UNEXPECTED |  | 
-cls.seq_relationship.bias   | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-MultiMed_Chinese_train_1026 clean baseline 像我去年嘞，赛季都没打，到那下谁头都快就去了，去了就空着嘞。从成功拼装出第1台埃克莫，到决定先给十五床上机，再到今天用埃克莫。
-MultiMed_Chinese_train_1026 clean proposed 像我去年嘞，赛季都没打，到那下谁头都快就去了，去了就空着嘞。从成功拼装出第1台ECMO，到决定先给十五床上机，再到今天用埃克莫。
-MultiMed_Chinese_train_1026 noise baseline 从成功拼装出第1台X模，到决定先给食物创生机，再到今天，用X模。
-MultiMed_Chinese_train_1026 noise proposed 从成功拼装出第1台X模，到决定先给食物创生机，再到今天，用X模。

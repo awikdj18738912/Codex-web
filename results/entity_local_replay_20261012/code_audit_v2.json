@@ -1,0 +1,88 @@
+{
+  "scope": {
+    "candidate_v2": "results/entity_local_replay_20261012/candidate_v2_entity_audio_repair.py",
+    "candidate_v1_unchanged": "results/entity_local_replay_20261012/candidate_entity_audio_repair.py",
+    "original_reference_module": "results/entity_local_replay_20261012/original_entity_audio_repair.py",
+    "test_file": "experiments/tests/test_entity_local_replay_v2.py",
+    "candidate_v2_sha256": "0f26aca16f00f382f3df113d246a114723e797e8fbb0e93e050ac065257e6825",
+    "candidate_v1_sha256": "590ab649bacef407d2b2c4277a5c45d19f25a67299d137bd85f03152a36036ad",
+    "production_or_candidate_modified": false,
+    "new181_paths_read": false,
+    "model_asr_gpu_invoked": false,
+    "pytest": "pytest -q experiments/tests/test_entity_local_replay_v2.py",
+    "pytest_result": {
+      "passed": 9,
+      "failed": 0,
+      "duration_seconds_approx": 0.38
+    }
+  },
+  "v2_behavior_checks": [
+    {
+      "case": "sub-0.63 but validator-eligible weak candidate with a strong global candidate, audio windows separated",
+      "test": "V2 plans both strong and weak candidates in distinct localized windows; weak score 0.55 receives a window.",
+      "result": "pass"
+    },
+    {
+      "case": "eligible candidates would require >2 windows",
+      "test": "Localized planner returns insufficient_audio_saving and _repair invokes one full-range replay.",
+      "result": "pass"
+    },
+    {
+      "case": "window coverage exceeds 60 percent",
+      "test": "Planner declines localization with insufficient_audio_saving.",
+      "result": "pass"
+    },
+    {
+      "case": "short candidate rejected by existing confirmation eligibility",
+      "test": "No independent window is allocated, but an ineligible short candidate fully within a strong selected window remains in that window context.",
+      "result": "pass"
+    },
+    {
+      "case": "all candidates below global minimum score",
+      "test": "A sole score-0.55 candidate passes _short_expansion_supported but _repair returns reason=weak_candidates before localization/replay.",
+      "result": "pass; inherited global policy, not a V2 window omission"
+    },
+    {
+      "case": "45-second boundary",
+      "test": "44.999s declines localization; 45.0s permits it when other limits pass.",
+      "result": "pass"
+    },
+    {
+      "case": "local replay error after a prior proposal",
+      "test": "Fake async session fails on second window; wrapper returns unchanged initial text, no partial changes, revision remains 0.",
+      "result": "pass"
+    },
+    {
+      "case": "cross-segment confirmation payload",
+      "test": "Authoritative top-level text changes; completed_segments is cleared rather than left stale.",
+      "result": "pass"
+    }
+  ],
+  "weak_candidate_policy": {
+    "v2_window_planning": "candidate_v2_entity_audio_repair.py:493-507 selects standalone windows by _short_expansion_supported(candidate), not retrieval score. After merging, it attaches all required candidate windows fully contained in a selected window, including ineligible short candidates as anchors.",
+    "global_gate": "candidate_v2_entity_audio_repair.py:395-397 still skips all replay if max_candidate_score < minimum_replay_score. The original module has the same gate at original_entity_audio_repair.py:367-369. Thus eligible weak candidates are covered by V2 local planning only when another candidate in the same transcript clears the global 0.63 gate; this is intentional parity with the deployed global gate per parent instruction.",
+    "overflow_fallback": "candidate_v2_entity_audio_repair.py:502-504 returns None when there are no eligible windows, more than two windows, or total local coverage >60%; _repair routes None to a full-audio replay at lines 429-438."
+  },
+  "remaining_findings": [
+    {
+      "finding": "Global weak-only sessions continue to skip replay by design.",
+      "classification": "Inherited V1/global policy, not a V2 regression.",
+      "evidence": "The V1 original and V2 both return weak_candidates when max_candidate_score < minimum_replay_score, before local planning."
+    },
+    {
+      "finding": "If all retrieved candidates exceed the global score gate but fail _short_expansion_supported, no local window is produced and _repair performs a full-audio replay before the same verifier rejects the short expansions.",
+      "classification": "Potential replay-time inefficiency; no new correction is admitted by the short-expansion filter.",
+      "evidence": "V2 _localized_windows filters windows at lines 493-494; empty windows trigger full replay via lines 429-438."
+    },
+    {
+      "finding": "A successful cross-segment edit can clear completed_segments while retaining corrected top-level text.",
+      "classification": "Inherited compatibility fallback.",
+      "evidence": "revise_entity_audio_payload AST is identical in original_entity_audio_repair.py and candidate_v2_entity_audio_repair.py; test asserts no stale segment text remains."
+    }
+  ],
+  "test_boundaries": [
+    "Tests use pure methods and fake async request/replay functions only.",
+    "No V2 real sparse-three-sample output or any other running model result was read.",
+    "V1 candidate, production system module, frozen plan, and real ASR output were not modified or loaded as runtime services."
+  ]
+}

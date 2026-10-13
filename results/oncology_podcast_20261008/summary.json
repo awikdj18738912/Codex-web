@@ -1,0 +1,91 @@
+{
+  "baseline": {
+    "samples": 38,
+    "refiner_calls": 16,
+    "changed_samples": 0,
+    "entity_normalization_events": 0,
+    "candidate_decisions": {},
+    "case_normalization_events": 0,
+    "database_protection_events": 0,
+    "database_hit_names": []
+  },
+  "control_replay": {
+    "samples": 38,
+    "refiner_calls": 16,
+    "changed_samples": 0,
+    "entity_normalization_events": 0,
+    "candidate_decisions": {},
+    "case_normalization_events": 0,
+    "database_protection_events": 0,
+    "database_hit_names": []
+  },
+  "medical_library": {
+    "samples": 38,
+    "refiner_calls": 16,
+    "changed_samples": 0,
+    "entity_normalization_events": 0,
+    "candidate_decisions": {
+      "KEEP_RAW": 2
+    },
+    "case_normalization_events": 0,
+    "database_protection_events": 142,
+    "database_hit_names": [
+      "前列腺癌",
+      "微血管",
+      "癌细胞",
+      "肿瘤切除",
+      "肿瘤细胞"
+    ]
+  },
+  "entity_library": {
+    "samples": 38,
+    "refiner_calls": 28,
+    "changed_samples": 8,
+    "entity_normalization_events": 6,
+    "candidate_decisions": {
+      "HINT_ONLY": 12,
+      "KEEP_RAW": 4
+    },
+    "case_normalization_events": 6,
+    "database_protection_events": 492,
+    "database_hit_names": [
+      "CAR-T",
+      "EGFR",
+      "HER2",
+      "乳腺癌",
+      "免疫治疗",
+      "免疫细胞",
+      "前列腺癌",
+      "原位癌",
+      "基因突变",
+      "姑息治疗",
+      "宫颈癌",
+      "小细胞肺癌",
+      "微血管",
+      "恶性肿瘤",
+      "新辅助治疗",
+      "淋巴瘤",
+      "淋巴结",
+      "甲状腺癌",
+      "癌前病变",
+      "癌症分期",
+      "癌细胞",
+      "白血病",
+      "细胞毒性",
+      "肝癌",
+      "肺癌",
+      "肺腺癌",
+      "肺鳞癌",
+      "肿瘤分期",
+      "肿瘤切除",
+      "肿瘤细胞",
+      "胰腺癌",
+      "良性肿瘤",
+      "辅助治疗",
+      "酪氨酸激酶抑制剂",
+      "靶向治疗",
+      "靶向药",
+      "鳞状细胞癌"
+    ]
+  }
+}

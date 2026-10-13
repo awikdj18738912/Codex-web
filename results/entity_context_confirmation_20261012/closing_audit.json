@@ -1,0 +1,170 @@
+{
+  "audit_scope": "Read-only verification of the background ASR replay files; no input, metric, or production file modified.",
+  "completeness": {
+    "planned_recordings": 63,
+    "input_rows": 63,
+    "input_unique_ids": 63,
+    "output_rows": 63,
+    "output_unique_ids": 63,
+    "input_output_id_sets_match": true,
+    "missing_output_ids": [],
+    "unexpected_output_ids": [],
+    "outputs_have_baseline_and_proposed": true
+  },
+  "background_asr_requests": {
+    "sum_new_replay_attempts_field": 11,
+    "output_rows_with_new_replay_attempt": 11,
+    "background_context_stream_start_events": 11,
+    "background_context_starts_confirmed_applied": 11,
+    "recorded_http_request_events_by_endpoint": {
+      "/stream/chunk": 66,
+      "/stream/finish": 11,
+      "/stream/start": 11
+    },
+    "recorded_http_request_event_total": 88,
+    "request_count_interpretation": "The output counters and trace show 11 replay sessions. The captured traces contain 11 /stream/start, 66 /stream/chunk, and 11 /stream/finish events (88 recorded HTTP request events total). No /stream/cancel events are recorded; this audit does not infer whether any unlogged cleanup request occurred.",
+    "context_start_records": [
+      {
+        "id": "leb1_8c2510722ec5a19f9656",
+        "context_applied": true,
+        "session_id": "b33a07328e524c77aead3e7f6a4546b4"
+      },
+      {
+        "id": "ec2_11a7a30fcdc77067553b",
+        "context_applied": true,
+        "session_id": "b6ffa2e1d92247ff924cb49ec1413a43"
+      },
+      {
+        "id": "ec2_8b59e1e5083bb9455821",
+        "context_applied": true,
+        "session_id": "a076acf8079d4177ad6629d3a49253c6"
+      },
+      {
+        "id": "leb1_38459bb96fdd7d36ecc1",
+        "context_applied": true,
+        "session_id": "6ea50721784a4f2fba4a3c9204343d23"
+      },
+      {
+        "id": "ec2_6d69ea498293fa9cf0d8",
+        "context_applied": true,
+        "session_id": "5148953e279c4561af39f7f35112f18b"
+      },
+      {
+        "id": "leb1_31aa48dffc62bfc72a19",
+        "context_applied": true,
+        "session_id": "11b0591ba529408a96308536516a4ddc"
+      },
+      {
+        "id": "leb1_88c4c3e795a59e4951b3",
+        "context_applied": true,
+        "session_id": "da280e4b7e13491e9c2958ab2260efba"
+      },
+      {
+        "id": "leb1_825878750030a372520a",
+        "context_applied": true,
+        "session_id": "7e6b9a955fd34222b5665f23635b1b6a"
+      },
+      {
+        "id": "leb1_1d9eb0f927119f8fd82c",
+        "context_applied": true,
+        "session_id": "3319ca7dcec1489698cee37228a7dae1"
+      },
+      {
+        "id": "leb1_4e7dfc82eb9525944e16",
+        "context_applied": true,
+        "session_id": "97cd9cd4d35b45a2ab718f8b8edeb0a5"
+      },
+      {
+        "id": "leb1_8acf8b55ab2d4962838d",
+        "context_applied": true,
+        "session_id": "cf55b894644f4c388cede37411b1c8b2"
+      }
+    ]
+  },
+  "two_change_review": {
+    "change_rows": 2,
+    "checks": [
+      {
+        "id": "ec2_11a7a30fcdc77067553b",
+        "before_matches_baseline": true,
+        "after_matches_proposed": true,
+        "baseline_text": "杨扬，满洲人，清朝政治人物。",
+        "proposed_text": "庚阳，满洲人，清朝政治人物。",
+        "reference_name": "赓扬",
+        "after_restores_reference_name": false,
+        "effect": "reverted the erroneous dictionary normalization; proposed text remains different from the supplied reference name"
+      },
+      {
+        "id": "ec2_8b59e1e5083bb9455821",
+        "before_matches_baseline": true,
+        "after_matches_proposed": true,
+        "baseline_text": "越秀区是河北省保定市下辖的一个市辖区。",
+        "proposed_text": "静秀区是河北省保定市下辖的一个市辖区。",
+        "reference_name": "竞秀区",
+        "after_restores_reference_name": false,
+        "effect": "reverted the erroneous dictionary normalization; proposed text remains different from the supplied reference name"
+      }
+    ],
+    "conclusion": "Both proposed outputs match the logged after text and remove the previous entity normalization, but neither restores the supplied reference name: 杨扬→庚阳 while the reference begins 赓扬; 越秀区→静秀区 while the reference begins 竞秀区."
+  },
+  "plan_hashes": {
+    "input_sha256": {
+      "path": "results/entity_context_confirmation_20261012/background_asr_inputs.jsonl",
+      "exists": true,
+      "actual_sha256": "d25d9779acac6413ce6ed096d68dcd772915aed4d3aa227719a9bc909e6a7082",
+      "expected_sha256": "d25d9779acac6413ce6ed096d68dcd772915aed4d3aa227719a9bc909e6a7082",
+      "matches": true
+    },
+    "dictionary_sha256": {
+      "path": "results/large_entity_benchmark_v1_20261010/dataset/library/entities.db",
+      "exists": true,
+      "actual_sha256": "5f089285409d71495e13a37bc077d2613222992883e92b847a9e75a7dba58306",
+      "expected_sha256": "5f089285409d71495e13a37bc077d2613222992883e92b847a9e75a7dba58306",
+      "matches": true
+    },
+    "background_sha256": {
+      "path": "results/entity_context_confirmation_20261012/verified_backgrounds.json",
+      "exists": true,
+      "actual_sha256": "91cc69a182c9b943bbebe60cfbbc6cc8747299336af51a2527ab3b65c028dc72",
+      "expected_sha256": "91cc69a182c9b943bbebe60cfbbc6cc8747299336af51a2527ab3b65c028dc72",
+      "matches": true
+    },
+    "entity_module_sha256": {
+      "path": "system/entity_audio_repair.py",
+      "exists": true,
+      "actual_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+      "expected_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+      "matches": true
+    }
+  },
+  "plan_flags": {
+    "development_only": true,
+    "target_reference_at_inference": false,
+    "new_names_added": false
+  },
+  "summary_file": {
+    "baseline": {
+      "samples": 63,
+      "hits": 100,
+      "expected_mentions": 105,
+      "errors": 33,
+      "reference_chars": 1019,
+      "absent_changes": 6,
+      "CER": 0.0323846908734053
+    },
+    "proposed": {
+      "samples": 63,
+      "hits": 100,
+      "expected_mentions": 105,
+      "errors": 34,
+      "reference_chars": 1019,
+      "absent_changes": 4,
+      "CER": 0.033366045142296366
+    }
+  },
+  "limitations": [
+    "Trace counts are counts of captured endpoint records; the trace does not include /stream/cancel, so it cannot establish whether cleanup requests were sent outside the capture.",
+    "The two change conclusions use the supplied background_asr_changes.json reference snippets only to check whether the proposed output restored the target name; no broader accuracy conclusion is drawn.",
+    "The plan marks this as development-only and selects recordings from an already-known review pilot, not independent accuracy evidence."
+  ]
+}

@@ -1,0 +1,648 @@
+[
+  {
+    "id": "leb1_1a930f1bd44b35bb24c6",
+    "topics": [
+      "医疗健康"
+    ],
+    "reference": "分解方法是打断那些将氨基酸连结成多肽链的肽键。",
+    "expected": {
+      "多肽链": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "分解方法是打断那些将氨基酸连接成多肽链的肽键。",
+        "hits": 1,
+        "errors": 1
+      },
+      "entity_rules": {
+        "text": "分解方法是打断那些将氨基酸连接成多肽链的肽键。",
+        "hits": 1,
+        "errors": 1
+      },
+      "entity_audio_repair": {
+        "text": "分解方法是打断那些将氨基酸连接成多肽链的肽键。",
+        "hits": 1,
+        "errors": 1
+      }
+    }
+  },
+  {
+    "id": "leb1_1d18e0f815c9534f1d20",
+    "topics": [
+      "金融经济"
+    ],
+    "reference": "削减债务与减少支出一样令人痛苦和导致通货紧缩",
+    "expected": {
+      "通货紧缩": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "削减债务与减少支出一样，令人痛苦和导致通货紧缩。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "削减债务与减少支出一样，令人痛苦和导致通货紧缩。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "削减债务与减少支出一样，令人痛苦和导致通货紧缩。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_1d90c3a112f10ced1da5",
+    "topics": [
+      "金融经济"
+    ],
+    "reference": "啊这个这几张图呢我说的非常简略就是在中国呢一个是移动支付",
+    "expected": {
+      "移动支付": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "这个这几张图呢，我说的非常简略，就是在中国呢，一个是移动支付。",
+        "hits": 1,
+        "errors": 1
+      },
+      "entity_rules": {
+        "text": "这个这几张图呢，我说的非常简略，就是在中国呢，一个是移动支付。",
+        "hits": 1,
+        "errors": 1
+      },
+      "entity_audio_repair": {
+        "text": "这个这几张图呢，我说的非常简略，就是在中国呢，一个是移动支付。",
+        "hits": 1,
+        "errors": 1
+      }
+    }
+  },
+  {
+    "id": "leb1_305130223070ddd19c71",
+    "topics": [
+      "体育文化"
+    ],
+    "reference": "最近深夜的国际体育赛事的转播和深夜的电视购物节目也是原因之一。",
+    "expected": {
+      "体育赛事": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "最近深夜的国际体育赛事的转播和深夜的电视购物节目也是原因之一。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "最近深夜的国际体育赛事的转播和深夜的电视购物节目也是原因之一。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "最近深夜的国际体育赛事的转播和深夜的电视购物节目也是原因之一。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_52138cca2d75b8c3e8ef",
+    "topics": [
+      "工业交通"
+    ],
+    "reference": "中心站开通后这些小站所有集装箱业务都转入到了中心站。",
+    "expected": {
+      "集装箱": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "中心站开通后，这些小站所有集装箱业务都转入到了中心站。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "中心站开通后，这些小站所有集装箱业务都转入到了中心站。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "中心站开通后，这些小站所有集装箱业务都转入到了中心站。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_62863abaa1e44a63e3ac",
+    "topics": [
+      "法律政策"
+    ],
+    "reference": "共和国议会是葡萄牙的国家立法机关。",
+    "expected": {
+      "立法机关": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "共和国议会是葡萄牙的国家立法机关。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "共和国议会是葡萄牙的国家立法机关。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "共和国议会是葡萄牙的国家立法机关。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_6e3abda8ede11ebe4770",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "陈冠希在微博晒出一段小视频",
+    "expected": {
+      "陈冠希": 1,
+      "微博": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "陈冠希在微博晒出一段小视频。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "陈冠希在微博晒出一段小视频。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "陈冠希在微博晒出一段小视频。",
+        "hits": 2,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_724730332e2d82e63724",
+    "topics": [
+      "农业生态"
+    ],
+    "reference": "经济作物有棉花及茶叶。",
+    "expected": {
+      "经济作物": 1,
+      "棉花": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "经济作物有棉花及茶叶。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "经济作物有棉花及茶叶。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "经济作物有棉花及茶叶。",
+        "hits": 2,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_75b8b21254bc06f9ccd6",
+    "topics": [
+      "体育文化"
+    ],
+    "reference": "中国戏曲音乐方面是综合了古代的词曲音乐以及民间歌曲发展而成的。",
+    "expected": {
+      "中国戏曲": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "中国戏曲音乐方面是综合了古代的词曲音乐以及民间歌曲发展而成的。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "中国戏曲音乐方面是综合了古代的词曲音乐以及民间歌曲发展而成的。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "中国戏曲音乐方面是综合了古代的词曲音乐以及民间歌曲发展而成的。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_7754f1a52f237d0169bd",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "形成了新形势下我国核电发展的建议阶段研究报告",
+    "expected": {},
+    "values": {
+      "baseline": {
+        "text": "形成了新形势下我国核电发展的建议阶段研究报告。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "形成了新形势下我国核电发展的建议阶段研究报告。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "形成了新形势下我国核电发展的建议阶段研究报告。",
+        "hits": 0,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_7df399fbb1e18b1815a9",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "让北京具备了承办冬奥会这种顶级赛事的经验和能力",
+    "expected": {
+      "北京": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "让北京具备了承办冬奥会这种顶级赛事的经验和能力。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "让北京具备了承办冬奥会这种顶级赛事的经验和能力。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "让北京具备了承办冬奥会这种顶级赛事的经验和能力。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_87e6311583eda17a3ef4",
+    "topics": [
+      "历史教育"
+    ],
+    "reference": "而不是一个所谓啊素质教育的一款",
+    "expected": {
+      "素质教育": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "而不是一个所谓，素质教育的一块。",
+        "hits": 1,
+        "errors": 2
+      },
+      "entity_rules": {
+        "text": "而不是一个所谓素质教育的一块。",
+        "hits": 1,
+        "errors": 2
+      },
+      "entity_audio_repair": {
+        "text": "而不是一个所谓素质教育的一块。",
+        "hits": 1,
+        "errors": 2
+      }
+    }
+  },
+  {
+    "id": "leb1_95b58dd4edc82f8f4d64",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "成飞集成相关人士告诉每日经济新闻记者",
+    "expected": {
+      "成飞集成": 1,
+      "每日经济新闻": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "成飞集成相关人士告诉《每日经济新闻》记者。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "成飞集成相关人士告诉《每日经济新闻》记者。",
+        "hits": 2,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "成飞集成相关人士告诉《每日经济新闻》记者。",
+        "hits": 2,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_a2bf6877216e1899e108",
+    "topics": [
+      "农业生态"
+    ],
+    "reference": "还有畜牧业。",
+    "expected": {
+      "畜牧业": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "还有畜牧业。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "还有畜牧业。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "还有畜牧业。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_a96c53f256e18a736f49",
+    "topics": [
+      "自然科学化学"
+    ],
+    "reference": "米森伯克开创了现在被称为光遗传学的领域。",
+    "expected": {
+      "遗传学": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "米森·伯克开创了现在被称为光遗传学的领域。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "米森·伯克开创了现在被称为光遗传学的领域。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "米森·伯克开创了现在被称为光遗传学的领域。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_ae9b67897eb4dc684aee",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "后来突然冒出头来",
+    "expected": {},
+    "values": {
+      "baseline": {
+        "text": "后来，突然冒出头来。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "后来，突然冒出头来。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "后来，突然冒出头来。",
+        "hits": 0,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_af82afaaaf1aeafcc6c4",
+    "topics": [
+      "新闻人物组织地理"
+    ],
+    "reference": "美国外交消息人士透露",
+    "expected": {},
+    "values": {
+      "baseline": {
+        "text": "美国外交消息人士透露。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "美国外交消息人士透露。",
+        "hits": 0,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "美国外交消息人士透露。",
+        "hits": 0,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_b3b85d603556a1f5c834",
+    "topics": [
+      "历史教育"
+    ],
+    "reference": "阿尔顿毕业于霍恩彻奇坎皮恩学校和利物浦基督教育学院，毕业后曾担任教师。",
+    "expected": {
+      "教育学": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "阿尔顿毕业于怀特坎比学校和利物浦基督教育学院。毕业后，曾担任教师。",
+        "hits": 1,
+        "errors": 6
+      },
+      "entity_rules": {
+        "text": "阿尔顿毕业于怀特坎比学校和利物浦基督教育学院。毕业后，曾担任教师。",
+        "hits": 1,
+        "errors": 6
+      },
+      "entity_audio_repair": {
+        "text": "阿尔顿毕业于怀特坎比学校和利物浦基督教育学院。毕业后，曾担任教师。",
+        "hits": 1,
+        "errors": 6
+      }
+    }
+  },
+  {
+    "id": "leb1_ba47d4c10c48cc94bd2b",
+    "topics": [
+      "法律政策"
+    ],
+    "reference": "中华人民共和国法律中由国务院颁布的行政法规。",
+    "expected": {
+      "行政法规": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "中华人民共和国法律中由国务院颁布的行政法规。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "中华人民共和国法律中由国务院颁布的行政法规。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "中华人民共和国法律中由国务院颁布的行政法规。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_c1062759a8f16a722b26",
+    "topics": [
+      "科技计算机通信"
+    ],
+    "reference": "否则我们怎么会有移动互联网怎么会有这么轻薄小的手机有这么巨大的计算能力",
+    "expected": {
+      "移动互联网": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "否则，我们怎么会有移动互联网？怎么会有这么轻薄小的手机？有这么巨大的计算能力？",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "否则，我们怎么会有移动互联网？怎么会有这么轻薄小的手机？有这么巨大的计算能力？",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "否则，我们怎么会有移动互联网？怎么会有这么轻薄小的手机？有这么巨大的计算能力？",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_d44adec501140b24c76f",
+    "topics": [
+      "医疗健康"
+    ],
+    "reference": "她有两套生殖系统她的染色体是XY",
+    "expected": {
+      "生殖系统": 1,
+      "染色体": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "它有2套生殖系统。它的染色体是X、Y。",
+        "hits": 2,
+        "errors": 2
+      },
+      "entity_rules": {
+        "text": "它有2套生殖系统。它的染色体是X、Y。",
+        "hits": 2,
+        "errors": 2
+      },
+      "entity_audio_repair": {
+        "text": "它有2套生殖系统。它的染色体是X、Y。",
+        "hits": 2,
+        "errors": 2
+      }
+    }
+  },
+  {
+    "id": "leb1_dd9c81065ca678c805da",
+    "topics": [
+      "科技计算机通信"
+    ],
+    "reference": "事务在启动时得到一个数据库的版本号。",
+    "expected": {
+      "数据库": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "事务在启动时得到一个数据库的版本号。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "事务在启动时得到一个数据库的版本号。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "事务在启动时得到一个数据库的版本号。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_e958fe7ec1dfa4b1dbf9",
+    "topics": [
+      "工业交通"
+    ],
+    "reference": "这个电动汽车也是引起全球包括中国消费者的热烈的追捧",
+    "expected": {
+      "电动汽车": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "这个电动汽车也是引起全球，包括中国消费者的热烈的追捧。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "这个电动汽车也是引起全球，包括中国消费者的热烈的追捧。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "这个电动汽车也是引起全球，包括中国消费者的热烈的追捧。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  },
+  {
+    "id": "leb1_f83fb22e6b7be90bee0b",
+    "topics": [
+      "自然科学化学"
+    ],
+    "reference": "量子力学的基础。",
+    "expected": {
+      "量子力学": 1
+    },
+    "values": {
+      "baseline": {
+        "text": "量子力学的基础。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_rules": {
+        "text": "量子力学的基础。",
+        "hits": 1,
+        "errors": 0
+      },
+      "entity_audio_repair": {
+        "text": "量子力学的基础。",
+        "hits": 1,
+        "errors": 0
+      }
+    }
+  }
+]

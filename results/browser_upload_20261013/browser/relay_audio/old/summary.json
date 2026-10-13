@@ -1,0 +1,73 @@
+{
+  "case": "relay_audio",
+  "arm": "old",
+  "browser_total_seconds": 49.925,
+  "upload_seconds": 46.728,
+  "tail_seconds": 1.133,
+  "prepare_seconds": 2.064,
+  "target_corrected": true,
+  "trace_id": "59e9bb1ff2104664bc7a80b2bc24dad6",
+  "frames": 323,
+  "acks": 323,
+  "client_timing": null,
+  "page_errors": [],
+  "raw_sha256": "22943c6248fb5612ee3f19a73079c7ac765b24d4284abf17ee9f96dc93eae3b1",
+  "clean_sha256": "08afd84450f756535acfd4ec2f417d5c1e693af3cbd3c1df774c7b2e706507a7",
+  "entity_normalizations": [
+    {
+      "observed": "厉飞羽",
+      "canonical": "厉飞宇",
+      "entity_type": "TERM",
+      "entity_id": 9,
+      "match_type": "PINYIN_FUZZY",
+      "match_score": 0.8966666666666667,
+      "decision": "CONTEXT_CONFIRMED",
+      "confirmation_method": "bounded_prose_entity_projection_v1",
+      "discarded_response_reasons": [
+        "entity_confirmation_required:厉飞宇",
+        "semantic_content_loss"
+      ]
+    }
+  ],
+  "audio_repair": {
+    "enabled": true,
+    "phase": "complete",
+    "reason": "no_confirmed_changes",
+    "entity_count": 5,
+    "candidate_count": 7,
+    "max_candidate_score": 0.966667,
+    "minimum_replay_score": 0.63,
+    "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+    "prompt_terms": [
+      "厉飞宇",
+      "误工",
+      "不业之杖"
+    ],
+    "checks": 1,
+    "replay_context_applied": true,
+    "applied": false,
+    "change_count": 0,
+    "changes": [],
+    "revision": 0,
+    "elapsed_seconds": 0.029,
+    "replay_mode": "streaming",
+    "local_replay_reason": null,
+    "local_replay_enabled": true,
+    "local_replay_rule": "segment_windows_v1",
+    "source_audio_seconds": 322.688,
+    "replay_audio_seconds": 322.688,
+    "replay_windows": [],
+    "streaming_cache_used": true,
+    "streaming_replay": {
+      "rule": "isolated_idle_replay_v2",
+      "eligible": true,
+      "started": true,
+      "reason": "complete",
+      "processed_audio_seconds": 322.688,
+      "started_at_audio_seconds": 64,
+      "complete": true,
+      "median_idle_gap_ms": 88.581,
+      "wall_seconds": 37.895
+    }
+  }
+}

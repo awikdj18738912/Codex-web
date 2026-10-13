@@ -1,0 +1,237 @@
+{
+  "input_version": "contextual_char_gap_v1",
+  "labels": [
+    "KEEP",
+    "DELETE_CANDIDATE",
+    "CORRECTION_CANDIDATE"
+  ],
+  "max_tokens": 512,
+  "threshold": 0.15,
+  "calibrated": false,
+  "online_enabled": false,
+  "production_skip_allowed": false,
+  "weights_sha256": "20c664bcdd455a8aed1304013634715a98f2fdabd8db65cd824fffd13cb9431c",
+  "parameters": 101682437,
+  "best_epoch": 2,
+  "training_seconds": 20.726730747148395,
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.2898018745575949,
+      "validation_loss": 0.6629493719055539,
+      "elapsed_seconds": 1.554201290011406,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.039633690454657644,
+      "validation_loss": 0.200825662603454,
+      "elapsed_seconds": 3.6392851709388196,
+      "validation_threshold": 0.15,
+      "validation_keep_false_positives": 23,
+      "validation_location_precision": 0.7788461538461539,
+      "validation_task_edit_recall": {
+        "disfluency": 0.9523809523809523,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.009416287530959546,
+      "validation_loss": 0.9945958015464601,
+      "elapsed_seconds": 7.449684783816338,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.0035383928392966873,
+      "validation_loss": 1.1554741484541742,
+      "elapsed_seconds": 8.968275796156377,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.0024631346329684846,
+      "validation_loss": 0.6441795026499127,
+      "elapsed_seconds": 10.350805083755404,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.001945665488993901,
+      "validation_loss": 1.061023760882635,
+      "elapsed_seconds": 11.735271770041436,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.0013331732994057985,
+      "validation_loss": 0.8863736514061217,
+      "elapsed_seconds": 13.136816376820207,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.0007277607276873234,
+      "validation_loss": 0.7680768952483222,
+      "elapsed_seconds": 14.513331905007362,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.000575011802933707,
+      "validation_loss": 0.8596532117752802,
+      "elapsed_seconds": 15.89169038599357,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.00041620495992757904,
+      "validation_loss": 0.9584703672499884,
+      "elapsed_seconds": 17.274111398961395,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.00029625745033011973,
+      "validation_loss": 0.980495295827351,
+      "elapsed_seconds": 18.668536530807614,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.00023896407957646072,
+      "validation_loss": 1.0020247719117574,
+      "elapsed_seconds": 20.069629291072488,
+      "validation_threshold": 0.0,
+      "validation_keep_false_positives": 84,
+      "validation_location_precision": 0.05128205128205128,
+      "validation_task_edit_recall": {
+        "disfluency": 1.0,
+        "repetition": 1.0
+      }
+    }
+  ],
+  "class_counts": {
+    "0": 5241,
+    "1": 278,
+    "2": 4
+  },
+  "class_weights": [
+    1.0,
+    4.341948509216309,
+    6.0
+  ],
+  "gap_positive_training_rows": 0,
+  "insertion_detection_supported": false,
+  "task_probes_train_only": true,
+  "selection_mode": "edit_recall",
+  "validation_selection": ">=95% window/per-observed-task meaningful edit recall, then fewer KEEP false positives; character recall constraint only in loss mode",
+  "human_audio_gold": 0,
+  "scope": "controlled_text_group_holdout_only_not_audio_gold",
+  "encoder_provenance": {
+    "model_id": "hfl/chinese-roberta-wwm-ext",
+    "revision": "5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "path": "/home/aim0/.cache/huggingface/hub/models--hfl--chinese-roberta-wwm-ext/snapshots/5c58d0b8ec1d9014354d691c538661bf00bfdb44",
+    "source_url": "https://huggingface.co/hfl/chinese-roberta-wwm-ext",
+    "license": "apache-2.0",
+    "architecture": {
+      "architectures": [
+        "BertForMaskedLM"
+      ],
+      "attention_probs_dropout_prob": 0.1,
+      "bos_token_id": 0,
+      "directionality": "bidi",
+      "eos_token_id": 2,
+      "hidden_act": "gelu",
+      "hidden_dropout_prob": 0.1,
+      "hidden_size": 768,
+      "initializer_range": 0.02,
+      "intermediate_size": 3072,
+      "layer_norm_eps": 1e-12,
+      "max_position_embeddings": 512,
+      "model_type": "bert",
+      "num_attention_heads": 12,
+      "num_hidden_layers": 12,
+      "output_past": true,
+      "pad_token_id": 0,
+      "pooler_fc_size": 768,
+      "pooler_num_attention_heads": 12,
+      "pooler_num_fc_layers": 3,
+      "pooler_size_per_head": 128,
+      "pooler_type": "first_token_transform",
+      "type_vocab_size": 2,
+      "vocab_size": 21128
+    },
+    "files_sha256": {
+      "config.json": "61609babfbada201546297d62f7f3a642d8fd2f1cefec5571c6cbd1e2e2132d9",
+      "pytorch_model.bin": "1ded5a5a1c7841dee6e47942f7b5bf2bcf6f73ff19197580f852f7f638f86b35",
+      "vocab.txt": "45bbac6b341c319adc98a532532882e91a9cefc0329aa57bac9ae761c27b291c",
+      "tokenizer.json": "53ff61207898738bbdc000f38abebef01041c8d23b6270c11855fc692d0a3ad6",
+      "tokenizer_config.json": "61785aeaba176fba6d6489f27dccfd2ddee6aee2af0e590451cab7d8b57e0874"
+    },
+    "previous_small_encoder": "models/entity_ranker/encoder",
+    "previous_small_encoder_upstream_verified": false
+  },
+  "upstream_pretraining_source_recorded": true
+}

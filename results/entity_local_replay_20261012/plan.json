@@ -1,0 +1,17 @@
+{
+  "development_only": true,
+  "cases": 4,
+  "input_sha256": "4336d7c57795a88861f8de8b04915f64830f63be945d88904ad361b74032fe63",
+  "original_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "candidate_sha256": "590ab649bacef407d2b2c4277a5c45d19f25a67299d137bd85f03152a36036ad",
+  "settings": {
+    "min_seconds": 45,
+    "max_audio_fraction": 0.6,
+    "max_windows": 2,
+    "audio_margin_seconds": 2,
+    "strong_candidate_score": 0.63
+  },
+  "target_reference_at_inference": false,
+  "acceptance": "All existing corrections retained, no higher CER on gold cases, no new absent-canonical replacements, actual repair time improves. Need independent validation before deployment.",
+  "asr_url": "http://127.0.0.1:8766"
+}

@@ -1,0 +1,63 @@
+{
+  "scope": "authored_context_contrasts_not_natural_audio_validation",
+  "counts": {
+    "train": {
+      "rows": 740,
+      "edits": 280,
+      "keeps": 460,
+      "concept_groups": 20,
+      "surface_strata": {
+        "seen_surfaces_new_context": 660,
+        "diagnosis_driven_courtesy_augmentation": 80
+      }
+    },
+    "validation": {
+      "rows": 222,
+      "edits": 84,
+      "keeps": 138,
+      "concept_groups": 6,
+      "surface_strata": {
+        "seen_surfaces_new_context": 198,
+        "diagnosis_driven_courtesy_augmentation": 24
+      }
+    },
+    "test": {
+      "rows": 294,
+      "edits": 120,
+      "keeps": 174,
+      "concept_groups": 6,
+      "surface_strata": {
+        "seen_surfaces_new_context": 198,
+        "diagnosis_driven_courtesy_augmentation": 24,
+        "unseen_surface_stress": 72
+      }
+    }
+  },
+  "anchor_train_rows": 417,
+  "anchor_overlap_excluded": 0,
+  "combined_training_rows": 1157,
+  "anchor_train_sha256": "fbbd4d7defa5358adf72942cab6a0eb87e475e1ecbaed30e029c51aee0030810",
+  "original_consumed_dev_test_not_fitted": true,
+  "quote_pairs_same_baseline_different_visible_context": true,
+  "annotation_metadata_not_model_input": true,
+  "train_validation_test_concept_and_baseline_disjoint": true,
+  "template_claim": "Authored frame banks differ; grammatical primitives and seen filler vocabulary shared deliberately",
+  "unseen_test_fillers": [
+    "额",
+    "就是说",
+    "呃呃"
+  ],
+  "human_audio_gold": 0,
+  "courtesy_noise_added_after_observed_old_regression_misses": true,
+  "no_original_old_validation_sentences_fitted": true,
+  "revised_from": "results/contextual_edit_contrasts_20261013_v3",
+  "code_sha256": "296793b3d18ad4f01265af3898efbde043e18d0b5b800f5cba49dcd26910fd69",
+  "output_sha256": {
+    "test.jsonl": "7e8b91e9fd0f48ca14df461ee67668f5040e671a232d59114a2e315a70ee35fb",
+    "train.jsonl": "848f6d6df86f7ceb65ba5d416bce43aabc591be016002c408fa152a3b1f39506",
+    "contrast_test.jsonl": "7e8b91e9fd0f48ca14df461ee67668f5040e671a232d59114a2e315a70ee35fb",
+    "contrast_validation.jsonl": "fd7fc66224c2f5110ec2ac5ac8d6bcbc0ee89fd25abb736eb385ffe32526b65a",
+    "contrast_train.jsonl": "d6b896d62ff6243a2942186390cf7738951e2397c43529adf255de0aa413c04e",
+    "validation.jsonl": "fd7fc66224c2f5110ec2ac5ac8d6bcbc0ee89fd25abb736eb385ffe32526b65a"
+  }
+}

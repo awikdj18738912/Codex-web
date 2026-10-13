@@ -145,6 +145,8 @@ class EntityProtector:
         self.session_memory = session_memory
         self.enable_rule_protection = bool(enable_rule_protection)
         self.protect_numeric_spans = bool(protect_numeric_spans)
+        from .entity_acronym import MedicalSymbolSpellings
+        self._symbol_spellings = MedicalSymbolSpellings(self.entities)
 
     def protect(
         self,
@@ -278,6 +280,20 @@ class EntityProtector:
                             match_type="FIXED_IDIOM",
                         )
                     )
+
+        # A full registered symbol may contain a generic acronym/number span
+        # (PD一, Her two). The verifier checks complete letters, unchanged
+        # number and medical role before overriding those partial rule spans.
+        for definition,start,end,original in self._symbol_spellings.occurrences(text):
+            conflicts=[c for c in candidates if start<c.end and c.start<end]
+            if any(c.source!='rule' or c.entity_type not in {'ACRONYM','NUMBER','CN_NUMBER'}
+                   or c.start<start or c.end>end for c in conflicts):
+                continue
+            candidates.append(_Candidate(start=start,end=end,original=original,
+                replacement=definition.canonical_text,entity_type=definition.entity_type,
+                source=f'database:{definition.domain}',priority=990+definition.priority,
+                entity_id=definition.entity_id,match_type='EXACT_ACRONYM_PRESENTATION',
+                match_score=1.0,decision='EXACT'))
 
         rule_ranges = tuple(
             (candidate.start, candidate.end)
@@ -433,6 +449,10 @@ class EntityProtector:
                 for span in protection.spans
                 if span.source.startswith("database:")
                 and span.replacement != span.original
+                # The complete symbol and number have already been verified
+                # and protected. Asking the Refiner to confirm them again
+                # only forces extra model calls and unrelated wording edits.
+                and span.match_type != "EXACT_ACRONYM_PRESENTATION"
             )
         )
 

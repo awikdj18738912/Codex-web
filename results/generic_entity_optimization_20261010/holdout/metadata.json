@@ -1,0 +1,1472 @@
+{
+  "selection_seed": "entity-gate-holdout-v1",
+  "selection_rule": "Exclude all sample IDs and exact reference strings used in generic_entity_blind_20261010; collapse exact duplicate references within each source, retaining the record with the lowest SHA-256(\"entity-gate-holdout-v1:\" + sample_id); sort independently by that hash within source and label strata. Select first 32 Common Voice present and 16 absent; select every remaining FLEURS present record and fill to 48 with absent records.",
+  "stats": {
+    "commonvoice_zh-CN_test": {
+      "unique_reference_sentences_after_exclusion": 10601,
+      "positive_pool": 780,
+      "negative_pool": 9821,
+      "selected_positive": 32,
+      "selected_negative": 16,
+      "unselected_positive": 748,
+      "unselected_negative": 9805,
+      "glossary_size": 72,
+      "audio_accessible_selected": 48
+    },
+    "fleurs_zh-CN_test": {
+      "unique_reference_sentences_after_exclusion": 285,
+      "positive_pool": 12,
+      "negative_pool": 273,
+      "selected_positive": 12,
+      "selected_negative": 36,
+      "unselected_positive": 0,
+      "unselected_negative": 237,
+      "glossary_size": 61,
+      "audio_accessible_selected": 48
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "commonvoice:649fdbc92ac79addeae21b3b794d33c21343b664f5d367a016fd9230e12c0701",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 4759,
+        "sentence_id": "649fdbc92ac79addeae21b3b794d33c21343b664f5d367a016fd9230e12c0701",
+        "clip_path": "clips/common_voice_zh-CN_22053341.mp3"
+      },
+      "reference": "县名纪念索克族。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:928cd8a0e3e9c43d20f48ab454175afa7ac25c37f9fedc203c2eb58eb074e025",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2082,
+        "sentence_id": "928cd8a0e3e9c43d20f48ab454175afa7ac25c37f9fedc203c2eb58eb074e025",
+        "clip_path": "clips/common_voice_zh-CN_22147197.mp3"
+      },
+      "reference": "北周孝陵中国北周武帝宇文邕和阿史那皇后的合葬陵墓。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:e9da6ae9511c71eae3fd4bb58ced0077e753a890db246e6caa1c082fe9138679",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 3084,
+        "sentence_id": "e9da6ae9511c71eae3fd4bb58ced0077e753a890db246e6caa1c082fe9138679",
+        "clip_path": "clips/common_voice_zh-CN_33579092.mp3"
+      },
+      "reference": "最终本作投入的开发时间是系列作至今为止的两倍。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:9d9c367aabb7c87b9d5d8a06defa656c53e0ee47afb3dc406473d1880191a90a",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8918,
+        "sentence_id": "9d9c367aabb7c87b9d5d8a06defa656c53e0ee47afb3dc406473d1880191a90a",
+        "clip_path": "clips/common_voice_zh-CN_22160049.mp3"
+      },
+      "reference": "阿里斯托得摩斯被人民推举为国王。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:b20615517732eeb185b1a7c09b00ced08f3ee022a6b5061ce4910e1ed2c62f66",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 6040,
+        "sentence_id": "b20615517732eeb185b1a7c09b00ced08f3ee022a6b5061ce4910e1ed2c62f66",
+        "clip_path": "clips/common_voice_zh-CN_22213921.mp3"
+      },
+      "reference": "博皮伊。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:8d137c8977b306e7e8c54b545c0e00e063c798a020cd8a61e7b3ae44ea21d3f3",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 1257,
+        "sentence_id": "8d137c8977b306e7e8c54b545c0e00e063c798a020cd8a61e7b3ae44ea21d3f3",
+        "clip_path": "clips/common_voice_zh-CN_22114007.mp3"
+      },
+      "reference": "两人发现他们在一艘船上。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:186a9503821dbefab9a46e8c63bfac62d9f8e846b1054ea6ec54eee3634535fd",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 9368,
+        "sentence_id": "186a9503821dbefab9a46e8c63bfac62d9f8e846b1054ea6ec54eee3634535fd",
+        "clip_path": "clips/common_voice_zh-CN_18994960.mp3"
+      },
+      "reference": "切尔诺贝利核电站。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:4fcca2930a54468102bf7f00d94889aa265762ac817e78731cccc2552586d38d",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 3750,
+        "sentence_id": "4fcca2930a54468102bf7f00d94889aa265762ac817e78731cccc2552586d38d",
+        "clip_path": "clips/common_voice_zh-CN_20991543.mp3"
+      },
+      "reference": "现参加西班牙足球乙二级联赛。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:1d814af44d5e69b0c8236a4aceacb88e8af827461a760a9719a80775e11083df",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 4784,
+        "sentence_id": "1d814af44d5e69b0c8236a4aceacb88e8af827461a760a9719a80775e11083df",
+        "clip_path": "clips/common_voice_zh-CN_18999865.mp3"
+      },
+      "reference": "织布鸟科是鸟纲雀形目中的一个科。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:720ea8bb3f24e1fef1ca644afab61dfbfa22d6a8a21c192f933acd355dba9311",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 9129,
+        "sentence_id": "720ea8bb3f24e1fef1ca644afab61dfbfa22d6a8a21c192f933acd355dba9311",
+        "clip_path": "clips/common_voice_zh-CN_22065035.mp3"
+      },
+      "reference": "本品具有致癌性以及非常强的腐蚀性。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:6a988cd5d592956ea4074c42bc7ed33697f2c210e123e0d63283ef1aac43b5bf",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8146,
+        "sentence_id": "6a988cd5d592956ea4074c42bc7ed33697f2c210e123e0d63283ef1aac43b5bf",
+        "clip_path": "clips/common_voice_zh-CN_22057199.mp3"
+      },
+      "reference": "马普利斯古冠企鹅是一种已灭绝的古冠企鹅属。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:866183f050ad3cc67e89e08532bf1351f6e6cd6cd9d6ad1eeecbeb6351439876",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 9991,
+        "sentence_id": "866183f050ad3cc67e89e08532bf1351f6e6cd6cd9d6ad1eeecbeb6351439876",
+        "clip_path": "clips/common_voice_zh-CN_22107599.mp3"
+      },
+      "reference": "汉朝时为汝南郡地。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:1ff21708aae3dbf08077434a3233ec5b9bcdb52f4f2ccd13e8e7146c2db7cd84",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2597,
+        "sentence_id": "1ff21708aae3dbf08077434a3233ec5b9bcdb52f4f2ccd13e8e7146c2db7cd84",
+        "clip_path": "clips/common_voice_zh-CN_19003544.mp3"
+      },
+      "reference": "远期将建设跨线桥或下穿隧道以杜绝安全隐患。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:c9ac6363017d2c5a56f84d49b9464473d5bf6685ab48ab051918ee2fb1e440c9",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 1760,
+        "sentence_id": "c9ac6363017d2c5a56f84d49b9464473d5bf6685ab48ab051918ee2fb1e440c9",
+        "clip_path": "clips/common_voice_zh-CN_33375619.mp3"
+      },
+      "reference": "德皇威廉二世号是帝国海军专门为舰队旗舰而建造的首艘战列舰。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:5c33e09a986cfe4fce43c94b84c139ce053a9889267240ade80c7721c38e4743",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 1939,
+        "sentence_id": "5c33e09a986cfe4fce43c94b84c139ce053a9889267240ade80c7721c38e4743",
+        "clip_path": "clips/common_voice_zh-CN_22027046.mp3"
+      },
+      "reference": "妳来帮我工作",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:b4e18e45aac5c53e4f06d623fe79beb8351ef58afd4b969622a3f8f1f8191f67",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 7276,
+        "sentence_id": "b4e18e45aac5c53e4f06d623fe79beb8351ef58afd4b969622a3f8f1f8191f67",
+        "clip_path": "clips/common_voice_zh-CN_22219663.mp3"
+      },
+      "reference": "按双向两车道一级公路标准建设。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:036574696a37ccbfac1a11d9cb97bbec886b8ab55a9e1ee852b5eb0b618f5121",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 260,
+        "sentence_id": "036574696a37ccbfac1a11d9cb97bbec886b8ab55a9e1ee852b5eb0b618f5121",
+        "clip_path": "clips/common_voice_zh-CN_18722587.mp3"
+      },
+      "reference": "万历八年，登进士第三甲第四十七名。",
+      "speaker_hash": "",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:424:1898",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 424,
+        "id": 1898,
+        "path_stem": "9074142952924218933.wav",
+        "audio_embedded": true
+      },
+      "reference": "“说穿了，他[威尔斯]从一开始就对我们撒谎。首先，他表现得好像是出于法律原因才这么做。其次，他先是假装听取我们的意见，然后直接删除了这些艺术作品。”",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:04fb211eab911580d9f4bb771e9dec552ad6b62dafaa47110e68399bdf4bbbcb",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2596,
+        "sentence_id": "04fb211eab911580d9f4bb771e9dec552ad6b62dafaa47110e68399bdf4bbbcb",
+        "clip_path": "clips/common_voice_zh-CN_18594914.mp3"
+      },
+      "reference": "大派恩是位于美国加利福尼亚州因约县的一个人口普查指定地区。",
+      "speaker_hash": "",
+      "terms": [
+        "加利福尼亚州"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:422:1726",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 422,
+        "id": 1726,
+        "path_stem": "17355760800865622713.wav",
+        "audio_embedded": true
+      },
+      "reference": "实地考察是任何教学活动的重要组成部分。通常，老师会很乐意带学生去那些公交车无法到达的地方。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:9d76b58c1697887fa418303a0200252fca58411b12ea9ee431e4ec8054b5f79a",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 10460,
+        "sentence_id": "9d76b58c1697887fa418303a0200252fca58411b12ea9ee431e4ec8054b5f79a",
+        "clip_path": "clips/common_voice_zh-CN_22154113.mp3"
+      },
+      "reference": "弗里德里希斯瓦尔德是德国勃兰登堡州的一个市镇。",
+      "speaker_hash": "",
+      "terms": [
+        "德国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:01bf87307c2a9d33b66a2db035fd2641e607bf4fa0078215beff0e46b53e043f",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2939,
+        "sentence_id": "01bf87307c2a9d33b66a2db035fd2641e607bf4fa0078215beff0e46b53e043f",
+        "clip_path": "clips/common_voice_zh-CN_18650506.mp3"
+      },
+      "reference": "李睿珺，出生于甘肃高台，中国大陆电影导演。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:120:1961",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 120,
+        "id": 1961,
+        "path_stem": "1218529094852116429.wav",
+        "audio_embedded": true
+      },
+      "reference": "要说明社会化的重要性，最常用的方法之一是利用少数不幸儿童的案例。这些儿童由于被忽视、遭遇不幸或遭到故意虐待，在成长过程中没有在成年人的帮助下实现社会化。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:9:1661",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 9,
+        "id": 1661,
+        "path_stem": "1868048601472473390.wav",
+        "audio_embedded": true
+      },
+      "reference": "他没有设定削减数额，只是表示将根据中国的经济产出来决定数额。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:441:1857",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 441,
+        "id": 1857,
+        "path_stem": "17731746061944982790.wav",
+        "audio_embedded": true
+      },
+      "reference": "他补充道，“然而，他们不应该被要求承担超出其发展阶段、责任和能力范围的义务。”",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:0a7e70ba4b96ff1e2399a8c84417babd52e87d34f3bbd2a677c30f8887516482",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 7769,
+        "sentence_id": "0a7e70ba4b96ff1e2399a8c84417babd52e87d34f3bbd2a677c30f8887516482",
+        "clip_path": "clips/common_voice_zh-CN_18599936.mp3"
+      },
+      "reference": "王菜瓜遗址，位于山东省茌平县肖庄乡。",
+      "speaker_hash": "",
+      "terms": [
+        "山东省"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:a1b3d400af13a5e6e079d03d4c29f1a6fbff904a43f778a59a2f73ca2051de9f",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8177,
+        "sentence_id": "a1b3d400af13a5e6e079d03d4c29f1a6fbff904a43f778a59a2f73ca2051de9f",
+        "clip_path": "clips/common_voice_zh-CN_22189590.mp3"
+      },
+      "reference": "中国页岩油主要研究机构是中国石油大学。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:417:1815",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 417,
+        "id": 1815,
+        "path_stem": "8994105395560976791.wav",
+        "audio_embedded": true
+      },
+      "reference": "裂变原子弹的工作原理如下：把一个原子核和许多质子及中子聚在一起需要能量。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:697fd662d698faa5392a7ecf540834f219e05d3388cbe1f24c9c42f09b8e04df",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 4194,
+        "sentence_id": "697fd662d698faa5392a7ecf540834f219e05d3388cbe1f24c9c42f09b8e04df",
+        "clip_path": "clips/common_voice_zh-CN_22057112.mp3"
+      },
+      "reference": "异营生物和其它地表下生物释放的二氧化碳都被考虑进土壤呼吸中。",
+      "speaker_hash": "",
+      "terms": [
+        "二氧化碳"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:29:1989",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 29,
+        "id": 1989,
+        "path_stem": "1055783299672050865.wav",
+        "audio_embedded": true
+      },
+      "reference": "他还参与了许多国家的纸币雕版制作，近期作品包括加拿大新版 5 元和 100 元纸币正面的总理肖像。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:128:2006",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 128,
+        "id": 2006,
+        "path_stem": "4046694729792919859.wav",
+        "audio_embedded": true
+      },
+      "reference": "钙、钾等元素属于金属，银和金等元素当然也是金属。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:042c1fb333e9e27e1540c569d6a165f438088f6e9b7aafb20d363260d2570605",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2685,
+        "sentence_id": "042c1fb333e9e27e1540c569d6a165f438088f6e9b7aafb20d363260d2570605",
+        "clip_path": "clips/common_voice_zh-CN_18774760.mp3"
+      },
+      "reference": "钟善辅，四川涪陵人，又名钟世民，笔名中山虎、山虎，中国共产党早期领导人。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:0f3e61c15039fcab918054f742e823e6570fb139ab27674a1b4702071d25b444",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 992,
+        "sentence_id": "0f3e61c15039fcab918054f742e823e6570fb139ab27674a1b4702071d25b444",
+        "clip_path": "clips/common_voice_zh-CN_18664928.mp3"
+      },
+      "reference": "纳什梅德是位于美国加利福尼亚州门多西诺县的一个非建制地区。",
+      "speaker_hash": "",
+      "terms": [
+        "加利福尼亚州"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:220:1975",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 220,
+        "id": 1975,
+        "path_stem": "13953139953048790899.wav",
+        "audio_embedded": true
+      },
+      "reference": "梵蒂冈城的人口大约有 800 人。它是世界上最小的独立国家，也是人口最少的国家。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:7473a7ec96d49fa069a0512e0750ec5f3dfca31a256248d1bf4e743c8060ab60",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 3087,
+        "sentence_id": "7473a7ec96d49fa069a0512e0750ec5f3dfca31a256248d1bf4e743c8060ab60",
+        "clip_path": "clips/common_voice_zh-CN_22068947.mp3"
+      },
+      "reference": "在今河北省和北京市西北部。",
+      "speaker_hash": "",
+      "terms": [
+        "北京"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:279:1687",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 279,
+        "id": 1687,
+        "path_stem": "6567034835218108721.wav",
+        "audio_embedded": true
+      },
+      "reference": "由于分离和重组，变异在每一代的两个库之间来回变动。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:216:1991",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 216,
+        "id": 1991,
+        "path_stem": "5743230626485424345.wav",
+        "audio_embedded": true
+      },
+      "reference": "在欧洲历史上的这段时期，已然富有而强大起来的天主教会受到了密切监督。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:306:1893",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 306,
+        "id": 1893,
+        "path_stem": "15410474364253297612.wav",
+        "audio_embedded": true
+      },
+      "reference": "孙德本尔斯 (Sundarbans) 是世界上最大的滨海红树林带，林带长 80 公里（50 英里），从海岸一直延伸至孟加拉国和印度内陆。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:02b2bb628e3191ef9532e37a7e25f9caf824f04ab87adcf74c7369aaab52b0bb",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 6689,
+        "sentence_id": "02b2bb628e3191ef9532e37a7e25f9caf824f04ab87adcf74c7369aaab52b0bb",
+        "clip_path": "clips/common_voice_zh-CN_18978430.mp3"
+      },
+      "reference": "泷川龟太郎是日本战国时期的知名武将泷川一益的宗派。",
+      "speaker_hash": "",
+      "terms": [
+        "日本"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:209558c0b4d6da71c4381f4eac9e9750c23c0197d62e871e9a72d33604585213",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 6803,
+        "sentence_id": "209558c0b4d6da71c4381f4eac9e9750c23c0197d62e871e9a72d33604585213",
+        "clip_path": "clips/common_voice_zh-CN_19006892.mp3"
+      },
+      "reference": "奎塔市镇是俄罗斯联邦伊尔库茨克州阿拉尔区所属的一个市镇。",
+      "speaker_hash": "",
+      "terms": [
+        "俄罗斯联邦"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:0ae02fcbe387925d9f99c04a94abb5bfa2145ac021c5e4b8fed4cc3d130d8408",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 7889,
+        "sentence_id": "0ae02fcbe387925d9f99c04a94abb5bfa2145ac021c5e4b8fed4cc3d130d8408",
+        "clip_path": "clips/common_voice_zh-CN_18594909.mp3"
+      },
+      "reference": "黑尔斯格罗夫是位于美国加利福尼亚州门多西诺县的一个非建制地区。",
+      "speaker_hash": "",
+      "terms": [
+        "加利福尼亚州"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:62:1691",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 62,
+        "id": 1691,
+        "path_stem": "2656489353936136335.wav",
+        "audio_embedded": true
+      },
+      "reference": "在某些航线上，大型公司有自己的飞机，但对于其他航线和小公司来说，就有问题了。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:b3e61e6db6859fa0d887e79d91c9038bf0c2c8042acba2e934f5b327e7057072",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 6518,
+        "sentence_id": "b3e61e6db6859fa0d887e79d91c9038bf0c2c8042acba2e934f5b327e7057072",
+        "clip_path": "clips/common_voice_zh-CN_22217046.mp3"
+      },
+      "reference": "中国电信部分地区的分公司会透过技术手段探测限制用户通过路由器共享上网。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:28:1956",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 28,
+        "id": 1956,
+        "path_stem": "2143864787210000265.wav",
+        "audio_embedded": true
+      },
+      "reference": "迄今为止，船运是跨洋运输大量人员和货物的最有效方式。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:129:1809",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 129,
+        "id": 1809,
+        "path_stem": "12330101513684259648.wav",
+        "audio_embedded": true
+      },
+      "reference": "很早的时候就引进了轨枕，用于固定铁轨。但是，人们逐渐意识到，如果在铁轨上放上铁片，铁轨会更稳固有效。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:336:1930",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 336,
+        "id": 1930,
+        "path_stem": "7459037573375372374.wav",
+        "audio_embedded": true
+      },
+      "reference": "六名人质（包括儿童和老人在内）以及那些菲律宾摄影师被提前释放。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:115:1871",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 115,
+        "id": 1871,
+        "path_stem": "3952817111418833045.wav",
+        "audio_embedded": true
+      },
+      "reference": "在中东温暖的气候中，房子并不是多重要。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:288:1787",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 288,
+        "id": 1787,
+        "path_stem": "15084084705355118496.wav",
+        "audio_embedded": true
+      },
+      "reference": "写博客是一种能够激发合作的工具，还能鼓励学生把学习延伸到传统的学校授课之外。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:b33aaaba90243cc8303410d1377e3e1b31ce876a0aad2e59bc322571de6f1416",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 10442,
+        "sentence_id": "b33aaaba90243cc8303410d1377e3e1b31ce876a0aad2e59bc322571de6f1416",
+        "clip_path": "clips/common_voice_zh-CN_22219502.mp3"
+      },
+      "reference": "鄄城镇是中国山东省菏泽市鄄城县下辖的一个镇。",
+      "speaker_hash": "",
+      "terms": [
+        "山东省",
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:167:1932",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 167,
+        "id": 1932,
+        "path_stem": "13037894084917440449.wav",
+        "audio_embedded": true
+      },
+      "reference": "表演开始五分钟后，刮起了风，约一分钟后，风速达到了 70 公里/小时……紧接着又下起了雨，雨势如此之大，像针扎一样拍打在皮肤上，随后天上下起了冰雹，惊慌失措的人群尖叫着四散奔逃。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:9d8cdf88401cff39dd4b9e44f92e3e89fd3f94055476eb1305f61925ea24e7a8",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2117,
+        "sentence_id": "9d8cdf88401cff39dd4b9e44f92e3e89fd3f94055476eb1305f61925ea24e7a8",
+        "clip_path": "clips/common_voice_zh-CN_22154494.mp3"
+      },
+      "reference": "文忠志曾多次访问中国。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:329:1674",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 329,
+        "id": 1674,
+        "path_stem": "15619666715819820695.wav",
+        "audio_embedded": true
+      },
+      "reference": "在某些地区，水煮一分钟就足够了，在其他地区则需要几分钟的时间。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:247:1888",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 247,
+        "id": 1888,
+        "path_stem": "6132308696345904995.wav",
+        "audio_embedded": true
+      },
+      "reference": "重返家园的冲击比文化冲击来得更快（蜜月期更短），持续时间更长，也可能更严重。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:73:1703",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 73,
+        "id": 1703,
+        "path_stem": "11231516927974266547.wav",
+        "audio_embedded": true
+      },
+      "reference": "昨天，马尔泰利在由 9 名成员组成的新临时选举委员会 (CEP)中宣誓就职。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:379:1943",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 379,
+        "id": 1943,
+        "path_stem": "1651820524132841258.wav",
+        "audio_embedded": true
+      },
+      "reference": "压力越小，生命力就表现得越积极。每个人都有可能找到绝对的平静和满足。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:26aa1b6028192dbe985138258a4261866092cb77cdd012eec63cf8c16b9c207c",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 333,
+        "sentence_id": "26aa1b6028192dbe985138258a4261866092cb77cdd012eec63cf8c16b9c207c",
+        "clip_path": "clips/common_voice_zh-CN_19063274.mp3"
+      },
+      "reference": "这栋楼房原是中国银行宿舍。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:c74fe07b166ae6992934048a87fea34e3c1b7b4765b79f1caab99a332f274b90",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8482,
+        "sentence_id": "c74fe07b166ae6992934048a87fea34e3c1b7b4765b79f1caab99a332f274b90",
+        "clip_path": "clips/common_voice_zh-CN_22955076.mp3"
+      },
+      "reference": "中国著名的农业昆虫学家。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:6eaeb8d032d38b390202104c5431afdb16bea45b92e4594fe33ec0311ec1bb5a",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 502,
+        "sentence_id": "6eaeb8d032d38b390202104c5431afdb16bea45b92e4594fe33ec0311ec1bb5a",
+        "clip_path": "clips/common_voice_zh-CN_22068616.mp3"
+      },
+      "reference": "早苗是大日本帝国海军若竹级驱逐舰的三号舰。",
+      "speaker_hash": "",
+      "terms": [
+        "日本",
+        "大日本帝国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:102:1982",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 102,
+        "id": 1982,
+        "path_stem": "11844924614009214850.wav",
+        "audio_embedded": true
+      },
+      "reference": "女性：建议无论实际婚姻状况如何，所有女性游客都应说自己已婚。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:b2354b4b54362bd8c543f7b76f2d63234f08bcdcac7c49dfaa2567d29c93d742",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2407,
+        "sentence_id": "b2354b4b54362bd8c543f7b76f2d63234f08bcdcac7c49dfaa2567d29c93d742",
+        "clip_path": "clips/common_voice_zh-CN_22214745.mp3"
+      },
+      "reference": "图伯是位于美国加利福尼亚州莫多克县的一个非建制地区。",
+      "speaker_hash": "",
+      "terms": [
+        "加利福尼亚州"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:276:1800",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 276,
+        "id": 1800,
+        "path_stem": "6484078875722223530.wav",
+        "audio_embedded": true
+      },
+      "reference": "大桥预计将于 2017 年 9 月全面投入使用，届时巴西海关检查站预计也将完工。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:1b21a5ebe3d412f9dcbb8999bbc6d33cb021f04b476f459fab61c51ff53bfd9c",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 5434,
+        "sentence_id": "1b21a5ebe3d412f9dcbb8999bbc6d33cb021f04b476f459fab61c51ff53bfd9c",
+        "clip_path": "clips/common_voice_zh-CN_18995224.mp3"
+      },
+      "reference": "名誉名人为日本名人战五连霸或通算获得十次者可永久获得的称号。",
+      "speaker_hash": "",
+      "terms": [
+        "日本"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:0c15952bfcb2f40580ca5a656fc6073b58fd7142b9b4e4319ea04e06aebc5ad2",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 3725,
+        "sentence_id": "0c15952bfcb2f40580ca5a656fc6073b58fd7142b9b4e4319ea04e06aebc5ad2",
+        "clip_path": "clips/common_voice_zh-CN_18980511.mp3"
+      },
+      "reference": "次年开始在德国一家社会医疗保障机构工作。",
+      "speaker_hash": "",
+      "terms": [
+        "德国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:92608d80353152a45eba33a76f1911115bde8b21f7000fcb38441b734114070a",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 2777,
+        "sentence_id": "92608d80353152a45eba33a76f1911115bde8b21f7000fcb38441b734114070a",
+        "clip_path": "clips/common_voice_zh-CN_22120631.mp3"
+      },
+      "reference": "为中国国家二级保护动物。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:273:1684",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 273,
+        "id": 1684,
+        "path_stem": "6434743737829208648.wav",
+        "audio_embedded": true
+      },
+      "reference": "阿皮亚是萨摩亚的首都。该城镇位于乌波卢（Upolu）岛上，人口数量不足 4 万。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:7a16e6f9926944226e80b79c0c3970b2ba41b7ba962c7722cd90765adb029832",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 1659,
+        "sentence_id": "7a16e6f9926944226e80b79c0c3970b2ba41b7ba962c7722cd90765adb029832",
+        "clip_path": "clips/common_voice_zh-CN_22078867.mp3"
+      },
+      "reference": "舒格南语接近于中国境内的色勒库尔语。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:446:1797",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 446,
+        "id": 1797,
+        "path_stem": "9461042541226885784.wav",
+        "audio_embedded": true
+      },
+      "reference": "每个人都是社会的一份子，都会使用交通系统。而几乎每个人都对交通系统有怨言。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:0c07f7781642383345c53ee6bcff161b45f28c6db908b8d47e8cc72a9bf5fef8",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 5768,
+        "sentence_id": "0c07f7781642383345c53ee6bcff161b45f28c6db908b8d47e8cc72a9bf5fef8",
+        "clip_path": "clips/common_voice_zh-CN_18981001.mp3"
+      },
+      "reference": "北宅街道是中国山东省青岛市崂山区下辖的一个街道。",
+      "speaker_hash": "",
+      "terms": [
+        "山东省",
+        "青岛市",
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:955580748769bf59d246be0d7987695f5e98d0601cc79e9bd7930b019b107b44",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8978,
+        "sentence_id": "955580748769bf59d246be0d7987695f5e98d0601cc79e9bd7930b019b107b44",
+        "clip_path": "clips/common_voice_zh-CN_22148328.mp3"
+      },
+      "reference": "翁文灏出生地故居在宁波市鄞州区高桥镇石塘村。",
+      "speaker_hash": "",
+      "terms": [
+        "宁波"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:1296e7e9bb57160809f864e5f49d95819301fbc68ebdacebfd5de38b5434d1ba",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 9497,
+        "sentence_id": "1296e7e9bb57160809f864e5f49d95819301fbc68ebdacebfd5de38b5434d1ba",
+        "clip_path": "clips/common_voice_zh-CN_18986561.mp3"
+      },
+      "reference": "广西省政府是中华民国南京国民政府在广西省的最高地方行政机关。",
+      "speaker_hash": "",
+      "terms": [
+        "南京"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "commonvoice:7493f22a3d4483dd16ffc77a4a2d246c87e6f1fd478fb536c458a1b360ed35b4",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 1043,
+        "sentence_id": "7493f22a3d4483dd16ffc77a4a2d246c87e6f1fd478fb536c458a1b360ed35b4",
+        "clip_path": "clips/common_voice_zh-CN_22070610.mp3"
+      },
+      "reference": "石家庄永昌足球俱乐部是中国河北省石家庄市的一家足球俱乐部。",
+      "speaker_hash": "",
+      "terms": [
+        "中国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:447:2000",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 447,
+        "id": 2000,
+        "path_stem": "9505945782536040528.wav",
+        "audio_embedded": true
+      },
+      "reference": "如果在冬天穿越北波罗的海，要检查客舱的位置，因为在冰面上航行会给那些受影响最严重的人带来非常可怕的噪音。",
+      "terms": [
+        "北波罗的海"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:26:1998",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 26,
+        "id": 1998,
+        "path_stem": "2131574129003004633.wav",
+        "audio_embedded": true
+      },
+      "reference": "它们脚上有鳞片和爪子，会产卵，还像霸王龙一样用两条后腿走路。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:ab97e0a8492a333ec78b6063e9fac5883a84ddfbe54ecfa713147accd8975c1c",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 9357,
+        "sentence_id": "ab97e0a8492a333ec78b6063e9fac5883a84ddfbe54ecfa713147accd8975c1c",
+        "clip_path": "clips/common_voice_zh-CN_22192738.mp3"
+      },
+      "reference": "夺权后的造反派宣布成立上海市人民检察院革命委员会。",
+      "speaker_hash": "",
+      "terms": [
+        "上海"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:225:1974",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 225,
+        "id": 1974,
+        "path_stem": "14125944580545897739.wav",
+        "audio_embedded": true
+      },
+      "reference": "同理，男士也必须穿着长裤，遮住膝盖。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:843cd79b5e9c9ef43e51976ca77c15693110487c50ef81e0945192eb30ac63eb",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 897,
+        "sentence_id": "843cd79b5e9c9ef43e51976ca77c15693110487c50ef81e0945192eb30ac63eb",
+        "clip_path": "clips/common_voice_zh-CN_22111473.mp3"
+      },
+      "reference": "克尼尔瓦尔德是德国黑森州的一个市镇。",
+      "speaker_hash": "",
+      "terms": [
+        "德国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:440:1747",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 440,
+        "id": 1747,
+        "path_stem": "17701778111296514571.wav",
+        "audio_embedded": true
+      },
+      "reference": "其他摔跤选手也纷纷悼念露娜 (Luna) 。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:82fe31cd70ecc3685ff4497384b7fa5188b52e18bba0cfc3bf9fc444820688df",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 8364,
+        "sentence_id": "82fe31cd70ecc3685ff4497384b7fa5188b52e18bba0cfc3bf9fc444820688df",
+        "clip_path": "clips/common_voice_zh-CN_22104182.mp3"
+      },
+      "reference": "马场昌房是日本战国时代武将。",
+      "speaker_hash": "",
+      "terms": [
+        "日本"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:352:1695",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 352,
+        "id": 1695,
+        "path_stem": "7584839622746771875.wav",
+        "audio_embedded": true
+      },
+      "reference": "Pa amb Oli 是一种在夏天尤为流行的简单晚餐：面包搭配橄榄油、番茄，手头上任何佐料都可加入，比如奶酪、金枪鱼等。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:470:1937",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 470,
+        "id": 1937,
+        "path_stem": "18282771913457226026.wav",
+        "audio_embedded": true
+      },
+      "reference": "然而，这些计划几乎在一夜之间被弃如敝履，在违反《里加和平条约》、《苏联波兰互不侵犯条约》及其他双边及多边国际条约，入侵波兰的东部地区之后，超过 80 万名苏联红军入境，并在白俄罗斯和乌克兰筑起阵地。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "commonvoice:aba3b389e5679b5ff092b11c9ca3bae24fcdbdc013192b6321bbdfdb7b199b6a",
+      "source": "commonvoice_zh-CN_test",
+      "location": {
+        "file": "zh-CN/test.tsv",
+        "line": 7783,
+        "sentence_id": "aba3b389e5679b5ff092b11c9ca3bae24fcdbdc013192b6321bbdfdb7b199b6a",
+        "clip_path": "clips/common_voice_zh-CN_22198465.mp3"
+      },
+      "reference": "日本拳圣泽井健一也常叹弗如。",
+      "speaker_hash": "",
+      "terms": [
+        "日本"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:125:1875",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 125,
+        "id": 1875,
+        "path_stem": "4029647781917512535.wav",
+        "audio_embedded": true
+      },
+      "reference": "亚马逊河占全世界所有河流的入海流量的 20%。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:73:1924",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 73,
+        "id": 1924,
+        "path_stem": "288222503248548843.wav",
+        "audio_embedded": true
+      },
+      "reference": "女子坐式组的四名滑雪选手未能完赛，大回转项目（Giant Slalom）的 117 名选手中有 45 人未能挤进榜单。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:92:1791",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 92,
+        "id": 1791,
+        "path_stem": "3338374366145231782.wav",
+        "audio_embedded": true
+      },
+      "reference": "切勿在建筑物上做标记或涂鸦，以免破坏遗址。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:416:1865",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 416,
+        "id": 1865,
+        "path_stem": "8978219181597999511.wav",
+        "audio_embedded": true
+      },
+      "reference": "圣彼得堡游轮包括城内观光活动。游轮乘客可获豁免签证（详情请参阅服务条款）。",
+      "terms": [],
+      "label": "lexicon_absent"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:230:1810",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 230,
+        "id": 1810,
+        "path_stem": "5912419037743359023.wav",
+        "audio_embedded": true
+      },
+      "reference": "加利福尼亚州长阿诺德·施瓦辛格签署了一项法案，禁止向未成年人出售或出租暴力电子游戏。",
+      "terms": [
+        "加利福尼亚州",
+        "阿诺德·施瓦辛格"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:47:1723",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 47,
+        "id": 1723,
+        "path_stem": "10824731430851864186.wav",
+        "audio_embedded": true
+      },
+      "reference": "该海湾曾在 1889 年发生过一场臭名昭著的海军对峙，当时来自德国、美国和英国的七艘舰船拒绝驶离这个海湾。",
+      "terms": [
+        "美国",
+        "德国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:228:1945",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 228,
+        "id": 1945,
+        "path_stem": "14152107015604580647.wav",
+        "audio_embedded": true
+      },
+      "reference": "卡萨布兰卡是全摩洛哥最无趣的购物地之一。",
+      "terms": [
+        "卡萨布兰卡",
+        "摩洛哥"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:217:1992",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 217,
+        "id": 1992,
+        "path_stem": "5756643130279805197.wav",
+        "audio_embedded": true
+      },
+      "reference": "“游猎 (safari)”一词，在常见的用法中是指通过陆路旅行去观赏令人惊叹的非洲野生动物，尤其是在热带草原上。",
+      "terms": [
+        "非洲"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:358:1730",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 358,
+        "id": 1730,
+        "path_stem": "16122645321793286284.wav",
+        "audio_embedded": true
+      },
+      "reference": "全天都有公交车从城区间公交站（跨河）发车，但大部分车次，特别是开往东部和贾卡尔/布姆唐的公交车都在 06:30 至 07:30 之间发车。",
+      "terms": [
+        "布姆唐",
+        "贾卡尔"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:13:1910",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 13,
+        "id": 1910,
+        "path_stem": "10154699825088384418.wav",
+        "audio_embedded": true
+      },
+      "reference": "巴黎人是出了名的以自我中心、粗鲁和傲慢。",
+      "terms": [
+        "巴黎"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:87:1822",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 87,
+        "id": 1822,
+        "path_stem": "11448789813502529641.wav",
+        "audio_embedded": true
+      },
+      "reference": "摩洛哥苏丹将该市重建为 Daru l-Badya。西班牙商人在这里建立了贸易基地，并将其命名为卡萨布兰卡。",
+      "terms": [
+        "卡萨布兰卡",
+        "摩洛哥",
+        "西班牙"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:378:1916",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 378,
+        "id": 1916,
+        "path_stem": "7973352938134656115.wav",
+        "audio_embedded": true
+      },
+      "reference": "许多德国烘焙食品也以杏仁、榛子和其他坚果为特色。受欢迎的蛋糕与浓咖啡往往是绝配。",
+      "terms": [
+        "德国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:274:1915",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 274,
+        "id": 1915,
+        "path_stem": "6453896711002806613.wav",
+        "audio_embedded": true
+      },
+      "reference": "你可以乘坐 boda-boda（出租的摩托车）游览戈马（Goma）。短途车程的正常（当地）价格是 500 刚果法郎。",
+      "terms": [
+        "戈马"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00001-of-00002.arrow:19:1896",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00001-of-00002.arrow",
+        "row_index": 19,
+        "id": 1896,
+        "path_stem": "207141767713642945.wav",
+        "audio_embedded": true
+      },
+      "reference": "美国体操协会和美国奥委会有一个共同的目标，那就是尽可能保证体操运动和其他运动的安全性，让运动员在安全、积极和充满支持的环境中追求他们的梦想。",
+      "terms": [
+        "美国"
+      ],
+      "label": "lexicon_present"
+    },
+    {
+      "sample_id": "fleurs:data-00000-of-00002.arrow:434:1676",
+      "source": "fleurs_zh-CN_test",
+      "location": {
+        "shard": "data-00000-of-00002.arrow",
+        "row_index": 434,
+        "id": 1676,
+        "path_stem": "17609781541012569203.wav",
+        "audio_embedded": true
+      },
+      "reference": "与所有南非国家公园一样，该公园每天都收取养护费和门票费。",
+      "terms": [
+        "南非"
+      ],
+      "label": "lexicon_present"
+    }
+  ]
+}

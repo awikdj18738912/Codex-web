@@ -1,0 +1,35 @@
+{
+  "texts": 1000,
+  "exact_reproduction_from_current_generator": true,
+  "template_groups": 32,
+  "cross_split_template_leakage": 0,
+  "texts_sha256": "27bbf717ceaa406c30051f8b19d95a8872408630506ae4de43a807b4c52ea754",
+  "sources": {
+    "experiments/scripts/synthetic_gate_data.py": {
+      "snapshot": "preparation_sources/synthetic_gate_data.py",
+      "sha256": "ce568bb669d387fd9f30ce5dbbb9068055208988f94af9dfecabe4392adfde44"
+    },
+    "experiments/scripts/collect_gate_pairs.py": {
+      "snapshot": "preparation_sources/collect_gate_pairs.py",
+      "sha256": "909d4689dc4698f3bf8a6ed80ac5bccf5f78c2bb7d4a0027a7589a211ddc8391"
+    },
+    "pipeline/src/speech/moss_tts_service.py": {
+      "snapshot": "preparation_sources/moss_tts_service.py",
+      "sha256": "9973550037021759eae394400120a81edebd153682095c368f2469dfd55d253b"
+    }
+  },
+  "real_tts_completed": 0,
+  "real_asr_completed": 0,
+  "paired_refiner_completed": 0,
+  "gate_model_trained": false,
+  "pending_dependency": "MOSS model path or compatible shared-filesystem TTS service",
+  "validation": {
+    "test_files": [
+      "tests/test_synthetic_gate_data.py",
+      "tests/test_gate_pair_collector.py",
+      "tests/test_gate_review_export.py"
+    ],
+    "passed": 46,
+    "test_audio_role": "sine_wave_transport_fixture_not_real_tts"
+  }
+}

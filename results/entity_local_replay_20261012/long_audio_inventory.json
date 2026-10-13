@@ -1,0 +1,233 @@
+{
+  "purpose": "Read-only inventory for long-audio local replay/timing regression; no ASR/GPU was run.",
+  "audit_scope_incident": {
+    "occurred": true,
+    "command_scope": "An earlier recursive rg pattern searched under results/ for podcast/continuous/long/拼接 terms across *.py, *.json, *.jsonl, and *.md; the command excluded files named references.jsonl and new181* but did not constrain directories.",
+    "possible_new181_reference_access": "Unconfirmed: because the recursive search could inspect JSONL files outside the current allowlist, it may have traversed a new181-related file whose name did not match the exclusions. No new181 path was intentionally opened after the parent restricted scope, and no extracted target text was used or copied into this inventory.",
+    "subsequent_scope": "Only generic_entity_validation manifest, its continuous_podcast protocol/result, generic_entity_integration manifest, and the specified continuous/integration scripts were consulted for this inventory."
+  },
+  "source_files_consulted": [
+    "results/generic_entity_validation_20261010/manifest.json",
+    "results/generic_entity_validation_20261010/continuous_podcast/protocol.json",
+    "results/generic_entity_validation_20261010/continuous_podcast/result.json",
+    "results/generic_entity_integration_20261010/manifest.json",
+    "experiments/scripts/validate_generic_entity_continuous.py",
+    "experiments/scripts/test_generic_entity_integration.py"
+  ],
+  "candidates": [
+    {
+      "id": "continuous_19m_24m",
+      "duration_seconds": 300.0,
+      "audio_path": "results/generic_entity_validation_20261010/continuous_podcast/continuous_19m_24m.wav",
+      "original_source": "/home/aim0/桌面/tan/ASR/Codex-web/【视频播客】癌症概念101：早期晚期，靶向药，免疫治疗，我们一次说清楚 - 1.【视频播客】癌症概念101：早期晚期，靶向药，免疫治疗，我们一次说清楚(Av117322333294723,P1).mp3",
+      "original_source_sha256": "d6996b6d70c9f7f268aae01e76f0133240dbf0db29dd642732591432c4b2fe55",
+      "source_time_range_seconds": [
+        1140.0,
+        1440.0
+      ],
+      "source_sample_ids": [
+        "oncology_podcast_0019",
+        "oncology_podcast_0020",
+        "oncology_podcast_0021",
+        "oncology_podcast_0022",
+        "oncology_podcast_0023"
+      ],
+      "recording_class": "Original continuous oncology podcast excerpt assembled from five consecutive archive blocks; script checks adjacency and concatenates PCM without inserted silence.",
+      "pcm_sha256": "7bfbcb58d87405f164750f09a018442727d7e985b6312afe29d4d625ca512c1d",
+      "vocabulary_path": "/home/aim0/桌面/tan/ASR/Codex-web/data/entity_benchmarks/oncology_repaired_20261009",
+      "dictionary_sha256": "9b2e8376a10ae735ef33f7c8c17d68e828de84a6621bac76623de4aaa05447d8",
+      "reference_locator": {
+        "protocol_field": "reference",
+        "value": null,
+        "available": false,
+        "script_report_says": "no standard subtitle; no CER/entity accuracy claim"
+      },
+      "saved_initial_and_request_payloads": {
+        "result_path": "results/generic_entity_validation_20261010/continuous_podcast/result.json",
+        "baseline_final_completed_segments": 1,
+        "replay_final_completed_segments": 1,
+        "baseline_chunk_payloads": 300,
+        "replay_chunk_payloads": 300,
+        "chunk_payloads_contain_completed_segments_field": true,
+        "explicit_endpoint_trace": "The result stores ready, per-chunk responses, final payload, and guard event snapshots; it does not store a separately labeled endpoint log."
+      },
+      "existing_timing_seconds": {
+        "baseline_decode": 28.57162174815312,
+        "context_replay_decode": 27.28207215992734,
+        "entity_retrieval": 2.092895273119211,
+        "change_verification": 0.061156787909567356
+      },
+      "prior_applied_changes": [
+        {
+          "start": 1241,
+          "end": 1244,
+          "observed": "黑素瘤",
+          "canonical": "黑色素瘤"
+        },
+        {
+          "start": 1414,
+          "end": 1417,
+          "observed": "黑色瘤",
+          "canonical": "黑色素瘤"
+        }
+      ],
+      "timing_regression_use": "Usable for repeat timing of 5-minute continuous audio, ASR replay overhead, selector retrieval, and confirmation logic. Single source/segment and no reference; not an accuracy regression set."
+    },
+    {
+      "id": "generic_long_060",
+      "duration_seconds": 67.405,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/generic_entity_validation_20261010/long_audio/generic_long_060.wav",
+      "pcm_sha256": "12006523890e2a7bb8c784b0358ba98a9166c6fc3a31c6563d38d852037a6474",
+      "cohort": "long_stress",
+      "domain": "mixed_long",
+      "library_key": "mixed_long",
+      "row": 400,
+      "source_ids_count": 7,
+      "source_ids": [
+        "speechio_law_rIfA-JnK798_0106-861",
+        "speechio_law_BL_mKtLdBK0_0066-66",
+        "speechio_people_startup_insider_huohuasiwei_0017-383",
+        "speechio_people_startup_insider_huohuasiwei_0006-374",
+        "speechio_people_startup_insider_xiaomi_0106-1747",
+        "speechio_people_startup_insider_xiaomi_0042-1703",
+        "speechio_people_startup_insider_xiaomi_0010-1690"
+      ],
+      "reference_locator": {
+        "file": "results/generic_entity_integration_20261010/manifest.json",
+        "field": "samples[].reference",
+        "present": true,
+        "contents_read": false
+      },
+      "pcm_and_file_status": "Manifest declares an audio path and PCM SHA-256. The raw WAV and row-level ASR/trace outputs were not opened in this restricted follow-up.",
+      "initial_completed_segments_and_request_trace": "Not independently verified from permitted files. Manifest marks ASR replay as real recorded stream responses; integration script loads asr_baseline/asr_generic and new_audio_requests, but row payloads were not inspected.",
+      "recording_class": "Long stress sample composed from multiple source_ids; not asserted to be one continuous original recording.",
+      "vocabulary": "integration manifest uses the mixed_long library; per-record candidate vocabulary/use was not inspected.",
+      "prior_applied_changes": "Not inspected under current scope.",
+      "timing_regression_use": "Candidate for replay/runtime stress only after separately confirming row-level trace availability and exact PCM file hash."
+    },
+    {
+      "id": "generic_long_180",
+      "duration_seconds": 183.976,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/generic_entity_validation_20261010/long_audio/generic_long_180.wav",
+      "pcm_sha256": "a5c49d3315192dcc40a677b04e7b1a526e636487c3b3c2acbe51e5632ff5479c",
+      "cohort": "long_stress",
+      "domain": "mixed_long",
+      "library_key": "mixed_long",
+      "row": 401,
+      "source_ids_count": 23,
+      "source_ids": [
+        "speechio_law_rIfA-JnK798_0106-861",
+        "speechio_law_BL_mKtLdBK0_0066-66",
+        "speechio_people_startup_insider_huohuasiwei_0017-383",
+        "speechio_people_startup_insider_huohuasiwei_0006-374",
+        "speechio_people_startup_insider_xiaomi_0106-1747",
+        "speechio_people_startup_insider_xiaomi_0042-1703",
+        "speechio_people_startup_insider_xiaomi_0010-1690",
+        "speechio_people_startup_insider_tongdunkeji_0241-1458",
+        "speechio_people_startup_insider_huohuasiwei_0018-384",
+        "er_faq_waiting_010",
+        "er_faq_examination_019",
+        "speechio_finance_rFV7wdEX-Mo_0070-680",
+        "speechio_law_sdzEhEDWMWU_0132-1049",
+        "speechio_finance_gIvg5f_U7PE_0122-428",
+        "speechio_finance_gIvg5f_U7PE_0152-458",
+        "speechio_startup_investment_startup_insider_rongzi_0330-1050",
+        "er_faq_observation_007",
+        "speechio_law_sdzEhEDWMWU_0024-932",
+        "er_faq_other_022",
+        "speechio_finance_rFV7wdEX-Mo_0095-705",
+        "speechio_law_rIfA-JnK798_0020-772",
+        "speechio_science_Mwa0_nE9H7A_13-397",
+        "speechio_law_sdzEhEDWMWU_0022-930"
+      ],
+      "reference_locator": {
+        "file": "results/generic_entity_integration_20261010/manifest.json",
+        "field": "samples[].reference",
+        "present": true,
+        "contents_read": false
+      },
+      "pcm_and_file_status": "Manifest declares an audio path and PCM SHA-256. The raw WAV and row-level ASR/trace outputs were not opened in this restricted follow-up.",
+      "initial_completed_segments_and_request_trace": "Not independently verified from permitted files. Manifest marks ASR replay as real recorded stream responses; integration script loads asr_baseline/asr_generic and new_audio_requests, but row payloads were not inspected.",
+      "recording_class": "Long stress sample composed from multiple source_ids; not asserted to be one continuous original recording.",
+      "vocabulary": "integration manifest uses the mixed_long library; per-record candidate vocabulary/use was not inspected.",
+      "prior_applied_changes": "Not inspected under current scope.",
+      "timing_regression_use": "Candidate for replay/runtime stress only after separately confirming row-level trace availability and exact PCM file hash."
+    },
+    {
+      "id": "generic_long_300",
+      "duration_seconds": 301.44,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/generic_entity_validation_20261010/long_audio/generic_long_300.wav",
+      "pcm_sha256": "7d14dfc2861abcb0dc682f17c893d6c9d66b9da1529540af9cc782c28c6dd6ed",
+      "cohort": "long_stress",
+      "domain": "mixed_long",
+      "library_key": "mixed_long",
+      "row": 402,
+      "source_ids_count": 37,
+      "source_ids": [
+        "speechio_law_rIfA-JnK798_0106-861",
+        "speechio_law_BL_mKtLdBK0_0066-66",
+        "speechio_people_startup_insider_huohuasiwei_0017-383",
+        "speechio_people_startup_insider_huohuasiwei_0006-374",
+        "speechio_people_startup_insider_xiaomi_0106-1747",
+        "speechio_people_startup_insider_xiaomi_0042-1703",
+        "speechio_people_startup_insider_xiaomi_0010-1690",
+        "speechio_people_startup_insider_tongdunkeji_0241-1458",
+        "speechio_people_startup_insider_huohuasiwei_0018-384",
+        "er_faq_waiting_010",
+        "er_faq_examination_019",
+        "speechio_finance_rFV7wdEX-Mo_0070-680",
+        "speechio_law_sdzEhEDWMWU_0132-1049",
+        "speechio_finance_gIvg5f_U7PE_0122-428",
+        "speechio_finance_gIvg5f_U7PE_0152-458",
+        "speechio_startup_investment_startup_insider_rongzi_0330-1050",
+        "er_faq_observation_007",
+        "speechio_law_sdzEhEDWMWU_0024-932",
+        "er_faq_other_022",
+        "speechio_finance_rFV7wdEX-Mo_0095-705",
+        "speechio_law_rIfA-JnK798_0020-772",
+        "speechio_science_Mwa0_nE9H7A_13-397",
+        "speechio_law_sdzEhEDWMWU_0022-930",
+        "speechio_law_rIfA-JnK798_0001-753",
+        "er_faq_observation_002",
+        "speechio_law_pSBtQrtNYKU_0038-670",
+        "speechio_agriculture_5LjvekilszY_0072-155",
+        "er_faq_other_023",
+        "er_faq_observation_038",
+        "speechio_law_CEYw-gEV3VU_0022-126",
+        "speechio_law_hxq-Hdz6_5U_0081-576",
+        "speechio_law_pSBtQrtNYKU_0014-645",
+        "er_faq_examination_015",
+        "er_faq_other_018",
+        "er_faq_waiting_008",
+        "speechio_law_MB-ufSUvvx8_0094-351",
+        "speechio_finance_rFV7wdEX-Mo_0235-845"
+      ],
+      "reference_locator": {
+        "file": "results/generic_entity_integration_20261010/manifest.json",
+        "field": "samples[].reference",
+        "present": true,
+        "contents_read": false
+      },
+      "pcm_and_file_status": "Manifest declares an audio path and PCM SHA-256. The raw WAV and row-level ASR/trace outputs were not opened in this restricted follow-up.",
+      "initial_completed_segments_and_request_trace": "Not independently verified from permitted files. Manifest marks ASR replay as real recorded stream responses; integration script loads asr_baseline/asr_generic and new_audio_requests, but row payloads were not inspected.",
+      "recording_class": "Long stress sample composed from multiple source_ids; not asserted to be one continuous original recording.",
+      "vocabulary": "integration manifest uses the mixed_long library; per-record candidate vocabulary/use was not inspected.",
+      "prior_applied_changes": "Not inspected under current scope.",
+      "timing_regression_use": "Candidate for replay/runtime stress only after separately confirming row-level trace availability and exact PCM file hash."
+    }
+  ],
+  "other_podcast_candidates": {
+    "status": "Not assessed in this restricted pass.",
+    "reason": "After the scope incident, parent limited follow-up to the named generic validation/integration manifests, continuous-podcast protocol/result, and scripts. No other podcast output directories were opened."
+  },
+  "overall_conclusion": {
+    "best_immediate_timing_candidate": "continuous_19m_24m; 300 seconds; existing baseline/replay result payloads include completed-segment and chunk response records, with prior timing values.",
+    "best_reference_available_long_candidates": [
+      "generic_long_060",
+      "generic_long_180",
+      "generic_long_300"
+    ],
+    "trace_readiness": "For generic_long_060/180/300, manifest and integration script establish candidate audio paths, PCM hash declarations, source segment IDs, and reference field locations. Row-level completed_segments/request traces were not inspected due scope restriction, so they should not be treated as ready for trace-based regression until that is separately checked.",
+    "reference_safety": "No target reference text was copied into this inventory. Continuous podcast explicitly has reference=null; generic-long reference fields are locatable in manifest but their contents were not opened."
+  }
+}

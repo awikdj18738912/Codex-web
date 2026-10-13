@@ -1,0 +1,114 @@
+{
+  "generated_from": [
+    "audio_results.jsonl",
+    "manifest.json"
+  ],
+  "sample_count": 128,
+  "definitions": {
+    "candidate": "production_final.entity_audio_repair.candidate_count > 0",
+    "checks": "production_final.entity_audio_repair.checks > 0",
+    "changes": "production_final.entity_audio_repair.change_count > 0",
+    "actual_prompted_latency": "timings.prompted sum of real HTTP request wall times during collect, including service/transport overhead; only rows with prompted > 0",
+    "audio_duration": "manifest.duration_seconds for samples with actual prompted > 0",
+    "rtf": "prompted HTTP elapsed divided by replayed source audio duration",
+    "reason_null": "reason=null means repair applied successfully; shown as null_applied"
+  },
+  "all": {
+    "samples": 128,
+    "candidate_count_gt0": 90,
+    "checks_gt0": 90,
+    "changes_gt0": 5,
+    "total_replacements": 6,
+    "reason_distribution": {
+      "no_audio_or_text": 1,
+      "no_candidates": 37,
+      "no_confirmed_changes": 85,
+      "null_applied": 5
+    },
+    "actual_prompted_replay_samples": 90,
+    "prompted_http_elapsed_seconds": {
+      "total": 57.96787402033806,
+      "mean": 0.6440874891148674,
+      "median": 0.6348762973211706,
+      "p95": 1.0507311193039641
+    },
+    "replay_audio_duration_seconds": {
+      "total": 932.244,
+      "mean": 10.358266666666667,
+      "median": 9.66
+    },
+    "prompted_asr_rtf": {
+      "aggregate": 0.062181010572702054,
+      "mean_per_sample": 0.06565616932491469,
+      "median_per_sample": 0.06498312649212538,
+      "p95_per_sample": 0.08592806231908766
+    }
+  },
+  "by_source": {
+    "commonvoice_zh-CN_test": {
+      "samples": 64,
+      "candidate_count_gt0": 41,
+      "checks_gt0": 41,
+      "changes_gt0": 0,
+      "total_replacements": 0,
+      "reason_distribution": {
+        "no_audio_or_text": 1,
+        "no_candidates": 22,
+        "no_confirmed_changes": 41
+      },
+      "actual_prompted_replay_samples": 41,
+      "prompted_http_elapsed_seconds": {
+        "total": 19.301269420422614,
+        "mean": 0.4707626687907955,
+        "median": 0.4688065843656659,
+        "p95": 0.7016149219125509
+      },
+      "replay_audio_duration_seconds": {
+        "total": 273.804,
+        "mean": 6.678146341463415,
+        "median": 6.744
+      },
+      "prompted_asr_rtf": {
+        "aggregate": 0.07049301478584176,
+        "mean_per_sample": 0.0718324414259351,
+        "median_per_sample": 0.07204466813467054,
+        "p95_per_sample": 0.08578147024300006
+      }
+    },
+    "fleurs_zh-CN_test": {
+      "samples": 64,
+      "candidate_count_gt0": 49,
+      "checks_gt0": 49,
+      "changes_gt0": 5,
+      "total_replacements": 6,
+      "reason_distribution": {
+        "no_candidates": 15,
+        "no_confirmed_changes": 44,
+        "null_applied": 5
+      },
+      "actual_prompted_replay_samples": 49,
+      "prompted_http_elapsed_seconds": {
+        "total": 38.666604599915445,
+        "mean": 0.7891143795901111,
+        "median": 0.7438778267242014,
+        "p95": 1.129156128503382
+      },
+      "replay_audio_duration_seconds": {
+        "total": 658.4399999999999,
+        "mean": 13.437551020408163,
+        "median": 12.94
+      },
+      "prompted_asr_rtf": {
+        "aggregate": 0.05872456806985519,
+        "mean_per_sample": 0.06048826817916291,
+        "median_per_sample": 0.059343808610993684,
+        "p95_per_sample": 0.08338410292241163
+      }
+    }
+  },
+  "separation": {
+    "actual_ASR_timing_stage": "collect; measured values above",
+    "web_pipeline_cached_replay": "pipeline replays captured request_trace through test transport; this does not contact ASR and is excluded from actual ASR timings",
+    "web_elapsed_warning": "web_results.elapsed_seconds, if later present, is combined Web/Refiner pipeline wall time with cached ASR responses, not real ASR decoding latency"
+  }
+}

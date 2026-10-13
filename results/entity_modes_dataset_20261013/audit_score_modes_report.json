@@ -1,0 +1,44 @@
+{
+  "partial_summary_completed_pairs": 83,
+  "partial_comparison_ids": 83,
+  "available_current_result_rows_for_these_ids": 166,
+  "independent_metrics": {
+    "context": {
+      "hits": 88,
+      "expected_mentions": 90,
+      "errors": 53,
+      "reference_chars": 2020,
+      "refiner_calls": 12,
+      "refiner_retries": 1,
+      "mean_total_seconds": 0.9580203901909022,
+      "median_total_seconds": 0.7102938378229737,
+      "CER": 0.026237623762376237,
+      "entity_recall": 0.9777777777777777,
+      "dictionary_absent_mentions": 0,
+      "dictionary_excess_mentions": 0
+    },
+    "audio": {
+      "hits": 89,
+      "expected_mentions": 90,
+      "errors": 52,
+      "reference_chars": 2020,
+      "refiner_calls": 11,
+      "refiner_retries": 1,
+      "mean_total_seconds": 1.0553717947935304,
+      "median_total_seconds": 1.1706785303540528,
+      "CER": 0.02574257425742574,
+      "entity_recall": 0.9888888888888889,
+      "dictionary_absent_mentions": 0,
+      "dictionary_excess_mentions": 0
+    }
+  },
+  "per_sample_mismatches": [],
+  "partial_summary_mismatches": [],
+  "status": "PASS",
+  "notes": [
+    "The audit ID set is exactly partial_comparisons.jsonl, not all rows currently appended to results.jsonl.",
+    "Gold multiplicity is recomputed with Counter(canonical) and each per-string hit is capped at that multiplicity.",
+    "Dictionary absence is recomputed against the full normalized reference: a recognized library canonical is absent only when that string occurs nowhere in the reference. Excess mentions separately counts output-library matches beyond reference-library match multiplicity.",
+    "CER uses an independent two-row edit-distance implementation after the documented zh-ITN, OpenCC t2s, NFKC/casefold, and P/Z/C removal pipeline."
+  ]
+}

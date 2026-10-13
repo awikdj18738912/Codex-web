@@ -1,0 +1,56 @@
+{
+  "examples": 24,
+  "by_category": {
+    "clean": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 4,
+      "source_preserved": 4,
+      "keep": 4
+    },
+    "filler": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 0,
+      "source_preserved": 2,
+      "replace": 2,
+      "keep": 2
+    },
+    "meaningful_repeat": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 4,
+      "source_preserved": 4,
+      "keep": 4
+    },
+    "protected_content": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 4,
+      "source_preserved": 4,
+      "keep": 4
+    },
+    "stutter": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 0,
+      "source_preserved": 4,
+      "keep": 4
+    },
+    "syntax_boundary": {
+      "n": 4,
+      "valid_json": 4,
+      "exact_target": 4,
+      "source_preserved": 4,
+      "keep": 4
+    }
+  },
+  "valid_json_rate": 1.0,
+  "exact_target_rate": 0.6666666666666666,
+  "mean_model_latency_ms": 474.19,
+  "test_sha256": "de151046b1a7b746b8c0250ac3a6c6fcf351a0b2e6effe407919c47c0107d71e",
+  "adapter_sha256": "5408a42944150a4917781193db8b80b74d02feb6ccd07c2133163823483af4c7",
+  "human_gold": false,
+  "real_asr_audio": false,
+  "scope": "synthetic text-format and controlled-target evaluation; not ASR/WER or live-speech accuracy"
+}

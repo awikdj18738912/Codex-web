@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-12",
+  "production_module_sha256": "3ddb098a6b02a0fa5a67647484fd233c4fb08253979c1998a91c79c0ae29da0c",
+  "finding": "Prompted replay sends the entire cached original audio at finish. No candidate-local audio slicing is implemented. Candidate count is capped in the prompt; that does not bound replay audio length.",
+  "timing": [
+    {
+      "cohort": "new_speechio96",
+      "samples": 96,
+      "replayed": 24,
+      "changed_recordings": 3,
+      "repair_elapsed_median_seconds": 1.1095000000000002,
+      "repair_elapsed_p95_seconds": 1.541,
+      "skipped_elapsed_median_seconds": 0.011,
+      "source": "results/entity_reliable_data_20261012/pilot/audio_results.jsonl",
+      "scope": "Historical entity-phase retrieval+verification timer, not current user end-to-end or long-recording latency."
+    },
+    {
+      "cohort": "large2410",
+      "samples": 2410,
+      "replayed": 2061,
+      "changed_recordings": 172,
+      "repair_elapsed_median_seconds": 1.756,
+      "repair_elapsed_p95_seconds": 2.765,
+      "skipped_elapsed_median_seconds": 0.174,
+      "source": "results/large_entity_benchmark_v1_20261010/full_evaluation/audio.jsonl",
+      "scope": "Historical entity-phase retrieval+verification timer, not current user end-to-end or long-recording latency."
+    }
+  ],
+  "next_experiment": "Record conservative audio spans for committed ASR segments within entity module; replay candidate-bearing segments with surrounding audio/context, merge overlapping windows, keep full replay fallback for unreliable alignment. Validate retained corrections and lower actual wall time before deployment.",
+  "production_changes": false
+}

@@ -1,0 +1,115 @@
+{
+  "unit_tests_passed": 31,
+  "historical_authoritative_payloads_identical": 531,
+  "holdout_authoritative_payloads_identical": 96,
+  "formal_database_unchanged": true,
+  "task_owned_production_changes": [
+    "system/entity_audio_repair.py",
+    "system/web/index.html"
+  ],
+  "external_changes_preserved": [
+    "system/repetition_preservation.py",
+    "system/web_app.py"
+  ],
+  "external_hashes": {
+    "system/repetition_preservation.py": {
+      "before": "3843a91587e4780008e4cadf6dfa2afd30d2f8f545d7531ea594e7eb253a7fdc",
+      "after": "0abf53841df4e59ebacd93602f14e97ef8c441cbf5d2d8df9cbfc2a7e9f2ac93"
+    },
+    "system/web_app.py": {
+      "before": "9bc6001c69ff500e2e73a7d694795634b37d72fd26afd9438dc82b726cdbf171",
+      "after": "a165b981abc97c6ead36989db95ba5334020cf027ad9765ef76c54289fe0f2b4"
+    }
+  },
+  "tested_scope": "Direct entity wrapper and unchanged output payloads; current Web tested with lightweight Refiner plus deployed ready messages",
+  "health": {
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "ready": {
+    "8051": {
+      "enabled": true,
+      "phase": "capturing",
+      "reason": null,
+      "entity_count": 7,
+      "candidate_count": 0,
+      "max_candidate_score": 0.0,
+      "minimum_replay_score": 0.63,
+      "prompt_terms": [],
+      "checks": 0,
+      "replay_context_applied": false,
+      "applied": false,
+      "change_count": 0,
+      "changes": [],
+      "revision": 0,
+      "elapsed_seconds": 0.0
+    },
+    "8081": {
+      "enabled": true,
+      "phase": "capturing",
+      "reason": null,
+      "entity_count": 7,
+      "candidate_count": 0,
+      "max_candidate_score": 0.0,
+      "minimum_replay_score": 0.63,
+      "prompt_terms": [],
+      "checks": 0,
+      "replay_context_applied": false,
+      "applied": false,
+      "change_count": 0,
+      "changes": [],
+      "revision": 0,
+      "elapsed_seconds": 0.0
+    }
+  }
+}

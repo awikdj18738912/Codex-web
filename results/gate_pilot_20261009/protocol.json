@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "seed": 20261009,
+  "inputs": [
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_library_20261003/asr.jsonl",
+      "frozen": "inputs/asr_00.jsonl",
+      "sha256": "86aa6df751f35470213e68ae47068b7d5946fe3afca958fd741b672c7088d4fb"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_context_20261006/fresh_asr.jsonl",
+      "frozen": "inputs/asr_01.jsonl",
+      "sha256": "a4c4a8a2541aec5908b8d7fcaceac8a070219d7a35e2e60552f69c9f102100af"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/medical_entity_20261003/asr.jsonl",
+      "frozen": "inputs/asr_02.jsonl",
+      "sha256": "078ba4030b3cf9e8d328c69223b29f408aa0374ce1974b38c8d63ae7a6c962f7"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reference_vocab_20261007/asr.jsonl",
+      "frozen": "inputs/asr_03.jsonl",
+      "sha256": "0e0bcc973ebf1e064e77344e9b8ca764d8ac20645ed482bbef1107a9db18d158"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_chinese_rules_20261008/asr.jsonl",
+      "frozen": "inputs/asr_04.jsonl",
+      "sha256": "088dff8d308254a1ad2fe2642081b9a6ca0a38bc8db251207d4d548e76fac478"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_context_20261006/mmed_dev_asr.jsonl",
+      "frozen": "inputs/asr_05.jsonl",
+      "sha256": "bbaf7f5203529a2ab82dd15362c563e7c21d872ffe5bc0ca139a00a2fddcf04f"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/offline_streaming_audio4_cache_reuse_final.json",
+      "frozen": "inputs/offline_streaming_audio4_cache_reuse_final.json",
+      "sha256": "313bc9b90d051c0993338c0439f68bdf1160cbbde62e02105cd872938887115f"
+    },
+    {
+      "original": "/home/aim0/桌面/tan/ASR/Codex-web/results/web/offline_streaming_audio5_repetition_review_aggregate_final.json",
+      "frozen": "inputs/offline_streaming_audio5_repetition_review_aggregate_final.json",
+      "sha256": "5a75680429ae54c715fce2aed0c0b3de67886246fa6422c44f8446eafdf2138b"
+    }
+  ],
+  "frozen_hashes": {
+    "frozen/system/__init__.py": "7f869168bd615ec31111ef53ebbbead8c3acb13a78c528a7dd92633e471a8953",
+    "frozen/system/asr_confidence.py": "891d456e7e4bc474b4d4129ddfed32f8193c0a812f50230aa62861d4864ad65b",
+    "frozen/system/audio_activity.py": "396d8688c130f46d7f1d11757f33b7a4cba04bface60d705a9744a77b015a08c",
+    "frozen/system/backends.py": "4a7d9b7aa2c64ec1dcfb00e8a0e0987ebb14d7a4d1de1564d1cee28d9dc747b6",
+    "frozen/system/chunking.py": "b44e2489bcc15831eb494d1c51f79838c70ff2272164179146a692aff86de3c3",
+    "frozen/system/configs/entity_matching.json": "68272b1a92e3883cad73a8ba1a3a78c4afa094f86789939cc9caaf36fd6ce852",
+    "frozen/system/deterministic_cleanup.py": "d92e0ab6cf1759e7096abd0bc04380b386afe237ba614630c5bfe9fb2f3adb8b",
+    "frozen/system/entity_acronym.py": "56a9a09c147b3c0a41a96b57bd76f652e49d4779858cb671cbfab85545fc9216",
+    "frozen/system/entity_asr_context.py": "d232fd70a046266c87016b23c635d706d97714961708b748a7501983051f73ff",
+    "frozen/system/entity_boundaries.py": "0500367744738ed6e5a63f09ad2e8c2f551e18a232e1f59ccc20e552077db1b3",
+    "frozen/system/entity_context_cli.py": "2614607aee2252039ebcb9f5d2e5bfe7baa1fa547ec34673768aa3c39986b19c",
+    "frozen/system/entity_matcher.py": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8",
+    "frozen/system/entity_pipeline.py": "e221b81486d33692100ff457cd61b74c2ab14e295ba40304da93fb89db749f8f",
+    "frozen/system/entity_pronunciation.py": "53953a872417e62ee9882edc688607071221ba30a3391a144b07aad7cb659ee5",
+    "frozen/system/entity_ranker.py": "16e853d0f2449e724b8b1029634aad8d9035a13a7c8a7d9d648c536f3bb905cb",
+    "frozen/system/entity_retrieval.py": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e",
+    "frozen/system/entity_store.py": "a3a099eb6fdff15ea3a84119cca848b92e6274cad37228ab6f4bd893d819eec6",
+    "frozen/system/live_asr.py": "5c40d7fd4cc83143154ce6f56be409231a29f6b0e597e0a26f963aae6040f000",
+    "frozen/system/live_qwen_refiner.py": "36d61d0f75a9171e2c10d45cf57d80c569c50ca74590e44934f77e349d10c220",
+    "frozen/system/manage_entities.py": "972145f3cc78e73e4ae48dbde1b25b3c8a87abf181a57e635a44e5d03b63fda0",
+    "frozen/system/numeric_normalizer.py": "80e1112be6fe382038ae20cc97b9b347cb7bddae625f6c01140ae81c95d7b17b",
+    "frozen/system/protection.py": "494a9791157f7bdea3bff6e27422bc08e09918fd8e77470e8e41b0373a0d7abd",
+    "frozen/system/quantifiers.py": "86a73ec7e69e6526e4ff4869807731f2388026c47492654bf28ed72b80527398",
+    "frozen/system/qwen_asr_server.py": "81b13377c7da8bd72d22740edad7e9c72bc00281a4bbbbb794c992d0b6f9dac4",
+    "frozen/system/qwen_asr_stream_server.py": "e0c6aa713eb44b9329f556a11d3878635965e8ce46451a239c489e178765123f",
+    "frozen/system/qwen_confidence.py": "58e1d94afb82372455778959fc361c190754b8c129df5f19910f768a7eae8036",
+    "frozen/system/refinement_gate.py": "04a03be369bff4277e844d79357f7ce6269d128c8524413a5e219910d49042ca",
+    "frozen/system/refinement_guard.py": "e27001cb79d0eb3790a903caf50746a044b2c81a4eca674cdd4740ea13f0c12a",
+    "frozen/system/refinement_protocol.py": "b02c92df4bc99f93f4314b74d125368ac94d575de6104546beda9fb7306ccb7e",
+    "frozen/system/refiner.py": "0cbee4a527ecfdbbc5155ee0f44bc306e39e02d6f52d208116353d227a54c26f",
+    "frozen/system/repetition_plausibility.py": "60daa3649922374f10ee7b20b43bb686c428e0c0676a12988505266ff52bdd41",
+    "frozen/system/session_memory.py": "b360545bdf870640376f560251d88f7787ae9627c81407e1f5002c4d670840dd",
+    "frozen/system/stream_vad.py": "3a1ae6162e23ba14dfab19f0627cd3e2808eadae3f2bdc59654e779d151fd8d0",
+    "frozen/system/transcript_repairs.py": "21546946cbe4b5e0fb30277bd4084ff5108e1fcea0111e7f6462537fa2674df3",
+    "frozen/system/web/index.html": "364e80c46aeb4491f88559eee36e53759558ca2449b800711a1bbfcad3f357d8",
+    "frozen/system/web/refinement_log.html": "b7dc543a470512a96d640b1ed7a3713cd23223558b006dc51ca76490757d295d",
+    "frozen/system/web_app.py": "7c3e4e91edb4ae32ffa0a11ed7f110a8a052f0553c6c13619b9c31102618098f",
+    "frozen/system/whisper_backend.py": "5b1aac2bcecb17db66e52672fd16770695f4921c6744c66619a04eaff0f1e67b",
+    "frozen/system/whisper_stream_server.py": "5a1642221934f84c1a314862903147c78ff8e2ed6b75ab7e6754dc65657791dc",
+    "frozen/system/window_refinement.py": "2018bcfc8b9d459317678f84d284a648fa8340c2c0460bc8989aef2fe1f8ffcf",
+    "frozen/system/zh_itn_bridge.py": "8099dbd8119bc05c052552b0a876197cc732209c1712dbb0fe387d8b28a42dfd",
+    "entities_snapshot.db": "f7ba785c1c539b6cfc3eebc9ec4447a839f542ff66928f3f1d2c55001c332c1b",
+    "native/libzh_itn_bridge.so": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+    "cases.jsonl": "6d8a635c028fcb2292cc81ab3b5e5ad88d29a8bc1027b59d13f63057f78e8cf6"
+  },
+  "entity_source": "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db",
+  "library_source": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+  "settings": {
+    "gate": "tri_state",
+    "zh_itn": true,
+    "entity_fuzzy_mode": "auto",
+    "final_refinement": "off",
+    "window_size": 3,
+    "max_new_tokens": 256
+  },
+  "source_records_after_dedup": 1031,
+  "pool": {
+    "window_refine": 2091,
+    "local_edit_review": 293
+  },
+  "selected": {
+    "window_refine": 400,
+    "local_edit_review": 100
+  },
+  "unique_recordings": 195,
+  "unique_speakers": 21,
+  "strata": {
+    "human_medical|refine": 55,
+    "demo_without_reference|keep": 55,
+    "human_medical|phrase_run": 14,
+    "human_medical|character_run": 15,
+    "demo_without_reference|character_run": 15,
+    "public_tts|character_run": 10,
+    "demo_without_reference|refine": 55,
+    "human_news|keep": 55,
+    "demo_without_reference|phrase_run": 7,
+    "human_medical|punctuated_run": 14,
+    "public_tts|keep": 55,
+    "human_news|character_run": 14,
+    "public_tts|refine": 50,
+    "human_medical|keep": 55,
+    "human_news|refine": 20,
+    "demo_without_reference|punctuated_run": 9,
+    "public_tts|punctuated_run": 1,
+    "human_news|punctuated_run": 1
+  },
+  "sampling": "Balanced exploratory input-side strata; not population prevalence.",
+  "scope": "Frozen final-snapshot decision pilot, not streaming/end-to-end latency or independent heldout acceptance.",
+  "annotation_status": "All human labels are initially blank."
+}

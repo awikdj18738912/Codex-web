@@ -1,0 +1,71 @@
+{
+  "input_version": 1,
+  "labels": [
+    "benefit",
+    "neutral",
+    "harm"
+  ],
+  "tasks": [
+    "window_refine",
+    "local_edit_review"
+  ],
+  "max_tokens": 256,
+  "variant": "encoder_weighted",
+  "parameters": 8768035,
+  "best_epoch": 3,
+  "validation_loss": 0.6871528199110692,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8325030306400821,
+      "validation_unweighted_loss": 0.7225540346887307
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5451480175488717,
+      "validation_unweighted_loss": 0.7749109778859569
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3061776962813155,
+      "validation_unweighted_loss": 0.6871528199110692
+    }
+  ],
+  "device": "cuda:0",
+  "torch": "2.11.0+cu130",
+  "encoder_source": "/home/aim0/桌面/tan/ASR/Codex-web/models/entity_ranker/encoder",
+  "train_class_weights": [
+    0.8325304985046387,
+    0.46564751863479614,
+    1.7018218040466309
+  ],
+  "encoder_lr": 2e-05,
+  "head_lr": 0.0005,
+  "batch_size": 32,
+  "train_seconds": 1.3697544112801552,
+  "calibrated": false,
+  "human_gold": 0,
+  "scope": "synthetic_weak_prototype_offline_only",
+  "online_enabled": false,
+  "thresholds": {
+    "window_refine": {
+      "benefit": 0.25,
+      "harm": 0.4
+    },
+    "local_edit_review": {
+      "benefit": 0.4,
+      "harm": 0.4
+    }
+  },
+  "veto_thresholds": {
+    "window_refine": {
+      "neutral": 0.7,
+      "harm": 0.2
+    },
+    "local_edit_review": {
+      "neutral": 0.6,
+      "harm": 0.6
+    }
+  },
+  "recommended_route": "native_veto"
+}
