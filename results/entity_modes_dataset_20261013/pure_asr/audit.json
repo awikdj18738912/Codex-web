@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "samples": 2506,
+  "per_id_mismatches": [],
+  "metrics": {
+    "hits": 2543,
+    "expected_mentions": 2860,
+    "errors": 1118,
+    "reference_chars": 42601
+  },
+  "entity_types": {
+    "LOC": {
+      "hits": 799,
+      "expected_mentions": 836
+    },
+    "PERSON": {
+      "hits": 486,
+      "expected_mentions": 683
+    },
+    "TERM": {
+      "hits": 330,
+      "expected_mentions": 342
+    },
+    "ORG": {
+      "hits": 928,
+      "expected_mentions": 999
+    }
+  },
+  "mean_seconds": 0.4656798538780888,
+  "median_seconds": 0.44974263687618077,
+  "summary_sha256": "88db5448435c4ddf0bf2188425d226c32733eed2a0b8c45184177c8a0b3f9b60",
+  "results_sha256": "25197cffd60d94c40e54b2d8c3cf5a69845e9bde034a0ddd236a59236a6bf063",
+  "method": "Independent Unicode normalizer and two-row edit distance; no inference or scorer import"
+}

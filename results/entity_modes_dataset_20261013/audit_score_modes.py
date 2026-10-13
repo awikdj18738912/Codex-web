@@ -1,7 +1,8 @@
-"""Independent offline cross-check of score_modes.py against its saved partial cohort.
+"""Independent offline cross-check of score_modes.py against a saved result cohort.
 
 This script reads frozen inputs/references, the saved partial comparisons/summary,
 result rows, and SQLite snapshots only. It does not import or invoke score_modes.py.
+Default mode audits the saved partial cohort; --full audits final summary/comparisons.
 Run with the experiment's ASR environment because OpenCC and the zh-ITN bridge are
 needed to reproduce the documented text normalization; this performs no inference.
 """
@@ -119,6 +120,7 @@ for sid in ids:
         assert r['entity_audio_repair_requested']==(arm=='audio')
         hit_by={w:min(n,text.count(w)) for w,n in gold.items()}
         raw_hit_by={w:min(n,raw.count(w)) for w,n in gold.items()}
+        replay_absent_change_details=[c for c in audio.get('changes',[]) if normalize(c['canonical']) not in ref]
         arm_values[arm]={
             'hits':sum(hit_by.values()),'expected_mentions':sum(gold.values()),
             'errors':edit_distance(ref,text),'reference_chars':len(ref),
@@ -127,6 +129,8 @@ for sid in ids:
             'refiner_retries':r['session_refiner_retry_call_count'],
             'replay_checks':audio.get('checks',0),
             'replay_applied_changes':len(audio.get('changes',[])),
+            'replay_absent_changes':len(replay_absent_change_details),
+            'replay_absent_change_details':replay_absent_change_details,
             'dictionary_excess_mentions':sum((words-refwords).values()),
             'dictionary_absent_mentions':sum(n for w,n in words.items() if w not in ref),
             'prompt_hits':sum(n for w,n in hit_by.items() if w in prompt),
@@ -170,7 +174,8 @@ for arm in ARMS:
     # the excess metric also catches over-counts of terms that do appear.
     expected['dictionary_absent_mentions']=sum(v['dictionary_absent_mentions'] for v in vals)
     expected['dictionary_excess_mentions']=sum(v['dictionary_excess_mentions'] for v in vals)
-    for k in ('dictionary_absent_mentions','dictionary_excess_mentions'):
+    expected['replay_absent_changes']=sum(v['replay_absent_changes'] for v in vals)
+    for k in ('dictionary_absent_mentions','dictionary_excess_mentions','replay_absent_changes'):
         if expected[k]!=all_saved[arm][k]:summary_mismatches.append((arm,k,expected[k],all_saved[arm][k]))
     independent[arm]=expected
 
@@ -184,6 +189,10 @@ report={
     'selected_result_rows_sha256':selected_rows_sha256,
     'available_current_result_rows_for_these_ids':len(results),
     'independent_metrics':independent,
+    'independent_replay_absent_change_details':[
+        {'id':sid,'observed':change.get('observed'),'canonical':change.get('canonical'),'reference':refs[sid]['reference']}
+        for sid in ids for change in per_id[sid]['audio']['replay_absent_change_details']
+    ],
     'per_sample_mismatches':detail_mismatches,
     'summary_mismatches':summary_mismatches,
     'status':'PASS' if not detail_mismatches and not summary_mismatches else 'MISMATCH',

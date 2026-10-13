@@ -1,0 +1,92 @@
+{
+  "pid": 1782812,
+  "port": 55135,
+  "argv": [
+    "/home/aim0/data/conda/envs/agentic-asr/bin/python",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/pure_asr/worker.py",
+    "--port",
+    "55135",
+    "--asr-url",
+    "http://127.0.0.1:8766"
+  ],
+  "source_hashes": {
+    "worker.py": "7aa139c1776e63effdccb89178994d49a3a9521a2586aebfd6eae1455b198b9e",
+    "collect.py": "a467bb229675ff5de99dd9da6ec179881037d986c765843e08840abdbb839291"
+  },
+  "parent_protocol_sha256": "318a8d4ffd3adf4c44d14dfe8c4e219a2cb89630caf946290dceeb791afebd85",
+  "adapter_sha256": "f8d7a58d8092df97c8be366b8b75cb8f202827c98e63c618a824b0daf4f9d112",
+  "health": {
+    "ok": true,
+    "scope": "raw ASR relay only",
+    "asr_url": "http://127.0.0.1:8766",
+    "entity_library": false,
+    "entity_context": false,
+    "entity_audio_review": false,
+    "refiner": false,
+    "numeric_normalization": false,
+    "text_cleanup": false
+  },
+  "asr_health": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "asr_server_processes": [
+    {
+      "pid": 1455505,
+      "args": [
+        "/home/aim0/data/conda/envs/qwen3-asr/bin/python",
+        "-m",
+        "system.qwen_asr_stream_server",
+        "--model",
+        "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+        "--gpu-memory-utilization",
+        "0.55",
+        "--max-model-len",
+        "32768",
+        "--confidence-logprobs",
+        "5",
+        "--segmentation-mode",
+        "vad_finalize",
+        "--asr-send-chunk-seconds",
+        "0.5",
+        "--vad",
+        "silero",
+        "--vad-model",
+        "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+        "--vad-energy-threshold",
+        "0.02",
+        "--vad-min-silence",
+        "0.7",
+        "--vad-min-speech",
+        "0.25",
+        "--vad-preroll",
+        "0.7",
+        "--vad-tail-pad",
+        "1.0",
+        "--silence-rms-threshold",
+        "0.002",
+        "--port",
+        "8766"
+      ],
+      "process_start_ticks": "284111323"
+    }
+  ]
+}

@@ -1,0 +1,2575 @@
+{
+  "complete": true,
+  "completed_pairs": 2506,
+  "planned_pairs": 2506,
+  "normalization": "same conservative zh-itn on reference and output, OpenCC t2s, NFKC/casefold, strip P/Z/C; same as prior full benchmark",
+  "entity_recall_scope": "canonical substring occurrence capped by annotated reference count; not identity verification or general NER precision",
+  "dictionary_absent_scope": "longest non-overlapping canonical library matches absent anywhere from complete normalized reference; diagnostic, not manual hallucination labels",
+  "timing_scope": "Local WebSocket connect-to-final, including dictionary setup and fresh ASR/refinement. Excludes disk read/file decode/browser/user proxy. No cached ASR responses.",
+  "groups": {
+    "all": {
+      "context": {
+        "hits": 2543,
+        "expected_mentions": 2860,
+        "errors": 1158,
+        "reference_chars": 42601,
+        "raw_hits": 2545,
+        "raw_errors": 1117,
+        "refiner_calls": 305,
+        "refiner_retries": 29,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 35,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 16,
+        "prompt_hits": 190,
+        "prompt_expected": 193,
+        "outside_prompt_hits": 2353,
+        "outside_prompt_expected": 2667,
+        "samples": 2506,
+        "entity_recall": 0.8891608391608392,
+        "CER": 0.027182460505621935,
+        "raw_CER": 0.026220041783056737,
+        "audio_seconds": 13988.5803165,
+        "total_wall_seconds": 2021.8745677433908,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 297,
+        "dictionary_absent_samples": 16,
+        "total_seconds": {
+          "mean": 0.8068134747579373,
+          "median": 0.672148676821962,
+          "p90": 1.4991503225173801
+        },
+        "session_setup_seconds": {
+          "mean": 0.14253586122813708,
+          "median": 0.1364917594473809,
+          "p90": 0.16755222156643867
+        },
+        "audio_stream_seconds": {
+          "mean": 0.23696112716834358,
+          "median": 0.2070660963654518,
+          "p90": 0.41334764403291047
+        },
+        "tail_seconds": {
+          "mean": 0.42729571056667437,
+          "median": 0.30936814402230084,
+          "p90": 1.00946731492877
+        },
+        "RTF": {
+          "mean": 0.1458346587429116,
+          "median": 0.13172285289288982,
+          "p90": 0.21669335685004315
+        }
+      },
+      "audio": {
+        "hits": 2714,
+        "expected_mentions": 2860,
+        "errors": 930,
+        "reference_chars": 42601,
+        "raw_hits": 2716,
+        "raw_errors": 888,
+        "refiner_calls": 271,
+        "refiner_retries": 29,
+        "replay_checks": 1822,
+        "replay_applied_changes": 180,
+        "dictionary_excess_mentions": 39,
+        "replay_absent_changes": 4,
+        "dictionary_absent_mentions": 20,
+        "prompt_hits": 188,
+        "prompt_expected": 193,
+        "outside_prompt_hits": 2526,
+        "outside_prompt_expected": 2667,
+        "samples": 2506,
+        "entity_recall": 0.948951048951049,
+        "CER": 0.021830473463064246,
+        "raw_CER": 0.02084458111311941,
+        "audio_seconds": 13988.5803165,
+        "total_wall_seconds": 2998.94618509477,
+        "replay_sample_count": 1822,
+        "replay_changed_samples": 174,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 139,
+        "dictionary_absent_samples": 20,
+        "total_seconds": {
+          "mean": 1.1967063787289585,
+          "median": 1.1793546366970986,
+          "p90": 1.668785553658381
+        },
+        "session_setup_seconds": {
+          "mean": 0.1357772767923606,
+          "median": 0.13303180341608822,
+          "p90": 0.16168323857709765
+        },
+        "audio_stream_seconds": {
+          "mean": 0.23517223992975872,
+          "median": 0.20405466435477138,
+          "p90": 0.4045130868908018
+        },
+        "tail_seconds": {
+          "mean": 0.8257356912162637,
+          "median": 0.8410715123172849,
+          "p90": 1.159431112697348
+        },
+        "RTF": {
+          "mean": 0.22070034389267776,
+          "median": 0.22466768834168474,
+          "p90": 0.28579537476452743
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 174,
+        "context_more_entity_hits": 7,
+        "audio_lower_CER_samples": 206,
+        "context_lower_CER_samples": 50,
+        "equal_CER_samples": 2250,
+        "audio_faster_samples": 281,
+        "context_faster_samples": 2225,
+        "audio_minus_context_seconds": {
+          "mean": 0.3898929039710212,
+          "median": 0.44444713089615107,
+          "p90": 0.7709645277354866
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.05085712161048215,
+            0.06919110676762284
+          ],
+          "CER": [
+            -0.006522062896822096,
+            -0.004169805868658247
+          ],
+          "mean_seconds": [
+            0.3760927237280548,
+            0.4026941917682251
+          ]
+        }
+      }
+    },
+    "corpus:large_entity_benchmark_v1_20261010": {
+      "context": {
+        "hits": 2434,
+        "expected_mentions": 2745,
+        "errors": 1071,
+        "reference_chars": 39806,
+        "raw_hits": 2436,
+        "raw_errors": 1039,
+        "refiner_calls": 282,
+        "refiner_retries": 25,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 35,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 16,
+        "prompt_hits": 155,
+        "prompt_expected": 156,
+        "outside_prompt_hits": 2279,
+        "outside_prompt_expected": 2589,
+        "samples": 2410,
+        "entity_recall": 0.8867030965391621,
+        "CER": 0.02690549163442697,
+        "raw_CER": 0.026101592724714868,
+        "audio_seconds": 13443.140754,
+        "total_wall_seconds": 1953.08383672731,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 292,
+        "dictionary_absent_samples": 16,
+        "total_seconds": {
+          "mean": 0.8104082310071825,
+          "median": 0.6744214980863035,
+          "p90": 1.5020194900687782
+        },
+        "session_setup_seconds": {
+          "mean": 0.14524713574630435,
+          "median": 0.13696917379274964,
+          "p90": 0.16820165649987756
+        },
+        "audio_stream_seconds": {
+          "mean": 0.23449757649907185,
+          "median": 0.20505765173584223,
+          "p90": 0.40580053878948086
+        },
+        "tail_seconds": {
+          "mean": 0.43064274833464217,
+          "median": 0.31238563591614366,
+          "p90": 1.0099554545246063
+        },
+        "RTF": {
+          "mean": 0.14661844864578594,
+          "median": 0.1330059743500902,
+          "p90": 0.21852741296485037
+        }
+      },
+      "audio": {
+        "hits": 2602,
+        "expected_mentions": 2745,
+        "errors": 855,
+        "reference_chars": 39806,
+        "raw_hits": 2604,
+        "raw_errors": 819,
+        "refiner_calls": 245,
+        "refiner_retries": 24,
+        "replay_checks": 1798,
+        "replay_applied_changes": 177,
+        "dictionary_excess_mentions": 39,
+        "replay_absent_changes": 4,
+        "dictionary_absent_mentions": 20,
+        "prompt_hits": 153,
+        "prompt_expected": 156,
+        "outside_prompt_hits": 2449,
+        "outside_prompt_expected": 2589,
+        "samples": 2410,
+        "entity_recall": 0.9479052823315118,
+        "CER": 0.02147917399387027,
+        "raw_CER": 0.020574787720444153,
+        "audio_seconds": 13443.140754,
+        "total_wall_seconds": 2917.4046314340085,
+        "replay_sample_count": 1798,
+        "replay_changed_samples": 171,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 137,
+        "dictionary_absent_samples": 20,
+        "total_seconds": {
+          "mean": 1.210541340843987,
+          "median": 1.1950192761141807,
+          "p90": 1.6690777548588813
+        },
+        "session_setup_seconds": {
+          "mean": 0.13828375119623182,
+          "median": 0.1333426213823259,
+          "p90": 0.16201243926770986
+        },
+        "audio_stream_seconds": {
+          "mean": 0.23276336765403693,
+          "median": 0.2024534794036299,
+          "p90": 0.39753029816783964
+        },
+        "tail_seconds": {
+          "mean": 0.8394730604562862,
+          "median": 0.8515871919225901,
+          "p90": 1.16380883208476
+        },
+        "RTF": {
+          "mean": 0.22363993422437514,
+          "median": 0.2264735723353561,
+          "p90": 0.28649713408549216
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 171,
+        "context_more_entity_hits": 7,
+        "audio_lower_CER_samples": 202,
+        "context_lower_CER_samples": 50,
+        "equal_CER_samples": 2158,
+        "audio_faster_samples": 247,
+        "context_faster_samples": 2163,
+        "audio_minus_context_seconds": {
+          "mean": 0.40013310983680433,
+          "median": 0.4523808448575437,
+          "p90": 0.7724351661745459
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.05143635984069887,
+            0.07114178285298409
+          ],
+          "CER": [
+            -0.006552928033905868,
+            -0.004255611276862865
+          ],
+          "mean_seconds": [
+            0.3874344569695843,
+            0.4128008518106578
+          ]
+        }
+      }
+    },
+    "cohort:negative": {
+      "context": {
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 54,
+        "reference_chars": 4219,
+        "raw_hits": 0,
+        "raw_errors": 53,
+        "refiner_calls": 14,
+        "refiner_retries": 2,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 0,
+        "prompt_expected": 0,
+        "outside_prompt_hits": 0,
+        "outside_prompt_expected": 0,
+        "samples": 300,
+        "entity_recall": null,
+        "CER": 0.012799241526428064,
+        "raw_CER": 0.012562218535197914,
+        "audio_seconds": 1447.526448,
+        "total_wall_seconds": 204.10411177622154,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.6803470392540718,
+          "median": 0.5918717198073864,
+          "p90": 0.8812989449128514
+        },
+        "session_setup_seconds": {
+          "mean": 0.1568353766311581,
+          "median": 0.13964000903069973,
+          "p90": 0.17102723866701128
+        },
+        "audio_stream_seconds": {
+          "mean": 0.17601317605779818,
+          "median": 0.1629405585117638,
+          "p90": 0.30954079781658955
+        },
+        "tail_seconds": {
+          "mean": 0.3474777026443432,
+          "median": 0.29457249864935875,
+          "p90": 0.41642818679101784
+        },
+        "RTF": {
+          "mean": 0.14305803361459568,
+          "median": 0.1365649915259664,
+          "p90": 0.1774462135292971
+        }
+      },
+      "audio": {
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 52,
+        "reference_chars": 4219,
+        "raw_hits": 0,
+        "raw_errors": 50,
+        "refiner_calls": 14,
+        "refiner_retries": 2,
+        "replay_checks": 262,
+        "replay_applied_changes": 1,
+        "dictionary_excess_mentions": 1,
+        "replay_absent_changes": 1,
+        "dictionary_absent_mentions": 1,
+        "prompt_hits": 0,
+        "prompt_expected": 0,
+        "outside_prompt_hits": 0,
+        "outside_prompt_expected": 0,
+        "samples": 300,
+        "entity_recall": null,
+        "CER": 0.012325195543967766,
+        "raw_CER": 0.011851149561507466,
+        "audio_seconds": 1447.526448,
+        "total_wall_seconds": 353.814088513609,
+        "replay_sample_count": 262,
+        "replay_changed_samples": 1,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 1,
+        "total_seconds": {
+          "mean": 1.1793802950453633,
+          "median": 1.1371000739745796,
+          "p90": 1.6300352726131682
+        },
+        "session_setup_seconds": {
+          "mean": 0.14804590545439472,
+          "median": 0.13426173804327846,
+          "p90": 0.16288455273024738
+        },
+        "audio_stream_seconds": {
+          "mean": 0.1734708193394666,
+          "median": 0.16750979144126177,
+          "p90": 0.2866731118876487
+        },
+        "tail_seconds": {
+          "mean": 0.8578397768906628,
+          "median": 0.8303261960390955,
+          "p90": 1.1712668909691277
+        },
+        "RTF": {
+          "mean": 0.25000727706541664,
+          "median": 0.2468281945287616,
+          "p90": 0.3071498970808742
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 5,
+        "context_lower_CER_samples": 6,
+        "equal_CER_samples": 289,
+        "audio_faster_samples": 7,
+        "context_faster_samples": 293,
+        "audio_minus_context_seconds": {
+          "mean": 0.4990332557912916,
+          "median": 0.5086487813387066,
+          "p90": 0.7947975754737855
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": null,
+          "CER": [
+            -0.003144921230994688,
+            0.0018703628867177474
+          ],
+          "mean_seconds": [
+            0.47071821341038833,
+            0.5265736926175111
+          ]
+        }
+      }
+    },
+    "library:topic_06_新闻人物组织地理": {
+      "context": {
+        "hits": 2141,
+        "expected_mentions": 2445,
+        "errors": 865,
+        "reference_chars": 32987,
+        "raw_hits": 2143,
+        "raw_errors": 852,
+        "refiner_calls": 209,
+        "refiner_retries": 12,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 35,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 16,
+        "prompt_hits": 17,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 2124,
+        "outside_prompt_expected": 2428,
+        "samples": 2131,
+        "entity_recall": 0.8756646216768916,
+        "CER": 0.026222451268681602,
+        "raw_CER": 0.025828356625337254,
+        "audio_seconds": 11497.70644,
+        "total_wall_seconds": 1661.781260416843,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 286,
+        "dictionary_absent_samples": 16,
+        "total_seconds": {
+          "mean": 0.7798128861646377,
+          "median": 0.6674468610435724,
+          "p90": 1.3923114980570972
+        },
+        "session_setup_seconds": {
+          "mean": 0.1547384954969727,
+          "median": 0.13886639336124063,
+          "p90": 0.17067162785679102
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2176097975967339,
+          "median": 0.1985421860590577,
+          "p90": 0.37199756875634193
+        },
+        "tail_seconds": {
+          "mean": 0.4074438303289039,
+          "median": 0.3115602256730199,
+          "p90": 0.9246965036727488
+        },
+        "RTF": {
+          "mean": 0.1457523656773699,
+          "median": 0.13306900593983836,
+          "p90": 0.20027715997684045
+        }
+      },
+      "audio": {
+        "hits": 2307,
+        "expected_mentions": 2445,
+        "errors": 654,
+        "reference_chars": 32987,
+        "raw_hits": 2309,
+        "raw_errors": 638,
+        "refiner_calls": 171,
+        "refiner_retries": 10,
+        "replay_checks": 1727,
+        "replay_applied_changes": 173,
+        "dictionary_excess_mentions": 39,
+        "replay_absent_changes": 4,
+        "dictionary_absent_mentions": 20,
+        "prompt_hits": 16,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 2291,
+        "outside_prompt_expected": 2428,
+        "samples": 2131,
+        "entity_recall": 0.943558282208589,
+        "CER": 0.019825992057477187,
+        "raw_CER": 0.01934095249643799,
+        "audio_seconds": 11497.70644,
+        "total_wall_seconds": 2602.808923837729,
+        "replay_sample_count": 1727,
+        "replay_changed_samples": 167,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 132,
+        "dictionary_absent_samples": 20,
+        "total_seconds": {
+          "mean": 1.221402592134082,
+          "median": 1.1933177798055112,
+          "p90": 1.6647838889621198
+        },
+        "session_setup_seconds": {
+          "mean": 0.14667928944975978,
+          "median": 0.13449602108448744,
+          "p90": 0.1628884319216013
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2157672848805946,
+          "median": 0.19638693612068892,
+          "p90": 0.3637210112065077
+        },
+        "tail_seconds": {
+          "mean": 0.8589351446744088,
+          "median": 0.8520952458493412,
+          "p90": 1.1696096430532634
+        },
+        "RTF": {
+          "mean": 0.23118960701209057,
+          "median": 0.23054848761134542,
+          "p90": 0.28862237395496554
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 168,
+        "context_more_entity_hits": 6,
+        "audio_lower_CER_samples": 194,
+        "context_lower_CER_samples": 46,
+        "equal_CER_samples": 1891,
+        "audio_faster_samples": 130,
+        "context_faster_samples": 2001,
+        "audio_minus_context_seconds": {
+          "mean": 0.4415897059694443,
+          "median": 0.48372146440669894,
+          "p90": 0.7841420681215823
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.05687723364556589,
+            0.07813177479198978
+          ],
+          "CER": [
+            -0.007717428022135613,
+            -0.005000242783827598
+          ],
+          "mean_seconds": [
+            0.428853292470485,
+            0.45447372948391496
+          ]
+        }
+      }
+    },
+    "cohort:positive": {
+      "context": {
+        "hits": 2543,
+        "expected_mentions": 2860,
+        "errors": 1083,
+        "reference_chars": 37420,
+        "raw_hits": 2545,
+        "raw_errors": 1046,
+        "refiner_calls": 281,
+        "refiner_retries": 25,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 35,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 16,
+        "prompt_hits": 190,
+        "prompt_expected": 193,
+        "outside_prompt_hits": 2353,
+        "outside_prompt_expected": 2667,
+        "samples": 2174,
+        "entity_recall": 0.8891608391608392,
+        "CER": 0.028941742383752005,
+        "raw_CER": 0.027952966328166757,
+        "audio_seconds": 12354.2856185,
+        "total_wall_seconds": 1795.3409504089504,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 297,
+        "dictionary_absent_samples": 16,
+        "total_seconds": {
+          "mean": 0.8258238042359478,
+          "median": 0.6864189016632736,
+          "p90": 1.5230343161150814
+        },
+        "session_setup_seconds": {
+          "mean": 0.14152325176194366,
+          "median": 0.13621463137678802,
+          "p90": 0.16707865800708532
+        },
+        "audio_stream_seconds": {
+          "mean": 0.24420845557604817,
+          "median": 0.21206023055128753,
+          "p90": 0.4215138584841043
+        },
+        "tail_seconds": {
+          "mean": 0.4400713762140763,
+          "median": 0.3144542505033314,
+          "p90": 1.0115413569379599
+        },
+        "RTF": {
+          "mean": 0.14666361418377044,
+          "median": 0.13133052961173114,
+          "p90": 0.22292503324867088
+        }
+      },
+      "audio": {
+        "hits": 2714,
+        "expected_mentions": 2860,
+        "errors": 857,
+        "reference_chars": 37420,
+        "raw_hits": 2716,
+        "raw_errors": 820,
+        "refiner_calls": 247,
+        "refiner_retries": 25,
+        "replay_checks": 1554,
+        "replay_applied_changes": 179,
+        "dictionary_excess_mentions": 38,
+        "replay_absent_changes": 3,
+        "dictionary_absent_mentions": 19,
+        "prompt_hits": 188,
+        "prompt_expected": 193,
+        "outside_prompt_hits": 2526,
+        "outside_prompt_expected": 2667,
+        "samples": 2174,
+        "entity_recall": 0.948951048951049,
+        "CER": 0.022902191341528596,
+        "raw_CER": 0.021913415285943347,
+        "audio_seconds": 12354.2856185,
+        "total_wall_seconds": 2618.874303316232,
+        "replay_sample_count": 1554,
+        "replay_changed_samples": 173,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 139,
+        "dictionary_absent_samples": 19,
+        "total_seconds": {
+          "mean": 1.2046339941657,
+          "median": 1.1943418935406953,
+          "p90": 1.6715315710287542
+        },
+        "session_setup_seconds": {
+          "mean": 0.13498623920634573,
+          "median": 0.13297846633940935,
+          "p90": 0.16164530394598842
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2425818932846723,
+          "median": 0.20909100770950317,
+          "p90": 0.4138430079910904
+        },
+        "tail_seconds": {
+          "mean": 0.827045068556268,
+          "median": 0.8499465624336153,
+          "p90": 1.1585713590029627
+        },
+        "RTF": {
+          "mean": 0.2178704250760059,
+          "median": 0.22271743220414986,
+          "p90": 0.2810787866903151
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 174,
+        "context_more_entity_hits": 7,
+        "audio_lower_CER_samples": 201,
+        "context_lower_CER_samples": 44,
+        "equal_CER_samples": 1929,
+        "audio_faster_samples": 262,
+        "context_faster_samples": 1912,
+        "audio_minus_context_seconds": {
+          "mean": 0.37881018992975224,
+          "median": 0.4344783150590956,
+          "p90": 0.7673804664518684
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.05085348196736581,
+            0.06895446840568792
+          ],
+          "CER": [
+            -0.007272257751139872,
+            -0.004752336941838442
+          ],
+          "mean_seconds": [
+            0.3638535098368285,
+            0.39282934553035526
+          ]
+        }
+      }
+    },
+    "library:topic_09_自然科学化学": {
+      "context": {
+        "hits": 23,
+        "expected_mentions": 23,
+        "errors": 8,
+        "reference_chars": 507,
+        "raw_hits": 23,
+        "raw_errors": 6,
+        "refiner_calls": 4,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 15,
+        "prompt_expected": 15,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 23,
+        "entity_recall": 1.0,
+        "CER": 0.015779092702169626,
+        "raw_CER": 0.011834319526627219,
+        "audio_seconds": 147.764313,
+        "total_wall_seconds": 20.588011047337204,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.8951309151016176,
+          "median": 0.6624541440978646,
+          "p90": 1.5547329072840512
+        },
+        "session_setup_seconds": {
+          "mean": 0.06968609008776105,
+          "median": 0.06970508210361004,
+          "p90": 0.07267580404877663
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2971003857117308,
+          "median": 0.24090017471462488,
+          "p90": 0.48034129971638323
+        },
+        "tail_seconds": {
+          "mean": 0.5283248655133598,
+          "median": 0.3182493969798088,
+          "p90": 1.0045327866449951
+        },
+        "RTF": {
+          "mean": 0.1438418978014789,
+          "median": 0.12790239423553962,
+          "p90": 0.20697379851226674
+        }
+      },
+      "audio": {
+        "hits": 22,
+        "expected_mentions": 23,
+        "errors": 9,
+        "reference_chars": 507,
+        "raw_hits": 22,
+        "raw_errors": 7,
+        "refiner_calls": 4,
+        "refiner_retries": 0,
+        "replay_checks": 6,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 14,
+        "prompt_expected": 15,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 23,
+        "entity_recall": 0.9565217391304348,
+        "CER": 0.01775147928994083,
+        "raw_CER": 0.013806706114398421,
+        "audio_seconds": 147.764313,
+        "total_wall_seconds": 23.60330306366086,
+        "replay_sample_count": 6,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 1,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.0262305679852548,
+          "median": 0.9329131529666483,
+          "p90": 1.6505029870197176
+        },
+        "session_setup_seconds": {
+          "mean": 0.0698011031617289,
+          "median": 0.0698190969415009,
+          "p90": 0.07228213883936405
+        },
+        "audio_stream_seconds": {
+          "mean": 0.30606394872555265,
+          "median": 0.2600847249850631,
+          "p90": 0.5534970450215042
+        },
+        "tail_seconds": {
+          "mean": 0.6503431706122406,
+          "median": 0.739983371924609,
+          "p90": 1.010354764573276
+        },
+        "RTF": {
+          "mean": 0.16521393742085652,
+          "median": 0.15801374542118027,
+          "p90": 0.27360512283284494
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 1,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 1,
+        "equal_CER_samples": 22,
+        "audio_faster_samples": 10,
+        "context_faster_samples": 13,
+        "audio_minus_context_seconds": {
+          "mean": 0.1310996528836372,
+          "median": 0.06319134822115302,
+          "p90": 0.5695068041794003
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            -0.13043478260869565,
+            0.0
+          ],
+          "CER": [
+            0.0,
+            0.006437768240343348
+          ],
+          "mean_seconds": [
+            0.033262478969687516,
+            0.24921168145298453
+          ]
+        }
+      }
+    },
+    "library:topic_10_金融经济": {
+      "context": {
+        "hits": 26,
+        "expected_mentions": 26,
+        "errors": 29,
+        "reference_chars": 741,
+        "raw_hits": 26,
+        "raw_errors": 20,
+        "refiner_calls": 27,
+        "refiner_retries": 7,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 10,
+        "outside_prompt_expected": 10,
+        "samples": 26,
+        "entity_recall": 1.0,
+        "CER": 0.03913630229419703,
+        "raw_CER": 0.02699055330634278,
+        "audio_seconds": 195.331,
+        "total_wall_seconds": 29.464589843526483,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.1332534555202494,
+          "median": 1.1060355703812093,
+          "p90": 2.1267373631708324
+        },
+        "session_setup_seconds": {
+          "mean": 0.07105717428315145,
+          "median": 0.07115485542453825,
+          "p90": 0.07318689255043864
+        },
+        "audio_stream_seconds": {
+          "mean": 0.4209046474335572,
+          "median": 0.425702748587355,
+          "p90": 0.6682704270351678
+        },
+        "tail_seconds": {
+          "mean": 0.6412717633737395,
+          "median": 0.4561843790579587,
+          "p90": 1.5928443670272827
+        },
+        "RTF": {
+          "mean": 0.143909475217243,
+          "median": 0.1264020188264132,
+          "p90": 0.2495103898407132
+        }
+      },
+      "audio": {
+        "hits": 26,
+        "expected_mentions": 26,
+        "errors": 30,
+        "reference_chars": 741,
+        "raw_hits": 26,
+        "raw_errors": 20,
+        "refiner_calls": 30,
+        "refiner_retries": 8,
+        "replay_checks": 8,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 10,
+        "outside_prompt_expected": 10,
+        "samples": 26,
+        "entity_recall": 1.0,
+        "CER": 0.04048582995951417,
+        "raw_CER": 0.02699055330634278,
+        "audio_seconds": 195.331,
+        "total_wall_seconds": 33.25431828154251,
+        "replay_sample_count": 8,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.279012241597789,
+          "median": 1.2590078285429627,
+          "p90": 2.2096658658701926
+        },
+        "session_setup_seconds": {
+          "mean": 0.07045651674987032,
+          "median": 0.07054434716701508,
+          "p90": 0.07282161014154553
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3864143434553765,
+          "median": 0.38645239151082933,
+          "p90": 0.5956574107985944
+        },
+        "tail_seconds": {
+          "mean": 0.8221205691806972,
+          "median": 0.7739748999010772,
+          "p90": 1.6263653254136443
+        },
+        "RTF": {
+          "mean": 0.1654913053746953,
+          "median": 0.14781508476731017,
+          "p90": 0.25892254775668117
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 1,
+        "equal_CER_samples": 25,
+        "audio_faster_samples": 12,
+        "context_faster_samples": 14,
+        "audio_minus_context_seconds": {
+          "mean": 0.1457587860775395,
+          "median": 0.06058224104344845,
+          "p90": 0.671042489586398
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            0.0,
+            0.004318122144620061
+          ],
+          "mean_seconds": [
+            -0.059865328049412574,
+            0.34331266710516756
+          ]
+        }
+      }
+    },
+    "library:topic_08_科技计算机通信": {
+      "context": {
+        "hits": 24,
+        "expected_mentions": 24,
+        "errors": 28,
+        "reference_chars": 631,
+        "raw_hits": 24,
+        "raw_errors": 22,
+        "refiner_calls": 11,
+        "refiner_retries": 3,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 24,
+        "entity_recall": 1.0,
+        "CER": 0.044374009508716325,
+        "raw_CER": 0.03486529318541997,
+        "audio_seconds": 174.858313,
+        "total_wall_seconds": 24.186855288688093,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.0077856370286706,
+          "median": 0.7328752679750323,
+          "p90": 1.656309994775802
+        },
+        "session_setup_seconds": {
+          "mean": 0.07118001035026585,
+          "median": 0.07079624035395682,
+          "p90": 0.07425277563743293
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3721930880177145,
+          "median": 0.3456813513766974,
+          "p90": 0.5627697616349906
+        },
+        "tail_seconds": {
+          "mean": 0.5643887883828332,
+          "median": 0.2143325365614146,
+          "p90": 1.0127010988537222
+        },
+        "RTF": {
+          "mean": 0.13571018578715596,
+          "median": 0.10198939910807933,
+          "p90": 0.237422283357268
+        }
+      },
+      "audio": {
+        "hits": 24,
+        "expected_mentions": 24,
+        "errors": 28,
+        "reference_chars": 631,
+        "raw_hits": 24,
+        "raw_errors": 22,
+        "refiner_calls": 11,
+        "refiner_retries": 3,
+        "replay_checks": 7,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 24,
+        "entity_recall": 1.0,
+        "CER": 0.044374009508716325,
+        "raw_CER": 0.03486529318541997,
+        "audio_seconds": 174.858313,
+        "total_wall_seconds": 26.602401807904243,
+        "replay_sample_count": 7,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.1084334086626768,
+          "median": 0.8836276384536177,
+          "p90": 1.5707309140358119
+        },
+        "session_setup_seconds": {
+          "mean": 0.0700695908550794,
+          "median": 0.07023173966445029,
+          "p90": 0.07248114710673689
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3638779501391885,
+          "median": 0.33564505144022405,
+          "p90": 0.5364959938917309
+        },
+        "tail_seconds": {
+          "mean": 0.6744647395098582,
+          "median": 0.5561308702453971,
+          "p90": 1.0134536816738546
+        },
+        "RTF": {
+          "mean": 0.14829338512942125,
+          "median": 0.12474480440238805,
+          "p90": 0.2450798583880333
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 24,
+        "audio_faster_samples": 9,
+        "context_faster_samples": 15,
+        "audio_minus_context_seconds": {
+          "mean": 0.10064777163400625,
+          "median": 0.06995653663761914,
+          "p90": 0.3478064230643213
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            0.0,
+            0.0
+          ],
+          "mean_seconds": [
+            0.02667370791702221,
+            0.18425115087059862
+          ]
+        }
+      }
+    },
+    "library:topic_03_医疗健康": {
+      "context": {
+        "hits": 100,
+        "expected_mentions": 105,
+        "errors": 52,
+        "reference_chars": 2059,
+        "raw_hits": 100,
+        "raw_errors": 52,
+        "refiner_calls": 15,
+        "refiner_retries": 1,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 17,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 83,
+        "outside_prompt_expected": 88,
+        "samples": 86,
+        "entity_recall": 0.9523809523809523,
+        "CER": 0.02525497814473045,
+        "raw_CER": 0.02525497814473045,
+        "audio_seconds": 592.832,
+        "total_wall_seconds": 87.90344507806003,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 4,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.0221330823030237,
+          "median": 1.034410024061799,
+          "p90": 1.626248300075531
+        },
+        "session_setup_seconds": {
+          "mean": 0.07745334543937514,
+          "median": 0.07720164302736521,
+          "p90": 0.08128693304024637
+        },
+        "audio_stream_seconds": {
+          "mean": 0.354493947813374,
+          "median": 0.34132255846634507,
+          "p90": 0.5828063955996186
+        },
+        "tail_seconds": {
+          "mean": 0.5901653479925508,
+          "median": 0.3762038166169077,
+          "p90": 1.0143929549958557
+        },
+        "RTF": {
+          "mean": 0.15079783627565782,
+          "median": 0.13266270887960954,
+          "p90": 0.24911088687462074
+        }
+      },
+      "audio": {
+        "hits": 102,
+        "expected_mentions": 105,
+        "errors": 48,
+        "reference_chars": 2059,
+        "raw_hits": 102,
+        "raw_errors": 48,
+        "refiner_calls": 14,
+        "refiner_retries": 1,
+        "replay_checks": 28,
+        "replay_applied_changes": 3,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 17,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 85,
+        "outside_prompt_expected": 88,
+        "samples": 86,
+        "entity_recall": 0.9714285714285714,
+        "CER": 0.023312287518212724,
+        "raw_CER": 0.023312287518212724,
+        "audio_seconds": 592.832,
+        "total_wall_seconds": 95.882394624874,
+        "replay_sample_count": 28,
+        "replay_changed_samples": 3,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 3,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.1149115654055115,
+          "median": 1.3369956933893263,
+          "p90": 1.690126437228173
+        },
+        "session_setup_seconds": {
+          "mean": 0.08278615927583603,
+          "median": 0.07661748980171978,
+          "p90": 0.08250178443267941
+        },
+        "audio_stream_seconds": {
+          "mean": 0.36734563850819374,
+          "median": 0.34705423121340573,
+          "p90": 0.5996660313103348
+        },
+        "tail_seconds": {
+          "mean": 0.6647533264530953,
+          "median": 0.8300609258003533,
+          "p90": 1.015043787425384
+        },
+        "RTF": {
+          "mean": 0.16485684964697464,
+          "median": 0.16256615924285855,
+          "p90": 0.2526277274767053
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 2,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 4,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 82,
+        "audio_faster_samples": 35,
+        "context_faster_samples": 51,
+        "audio_minus_context_seconds": {
+          "mean": 0.09277848310248796,
+          "median": 0.06032485677860677,
+          "p90": 0.3932947958819568
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.04854368932038835
+          ],
+          "CER": [
+            -0.004085349766800496,
+            -0.00044010704750662837
+          ],
+          "mean_seconds": [
+            0.04821382735024726,
+            0.1407791265804959
+          ]
+        }
+      }
+    },
+    "library:topic_04_历史教育": {
+      "context": {
+        "hits": 24,
+        "expected_mentions": 24,
+        "errors": 19,
+        "reference_chars": 516,
+        "raw_hits": 24,
+        "raw_errors": 18,
+        "refiner_calls": 3,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 24,
+        "entity_recall": 1.0,
+        "CER": 0.03682170542635659,
+        "raw_CER": 0.03488372093023256,
+        "audio_seconds": 152.228688,
+        "total_wall_seconds": 27.889847659040242,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.1620769857933435,
+          "median": 1.2459167635533959,
+          "p90": 1.6912004485726357
+        },
+        "session_setup_seconds": {
+          "mean": 0.07056965632364154,
+          "median": 0.07042124308645725,
+          "p90": 0.07281499938108027
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3413097536346565,
+          "median": 0.2814383420627564,
+          "p90": 0.5936326667666435
+        },
+        "tail_seconds": {
+          "mean": 0.7501754589417639,
+          "median": 1.0079306436236948,
+          "p90": 1.0151508597191423
+        },
+        "RTF": {
+          "mean": 0.19325459910120524,
+          "median": 0.2085551513280351,
+          "p90": 0.3067111959960218
+        }
+      },
+      "audio": {
+        "hits": 24,
+        "expected_mentions": 24,
+        "errors": 19,
+        "reference_chars": 516,
+        "raw_hits": 24,
+        "raw_errors": 18,
+        "refiner_calls": 3,
+        "refiner_retries": 0,
+        "replay_checks": 5,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 8,
+        "outside_prompt_expected": 8,
+        "samples": 24,
+        "entity_recall": 1.0,
+        "CER": 0.03682170542635659,
+        "raw_CER": 0.03488372093023256,
+        "audio_seconds": 152.228688,
+        "total_wall_seconds": 29.180269136559218,
+        "replay_sample_count": 5,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.2158445473566342,
+          "median": 1.2980590290389955,
+          "p90": 1.6747978214174508
+        },
+        "session_setup_seconds": {
+          "mean": 0.07059421652229503,
+          "median": 0.07067679893225431,
+          "p90": 0.0723085206001997
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3410422441277963,
+          "median": 0.2825426992494613,
+          "p90": 0.5406629057601094
+        },
+        "tail_seconds": {
+          "mean": 0.8041870568413287,
+          "median": 1.0075277984142303,
+          "p90": 1.0121257783845068
+        },
+        "RTF": {
+          "mean": 0.20343628269730943,
+          "median": 0.20653258879157851,
+          "p90": 0.29430855733657413
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 1,
+        "context_lower_CER_samples": 1,
+        "equal_CER_samples": 22,
+        "audio_faster_samples": 9,
+        "context_faster_samples": 15,
+        "audio_minus_context_seconds": {
+          "mean": 0.053767561563290656,
+          "median": 0.04536908399313688,
+          "p90": 0.12438133028335868
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            -0.006355932203389831,
+            0.005338078291814947
+          ],
+          "mean_seconds": [
+            -0.0021648325904000854,
+            0.12944349394189578
+          ]
+        }
+      }
+    },
+    "library:topic_02_农业生态": {
+      "context": {
+        "hits": 26,
+        "expected_mentions": 28,
+        "errors": 34,
+        "reference_chars": 590,
+        "raw_hits": 26,
+        "raw_errors": 32,
+        "refiner_calls": 7,
+        "refiner_retries": 2,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 10,
+        "prompt_expected": 11,
+        "outside_prompt_hits": 16,
+        "outside_prompt_expected": 17,
+        "samples": 27,
+        "entity_recall": 0.9285714285714286,
+        "CER": 0.0576271186440678,
+        "raw_CER": 0.05423728813559322,
+        "audio_seconds": 156.147,
+        "total_wall_seconds": 24.754315241239965,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 2,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.916826490416295,
+          "median": 0.7148514408618212,
+          "p90": 1.4986815240234137
+        },
+        "session_setup_seconds": {
+          "mean": 0.07089326080555718,
+          "median": 0.07117719994857907,
+          "p90": 0.07352374158799649
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2816070899263852,
+          "median": 0.2524458891712129,
+          "p90": 0.4512773419730366
+        },
+        "tail_seconds": {
+          "mean": 0.564308555037887,
+          "median": 0.2982082520611584,
+          "p90": 1.010187783651054
+        },
+        "RTF": {
+          "mean": 0.1619585201312916,
+          "median": 0.10651163469926918,
+          "p90": 0.2760006544702575
+        }
+      },
+      "audio": {
+        "hits": 27,
+        "expected_mentions": 28,
+        "errors": 31,
+        "reference_chars": 590,
+        "raw_hits": 27,
+        "raw_errors": 29,
+        "refiner_calls": 7,
+        "refiner_retries": 2,
+        "replay_checks": 8,
+        "replay_applied_changes": 1,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 10,
+        "prompt_expected": 11,
+        "outside_prompt_hits": 17,
+        "outside_prompt_expected": 17,
+        "samples": 27,
+        "entity_recall": 0.9642857142857143,
+        "CER": 0.05254237288135593,
+        "raw_CER": 0.04915254237288136,
+        "audio_seconds": 156.147,
+        "total_wall_seconds": 28.537105892784894,
+        "replay_sample_count": 8,
+        "replay_changed_samples": 1,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 1,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.056929847880922,
+          "median": 1.1969263521023095,
+          "p90": 1.5387046922929588
+        },
+        "session_setup_seconds": {
+          "mean": 0.06993389831579945,
+          "median": 0.06908957194536924,
+          "p90": 0.0726928492076695
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2945030560475533,
+          "median": 0.2839580960571766,
+          "p90": 0.5232475278899074
+        },
+        "tail_seconds": {
+          "mean": 0.6924721300257025,
+          "median": 0.7767077721655369,
+          "p90": 1.0110961272381247
+        },
+        "RTF": {
+          "mean": 0.18453547486105742,
+          "median": 0.175481380842767,
+          "p90": 0.2954634192647914
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 1,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 2,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 25,
+        "audio_faster_samples": 8,
+        "context_faster_samples": 19,
+        "audio_minus_context_seconds": {
+          "mean": 0.140103357464627,
+          "median": 0.06244535278528929,
+          "p90": 0.6591549636796118
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.1111111111111111
+          ],
+          "CER": [
+            -0.01303538175046555,
+            0.0
+          ],
+          "mean_seconds": [
+            0.04710307318320567,
+            0.24715670127102546
+          ]
+        }
+      }
+    },
+    "library:topic_01_体育文化": {
+      "context": {
+        "hits": 26,
+        "expected_mentions": 26,
+        "errors": 10,
+        "reference_chars": 570,
+        "raw_hits": 26,
+        "raw_errors": 10,
+        "refiner_calls": 2,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 10,
+        "outside_prompt_expected": 10,
+        "samples": 26,
+        "entity_recall": 1.0,
+        "CER": 0.017543859649122806,
+        "raw_CER": 0.017543859649122806,
+        "audio_seconds": 179.525,
+        "total_wall_seconds": 28.67726516490802,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.102971737111847,
+          "median": 1.315993959782645,
+          "p90": 1.6376198939979076
+        },
+        "session_setup_seconds": {
+          "mean": 0.07121925240454192,
+          "median": 0.07157233846373856,
+          "p90": 0.07313778414390981
+        },
+        "audio_stream_seconds": {
+          "mean": 0.35274453873101336,
+          "median": 0.35243079252541065,
+          "p90": 0.5522268903441727
+        },
+        "tail_seconds": {
+          "mean": 0.678985739682013,
+          "median": 1.00002693827264,
+          "p90": 1.0133014102466404
+        },
+        "RTF": {
+          "mean": 0.1648445505783358,
+          "median": 0.16964660138521231,
+          "p90": 0.24941111092686707
+        }
+      },
+      "audio": {
+        "hits": 26,
+        "expected_mentions": 26,
+        "errors": 10,
+        "reference_chars": 570,
+        "raw_hits": 26,
+        "raw_errors": 10,
+        "refiner_calls": 2,
+        "refiner_retries": 0,
+        "replay_checks": 5,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 10,
+        "outside_prompt_expected": 10,
+        "samples": 26,
+        "entity_recall": 1.0,
+        "CER": 0.017543859649122806,
+        "raw_CER": 0.017543859649122806,
+        "audio_seconds": 179.525,
+        "total_wall_seconds": 29.556136126630008,
+        "replay_sample_count": 5,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.1367744664088464,
+          "median": 1.3701688102446496,
+          "p90": 1.6429806037340313
+        },
+        "session_setup_seconds": {
+          "mean": 0.07049550193075377,
+          "median": 0.07075385795906186,
+          "p90": 0.07314857305027544
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3629987068259372,
+          "median": 0.34489600406959653,
+          "p90": 0.5687860499601811
+        },
+        "tail_seconds": {
+          "mean": 0.7032594208856329,
+          "median": 1.00197046645917,
+          "p90": 1.0132711834739894
+        },
+        "RTF": {
+          "mean": 0.1693353160527917,
+          "median": 0.1703031290278137,
+          "p90": 0.2512039261094202
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 1,
+        "context_lower_CER_samples": 1,
+        "equal_CER_samples": 24,
+        "audio_faster_samples": 10,
+        "context_faster_samples": 16,
+        "audio_minus_context_seconds": {
+          "mean": 0.033802729296999484,
+          "median": 0.05417485046200454,
+          "p90": 0.13540290179662406
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            -0.005173311781609196,
+            0.005218305033122664
+          ],
+          "mean_seconds": [
+            -0.005227846650478358,
+            0.07917961154419638
+          ]
+        }
+      }
+    },
+    "library:topic_05_工业交通": {
+      "context": {
+        "hits": 23,
+        "expected_mentions": 23,
+        "errors": 7,
+        "reference_chars": 503,
+        "raw_hits": 23,
+        "raw_errors": 7,
+        "refiner_calls": 1,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 7,
+        "outside_prompt_expected": 7,
+        "samples": 23,
+        "entity_recall": 1.0,
+        "CER": 0.013916500994035786,
+        "raw_CER": 0.013916500994035786,
+        "audio_seconds": 165.35,
+        "total_wall_seconds": 23.51416530786082,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.022355013385253,
+          "median": 0.6553485519252717,
+          "p90": 1.6525844908319414
+        },
+        "session_setup_seconds": {
+          "mean": 0.06968189300159397,
+          "median": 0.0696914168074727,
+          "p90": 0.07215771712362766
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3687130459179373,
+          "median": 0.4246486909687519,
+          "p90": 0.5209985493682325
+        },
+        "tail_seconds": {
+          "mean": 0.5839391714569343,
+          "median": 0.23764718510210514,
+          "p90": 1.0143819147720934
+        },
+        "RTF": {
+          "mean": 0.14109179544802772,
+          "median": 0.09903249242849785,
+          "p90": 0.23012749317066364
+        }
+      },
+      "audio": {
+        "hits": 23,
+        "expected_mentions": 23,
+        "errors": 7,
+        "reference_chars": 503,
+        "raw_hits": 23,
+        "raw_errors": 7,
+        "refiner_calls": 1,
+        "refiner_retries": 0,
+        "replay_checks": 1,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 7,
+        "outside_prompt_expected": 7,
+        "samples": 23,
+        "entity_recall": 1.0,
+        "CER": 0.013916500994035786,
+        "raw_CER": 0.013916500994035786,
+        "audio_seconds": 165.35,
+        "total_wall_seconds": 23.567395127378404,
+        "replay_sample_count": 1,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.0246693533642783,
+          "median": 0.7620323980227113,
+          "p90": 1.632173909433186
+        },
+        "session_setup_seconds": {
+          "mean": 0.07049774257061274,
+          "median": 0.07052590977400541,
+          "p90": 0.07274195402860642
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3643642675091067,
+          "median": 0.35521194711327553,
+          "p90": 0.5529063480906189
+        },
+        "tail_seconds": {
+          "mean": 0.5897830057200855,
+          "median": 0.28375628078356385,
+          "p90": 1.0153292763978243
+        },
+        "RTF": {
+          "mean": 0.14140553116173615,
+          "median": 0.10886656614060439,
+          "p90": 0.22822545085758034
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 23,
+        "audio_faster_samples": 12,
+        "context_faster_samples": 11,
+        "audio_minus_context_seconds": {
+          "mean": 0.002314339979025333,
+          "median": -0.03156466782093048,
+          "p90": 0.11185435485094786
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            0.0,
+            0.0
+          ],
+          "mean_seconds": [
+            -0.03354918915150768,
+            0.03745145011774222
+          ]
+        }
+      }
+    },
+    "library:topic_07_法律政策": {
+      "context": {
+        "hits": 21,
+        "expected_mentions": 21,
+        "errors": 19,
+        "reference_chars": 702,
+        "raw_hits": 21,
+        "raw_errors": 20,
+        "refiner_calls": 3,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 5,
+        "outside_prompt_expected": 5,
+        "samples": 20,
+        "entity_recall": 1.0,
+        "CER": 0.027065527065527065,
+        "raw_CER": 0.02849002849002849,
+        "audio_seconds": 181.398,
+        "total_wall_seconds": 24.324081679806113,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.2162040839903057,
+          "median": 1.3083729920908809,
+          "p90": 1.6057957468088717
+        },
+        "session_setup_seconds": {
+          "mean": 0.07080573949497193,
+          "median": 0.07117133145220578,
+          "p90": 0.07286673574708402
+        },
+        "audio_stream_seconds": {
+          "mean": 0.5385076888371259,
+          "median": 0.44086895883083344,
+          "p90": 0.9612924444023521
+        },
+        "tail_seconds": {
+          "mean": 0.6068680138327182,
+          "median": 0.5543192299082875,
+          "p90": 1.0119457114953547
+        },
+        "RTF": {
+          "mean": 0.1467220780936556,
+          "median": 0.11667441129992814,
+          "p90": 0.22878623890865574
+        }
+      },
+      "audio": {
+        "hits": 21,
+        "expected_mentions": 21,
+        "errors": 19,
+        "reference_chars": 702,
+        "raw_hits": 21,
+        "raw_errors": 20,
+        "refiner_calls": 2,
+        "refiner_retries": 0,
+        "replay_checks": 3,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 16,
+        "prompt_expected": 16,
+        "outside_prompt_hits": 5,
+        "outside_prompt_expected": 5,
+        "samples": 20,
+        "entity_recall": 1.0,
+        "CER": 0.027065527065527065,
+        "raw_CER": 0.02849002849002849,
+        "audio_seconds": 181.398,
+        "total_wall_seconds": 24.412383534945548,
+        "replay_sample_count": 3,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.2206191767472774,
+          "median": 1.2211581887677312,
+          "p90": 1.7583450121339415
+        },
+        "session_setup_seconds": {
+          "mean": 0.07074461493175477,
+          "median": 0.07040962832979858,
+          "p90": 0.07347572213038803
+        },
+        "audio_stream_seconds": {
+          "mean": 0.48968257987871766,
+          "median": 0.39062267262488604,
+          "p90": 0.8338858083821834
+        },
+        "tail_seconds": {
+          "mean": 0.6601661951513961,
+          "median": 0.8230527725536376,
+          "p90": 1.0283805270213635
+        },
+        "RTF": {
+          "mean": 0.14738950423674427,
+          "median": 0.1506321396004478,
+          "p90": 0.23432727811670184
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 20,
+        "audio_faster_samples": 12,
+        "context_faster_samples": 8,
+        "audio_minus_context_seconds": {
+          "mean": 0.004415092756971717,
+          "median": -0.060664766700938344,
+          "p90": 0.21873941379599285
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.0
+          ],
+          "CER": [
+            0.0,
+            0.0
+          ],
+          "mean_seconds": [
+            -0.10185023722355255,
+            0.1264023435133276
+          ]
+        }
+      }
+    },
+    "corpus:entity_reliable_data_20261012_pilot": {
+      "context": {
+        "hits": 109,
+        "expected_mentions": 115,
+        "errors": 87,
+        "reference_chars": 2795,
+        "raw_hits": 109,
+        "raw_errors": 78,
+        "refiner_calls": 23,
+        "refiner_retries": 4,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 35,
+        "prompt_expected": 37,
+        "outside_prompt_hits": 74,
+        "outside_prompt_expected": 78,
+        "samples": 96,
+        "entity_recall": 0.9478260869565217,
+        "CER": 0.031127012522361358,
+        "raw_CER": 0.027906976744186046,
+        "audio_seconds": 545.4395625,
+        "total_wall_seconds": 68.79073101608083,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 5,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.716570114750842,
+          "median": 0.6084814290516078,
+          "p90": 0.8803464232478291
+        },
+        "session_setup_seconds": {
+          "mean": 0.07447157384497889,
+          "median": 0.072122763376683,
+          "p90": 0.07563597010448575
+        },
+        "audio_stream_seconds": {
+          "mean": 0.29880651376151945,
+          "median": 0.24325387249700725,
+          "p90": 0.4755564369261265
+        },
+        "tail_seconds": {
+          "mean": 0.3432711165999838,
+          "median": 0.22756498353555799,
+          "p90": 0.39699084777384996
+        },
+        "RTF": {
+          "mean": 0.12615826638950353,
+          "median": 0.10390295404198886,
+          "p90": 0.1535809027434572
+        }
+      },
+      "audio": {
+        "hits": 112,
+        "expected_mentions": 115,
+        "errors": 75,
+        "reference_chars": 2795,
+        "raw_hits": 112,
+        "raw_errors": 69,
+        "refiner_calls": 26,
+        "refiner_retries": 5,
+        "replay_checks": 24,
+        "replay_applied_changes": 3,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 35,
+        "prompt_expected": 37,
+        "outside_prompt_hits": 77,
+        "outside_prompt_expected": 78,
+        "samples": 96,
+        "entity_recall": 0.9739130434782609,
+        "CER": 0.026833631484794274,
+        "raw_CER": 0.024686940966010734,
+        "audio_seconds": 545.4395625,
+        "total_wall_seconds": 81.54155366076156,
+        "replay_sample_count": 24,
+        "replay_changed_samples": 3,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 2,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.8493911839662663,
+          "median": 0.6853903364390135,
+          "p90": 1.5696389719378203
+        },
+        "session_setup_seconds": {
+          "mean": 0.0728543256118428,
+          "median": 0.0726157387252897,
+          "p90": 0.07527417805977166
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2956449710181914,
+          "median": 0.25539908302016556,
+          "p90": 0.4863778785802424
+        },
+        "tail_seconds": {
+          "mean": 0.4808704842531976,
+          "median": 0.27047411049716175,
+          "p90": 1.006923459470272
+        },
+        "RTF": {
+          "mean": 0.14690437827402472,
+          "median": 0.11523349719817498,
+          "p90": 0.22368348153885814
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 3,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 4,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 92,
+        "audio_faster_samples": 34,
+        "context_faster_samples": 62,
+        "audio_minus_context_seconds": {
+          "mean": 0.13282106921542436,
+          "median": 0.06183469365350902,
+          "p90": 0.5760314029175788
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.058333333333333334
+          ],
+          "CER": [
+            -0.00934999846226735,
+            -0.0007058662900526655
+          ],
+          "mean_seconds": [
+            0.02192963817906275,
+            0.21643728320244304
+          ]
+        }
+      }
+    },
+    "library:football": {
+      "context": {
+        "hits": 66,
+        "expected_mentions": 68,
+        "errors": 8,
+        "reference_chars": 1067,
+        "raw_hits": 66,
+        "raw_errors": 8,
+        "refiner_calls": 5,
+        "refiner_retries": 0,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 17,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 49,
+        "outside_prompt_expected": 51,
+        "samples": 48,
+        "entity_recall": 0.9705882352941176,
+        "CER": 0.007497656982193065,
+        "raw_CER": 0.007497656982193065,
+        "audio_seconds": 235.3463125,
+        "total_wall_seconds": 24.729828549083322,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 2,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.5152047614392359,
+          "median": 0.4637012130115181,
+          "p90": 0.6989094570744783
+        },
+        "session_setup_seconds": {
+          "mean": 0.07374533413288493,
+          "median": 0.07251373445615172,
+          "p90": 0.0763728859834373
+        },
+        "audio_stream_seconds": {
+          "mean": 0.22337277401432706,
+          "median": 0.22062051738612354,
+          "p90": 0.3902468880638481
+        },
+        "tail_seconds": {
+          "mean": 0.2180661884873795,
+          "median": 0.18235308164730668,
+          "p90": 0.3066164975520224
+        },
+        "RTF": {
+          "mean": 0.10452354502774582,
+          "median": 0.10110560394627982,
+          "p90": 0.11958491615791296
+        }
+      },
+      "audio": {
+        "hits": 68,
+        "expected_mentions": 68,
+        "errors": 3,
+        "reference_chars": 1067,
+        "raw_hits": 68,
+        "raw_errors": 3,
+        "refiner_calls": 6,
+        "refiner_retries": 0,
+        "replay_checks": 14,
+        "replay_applied_changes": 2,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 17,
+        "prompt_expected": 17,
+        "outside_prompt_hits": 51,
+        "outside_prompt_expected": 51,
+        "samples": 48,
+        "entity_recall": 1.0,
+        "CER": 0.0028116213683223993,
+        "raw_CER": 0.0028116213683223993,
+        "audio_seconds": 235.3463125,
+        "total_wall_seconds": 33.25836318638176,
+        "replay_sample_count": 14,
+        "replay_changed_samples": 2,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.6928825663829533,
+          "median": 0.6305823498405516,
+          "p90": 1.1795274423900992
+        },
+        "session_setup_seconds": {
+          "mean": 0.07294135493187544,
+          "median": 0.07308804942294955,
+          "p90": 0.0755310248117894
+        },
+        "audio_stream_seconds": {
+          "mean": 0.2235094383067917,
+          "median": 0.228553090011701,
+          "p90": 0.3986618079710752
+        },
+        "tail_seconds": {
+          "mean": 0.39641103337635286,
+          "median": 0.2669469974935055,
+          "p90": 0.7783573570195589
+        },
+        "RTF": {
+          "mean": 0.13900949470906768,
+          "median": 0.11316795906698499,
+          "p90": 0.21386487624079192
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 2,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 2,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 46,
+        "audio_faster_samples": 14,
+        "context_faster_samples": 34,
+        "audio_minus_context_seconds": {
+          "mean": 0.1776778049437174,
+          "median": 0.061602781526744366,
+          "p90": 0.5180405266582966
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.07578671328671313
+          ],
+          "CER": [
+            -0.012100641904981307,
+            0.0
+          ],
+          "mean_seconds": [
+            0.09702184637596172,
+            0.2710726149419011
+          ]
+        }
+      }
+    },
+    "cohort:no_registered_target": {
+      "context": {
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 21,
+        "reference_chars": 962,
+        "raw_hits": 0,
+        "raw_errors": 18,
+        "refiner_calls": 10,
+        "refiner_retries": 2,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 0,
+        "prompt_expected": 0,
+        "outside_prompt_hits": 0,
+        "outside_prompt_expected": 0,
+        "samples": 32,
+        "entity_recall": null,
+        "CER": 0.02182952182952183,
+        "raw_CER": 0.018711018711018712,
+        "audio_seconds": 186.76825,
+        "total_wall_seconds": 22.429505558218807,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.7009220486943377,
+          "median": 0.5747655017767102,
+          "p90": 1.3421095265075575
+        },
+        "session_setup_seconds": {
+          "mean": 0.07727205993433017,
+          "median": 0.07239020732231438,
+          "p90": 0.07477976898662746
+        },
+        "audio_stream_seconds": {
+          "mean": 0.31598279513127636,
+          "median": 0.2288001540582627,
+          "p90": 0.6195312964729968
+        },
+        "tail_seconds": {
+          "mean": 0.3076427499181591,
+          "median": 0.1940343058668077,
+          "p90": 0.8211017991881829
+        },
+        "RTF": {
+          "mean": 0.11554835905752735,
+          "median": 0.09836652689762099,
+          "p90": 0.1877423515279495
+        }
+      },
+      "audio": {
+        "hits": 0,
+        "expected_mentions": 0,
+        "errors": 21,
+        "reference_chars": 962,
+        "raw_hits": 0,
+        "raw_errors": 18,
+        "refiner_calls": 10,
+        "refiner_retries": 2,
+        "replay_checks": 6,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 0,
+        "prompt_expected": 0,
+        "outside_prompt_hits": 0,
+        "outside_prompt_expected": 0,
+        "samples": 32,
+        "entity_recall": null,
+        "CER": 0.02182952182952183,
+        "raw_CER": 0.018711018711018712,
+        "audio_seconds": 186.76825,
+        "total_wall_seconds": 26.257793264929205,
+        "replay_sample_count": 6,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 0,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.8205560395290377,
+          "median": 0.6836135420016944,
+          "p90": 1.5055874370969835
+        },
+        "session_setup_seconds": {
+          "mean": 0.07449999908567406,
+          "median": 0.07308804942294955,
+          "p90": 0.07527509336359799
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3102297331643058,
+          "median": 0.24906607274897397,
+          "p90": 0.5699969791341574
+        },
+        "tail_seconds": {
+          "mean": 0.43580406498222146,
+          "median": 0.24369382043369114,
+          "p90": 0.9467655928805471
+        },
+        "RTF": {
+          "mean": 0.13820545500589748,
+          "median": 0.11160889425134439,
+          "p90": 0.20707490066089812
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 0,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 0,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 32,
+        "audio_faster_samples": 12,
+        "context_faster_samples": 20,
+        "audio_minus_context_seconds": {
+          "mean": 0.11963399083469994,
+          "median": 0.06713802367448807,
+          "p90": 0.44429832026362426
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": null,
+          "CER": [
+            0.0,
+            0.0
+          ],
+          "mean_seconds": [
+            0.05142545529670315,
+            0.19763675790236443
+          ]
+        }
+      }
+    },
+    "library:automotive": {
+      "context": {
+        "hits": 43,
+        "expected_mentions": 47,
+        "errors": 79,
+        "reference_chars": 1728,
+        "raw_hits": 43,
+        "raw_errors": 70,
+        "refiner_calls": 18,
+        "refiner_retries": 4,
+        "replay_checks": 0,
+        "replay_applied_changes": 0,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 18,
+        "prompt_expected": 20,
+        "outside_prompt_hits": 25,
+        "outside_prompt_expected": 27,
+        "samples": 48,
+        "entity_recall": 0.9148936170212766,
+        "CER": 0.045717592592592594,
+        "raw_CER": 0.04050925925925926,
+        "audio_seconds": 310.09325,
+        "total_wall_seconds": 44.060902466997504,
+        "replay_sample_count": 0,
+        "replay_changed_samples": 0,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 3,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 0.917935468062448,
+          "median": 0.719604502664879,
+          "p90": 1.794545222632587
+        },
+        "session_setup_seconds": {
+          "mean": 0.07519781355707285,
+          "median": 0.0713953310623765,
+          "p90": 0.0747214945498854
+        },
+        "audio_stream_seconds": {
+          "mean": 0.3742402535087119,
+          "median": 0.3967662036884576,
+          "p90": 0.5992583567276599
+        },
+        "tail_seconds": {
+          "mean": 0.4684760447125882,
+          "median": 0.24427486513741314,
+          "p90": 1.120619066432119
+        },
+        "RTF": {
+          "mean": 0.1477929877512612,
+          "median": 0.10780212621119054,
+          "p90": 0.2075616554655267
+        }
+      },
+      "audio": {
+        "hits": 44,
+        "expected_mentions": 47,
+        "errors": 72,
+        "reference_chars": 1728,
+        "raw_hits": 44,
+        "raw_errors": 66,
+        "refiner_calls": 20,
+        "refiner_retries": 5,
+        "replay_checks": 10,
+        "replay_applied_changes": 1,
+        "dictionary_excess_mentions": 0,
+        "replay_absent_changes": 0,
+        "dictionary_absent_mentions": 0,
+        "prompt_hits": 18,
+        "prompt_expected": 20,
+        "outside_prompt_hits": 26,
+        "outside_prompt_expected": 27,
+        "samples": 48,
+        "entity_recall": 0.9361702127659575,
+        "CER": 0.041666666666666664,
+        "raw_CER": 0.03819444444444445,
+        "audio_seconds": 310.09325,
+        "total_wall_seconds": 48.28319047437981,
+        "replay_sample_count": 10,
+        "replay_changed_samples": 1,
+        "context_guard_fallback_samples": 0,
+        "entity_error_samples": 2,
+        "dictionary_absent_samples": 0,
+        "total_seconds": {
+          "mean": 1.0058998015495793,
+          "median": 0.7422963010612875,
+          "p90": 1.816809546994046
+        },
+        "session_setup_seconds": {
+          "mean": 0.07276729629181015,
+          "median": 0.07131660007871687,
+          "p90": 0.07453488791361451
+        },
+        "audio_stream_seconds": {
+          "mean": 0.36778050372959115,
+          "median": 0.354647264117375,
+          "p90": 0.5715340105816722
+        },
+        "tail_seconds": {
+          "mean": 0.5653299351300424,
+          "median": 0.2826674950774759,
+          "p90": 1.1907644663471735
+        },
+        "RTF": {
+          "mean": 0.15479926183898174,
+          "median": 0.11854352603370485,
+          "p90": 0.24770261012300326
+        }
+      },
+      "paired": {
+        "audio_more_entity_hits": 1,
+        "context_more_entity_hits": 0,
+        "audio_lower_CER_samples": 2,
+        "context_lower_CER_samples": 0,
+        "equal_CER_samples": 46,
+        "audio_faster_samples": 20,
+        "context_faster_samples": 28,
+        "audio_minus_context_seconds": {
+          "mean": 0.08796433348713133,
+          "median": 0.06375316088087857,
+          "p90": 0.6139183172490453
+        },
+        "audio_minus_context_95pct_bootstrap_CI": {
+          "entity_recall": [
+            0.0,
+            0.07142857142857142
+          ],
+          "CER": [
+            -0.011184039671715442,
+            0.0
+          ],
+          "mean_seconds": [
+            -0.1095277749998786,
+            0.23107417948243286
+          ]
+        }
+      }
+    }
+  },
+  "entity_types": {
+    "LOC": {
+      "context": {
+        "expected": 836,
+        "hits": 800,
+        "recall": 0.9569377990430622
+      },
+      "audio": {
+        "expected": 836,
+        "hits": 821,
+        "recall": 0.9820574162679426
+      }
+    },
+    "ORG": {
+      "context": {
+        "expected": 999,
+        "hits": 924,
+        "recall": 0.924924924924925
+      },
+      "audio": {
+        "expected": 999,
+        "hits": 951,
+        "recall": 0.9519519519519519
+      }
+    },
+    "PERSON": {
+      "context": {
+        "expected": 683,
+        "hits": 487,
+        "recall": 0.7130307467057101
+      },
+      "audio": {
+        "expected": 683,
+        "hits": 607,
+        "recall": 0.8887262079062958
+      }
+    },
+    "TERM": {
+      "context": {
+        "expected": 342,
+        "hits": 332,
+        "recall": 0.9707602339181286
+      },
+      "audio": {
+        "expected": 342,
+        "hits": 335,
+        "recall": 0.97953216374269
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "scope": "full",
+  "summary_completed_pairs": 2506,
+  "audited_id_count": 2506,
+  "id_set_sha256": "0bbe893273a66a027938f7202334903c345cefa1ab691a3f7c708686d0ce717a",
+  "comparison_snapshot_sha256": "9440b05c46469ad6ae2ceb42ee1d7965d5188f24d7e76fa3003b26fa96b8c690",
+  "summary_snapshot_sha256": "275c45074766a5c1cfb517bb31929176df790f1164822f960cbc4c42fb9e6a1f",
+  "selected_result_rows_sha256": "2b3354e417e15776f8ed779286874995912357ed302aad4ad470d0b1487cf0ee",
+  "available_current_result_rows_for_these_ids": 5012,
+  "independent_metrics": {
+    "context": {
+      "hits": 2543,
+      "expected_mentions": 2860,
+      "errors": 1158,
+      "reference_chars": 42601,
+      "refiner_calls": 305,
+      "refiner_retries": 29,
+      "mean_total_seconds": 0.8068134747579373,
+      "median_total_seconds": 0.672148676821962,
+      "CER": 0.027182460505621935,
+      "entity_recall": 0.8891608391608392,
+      "dictionary_absent_mentions": 16,
+      "dictionary_excess_mentions": 35,
+      "replay_absent_changes": 0
+    },
+    "audio": {
+      "hits": 2714,
+      "expected_mentions": 2860,
+      "errors": 930,
+      "reference_chars": 42601,
+      "refiner_calls": 271,
+      "refiner_retries": 29,
+      "mean_total_seconds": 1.1967063787289585,
+      "median_total_seconds": 1.1793546366970986,
+      "CER": 0.021830473463064246,
+      "entity_recall": 0.948951048951049,
+      "dictionary_absent_mentions": 20,
+      "dictionary_excess_mentions": 39,
+      "replay_absent_changes": 4
+    }
+  },
+  "independent_replay_absent_change_details": [
+    {
+      "id": "leb1_38459bb96fdd7d36ecc1",
+      "observed": "董剑",
+      "canonical": "董健",
+      "reference": "庞清和佟健仍肩负着扛起中国双人滑大旗的重任"
+    },
+    {
+      "id": "leb1_6c86c4a79561e0611e5e",
+      "observed": "惊爆",
+      "canonical": "金报",
+      "reference": "广东惠州惊爆港商杀情妇碎尸凶案"
+    },
+    {
+      "id": "leb1_8c2510722ec5a19f9656",
+      "observed": "终战",
+      "canonical": "中传",
+      "reference": "终站是好友谢霆锋的创作"
+    },
+    {
+      "id": "leb1_d39d7292a9660cc1eef6",
+      "observed": "冈商",
+      "canonical": "冈山",
+      "reference": "港商疑恼羞成怒将她杀害"
+    }
+  ],
+  "per_sample_mismatches": [],
+  "summary_mismatches": [],
+  "status": "PASS",
+  "notes": [
+    "The audit ID set is exactly comparisons.jsonl, not all rows currently appended to results.jsonl.",
+    "Gold multiplicity is recomputed with Counter(canonical) and each per-string hit is capped at that multiplicity.",
+    "Dictionary absence is recomputed against the full normalized reference: a recognized library canonical is absent only when that string occurs nowhere in the reference. Excess mentions separately counts output-library matches beyond reference-library match multiplicity.",
+    "CER uses an independent two-row edit-distance implementation after the documented zh-ITN, OpenCC t2s, NFKC/casefold, and P/Z/C removal pipeline."
+  ],
+  "report_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/audit_score_modes_report_full_2506_0bbe893273a6.json"
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频编辑核验</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;max-width:1050px;margin:24px auto;padding:0 20px;color:#172a3a;background:#f6f8fa}
+section{background:white;padding:18px;margin:14px 0;border:1px solid #dbe3e9;border-radius:8px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:#f2f5f7;padding:12px}
+textarea{box-sizing:border-box;width:100%;min-height:95px;font:inherit;padding:10px}
+input,select,button{font:inherit;padding:7px;margin:4px}button{cursor:pointer}audio{width:100%}
+.hint{color:#566977;font-size:14px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.error{color:#a11}
+label{display:block;margin:10px 0}h1{font-size:24px}h2{font-size:18px}mark{background:#ffeab2}
+</style>
+<h1>音频编辑核验</h1>
+<p>先听录音，再判断当前文本需要保留还是修改。模型意见收在下方，供核对使用。所有未核验样本都保持未知。</p>
+<p class="hint">播放的是包含当前文本的完整音频切片，没有精确到词的时间戳。旧精修结果包含规则与局部审核的作用，不能直接代表当前 Refiner 的效果。已用过的录音只用于诊断。</p>
+<div class="toolbar"><button id="previous">上一条</button><strong id="position"></strong><button id="next">下一条</button><span id="progress"></span></div>
+<section><label>审核者姓名或标识 <input id="reviewer" placeholder="请填写"></label><p id="origin" class="hint"></p>
+<audio id="audio" controls preload="none"></audio><h2>当前文本</h2><pre id="baseline"></pre>
+<p id="context" class="hint"></p><details><summary>音频切片的完整 ASR 文本</summary><pre id="fullAsr"></pre></details>
+<label><input id="heard" type="checkbox">已听录音，并核对了当前文本在录音中的内容</label></section>
+<section><label>判断 <select id="decision"><option value="unknown">暂不确定 / 待核验</option><option value="keep">保留当前文本</option><option value="edit">修改当前文本</option></select></label>
+<label>核验后的目标文本<textarea id="target" placeholder="选择修改后填写；数字格式请保持当前规则处理后的形式"></textarea></label>
+<label>编辑任务 <input id="tasks" style="width:95%" placeholder="填任务代码；多项用英文逗号分隔"></label>
+<p class="hint">disfluency＝填充词，repetition＝重复，self_correction＝改口，local_typo＝错字，boundary_punctuation＝断句标点，entity_correction＝实体。全部编辑属于同一种任务时填一个代码；涉及多种任务时按编辑块顺序填写。保留文本不用填。</p>
+<details><summary>查看检测器意见和旧处理结果</summary><pre id="opinions"></pre><pre id="proposal"></pre></details>
+<label>旧处理结果对当前窗口的影响 <select id="effect"><option value="unassessable">无法确定</option><option value="beneficial">有帮助</option><option value="neutral">无实质变化</option><option value="harmful">有损害</option><option value="not_available">没有可评估的窗口结果</option></select></label>
+<button id="save">保存这一条核验</button><button id="clear">撤销这一条核验</button><span id="message"></span></section>
+<section><button id="download">导出已核验的 JSONL</button><p class="hint">核验记录保存在当前浏览器本地；导出文件后可用随附脚本检查并生成诊断标签。未核验条目不会导出为正确答案。页面不上传数据，也不修改在线转录服务。</p></section>
+<script id="data" type="application/json">__REVIEW_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent), queue=data.queue;
+const storageKey='audio-edit-review-'+data.queue_sha256;
+let reviews={};try{reviews=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch{}
+let index=0;const $=id=>document.getElementById(id), allowed=new Set(['disfluency','repetition','self_correction','local_typo','boundary_punctuation','entity_correction']);
+function persist(){localStorage.setItem(storageKey,JSON.stringify(reviews))}
+function render(){const row=queue[index], review=reviews[row.id], p=row.audio_provenance;
+ $('position').textContent=`${index+1} / ${queue.length}`;$('progress').textContent=`已核验 ${Object.keys(reviews).length} 条`;
+ $('audio').src=row.packaged_audio;$('audio').load();$('baseline').textContent=row.baseline_text;
+ $('fullAsr').textContent=row.raw_recording_text;$('context').textContent=`左文：${row.left_context||'无'}　右文：${row.right_context||'无'}`;
+ $('origin').textContent=`${row.category==='existing_podcast'?'癌症讨论播客':'既有测试录音（生成来源与说话人未核验）'}；原音 ${p.clip_start_seconds.toFixed(1)}–${p.clip_end_seconds.toFixed(1)} 秒；切片 ${p.duration_seconds.toFixed(1)} 秒。`;
+ $('heard').checked=Boolean(review);$('decision').value=review?(review.desired_text===row.baseline_text?'keep':'edit'):'unknown';
+ $('target').value=review?review.desired_text:'';$('tasks').value=review?review.edit_tasks.join(', '):'';
+ $('effect').value=review?review.historical_pipeline_effect:(row.historical_output.projected_window_text===null?'not_available':'unassessable');
+ $('effect').disabled=row.historical_output.projected_window_text===null;
+ $('opinions').textContent=JSON.stringify({native_gate:row.native_gate,detectors:row.model_scores},null,2);
+ $('proposal').textContent=row.historical_output.projected_window_text===null?'没有可映射到当前窗口的旧结果。':'旧窗口输出（未经核验）：\n'+row.historical_output.projected_window_text;
+ $('message').textContent='';$('previous').disabled=index===0;$('next').disabled=index===queue.length-1;
+ $('target').disabled=$('decision').value!=='edit';$('tasks').disabled=$('decision').value!=='edit';
+}
+$('reviewer').value=localStorage.getItem(storageKey+'-reviewer')||'';
+$('decision').onchange=()=>{const keep=$('decision').value==='keep';$('target').disabled=$('decision').value!=='edit';$('tasks').disabled=$('decision').value!=='edit';if(keep){$('target').value=queue[index].baseline_text;$('tasks').value=''}else if($('decision').value==='edit'&&!$('target').value){$('target').value=queue[index].baseline_text}};
+$('save').onclick=()=>{const row=queue[index], decision=$('decision').value, reviewer=$('reviewer').value.trim();
+ const target=decision==='keep'?row.baseline_text:$('target').value;const tasks=decision==='keep'?[]:$('tasks').value.split(',').map(x=>x.trim()).filter(Boolean);
+ let error='';if(!reviewer)error='请填写审核者。';else if(!$('heard').checked)error='请先听录音并勾选核对确认。';else if(decision==='unknown')error='尚不确定的条目请留待核验。';else if(decision==='edit'&&target===row.baseline_text)error='修改目标与当前文本相同，请核对判断。';else if(decision==='edit'&&(!tasks.length||tasks.some(x=>!allowed.has(x))))error='请填写有效的编辑任务代码。';
+ if(error){$('message').textContent=error;$('message').className='error';return}
+ reviews[row.id]={id:row.id,review_basis_sha256:row.review_basis_sha256,packet_basis_sha256:row.packet_basis_sha256,
+  reviewer,review_kind:'human_audio_cleaned',audio_checked:true,desired_text:target,edit_tasks:tasks,
+  single_task_for_all_edits:tasks.length===1,historical_pipeline_effect:$('effect').value,reviewed_at:new Date().toISOString()};
+ persist();localStorage.setItem(storageKey+'-reviewer',reviewer);$('progress').textContent=`已核验 ${Object.keys(reviews).length} 条`;$('message').className='';$('message').textContent='已保存。';};
+$('clear').onclick=()=>{delete reviews[queue[index].id];persist();render()};
+$('previous').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index+1<queue.length){index++;render()}};
+$('download').onclick=()=>{const rows=queue.filter(r=>reviews[r.id]).map(r=>reviews[r.id]);if(!rows.length){$('message').textContent='尚无已核验记录。';return}
+ const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([rows.map(r=>JSON.stringify(r)).join('\n')+'\n'],{type:'application/x-ndjson'}));link.download='audio_edit_reviews.jsonl';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000)};
+render();
+</script></html>

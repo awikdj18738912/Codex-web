@@ -1,0 +1,41 @@
+{
+  "completed_samples": 2506,
+  "new_pure_asr_sessions": 2506,
+  "total_three_flow_sessions": 7518,
+  "raw_output_unchanged_sessions": 2506,
+  "ASR_request_validation": {
+    "validated_sessions": 2506,
+    "start_requests": 2506,
+    "chunk_requests": 15246,
+    "finish_requests": 2506,
+    "context_supplied_true": 0,
+    "incomplete_trailing_bytes_ignored": 0
+  },
+  "old_raw_clean_scores_reproduced": {
+    "context": {
+      "raw_hits_match": true,
+      "raw_errors_match": true,
+      "clean_hits_match": true,
+      "clean_errors_match": true
+    },
+    "audio": {
+      "raw_hits_match": true,
+      "raw_errors_match": true,
+      "clean_hits_match": true,
+      "clean_errors_match": true
+    }
+  },
+  "independent_audit": "PASS",
+  "worker_stopped": true,
+  "same_ASR_server_process": true,
+  "previous_result_artifacts_unchanged": true,
+  "production_changes": "No production source/dictionary changes; experiment only.",
+  "artifact_sha256": {
+    "results.jsonl": "25197cffd60d94c40e54b2d8c3cf5a69845e9bde034a0ddd236a59236a6bf063",
+    "summary.json": "88db5448435c4ddf0bf2188425d226c32733eed2a0b8c45184177c8a0b3f9b60",
+    "paired_details.jsonl": "de7ec9992aaacb17936cf1a35f1e2cb2110635b2456e41ba60e6d990bc6f1def",
+    "audit.json": "f39e57769a6cc89bacbc2e25952a01b12a6b9056734dd51932f229d2bc1ff2fc",
+    "REPORT.md": "550e93a6fce97d59b1595cd761a7f110ca60e3e6e2b1a29e30210b301d66570f",
+    "final_review.md": "0b345412dd729e3f6351091b67fec51efb4079d4bc293be110327027727e1587"
+  }
+}

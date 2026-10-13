@@ -1,0 +1,3259 @@
+{
+  "scope": "authored_context_contrast_and_consumed_regression_not_audio_acceptance",
+  "models": {
+    "frozen_previous": {
+      "new_validation": {
+        "rows": 222,
+        "needs_review": 84,
+        "true_positive_windows": 83,
+        "keep_windows": 138,
+        "false_positive_keep_windows": 26,
+        "reference_locations": 186,
+        "predicted_locations": 250,
+        "matched_locations": 184,
+        "window_recall": 0.9880952380952381,
+        "keep_false_positive_rate": 0.18840579710144928,
+        "location_recall": 0.989247311827957,
+        "location_precision": 0.736,
+        "by_task": {
+          "disfluency": {
+            "edits": 48,
+            "located_edits": 48,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 36,
+            "located_edits": 35,
+            "recall": 0.9722222222222222
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 84,
+        "both_roles_correct_pairs": 62,
+        "by_semantic_family": {
+          "repetition": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 35,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 11,
+            "reference_locations": 66,
+            "predicted_locations": 79,
+            "matched_locations": 64,
+            "window_recall": 0.9722222222222222,
+            "keep_false_positive_rate": 0.3055555555555556,
+            "location_recall": 0.9696969696969697,
+            "location_precision": 0.810126582278481,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 36,
+                "located_edits": 35,
+                "recall": 0.9722222222222222
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "disfluency": {
+            "rows": 96,
+            "needs_review": 48,
+            "true_positive_windows": 48,
+            "keep_windows": 48,
+            "false_positive_keep_windows": 10,
+            "reference_locations": 120,
+            "predicted_locations": 162,
+            "matched_locations": 120,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.20833333333333334,
+            "location_recall": 1.0,
+            "location_precision": 0.7407407407407407,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "emphasis": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "distributive": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "demonstrative": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "quotation": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "answer": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "numeric": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "degree": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal_verb_reduplication": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 5,
+            "reference_locations": 0,
+            "predicted_locations": 9,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.8333333333333334,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "seen_surfaces_new_context": {
+            "rows": 198,
+            "needs_review": 72,
+            "true_positive_windows": 72,
+            "keep_windows": 126,
+            "false_positive_keep_windows": 20,
+            "reference_locations": 174,
+            "predicted_locations": 233,
+            "matched_locations": 173,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.15873015873015872,
+            "location_recall": 0.9942528735632183,
+            "location_precision": 0.7424892703862661,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 24,
+                "located_edits": 24,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "diagnosis_driven_courtesy_augmentation": {
+            "rows": 24,
+            "needs_review": 12,
+            "true_positive_windows": 11,
+            "keep_windows": 12,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 12,
+            "predicted_locations": 17,
+            "matched_locations": 11,
+            "window_recall": 0.9166666666666666,
+            "keep_false_positive_rate": 0.5,
+            "location_recall": 0.9166666666666666,
+            "location_precision": 0.6470588235294118,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 12,
+                "located_edits": 11,
+                "recall": 0.9166666666666666
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "corrected_test_regression": {
+        "rows": 294,
+        "needs_review": 120,
+        "true_positive_windows": 113,
+        "keep_windows": 174,
+        "false_positive_keep_windows": 14,
+        "reference_locations": 294,
+        "predicted_locations": 299,
+        "matched_locations": 245,
+        "window_recall": 0.9416666666666667,
+        "keep_false_positive_rate": 0.08045977011494253,
+        "location_recall": 0.8333333333333334,
+        "location_precision": 0.8193979933110368,
+        "by_task": {
+          "disfluency": {
+            "edits": 84,
+            "located_edits": 73,
+            "recall": 0.8690476190476191
+          },
+          "repetition": {
+            "edits": 36,
+            "located_edits": 35,
+            "recall": 0.9722222222222222
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 120,
+        "both_roles_correct_pairs": 96,
+        "by_semantic_family": {
+          "repetition": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 35,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 9,
+            "reference_locations": 66,
+            "predicted_locations": 75,
+            "matched_locations": 63,
+            "window_recall": 0.9722222222222222,
+            "keep_false_positive_rate": 0.25,
+            "location_recall": 0.9545454545454546,
+            "location_precision": 0.84,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 36,
+                "located_edits": 35,
+                "recall": 0.9722222222222222
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "disfluency": {
+            "rows": 168,
+            "needs_review": 84,
+            "true_positive_windows": 78,
+            "keep_windows": 84,
+            "false_positive_keep_windows": 3,
+            "reference_locations": 228,
+            "predicted_locations": 222,
+            "matched_locations": 182,
+            "window_recall": 0.9285714285714286,
+            "keep_false_positive_rate": 0.03571428571428571,
+            "location_recall": 0.7982456140350878,
+            "location_precision": 0.8198198198198198,
+            "by_task": {
+              "disfluency": {
+                "edits": 84,
+                "located_edits": 73,
+                "recall": 0.8690476190476191
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "emphasis": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "distributive": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "demonstrative": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "quotation": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 1,
+            "reference_locations": 0,
+            "predicted_locations": 1,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.16666666666666666,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "answer": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "numeric": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "degree": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal_verb_reduplication": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 1,
+            "reference_locations": 0,
+            "predicted_locations": 1,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.16666666666666666,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "seen_surfaces_new_context": {
+            "rows": 198,
+            "needs_review": 72,
+            "true_positive_windows": 71,
+            "keep_windows": 126,
+            "false_positive_keep_windows": 7,
+            "reference_locations": 174,
+            "predicted_locations": 201,
+            "matched_locations": 167,
+            "window_recall": 0.9861111111111112,
+            "keep_false_positive_rate": 0.05555555555555555,
+            "location_recall": 0.9597701149425287,
+            "location_precision": 0.8308457711442786,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 24,
+                "located_edits": 23,
+                "recall": 0.9583333333333334
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "diagnosis_driven_courtesy_augmentation": {
+            "rows": 24,
+            "needs_review": 12,
+            "true_positive_windows": 12,
+            "keep_windows": 12,
+            "false_positive_keep_windows": 4,
+            "reference_locations": 12,
+            "predicted_locations": 16,
+            "matched_locations": 12,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.3333333333333333,
+            "location_recall": 1.0,
+            "location_precision": 0.75,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 12,
+                "located_edits": 12,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "unseen_surface_stress": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 30,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 3,
+            "reference_locations": 108,
+            "predicted_locations": 82,
+            "matched_locations": 66,
+            "window_recall": 0.8333333333333334,
+            "keep_false_positive_rate": 0.08333333333333333,
+            "location_recall": 0.6111111111111112,
+            "location_precision": 0.8048780487804879,
+            "by_task": {
+              "disfluency": {
+                "edits": 36,
+                "located_edits": 25,
+                "recall": 0.6944444444444444
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "old_validation_regression": {
+        "rows": 126,
+        "needs_review": 42,
+        "true_positive_windows": 21,
+        "keep_windows": 84,
+        "false_positive_keep_windows": 5,
+        "reference_locations": 84,
+        "predicted_locations": 26,
+        "matched_locations": 21,
+        "window_recall": 0.5,
+        "keep_false_positive_rate": 0.05952380952380952,
+        "location_recall": 0.25,
+        "location_precision": 0.8076923076923077,
+        "by_task": {
+          "disfluency": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 21,
+            "located_edits": 0,
+            "recall": 0.0
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 0,
+        "both_roles_correct_pairs": 0,
+        "by_semantic_family": {
+          "syntax_boundary": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "protected_content": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 5,
+            "reference_locations": 0,
+            "predicted_locations": 5,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.23809523809523808,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "clean": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "filler": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 63,
+            "predicted_locations": 21,
+            "matched_locations": 21,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 0.3333333333333333,
+            "location_precision": 1.0,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "stutter": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 0,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 21,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": 0.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 0.0,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 0,
+                "recall": 0.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "meaningful_repeat": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "legacy": {
+            "rows": 126,
+            "needs_review": 42,
+            "true_positive_windows": 21,
+            "keep_windows": 84,
+            "false_positive_keep_windows": 5,
+            "reference_locations": 84,
+            "predicted_locations": 26,
+            "matched_locations": 21,
+            "window_recall": 0.5,
+            "keep_false_positive_rate": 0.05952380952380952,
+            "location_recall": 0.25,
+            "location_precision": 0.8076923076923077,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 0,
+                "recall": 0.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "old_test_regression": {
+        "rows": 145,
+        "needs_review": 42,
+        "true_positive_windows": 42,
+        "keep_windows": 103,
+        "false_positive_keep_windows": 1,
+        "reference_locations": 84,
+        "predicted_locations": 85,
+        "matched_locations": 84,
+        "window_recall": 1.0,
+        "keep_false_positive_rate": 0.009708737864077669,
+        "location_recall": 1.0,
+        "location_precision": 0.9882352941176471,
+        "by_task": {
+          "disfluency": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 0,
+        "both_roles_correct_pairs": 0,
+        "by_semantic_family": {
+          "syntax_boundary": {
+            "rows": 41,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 41,
+            "false_positive_keep_windows": 1,
+            "reference_locations": 0,
+            "predicted_locations": 1,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.024390243902439025,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "protected_content": {
+            "rows": 20,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 20,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "clean": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "filler": {
+            "rows": 42,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 63,
+            "predicted_locations": 63,
+            "matched_locations": 63,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": 1.0,
+            "location_precision": 1.0,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "stutter": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 21,
+            "predicted_locations": 21,
+            "matched_locations": 21,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 1.0,
+            "location_precision": 1.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "legacy": {
+            "rows": 145,
+            "needs_review": 42,
+            "true_positive_windows": 42,
+            "keep_windows": 103,
+            "false_positive_keep_windows": 1,
+            "reference_locations": 84,
+            "predicted_locations": 85,
+            "matched_locations": 84,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.009708737864077669,
+            "location_recall": 1.0,
+            "location_precision": 0.9882352941176471,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "single_window_gpu_latency": {
+        "rows": 222,
+        "mean_ms": 6.68688046091513,
+        "median_ms": 6.660522893071175,
+        "p95_ms": 6.9158668629825115,
+        "scope": "warm synchronized single-window inference plus tokenization, no ASR/Refiner/file timing"
+      }
+    },
+    "context_trained": {
+      "new_validation": {
+        "rows": 222,
+        "needs_review": 84,
+        "true_positive_windows": 84,
+        "keep_windows": 138,
+        "false_positive_keep_windows": 102,
+        "reference_locations": 186,
+        "predicted_locations": 729,
+        "matched_locations": 184,
+        "window_recall": 1.0,
+        "keep_false_positive_rate": 0.7391304347826086,
+        "location_recall": 0.989247311827957,
+        "location_precision": 0.252400548696845,
+        "by_task": {
+          "disfluency": {
+            "edits": 48,
+            "located_edits": 48,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 36,
+            "located_edits": 35,
+            "recall": 0.9722222222222222
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 84,
+        "both_roles_correct_pairs": 14,
+        "by_semantic_family": {
+          "repetition": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 36,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 30,
+            "reference_locations": 66,
+            "predicted_locations": 292,
+            "matched_locations": 64,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.8333333333333334,
+            "location_recall": 0.9696969696969697,
+            "location_precision": 0.2191780821917808,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 36,
+                "located_edits": 35,
+                "recall": 0.9722222222222222
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "disfluency": {
+            "rows": 96,
+            "needs_review": 48,
+            "true_positive_windows": 48,
+            "keep_windows": 48,
+            "false_positive_keep_windows": 39,
+            "reference_locations": 120,
+            "predicted_locations": 321,
+            "matched_locations": 120,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.8125,
+            "location_recall": 1.0,
+            "location_precision": 0.37383177570093457,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "emphasis": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 26,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "distributive": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 9,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "demonstrative": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 46,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "quotation": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 5,
+            "reference_locations": 0,
+            "predicted_locations": 10,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.8333333333333334,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "answer": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 13,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "numeric": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "degree": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal_verb_reduplication": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 4,
+            "reference_locations": 0,
+            "predicted_locations": 12,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.6666666666666666,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "seen_surfaces_new_context": {
+            "rows": 198,
+            "needs_review": 72,
+            "true_positive_windows": 72,
+            "keep_windows": 126,
+            "false_positive_keep_windows": 91,
+            "reference_locations": 174,
+            "predicted_locations": 645,
+            "matched_locations": 172,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.7222222222222222,
+            "location_recall": 0.9885057471264368,
+            "location_precision": 0.26666666666666666,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 24,
+                "located_edits": 23,
+                "recall": 0.9583333333333334
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "diagnosis_driven_courtesy_augmentation": {
+            "rows": 24,
+            "needs_review": 12,
+            "true_positive_windows": 12,
+            "keep_windows": 12,
+            "false_positive_keep_windows": 11,
+            "reference_locations": 12,
+            "predicted_locations": 84,
+            "matched_locations": 12,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.9166666666666666,
+            "location_recall": 1.0,
+            "location_precision": 0.14285714285714285,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 12,
+                "located_edits": 12,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "corrected_test_regression": {
+        "rows": 294,
+        "needs_review": 120,
+        "true_positive_windows": 118,
+        "keep_windows": 174,
+        "false_positive_keep_windows": 130,
+        "reference_locations": 294,
+        "predicted_locations": 1009,
+        "matched_locations": 268,
+        "window_recall": 0.9833333333333333,
+        "keep_false_positive_rate": 0.7471264367816092,
+        "location_recall": 0.9115646258503401,
+        "location_precision": 0.26560951437066405,
+        "by_task": {
+          "disfluency": {
+            "edits": 84,
+            "located_edits": 78,
+            "recall": 0.9285714285714286
+          },
+          "repetition": {
+            "edits": 36,
+            "located_edits": 34,
+            "recall": 0.9444444444444444
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 120,
+        "both_roles_correct_pairs": 27,
+        "by_semantic_family": {
+          "repetition": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 34,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 27,
+            "reference_locations": 66,
+            "predicted_locations": 364,
+            "matched_locations": 63,
+            "window_recall": 0.9444444444444444,
+            "keep_false_positive_rate": 0.75,
+            "location_recall": 0.9545454545454546,
+            "location_precision": 0.17307692307692307,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 36,
+                "located_edits": 34,
+                "recall": 0.9444444444444444
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "disfluency": {
+            "rows": 168,
+            "needs_review": 84,
+            "true_positive_windows": 84,
+            "keep_windows": 84,
+            "false_positive_keep_windows": 58,
+            "reference_locations": 228,
+            "predicted_locations": 470,
+            "matched_locations": 205,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.6904761904761905,
+            "location_recall": 0.8991228070175439,
+            "location_precision": 0.43617021276595747,
+            "by_task": {
+              "disfluency": {
+                "edits": 84,
+                "located_edits": 78,
+                "recall": 0.9285714285714286
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "emphasis": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 32,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "distributive": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 27,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "demonstrative": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 31,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 19,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "quotation": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 4,
+            "reference_locations": 0,
+            "predicted_locations": 4,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.6666666666666666,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "answer": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 6,
+            "reference_locations": 0,
+            "predicted_locations": 29,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "numeric": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 4,
+            "reference_locations": 0,
+            "predicted_locations": 9,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.6666666666666666,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "degree": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 2,
+            "reference_locations": 0,
+            "predicted_locations": 2,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.3333333333333333,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "normal_verb_reduplication": {
+            "rows": 6,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 6,
+            "false_positive_keep_windows": 5,
+            "reference_locations": 0,
+            "predicted_locations": 22,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.8333333333333334,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "seen_surfaces_new_context": {
+            "rows": 198,
+            "needs_review": 72,
+            "true_positive_windows": 70,
+            "keep_windows": 126,
+            "false_positive_keep_windows": 94,
+            "reference_locations": 174,
+            "predicted_locations": 667,
+            "matched_locations": 171,
+            "window_recall": 0.9722222222222222,
+            "keep_false_positive_rate": 0.746031746031746,
+            "location_recall": 0.9827586206896551,
+            "location_precision": 0.2563718140929535,
+            "by_task": {
+              "disfluency": {
+                "edits": 48,
+                "located_edits": 48,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 24,
+                "located_edits": 22,
+                "recall": 0.9166666666666666
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "diagnosis_driven_courtesy_augmentation": {
+            "rows": 24,
+            "needs_review": 12,
+            "true_positive_windows": 12,
+            "keep_windows": 12,
+            "false_positive_keep_windows": 12,
+            "reference_locations": 12,
+            "predicted_locations": 142,
+            "matched_locations": 12,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": 1.0,
+            "location_precision": 0.08450704225352113,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 12,
+                "located_edits": 12,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "unseen_surface_stress": {
+            "rows": 72,
+            "needs_review": 36,
+            "true_positive_windows": 36,
+            "keep_windows": 36,
+            "false_positive_keep_windows": 24,
+            "reference_locations": 108,
+            "predicted_locations": 200,
+            "matched_locations": 85,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.6666666666666666,
+            "location_recall": 0.7870370370370371,
+            "location_precision": 0.425,
+            "by_task": {
+              "disfluency": {
+                "edits": 36,
+                "located_edits": 30,
+                "recall": 0.8333333333333334
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "old_validation_regression": {
+        "rows": 126,
+        "needs_review": 42,
+        "true_positive_windows": 42,
+        "keep_windows": 84,
+        "false_positive_keep_windows": 82,
+        "reference_locations": 84,
+        "predicted_locations": 407,
+        "matched_locations": 84,
+        "window_recall": 1.0,
+        "keep_false_positive_rate": 0.9761904761904762,
+        "location_recall": 1.0,
+        "location_precision": 0.20638820638820637,
+        "by_task": {
+          "disfluency": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 0,
+        "both_roles_correct_pairs": 0,
+        "by_semantic_family": {
+          "syntax_boundary": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 21,
+            "reference_locations": 0,
+            "predicted_locations": 63,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "protected_content": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 21,
+            "reference_locations": 0,
+            "predicted_locations": 45,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "clean": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 21,
+            "reference_locations": 0,
+            "predicted_locations": 84,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "filler": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 63,
+            "predicted_locations": 110,
+            "matched_locations": 63,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 1.0,
+            "location_precision": 0.5727272727272728,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "stutter": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 21,
+            "predicted_locations": 85,
+            "matched_locations": 21,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 1.0,
+            "location_precision": 0.24705882352941178,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "meaningful_repeat": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 19,
+            "reference_locations": 0,
+            "predicted_locations": 20,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.9047619047619048,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "legacy": {
+            "rows": 126,
+            "needs_review": 42,
+            "true_positive_windows": 42,
+            "keep_windows": 84,
+            "false_positive_keep_windows": 82,
+            "reference_locations": 84,
+            "predicted_locations": 407,
+            "matched_locations": 84,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.9761904761904762,
+            "location_recall": 1.0,
+            "location_precision": 0.20638820638820637,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "old_test_regression": {
+        "rows": 145,
+        "needs_review": 42,
+        "true_positive_windows": 21,
+        "keep_windows": 103,
+        "false_positive_keep_windows": 61,
+        "reference_locations": 84,
+        "predicted_locations": 237,
+        "matched_locations": 63,
+        "window_recall": 0.5,
+        "keep_false_positive_rate": 0.5922330097087378,
+        "location_recall": 0.75,
+        "location_precision": 0.26582278481012656,
+        "by_task": {
+          "disfluency": {
+            "edits": 21,
+            "located_edits": 21,
+            "recall": 1.0
+          },
+          "repetition": {
+            "edits": 21,
+            "located_edits": 0,
+            "recall": 0.0
+          },
+          "self_correction": {
+            "recall": null
+          },
+          "local_typo": {
+            "recall": null
+          },
+          "boundary_punctuation": {
+            "recall": null
+          },
+          "entity_correction": {
+            "recall": null
+          }
+        },
+        "insertion_supported": false,
+        "contrast_pairs": 0,
+        "both_roles_correct_pairs": 0,
+        "by_semantic_family": {
+          "syntax_boundary": {
+            "rows": 41,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 41,
+            "false_positive_keep_windows": 40,
+            "reference_locations": 0,
+            "predicted_locations": 108,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.975609756097561,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "protected_content": {
+            "rows": 20,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 20,
+            "false_positive_keep_windows": 20,
+            "reference_locations": 0,
+            "predicted_locations": 44,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 1.0,
+            "location_recall": null,
+            "location_precision": 0.0,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "clean": {
+            "rows": 21,
+            "needs_review": 0,
+            "true_positive_windows": 0,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 0,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": null,
+            "keep_false_positive_rate": 0.0,
+            "location_recall": null,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "filler": {
+            "rows": 42,
+            "needs_review": 21,
+            "true_positive_windows": 21,
+            "keep_windows": 21,
+            "false_positive_keep_windows": 1,
+            "reference_locations": 63,
+            "predicted_locations": 85,
+            "matched_locations": 63,
+            "window_recall": 1.0,
+            "keep_false_positive_rate": 0.047619047619047616,
+            "location_recall": 1.0,
+            "location_precision": 0.7411764705882353,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "recall": null
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          },
+          "stutter": {
+            "rows": 21,
+            "needs_review": 21,
+            "true_positive_windows": 0,
+            "keep_windows": 0,
+            "false_positive_keep_windows": 0,
+            "reference_locations": 21,
+            "predicted_locations": 0,
+            "matched_locations": 0,
+            "window_recall": 0.0,
+            "keep_false_positive_rate": null,
+            "location_recall": 0.0,
+            "location_precision": null,
+            "by_task": {
+              "disfluency": {
+                "recall": null
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 0,
+                "recall": 0.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        },
+        "by_surface_scope": {
+          "legacy": {
+            "rows": 145,
+            "needs_review": 42,
+            "true_positive_windows": 21,
+            "keep_windows": 103,
+            "false_positive_keep_windows": 61,
+            "reference_locations": 84,
+            "predicted_locations": 237,
+            "matched_locations": 63,
+            "window_recall": 0.5,
+            "keep_false_positive_rate": 0.5922330097087378,
+            "location_recall": 0.75,
+            "location_precision": 0.26582278481012656,
+            "by_task": {
+              "disfluency": {
+                "edits": 21,
+                "located_edits": 21,
+                "recall": 1.0
+              },
+              "repetition": {
+                "edits": 21,
+                "located_edits": 0,
+                "recall": 0.0
+              },
+              "self_correction": {
+                "recall": null
+              },
+              "local_typo": {
+                "recall": null
+              },
+              "boundary_punctuation": {
+                "recall": null
+              },
+              "entity_correction": {
+                "recall": null
+              }
+            },
+            "insertion_supported": false
+          }
+        }
+      },
+      "single_window_gpu_latency": {
+        "rows": 222,
+        "mean_ms": 2.5455341632435986,
+        "median_ms": 2.538920845836401,
+        "p95_ms": 2.6402808725833893,
+        "scope": "warm synchronized single-window inference plus tokenization, no ASR/Refiner/file timing"
+      }
+    }
+  }
+}

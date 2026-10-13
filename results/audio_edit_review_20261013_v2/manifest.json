@@ -1,0 +1,110 @@
+{
+  "scope": "consumed_audio_diagnostic_queue_not_training_or_independent_acceptance",
+  "candidate_windows": 698,
+  "selected_windows": 40,
+  "selected_audio_clips": 40,
+  "sources": {
+    "existing_podcast": 32,
+    "existing_test_recording": 8
+  },
+  "recording_groups": 5,
+  "selection_tags": {
+    "detector_disagreement": 38,
+    "no_detected_issue_control_unverified": 2,
+    "teacher_native_disagreement": 37,
+    "numeric_rule_control": 6,
+    "historical_pipeline_changed_text": 4,
+    "teacher_no_candidate_historical_change": 4,
+    "oral_cleanup_candidate": 10,
+    "repetition_candidate": 8,
+    "self_correction_candidate": 2
+  },
+  "human_audio_gold": 0,
+  "training_eligible": 0,
+  "model_thresholds_frozen": true,
+  "models": {
+    "context_teacher": {
+      "path": "/home/aim0/桌面/tan/ASR/Codex-web/results/contextual_edit_teacher_20261013",
+      "threshold": 0.95,
+      "weights_sha256": "9355baed1bfb9bbaea50e8e75205cfffdbccba15d6ef7488eeb13ed7b8df5e67"
+    },
+    "courtesy_teacher": {
+      "path": "/home/aim0/桌面/tan/ASR/Codex-web/results/contextual_courtesy_teacher_20261013",
+      "threshold": 0.7,
+      "weights_sha256": "da204c021e02020b6e35367bf1b573b4f636c50dc882b1b52899528ebe02483c"
+    },
+    "rbt3": {
+      "path": "/home/aim0/桌面/tan/ASR/Codex-web/results/contextual_rbt3_detector_20261013",
+      "threshold": 0.02,
+      "weights_sha256": "66d8669eb846536d60b869ca651a3ba91378e2368fb5639ab66b8f7386d0fb8d"
+    }
+  },
+  "no_new_asr_or_refiner_calls": true,
+  "native_gate_scope": "offline_recomputed_stable_final_tri_state_not_historical_decision",
+  "entity_definitions": [],
+  "entity_scope": "no_library_matching_original_podcast_control; not_current_live_entity_configuration",
+  "numeric_backend": "zh-itn",
+  "numeric_library_sha256": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+  "source_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/manifest.json": "b287786934cd508b4c8e79bd4d8d40d4da4a02f3477f60f3fb6fd84ff380745c",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/control_replay.jsonl": "5217f453355906f9abba76219e8a38d00041290ff275cbefa1bcac31a3eaba8f",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks_manifest.json": "27652bd1306a66d3f60f9601ec4a3bf7b239e8f93ddb8e5e4ff8e56ae5232bee",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/vllm_results.jsonl": "dca65697df4ad40c8f4be7e250ce765d191eb1a998f649ba0ce40fbb32216238",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/input_sha256.txt": "cb85b62c8df62f728844f1784c98a80962397e3e4575bef83cc5fa68369ea8fa"
+  },
+  "output_sha256": {
+    "all_candidates.jsonl": "0857a7921abbc72be46084d440215cfaa6653acf4dac2ef9f94f19d14cc3c1eb",
+    "review_queue.jsonl": "a675c397f8b9ddc87c5a30481e255ca0355e1a4b28686ae28b93fbd64fbf8a02",
+    "review_drafts.jsonl": "c5181ef31180a82df4fe32246459a59484e78e073126c98580feebe1b88b3bd8",
+    "review.html": "bd75f7633ebbfd2f8160e579742a88ed61de65cd6abab1329ffcf2c987863aa5"
+  },
+  "audio_sha256": {
+    "2b4f41da03728a878274c075.wav": "2b4f41da03728a878274c075819e031d73281434ee935356a396dc6ba6d2890e",
+    "2d4aee2e3a41c9556ae60269.wav": "2d4aee2e3a41c9556ae60269c1786f167306b006e35fae30116b3dbb892590b7",
+    "8746d6497911b9d443676639.wav": "8746d6497911b9d44367663906b29b47ca1b62246b69d31a002672f88ca00626",
+    "036baa3aa9f747d07161a38a.wav": "036baa3aa9f747d07161a38abc583fd80952b8835f7d02ec36cea0ccda7fa3dd",
+    "61321a52ffa29c6997060134.wav": "61321a52ffa29c6997060134a752bb160236ed4ee83e5c4d8ac2880b93356651",
+    "071b213d16bd88ecba102a58.wav": "071b213d16bd88ecba102a583af82b5a528a1e5e1fddb114a5ab4152e1f51869",
+    "0ccbd39c5216898b42ee0f60.wav": "0ccbd39c5216898b42ee0f600d9e8f598b8a24b6d26cb17aaea8a90d5796c57b",
+    "8a79013c0608962fe80fc4af.wav": "8a79013c0608962fe80fc4af582a72d65ade3d94c42b8bbcb11dc35895d7d024",
+    "ae12c85484d445a34673b261.wav": "ae12c85484d445a34673b2612db95436764ec6fb47e43efdad02922d65db1f07",
+    "cb4ba9603901722427013811.wav": "cb4ba9603901722427013811cd8495695391b7b3f90b5d57526a533078f67b01",
+    "e3c768cc50095b0e7ec416f3.wav": "e3c768cc50095b0e7ec416f3fe0dc8a7876080bc59f696264632890bfdc4be89",
+    "3acb6e10a8f2a76a2adc4bd0.wav": "3acb6e10a8f2a76a2adc4bd0447fa7657e0aab17161618478aafb6dea164fced",
+    "ce15a2e8f5b5cc166fa95dc5.wav": "ce15a2e8f5b5cc166fa95dc5fa4899429cbe5aadd9d029d0c8100fbb9fbeb1ef",
+    "c13e94e1378f291045c85a13.wav": "c13e94e1378f291045c85a13941efdd0792808c5897e7f21ec7b2203a74d1708",
+    "05b147d8ca845191a23fce3d.wav": "05b147d8ca845191a23fce3de52bbd81ee600444e3be42f626ea6328a694e992",
+    "207ccf99dc1e123fac8cd17f.wav": "207ccf99dc1e123fac8cd17f6dc92daf610992d740bd399ce177ab8e1ebf537a",
+    "19c33770ef7f836685598b78.wav": "19c33770ef7f836685598b7863c1fa76c51e52a22173aae9f7d03652b9b0a2ee",
+    "f0a12d218d93697992e89058.wav": "f0a12d218d93697992e89058dba21b38b73528b919b0216e7907352448c6cb31",
+    "858dec99335c4b0c33ec45e1.wav": "858dec99335c4b0c33ec45e14d04ce6a445a1316231b7e8eae7f05c9495294a6",
+    "c8249088d6dc26d1d722298e.wav": "c8249088d6dc26d1d722298ed63ca9e88f867e84e512eadd5f4ae25eb93ea9d6",
+    "422b93610c354f9df5e71e7a.wav": "422b93610c354f9df5e71e7a7140c540cd708d2a37555d33f712cb0093e2818e",
+    "50214422539fbb5d1a9cef76.wav": "50214422539fbb5d1a9cef76a53b052a1db81293e876a44a974f47f47451a02f",
+    "6f3944faf564721ba2f0f733.wav": "6f3944faf564721ba2f0f733b38b7c3419954da13ad7b2d72b750233f9f08590",
+    "905ce5c33e929624326f7e2a.wav": "905ce5c33e929624326f7e2af3e2034bd4e0acb4effd69c0be495eb2ad8a91a9",
+    "c6cbdd1b2a39414fcfa49f8d.wav": "c6cbdd1b2a39414fcfa49f8da9e60c77275f0c92fdacb184932f40939fed2b03",
+    "52f2e554f2e09100801e242d.wav": "52f2e554f2e09100801e242dd8840f9875a51f990ca1b943c79558b2af60bcff",
+    "5e69af4ad4fc7547e83a7c1d.wav": "5e69af4ad4fc7547e83a7c1dfd6cb7bc503abbddbb894cdb4a7e64176156f38c",
+    "a0c1f4bc9c9a9d6921a79c07.wav": "a0c1f4bc9c9a9d6921a79c07ab51cbdaa034e6fc58efa47a8fddc91b4f14654e",
+    "b8b8ab9e213fe9f43d11ac8f.wav": "b8b8ab9e213fe9f43d11ac8f32036d43946c53c7eb6c8c6727dfdbe4511c46db",
+    "466cf728a9edcafb6edf580c.wav": "466cf728a9edcafb6edf580c74f45454582ae74ffabfb02f5836dc8b0b2dbe1a",
+    "a3e0f4bdc8957ff29eda06d0.wav": "a3e0f4bdc8957ff29eda06d0c03ee7c68ff6b6b12a189ae295eb8ec30ab55d22",
+    "058f36e2cafe8e85e2b76b68.wav": "058f36e2cafe8e85e2b76b68f73dbf8c635c8898ddfde2ee91e1eeaaeba5b019",
+    "4fb70dc79902743d84f2b1a7.wav": "4fb70dc79902743d84f2b1a74866d20a9851cd4710a981cb83ec53366417add2",
+    "64e2223a67661658299b25dd.wav": "64e2223a67661658299b25ddef052427e472d90748417078f3fda05c6e8b4061",
+    "260c21588c7ae401433e1d71.wav": "260c21588c7ae401433e1d710c3c2e529d5b3c9877aa1085c5f446b9c13fb9b7",
+    "68be13ba02cfe876f29406d2.wav": "68be13ba02cfe876f29406d2ad1baf55cbe57e87c178b808572eab6f1ed37a5c",
+    "2f54fb33434f1bff6432b30d.wav": "2f54fb33434f1bff6432b30d42e81913d9e871662ddf070f3646f8acdcd4dee3",
+    "94f011719ba4f12233d5002b.wav": "94f011719ba4f12233d5002bc388ea16dfed607b8b3f3f6cf0337e226ffc5176",
+    "7e79a86ebe5cb264ce0b1d68.wav": "7e79a86ebe5cb264ce0b1d68095d1bdd2270f5006971dca793428823557dc536",
+    "7785fdde7a3c3c030cd76d4a.wav": "7785fdde7a3c3c030cd76d4af51399e1528c35a81940566142ccc768d2df8e13"
+  },
+  "limitations": [
+    "Podcast windows share one original recording; no random window train/test split",
+    "Test-recording generation origin/speakers unverified; do not claim all sources are natural speech",
+    "Audio bounds cover whole clips; no word/window timestamps",
+    "Historical changes include rules and local reviews, not isolated current Refiner gains",
+    "No error labels, accuracy, false-positive rate, or useful-skip benefit established"
+  ]
+}

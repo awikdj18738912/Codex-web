@@ -1,0 +1,41 @@
+{
+  "completed_pairs": 2506,
+  "sessions": 5012,
+  "unique_pairs": 5012,
+  "unique_pcm_hashes": 2506,
+  "unique_trace_ids": 5012,
+  "transport_all_frames_acked": true,
+  "refiner_stats_complete": true,
+  "failed_refiner_call_count": 0,
+  "worker_pid": 1696574,
+  "worker_stopped": true,
+  "production_health": {
+    "8051": {
+      "http_status": 200,
+      "ok": true
+    },
+    "8081": {
+      "http_status": 200,
+      "ok": true
+    },
+    "8766": {
+      "http_status": 200,
+      "ok": true
+    }
+  },
+  "protocol_hash": "318a8d4ffd3adf4c44d14dfe8c4e219a2cb89630caf946290dceeb791afebd85",
+  "reference_hash": "a645b30f00bbfddc416eca0b65b21cea397ccdcf2bcb920b50621a4c80f96185",
+  "native_rule_pack": "zh-itn-strict-conservative-v90",
+  "artifact_hashes": {
+    "results.jsonl": "8e7d44c74ce690d67b95c875137712fb686bbd2bcd646a550d7d7ba6a7b215c7",
+    "summary.json": "275c45074766a5c1cfb517bb31929176df790f1164822f960cbc4c42fb9e6a1f",
+    "comparisons.jsonl": "9440b05c46469ad6ae2ceb42ee1d7965d5188f24d7e76fa3003b26fa96b8c690",
+    "REPORT.md": "1067d13f536400d0fea7a098437d7c320b06f594c3258f619452e171887c4019"
+  },
+  "production_edit_scope": "No production source/dictionary edits for this comparison; private worker/library snapshots only.",
+  "independent_full_audit": {
+    "file": "audit_score_modes_report_full_2506_0bbe893273a6.json",
+    "status": "PASS",
+    "sha256": "c3d8909ec4d77d440cb05aaa81db3f032fbdeab9ec865f5a1e6ad2df87dc4376"
+  }
+}

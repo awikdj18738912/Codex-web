@@ -1,0 +1,34 @@
+{
+  "model": "/home/aim0/data/models/ASR/Qwen3-ASR-1.7B",
+  "physical_gpu": 1,
+  "cuda_visible_devices": "1",
+  "versions": {
+    "qwen-asr": "0.0.6",
+    "vllm": "0.14.0",
+    "transformers": "4.57.6",
+    "torch": "2.9.1"
+  },
+  "streaming": {
+    "chunk_size_seconds": 2.0,
+    "unfixed_chunk_num": 2,
+    "unfixed_token_num": 5,
+    "max_new_tokens": 32
+  },
+  "vllm": {
+    "gpu_memory_utilization": 0.32,
+    "max_model_len": 8192,
+    "enforce_eager": true,
+    "max_num_seqs": 1
+  },
+  "no_production_service_restart": true,
+  "no_refiner_calls": true,
+  "no_gate_changes": true,
+  "scope": "isolated_real_ASR_token_capture_and_project_partition_not_live_VAD_reproduction",
+  "model_metadata_sha256": {
+    "config.json": "2e74a751548b8ad7d7526d29365ad8144c345d8b412b1152d25dc6698452712f",
+    "tokenizer_config.json": "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "model.safetensors.index.json": "f994739fe38e5210b9e3e8ce6c6307315e2ceac3cb630e7b7414d69dce520f60"
+  }
+}
