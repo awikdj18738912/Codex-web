@@ -1,0 +1,579 @@
+{
+  "audio_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_streaming_budget_20261013/li_feiyu.f32le",
+  "slice_seconds": [
+    40,
+    72
+  ],
+  "pcm_sha256": "73a8e03936879034f0c4a30c591be8f4ebc6fbfcc99146ca014a1dd31e965a21",
+  "total_seconds": 11.601605326868594,
+  "ready": {
+    "event": "ready",
+    "trace_id": "71e9d0932e184237baf09af687dc2104",
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    },
+    "asr_chunk_seconds": 2.0,
+    "entity_asr_context_requested": false,
+    "entity_asr_context_applied": false,
+    "entity_asr_context_term_count": 0,
+    "entity_asr_context_digest": null,
+    "entity_audio_repair_requested": true,
+    "entity_audio_repair": {
+      "enabled": true,
+      "phase": "capturing",
+      "reason": null,
+      "entity_count": 5,
+      "candidate_count": 0,
+      "max_candidate_score": 0.0,
+      "minimum_replay_score": 0.63,
+      "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+      "prompt_terms": [],
+      "checks": 0,
+      "replay_context_applied": false,
+      "applied": false,
+      "change_count": 0,
+      "changes": [],
+      "revision": 0,
+      "elapsed_seconds": 0.0,
+      "replay_mode": "pending",
+      "local_replay_reason": null,
+      "local_replay_enabled": true,
+      "local_replay_rule": "segment_windows_v1",
+      "source_audio_seconds": 0.0,
+      "replay_audio_seconds": 0.0,
+      "replay_windows": [],
+      "replay_decode_seconds": 10.0,
+      "streaming_cache_used": false,
+      "streaming_replay": {
+        "rule": "isolated_idle_replay_v2",
+        "eligible": true,
+        "started": false,
+        "reason": "waiting_stable_candidate",
+        "processed_audio_seconds": 0.0,
+        "started_at_audio_seconds": null,
+        "complete": false,
+        "median_idle_gap_ms": null,
+        "wall_seconds": 0.0
+      }
+    }
+  },
+  "final": {
+    "event": "final",
+    "raw_text": "你叫韩立吗？在下王禅，想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。",
+    "clean_text": "你叫韩立吗？在下王禅，想找你做个SPA，你找错人了。在下厉飞宇，你当我傻？门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。",
+    "asr_language": "Chinese",
+    "asr_confidence": null,
+    "asr_confidence_metadata": {
+      "calibrated": false,
+      "covers_full_text": false,
+      "scope": "unscored_entity_revision",
+      "source": "entity_audio_repair",
+      "token_count": 0,
+      "min_probability": null
+    },
+    "refiner_latency_ms": 86,
+    "numeric_rule_latency_ms": 5.766,
+    "refiner_executed": true,
+    "refiner_accepted": true,
+    "refiner_reject_reasons": [],
+    "placeholder_retry_count": 0,
+    "refiner_retry_count": 0,
+    "refiner_retry_reasons": [],
+    "refiner_masked_outputs": [],
+    "structured_patch_audits": [],
+    "window_edit_policy": "compat",
+    "strict_local_protocol_version": null,
+    "boundary_anomalies": [],
+    "boundary_reviews": [],
+    "refinement_gate_mode": "tri_state",
+    "refinement_gate_config": {
+      "mode": "tri_state",
+      "high_confidence": 0.92,
+      "refine_on_unverified_confidence": false
+    },
+    "refinement_gate_decisions": [
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 17,
+        "asr_confidence": 0.9985513497168841,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 14,
+        "asr_confidence": null,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 26,
+        "asr_confidence": 0.9985513497168841,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 27,
+        "asr_confidence": 0.9985513497168841,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 16,
+        "asr_confidence": 0.9985513497168841,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "stable_clean_segment"
+        ],
+        "visible_chars": 26,
+        "asr_confidence": 0.9830024643977034,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      },
+      {
+        "segment_index": 1,
+        "mode": "tri_state",
+        "action": "keep",
+        "state": "KEEP",
+        "reasons": [
+          "confidence_unverified_safe_keep"
+        ],
+        "visible_chars": 8,
+        "asr_confidence": null,
+        "calibrated": false,
+        "covers_segment": false,
+        "cleanup_signals": []
+      }
+    ],
+    "refinement_gate_skipped_segments": 7,
+    "entity_audit_issues": [],
+    "entity_refinement_hints": [],
+    "entity_normalizations": [
+      {
+        "start": 28,
+        "end": 31,
+        "observed": "厉飞羽",
+        "canonical": "厉飞宇",
+        "entity_id": 9,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "厉飞宇",
+        "entity_type": "TERM",
+        "match_type": "AUDIO_REPLAY_CONFIRMED",
+        "stage": "asr_audio_repair"
+      }
+    ],
+    "numeric_normalizations": [],
+    "numeric_rule_repairs": [],
+    "numeric_fallbacks": [],
+    "safe_numeric_repairs": [],
+    "safe_repetition_repairs": [],
+    "local_deletion_reviews": [],
+    "repetition_reviews": [
+      {
+        "index": 1,
+        "start": 91,
+        "end": 93,
+        "source": "打打",
+        "target": "打",
+        "kind": "character_run",
+        "decision": "deferred",
+        "reason": "awaiting_five_sentence_context",
+        "applied": false,
+        "model_called": false
+      },
+      {
+        "index": 2,
+        "start": 93,
+        "end": 95,
+        "source": "杀杀",
+        "target": "杀",
+        "kind": "character_run",
+        "decision": "deferred",
+        "reason": "awaiting_five_sentence_context",
+        "applied": false,
+        "model_called": false
+      },
+      {
+        "index": 1,
+        "start": 91,
+        "end": 93,
+        "source": "打打",
+        "target": "打",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false,
+        "model_response": "KEEP",
+        "candidate_score_margin": -0.4025
+      },
+      {
+        "index": 2,
+        "start": 93,
+        "end": 95,
+        "source": "杀杀",
+        "target": "杀",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false,
+        "model_response": "KEEP",
+        "candidate_score_margin": -0.7034
+      },
+      {
+        "index": 3,
+        "start": 135,
+        "end": 137,
+        "source": "跑跑",
+        "target": "跑",
+        "kind": "character_run",
+        "decision": "deferred",
+        "reason": "awaiting_five_sentence_context",
+        "applied": false,
+        "model_called": false
+      },
+      {
+        "index": 3,
+        "start": 135,
+        "end": 137,
+        "source": "跑跑",
+        "target": "跑",
+        "kind": "character_run",
+        "decision": "deferred",
+        "reason": "awaiting_five_sentence_context",
+        "applied": false,
+        "model_called": false
+      },
+      {
+        "index": 1,
+        "start": 91,
+        "end": 93,
+        "source": "打打",
+        "target": "打",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false
+      },
+      {
+        "index": 2,
+        "start": 93,
+        "end": 95,
+        "source": "杀杀",
+        "target": "杀",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false
+      },
+      {
+        "index": 1,
+        "start": 91,
+        "end": 93,
+        "source": "打打",
+        "target": "打",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false
+      },
+      {
+        "index": 2,
+        "start": 93,
+        "end": 95,
+        "source": "杀杀",
+        "target": "杀",
+        "kind": "character_run",
+        "context": "我要去萧家告你！吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false
+      },
+      {
+        "index": 3,
+        "start": 135,
+        "end": 137,
+        "source": "跑跑",
+        "target": "跑",
+        "kind": "character_run",
+        "context": "你当我们落云宗是野鸡门派，随便你们进来打打杀杀，快给我滚！你听见了，我是不会跟你打的，请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。韩立，你就是个怂货。",
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false,
+        "model_response": "KEEP",
+        "candidate_score_margin": -0.396
+      }
+    ],
+    "boundary_echo_repairs": [],
+    "protected_entities": [
+      {
+        "placeholder": "__ENTITY_000__",
+        "original": "SPA",
+        "replacement": "SPA",
+        "entity_type": "ACRONYM",
+        "source": "rule",
+        "entity_id": null,
+        "match_type": "RULE",
+        "match_score": null,
+        "decision": "EXACT"
+      },
+      {
+        "placeholder": "__ENTITY_000__",
+        "original": "厉飞宇",
+        "replacement": "厉飞宇",
+        "entity_type": "TERM",
+        "source": "database:general",
+        "entity_id": 9,
+        "match_type": "EXACT_CANONICAL",
+        "match_score": 1.0,
+        "decision": "EXACT"
+      },
+      {
+        "placeholder": "__ENTITY_000__",
+        "original": "SPA",
+        "replacement": "SPA",
+        "entity_type": "ACRONYM",
+        "source": "rule",
+        "entity_id": null,
+        "match_type": "RULE",
+        "match_score": null,
+        "decision": "EXACT"
+      },
+      {
+        "placeholder": "__ENTITY_000__",
+        "original": "厉飞宇",
+        "replacement": "厉飞宇",
+        "entity_type": "TERM",
+        "source": "database:general",
+        "entity_id": 9,
+        "match_type": "EXACT_CANONICAL",
+        "match_score": 1.0,
+        "decision": "EXACT"
+      }
+    ],
+    "entity_candidates": [],
+    "entity_matcher_latency_ms": 9.298,
+    "entity_fuzzy_mode": "auto",
+    "entity_matching_config_version": 2,
+    "rule_protection_enabled": true,
+    "numeric_normalization_enabled": true,
+    "numeric_backend": "zh-itn",
+    "zh_itn_enabled": true,
+    "numeric_rule_protocol_version": "v1-rule-owned-number-surface",
+    "window_size": 3,
+    "window_max_chars": 80,
+    "committed_chunks": 20,
+    "pending_refinement_chunks": 0,
+    "refinement_batch_size": 3,
+    "refinement_state": "window_refined",
+    "refinement_source_spans": [
+      {
+        "source_text": "你叫韩立吗？在下王禅，想找你做个SPA，",
+        "clean_text": "你叫韩立吗？在下王禅，想找你做个SPA，",
+        "state": "committed"
+      },
+      {
+        "source_text": "你找错人了。在下厉飞宇，你当我傻？",
+        "clean_text": "你找错人了。在下厉飞宇，你当我傻？",
+        "state": "committed"
+      },
+      {
+        "source_text": "门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家告你！",
+        "clean_text": "门牌上写着韩府，你是不是歧视我们魔道修士？我要去萧家告你！",
+        "state": "committed"
+      },
+      {
+        "source_text": "吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，",
+        "clean_text": "吵什么吵呀？你当我们落云宗是野鸡门派，随便你们进来打打杀杀，",
+        "state": "committed"
+      },
+      {
+        "source_text": "快给我滚！你听见了，我是不会跟你打的，",
+        "clean_text": "快给我滚！你听见了，我是不会跟你打的，",
+        "state": "committed"
+      },
+      {
+        "source_text": "请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "clean_text": "请你马上给我出去。我听说你有个外号叫“韩跑跑”，我看挺适合你。",
+        "state": "committed"
+      },
+      {
+        "source_text": "韩立，你就是个怂货。",
+        "clean_text": "韩立，你就是个怂货。",
+        "state": "committed"
+      }
+    ],
+    "window_cache_reused_group_count": 6,
+    "window_cache_reused_gate_skip_group_count": 6,
+    "window_cache_reprocessed_group_count": 1,
+    "window_cache_reprocess_reasons": {
+      "no_exact_source_group_match": 1
+    },
+    "window_cache_partition": "vad_segments",
+    "final_vad_source_segment_count": 4,
+    "repetition_review_model_calls": 1,
+    "repetition_response_cache_hits": 0,
+    "repetition_restorations": [],
+    "refinement_revision": 4,
+    "final_refinement_mode": "off",
+    "entity_asr_context_requested": false,
+    "entity_asr_context_applied": false,
+    "entity_asr_context_term_count": 0,
+    "refiner_session_stats": {
+      "schema_version": 1,
+      "call_count": 4,
+      "initial_call_count": 4,
+      "retry_call_count": 0,
+      "intermediate_call_count": 3,
+      "final_call_count": 1,
+      "completed_call_count": 4,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 1383.701,
+      "gate_skipped_segment_count": 7,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 11,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    },
+    "session_refiner_call_count": 4,
+    "session_refiner_initial_call_count": 4,
+    "session_refiner_retry_call_count": 0,
+    "session_refiner_intermediate_call_count": 3,
+    "session_refiner_final_call_count": 1,
+    "session_gate_skipped_segment_count": 7,
+    "entity_audio_repair_requested": true,
+    "entity_audio_repair": {
+      "enabled": true,
+      "phase": "complete",
+      "reason": null,
+      "entity_count": 5,
+      "candidate_count": 5,
+      "max_candidate_score": 0.966667,
+      "minimum_replay_score": 0.63,
+      "short_expansion_rule": "spelling_or_complete_edge_sound_v1",
+      "prompt_terms": [
+        "厉飞宇"
+      ],
+      "checks": 1,
+      "replay_context_applied": true,
+      "applied": true,
+      "change_count": 1,
+      "changes": [
+        {
+          "start": 28,
+          "end": 31,
+          "observed": "厉飞羽",
+          "canonical": "厉飞宇",
+          "entity_id": 9,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "厉飞宇",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "revision": 1,
+      "elapsed_seconds": 1.316,
+      "replay_mode": "full",
+      "local_replay_reason": "short_audio_or_disabled",
+      "local_replay_enabled": true,
+      "local_replay_rule": "segment_windows_v1",
+      "source_audio_seconds": 32.0,
+      "replay_audio_seconds": 32.0,
+      "replay_windows": [
+        {
+          "start_seconds": 0.0,
+          "end_seconds": 32.0
+        }
+      ],
+      "replay_decode_seconds": 10.0,
+      "streaming_cache_used": false,
+      "streaming_replay": {
+        "rule": "isolated_idle_replay_v2",
+        "eligible": true,
+        "started": false,
+        "reason": "waiting_stable_candidate",
+        "processed_audio_seconds": 0.0,
+        "started_at_audio_seconds": null,
+        "complete": false,
+        "median_idle_gap_ms": 1.723,
+        "wall_seconds": 0.0
+      }
+    }
+  },
+  "scope": "Post-rollout live Web smoke test on a fixed 32-second slice. No complete reference; not CER or paired timing."
+}

@@ -1,0 +1,77 @@
+{
+  "text": "周杰伦战队的陈子桐、李安。",
+  "fragments": [
+    {
+      "index": 0,
+      "text": "周杰伦战队的陈子桐、李安。",
+      "start": 0,
+      "end": 13,
+      "confidence": {
+        "score": 0.9133233033801191,
+        "covered_text_score": 0.9133233033801191,
+        "coverage": 1.0,
+        "lexical_characters": 11,
+        "covered_lexical_characters": 11,
+        "scored_tokens": 10,
+        "token_weight": 10.0,
+        "min_token_probability": 0.6346957409136449,
+        "low_probability_token_ratio": 0.2,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [
+          2
+        ],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct"
+      }
+    }
+  ],
+  "windows": [
+    {
+      "index": 0,
+      "text": "周杰伦战队的陈子桐、李安。",
+      "raw_source_text": "周杰伦战队的陈子桐、李安。",
+      "start": 0,
+      "end": 13,
+      "fragment_indices": [
+        0
+      ],
+      "fragment_count": 1,
+      "final_tail": true,
+      "confidence": {
+        "score": 0.9133233033801191,
+        "covered_text_score": 0.9133233033801191,
+        "coverage": 1.0,
+        "lexical_characters": 11,
+        "covered_lexical_characters": 11,
+        "scored_tokens": 10,
+        "token_weight": 10.0,
+        "min_token_probability": 0.6346957409136449,
+        "low_probability_token_ratio": 0.2,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [
+          2
+        ],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct",
+        "min_fragment_score": 0.9133233033801191
+      }
+    }
+  ],
+  "pending_text": "",
+  "pending_fragment_indices": [],
+  "partition": {
+    "window_size": 3,
+    "one_punctuation_window": true,
+    "fixed_groups": true,
+    "window_max_chars": 80,
+    "group_numeric_self_corrections": true,
+    "source_chunks_supplied": true,
+    "implementation": "CumulativeWindowRefinement._fixed_chunks"
+  },
+  "calibrated": false,
+  "production_skip_allowed": false
+}

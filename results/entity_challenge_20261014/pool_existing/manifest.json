@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "samples": 2103,
+  "domains": {
+    "人名机构地名": 1760,
+    "自然科学化学": 23,
+    "金融经济": 26,
+    "科技计算机通信": 24,
+    "医疗健康": 86,
+    "历史教育": 24,
+    "农业生态": 27,
+    "体育文化": 26,
+    "工业交通": 23,
+    "法律政策": 20,
+    "足球": 32,
+    "汽车交通": 32
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "4cc8c98300ed28bb1509a78696ecfb2867aca4a7f99b7511d8f00570bf48a8b1",
+  "scoring_reference_sha256": "521d497d6816407ed17e6e58698c56127f353d4aef423964271149a0584a61bf",
+  "vocabulary_hashes": {},
+  "baseline_reused": 2103,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

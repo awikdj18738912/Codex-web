@@ -1,0 +1,391 @@
+[
+  {
+    "case": 3,
+    "repetition": 0,
+    "policy": "confidence_fusion",
+    "changes": [
+      {
+        "operation": "replace",
+        "before": "，",
+        "after": "。",
+        "before_context": "王禅不杀无名之辈。王宗虎、厉飞羽，不值一提，真让韩某有些意外。不可",
+        "after_context": "王禅不杀无名之辈。王宗虎、厉飞羽。不值一提，真让韩某有些意外。不可"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false,
+    "raw_asr": "说出你的师承名号，我王禅不杀无名之辈。王宗虎、厉飞羽，不值一提，真让韩某有些意外。不可能，你你竟结成了元婴，厌恶力有多？此青火杖，乃末将的不夜之杖，你这手段，怎么比我还像我道？过强，过强，我记住你了。你认识这位道友，二伯。",
+    "native_final": "说出你的师承名号，我王禅不杀无名之辈。王宗虎、厉飞羽，不值一提，真让韩某有些意外。不可能，你竟然结成了元婴，厌恶力有多？此青火杖。乃末将的不夜之杖，你这手段，怎么比我还像我道？过强，我记住你了。你认识这位道友，二伯。",
+    "candidate_final": "说出你的师承名号，我王禅不杀无名之辈。王宗虎、厉飞羽。不值一提，真让韩某有些意外。不可能，你竟然结成了元婴，厌恶力有多？此青火杖。乃末将的不夜之杖，你这手段，怎么比我还像我道？过强，我记住你了。你认识这位道友，二伯。",
+    "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_2_16k_mono_chunk_001.wav",
+    "audio_provenance": {
+      "case": 3,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_2_16k_mono_chunk_001.wav",
+      "audio_sha256": "cf0b32d08afe6cbc331c357ed6b1f6c84e9221e24b0e189d17f27ef5e257a59a",
+      "used_samples": 480000,
+      "used_audio_seconds": 30.0,
+      "used_float32_pcm_sha256": "a8b9ea7ac898fedd3a157d9232e794cfc0154558f6611f7efb3691cc62b7797c",
+      "initial_state_new": true,
+      "VAD_segmentation": false,
+      "utterance_boundary": "one isolated audio case",
+      "source_plan_case": {
+        "case": 3,
+        "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_2_16k_mono_chunk_001.wav",
+        "audio_sha256": "cf0b32d08afe6cbc331c357ed6b1f6c84e9221e24b0e189d17f27ef5e257a59a",
+        "recording_group": "audio:9d7c317b9dfa38aded5d665bb69f96a4ab859223be38ecdbe06aef6e2c84f4a5",
+        "category": "existing_test_recording",
+        "audio_provenance": {
+          "audio_sha256": "cf0b32d08afe6cbc331c357ed6b1f6c84e9221e24b0e189d17f27ef5e257a59a",
+          "decoded_float32_pcm_sha256": null,
+          "duration_seconds": 30.0,
+          "sample_rate": 16000,
+          "channels": 1,
+          "original_path": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频2.mp3",
+          "original_sha256": "9d7c317b9dfa38aded5d665bb69f96a4ab859223be38ecdbe06aef6e2c84f4a5",
+          "clip_start_seconds": 30.0,
+          "clip_end_seconds": 60.0,
+          "timing_granularity": "whole_audio_clip_not_word_or_text_window_alignment",
+          "source_kind": "existing_user_test_recording_speaker_and_generation_origin_unverified",
+          "source_origin_verified": false,
+          "transcript_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/vllm_results.jsonl",
+          "transcript_file_sha256": "dca65697df4ad40c8f4be7e250ce765d191eb1a998f649ba0ce40fbb32216238",
+          "transcript_row": 3,
+          "already_consumed_development": true
+        },
+        "used_max_seconds": 30.0,
+        "original_used_start_seconds": 30.0,
+        "original_used_end_seconds": 60.0,
+        "expected_used_audio_seconds": 30.0,
+        "speaker_identity": "unverified",
+        "already_consumed_development": true,
+        "selection": "fixed per-original quotas with temporal spacing; no score, edit or model-output selection",
+        "audio_checked": false,
+        "human_audio_gold": false,
+        "training_eligible": false,
+        "independent_acceptance_eligible": false,
+        "dependency_group": "possibly_related_fiction_test_2_3"
+      },
+      "text_characters": 111,
+      "decode_updates": 15,
+      "punctuation_fragments": 17,
+      "windows": 6,
+      "fully_scored_fragments": 17,
+      "fully_scored_windows": 6,
+      "final_tail_fragments": 2,
+      "min_fragment_coverage": 1.0,
+      "baseline_final_equal": null,
+      "baseline_all_stream_updates_equal": null,
+      "stream_calls_mean_ms": 319.0886234554152,
+      "evidence_keeps_generation_history": true,
+      "score_calibrated": false,
+      "production_skip_allowed": false
+    },
+    "native_calls": 2,
+    "candidate_calls": 3,
+    "changed_gate_decisions": [
+      {
+        "source": "说出你的师承名号，我王禅不杀无名之辈。王宗虎、厉飞羽，",
+        "window_index": 0,
+        "is_final": false,
+        "native": {
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 23,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        "candidate": {
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "experimental_low_nonnumeric_fragment_review"
+          ],
+          "visible_chars": 23,
+          "asr_confidence": 0.9318514719437349,
+          "calibrated": false,
+          "covers_segment": true,
+          "cleanup_signals": []
+        },
+        "score": 0.9318514719437349,
+        "min_fragment_score": 0.7871894468332917,
+        "coverage": 1.0,
+        "changed": true,
+        "reason": "experimental_low_nonnumeric_fragment_review",
+        "calibrated": false,
+        "production_eligible": false
+      }
+    ],
+    "review_label": null,
+    "review_note": null,
+    "training_eligible": false,
+    "production_eligible": false
+  },
+  {
+    "case": 35,
+    "repetition": 0,
+    "policy": "confidence_fusion",
+    "changes": [
+      {
+        "operation": "delete",
+        "before": "啊",
+        "after": "",
+        "before_context": "，在Substack里面找Web啊，就能找到修订后的文字稿呢。我会",
+        "after_context": "，在Substack里面找Web，就能找到修订后的文字稿呢。我会"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false,
+    "raw_asr": "欢迎留言留下你的建议意见，也欢迎加入我们的小红书听友群，以及订阅我的Substack，在Substack里面找Web啊，就能找到修订后的文字稿呢。我会放在上面。如果你喜欢这样的深度科普啊，那么不要忘了订阅、转发、点赞，也欢迎你通过赞赏或者付费订阅Substack的形式啊，支持我的长期创作。这里是说医解药Web的科普员，我们下一期再见。",
+    "native_final": "欢迎留言留下你的建议意见，也欢迎加入我们的小红书听友群，以及订阅我的Substack，在Substack里面找Web啊，就能找到修订后的文字稿呢。我会放在上面。如果你喜欢这样的深度科普啊，那么不要忘了订阅、转发、点赞，也欢迎你通过赞赏或者付费订阅Substack的形式啊，支持我的长期创作。这里是说医解药Web的科普员，我们下一期再见。",
+    "candidate_final": "欢迎留言留下你的建议意见，也欢迎加入我们的小红书听友群，以及订阅我的Substack，在Substack里面找Web，就能找到修订后的文字稿呢。我会放在上面。如果你喜欢这样的深度科普啊，那么不要忘了订阅、转发、点赞，也欢迎你通过赞赏或者付费订阅Substack的形式啊，支持我的长期创作。这里是说医解药Web的科普员，我们下一期再见。",
+    "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/audio/oncology_podcast_0037.wav",
+    "audio_provenance": {
+      "case": 35,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/audio/oncology_podcast_0037.wav",
+      "audio_sha256": "a0c1f4bc9c9a9d6921a79c07ab51cbdaa034e6fc58efa47a8fddc91b4f14654e",
+      "used_samples": 469163,
+      "used_audio_seconds": 29.3226875,
+      "used_float32_pcm_sha256": "c550129c6e73a68f6d078d379af948b5f781c3011e03bce831c293aca45a2fed",
+      "initial_state_new": true,
+      "VAD_segmentation": false,
+      "utterance_boundary": "one isolated audio case",
+      "source_plan_case": {
+        "case": 35,
+        "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/audio/oncology_podcast_0037.wav",
+        "audio_sha256": "a0c1f4bc9c9a9d6921a79c07ab51cbdaa034e6fc58efa47a8fddc91b4f14654e",
+        "recording_group": "audio:d6996b6d70c9f7f268aae01e76f0133240dbf0db29dd642732591432c4b2fe55",
+        "category": "existing_podcast",
+        "audio_provenance": {
+          "audio_sha256": "a0c1f4bc9c9a9d6921a79c07ab51cbdaa034e6fc58efa47a8fddc91b4f14654e",
+          "decoded_float32_pcm_sha256": "c550129c6e73a68f6d078d379af948b5f781c3011e03bce831c293aca45a2fed",
+          "duration_seconds": 29.3226875,
+          "sample_rate": 16000,
+          "channels": 1,
+          "original_path": "/home/aim0/桌面/tan/ASR/Codex-web/【视频播客】癌症概念101：早期晚期，靶向药，免疫治疗，我们一次说清楚 - 1.【视频播客】癌症概念101：早期晚期，靶向药，免疫治疗，我们一次说清楚(Av117322333294723,P1).mp3",
+          "original_sha256": "d6996b6d70c9f7f268aae01e76f0133240dbf0db29dd642732591432c4b2fe55",
+          "clip_start_seconds": 2220.0,
+          "clip_end_seconds": 2249.3226875,
+          "timing_granularity": "whole_audio_clip_not_word_or_text_window_alignment",
+          "source_kind": "published_medical_discussion_podcast",
+          "source_origin_verified": true,
+          "transcript_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/oncology_podcast_20261008/control_replay.jsonl",
+          "transcript_file_sha256": "5217f453355906f9abba76219e8a38d00041290ff275cbefa1bcac31a3eaba8f",
+          "transcript_row": 37,
+          "trace_id": "7ff79db052d6497a8a2041d9c84787d4",
+          "already_consumed_development": true
+        },
+        "used_max_seconds": 30.0,
+        "original_used_start_seconds": 2220.0,
+        "original_used_end_seconds": 2249.3226875,
+        "expected_used_audio_seconds": 29.3226875,
+        "speaker_identity": "unverified",
+        "already_consumed_development": true,
+        "selection": "fixed per-original quotas with temporal spacing; no score, edit or model-output selection",
+        "audio_checked": false,
+        "human_audio_gold": false,
+        "training_eligible": false,
+        "independent_acceptance_eligible": false,
+        "dependency_group": "audio:d6996b6d70c9f7f268aae01e76f0133240dbf0db29dd642732591432c4b2fe55"
+      },
+      "text_characters": 168,
+      "decode_updates": 15,
+      "punctuation_fragments": 12,
+      "windows": 4,
+      "fully_scored_fragments": 12,
+      "fully_scored_windows": 4,
+      "final_tail_fragments": 3,
+      "min_fragment_coverage": 1.0,
+      "baseline_final_equal": null,
+      "baseline_all_stream_updates_equal": null,
+      "stream_calls_mean_ms": 297.5014566754301,
+      "evidence_keeps_generation_history": true,
+      "score_calibrated": false,
+      "production_skip_allowed": false
+    },
+    "native_calls": 0,
+    "candidate_calls": 1,
+    "changed_gate_decisions": [
+      {
+        "source": "在Substack里面找Web啊，就能找到修订后的文字稿呢。我会放在上面。",
+        "window_index": 1,
+        "is_final": false,
+        "native": {
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "stable_clean_segment"
+          ],
+          "visible_chars": 34,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": []
+        },
+        "candidate": {
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "experimental_low_nonnumeric_fragment_review"
+          ],
+          "visible_chars": 34,
+          "asr_confidence": 0.8452873712474402,
+          "calibrated": false,
+          "covers_segment": true,
+          "cleanup_signals": []
+        },
+        "score": 0.8452873712474402,
+        "min_fragment_score": 0.6566931573739917,
+        "coverage": 1.0,
+        "changed": true,
+        "reason": "experimental_low_nonnumeric_fragment_review",
+        "calibrated": false,
+        "production_eligible": false
+      }
+    ],
+    "review_label": null,
+    "review_note": null,
+    "training_eligible": false,
+    "production_eligible": false
+  },
+  {
+    "case": 10,
+    "repetition": 0,
+    "policy": "weak_structure_rule_only",
+    "changes": [
+      {
+        "operation": "insert",
+        "before": "",
+        "after": "，",
+        "before_context": "韩立，请。哼！啊！左，右，左，右左，嘿！我！左！",
+        "after_context": "韩立，请。哼！啊！左，右，左，右，左，嘿！我！左！"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false,
+    "raw_asr": "落云宗，韩立，请。哼！啊！左，右，左，右，哎！左，嘿！我！啊！呀！啊！嘿！左！左！左！",
+    "native_final": "落云宗，韩立，请。哼！啊！左，右，左，右左，嘿！我！左！",
+    "candidate_final": "落云宗，韩立，请。哼！啊！左，右，左，右，左，嘿！我！左！",
+    "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_3_16k_mono_chunk_004.wav",
+    "audio_provenance": {
+      "case": 10,
+      "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_3_16k_mono_chunk_004.wav",
+      "audio_sha256": "2330bbbaa7d90144d042c53f719dbb1ebe8998edeed275f12eb40c398e9faf6c",
+      "used_samples": 480000,
+      "used_audio_seconds": 30.0,
+      "used_float32_pcm_sha256": "be2c57a01dc67bc23985acd2c4ac529a966d22cf5ed3961d1a9f73efc563af50",
+      "initial_state_new": true,
+      "VAD_segmentation": false,
+      "utterance_boundary": "one isolated audio case",
+      "source_plan_case": {
+        "case": 10,
+        "audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/chunks/test_3_16k_mono_chunk_004.wav",
+        "audio_sha256": "2330bbbaa7d90144d042c53f719dbb1ebe8998edeed275f12eb40c398e9faf6c",
+        "recording_group": "audio:4e144ecee8d29a026688624eef281684f5df6b7bee48c4cf7a393265c349506d",
+        "category": "existing_test_recording",
+        "audio_provenance": {
+          "audio_sha256": "2330bbbaa7d90144d042c53f719dbb1ebe8998edeed275f12eb40c398e9faf6c",
+          "decoded_float32_pcm_sha256": null,
+          "duration_seconds": 30.0,
+          "sample_rate": 16000,
+          "channels": 1,
+          "original_path": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频3.mp3",
+          "original_sha256": "4e144ecee8d29a026688624eef281684f5df6b7bee48c4cf7a393265c349506d",
+          "clip_start_seconds": 120.0,
+          "clip_end_seconds": 150.0,
+          "timing_granularity": "whole_audio_clip_not_word_or_text_window_alignment",
+          "source_kind": "existing_user_test_recording_speaker_and_generation_origin_unverified",
+          "source_origin_verified": false,
+          "transcript_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/qwen3_asr_speed_fresh_20260929/vllm_results.jsonl",
+          "transcript_file_sha256": "dca65697df4ad40c8f4be7e250ce765d191eb1a998f649ba0ce40fbb32216238",
+          "transcript_row": 12,
+          "already_consumed_development": true
+        },
+        "used_max_seconds": 30.0,
+        "original_used_start_seconds": 120.0,
+        "original_used_end_seconds": 150.0,
+        "expected_used_audio_seconds": 30.0,
+        "speaker_identity": "unverified",
+        "already_consumed_development": true,
+        "selection": "fixed per-original quotas with temporal spacing; no score, edit or model-output selection",
+        "audio_checked": false,
+        "human_audio_gold": false,
+        "training_eligible": false,
+        "independent_acceptance_eligible": false,
+        "dependency_group": "possibly_related_fiction_test_2_3"
+      },
+      "text_characters": 43,
+      "decode_updates": 15,
+      "punctuation_fragments": 20,
+      "windows": 7,
+      "fully_scored_fragments": 20,
+      "fully_scored_windows": 7,
+      "final_tail_fragments": 2,
+      "min_fragment_coverage": 1.0,
+      "baseline_final_equal": null,
+      "baseline_all_stream_updates_equal": null,
+      "stream_calls_mean_ms": 231.01805507515868,
+      "evidence_keeps_generation_history": true,
+      "score_calibrated": false,
+      "production_skip_allowed": false
+    },
+    "native_calls": 7,
+    "candidate_calls": 6,
+    "changed_gate_decisions": [
+      {
+        "source": "右，左，右，",
+        "window_index": 2,
+        "is_final": false,
+        "native": {
+          "mode": "tri_state",
+          "action": "refine",
+          "state": "REFINE",
+          "reasons": [
+            "cleanup_signal_present"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "isolated_single_character_clause"
+          ]
+        },
+        "candidate": {
+          "mode": "tri_state",
+          "action": "keep",
+          "state": "KEEP",
+          "reasons": [
+            "experimental_weak_structure_rule_only_keep"
+          ],
+          "visible_chars": 3,
+          "asr_confidence": null,
+          "calibrated": false,
+          "covers_segment": false,
+          "cleanup_signals": [
+            "isolated_single_character_clause"
+          ]
+        },
+        "score": 0.8134480825643268,
+        "min_fragment_score": 0.5769941324823429,
+        "coverage": 1.0,
+        "changed": true,
+        "reason": "experimental_weak_structure_rule_only_keep",
+        "calibrated": false,
+        "production_eligible": false
+      }
+    ],
+    "review_label": null,
+    "review_note": null,
+    "training_eligible": false,
+    "production_eligible": false
+  }
+]

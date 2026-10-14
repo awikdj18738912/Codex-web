@@ -31,6 +31,10 @@ def main(args):
     from qwen_asr import Qwen3ASRModel
 
     out=args.output.resolve();out.mkdir(parents=True,exist_ok=False)
+    plan=json.loads(args.plan.read_text()) if args.plan else None
+    if plan is not None:
+        args.audio=[Path(case['audio_path']) for case in plan['cases']]
+        write(out/'source_plan.json',plan)
     torch.set_num_threads(2)
     if not torch.cuda.is_available():
         raise RuntimeError('Authorized GPU required')
@@ -41,7 +45,8 @@ def main(args):
         vllm=dict(gpu_memory_utilization=args.gpu_memory_utilization,max_model_len=8192,enforce_eager=True,max_num_seqs=1),
         no_production_service_restart=True,no_refiner_calls=True,no_gate_changes=True,
         scope='isolated_real_ASR_token_capture_and_project_partition_not_live_VAD_reproduction',
-        model_metadata_sha256={name:sha(args.model/name) for name in ['config.json','tokenizer_config.json','vocab.json','merges.txt','model.safetensors.index.json']})
+        model_metadata_sha256={name:sha(args.model/name) for name in ['config.json','tokenizer_config.json','vocab.json','merges.txt','model.safetensors.index.json']},
+        source_plan_sha256=sha(args.plan) if args.plan else None)
     write(out/'configuration.json',config)
     (out/'executed_code').mkdir()
     for path in [Path(__file__),ROOT/'system/asr_window_confidence.py',ROOT/'system/qwen_confidence.py',ROOT/'system/window_refinement.py',ROOT/'system/chunking.py']:
@@ -59,11 +64,18 @@ def main(args):
         pcm,rate=sf.read(path,dtype='float32')
         if rate!=16000 or pcm.ndim!=1:
             raise ValueError('Probe requires existing 16k mono WAV, no implicit resampling')
-        if number>0:
+        if plan is not None:
+            expected=plan['cases'][number]
+            if sha(path)!=expected['audio_sha256']:
+                raise ValueError('Frozen planned audio changed')
+            pcm=pcm[:round(expected['used_max_seconds']*rate)]
+        elif number>0:
             pcm=pcm[:30*rate]
         provenance=dict(audio_path=str(path.resolve()),audio_sha256=sha(path),used_samples=len(pcm),
             used_audio_seconds=len(pcm)/rate,used_float32_pcm_sha256=hashlib.sha256(pcm.tobytes()).hexdigest(),
             initial_state_new=True,VAD_segmentation=False,utterance_boundary='one isolated audio case')
+        if plan is not None:
+            provenance['source_plan_case']=expected
         write(case/'audio_provenance.json',provenance)
         state=decoder.init_streaming_state(language='Chinese',chunk_size_sec=2.,unfixed_chunk_num=2,unfixed_token_num=5)
         step=2*rate
@@ -115,13 +127,19 @@ def main(args):
             baseline_final_equal=reference_equal,baseline_all_stream_updates_equal=all_updates_equal,
             stream_calls_mean_ms=sum(timings)/len(timings),
             evidence_keeps_generation_history=True,score_calibrated=False,production_skip_allowed=False)
-        cases.append(item);write(out/'progress.json',dict(cases=cases))
+        cases.append(item);write(out/'progress.json',dict(cases=cases,expected_cases=len(args.audio)))
         print('CASE_DONE',json.dumps(item,ensure_ascii=False),flush=True)
     summary=dict(cases=cases,model_load_seconds=model_load_seconds,
         scope=config['scope'],no_production_service_restart=True,no_refiner_calls=True,
         calibrated=False,production_skip_allowed=False,
         transcription_accuracy_or_gate_benefit_not_evaluated=True)
     write(out/'summary.json',summary)
+    files=list(out.glob('case_*/*.json'))+list(out.glob('case_*/*.jsonl'))+[out/'summary.json',out/'configuration.json']
+    write(out/'verification.json',dict(output_sha256={str(path.relative_to(out)):sha(path) for path in files},
+        cases=len(cases),final_fragments=sum(case['punctuation_fragments'] for case in cases),
+        final_windows=sum(case['windows'] for case in cases),
+        fully_scored_windows=sum(case['fully_scored_windows'] for case in cases),
+        calibrated=False,production_skip_allowed=False))
     print('DONE',json.dumps(summary,ensure_ascii=False),flush=True)
 
 
@@ -130,6 +148,7 @@ if __name__=='__main__':
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--model',type=Path,default=Path('/home/aim0/data/models/ASR/Qwen3-ASR-1.7B'))
     parser.add_argument('--physical-gpu',type=int,default=1)
+    parser.add_argument('--plan',type=Path)
     parser.add_argument('--gpu-memory-utilization',type=float,default=.42)
     parser.add_argument('--audio',type=Path,nargs='+',default=[
         ROOT/'results/qwen3_asr_speed_fresh_20260929/audio/test_1_16k_mono.wav',

@@ -1,0 +1,85 @@
+{
+  "scope": "native_skip_recall_review_consumed_development_not_independent_acceptance",
+  "candidate_windows": 145,
+  "selected_windows": 62,
+  "selected_audio_cases": 34,
+  "selection_counts": {
+    "accepted_changed": 38,
+    "accepted_unchanged": 12,
+    "rejected": 12
+  },
+  "change_kinds": {
+    "lexical_change": 10,
+    "punctuation_or_spacing_only": 28,
+    "no_accepted_change": 24
+  },
+  "sources": {
+    "existing_test_recording": 42,
+    "existing_podcast": 15,
+    "public_read_speech_reference": 5
+  },
+  "original_recording_groups": 10,
+  "dependency_groups": 9,
+  "supplemental_reviews_included": 6,
+  "unique_audio_seconds": 883.7484375,
+  "human_audio_gold": 0,
+  "training_eligible": 0,
+  "no_new_ASR_or_refiner_calls": true,
+  "production_services_changed": false,
+  "score_calibrated": false,
+  "selection_policy": "All native-skipped accepted changes + 12 unchanged/12 rejected controls; include all supplemental reviews; controls balanced by dependency group/score band with a public-domain cap",
+  "source_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_audit_expansion_20261013_replay/sources.json": "b593a006d8159a0e950189794f4718dc6913d4d2e435ccef0a1f880f451f3365",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_audit_expansion_20261013_replay/sessions.jsonl": "29399af5965e94e3adf8c720c5d4478a91829b0015c6031d2fa7ff0207b286f7",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_audit_expansion_20261013_replay/configuration.json": "6a38e228a3ae7ea83b11e905a28c63ec91de4537d6a82feba9054e7c388d5f49"
+  },
+  "output_sha256": {
+    "all_candidates.jsonl": "68f3aba328dd6c62f89fd523600f38df524ba364b1bd348a0bb5ffbdf83cd693",
+    "review_queue.jsonl": "44370cbc5f491e74788737bf072691c9b9457a59fa7d0b51c24c2fbd997a96c3",
+    "review_drafts.jsonl": "f7b9ea422c3b8ec3e413c9bb1015cdb3dbbc03d7b400c7ee116fd13e885ec637",
+    "review.html": "641722eff06bf741564ba269a0f6b0213378001c50f14ee9e1bf7873fcd6ab4b"
+  },
+  "packaged_audio_sha256": {
+    "audio/case_11.wav": "c9785e6c96de24cee620c27cd5c8f52c4fbe46495ea4ffe66623eb8fecd19218",
+    "audio/case_15.wav": "52e446b1a94932ea159735ae81797278cd609b0c3c6a8c5d5bcfe3282536e7dc",
+    "audio/case_20.wav": "62ac7544b221819f585c73c52a17185f610eec4f1521085fd1b8de8f0ddf99ec",
+    "audio/case_28.wav": "b9a5892f63434895b7ba5c6a3b1af5cec02b304669609dba4f9b3ac1f196679a",
+    "audio/case_29.wav": "9be9a9478cfa626bf74f6970d6d505a8596f77d2a537369bd0a4c3082fb54f77",
+    "audio/case_32.wav": "68190e2efe3fde2af4d99c00568f5b483fde507a8dc40c786527c8cb9d2edfad",
+    "audio/case_35.wav": "4c2aa0a35a848be1db68f191e2c47bf9670f9d4056dc26d4d083ac30df020a8b",
+    "audio/case_02.wav": "8ad45d5a063728f9b3f5666ddddd745321a3610a83566e2cb012372e370e087e",
+    "audio/case_03.wav": "172c0731422f0e6067559781c3060b80406801f5297cfcbade7a23a3833fd1f8",
+    "audio/case_05.wav": "d35ec982196c01421dc66955af236e6fade918561bc17ad0aa70870f697e6328",
+    "audio/case_06.wav": "fc6a8dbb1f246448a9a774fd2886af20158267e49eeef3aad0373f94af387ae2",
+    "audio/case_08.wav": "77724a59c786a947dbb110d5662b559b2c9d468d1ee890e377efa87ebaf272e3",
+    "audio/case_09.wav": "1dabed30861f41664994d4e4b88dd1b50788299e57a2567288d5956974f4222a",
+    "audio/case_13.wav": "f0bbbe323eb462cef4cc0a454cb9e50d20577c01943bdf3bf2e045cbf9a1394e",
+    "audio/case_14.wav": "e410e7345f5c44a3cb9ffca077a1557e8c1be005946b3e684e421a90dc99ccaa",
+    "audio/case_16.wav": "04df0e4e4597751c7aa0f2ac2d7d56f83d619a17004b952c1c4849fd59e14c69",
+    "audio/case_18.wav": "21a63266e2f8e3c7dcbd10e68dddbd8a2543faa3de499f5a51c143c0fa9b2711",
+    "audio/case_21.wav": "3146d02c786a52f06648467d4f31d59d542de4992466c61d666fe8266274502c",
+    "audio/case_24.wav": "3d16c922433e45cc745e120a7be51024d01cba730e16f5f3251aabcfcb3a8be1",
+    "audio/case_27.wav": "0bdca27b74aa72ba1087cbeca273625d246a03344a404885affdcffac0329195",
+    "audio/case_30.wav": "c75cd3481a23258200136fb63edafe29b8f2eac6f245cdb3800af0cffdf6f611",
+    "audio/case_34.wav": "fe5821d0b1ed6e875b67bdb16af439fb65fe1ddf99639929c83a45463ab5d0da",
+    "audio/case_46.wav": "5770a4b5da7305294a4fa0f3ea89af05157e71d23ae7d52523071c686a8b0674",
+    "audio/case_38.wav": "4c4e4915734fcbc069758f3d860130368d8b2d2cc394f95d040cb5496cbd220d",
+    "audio/case_43.wav": "4a3dea960fe65b95c24c000ef0bf704684670c5669026dd0796499fb0803a3ac",
+    "audio/case_00.wav": "cc0e86b1250d68be6f2a2a265fa27d443a4abeaf368bb37359f5a8b91e6bbfc9",
+    "audio/case_23.wav": "0f4d580588b18747dd6e6c100e30b20760c4c1748d0c014387c2a715863ecb38",
+    "audio/case_26.wav": "85053e953ebded49787cd9fbb1e5027e56ecd49ee6a85d9a00cd37fc8025a459",
+    "audio/case_31.wav": "3e4c0c42f4802770f9e63af37a9437135f05176dc5e4a7574f875c318c5b2831",
+    "audio/case_04.wav": "cea9c36a3f4c8b8ac03f0d9a55456680460fbad439066b5dc0de8ecfea00431f",
+    "audio/case_40.wav": "d47adc9539aa00828d39c88c1b1c601623423ae8288cf044cbefc9b51825fedf",
+    "audio/case_48.wav": "48cb6d8c65da5b551947f8dfdf069e9870370633ace522baf79a0003a6a062b8",
+    "audio/case_25.wav": "572e15f6b3c7826cdbcb43b52c271e8e36a5b0e36df95bfbce23b6007e1ff661",
+    "audio/case_22.wav": "ea64bade663d2b85b1428c3bf05e247bc41a2f625b967dd7e3d1221ac69de4fe"
+  },
+  "limitations": [
+    "Model proposals are not correctness or necessity labels",
+    "Selected control strata are biased; do not extrapolate population error rates",
+    "Project recordings have been consumed; some original recordings may be related",
+    "Published read speech does not provide spontaneous-speech cleanup gold",
+    "No exact word/window audio alignment; play the full used input case"
+  ]
+}

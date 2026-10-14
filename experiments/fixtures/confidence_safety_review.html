@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>音频置信度安全核验</title>
+<style>
+:root{color-scheme:light}body{font:16px/1.6 system-ui,sans-serif;max-width:1050px;margin:24px auto;padding:0 20px;color:#172a3a;background:#f6f8fa}section{background:#fff;padding:18px;margin:14px 0;border:1px solid #dbe3e9;border-radius:8px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;background:#f2f5f7;padding:12px}textarea{box-sizing:border-box;width:100%;min-height:100px;font:inherit;padding:10px}input,select,button{font:inherit;padding:7px;margin:4px}button{cursor:pointer}audio{width:100%}.hint{color:#566977;font-size:14px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.error{color:#a11}.ok{color:#176b37}label{display:block;margin:10px 0}h1{font-size:24px}h2{font-size:18px}details{margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}.grid label{margin:4px 0}.muted{color:#657580}
+</style>
+<h1>音频置信度安全核验</h1>
+<p>先听录音，再区分 ASR 是否忠实记录了口语，以及精修是否做了必要清理。页面不会预设目标文本或正确标签；模型意见和分数默认收起。</p>
+<p class="hint">目标文本可清理确有必要的填充词或口吃，但请保留重复表达，不要把重复当作自动删除项。数字格式和值由规则锁定，除非发现明确的规则处理错误，否则保持当前文本中的数字。仅标点风格变化不构成必需精修。音频区间对应整段录音切片，没有词级时间戳。</p>
+<div class="toolbar"><button id="previous">上一条</button><strong id="position"></strong><button id="next">下一条</button><label>列表 <select id="filter"><option value="pending">待核验</option><option value="all">全部</option></select></label><span id="progress"></span></div>
+<section>
+ <p id="origin" class="hint"></p><audio id="audio" controls preload="none"></audio>
+ <h2>当前文本</h2><pre id="baseline"></pre>
+ <p class="hint" id="context"></p>
+ <details><summary>查看完整录音切片 ASR 与上下文</summary><p>完整录音切片 ASR（口语转写基线）</p><pre id="rawAsr"></pre><p>左侧上下文</p><pre id="left"></pre><p>右侧上下文</p><pre id="right"></pre></details>
+ <label><input id="heard" type="checkbox">我已听录音，并核对了当前文本</label>
+</section>
+<section>
+ <label>审核者 <input id="reviewer" placeholder="姓名或可识别标识"></label>
+ <label>判断 <select id="decision"><option value="uncertain">暂不确定</option><option value="keep">保留当前文本</option><option value="edit">修改当前文本</option></select></label>
+ <label>核验后的目标文本 <textarea id="target" placeholder="仅在选择修改时填写"></textarea></label>
+ <fieldset id="taskSet"><legend>编辑任务（修改时至少选择一项）</legend><div class="grid">
+  <label><input type="checkbox" name="task" value="disfluency">disfluency：填充词</label>
+  <label><input type="checkbox" name="task" value="repetition">repetition：重复</label>
+  <label><input type="checkbox" name="task" value="self_correction">self_correction：改口</label>
+  <label><input type="checkbox" name="task" value="local_typo">local_typo：局部错字</label>
+  <label><input type="checkbox" name="task" value="boundary_punctuation">boundary_punctuation：断句或标点</label>
+ <label><input type="checkbox" name="task" value="entity_correction">entity_correction：实体修正</label>
+ </div></fieldset>
+ <label>多种编辑任务的块顺序 <input id="taskOrder" style="width:95%" placeholder="多种任务时填写，如 disfluency, repetition；可重复"></label>
+ <p class="hint">只选一种任务时，该任务应用于全部编辑。选择多种任务时，请按目标文本中实际编辑块的先后顺序填写任务代码；多处编辑同类任务可重复填写。此顺序不是复选框的固定顺序。</p>
+ <div class="grid">
+  <label>ASR 忠实度 <select id="fidelity"><option value="uncertain">不确定</option><option value="correct">正确</option><option value="incorrect">错误</option></select></label>
+  <label>精修结果影响 <select id="effect"><option value="unassessable">无法评估</option><option value="beneficial">有帮助</option><option value="neutral">无实质变化</option><option value="harmful">有损害</option><option value="mixed">有好有坏</option></select></label>
+ </div>
+ <label>备注 <textarea id="note" placeholder="不确定时必须填写；其他情况可选"></textarea></label>
+ <details><summary>查看模型意见、分数与规则结果</summary><pre id="opinions"></pre></details>
+ <button id="save">保存这一条</button><button id="undo">撤销这一条</button><span id="message" role="status"></span>
+</section>
+<section><button id="download">导出 confidence_safety_reviews.jsonl</button><p class="hint">导出内容只包含已保存的人工音频核验记录。</p></section>
+<script id="data" type="application/json">__REVIEW_DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent),queue=data.queue||[];
+const storageKey='confidence-safety-review-'+data.queue_sha256;
+let reviews={};try{reviews=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch{reviews={}}
+let index=0,visible=[];const $=id=>document.getElementById(id),allowed=new Set(['disfluency','repetition','self_correction','local_typo','boundary_punctuation','entity_correction']);
+function persist(){localStorage.setItem(storageKey,JSON.stringify(reviews))}
+function refreshVisible(){visible=queue.map((row,i)=>({row,i})).filter(x=>$('filter').value==='all'||!reviews[x.row.id]);if(index>=visible.length)index=Math.max(0,visible.length-1);render()}
+function current(){return visible[index]?.row}
+function setTasks(values=[]){document.querySelectorAll('input[name="task"]').forEach(x=>x.checked=values.includes(x.value))}
+function render(){const row=current();$('progress').textContent=`已保存 ${Object.keys(reviews).length} / ${queue.length}`;$('position').textContent=visible.length?`${index+1} / ${visible.length}`:'没有符合筛选条件的条目';$('previous').disabled=index<=0;$('next').disabled=index>=visible.length-1;
+ if(!row){$('audio').removeAttribute('src');$('audio').load();$('baseline').textContent='';$('origin').textContent='';$('context').textContent='';$('rawAsr').textContent='';$('left').textContent='';$('right').textContent='';$('opinions').textContent='';return}
+ const saved=reviews[row.id];$('audio').src=row.packaged_audio||'';$('audio').load();$('baseline').textContent=row.baseline_text||'';$('rawAsr').textContent=row.raw_recording_text||'';$('left').textContent=row.left_context||'（无）';$('right').textContent=row.right_context||'（无）';
+ const p=row.audio_provenance||{},categories={existing_test_recording:'既有测试录音',existing_podcast:'既有播客录音',public_read_speech_reference:'公开朗读语音参考'};$('origin').textContent=`case ${row.case??'?'} / window ${row.window_index??'?'}；${categories[row.category]||row.category||'音频样本'}；音频区间 ${p.clip_start_seconds??'?'}–${p.clip_end_seconds??'?'} 秒；切片时长 ${p.duration_seconds??'?'} 秒`;$('context').textContent=`前文：${row.left_context||'无'}　后文：${row.right_context||'无'}`;
+ $('heard').checked=Boolean(saved?.audio_checked);$('decision').value=saved?.decision||'uncertain';$('target').value=saved?.decision==='edit'?(saved.desired_text||''):'';$('reviewer').value=saved?.reviewer||localStorage.getItem(storageKey+'-reviewer')||'';$('fidelity').value=saved?.asr_fidelity||'uncertain';$('effect').value=saved?.refiner_effect||'unassessable';$('note').value=saved?.note||'';setTasks(saved?.edit_tasks||[]);$('taskOrder').value=saved?.edit_tasks?.length>1?saved.edit_tasks.join(', '):'';syncFields();
+ $('opinions').textContent=JSON.stringify({native_gate:row.native_gate,confidence_profile:row.confidence_profile,supplement_gate:row.supplement_gate,all_refine_result:row.all_refine_result,numeric_rule:row.numeric_rule},null,2);$('message').textContent='';$('message').className='';}
+function syncFields(){const edit=$('decision').value==='edit';$('target').disabled=!edit;$('taskSet').disabled=!edit;$('taskOrder').disabled=!edit;if(!edit){$('target').value='';$('taskOrder').value='';setTasks([])}}
+$('decision').onchange=syncFields;$('filter').onchange=()=>{index=0;refreshVisible()};$('reviewer').value=localStorage.getItem(storageKey+'-reviewer')||'';
+$('save').onclick=()=>{const row=current();if(!row)return;const reviewer=$('reviewer').value.trim(),decision=$('decision').value,taskValues=[...document.querySelectorAll('input[name="task"]:checked')].map(x=>x.value),target=$('target').value.trim(),note=$('note').value.trim();let error='';
+ const enteredOrder=$('taskOrder').value.split(',').map(x=>x.trim()).filter(Boolean),taskOrderValid=enteredOrder.length>0&&enteredOrder.every(x=>allowed.has(x)&&taskValues.includes(x))&&taskValues.every(x=>enteredOrder.includes(x));
+ if(!reviewer)error='请填写审核者。';else if(!$('heard').checked)error='请先听录音并勾选确认。';else if(decision==='edit'&&(!target||target===row.baseline_text))error='修改目标必须非空且与当前文本不同。';else if(decision==='edit'&&(!taskValues.length||taskValues.some(x=>!allowed.has(x))))error='修改时请至少选择一个有效编辑任务。';else if(decision==='edit'&&taskValues.length>1&&!taskOrderValid)error='选择了多种任务，请按编辑块顺序填写有效任务代码；每种所选任务都须出现。';else if(decision==='edit'&&taskValues.length===1&&enteredOrder.length&&!taskOrderValid)error='任务顺序应使用有效代码，并包含所选任务。';else if(decision==='uncertain'&&!note)error='暂不确定时请填写备注。';
+ if(error){$('message').textContent=error;$('message').className='error';return}
+ const desired=decision==='edit'?target:decision==='keep'?row.baseline_text:null,tasks=decision==='edit'?(taskValues.length===1?taskValues:enteredOrder):[];
+ reviews[row.id]={id:row.id,packet_basis_sha256:row.packet_basis_sha256,review_basis_sha256:row.review_basis_sha256,reviewer,audio_checked:true,review_kind:'human_audio_cleaned',decision,desired_text:desired,edit_tasks:tasks,single_task_for_all_edits:decision==='edit'&&taskValues.length===1,asr_fidelity:$('fidelity').value,refiner_effect:$('effect').value,note,reviewed_at:new Date().toISOString()};persist();localStorage.setItem(storageKey+'-reviewer',reviewer);$('message').textContent='已保存。';$('message').className='ok';if($('filter').value==='pending')refreshVisible();else render()};
+$('undo').onclick=()=>{const row=current();if(!row)return;delete reviews[row.id];persist();render()};
+$('previous').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index+1<visible.length){index++;render()}};
+$('download').onclick=()=>{const rows=queue.filter(row=>reviews[row.id]).map(row=>reviews[row.id]);if(!rows.length){$('message').textContent='尚无已保存记录。';return}const blob=new Blob([rows.map(row=>JSON.stringify(row)).join('\n')+'\n'],{type:'application/x-ndjson'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='confidence_safety_reviews.jsonl';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000)};
+refreshVisible();
+</script></html>

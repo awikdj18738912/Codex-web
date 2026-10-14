@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "samples": 29,
+  "domains": {
+    "临床医疗": 29
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "c8f8fbe3604cb9808d59a0e889be5edd39c19d3b7bf7d79b6d531254439e6733",
+  "scoring_reference_sha256": "6f3b8e1047e537b0ade8d2ea6dd29228554db020034e89861102a7ac4d3f47e1",
+  "vocabulary_hashes": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/multimed_chinese_test_eval_20261008/manifest.json": "74f91bf2bdd573c6a808cc98aa7b13a795ff60df0a6c3806ff0e36e2de0adb68",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/pool_medical_verified_vocabulary_evidence.json": "2fe853f6e55773899fb50813c9171e01116501656d8c3b08d390b1926c8d425c"
+  },
+  "baseline_reused": 0,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

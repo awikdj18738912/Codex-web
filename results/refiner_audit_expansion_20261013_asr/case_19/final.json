@@ -1,0 +1,77 @@
+{
+  "text": "啊。",
+  "fragments": [
+    {
+      "index": 0,
+      "text": "啊。",
+      "start": 0,
+      "end": 2,
+      "confidence": {
+        "score": 0.46291180455048564,
+        "covered_text_score": 0.46291180455048564,
+        "coverage": 1.0,
+        "lexical_characters": 1,
+        "covered_lexical_characters": 1,
+        "scored_tokens": 1,
+        "token_weight": 1.0,
+        "min_token_probability": 0.46291180455048564,
+        "low_probability_token_ratio": 1.0,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [
+          15
+        ],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct"
+      }
+    }
+  ],
+  "windows": [
+    {
+      "index": 0,
+      "text": "啊。",
+      "raw_source_text": "啊。",
+      "start": 0,
+      "end": 2,
+      "fragment_indices": [
+        0
+      ],
+      "fragment_count": 1,
+      "final_tail": true,
+      "confidence": {
+        "score": 0.46291180455048564,
+        "covered_text_score": 0.46291180455048564,
+        "coverage": 1.0,
+        "lexical_characters": 1,
+        "covered_lexical_characters": 1,
+        "scored_tokens": 1,
+        "token_weight": 1.0,
+        "min_token_probability": 0.46291180455048564,
+        "low_probability_token_ratio": 1.0,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [
+          15
+        ],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct",
+        "min_fragment_score": 0.46291180455048564
+      }
+    }
+  ],
+  "pending_text": "",
+  "pending_fragment_indices": [],
+  "partition": {
+    "window_size": 3,
+    "one_punctuation_window": true,
+    "fixed_groups": true,
+    "window_max_chars": 80,
+    "group_numeric_self_corrections": true,
+    "source_chunks_supplied": true,
+    "implementation": "CumulativeWindowRefinement._fixed_chunks"
+  },
+  "calibrated": false,
+  "production_skip_allowed": false
+}

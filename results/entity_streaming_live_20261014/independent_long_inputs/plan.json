@@ -1,0 +1,1214 @@
+{
+  "schema_version": 1,
+  "experiment": "entity_replay_decode_step_20261014",
+  "purpose": "V7 second-pass decode-step comparison with text-free, metadata-selected concatenation inputs.",
+  "scope_note": "All components were already tested in the old 2,506-record experiment; these concatenations are additional confirmations, not unseen data. Selection did not use transcripts, references, gold entities, ASR outputs, or V7 outcomes.",
+  "decode_step_change": {
+    "first_pass_asr_chunk_seconds": 2,
+    "second_pass_replay_asr_chunk_seconds": 10,
+    "only_variable": "second-pass entity replay ASR decode step; first pass remains 2 seconds"
+  },
+  "selection": {
+    "source_metadata_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/inference_inputs.jsonl",
+    "source_metadata_sha256": "a76da4071667b7a5d37e18148b39f6bae633c99ca5689c01a32c16387a693433",
+    "source_manifest_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/manifest.json",
+    "source_manifest_sha256": "d598de453524c334004f6efc0bcfe917556d45af8ba0a6c0b8e793a4f8a22079",
+    "library_metadata_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_metadata.json",
+    "library_metadata_sha256": "7f8cbe26a10c6e9a4ea2679d6ad3435249cc5b1fc8217a31408fb2d397518220",
+    "excluded_frozen_test_plan_ids": 180,
+    "excluded_preflight_component_ids": 72,
+    "unique_excluded_ids": 204,
+    "source_pool_count": 2506,
+    "algorithm": "For each library_key, exclude IDs in frozen_test_plan.json and all components of the preflight plan; sort by SHA-256 of UTF-8 `replay-step-v7:<id>` ascending, ID as tie-break. News takes 24, other libraries take 8 each.",
+    "news_cohort_rule": "At least 6 negatives remained; selected 6 negatives and 18 positives by the same fixed hash, then assigned 2 negatives + 6 positives per group.",
+    "news_candidates_remaining": 1978,
+    "news_negative_candidates_remaining": 284,
+    "news_positive_candidates_remaining": 1694,
+    "selected_news_cohorts": [
+      {
+        "positive": 6,
+        "negative": 2
+      },
+      {
+        "negative": 2,
+        "positive": 6
+      },
+      {
+        "positive": 6,
+        "negative": 2
+      }
+    ],
+    "additional_library_keys": [
+      "topic_03_医疗健康",
+      "topic_02_农业生态",
+      "automotive"
+    ],
+    "parameter_selection_basis": "All selections use metadata and fixed hashes only; no case selected because an ASR output was good or bad."
+  },
+  "library_policy": "Use each full existing library_key snapshot unchanged; no vocabulary shrinking, per-domain threshold tuning, or entity mutation.",
+  "audio_format": {
+    "sample_rate_hz": 16000,
+    "channels": 1,
+    "sample_format": "f32le"
+  },
+  "silence_policy": {
+    "prefix_seconds": 1,
+    "between_components_seconds": 3,
+    "suffix_seconds": 1,
+    "encoding": "zero float32 little-endian samples"
+  },
+  "source_validation": {
+    "verified_source_pcm_count": 48,
+    "all_source_pcm_sha256_and_duration_checks_passed": true,
+    "all_output_pcm_sha256_and_byte_length_checks_passed": true
+  },
+  "total_groups": 6,
+  "total_components": 48,
+  "total_output_duration_seconds": 429.5910625,
+  "groups": [
+    {
+      "id": "news_group_1",
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+      "library_snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+      "total_entities": 1051,
+      "enabled_entities": 1051,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/news_group_1.f32le",
+      "pcm_sha256": "a28c05fe57701a86a434c152e7ff83d61c710af88def33064053cbfb74b08d21",
+      "pcm_bytes": 4008304,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 62.62975,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "positive": 6,
+        "negative": 2
+      },
+      "components_and_gaps": [
+        {
+          "id": "leb1_ea92f0a8a225551ea319",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "0a29bc420a39f77e4de12d16c11b2e07b8ee555e14d53d3b0608e5c6e2f4a69b",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ea92f0a8a225551ea319.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0031357c776f194561f2fbe09df9db9dd5393707152c244db22b8a6984dfa2ec",
+          "start_seconds": 1.0,
+          "end_seconds": 5.8869375,
+          "start_sample": 16000,
+          "end_sample": 94191,
+          "duration_seconds": 4.8869375,
+          "source_pcm_bytes": 312764
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_1ac640bb3a064108460a",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "3f0762ee93aa10dd73feb3ef64aae8d12379e0b81c6be33fc36509faabedbb80",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1ac640bb3a064108460a.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "00696c8fad92864b61aa26f33466ade069a0f32ef00a00b5672289637f1c1f1a",
+          "start_seconds": 8.8869375,
+          "end_seconds": 12.8019375,
+          "start_sample": 142191,
+          "end_sample": 204831,
+          "duration_seconds": 3.915,
+          "source_pcm_bytes": 250560
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_694fd18d566fe7013aa4",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "549275102922a2463d0bd977f016ae55324503ac0282e8471c33a6d8cfebe58d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_694fd18d566fe7013aa4.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "00740e1cfe5cea3f2f24f31158f97754a84baad169ab4ea307a7904a725be596",
+          "start_seconds": 15.8019375,
+          "end_seconds": 19.584875,
+          "start_sample": 252831,
+          "end_sample": 313358,
+          "duration_seconds": 3.7829375,
+          "source_pcm_bytes": 242108
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_d36918623a79a3ea8741",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "5bbb5611f69e8f0067cf27a14aa46661f2734c542e53ce1d4b8e34dd89c2a18f",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d36918623a79a3ea8741.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "00e8033a8d65050c159bee916fa2f610ba5de72c0bee65109c6a4ffc656d8c06",
+          "start_seconds": 22.584875,
+          "end_seconds": 28.846875,
+          "start_sample": 361358,
+          "end_sample": 461550,
+          "duration_seconds": 6.262,
+          "source_pcm_bytes": 400768
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_13efa9ddab92e68bd914",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "bcc72b0ccd268d22d92a16fbf8248dad8eb18f3a9a1228ecf235c94a8030374e",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_13efa9ddab92e68bd914.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0120dae217e945b198eebb5b5ad6b7eeda6439cf7eb8c354fbfc570f9f6a5d21",
+          "start_seconds": 31.846875,
+          "end_seconds": 35.5578125,
+          "start_sample": 509550,
+          "end_sample": 568925,
+          "duration_seconds": 3.7109375,
+          "source_pcm_bytes": 237500
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_519603b90a1270c7be96",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "95182810b47ac46aeb4d8ab1e37768ad64f40b58a18b4982affe626b87c99d4c",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_519603b90a1270c7be96.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "012bfeb0aaeded01adad316e0fa44e09eb947bd9eb76212baa27f73396be60eb",
+          "start_seconds": 38.5578125,
+          "end_seconds": 43.2309375,
+          "start_sample": 616925,
+          "end_sample": 691695,
+          "duration_seconds": 4.673125,
+          "source_pcm_bytes": 299080
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_f29bf93a5f66d1b73eee",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "798f26f3f66dfbd35d2a73d8be0498b54eedb60e6bd3be956152308df80455d5",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f29bf93a5f66d1b73eee.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0170e0298bae6eea48d0118c25aeba02e355b09bd51b33eac3ddac9cf5a7c32b",
+          "start_seconds": 46.2309375,
+          "end_seconds": 54.2248125,
+          "start_sample": 739695,
+          "end_sample": 867597,
+          "duration_seconds": 7.993875,
+          "source_pcm_bytes": 511608
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_03760805eb9b0397905d",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "49d0836baa24b6a27f29511545ffba797a29aeda01b74a40cd197a5d6b757868",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_03760805eb9b0397905d.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0175cfd3fdef616684d77ca2e21233e859a328f6f4051c4982d7af4dcb3204a3",
+          "start_seconds": 57.2248125,
+          "end_seconds": 61.62975,
+          "start_sample": 915597,
+          "end_sample": 986076,
+          "duration_seconds": 4.4049375,
+          "source_pcm_bytes": 281916
+        }
+      ]
+    },
+    {
+      "id": "news_group_2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+      "library_snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+      "total_entities": 1051,
+      "enabled_entities": 1051,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/news_group_2.f32le",
+      "pcm_sha256": "2151971d47cc28f3c325d63c3b89705b866fc16f9c122a7bd4d8d4cdd97b8d69",
+      "pcm_bytes": 5014244,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 78.3475625,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "negative": 2,
+        "positive": 6
+      },
+      "components_and_gaps": [
+        {
+          "id": "leb1_2bc78f0cf730b79f8aec",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "ce73b61e24e188610c561e5576167ec32c662db1440c56561811ece283c15a10",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_2bc78f0cf730b79f8aec.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "01680db4b119cb973dc45c5da63920302988656e16b6184182f4347a6ee9cc59",
+          "start_seconds": 1.0,
+          "end_seconds": 8.262,
+          "start_sample": 16000,
+          "end_sample": 132192,
+          "duration_seconds": 7.262,
+          "source_pcm_bytes": 464768
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_99ab1abdbdf91c913bce",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "1f01cf8656fb3dfe6efd032500095dbd50a8708da9af68b22ab27ccffb95e500",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_99ab1abdbdf91c913bce.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "018a2ffb817f8e038e98ce2dd996837450b5698eb520f388912f1e5003c464c1",
+          "start_seconds": 11.262,
+          "end_seconds": 20.037875,
+          "start_sample": 180192,
+          "end_sample": 320606,
+          "duration_seconds": 8.775875,
+          "source_pcm_bytes": 561656
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_2e93f9e1b2122c8354a1",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "02481cc0882691068a434691631e700a210d299019d2db4ebebc98b03dbf70c9",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_2e93f9e1b2122c8354a1.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "019dbaf8c4a699ba9009d65a1801542fe1d0784e997c184e4fa40a54cfaf7ca0",
+          "start_seconds": 23.037875,
+          "end_seconds": 31.2088125,
+          "start_sample": 368606,
+          "end_sample": 499341,
+          "duration_seconds": 8.1709375,
+          "source_pcm_bytes": 522940
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_01327e56fe059d6c6ef8",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "12cf0033aedab5f389d317e991b504b06061a348954f8162059a5e4c910a0074",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_01327e56fe059d6c6ef8.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "019ee6a5b31b3f0437d1deab8bec85b6f517537298f99c9a6c3d583a0e6c0c60",
+          "start_seconds": 34.2088125,
+          "end_seconds": 42.5218125,
+          "start_sample": 547341,
+          "end_sample": 680349,
+          "duration_seconds": 8.313,
+          "source_pcm_bytes": 532032
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_db0920075bb79b1c1dd1",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "a371b4a468bfbdcab89d502794583e905efd1d95c3863d034de3095fcd55c5b6",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_db0920075bb79b1c1dd1.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "01a344a0f9e664ae510c81ba3d09f45e735605874ccb8a87b4f110b35757d1ce",
+          "start_seconds": 45.5218125,
+          "end_seconds": 52.0696875,
+          "start_sample": 728349,
+          "end_sample": 833115,
+          "duration_seconds": 6.547875,
+          "source_pcm_bytes": 419064
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_bd0fc929a0bbf12b6a8c",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "7472679334e68c5ed33633d6078cc7c4158412b82b6b502693b76189da69a2fa",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bd0fc929a0bbf12b6a8c.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "01caa03413fcd2c4faf67c856ea9e3b17e9c123a176f5495f518dc7c1e485297",
+          "start_seconds": 55.0696875,
+          "end_seconds": 61.354625,
+          "start_sample": 881115,
+          "end_sample": 981674,
+          "duration_seconds": 6.2849375,
+          "source_pcm_bytes": 402236
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_9a0ee42d0281babe63d8",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "f55a0812cc465db5f813d38727cb7f0923c1a725f86434b82aadf61edc329766",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9a0ee42d0281babe63d8.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "020ba91bdffab423ee4a133845b9c89eaf4198d31b81f4f13666f894aed276ee",
+          "start_seconds": 64.354625,
+          "end_seconds": 70.3565625,
+          "start_sample": 1029674,
+          "end_sample": 1125705,
+          "duration_seconds": 6.0019375,
+          "source_pcm_bytes": 384124
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_bc04bbab92fd04d35887",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "edba972b744bbe2a6d1e5b870209ed6a28a2708472cce1e6606e0d1f877353dc",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bc04bbab92fd04d35887.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "031836d1ccad8de71dc46eb1c5814fefb954985887d19dbd91e5a4d9e1446929",
+          "start_seconds": 73.3565625,
+          "end_seconds": 77.3475625,
+          "start_sample": 1173705,
+          "end_sample": 1237561,
+          "duration_seconds": 3.991,
+          "source_pcm_bytes": 255424
+        }
+      ]
+    },
+    {
+      "id": "news_group_3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+      "library_snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+      "total_entities": 1051,
+      "enabled_entities": 1051,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/news_group_3.f32le",
+      "pcm_sha256": "1d8b23d9bb9ae0c8464bdbb49ce8bde0e2c758ae1523b46df1f7d03ee8599c0f",
+      "pcm_bytes": 4643376,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 72.55275,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "positive": 6,
+        "negative": 2
+      },
+      "components_and_gaps": [
+        {
+          "id": "leb1_6030ae44da26249bf3c1",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "1e89ed689d1f3b834ef0e2cb1cf22e5f840a939211453616e86aabfc91916ad8",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_6030ae44da26249bf3c1.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "026522efdf10853cfa41f84442df5bb0b347bebfd72b3b1accd1b62f56139435",
+          "start_seconds": 1.0,
+          "end_seconds": 6.071,
+          "start_sample": 16000,
+          "end_sample": 97136,
+          "duration_seconds": 5.071,
+          "source_pcm_bytes": 324544
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_8170023e057ed284d419",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "da95b10e1c7431fc415cd6767aad470aec00f930dafae558e1c91bef60b61e37",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8170023e057ed284d419.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0265bbe94cf92841f27d0d13293777617877ecb6f3f0cb6a355666e9c6c0ac93",
+          "start_seconds": 9.071,
+          "end_seconds": 12.048875,
+          "start_sample": 145136,
+          "end_sample": 192782,
+          "duration_seconds": 2.977875,
+          "source_pcm_bytes": 190584
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_cd80b1990b84c4aef573",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "84ea6cf4fefcb3324c03b6a3415df365a94f89f776ab1368957cd45cf5bfb9e3",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_cd80b1990b84c4aef573.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "02a02825b0e953fd1f6624d4288a4b36012a8398d395fd935ec6d7535ddedf23",
+          "start_seconds": 15.048875,
+          "end_seconds": 24.1978125,
+          "start_sample": 240782,
+          "end_sample": 387165,
+          "duration_seconds": 9.1489375,
+          "source_pcm_bytes": 585532
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_ea9dea9cd6aaa26debd0",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "933660a801d1755d947e6f34eb2882e41e7839356c3c881070fc6fdd652ae2d4",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ea9dea9cd6aaa26debd0.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "02a9a4941e191a5ee485fcce50e03fb3721fe58697a84596f6b30fb1220fe9b5",
+          "start_seconds": 27.1978125,
+          "end_seconds": 37.48275,
+          "start_sample": 435165,
+          "end_sample": 599724,
+          "duration_seconds": 10.2849375,
+          "source_pcm_bytes": 658236
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_b18829f49433c20c1c98",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "787ea9a1f3ec5dd4e8d3356e43197a17323ea2f1785c9be87441a9b51116dd16",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b18829f49433c20c1c98.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "02ac3c68617d75e7fa0bee178b2e6f582e2bf7bcb5e1a4fe35d5c6b3999299b1",
+          "start_seconds": 40.48275,
+          "end_seconds": 48.0838125,
+          "start_sample": 647724,
+          "end_sample": 769341,
+          "duration_seconds": 7.6010625,
+          "source_pcm_bytes": 486468
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_2b3f8672e6fcddf7d3b2",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "534c6d9c286c711442548dd14e8f0ca871dd9c815cbcf75a7bad1b61a202dbf8",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_2b3f8672e6fcddf7d3b2.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "02ca3178ad022b77dfe2deba72d2dbbad6d198ede982040c4ea7531e9aaee090",
+          "start_seconds": 51.0838125,
+          "end_seconds": 55.39875,
+          "start_sample": 817341,
+          "end_sample": 886380,
+          "duration_seconds": 4.3149375,
+          "source_pcm_bytes": 276156
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_a0728bcf12533d8978b7",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "c6e5311bb96ce68615b3d7affd423d18be182058c868362a5dd16734903c97b6",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a0728bcf12533d8978b7.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "03893e3ea3a1847b0bbc2ea7abcec0a4876e7004b681f8eb9f8568300a99efe3",
+          "start_seconds": 58.39875,
+          "end_seconds": 64.28075,
+          "start_sample": 934380,
+          "end_sample": 1028492,
+          "duration_seconds": 5.882,
+          "source_pcm_bytes": 376448
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_34ace4ff9938cc9c5713",
+          "library_key": "topic_06_新闻人物组织地理",
+          "pcm_sha256": "cb0d8ee90c006652fc4b89dda673c0fecd59446f0975b299db2ee8637316bb98",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_34ace4ff9938cc9c5713.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "AISHELL-1 test / AISHELL-NER",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "negative",
+          "selection_hash": "04277b7b2c670805993735fef7a0145ab24bb664ee472e14de2b4e787704b2f9",
+          "start_seconds": 67.28075,
+          "end_seconds": 71.55275,
+          "start_sample": 1076492,
+          "end_sample": 1144844,
+          "duration_seconds": 4.272,
+          "source_pcm_bytes": 273408
+        }
+      ]
+    },
+    {
+      "id": "medical_all",
+      "library_key": "topic_03_医疗健康",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_03_医疗健康.db",
+      "library_snapshot_sha256": "dd17bdc0dd77310678c5bc66ed1628bc1534f13531e080481836360381ac4e11",
+      "total_entities": 101,
+      "enabled_entities": 101,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/medical_all.f32le",
+      "pcm_sha256": "43705f5190bae91d2ecd05940f2fc7fddf673c1b4b8444e6a02a85acffc0bc90",
+      "pcm_bytes": 4759040,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 74.36,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "positive": 8
+      },
+      "components_and_gaps": [
+        {
+          "id": "leb1_cd8ca659f581a12a4ee1",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "5321f9b3197593a6c0e61073ec6298ee3f1244aa8fced1479370181888fc22cb",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_cd8ca659f581a12a4ee1.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0034ee09e401dbd0a6d65fe4ae719292c75cbee7c2783d31d291f63404a31df4",
+          "start_seconds": 1.0,
+          "end_seconds": 8.248,
+          "start_sample": 16000,
+          "end_sample": 131968,
+          "duration_seconds": 7.248,
+          "source_pcm_bytes": 463872
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_d14c7e43446b90429987",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "b35799df9cae0936b680456e961d07350bee3b9fbd7eb8663fef09ad3becf191",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d14c7e43446b90429987.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "00c34051999b201039cdeb5c09d5d46af5ee77680fcbfdf80b130572842f4ca2",
+          "start_seconds": 11.248,
+          "end_seconds": 20.32,
+          "start_sample": 179968,
+          "end_sample": 325120,
+          "duration_seconds": 9.072,
+          "source_pcm_bytes": 580608
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_501a42d33e26d5c953b8",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "b5456e84c8c9ae4f5c69dc9ec4ec1159bf5051d9ea7fe3e28ae546d631b639da",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_501a42d33e26d5c953b8.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "02cf0ba546b477185dcd48d775b25dbabeb3c7d6b96b9b1e61e9a085fb3fa1cb",
+          "start_seconds": 23.32,
+          "end_seconds": 28.672,
+          "start_sample": 373120,
+          "end_sample": 458752,
+          "duration_seconds": 5.352,
+          "source_pcm_bytes": 342528
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_9995b2e79c9b967bb1e5",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "aba318ce09307c3b9c7b60eec39d279d5d508a11a34e54f5783763e78cd8e47f",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9995b2e79c9b967bb1e5.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0a469716ede3bd51a0419825819bb9795fded5d110b18a0cd85a34f149113974",
+          "start_seconds": 31.672,
+          "end_seconds": 38.272,
+          "start_sample": 506752,
+          "end_sample": 612352,
+          "duration_seconds": 6.6,
+          "source_pcm_bytes": 422400
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_7ba4d5193b5831a87090",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "d44280b2a3622eae99d0e6b3570aa9ba2ceee86b690e123fed6984af9ba8405d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7ba4d5193b5831a87090.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0f054c39788b88b5a866793c1f760b3a84eb04f275cec55454f7c45631f8befe",
+          "start_seconds": 41.272,
+          "end_seconds": 47.344,
+          "start_sample": 660352,
+          "end_sample": 757504,
+          "duration_seconds": 6.072,
+          "source_pcm_bytes": 388608
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_4e905a1e125351770024",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "7269a238a29b3d93234af1e270e1cbf1590ddd73f8181b6547e7b5930b47ba0d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4e905a1e125351770024.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "wenetspeech_TEST_NET",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "1256077cb080bce24095eb8b643241ee17f5eff0cff8a178b5ac4abc89027f19",
+          "start_seconds": 50.344,
+          "end_seconds": 53.704,
+          "start_sample": 805504,
+          "end_sample": 859264,
+          "duration_seconds": 3.36,
+          "source_pcm_bytes": 215040
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_b3b4bb9d4b416e9e78a7",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "8a0c0eac7e3a8adee700bd3ea7e8698e6856e80ba9b527d63fcd5ed8075b0d61",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b3b4bb9d4b416e9e78a7.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "13e3b34b8c0dc831a3ae818795a469e47aba5d2942ce5667d626d505ca423b43",
+          "start_seconds": 56.704,
+          "end_seconds": 64.936,
+          "start_sample": 907264,
+          "end_sample": 1038976,
+          "duration_seconds": 8.232,
+          "source_pcm_bytes": 526848
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_08edfc2de65cab94ae34",
+          "library_key": "topic_03_医疗健康",
+          "pcm_sha256": "da10464a08ffac86e4724cd7eb3e5ee9efa6fc0cb385de5891bbb32e67aff60d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_08edfc2de65cab94ae34.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "178d2c55e860e6c3ba8b3109022504aceedd5746c163a078354191f592e010d1",
+          "start_seconds": 67.936,
+          "end_seconds": 73.36,
+          "start_sample": 1086976,
+          "end_sample": 1173760,
+          "duration_seconds": 5.424,
+          "source_pcm_bytes": 347136
+        }
+      ]
+    },
+    {
+      "id": "agriculture_all",
+      "library_key": "topic_02_农业生态",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_02_农业生态.db",
+      "library_snapshot_sha256": "76fc63189d9a3dd14ef62062b1ccf2c3b1f1fd6eac1770b0509f944e3d107094",
+      "total_entities": 28,
+      "enabled_entities": 28,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/agriculture_all.f32le",
+      "pcm_sha256": "ee99bc73595876a0067b4f5daa6bccbe6612a7becb62bc90418aa54006b2a01a",
+      "pcm_bytes": 4836096,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 75.564,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "positive": 8
+      },
+      "components_and_gaps": [
+        {
+          "id": "leb1_fd7248e19746ebca2c18",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "7ddced0cdbd3bbf2d14f215c24aa0f228091430f41cff239b7874d4de03c05ac",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_fd7248e19746ebca2c18.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "SpeechIO",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0183fed7b10cd49c1e2a0bb45060c25d0a3a38c5a2448749794718ef2dd125fb",
+          "start_seconds": 1.0,
+          "end_seconds": 9.047,
+          "start_sample": 16000,
+          "end_sample": 144752,
+          "duration_seconds": 8.047,
+          "source_pcm_bytes": 515008
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_1e401665220f09a4d8fc",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "4b939aea00f9c297fff02d94262efc7d0c99ac53049a95b09a74c0fb0913b3ce",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1e401665220f09a4d8fc.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "03b3bb7460c5729b471c184dd165a68a437f65ea5cc80169bb7037c4f2f07425",
+          "start_seconds": 12.047,
+          "end_seconds": 17.351,
+          "start_sample": 192752,
+          "end_sample": 277616,
+          "duration_seconds": 5.304,
+          "source_pcm_bytes": 339456
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_88d90a3c68e672bf556f",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "4edac7af5aec2f068cbbcc8b21c2013d05cbc1dbcc21f92b87da537dfac4552e",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_88d90a3c68e672bf556f.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "SpeechIO",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "0a75146c717f109de9641f94efd271d052d8ff6e9a3eb1d530f64a5da9aaeb8c",
+          "start_seconds": 20.351,
+          "end_seconds": 28.136,
+          "start_sample": 325616,
+          "end_sample": 450176,
+          "duration_seconds": 7.785,
+          "source_pcm_bytes": 498240
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_ac3df07e8fdca80b7961",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "01a3d7d1dc547f61dc004a6547aca3ea9847e00a0e64e8e53825e1316fd66f31",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ac3df07e8fdca80b7961.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "SpeechIO",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "31846debc6849c11b67c991f4c732b7171ba42dc2ed1f409eab1f39a7acb7ab7",
+          "start_seconds": 31.136,
+          "end_seconds": 35.726,
+          "start_sample": 498176,
+          "end_sample": 571616,
+          "duration_seconds": 4.59,
+          "source_pcm_bytes": 293760
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_43869eba2e05c65fe97a",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "fdbeec90b3d1d0b1fc59a82793a3d537c2691356e9b29d89bcd4a25abee17aea",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_43869eba2e05c65fe97a.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "451b40fc852ba4f791e87e9b0f6fe4be352b45458417817a411c10d25c51ed6b",
+          "start_seconds": 38.726,
+          "end_seconds": 44.534,
+          "start_sample": 619616,
+          "end_sample": 712544,
+          "duration_seconds": 5.808,
+          "source_pcm_bytes": 371712
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_761216a750f16fbc7d28",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "0a9e927bf45cb1b7c3bfe3f1545de2b5a699a3e8fc4cbc3e59c7c2b19c55e1c6",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_761216a750f16fbc7d28.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "SpeechIO",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "467958e4e8a44f3e733918ffe53b50c2ebc8ae7c4d8aac82c05909d11f926813",
+          "start_seconds": 47.534,
+          "end_seconds": 56.734,
+          "start_sample": 760544,
+          "end_sample": 907744,
+          "duration_seconds": 9.2,
+          "source_pcm_bytes": 588800
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_d2f28602acb6c142e644",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "1dbd93b939b34554dcd896f66e730964140cc6a92abb57c9e8d9a0c43deb7bf1",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d2f28602acb6c142e644.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "commonvoice_zh-CN_test",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "4d68cc087a3b5c9a558c4cab8b7e5d857c89444d1d12c4ce266cd544612bda3f",
+          "start_seconds": 59.734,
+          "end_seconds": 65.854,
+          "start_sample": 955744,
+          "end_sample": 1053664,
+          "duration_seconds": 6.12,
+          "source_pcm_bytes": 391680
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "leb1_4d6966aa658b02840849",
+          "library_key": "topic_02_农业生态",
+          "pcm_sha256": "36c1fb04cea0f80c8afe44b46579b8950d1f9938eebd993e0c20df96d5d21b36",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4d6966aa658b02840849.f32le",
+          "corpus": "large_entity_benchmark_v1_20261010",
+          "source_split": "SpeechIO",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "4f1881d42f6e2d423fcff4570c5822e055e897af8b9c07f3f26c04872c4b96e2",
+          "start_seconds": 68.854,
+          "end_seconds": 74.564,
+          "start_sample": 1101664,
+          "end_sample": 1193024,
+          "duration_seconds": 5.71,
+          "source_pcm_bytes": 365440
+        }
+      ]
+    },
+    {
+      "id": "automotive_all",
+      "library_key": "automotive",
+      "library_snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/automotive.db",
+      "library_snapshot_sha256": "89800f54a738e06c31986023650efc0471c05c7fdb372801189191bb0eabfd4d",
+      "total_entities": 33,
+      "enabled_entities": 33,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_replay_decode_step_20261014/independent_long_inputs/automotive_all.f32le",
+      "pcm_sha256": "720b1e04d9db9ef2dee33a34b22b125e93db937d083393826fbebc1d447a81bd",
+      "pcm_bytes": 4232768,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "f32le",
+      "duration_seconds": 66.137,
+      "silence": {
+        "prefix_seconds": 1,
+        "between_components_seconds": 3,
+        "suffix_seconds": 1
+      },
+      "component_count": 8,
+      "cohort_counts": {
+        "positive": 7,
+        "no_registered_target": 1
+      },
+      "components_and_gaps": [
+        {
+          "id": "rel_e54655fd8e07cf3bef13",
+          "library_key": "automotive",
+          "pcm_sha256": "e5c62d1d0aa1c224df451f1d60b67cb848d54de72ad4e32ced7e20a919470c50",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_e54655fd8e07cf3bef13.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "08399a10b6f4c0f2b0cffd1c004478bbbfd3527287e19523dd99d9ebe829b7ba",
+          "start_seconds": 1.0,
+          "end_seconds": 6.829,
+          "start_sample": 16000,
+          "end_sample": 109264,
+          "duration_seconds": 5.829,
+          "source_pcm_bytes": 373056
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_849c570842077787c8ae",
+          "library_key": "automotive",
+          "pcm_sha256": "fdc1b9fead0235ed5b25236455ebbbd760f84a0323ee49ba5fc78c5c7eadc0ab",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_849c570842077787c8ae.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "123054e520fe47c0877c4f9a19e52cf9f822b8c2cc6073f8f0d455fa55b63b9d",
+          "start_seconds": 9.829,
+          "end_seconds": 16.649,
+          "start_sample": 157264,
+          "end_sample": 266384,
+          "duration_seconds": 6.82,
+          "source_pcm_bytes": 436480
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_818ad5900d8a12bf6132",
+          "library_key": "automotive",
+          "pcm_sha256": "8ab97b8a0e852862bfca0289eb1e193318fc190c7ab3251e7a0572cadc0b0e93",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_818ad5900d8a12bf6132.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "183ad2ee6952bdec471d1b90c4f24f631bdf8c90cd502ab53712d60128be0908",
+          "start_seconds": 19.649,
+          "end_seconds": 27.002,
+          "start_sample": 314384,
+          "end_sample": 432032,
+          "duration_seconds": 7.353,
+          "source_pcm_bytes": 470592
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_5de3a9c7e567c8d4610d",
+          "library_key": "automotive",
+          "pcm_sha256": "941c8df54e218a1e6f709875e334a95ccdf06d343abe47c22c2edb36404d918b",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_5de3a9c7e567c8d4610d.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "1ba776b925d39cbec14ecb3f176a17538ed2fe66a784e0011327119208e89845",
+          "start_seconds": 30.002,
+          "end_seconds": 33.512,
+          "start_sample": 480032,
+          "end_sample": 536192,
+          "duration_seconds": 3.51,
+          "source_pcm_bytes": 224640
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_e04cd5571125dcfdae85",
+          "library_key": "automotive",
+          "pcm_sha256": "cbf1f6b6c49f94e6a72c247a4f2365f105f57bf4e13074584c89888c19f3a147",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_e04cd5571125dcfdae85.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "1eeffd728cce2f3982ea90bcaaac8a63643461bc82d90e5a8d86102817675615",
+          "start_seconds": 36.512,
+          "end_seconds": 41.874,
+          "start_sample": 584192,
+          "end_sample": 669984,
+          "duration_seconds": 5.362,
+          "source_pcm_bytes": 343168
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_59812c0a38f46e951a76",
+          "library_key": "automotive",
+          "pcm_sha256": "11efd7f32f1c045cfc630fc93b43f276dcd2086588bb72050c516b9864d725dd",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_59812c0a38f46e951a76.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "20182adaca11cf0a57766478658245507f55216ca76e82e28ac546f6ebfb98cc",
+          "start_seconds": 44.874,
+          "end_seconds": 48.425,
+          "start_sample": 717984,
+          "end_sample": 774800,
+          "duration_seconds": 3.551,
+          "source_pcm_bytes": 227264
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_12d9da4a88e742aedff3",
+          "library_key": "automotive",
+          "pcm_sha256": "90011ac290d7810ba067a3a5ea79fd03531254a167dd87520c0e68c058468c2e",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_12d9da4a88e742aedff3.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "positive",
+          "selection_hash": "2983df810e1c1dcc88621af0a767ed3d50a0a9cfd4f221e4fe0f0d153fef62c3",
+          "start_seconds": 51.425,
+          "end_seconds": 56.997,
+          "start_sample": 822800,
+          "end_sample": 911952,
+          "duration_seconds": 5.572,
+          "source_pcm_bytes": 356608
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0
+        },
+        {
+          "id": "rel_038a78a8da2f371db11e",
+          "library_key": "automotive",
+          "pcm_sha256": "618116567dfd0c2e5b94396f2eb94c12766c816f406c9e9ec6383e328bb005c6",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_038a78a8da2f371db11e.f32le",
+          "corpus": "entity_reliable_data_20261012_pilot",
+          "source_split": "SpeechIO automotive",
+          "source_split_note": "source_split is the frozen inference_inputs.source value; original train/test split field was not present in this metadata input.",
+          "cohort": "no_registered_target",
+          "selection_hash": "2b700538a722bdd3250a17ba0b3bc1a8b0bd561b964c5c546cbbfc643f65bdb1",
+          "start_seconds": 59.997,
+          "end_seconds": 65.137,
+          "start_sample": 959952,
+          "end_sample": 1042192,
+          "duration_seconds": 5.14,
+          "source_pcm_bytes": 328960
+        }
+      ]
+    }
+  ]
+}

@@ -22,6 +22,7 @@ from .entity_store import EntityDefinition
 from .refinement_guard import join_refined_segments
 
 MAX_REPLAY_TERMS = 8
+REPLAY_DECODE_SECONDS = 10.0
 MIN_REPLAY_SCORE = 0.63
 SHORT_EXPANSION_RULE = "spelling_or_complete_edge_sound_v1"
 LOCAL_REPLAY_RULE = "segment_windows_v1"
@@ -263,6 +264,7 @@ class EntityAudioRepair:
                     source_audio_seconds=round(self._audio_size / 64000, 3),
                     replay_audio_seconds=round(self.replay_audio_bytes / 64000, 3),
                     replay_windows=list(self.replay_windows),
+                    replay_decode_seconds=REPLAY_DECODE_SECONDS,
                     streaming_cache_used=self.streaming_cache_used,
                     streaming_replay=self._streaming.snapshot() if self._streaming else None)
 
@@ -552,7 +554,11 @@ class EntityAudioRepair:
         self.phase = "verifying"
         ready = None
         try:
-            ready = await guard.request("/stream/start", params=dict(self._params, context=context.text))
+            # Only final replay evidence is consumed. A larger decode step
+            # avoids rebuilding intermediate hypotheses we never publish;
+            # the first-pass session retains its requested chunk interval.
+            ready = await guard.request("/stream/start", params=dict(
+                self._params, context=context.text, chunk_seconds=REPLAY_DECODE_SECONDS))
             if ready.get("context_applied") is not True:
                 self.phase, self.reason = "skipped", "backend_context_unsupported"
                 return None

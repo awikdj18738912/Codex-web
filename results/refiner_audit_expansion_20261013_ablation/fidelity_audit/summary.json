@@ -1,0 +1,227 @@
+{
+  "scope": "expanded_model_behavior_audit_with_separate_published_read_speech_reference_panel",
+  "source_cases": 60,
+  "unique_all_refine_windows": 0,
+  "all_refine_classifications": {},
+  "candidate_pairs": {
+    "confidence_fusion": {
+      "pairs": 60,
+      "identical_final_pairs": 58,
+      "different_final_pairs": 2,
+      "added_calls": -7
+    },
+    "weak_structure_rule_only": {
+      "pairs": 60,
+      "identical_final_pairs": 59,
+      "different_final_pairs": 1,
+      "added_calls": -26
+    }
+  },
+  "public_read_speech_fidelity": {
+    "native": {
+      "cases": 24,
+      "reference_characters": 353,
+      "raw_asr_errors": 4,
+      "final_errors": 4,
+      "improved_cases": 0,
+      "regressed_cases": 0,
+      "unchanged_cases": 24,
+      "raw_asr_cer": 0.0113314447592068,
+      "final_cer": 0.0113314447592068
+    },
+    "confidence_fusion": {
+      "cases": 24,
+      "reference_characters": 353,
+      "raw_asr_errors": 4,
+      "final_errors": 4,
+      "improved_cases": 0,
+      "regressed_cases": 0,
+      "unchanged_cases": 24,
+      "raw_asr_cer": 0.0113314447592068,
+      "final_cer": 0.0113314447592068
+    },
+    "weak_structure_rule_only": {
+      "cases": 24,
+      "reference_characters": 353,
+      "raw_asr_errors": 4,
+      "final_errors": 4,
+      "improved_cases": 0,
+      "regressed_cases": 0,
+      "unchanged_cases": 24,
+      "raw_asr_cer": 0.0113314447592068,
+      "final_cer": 0.0113314447592068
+    }
+  },
+  "recording_groups": {
+    "audio:2c0218d5322b46ba0765bed5ed48b059f9fb8354c469315fe1c46fb0b8969fa8": {
+      "native": {
+        "calls": 7,
+        "sessions": 2
+      },
+      "confidence_fusion": {
+        "calls": 7,
+        "sessions": 2
+      },
+      "weak_structure_rule_only": {
+        "calls": 7,
+        "sessions": 2
+      }
+    },
+    "possibly_related_fiction_test_2_3": {
+      "weak_structure_rule_only": {
+        "calls": 24,
+        "sessions": 12
+      },
+      "native": {
+        "calls": 27,
+        "sessions": 12
+      },
+      "confidence_fusion": {
+        "calls": 31,
+        "sessions": 12
+      }
+    },
+    "audio:5f482c3079fdfaefcf478483f6d0b7d3c954817444bec6c5a0c22f7635d57a59": {
+      "weak_structure_rule_only": {
+        "calls": 6,
+        "sessions": 6
+      },
+      "native": {
+        "calls": 9,
+        "sessions": 6
+      },
+      "confidence_fusion": {
+        "calls": 9,
+        "sessions": 6
+      }
+    },
+    "audio:7ca9fbdb0174731b88aee56c5b824394b0dc5669a2343b9e1094d5492cd0e9ba": {
+      "weak_structure_rule_only": {
+        "calls": 27,
+        "sessions": 8
+      },
+      "native": {
+        "calls": 44,
+        "sessions": 8
+      },
+      "confidence_fusion": {
+        "calls": 34,
+        "sessions": 8
+      }
+    },
+    "audio:d6996b6d70c9f7f268aae01e76f0133240dbf0db29dd642732591432c4b2fe55": {
+      "confidence_fusion": {
+        "calls": 8,
+        "sessions": 8
+      },
+      "weak_structure_rule_only": {
+        "calls": 6,
+        "sessions": 8
+      },
+      "native": {
+        "calls": 9,
+        "sessions": 8
+      }
+    },
+    "aishell_speaker:S0004": {
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      }
+    },
+    "aishell_speaker:S0005": {
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      }
+    },
+    "aishell_speaker:S0099": {
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      }
+    },
+    "aishell_speaker:S0043": {
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      }
+    },
+    "aishell_speaker:S0044": {
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      }
+    },
+    "aishell_speaker:S0058": {
+      "weak_structure_rule_only": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "native": {
+        "calls": 0,
+        "sessions": 4
+      },
+      "confidence_fusion": {
+        "calls": 0,
+        "sessions": 4
+      }
+    }
+  },
+  "project_human_audio_gold": 0,
+  "cleanup_gold": 0,
+  "training_eligible": 0,
+  "production_eligible": false,
+  "limitations": [
+    "Model edit acceptance is not audio correctness or positive cleanup gain",
+    "Published read-speech reference evaluates spelling/content fidelity, not spontaneous speech cleanup",
+    "Reference/CER normalization ignores punctuation and uses the same numeric rule formatting on both sides",
+    "Archive speaker ID is grouping metadata; ASR pretraining overlap unknown",
+    "Original project source recordings are consumed and some share potentially related video material"
+  ],
+  "source_sha256": {
+    "sources.json": "b593a006d8159a0e950189794f4718dc6913d4d2e435ccef0a1f880f451f3365",
+    "sessions.jsonl": "f3ad9c88e2bfe5f16b11bbade904e1face598e421599564ac351f6a59d9d61ef",
+    "summary.json": "fff6b2149ce66805a56d2194bd8acc810f6b13c25772cc01b5dc3fc7d2733cbe"
+  }
+}

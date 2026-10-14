@@ -1,0 +1,36 @@
+{
+  "scope": "consumed_three_audio_ASR_replay_development_pilot_not_audio_acceptance",
+  "policies": [
+    "all_refine",
+    "native",
+    "confidence_supplement",
+    "confidence_fusion"
+  ],
+  "repetitions": 2,
+  "device": "cuda:0",
+  "thresholds": {
+    "low_fragment": 0.8,
+    "high_window": 0.98,
+    "high_fragment": 0.95
+  },
+  "thresholds_frozen_before_refiner_outputs": true,
+  "policy_design_informed_by_consumed_ASR_diagnostics": true,
+  "thresholds_not_calibrated": true,
+  "no_threshold_search_or_training": true,
+  "sources": "/home/aim0/桌面/tan/ASR/Codex-web/results/asr_window_confidence_probe_20261013_v2",
+  "confidence_summary_sha256": "b24b217ed0d1a10540913b9dde855cd05fe0ae7c00fef699e9cd2507732452e5",
+  "refiner_weights_sha256": {
+    "model.safetensors": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+  },
+  "numeric_backend": "zh-itn",
+  "zh_itn_sha256": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+  "entity_db": null,
+  "learned_gate": "off",
+  "final_refinement_mode": "off",
+  "fresh_session_cache": true,
+  "no_production_services_changed": true,
+  "no_new_ASR_calls": true,
+  "no_audio_gold": true,
+  "full_file_time_not_measured": true,
+  "original_probe_does_not_reproduce_live_VAD": true
+}

@@ -1,0 +1,15 @@
+{
+  "target_recordings": 2000,
+  "at_least_domains": 15,
+  "per_domain_minimum": 30,
+  "global_raw_entity_hit_rate_target": 0.5,
+  "rate_tolerance": 0.005,
+  "scope": "baseline-selected challenge; known-vocabulary evaluation; all complete source segments",
+  "primary_domain_cap": 900,
+  "fallback_domain_cap_if_needed": 1200,
+  "exclude_protected_holdout_pcm": true,
+  "use_entity_module_results_to_select": false,
+  "primary_score": "sum of capped canonical mention hits / annotated mention count",
+  "source_waveform_modification": "none; mono16k source PCM representation conversion only",
+  "audio_listening_claim": false
+}

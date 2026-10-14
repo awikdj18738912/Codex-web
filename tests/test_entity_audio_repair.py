@@ -53,8 +53,9 @@ class Backend:
         return result
 
 
-async def finish(backend, guard, pcm=b"12345678"):
-    ready = await guard.request("/stream/start", params=dict(language="Chinese", chunk_seconds=2.0))
+async def finish(backend, guard, pcm=b"12345678", params=None):
+    params = params if params is not None else dict(language="Chinese", chunk_seconds=2.0)
+    ready = await guard.request("/stream/start", params=params)
     partial = await guard.request("/stream/chunk", ready["session_id"], pcm)
     final = await guard.request("/stream/finish", ready["session_id"])
     return ready, partial, final
@@ -64,7 +65,8 @@ def test_same_pcm_replayed_and_only_entity_updated_at_finish():
     async def scenario():
         backend = Backend(replay="嘉宾是罗剑。谢谢大家。")
         guard = EntityAudioRepair(backend, [definition()], replay_chunk_bytes=4)
-        ready, partial, result = await finish(backend, guard)
+        params = dict(language="Chinese", chunk_seconds=2.0, custom_flag="keep")
+        ready, partial, result = await finish(backend, guard, params=params)
         assert ready["context_applied"] is False
         assert ready["entity_audio_repair"]["short_expansion_rule"] == "spelling_or_complete_edge_sound_v1"
         assert partial["text"] == backend.original
@@ -74,6 +76,11 @@ def test_same_pcm_replayed_and_only_entity_updated_at_finish():
         assert result["confidence"] is None and result["confidence_covers_full_text"] is False
         assert result["entity_audio_repair_revision"] == 1
         assert result["entity_audio_repair"]["change_count"] == 1
+        starts = [call[3] for call in backend.calls if call[0] == "/stream/start"]
+        assert len(starts) == 2
+        assert starts[0]["chunk_seconds"] == 2.0
+        assert starts[1]["chunk_seconds"] == 10
+        assert params == dict(language="Chinese", chunk_seconds=2.0, custom_flag="keep")
         assert guard._audio is None and not backend.sessions
     asyncio.run(scenario())
 

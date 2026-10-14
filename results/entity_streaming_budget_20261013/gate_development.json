@@ -1,0 +1,5105 @@
+{
+  "status": "complete",
+  "scope": "prepared 60-row development plan only",
+  "requested_samples": 60,
+  "analyzed_samples": 60,
+  "score_thresholds": [
+    0.63,
+    0.72,
+    0.8,
+    0.9
+  ],
+  "margin_thresholds": [
+    0.0,
+    0.04,
+    0.08,
+    0.12
+  ],
+  "counts_by_gate": [
+    {
+      "score_threshold": 0.63,
+      "margin_threshold": 0.0,
+      "qualifying_samples": 46,
+      "qualifying_candidates": 125,
+      "old_confirmations_retained": 21,
+      "old_confirmations_lost": 0,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.63,
+      "margin_threshold": 0.04,
+      "qualifying_samples": 43,
+      "qualifying_candidates": 89,
+      "old_confirmations_retained": 20,
+      "old_confirmations_lost": 1,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.63,
+      "margin_threshold": 0.08,
+      "qualifying_samples": 39,
+      "qualifying_candidates": 70,
+      "old_confirmations_retained": 19,
+      "old_confirmations_lost": 2,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.63,
+      "margin_threshold": 0.12,
+      "qualifying_samples": 35,
+      "qualifying_candidates": 55,
+      "old_confirmations_retained": 18,
+      "old_confirmations_lost": 3,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.72,
+      "margin_threshold": 0.0,
+      "qualifying_samples": 30,
+      "qualifying_candidates": 61,
+      "old_confirmations_retained": 20,
+      "old_confirmations_lost": 1,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.72,
+      "margin_threshold": 0.04,
+      "qualifying_samples": 29,
+      "qualifying_candidates": 49,
+      "old_confirmations_retained": 19,
+      "old_confirmations_lost": 2,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.72,
+      "margin_threshold": 0.08,
+      "qualifying_samples": 28,
+      "qualifying_candidates": 43,
+      "old_confirmations_retained": 18,
+      "old_confirmations_lost": 3,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.72,
+      "margin_threshold": 0.12,
+      "qualifying_samples": 26,
+      "qualifying_candidates": 36,
+      "old_confirmations_retained": 17,
+      "old_confirmations_lost": 4,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.8,
+      "margin_threshold": 0.0,
+      "qualifying_samples": 18,
+      "qualifying_candidates": 23,
+      "old_confirmations_retained": 18,
+      "old_confirmations_lost": 3,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.8,
+      "margin_threshold": 0.04,
+      "qualifying_samples": 17,
+      "qualifying_candidates": 22,
+      "old_confirmations_retained": 17,
+      "old_confirmations_lost": 4,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.8,
+      "margin_threshold": 0.08,
+      "qualifying_samples": 16,
+      "qualifying_candidates": 21,
+      "old_confirmations_retained": 16,
+      "old_confirmations_lost": 5,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.8,
+      "margin_threshold": 0.12,
+      "qualifying_samples": 16,
+      "qualifying_candidates": 21,
+      "old_confirmations_retained": 16,
+      "old_confirmations_lost": 5,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.9,
+      "margin_threshold": 0.0,
+      "qualifying_samples": 17,
+      "qualifying_candidates": 18,
+      "old_confirmations_retained": 17,
+      "old_confirmations_lost": 4,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.9,
+      "margin_threshold": 0.04,
+      "qualifying_samples": 16,
+      "qualifying_candidates": 17,
+      "old_confirmations_retained": 16,
+      "old_confirmations_lost": 5,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.9,
+      "margin_threshold": 0.08,
+      "qualifying_samples": 16,
+      "qualifying_candidates": 17,
+      "old_confirmations_retained": 16,
+      "old_confirmations_lost": 5,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    },
+    {
+      "score_threshold": 0.9,
+      "margin_threshold": 0.12,
+      "qualifying_samples": 16,
+      "qualifying_candidates": 17,
+      "old_confirmations_retained": 16,
+      "old_confirmations_lost": 5,
+      "reference_present_old_changes": 20,
+      "reference_mismatch_old_changes": 1
+    }
+  ],
+  "samples": [
+    {
+      "id": "leb1_1f10c5da2617afd2eafe",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "坚持和完善农村基本经营制度。",
+      "final_raw_text": "坚持和完善农村基本经营制度。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "经营",
+          "canonical": "领英",
+          "score": 0.755,
+          "margin": 0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "完善",
+          "canonical": "冈山",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "完善",
+          "canonical": "唐山",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "经营",
+          "canonical": "嘉颖",
+          "score": 0.67,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "和完善",
+          "canonical": "河南省",
+          "score": 0.653778,
+          "margin": -0.01622200000000007,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "经营",
+          "canonical": "黄颖",
+          "score": 0.636,
+          "margin": -0.119,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "基本",
+          "canonical": "桥本",
+          "score": 0.635,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "完善",
+          "canonical": "任珊",
+          "score": 0.613333,
+          "margin": -0.05666700000000002,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_a61d784c2a05aa80c4ec",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "乔帮主在首批苹果产品的开发中。",
+      "final_raw_text": "乔帮主在首批苹果产品的开发中。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "产品",
+          "canonical": "常平",
+          "score": 0.627,
+          "margin": 0.028333000000000053,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "产品",
+          "canonical": "常鑫",
+          "score": 0.598667,
+          "margin": -0.028333000000000053,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "产品",
+          "canonical": "陈斌",
+          "score": 0.581667,
+          "margin": -0.04533299999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 6,
+          "observed": "在首批",
+          "canonical": "泰舒培",
+          "score": 0.572222,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "乔帮主",
+          "canonical": "李尚洙",
+          "score": 0.559333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "observed": "的开发",
+          "canonical": "德维塔",
+          "score": 0.555556,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_517493d982118ffb0953",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "雷某一直在河北邢台、衡水等地干着游走骗婚的勾当。",
+      "final_raw_text": "雷某一直在河北邢台、衡水等地干着游走骗婚的勾当。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "一直",
+          "canonical": "美芝",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "游走",
+          "canonical": "欧洲",
+          "score": 0.581667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 18,
+          "end": 20,
+          "observed": "骗婚",
+          "canonical": "天华",
+          "score": 0.581667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_128a6ab40cc44fba024d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "新华社记者梁建强摄。",
+      "final_raw_text": "新华社记者梁建强摄。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "记者",
+          "canonical": "上集镇",
+          "score": 0.556667,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "记者",
+          "canonical": "韦集镇",
+          "score": 0.556667,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_d44adec501140b24c76f",
+      "library_key": "topic_03_医疗健康",
+      "original": "它有两套生殖系统。它的染色体是X、Y。",
+      "final_raw_text": "它有两套生殖系统。它的染色体是X、Y。",
+      "old_changes": [],
+      "candidates": []
+    },
+    {
+      "id": "leb1_10dc2537c7ac9c4e76f2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "村民生活因此发生巨变，井水变味，田地减产。前日。",
+      "final_raw_text": "村民生活因此发生巨变，井水变味，田地减产。前日。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "井水",
+          "canonical": "衡水",
+          "score": 0.72,
+          "margin": 0.135,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "田地",
+          "canonical": "天津",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "生活",
+          "canonical": "商洛",
+          "score": 0.598667,
+          "margin": 0.05666699999999991,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "因此",
+          "canonical": "银联",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "井水",
+          "canonical": "荆州",
+          "score": 0.585,
+          "margin": -0.135,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "变味",
+          "canonical": "刘玮",
+          "score": 0.585,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "变味",
+          "canonical": "华为",
+          "score": 0.585,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "变味",
+          "canonical": "王薇",
+          "score": 0.585,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "生活",
+          "canonical": "衡水",
+          "score": 0.542,
+          "margin": -0.05666699999999991,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_4d134666675978dc3ab9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "直接涉及到债券持有人的利益保护问题。",
+      "final_raw_text": "直接涉及到债券持有人的利益保护问题。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "利益",
+          "canonical": "李谷一",
+          "score": 0.653333,
+          "margin": 0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "涉及到",
+          "canonical": "晋吉岛",
+          "score": 0.633333,
+          "margin": 0.07666600000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "直接",
+          "canonical": "李洁",
+          "score": 0.613333,
+          "margin": 0.07866600000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "利益",
+          "canonical": "李晖",
+          "score": 0.613333,
+          "margin": -0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "利益",
+          "canonical": "李洁",
+          "score": 0.613333,
+          "margin": -0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "利益",
+          "canonical": "李磊",
+          "score": 0.613333,
+          "margin": -0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "利益",
+          "canonical": "里约",
+          "score": 0.613333,
+          "margin": -0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "问题",
+          "canonical": "温岭",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "涉及",
+          "canonical": "审计署",
+          "score": 0.556667,
+          "margin": -0.07666600000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 5,
+          "observed": "直接涉及到",
+          "canonical": "晋吉岛",
+          "score": 0.534667,
+          "margin": -0.07866600000000001,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_76c0c1d7dd606cbcd2ff",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "搜狐娱乐讯，据台湾媒体报道。",
+      "final_raw_text": "搜狐娱乐讯，据台湾媒体报道。",
+      "old_changes": [],
+      "candidates": []
+    },
+    {
+      "id": "leb1_19a50b44479f49d5c2ff",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "将其列为恶意软件，用户称其为“流氓软件”。",
+      "final_raw_text": "将其列为恶意软件，用户称其为“流氓软件”。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "用户",
+          "canonical": "龙湖",
+          "score": 0.755,
+          "margin": 0.008333000000000035,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "用户称",
+          "canonical": "盐湖城",
+          "score": 0.746667,
+          "margin": -0.008333000000000035,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "列为",
+          "canonical": "刘玮",
+          "score": 0.726667,
+          "margin": 0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "其为",
+          "canonical": "艾维",
+          "score": 0.67,
+          "margin": 0.05666700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "列为",
+          "canonical": "艾维",
+          "score": 0.613333,
+          "margin": -0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "其为",
+          "canonical": "刘玮",
+          "score": 0.613333,
+          "margin": -0.05666700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 14,
+          "observed": "称其为",
+          "canonical": "黄琦雯",
+          "score": 0.608444,
+          "margin": -0.13822299999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 13,
+          "observed": "用户称其",
+          "canonical": "盐湖城",
+          "score": 0.6,
+          "margin": -0.15500000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 19,
+          "observed": "流氓软件",
+          "canonical": "浪潮软件",
+          "score": 0.5925,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "用户",
+          "canonical": "搜狐",
+          "score": 0.585,
+          "margin": -0.17000000000000004,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "称其",
+          "canonical": "胡琦",
+          "score": 0.568,
+          "margin": -0.17866700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "用户称",
+          "canonical": "龙湖",
+          "score": 0.556667,
+          "margin": -0.18999999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "其列为",
+          "canonical": "刘玮",
+          "score": 0.537778,
+          "margin": -0.07555500000000004,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "其为",
+          "canonical": "黄琦雯",
+          "score": 0.537778,
+          "margin": -0.13222200000000006,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "将其列为",
+          "canonical": "黄琦雯",
+          "score": 0.530333,
+          "margin": -0.1963339999999999,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 13,
+          "observed": "用户称其",
+          "canonical": "胡琦",
+          "score": 0.53,
+          "margin": -0.22499999999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "将其",
+          "canonical": "黄琦雯",
+          "score": 0.522667,
+          "margin": -0.015110999999999986,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_5c29855cfe18dc0f700d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "《印度斯坦时报》对二十四日，援引消息人士的话报道。",
+      "final_raw_text": "《印度斯坦时报》对二十四日，援引消息人士的话报道。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "的话",
+          "canonical": "德国",
+          "score": 0.613333,
+          "margin": 0.028333000000000053,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 22,
+          "end": 24,
+          "observed": "报道",
+          "canonical": "宝马",
+          "score": 0.613333,
+          "margin": 0.06000000000000005,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "援引",
+          "canonical": "瑞银",
+          "score": 0.585,
+          "margin": 0.0033329999999999194,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "的话",
+          "canonical": "奉化",
+          "score": 0.585,
+          "margin": -0.028333000000000053,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "援引",
+          "canonical": "权义",
+          "score": 0.581667,
+          "margin": -0.0033329999999999194,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "援引",
+          "canonical": "黄颖",
+          "score": 0.559,
+          "margin": -0.025999999999999912,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "的话",
+          "canonical": "刘德怀",
+          "score": 0.556667,
+          "margin": -0.056665999999999994,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 22,
+          "end": 24,
+          "observed": "报道",
+          "canonical": "淘宝",
+          "score": 0.553333,
+          "margin": -0.06000000000000005,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_ab2f5022d76e2bdbca4d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "一万米，阿尔恩加比乌斯。",
+      "final_raw_text": "一万米，阿尔恩加比乌斯。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "一万米",
+          "canonical": "意大利",
+          "score": 0.555556,
+          "margin": 0.02355600000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "一万米",
+          "canonical": "卢克伊万斯",
+          "score": 0.532,
+          "margin": -0.02355600000000002,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_26d926d1a580ec637a30",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "应当经国务院国资委核准。",
+      "final_raw_text": "应当经国务院国资委核准。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "应当",
+          "canonical": "央行",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "应当",
+          "canonical": "平阳",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "应当",
+          "canonical": "杨扬",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "核准",
+          "canonical": "河南",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "应当经",
+          "canonical": "钟晶晶",
+          "score": 0.570667,
+          "margin": -0.03933299999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "应当",
+          "canonical": "平昌",
+          "score": 0.559,
+          "margin": -0.050999999999999934,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "应当",
+          "canonical": "香港",
+          "score": 0.559,
+          "margin": -0.050999999999999934,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "应当经",
+          "canonical": "东京",
+          "score": 0.556667,
+          "margin": -0.053332999999999964,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_57cf049945ebb9b50a15",
+      "library_key": "topic_02_农业生态",
+      "original": "另外，大豆异黄酮有临床研究可以减少更年期不适的问题。",
+      "final_raw_text": "另外，大豆异黄酮有临床研究可以减少更年期不适的问题。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 23,
+          "end": 25,
+          "observed": "问题",
+          "canonical": "温室气体",
+          "score": 0.53,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_dd94ac12838dc948ff23",
+      "library_key": "topic_02_农业生态",
+      "original": "也可以呢，去用一些高钾肥为主。",
+      "final_raw_text": "也可以呢，去用一些高钾肥为主。",
+      "old_changes": [],
+      "candidates": []
+    },
+    {
+      "id": "leb1_598df14e9f76e8c128c1",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "搜狐娱乐讯，据香港媒体报道。",
+      "final_raw_text": "搜狐娱乐讯，据香港媒体报道。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "报道",
+          "canonical": "宝马",
+          "score": 0.613333,
+          "margin": 0.06000000000000005,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "报道",
+          "canonical": "淘宝",
+          "score": 0.553333,
+          "margin": -0.06000000000000005,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_aa4b23acb58807758c37",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "引导金融机构。发放农业中长期贷款。",
+      "final_raw_text": "引导金融机构。发放农业中长期贷款。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "引导",
+          "canonical": "青岛",
+          "score": 0.67,
+          "margin": 0.05666700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "引导",
+          "canonical": "印度",
+          "score": 0.613333,
+          "margin": -0.05666700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "引导",
+          "canonical": "银联",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "农业",
+          "canonical": "林野",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "引导",
+          "canonical": "临高",
+          "score": 0.553333,
+          "margin": -0.11666700000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "引导",
+          "canonical": "林丹",
+          "score": 0.553333,
+          "margin": -0.11666700000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 16,
+          "observed": "中长期贷款",
+          "canonical": "中粮集团",
+          "score": 0.5436,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_5ef7e318dbb611f57bea",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "其实，儿童电话手表的火。",
+      "final_raw_text": "其实，儿童电话手表的火。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "电话",
+          "canonical": "天华",
+          "score": 0.755,
+          "margin": 0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "的火",
+          "canonical": "德国",
+          "score": 0.726667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "电话",
+          "canonical": "新华",
+          "score": 0.67,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "电话",
+          "canonical": "金华",
+          "score": 0.67,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "其实",
+          "canonical": "瑞士",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "电话",
+          "canonical": "清华",
+          "score": 0.585,
+          "margin": -0.17000000000000004,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "电话",
+          "canonical": "谢天华",
+          "score": 0.556667,
+          "margin": -0.19833299999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "手表",
+          "canonical": "乌守保",
+          "score": 0.556667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_37efb9cfe4f74c09c04d",
+      "library_key": "topic_09_自然科学化学",
+      "original": "四世代凌星巡天是一个搜寻太阳系外行星的自动望远镜巡天计划。",
+      "final_raw_text": "四世代凌星巡天是一个搜寻太阳系外行星的自动望远镜巡天计划。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 19,
+          "end": 21,
+          "observed": "自动",
+          "canonical": "黑洞",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "rel_03ffd4784c5275232291",
+      "library_key": "automotive",
+      "original": "比如说，年龄比较成熟、比较稳重的人，或者是一部分女性的消费者，他们不会有什么追求刺激的冲动，他们追求的是轻松惬意。",
+      "final_raw_text": "比如说，年龄比较成熟、比较稳重的人，或者是一部分女性的消费者，他们不会有什么追求刺激的冲动，他们追求的是轻松惬意。",
+      "old_changes": [],
+      "candidates": []
+    },
+    {
+      "id": "leb1_bda64273c682e4cce368",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "而对于他的好友小林尊。",
+      "final_raw_text": "而对于他的好友小林尊。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "他的",
+          "canonical": "邦德",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_9e359aa1d44e3a70a54f",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "东莞长平住宅大厦联邦花园旁边发生大面积地陷。",
+      "final_raw_text": "东莞常平住宅大厦联邦花园旁边发生大面积地陷。",
+      "old_changes": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "常平",
+          "entity_id": 365,
+          "phonetic_score": 0.84,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.822,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "常平",
+          "entity_type": "LOC",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "常平",
+          "score": 0.822,
+          "margin": 0.06799999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "住宅",
+          "canonical": "珠海",
+          "score": 0.755,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "郎平",
+          "score": 0.754,
+          "margin": -0.06799999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "张林",
+          "score": 0.67,
+          "margin": -0.1519999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "张萌",
+          "score": 0.67,
+          "margin": -0.1519999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 19,
+          "end": 21,
+          "observed": "地陷",
+          "canonical": "郫县",
+          "score": 0.67,
+          "margin": 0.03500000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 19,
+          "end": 21,
+          "observed": "地陷",
+          "canonical": "地球",
+          "score": 0.635,
+          "margin": -0.03500000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "长平",
+          "canonical": "长江",
+          "score": 0.626,
+          "margin": -0.19599999999999995,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_eccd3f33ceb6f45ee603",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "本报记者曹智，为王婷、王颖春，来源：中国证券报。",
+      "final_raw_text": "本报记者曹志，为王婷、王颖春，来源：中国证券报。",
+      "old_changes": [
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "曹智",
+          "canonical": "曹志",
+          "entity_id": 495,
+          "phonetic_score": 1.0,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.95,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "曹志",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "曹智",
+          "canonical": "曹志",
+          "score": 0.95,
+          "margin": 0.412222,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "曹智",
+          "canonical": "陈昊芝",
+          "score": 0.537778,
+          "margin": -0.412222,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "本报记者",
+          "canonical": "宝鸡",
+          "score": 0.53,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_15e70253f30d7fcabe80",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "原来，陈善之最近已离开了百事活。",
+      "final_raw_text": "原来，陈善之最近已离开了百仕活。",
+      "old_changes": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "百事活",
+          "canonical": "百仕活",
+          "entity_id": 734,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "百仕活",
+          "entity_type": "ORG",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "百事活",
+          "canonical": "百仕活",
+          "score": 0.966667,
+          "margin": 0.35333400000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 15,
+          "observed": "了百事活",
+          "canonical": "百仕活",
+          "score": 0.765,
+          "margin": 0.151667,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "离开",
+          "canonical": "李开复",
+          "score": 0.686667,
+          "margin": 0.07333400000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "百事",
+          "canonical": "百仕活",
+          "score": 0.686667,
+          "margin": 0.07333400000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "离开",
+          "canonical": "李娜",
+          "score": 0.613333,
+          "margin": -0.07333400000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "离开",
+          "canonical": "李晖",
+          "score": 0.613333,
+          "margin": -0.07333400000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "离开",
+          "canonical": "李磊",
+          "score": 0.613333,
+          "margin": -0.07333400000000001,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "百事",
+          "canonical": "瑞士",
+          "score": 0.613333,
+          "margin": -0.35333400000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "最近已",
+          "canonical": "付敬懿",
+          "score": 0.612222,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "百事",
+          "canonical": "百思买",
+          "score": 0.571111,
+          "margin": -0.395556,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_59d10f5b62cacde75bcc",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "陈世安两天一夜没洗澡、刷牙。",
+      "final_raw_text": "陈势安两天一夜没洗澡、刷牙。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "陈世安",
+          "canonical": "陈势安",
+          "entity_id": 957,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "陈势安",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "陈世安",
+          "canonical": "陈势安",
+          "score": 0.966667,
+          "margin": 1.0,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "两天",
+          "canonical": "小天",
+          "score": 0.686,
+          "margin": 0.04200000000000004,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "刷牙",
+          "canonical": "哈亚",
+          "score": 0.67,
+          "margin": 0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 5,
+          "observed": "陈世安两天",
+          "canonical": "陈势安",
+          "score": 0.644,
+          "margin": -0.04200000000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "一夜",
+          "canonical": "林野",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "洗澡",
+          "canonical": "西安",
+          "score": 0.613333,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "洗澡",
+          "canonical": "西海",
+          "score": 0.613333,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "刷牙",
+          "canonical": "三亚",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "两天",
+          "canonical": "联想",
+          "score": 0.576,
+          "margin": -0.1100000000000001,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_4b0f586ca126eeca45d2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "法晚深度纪实记者杜文文，实习生张明明近日。",
+      "final_raw_text": "法晚深度即时记者杜雯雯，实习生张明明近日。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 6,
+          "observed": "法晚深度纪实",
+          "canonical": "法晚深度即时",
+          "entity_id": 613,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "法晚深度即时",
+          "entity_type": "ORG",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        },
+        {
+          "start": 8,
+          "end": 11,
+          "observed": "杜文文",
+          "canonical": "杜雯雯",
+          "entity_id": 531,
+          "phonetic_score": 1.0,
+          "character_score": 0.333333,
+          "length_score": 1.0,
+          "retrieval_score": 0.933333,
+          "boundary_issue": null,
+          "evidence_surface": "杜雯雯",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 6,
+          "observed": "法晚深度纪实",
+          "canonical": "法晚深度即时",
+          "score": 0.966667,
+          "margin": 0.2626670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 8,
+          "end": 11,
+          "observed": "杜文文",
+          "canonical": "杜雯雯",
+          "score": 0.933333,
+          "margin": 0.353333,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 6,
+          "observed": "晚深度纪实",
+          "canonical": "法晚深度即时",
+          "score": 0.826667,
+          "margin": 0.12266700000000008,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 8,
+          "observed": "法晚深度纪实记者",
+          "canonical": "法晚深度即时",
+          "score": 0.765,
+          "margin": 0.061000000000000054,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "实习生",
+          "canonical": "山西省",
+          "score": 0.746667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "法晚深度",
+          "canonical": "法晚深度即时",
+          "score": 0.72,
+          "margin": 0.016000000000000014,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "深度",
+          "canonical": "成都",
+          "score": 0.704,
+          "margin": -0.2626670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "observed": "深度纪实",
+          "canonical": "法晚深度即时",
+          "score": 0.686667,
+          "margin": -0.017332999999999932,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "文文",
+          "canonical": "杜雯雯",
+          "score": 0.653333,
+          "margin": 1.0,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 8,
+          "observed": "晚深度纪实记者",
+          "canonical": "法晚深度即时",
+          "score": 0.64,
+          "margin": -0.06399999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "深度",
+          "canonical": "印度",
+          "score": 0.635,
+          "margin": -0.33166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "observed": "深度纪实",
+          "canonical": "审计署",
+          "score": 0.628333,
+          "margin": -0.338334,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 11,
+          "observed": "记者杜文文",
+          "canonical": "杜雯雯",
+          "score": 0.624,
+          "margin": -0.14100000000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "法晚",
+          "canonical": "台湾",
+          "score": 0.613333,
+          "margin": -0.35333400000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "深度",
+          "canonical": "申雪",
+          "score": 0.613333,
+          "margin": -0.35333400000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 9,
+          "observed": "晚深度纪实记者杜",
+          "canonical": "法晚深度即时",
+          "score": 0.58,
+          "margin": -0.353333,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "纪实",
+          "canonical": "审计署",
+          "score": 0.537778,
+          "margin": -0.4288890000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 6,
+          "observed": "晚深度纪实",
+          "canonical": "审计署",
+          "score": 0.534667,
+          "margin": -0.43200000000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "晚深度",
+          "canonical": "成都",
+          "score": 0.522667,
+          "margin": -0.44400000000000006,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_b01e6daf155faf72e4cd",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "龙岩永强中学一名高三男生从宿舍楼五楼。楼顶坠楼身亡。",
+      "final_raw_text": "龙湾永强中学一名高三男生从宿舍楼五楼。楼顶坠楼身亡。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "龙岩",
+          "canonical": "龙湾",
+          "entity_id": 1048,
+          "phonetic_score": 0.783333,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.776667,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "龙湾",
+          "entity_type": "LOC",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "龙岩",
+          "canonical": "龙湾",
+          "score": 0.776667,
+          "margin": 1.0,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 23,
+          "end": 25,
+          "observed": "身亡",
+          "canonical": "沈阳",
+          "score": 0.755,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 23,
+          "end": 25,
+          "observed": "身亡",
+          "canonical": "深航",
+          "score": 0.755,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "男生",
+          "canonical": "南昌",
+          "score": 0.704,
+          "margin": 0.05066699999999991,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "一名",
+          "canonical": "黎明",
+          "score": 0.67,
+          "margin": 0.0066670000000000895,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "一名",
+          "canonical": "迟名",
+          "score": 0.663333,
+          "margin": -0.0066670000000000895,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "男生",
+          "canonical": "云南省",
+          "score": 0.653333,
+          "margin": -0.05066699999999991,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "男生",
+          "canonical": "河南省",
+          "score": 0.653333,
+          "margin": -0.05066699999999991,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 12,
+          "observed": "高三男生",
+          "canonical": "云南省",
+          "score": 0.571667,
+          "margin": -0.13233299999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "observed": "男生从",
+          "canonical": "南昌",
+          "score": 0.522667,
+          "margin": -0.13066600000000006,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_9773d58fee85e7a8c5e6",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "中新网成都九月十五日电，父敬意十五日。",
+      "final_raw_text": "中新网成都九月十五日电，付敬懿十五日。",
+      "old_changes": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "父敬意",
+          "canonical": "付敬懿",
+          "entity_id": 105,
+          "phonetic_score": 1.0,
+          "character_score": 0.333333,
+          "length_score": 1.0,
+          "retrieval_score": 0.933333,
+          "boundary_issue": null,
+          "evidence_surface": "付敬懿",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "父敬意",
+          "canonical": "付敬懿",
+          "score": 0.933333,
+          "margin": 0.33999999999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "九月",
+          "canonical": "纽约",
+          "score": 0.726667,
+          "margin": 0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "敬意",
+          "canonical": "付敬懿",
+          "score": 0.686667,
+          "margin": 0.09333400000000003,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "九月",
+          "canonical": "里约",
+          "score": 0.613333,
+          "margin": -0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "父敬意",
+          "canonical": "富林愚",
+          "score": 0.593333,
+          "margin": -0.33999999999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "父敬意",
+          "canonical": "刘家义",
+          "score": 0.555556,
+          "margin": -0.3777769999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 11,
+          "observed": "十五日电",
+          "canonical": "巫启贤",
+          "score": 0.5275,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_3d7f0d88ec8429e3ef51",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "港媒称，马云向这家商人发出警告：永远不要行贿。",
+      "final_raw_text": "港媒称，马云向浙江商人发出警告：永远不要行贿。",
+      "old_changes": [
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "这家",
+          "canonical": "浙江",
+          "entity_id": 622,
+          "phonetic_score": 0.755,
+          "character_score": 0.0,
+          "length_score": 1.0,
+          "retrieval_score": 0.704,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "浙江",
+          "entity_type": "LOC",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "这家",
+          "canonical": "浙江",
+          "score": 0.704,
+          "margin": 1.0,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "警告",
+          "canonical": "临高",
+          "score": 0.67,
+          "margin": 0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "行贿",
+          "canonical": "邢台",
+          "score": 0.613333,
+          "margin": 0.014666000000000068,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "永远",
+          "canonical": "东莞",
+          "score": 0.61,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "行贿",
+          "canonical": "项锐",
+          "score": 0.598667,
+          "margin": -0.014666000000000068,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "媒称",
+          "canonical": "陈晟",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "警告",
+          "canonical": "荆州",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "行贿",
+          "canonical": "安徽",
+          "score": 0.585,
+          "margin": -0.028333000000000053,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "向这家",
+          "canonical": "浙江",
+          "score": 0.522667,
+          "margin": 1.0,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_e83b5fda123bd241b441",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "伟嘉按揭对中新网房产频道表示。",
+      "final_raw_text": "伟嘉安捷对中新网房产频道表示。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "伟嘉按揭",
+          "canonical": "伟嘉安捷",
+          "entity_id": 109,
+          "phonetic_score": 1.0,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.95,
+          "boundary_issue": null,
+          "evidence_surface": "伟嘉安捷",
+          "entity_type": "ORG",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "伟嘉按揭",
+          "canonical": "伟嘉安捷",
+          "score": 0.95,
+          "margin": 0.2799999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 5,
+          "observed": "伟嘉按揭对",
+          "canonical": "伟嘉安捷",
+          "score": 0.792,
+          "margin": 0.122,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "嘉按揭",
+          "canonical": "伟嘉安捷",
+          "score": 0.74,
+          "margin": 0.06999999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "按揭",
+          "canonical": "王杰",
+          "score": 0.67,
+          "margin": -0.2799999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "伟嘉",
+          "canonical": "微信",
+          "score": 0.613333,
+          "margin": -0.33666699999999994,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "伟嘉",
+          "canonical": "威灵",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "伟嘉",
+          "canonical": "微软",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "伟嘉",
+          "canonical": "玮甯",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 5,
+          "observed": "嘉按揭对",
+          "canonical": "伟嘉安捷",
+          "score": 0.58,
+          "margin": -0.09000000000000008,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "伟嘉",
+          "canonical": "伟嘉安捷",
+          "score": 0.58,
+          "margin": -0.03333300000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "表示",
+          "canonical": "保山市",
+          "score": 0.556667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "嘉按揭",
+          "canonical": "李连杰",
+          "score": 0.555556,
+          "margin": -0.3944439999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "按揭",
+          "canonical": "伟嘉安捷",
+          "score": 0.53,
+          "margin": -0.14,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_6de3d889556870b388bc",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "美的家用空调事业部制造副总裁邬守宝对记者。",
+      "final_raw_text": "美的家用空调事业部制造副总裁乌守保对记者。",
+      "old_changes": [
+        {
+          "start": 14,
+          "end": 17,
+          "observed": "邬守宝",
+          "canonical": "乌守保",
+          "entity_id": 76,
+          "phonetic_score": 1.0,
+          "character_score": 0.333333,
+          "length_score": 1.0,
+          "retrieval_score": 0.933333,
+          "boundary_issue": null,
+          "evidence_surface": "乌守保",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 14,
+          "end": 17,
+          "observed": "邬守宝",
+          "canonical": "乌守保",
+          "score": 0.933333,
+          "margin": 0.27,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 18,
+          "observed": "邬守宝对",
+          "canonical": "乌守保",
+          "score": 0.74,
+          "margin": 0.07666700000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "邬守",
+          "canonical": "乌守保",
+          "score": 0.686667,
+          "margin": 0.05066700000000002,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "守宝",
+          "canonical": "乌守保",
+          "score": 0.686667,
+          "margin": 0.023334000000000077,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "宝对",
+          "canonical": "宝鸡",
+          "score": 0.663333,
+          "margin": -0.27,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "邬守",
+          "canonical": "吴中",
+          "score": 0.636,
+          "margin": -0.29733299999999996,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "守宝",
+          "canonical": "淘宝",
+          "score": 0.635,
+          "margin": -0.29833299999999996,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "邬守",
+          "canonical": "邬雄",
+          "score": 0.618,
+          "margin": -0.315333,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "宝对",
+          "canonical": "保利",
+          "score": 0.613333,
+          "margin": -0.31999999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 17,
+          "end": 20,
+          "observed": "对记者",
+          "canonical": "韦集镇",
+          "score": 0.612222,
+          "margin": -0.12777799999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "邬守",
+          "canonical": "五河",
+          "score": 0.585,
+          "margin": -0.348333,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 18,
+          "end": 20,
+          "observed": "记者",
+          "canonical": "韦集镇",
+          "score": 0.556667,
+          "margin": 0.001666999999999974,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 20,
+          "observed": "宝对记者",
+          "canonical": "宝鸡",
+          "score": 0.555,
+          "margin": -0.3783329999999999,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_f07e56df52c2f10f6c28",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "时年二三岁的杨祝军在北京抢劫杀害了一名出租车司机。",
+      "final_raw_text": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机。",
+      "old_changes": [
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "杨祝军",
+          "canonical": "杨柱军",
+          "entity_id": 536,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "杨柱军",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "杨祝军",
+          "canonical": "杨柱军",
+          "score": 0.966667,
+          "margin": 0.0166670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "祝军",
+          "canonical": "朱军",
+          "score": 0.95,
+          "margin": -0.0166670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "的杨祝军",
+          "canonical": "杨柱军",
+          "score": 0.765,
+          "margin": -0.18499999999999994,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "杨祝",
+          "canonical": "扬州",
+          "score": 0.755,
+          "margin": -0.21166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "抢劫",
+          "canonical": "王杰",
+          "score": 0.704,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "杀害",
+          "canonical": "上海",
+          "score": 0.704,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "杨祝军",
+          "canonical": "朱军",
+          "score": 0.686667,
+          "margin": -0.28,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "杨祝",
+          "canonical": "杨柱军",
+          "score": 0.686667,
+          "margin": -0.26333299999999993,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "祝军",
+          "canonical": "杨柱军",
+          "score": 0.686667,
+          "margin": -0.26333299999999993,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "一名",
+          "canonical": "黎明",
+          "score": 0.67,
+          "margin": 0.0066670000000000895,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "杨祝",
+          "canonical": "杨柳",
+          "score": 0.663333,
+          "margin": -0.3033340000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "一名",
+          "canonical": "迟名",
+          "score": 0.663333,
+          "margin": -0.0066670000000000895,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 8,
+          "observed": "的杨祝",
+          "canonical": "扬州",
+          "score": 0.556667,
+          "margin": -0.41000000000000003,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 9,
+          "observed": "杨祝军",
+          "canonical": "扬州",
+          "score": 0.556667,
+          "margin": -0.41000000000000003,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 5,
+          "end": 9,
+          "observed": "的杨祝军",
+          "canonical": "朱军",
+          "score": 0.555,
+          "margin": -0.411667,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_ee7fcdc180c1a4e592cd",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "蓬勃一英里接力赛区别于其他跑步活动的是。",
+      "final_raw_text": "彭博一英里接力赛区别于其他跑步活动的是。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "蓬勃",
+          "canonical": "彭博",
+          "entity_id": 411,
+          "phonetic_score": 1.0,
+          "character_score": 0.0,
+          "length_score": 1.0,
+          "retrieval_score": 0.9,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "彭博",
+          "entity_type": "ORG",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "蓬勃",
+          "canonical": "彭博",
+          "score": 0.9,
+          "margin": 0.31500000000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "一英里",
+          "canonical": "意大利",
+          "score": 0.633333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "蓬勃",
+          "canonical": "微博",
+          "score": 0.585,
+          "margin": -0.31500000000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "区别",
+          "canonical": "曲靖",
+          "score": 0.585,
+          "margin": 0.029443999999999915,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "活动",
+          "canonical": "山东",
+          "score": 0.585,
+          "margin": 0.017000000000000015,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "活动",
+          "canonical": "广东",
+          "score": 0.568,
+          "margin": -0.017000000000000015,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 11,
+          "observed": "区别于",
+          "canonical": "富林愚",
+          "score": 0.555556,
+          "margin": -0.029443999999999915,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_2dd353e1eb17cd46d116",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "本报记者宋翔、王威。",
+      "final_raw_text": "本报记者宋翔、王薇。",
+      "old_changes": [
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "王薇",
+          "entity_id": 707,
+          "phonetic_score": 1.0,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.95,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "王薇",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "王薇",
+          "score": 0.95,
+          "margin": 0.17333299999999996,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "王菲",
+          "score": 0.776667,
+          "margin": -0.17333299999999996,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "汪峰",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "艾维",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "王威",
+          "canonical": "王亦菲",
+          "score": 0.571111,
+          "margin": -0.3788889999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "本报记者",
+          "canonical": "宝鸡",
+          "score": 0.53,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_e14b37c68c06a727ce7c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "朱圣伟曝王思聪女友被诉，法官送达起诉书，欲诉。",
+      "final_raw_text": "朱圣祎曝王思聪女友被诉，法官送达起诉书，欲诉。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "朱圣伟",
+          "canonical": "朱圣祎",
+          "entity_id": 504,
+          "phonetic_score": 0.761111,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.775556,
+          "boundary_issue": null,
+          "evidence_surface": "朱圣祎",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "朱圣伟",
+          "canonical": "朱圣祎",
+          "score": 0.775556,
+          "margin": 0.08955599999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "朱圣",
+          "canonical": "朱圣祎",
+          "score": 0.72,
+          "margin": 0.03399999999999992,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "法官",
+          "canonical": "法国",
+          "score": 0.72,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "朱圣",
+          "canonical": "朱婷",
+          "score": 0.686,
+          "margin": -0.08955599999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "送达",
+          "canonical": "恒大",
+          "score": 0.67,
+          "margin": 0.03500000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "圣伟",
+          "canonical": "王薇",
+          "score": 0.636,
+          "margin": -0.139556,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "送达",
+          "canonical": "万达",
+          "score": 0.635,
+          "margin": -0.03500000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "朱圣伟曝",
+          "canonical": "朱圣祎",
+          "score": 0.621667,
+          "margin": -0.06433300000000008,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "朱圣",
+          "canonical": "朱军",
+          "score": 0.618,
+          "margin": -0.15755600000000003,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "朱圣",
+          "canonical": "朱茵",
+          "score": 0.618,
+          "margin": -0.15755600000000003,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_4966d90ddc7149f84e5a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "张小雅的人气肯定在前三名。",
+      "final_raw_text": "张晓雅的人气肯定在前三名。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "张晓雅",
+          "entity_id": 402,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "张晓雅",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "张晓雅",
+          "score": 0.966667,
+          "margin": 0.2666670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "肯定",
+          "canonical": "陈定",
+          "score": 0.72,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "张小飞",
+          "score": 0.7,
+          "margin": -0.2666670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "小雅",
+          "canonical": "张晓雅",
+          "score": 0.686667,
+          "margin": -0.013332999999999928,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "小雅",
+          "canonical": "小天",
+          "score": 0.635,
+          "margin": -0.33166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "王晓宇",
+          "score": 0.616,
+          "margin": -0.35066700000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "前三名",
+          "canonical": "三星",
+          "score": 0.59,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "张保仔",
+          "score": 0.588889,
+          "margin": -0.37777800000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "张小雅",
+          "canonical": "张绵跃",
+          "score": 0.588889,
+          "margin": -0.37777800000000006,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_aa04b5beb269f79acc6e",
+      "library_key": "topic_03_医疗健康",
+      "original": "受肾上腺皮质激素中的重要化学物质。",
+      "final_raw_text": "促肾上腺皮质激素中的重要化学物质。",
+      "old_changes": [
+        {
+          "start": 0,
+          "end": 8,
+          "observed": "受肾上腺皮质激素",
+          "canonical": "促肾上腺皮质激素",
+          "entity_id": 8,
+          "phonetic_score": 0.901563,
+          "character_score": 0.875,
+          "length_score": 1.0,
+          "retrieval_score": 0.90875,
+          "boundary_issue": null,
+          "evidence_surface": "促肾上腺皮质激素",
+          "entity_type": "TERM",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 8,
+          "observed": "受肾上腺皮质激素",
+          "canonical": "促肾上腺皮质激素",
+          "score": 0.90875,
+          "margin": 0.32575,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 8,
+          "observed": "肾上腺皮质激素",
+          "canonical": "促肾上腺皮质激素",
+          "score": 0.895,
+          "margin": 0.31200000000000006,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 0,
+          "end": 9,
+          "observed": "受肾上腺皮质激素中",
+          "canonical": "促肾上腺皮质激素",
+          "score": 0.825556,
+          "margin": 0.242556,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 9,
+          "observed": "肾上腺皮质激素中",
+          "canonical": "促肾上腺皮质激素",
+          "score": 0.815,
+          "margin": 0.23199999999999998,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "肾上腺",
+          "canonical": "神经纤维",
+          "score": 0.583,
+          "margin": -0.32575,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 4,
+          "observed": "肾上腺",
+          "canonical": "神经元",
+          "score": 0.570667,
+          "margin": -0.3380829999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "重要",
+          "canonical": "止痛药",
+          "score": 0.522667,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_11db4713d2d08770d093",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "不开心时会找太太许豪所倾诉。",
+      "final_raw_text": "不开心时会找太太徐濠所倾诉。",
+      "old_changes": [
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "许豪",
+          "canonical": "徐濠",
+          "entity_id": 417,
+          "phonetic_score": 1.0,
+          "character_score": 0.0,
+          "length_score": 1.0,
+          "retrieval_score": 0.9,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "徐濠",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "许豪",
+          "canonical": "徐濠",
+          "score": 0.9,
+          "margin": 0.24666699999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "开心",
+          "canonical": "海信",
+          "score": 0.726667,
+          "margin": 0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "倾诉",
+          "canonical": "江苏",
+          "score": 0.704,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 11,
+          "observed": "许豪所",
+          "canonical": "徐濠",
+          "score": 0.653333,
+          "margin": 0.0,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "许豪",
+          "canonical": "徐永昊",
+          "score": 0.653333,
+          "margin": -0.24666699999999997,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "太太",
+          "canonical": "太阳",
+          "score": 0.635,
+          "margin": 0.021666999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 1,
+          "end": 3,
+          "observed": "开心",
+          "canonical": "微信",
+          "score": 0.613333,
+          "margin": -0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "时会",
+          "canonical": "李晖",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "太太",
+          "canonical": "台湾",
+          "score": 0.613333,
+          "margin": -0.021666999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "不开心",
+          "canonical": "海信",
+          "score": 0.537778,
+          "margin": -0.07555500000000004,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "太太许豪",
+          "canonical": "徐濠",
+          "score": 0.53,
+          "margin": -0.12333300000000003,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "observed": "所倾诉",
+          "canonical": "江苏",
+          "score": 0.522667,
+          "margin": -0.13066600000000006,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_88c4c3e795a59e4951b3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "德佑链家市场研究部总监陆其林表示。",
+      "final_raw_text": "德佑链家市场研究部总监陆骑麟表示。",
+      "old_changes": [
+        {
+          "start": 11,
+          "end": 14,
+          "observed": "陆其林",
+          "canonical": "陆骑麟",
+          "entity_id": 953,
+          "phonetic_score": 1.0,
+          "character_score": 0.333333,
+          "length_score": 1.0,
+          "retrieval_score": 0.933333,
+          "boundary_issue": null,
+          "evidence_surface": "陆骑麟",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 11,
+          "end": 14,
+          "observed": "陆其林",
+          "canonical": "陆骑麟",
+          "score": 0.933333,
+          "margin": 0.26333299999999993,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "总监",
+          "canonical": "佟健",
+          "score": 0.755,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "总监",
+          "canonical": "董健",
+          "score": 0.755,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "陆其",
+          "canonical": "陆骑麟",
+          "score": 0.686667,
+          "margin": 0.016666999999999987,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "总监",
+          "canonical": "杨建",
+          "score": 0.67,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "陆其",
+          "canonical": "胡琦",
+          "score": 0.67,
+          "margin": -0.26333299999999993,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "其林",
+          "canonical": "陆骑麟",
+          "score": 0.653333,
+          "margin": -0.016666999999999987,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 13,
+          "end": 16,
+          "observed": "林表示",
+          "canonical": "临汾市",
+          "score": 0.633333,
+          "margin": -0.29999999999999993,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 14,
+          "observed": "总监陆其林",
+          "canonical": "陆骑麟",
+          "score": 0.624,
+          "margin": -0.131,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 16,
+          "observed": "陆其林表示",
+          "canonical": "陆骑麟",
+          "score": 0.624,
+          "margin": -0.04600000000000004,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "陆其",
+          "canonical": "索契",
+          "score": 0.613333,
+          "margin": -0.31999999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "其林",
+          "canonical": "林琳",
+          "score": 0.613333,
+          "margin": -0.31999999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "总监陆",
+          "canonical": "佟健",
+          "score": 0.556667,
+          "margin": -0.37666599999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "总监陆",
+          "canonical": "董健",
+          "score": 0.556667,
+          "margin": -0.37666599999999995,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_abc5458e4f246f1f23cd",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "是原中国文化集团党委书记宋关林。",
+      "final_raw_text": "是原中国文化集团党委书记宋官林。",
+      "old_changes": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "宋关林",
+          "canonical": "宋官林",
+          "entity_id": 322,
+          "phonetic_score": 1.0,
+          "character_score": 0.666667,
+          "length_score": 1.0,
+          "retrieval_score": 0.966667,
+          "boundary_issue": null,
+          "evidence_surface": "宋官林",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "宋关林",
+          "canonical": "宋官林",
+          "score": 0.966667,
+          "margin": 0.21166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "宋关",
+          "canonical": "东莞",
+          "score": 0.755,
+          "margin": -0.21166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "宋关",
+          "canonical": "宋官林",
+          "score": 0.686667,
+          "margin": -0.06833299999999998,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "关林",
+          "canonical": "宋官林",
+          "score": 0.686667,
+          "margin": -0.06833299999999998,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "宋关",
+          "canonical": "宋翔",
+          "score": 0.686,
+          "margin": -0.280667,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "关林",
+          "canonical": "张林",
+          "score": 0.686,
+          "margin": -0.280667,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "宋关",
+          "canonical": "嵩县",
+          "score": 0.67,
+          "margin": -0.296667,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "宋关",
+          "canonical": "嵩山",
+          "score": 0.67,
+          "margin": -0.296667,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "关林",
+          "canonical": "徐林",
+          "score": 0.635,
+          "margin": -0.33166700000000005,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "宋关林",
+          "canonical": "张贵林",
+          "score": 0.604,
+          "margin": -0.3626670000000001,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 12,
+          "end": 15,
+          "observed": "宋关林",
+          "canonical": "东莞",
+          "score": 0.556667,
+          "margin": -0.41000000000000003,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_38459bb96fdd7d36ecc1",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "庞清、董剑仍肩负着扛起中国双人滑大旗的重任。",
+      "final_raw_text": "庞清、董健仍肩负着扛起中国双人滑大旗的重任。",
+      "old_changes": [
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "董剑",
+          "canonical": "董健",
+          "entity_id": 842,
+          "phonetic_score": 1.0,
+          "character_score": 0.5,
+          "length_score": 1.0,
+          "retrieval_score": 0.95,
+          "boundary_issue": "short_chinese_span_requires_alias",
+          "evidence_surface": "董健",
+          "entity_type": "PERSON",
+          "match_type": "AUDIO_REPLAY_CONFIRMED"
+        }
+      ],
+      "candidates": [
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "董剑",
+          "canonical": "董健",
+          "score": 0.95,
+          "margin": 0.19499999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 16,
+          "observed": "中国双人滑",
+          "canonical": "中国双人滑军团",
+          "score": 0.76,
+          "margin": 0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "董剑",
+          "canonical": "佟健",
+          "score": 0.755,
+          "margin": -0.19499999999999995,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 18,
+          "observed": "中国双人滑大旗",
+          "canonical": "中国双人滑军团",
+          "score": 0.742857,
+          "margin": 0.022857000000000016,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "中国",
+          "canonical": "中国队",
+          "score": 0.72,
+          "margin": -0.040000000000000036,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 6,
+          "observed": "董剑仍",
+          "canonical": "董健",
+          "score": 0.686667,
+          "margin": -0.06833299999999998,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "中国",
+          "canonical": "英国",
+          "score": 0.686,
+          "margin": -0.07399999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "中国",
+          "canonical": "韩国",
+          "score": 0.686,
+          "margin": -0.07399999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "董剑",
+          "canonical": "东京",
+          "score": 0.67,
+          "margin": -0.2799999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "董剑",
+          "canonical": "东莞",
+          "score": 0.67,
+          "margin": -0.2799999999999999,
+          "overlaps_old_change": true
+        },
+        {
+          "start": 9,
+          "end": 18,
+          "observed": "扛起中国双人滑大旗",
+          "canonical": "中国双人滑军团",
+          "score": 0.613333,
+          "margin": -0.10666699999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 6,
+          "observed": "董剑仍",
+          "canonical": "佟健",
+          "score": 0.556667,
+          "margin": -0.39333299999999993,
+          "overlaps_old_change": true
+        }
+      ]
+    },
+    {
+      "id": "leb1_852383def84836fddd5e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "关于中国嵩山少林寺方丈齐永信的举报风波尚未停歇。",
+      "final_raw_text": "关于中国嵩山少林寺方丈齐永信的举报风波尚未停歇。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "风波",
+          "canonical": "彭博",
+          "score": 0.755,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "中国",
+          "canonical": "中国队",
+          "score": 0.72,
+          "margin": 0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 19,
+          "end": 21,
+          "observed": "尚未",
+          "canonical": "王薇",
+          "score": 0.704,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "中国",
+          "canonical": "英国",
+          "score": 0.686,
+          "margin": -0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "中国",
+          "canonical": "韩国",
+          "score": 0.686,
+          "margin": -0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "举报",
+          "canonical": "金报",
+          "score": 0.663333,
+          "margin": 0.02833299999999994,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "中国",
+          "canonical": "苹果",
+          "score": 0.636,
+          "margin": -0.08399999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "举报",
+          "canonical": "快报",
+          "score": 0.635,
+          "margin": -0.02833299999999994,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_cf0269dbcadc1864a54b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "亲身感受沈阳当地浓郁的民俗文化内蕴。",
+      "final_raw_text": "亲身感受沈阳当地浓郁的民俗文化内蕴。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "感受",
+          "canonical": "甘肃",
+          "score": 0.67,
+          "margin": 0.088333,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "内蕴",
+          "canonical": "内江",
+          "score": 0.618,
+          "margin": 0.06466700000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "亲身",
+          "canonical": "秦虹",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "感受",
+          "canonical": "兰州",
+          "score": 0.581667,
+          "margin": -0.088333,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "感受",
+          "canonical": "广州",
+          "score": 0.559,
+          "margin": -0.11099999999999999,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "内蕴",
+          "canonical": "北仑",
+          "score": 0.553333,
+          "margin": -0.06466700000000003,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_921751089c64840fd61c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "国务院已批准信贷资产证券化继续扩大，是。点。",
+      "final_raw_text": "国务院已批准信贷资产证券化继续扩大，是。点。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "批准",
+          "canonical": "邳州",
+          "score": 0.67,
+          "margin": 0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "observed": "证券化",
+          "canonical": "证监会",
+          "score": 0.664444,
+          "margin": 0.10844399999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "资产",
+          "canonical": "紫光",
+          "score": 0.636,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "批准",
+          "canonical": "郫县",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "信贷",
+          "canonical": "邢台",
+          "score": 0.581667,
+          "margin": 0.013667000000000096,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "信贷",
+          "canonical": "新疆",
+          "score": 0.568,
+          "margin": -0.013667000000000096,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 13,
+          "observed": "证券化",
+          "canonical": "奉化",
+          "score": 0.556,
+          "margin": -0.10844399999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "信贷",
+          "canonical": "林丹",
+          "score": 0.553333,
+          "margin": -0.02833400000000008,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_7e21bfa3221bbfe31b2c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "运用符合世界贸易组织规定的相关措施。",
+      "final_raw_text": "运用符合世界贸易组织规定的相关措施。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "符合",
+          "canonical": "五河",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "规定",
+          "canonical": "贵港",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "相关",
+          "canonical": "香港",
+          "score": 0.67,
+          "margin": 0.03400000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "相关",
+          "canonical": "东莞",
+          "score": 0.636,
+          "margin": -0.03400000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "相关",
+          "canonical": "香江",
+          "score": 0.636,
+          "margin": -0.03400000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "措施",
+          "canonical": "瑞士",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "运用",
+          "canonical": "云南",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "相关",
+          "canonical": "项锐",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_f7148f7d6ea0e483e93c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "美丽北京大型绿色公益品牌项目。",
+      "final_raw_text": "美丽北京大型绿色公益品牌项目。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "大型",
+          "canonical": "大兴",
+          "score": 0.95,
+          "margin": 0.26333299999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "大型",
+          "canonical": "大兴区",
+          "score": 0.686667,
+          "margin": -0.26333299999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "品牌",
+          "canonical": "澎湃",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "美丽",
+          "canonical": "美芝",
+          "score": 0.663333,
+          "margin": 0.04999999999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "项目",
+          "canonical": "项锐",
+          "score": 0.663333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "美丽",
+          "canonical": "格力",
+          "score": 0.613333,
+          "margin": -0.04999999999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "大型",
+          "canonical": "三星",
+          "score": 0.613333,
+          "margin": -0.33666699999999994,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "大型",
+          "canonical": "耷子",
+          "score": 0.585,
+          "margin": -0.365,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 8,
+          "observed": "大型绿色",
+          "canonical": "大兴",
+          "score": 0.555,
+          "margin": -0.13166699999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 8,
+          "observed": "大型绿色",
+          "canonical": "大兴区",
+          "score": 0.54,
+          "margin": -0.4099999999999999,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_c8ade8566dd87261edc8",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "女排三十一，日本进军里约，众将欢睹欢庆。",
+      "final_raw_text": "女排三十一，日本进军里约，众将欢睹欢庆。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "日本",
+          "canonical": "日本队",
+          "score": 0.72,
+          "margin": 0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "欢庆",
+          "canonical": "延庆",
+          "score": 0.72,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "众将",
+          "canonical": "湛江",
+          "score": 0.704,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "众将",
+          "canonical": "长江",
+          "score": 0.704,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "众将",
+          "canonical": "曾江",
+          "score": 0.636,
+          "margin": -0.06799999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "众将",
+          "canonical": "浙江",
+          "score": 0.636,
+          "margin": -0.06799999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "众将",
+          "canonical": "钟欣",
+          "score": 0.636,
+          "margin": -0.06799999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "日本",
+          "canonical": "桥本",
+          "score": 0.635,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 10,
+          "observed": "日本进军",
+          "canonical": "日本队",
+          "score": 0.621667,
+          "margin": -0.01333300000000004,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_d8b562b3a7814efbfe08",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "苹果股价相较十月份低点已经上涨约百分之二十五。",
+      "final_raw_text": "苹果股价相较十月份低点已经上涨约百分之二十五。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "相较",
+          "canonical": "香江",
+          "score": 0.704,
+          "margin": 0.11511099999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "上涨",
+          "canonical": "上海",
+          "score": 0.686,
+          "margin": 0.04733300000000007,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 16,
+          "observed": "上涨约",
+          "canonical": "张绵跃",
+          "score": 0.638667,
+          "margin": -0.04733300000000007,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "股价",
+          "canonical": "顾欣",
+          "score": 0.613333,
+          "margin": 0.02444400000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "已经",
+          "canonical": "北京",
+          "score": 0.613333,
+          "margin": 0.022665999999999964,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 15,
+          "observed": "已经上涨",
+          "canonical": "北京商报",
+          "score": 0.590667,
+          "margin": -0.095333,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "股价相",
+          "canonical": "卢民相",
+          "score": 0.588889,
+          "margin": -0.11511099999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "低点",
+          "canonical": "地球",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "股价相",
+          "canonical": "顾欣",
+          "score": 0.522667,
+          "margin": -0.18133299999999997,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_bc9ec26a4451962cb5b6",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "温州一七月大女童接种疫苗抽搐，省疾控专家调查。",
+      "final_raw_text": "温州一七月大女童接种疫苗抽搐，省疾控专家调查。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "七月",
+          "canonical": "里约",
+          "score": 0.67,
+          "margin": 0.048667000000000016,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 8,
+          "observed": "一七月大女童",
+          "canonical": "一汽大众",
+          "score": 0.621333,
+          "margin": -0.048667000000000016,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "七月",
+          "canonical": "纽约",
+          "score": 0.613333,
+          "margin": -0.05666700000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "调查",
+          "canonical": "鸟巢",
+          "score": 0.61,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "observed": "一七月大",
+          "canonical": "一汽大众",
+          "score": 0.605,
+          "margin": -0.06500000000000006,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "疫苗",
+          "canonical": "伊萨",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "疾控",
+          "canonical": "济南",
+          "score": 0.585,
+          "margin": 0.0030000000000000027,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 18,
+          "observed": "省疾控",
+          "canonical": "赵继宏",
+          "score": 0.582,
+          "margin": -0.0030000000000000027,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 18,
+          "end": 20,
+          "observed": "专家",
+          "canonical": "湛江",
+          "score": 0.576,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "疾控",
+          "canonical": "赵继宏",
+          "score": 0.556667,
+          "margin": -0.02833299999999994,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 5,
+          "observed": "一七月",
+          "canonical": "一汽大众",
+          "score": 0.54,
+          "margin": -0.13,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_b5aa277e79ddb0f55f8e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "网络安全漏洞挡道，车联网阴霾笼罩，搜狐科技。",
+      "final_raw_text": "网络安全漏洞挡道，车联网阴霾笼罩，搜狐科技。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "联网",
+          "canonical": "联想",
+          "score": 0.754,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 6,
+          "end": 8,
+          "observed": "挡道",
+          "canonical": "青岛",
+          "score": 0.67,
+          "margin": 0.01622200000000007,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 7,
+          "observed": "漏洞挡",
+          "canonical": "刘东亮",
+          "score": 0.653778,
+          "margin": -0.01622200000000007,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "笼罩",
+          "canonical": "浪潮",
+          "score": 0.61,
+          "margin": 0.025000000000000022,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "阴霾",
+          "canonical": "孟买",
+          "score": 0.585,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "阴霾",
+          "canonical": "银联",
+          "score": 0.585,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "笼罩",
+          "canonical": "龙湖",
+          "score": 0.585,
+          "margin": -0.025000000000000022,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 14,
+          "end": 16,
+          "observed": "笼罩",
+          "canonical": "龙湾",
+          "score": 0.585,
+          "margin": -0.025000000000000022,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 12,
+          "observed": "车联网",
+          "canonical": "联想",
+          "score": 0.556,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 6,
+          "observed": "漏洞",
+          "canonical": "刘东亮",
+          "score": 0.537778,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 4,
+          "end": 8,
+          "observed": "漏洞挡道",
+          "canonical": "刘东亮",
+          "score": 0.530333,
+          "margin": -0.13966699999999999,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_02009d0964680dd5659c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "一直传他跟洪永城不和。",
+      "final_raw_text": "一直传他跟洪永城不和。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "不和",
+          "canonical": "五河",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "一直",
+          "canonical": "美芝",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_b25edcf3255029cc7de2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "温州永嘉县桥下镇吴山村的潘老伯一家六口。",
+      "final_raw_text": "温州永嘉县桥下镇吴山村的潘老伯一家六口。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "老伯",
+          "canonical": "小波",
+          "score": 0.67,
+          "margin": 0.11666700000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "六口",
+          "canonical": "江口",
+          "score": 0.618,
+          "margin": 0.05300000000000005,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "一家",
+          "canonical": "伊萨",
+          "score": 0.613333,
+          "margin": 0.04222199999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "一家",
+          "canonical": "虞一杰",
+          "score": 0.571111,
+          "margin": -0.04222199999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 19,
+          "observed": "一家六口",
+          "canonical": "张家口",
+          "score": 0.565,
+          "margin": -0.05300000000000005,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "老伯",
+          "canonical": "淘宝",
+          "score": 0.553333,
+          "margin": -0.11666700000000008,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_fa95c472ec14eeccb7d1",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "美芝压缩机已是全球最大空调压缩机企业。",
+      "final_raw_text": "美芝压缩机已是全球最大空调压缩机企业。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 13,
+          "end": 16,
+          "observed": "压缩机",
+          "canonical": "美芝压缩机",
+          "score": 0.664,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 16,
+          "observed": "空调压缩机",
+          "canonical": "美芝压缩机",
+          "score": 0.64,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "已是",
+          "canonical": "伊萨",
+          "score": 0.613333,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "已是",
+          "canonical": "瑞士",
+          "score": 0.613333,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "全球",
+          "canonical": "权义",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "企业",
+          "canonical": "林野",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_6d11cc25ed0334e20c28",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "而南昌除了放松。首套房界定标准。",
+      "final_raw_text": "而南昌除了放松。首套房界定标准。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "界定",
+          "canonical": "陈定",
+          "score": 0.635,
+          "margin": 0.053332999999999964,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "标准",
+          "canonical": "标普",
+          "score": 0.635,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "放松",
+          "canonical": "唐僧",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 5,
+          "end": 7,
+          "observed": "放松",
+          "canonical": "汪红",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "套房",
+          "canonical": "淘宝",
+          "score": 0.585,
+          "margin": 0.0033329999999999194,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "套房",
+          "canonical": "太阳",
+          "score": 0.581667,
+          "margin": -0.0033329999999999194,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 9,
+          "end": 11,
+          "observed": "套房",
+          "canonical": "拓朗",
+          "score": 0.581667,
+          "margin": -0.0033329999999999194,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "界定",
+          "canonical": "嘉颖",
+          "score": 0.581667,
+          "margin": -0.053332999999999964,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_5b818547b2f9c574492f",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "务工资料，图参考消息网一零月二二日报：到中国科学家称。",
+      "final_raw_text": "务工资料，图参考消息网一零月二二日报：到中国科学家称。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 16,
+          "end": 18,
+          "observed": "日报",
+          "canonical": "日照",
+          "score": 0.72,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "中国",
+          "canonical": "中国队",
+          "score": 0.72,
+          "margin": 0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "务工",
+          "canonical": "吴中",
+          "score": 0.704,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "务工",
+          "canonical": "邬雄",
+          "score": 0.704,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "中国",
+          "canonical": "英国",
+          "score": 0.686,
+          "margin": -0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "中国",
+          "canonical": "韩国",
+          "score": 0.686,
+          "margin": -0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "务工",
+          "canonical": "武网",
+          "score": 0.67,
+          "margin": -0.03399999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "零月",
+          "canonical": "里约",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_c4a94ab6905beb84d544",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "通过网站团购了无锡江南丹青度假酒店一间套房。",
+      "final_raw_text": "通过网站团购了无锡江南丹青度假酒店一间套房。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "通过",
+          "canonical": "英国",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "通过",
+          "canonical": "苹果",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "网站",
+          "canonical": "冈山",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "网站",
+          "canonical": "唐山",
+          "score": 0.61,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "通过",
+          "canonical": "泰国",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "通过",
+          "canonical": "韩国",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "网站",
+          "canonical": "汪红",
+          "score": 0.585,
+          "margin": -0.025000000000000022,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "observed": "一间",
+          "canonical": "伊萨",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "rel_0eace37df677e0285b31",
+      "library_key": "automotive",
+      "original": "今天呢，咱们就来看看这辆基于探岳衍生出的探岳X有哪些亮眼的表现。",
+      "final_raw_text": "今天呢，咱们就来看看这辆基于探岳衍生出的探岳X有哪些亮眼的表现。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 12,
+          "end": 14,
+          "observed": "基于",
+          "canonical": "思域",
+          "score": 0.67,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_8703d77a7fb731c5d17c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "俄罗斯搏击新生代旗帜性天才高手哈亚在接受采访时。",
+      "final_raw_text": "俄罗斯搏击新生代旗帜性天才高手哈亚在接受采访时。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 3,
+          "observed": "俄罗斯",
+          "canonical": "俄罗斯队",
+          "score": 0.79,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "搏击",
+          "canonical": "宝鸡",
+          "score": 0.726667,
+          "margin": 0.02933399999999997,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 11,
+          "end": 13,
+          "observed": "天才",
+          "canonical": "小天才",
+          "score": 0.72,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 5,
+          "observed": "俄罗斯搏击",
+          "canonical": "俄罗斯队",
+          "score": 0.697333,
+          "margin": -0.02933399999999997,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "搏击",
+          "canonical": "波斯",
+          "score": 0.67,
+          "margin": -0.05666699999999991,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "搏击",
+          "canonical": "播求",
+          "score": 0.613333,
+          "margin": -0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "observed": "搏击",
+          "canonical": "渤海",
+          "score": 0.613333,
+          "margin": -0.11333399999999993,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 20,
+          "end": 22,
+          "observed": "采访",
+          "canonical": "潍坊",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 11,
+          "observed": "旗帜性",
+          "canonical": "乔致庸",
+          "score": 0.593333,
+          "margin": 0.04133299999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 13,
+          "observed": "旗帜性天才",
+          "canonical": "小天才",
+          "score": 0.552,
+          "margin": -0.04133299999999995,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_7863b611b75fafc40053",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "参考消息网八月二五日报道。",
+      "final_raw_text": "参考消息网八月二五日报道。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "五日",
+          "canonical": "无锡",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "五日",
+          "canonical": "邬迪",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "报道",
+          "canonical": "宝马",
+          "score": 0.613333,
+          "margin": 0.06000000000000005,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 8,
+          "end": 10,
+          "observed": "五日",
+          "canonical": "邬雄",
+          "score": 0.568,
+          "margin": -0.10200000000000009,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 10,
+          "end": 12,
+          "observed": "报道",
+          "canonical": "淘宝",
+          "score": 0.553333,
+          "margin": -0.06000000000000005,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_7afcdaf53a0b5e93b3ae",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "因此，对于北京申办冬奥会的最终结果。",
+      "final_raw_text": "因此，对于北京申办冬奥会的最终结果。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "申办",
+          "canonical": "沈阳",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "申办",
+          "canonical": "深航",
+          "score": 0.67,
+          "margin": 0.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "结果",
+          "canonical": "苹果",
+          "score": 0.635,
+          "margin": 0.021666999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 13,
+          "end": 15,
+          "observed": "最终",
+          "canonical": "吴中",
+          "score": 0.613333,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "结果",
+          "canonical": "德国",
+          "score": 0.613333,
+          "margin": -0.021666999999999992,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "因此",
+          "canonical": "银联",
+          "score": 0.585,
+          "margin": 1.0,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 7,
+          "end": 9,
+          "observed": "申办",
+          "canonical": "深圳",
+          "score": 0.585,
+          "margin": -0.08500000000000008,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 15,
+          "end": 17,
+          "observed": "结果",
+          "canonical": "英国",
+          "score": 0.585,
+          "margin": -0.050000000000000044,
+          "overlaps_old_change": false
+        }
+      ]
+    },
+    {
+      "id": "leb1_6deffb0891a04af70ddc",
+      "library_key": "topic_06_新闻人物组织地理",
+      "original": "相关公司股票走势：国海证券。",
+      "final_raw_text": "相关公司股票走势：国海证券。",
+      "old_changes": [],
+      "candidates": [
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "相关公司",
+          "canonical": "苹果公司",
+          "score": 0.737,
+          "margin": 0.06699999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "相关",
+          "canonical": "香港",
+          "score": 0.67,
+          "margin": -0.06699999999999995,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "相关公司",
+          "canonical": "康菲公司",
+          "score": 0.652,
+          "margin": -0.08499999999999996,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "相关",
+          "canonical": "东莞",
+          "score": 0.636,
+          "margin": -0.10099999999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "相关",
+          "canonical": "香江",
+          "score": 0.636,
+          "margin": -0.10099999999999998,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 4,
+          "observed": "相关公司",
+          "canonical": "安丰公司",
+          "score": 0.618,
+          "margin": -0.119,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 0,
+          "end": 2,
+          "observed": "相关",
+          "canonical": "项锐",
+          "score": 0.585,
+          "margin": -0.15200000000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "公司",
+          "canonical": "波斯",
+          "score": 0.585,
+          "margin": -0.15200000000000002,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "公司",
+          "canonical": "安丰公司",
+          "score": 0.58,
+          "margin": -0.15700000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "公司",
+          "canonical": "康菲公司",
+          "score": 0.58,
+          "margin": -0.15700000000000003,
+          "overlaps_old_change": false
+        },
+        {
+          "start": 2,
+          "end": 4,
+          "observed": "公司",
+          "canonical": "苹果公司",
+          "score": 0.58,
+          "margin": -0.07200000000000006,
+          "overlaps_old_change": false
+        }
+      ]
+    }
+  ],
+  "reference_counts_are_scoring_only": true,
+  "interpretation": "Offline retention estimate only. Prompt changes require actual ASR validation; these counts do not establish real speed gains or accuracy."
+}

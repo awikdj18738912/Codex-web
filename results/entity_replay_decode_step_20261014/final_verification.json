@@ -1,0 +1,319 @@
+{
+  "decision": "Retained V7 review-only 10-second decode step; V6 preflight not promoted.",
+  "changed_entity_files": [
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_audio_repair.py",
+      "before_sha256": "aec0d8572d58759ae7eba1c7428bb9b32e6473c1bbb659cc67dcfb6023f27f12",
+      "after_sha256": "279a0b59f1b893d4393393316395b9027b03dacd8aef1590d5f0a24d8acf92f5"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_streaming_replay.py",
+      "before_sha256": "98d9e5e43c8dece4e5d89ec7fe39dafeff07d7e38981f321c6578228185861c6",
+      "after_sha256": "b15ff905d5014bb2d1cf6e6c05ac9e9b4c606d3702a29ad5aa59f6bea8071ed9"
+    }
+  ],
+  "protected_files_unchanged": [
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_retrieval.py",
+      "before_sha256": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e",
+      "after_sha256": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_matcher.py",
+      "before_sha256": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8",
+      "after_sha256": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/web_app.py",
+      "before_sha256": "f8d7a58d8092df97c8be366b8b75cb8f202827c98e63c618a824b0daf4f9d112",
+      "after_sha256": "f8d7a58d8092df97c8be366b8b75cb8f202827c98e63c618a824b0daf4f9d112"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/qwen_asr_stream_server.py",
+      "before_sha256": "e0c6aa713eb44b9329f556a11d3878635965e8ce46451a239c489e178765123f",
+      "after_sha256": "e0c6aa713eb44b9329f556a11d3878635965e8ce46451a239c489e178765123f"
+    }
+  ],
+  "production_database_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+  "health": {
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "window_pipeline": {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": true,
+        "fixed_groups": true,
+        "stream_reprocess_rejected": false,
+        "final_reprocess_rejected": false,
+        "group_numeric_self_corrections": true
+      },
+      "final_refinement_mode": "off",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 1,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "window_pipeline": {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": true,
+        "fixed_groups": true,
+        "stream_reprocess_rejected": false,
+        "final_reprocess_rejected": false,
+        "group_numeric_self_corrections": true
+      },
+      "final_refinement_mode": "off",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 0,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "web_rollout": {
+    "services": [
+      {
+        "pid": 1640546,
+        "port": 8081,
+        "argv": [
+          "/home/aim0/data/conda/envs/agentic-asr/bin/python",
+          "-m",
+          "system.web_app",
+          "--refiner-model",
+          "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+          "--refiner-device",
+          "cuda:0",
+          "--asr-url",
+          "http://127.0.0.1:8766",
+          "--asr-api-style",
+          "current",
+          "--language",
+          "Chinese",
+          "--entity-db",
+          "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db",
+          "--entity-fuzzy-mode",
+          "auto",
+          "--refinement-gate-mode",
+          "tri_state",
+          "--final-refinement-mode",
+          "off",
+          "--enable-zh-itn",
+          "--zh-itn-library",
+          "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+          "--output",
+          "/home/aim0/桌面/tan/ASR/Codex-web/results/web/session.jsonl",
+          "--max-new-tokens",
+          "256",
+          "--port",
+          "8081",
+          "--enable-entity-audio-repair",
+          "--learned-window-gate-model-dir",
+          "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+          "--learned-window-gate-mode",
+          "on"
+        ],
+        "new_pid": 1962054,
+        "health": {
+          "ok": true,
+          "window_edit_policy": "compat",
+          "strict_local_protocol_version": null,
+          "entity_db": true,
+          "entity_asr_context_enabled": false,
+          "entity_audio_repair_enabled": true,
+          "refinement_gate_mode": "tri_state",
+          "asr_api_style": "current",
+          "window_pipeline": {
+            "version": "fixed_k3_v1",
+            "window_size": 3,
+            "one_punctuation_window": true,
+            "fixed_groups": true,
+            "stream_reprocess_rejected": false,
+            "final_reprocess_rejected": false,
+            "group_numeric_self_corrections": true
+          },
+          "final_refinement_mode": "off",
+          "learned_window_gate": {
+            "mode": "on",
+            "ready": true,
+            "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+            "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+            "threshold": 0.8,
+            "load_error": null,
+            "scored_windows": 0,
+            "would_skip_windows": 0,
+            "vetoed_windows": 0,
+            "scoring_errors": 0,
+            "scope": "window_refine_only",
+            "calibrated": false
+          },
+          "numeric_normalization_enabled": true,
+          "numeric_backend": "zh-itn",
+          "zh_itn_enabled": true,
+          "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+          "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+        }
+      },
+      {
+        "pid": 1640647,
+        "port": 8051,
+        "argv": [
+          "/home/aim0/data/conda/envs/agentic-asr/bin/python",
+          "-m",
+          "system.web_app",
+          "--refiner-model",
+          "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+          "--refiner-device",
+          "cuda:0",
+          "--asr-url",
+          "http://127.0.0.1:8766",
+          "--asr-api-style",
+          "current",
+          "--language",
+          "Chinese",
+          "--entity-db",
+          "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db",
+          "--entity-fuzzy-mode",
+          "auto",
+          "--refinement-gate-mode",
+          "tri_state",
+          "--final-refinement-mode",
+          "off",
+          "--enable-zh-itn",
+          "--zh-itn-library",
+          "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+          "--output",
+          "/home/aim0/桌面/tan/ASR/Codex-web/results/web/session_8051.jsonl",
+          "--max-new-tokens",
+          "256",
+          "--port",
+          "8051",
+          "--enable-entity-audio-repair",
+          "--learned-window-gate-model-dir",
+          "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+          "--learned-window-gate-mode",
+          "on"
+        ],
+        "new_pid": 1962222,
+        "health": {
+          "ok": true,
+          "window_edit_policy": "compat",
+          "strict_local_protocol_version": null,
+          "entity_db": true,
+          "entity_asr_context_enabled": false,
+          "entity_audio_repair_enabled": true,
+          "refinement_gate_mode": "tri_state",
+          "asr_api_style": "current",
+          "window_pipeline": {
+            "version": "fixed_k3_v1",
+            "window_size": 3,
+            "one_punctuation_window": true,
+            "fixed_groups": true,
+            "stream_reprocess_rejected": false,
+            "final_reprocess_rejected": false,
+            "group_numeric_self_corrections": true
+          },
+          "final_refinement_mode": "off",
+          "learned_window_gate": {
+            "mode": "on",
+            "ready": true,
+            "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+            "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+            "threshold": 0.8,
+            "load_error": null,
+            "scored_windows": 0,
+            "would_skip_windows": 0,
+            "vetoed_windows": 0,
+            "scoring_errors": 0,
+            "scope": "window_refine_only",
+            "calibrated": false
+          },
+          "numeric_normalization_enabled": true,
+          "numeric_backend": "zh-itn",
+          "zh_itn_enabled": true,
+          "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+          "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+        }
+      }
+    ],
+    "private_worker_stopped": 1913144
+  },
+  "live_smoke": {
+    "primary_decode_seconds": 2,
+    "review_decode_seconds": 10,
+    "observed": "厉飞羽",
+    "canonical": "厉飞宇",
+    "audio_seconds": 32,
+    "total_seconds": 11.601605326868594,
+    "entity_review_seconds": 1.316
+  },
+  "private_worker_stopped": true,
+  "tests": "40 entity audio/streaming/echo/local tests passed; 24 audio/streaming tests rerun after parameter-isolation assertions passed",
+  "caveat": "Known-dense full-Web one entity deficit was present before entity correction; controlled same-source 206 pairs retained all old edits and added two confirmed target hits. Not a guarantee of zero errors."
+}

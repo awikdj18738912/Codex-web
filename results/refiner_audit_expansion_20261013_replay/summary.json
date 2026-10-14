@@ -1,0 +1,56 @@
+{
+  "scope": "frozen_audio_ASR_replay_development_diagnostic_not_audio_acceptance",
+  "matched_windows": true,
+  "matched_original_confidence_partition": true,
+  "cases": 60,
+  "sessions": 240,
+  "pairs_per_policy": 60,
+  "policies": {
+    "all_refine": {
+      "sessions": 60,
+      "calls": 284,
+      "refiner_wall_ms": 116643.989,
+      "chain_total_seconds": 120.14217691263184,
+      "chain_median_seconds": 1.461677849991247,
+      "identical_final_pairs_vs_native": 37,
+      "gate_change_reasons": {}
+    },
+    "native": {
+      "sessions": 60,
+      "calls": 96,
+      "refiner_wall_ms": 29215.092,
+      "chain_total_seconds": 32.75176716968417,
+      "chain_median_seconds": 0.10092723905108869,
+      "identical_final_pairs_vs_native": 60,
+      "gate_change_reasons": {}
+    },
+    "confidence_supplement": {
+      "sessions": 60,
+      "calls": 103,
+      "refiner_wall_ms": 33884.134,
+      "chain_total_seconds": 36.840553637593985,
+      "chain_median_seconds": 0.08512192289344966,
+      "identical_final_pairs_vs_native": 58,
+      "gate_change_reasons": {
+        "experimental_low_nonnumeric_fragment_review": 8
+      }
+    },
+    "confidence_fusion": {
+      "sessions": 60,
+      "calls": 89,
+      "refiner_wall_ms": 28755.879,
+      "chain_total_seconds": 31.519115652889013,
+      "chain_median_seconds": 0.04824239364825189,
+      "identical_final_pairs_vs_native": 58,
+      "gate_change_reasons": {
+        "experimental_low_nonnumeric_fragment_review": 8,
+        "experimental_high_score_weak_structure_keep": 8
+      }
+    }
+  },
+  "calibrated": false,
+  "production_eligible": false,
+  "quality_improvement_not_established": true,
+  "whole_audio_latency_not_measured": true,
+  "output_difference_records": 27
+}

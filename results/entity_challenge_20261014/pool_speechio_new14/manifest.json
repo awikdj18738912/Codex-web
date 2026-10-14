@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "samples": 3706,
+  "domains": {
+    "新闻时政": 449,
+    "商业管理": 408,
+    "游戏电竞": 261,
+    "电商美妆": 132,
+    "演讲培训": 114,
+    "生活纪实": 252,
+    "高等教育": 310,
+    "影视电影": 144,
+    "烹饪美食": 220,
+    "武侠文学": 444,
+    "曲艺相声": 107,
+    "综艺喜剧": 431,
+    "儿童动画": 207,
+    "篮球": 227
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "c5297ea2ad19a71ad4c47eceaed93a1167a241ec5e5ca06a8cf3509b66fb4fad",
+  "scoring_reference_sha256": "88978d3e3baa818aa848a63a1f7d92320ac8f0de19b1d28c4e894407a141978c",
+  "vocabulary_hashes": {
+    "results/entity_challenge_20261014/vocabulary_review/reviewed_new14.json": "51922df49a9a00b76a130c93583c972e629203ade0613b711c2756f2a00589bd"
+  },
+  "baseline_reused": 0,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

@@ -1,0 +1,45 @@
+{
+  "audio_files_verified": 60,
+  "frozen_ASR_files_verified": 183,
+  "cases": 60,
+  "windows": 190,
+  "fully_scored_windows": 186,
+  "punctuation_fragments": 493,
+  "actual_audio_seconds": 1140.84775,
+  "session_counts": {
+    "refiner_audit_expansion_20261013_replay": 240,
+    "refiner_audit_expansion_20261013_ablation": 180
+  },
+  "complete_pairs": {
+    "refiner_audit_expansion_20261013_replay": 60,
+    "refiner_audit_expansion_20261013_ablation": 60
+  },
+  "all_stats_complete": true,
+  "all_failed_calls_zero": true,
+  "all_paired_source_windows_equal": true,
+  "ablation_reconstruction_hashes_match": true,
+  "score_behavior_descriptive_not_gold": {
+    "accepted_unchanged": {
+      "fully_scored_windows": 74,
+      "min": 0.46291180455048564,
+      "median": 0.9971579906021917,
+      "max": 0.9999999046325857,
+      "score_ge_098": 55
+    },
+    "rejected_fallback": {
+      "fully_scored_windows": 59,
+      "min": 0.4926608903378235,
+      "median": 0.9822009517162296,
+      "max": 0.9999978741123778,
+      "score_ge_098": 33
+    },
+    "accepted_changed": {
+      "fully_scored_windows": 53,
+      "min": 0.42924771785729904,
+      "median": 0.9849604761777906,
+      "max": 0.9999976381817735,
+      "score_ge_098": 30
+    }
+  },
+  "production_changed": false
+}

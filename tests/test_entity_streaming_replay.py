@@ -22,6 +22,7 @@ class ReplayBackend:
         self.replay = replay
         self.sessions = {}
         self.received = {}
+        self.starts = []
         self.count = 0
         self.active = 0
         self.max_active = 0
@@ -33,6 +34,7 @@ class ReplayBackend:
         try:
             await asyncio.sleep(0)
             if endpoint == "/stream/start":
+                self.starts.append(params)
                 self.count += 1
                 sid = str(self.count)
                 context = bool((params or {}).get("context"))
@@ -65,7 +67,8 @@ def test_background_starts_before_finish_and_separate_sessions_receive_identical
     async def scenario():
         backend = ReplayBackend()
         repair = idle_repair(backend)
-        start = await repair.request("/stream/start")
+        params = {"language": "Chinese", "chunk_seconds": 2.0, "custom_flag": "keep"}
+        start = await repair.request("/stream/start", params=params)
         chunk = b"p" * (16 * 64000)
         for _ in range(3):
             partial = await repair.request("/stream/chunk", start["session_id"], chunk)
@@ -81,6 +84,10 @@ def test_background_starts_before_finish_and_separate_sessions_receive_identical
         assert final["entity_audio_repair"]["replay_mode"] == "streaming"
         assert backend.count == 2
         assert backend.received['1'] == backend.received['2'] == chunk * 3 + b"next"
+        assert len(backend.starts) == 2
+        assert backend.starts[0]["chunk_seconds"] == 2.0
+        assert backend.starts[1]["chunk_seconds"] == 10
+        assert params == {"language": "Chinese", "chunk_seconds": 2.0, "custom_flag": "keep"}
         assert backend.max_active == 1
         assert not backend.sessions
         assert repair._audio is None

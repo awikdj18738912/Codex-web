@@ -1,0 +1,750 @@
+{
+  "schema_version": 1,
+  "purpose": "Confirmation metadata-only concatenation stress inputs; no inference or transcript/reference content included.",
+  "source_plan_path": "results/entity_streaming_budget_20261013/frozen_test_plan.json",
+  "source_plan_sha256": "736326e19c009d6cb85033c73ea4470ba2f9053a16a02b8cc9223ae341c4faf5",
+  "source_split": "confirmation",
+  "groups": [
+    {
+      "id": "news_group_1",
+      "pcm_path": "results/entity_streaming_budget_20261013/confirmation_long_inputs/news_group_1.f32le",
+      "pcm_sha256": "b0d660fc96a5f7cacf45d335e95b4556e79dd7eb780b00b498065c72c54502f1",
+      "pcm_bytes": 4574300,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "float32_le",
+      "duration_seconds": 71.4734375,
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_entities": {
+        "snapshot_path": "results/entity_streaming_budget_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+        "snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+        "total_entities": 1051,
+        "enabled_entities": 1051
+      },
+      "component_count": 8,
+      "components_and_gaps": [
+        {
+          "id": "leb1_1f413ff4f6ed2b321529",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "040ebe4645a66e92546386007a962325d06e1728c68cd19786a3d3fd332d9a94",
+          "source_pcm_sha256": "0605cb6e780de05a5b9dd7b337b425adfbdaa04942ca2df0483bb5c701161e46",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1f413ff4f6ed2b321529.f32le",
+          "start_seconds": 1.0,
+          "end_seconds": 8.1330625,
+          "duration_seconds": 7.1330625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 8.1330625,
+          "end_seconds": 11.1330625,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_f8aa995fb0a80b4786fd",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "0426aaaf393be0e69ecc8794bc553e0b71c64b1c3919264cb10e6ca8e172aca1",
+          "source_pcm_sha256": "a64460ee12d62edaebab887cad8655fef8c2a24ac3ca3766147891b77fa00594",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f8aa995fb0a80b4786fd.f32le",
+          "start_seconds": 11.1330625,
+          "end_seconds": 15.583125,
+          "duration_seconds": 4.4500625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 15.583125,
+          "end_seconds": 18.583125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_1d755d0121631b3c856d",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "046d0f8054732acffc25f559c60f7bc49379ea914273f2d84aedd469569f8b47",
+          "source_pcm_sha256": "9794c6617f53f7531aac8f3476f5c9733cc484b2e4bc21e70d8d72e39431188a",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1d755d0121631b3c856d.f32le",
+          "start_seconds": 18.583125,
+          "end_seconds": 28.469125,
+          "duration_seconds": 9.886
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 28.469125,
+          "end_seconds": 31.469125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_4f579cdd4e5087b91665",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "047bcc3f0ac23e078a909f5d46748de947d53aeb570aa5f8b82f996a3303af15",
+          "source_pcm_sha256": "c9a415c7c036e773392e6c8d65118208b72a71078ff63a6f19437d6fa1a03218",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4f579cdd4e5087b91665.f32le",
+          "start_seconds": 31.469125,
+          "end_seconds": 36.599125,
+          "duration_seconds": 5.13
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 36.599125,
+          "end_seconds": 39.599125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_7b46f7c7aede878ca9bc",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "049c16a8816391bda20caf019bf238ae8a9078865d603000c4f593df6eae2d7b",
+          "source_pcm_sha256": "b6b0b43ec2050f5c6ab06c13b34c2dc6e22a6bf91292745cdd9fdde61aea4169",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7b46f7c7aede878ca9bc.f32le",
+          "start_seconds": 39.599125,
+          "end_seconds": 44.7893125,
+          "duration_seconds": 5.1901875
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 44.7893125,
+          "end_seconds": 47.7893125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_ee4aeca7c361b9287381",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "049c49b10307c98626f3834de3c00312ad1e04ee145e29837076d4310e56056b",
+          "source_pcm_sha256": "77991af53c4215f4e58145115c4cf153ff6a5feb6c942762cd1efee0ecea1bd9",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ee4aeca7c361b9287381.f32le",
+          "start_seconds": 47.7893125,
+          "end_seconds": 54.3113125,
+          "duration_seconds": 6.522
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 54.3113125,
+          "end_seconds": 57.3113125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_dfc692a9f79e5d18f54b",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "04b3eebd2c3ce3550fd4639af0d42b411a8ef6e2703f3e89a04e948fe90fee68",
+          "source_pcm_sha256": "ed18a3aa6aa383f084750d7af184234b5481672566ace020a9a57d36dd03684e",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dfc692a9f79e5d18f54b.f32le",
+          "start_seconds": 57.3113125,
+          "end_seconds": 60.4004375,
+          "duration_seconds": 3.089125
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 60.4004375,
+          "end_seconds": 63.4004375,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_46ba41f80a921aeec184",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "04e12c5fdff30b18ee5de91ede7ff7657faed0ed05d0122ad7d0564c03569cc9",
+          "source_pcm_sha256": "cb30d5ca946949fcbcb4d0736f5163fa8a071cf18a2464ff33cb22825dafff13",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_46ba41f80a921aeec184.f32le",
+          "start_seconds": 63.4004375,
+          "end_seconds": 70.4734375,
+          "duration_seconds": 7.073
+        }
+      ],
+      "prefix_silence_seconds": 1.0,
+      "inter_component_silence_seconds": 3.0,
+      "suffix_silence_seconds": 1.0
+    },
+    {
+      "id": "news_group_2",
+      "pcm_path": "results/entity_streaming_budget_20261013/confirmation_long_inputs/news_group_2.f32le",
+      "pcm_sha256": "18794764637792b6ea61a94b1c4a3222decc902a93af14d0474b615d0e81c8f9",
+      "pcm_bytes": 4125048,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "float32_le",
+      "duration_seconds": 64.453875,
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_entities": {
+        "snapshot_path": "results/entity_streaming_budget_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+        "snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+        "total_entities": 1051,
+        "enabled_entities": 1051
+      },
+      "component_count": 8,
+      "components_and_gaps": [
+        {
+          "id": "leb1_e19c714db5de2d83b241",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "04f62faf9b09804a1766b1352894a128afaffa7d99ffa6330853a39eafdaa6e9",
+          "source_pcm_sha256": "330306d6a199fdb3489b4b662c338f8fd9f3b821391a7de7a389880508434391",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e19c714db5de2d83b241.f32le",
+          "start_seconds": 1.0,
+          "end_seconds": 5.536,
+          "duration_seconds": 4.536
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 5.536,
+          "end_seconds": 8.536,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_7e010aaa31000a3f3ad7",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "04fa7d1e729097e15307ae6f8453c065f57b1ee1b65cb2f38325817d6ad10f6e",
+          "source_pcm_sha256": "0bf1432dea3fa8164a72d8e65a8a99f4134024dd670f4c65d40b92d9deac091a",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7e010aaa31000a3f3ad7.f32le",
+          "start_seconds": 8.536,
+          "end_seconds": 15.1539375,
+          "duration_seconds": 6.6179375
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 15.1539375,
+          "end_seconds": 18.1539375,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_c6a4d75e1f1755437053",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "05164ed0d1e3b2e8dc7d0cf8450c56756217d70b8271947a37e303e2e9b157eb",
+          "source_pcm_sha256": "0aed7c710e37b6484cd2dbc04c1be8bda61bf7606db319a11afa439972aa5602",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c6a4d75e1f1755437053.f32le",
+          "start_seconds": 18.1539375,
+          "end_seconds": 23.077875,
+          "duration_seconds": 4.9239375
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 23.077875,
+          "end_seconds": 26.077875,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_77bb8d35c191b6f17d9b",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "0540d2e2933d5e387739c5d24ddd646d5dc292a3e6ab8dc1ba9f40b8e8d16be8",
+          "source_pcm_sha256": "b3590848eafcbd23bd63f78db741fd50f77cdb4182adc383dabf67044ca751f3",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_77bb8d35c191b6f17d9b.f32le",
+          "start_seconds": 26.077875,
+          "end_seconds": 30.4729375,
+          "duration_seconds": 4.3950625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 30.4729375,
+          "end_seconds": 33.4729375,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_584ae7fac1272d77cea5",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "05563f4ad9a17524bdd917f8b6c282c068948acd11d14f73bc0da11e8942c25f",
+          "source_pcm_sha256": "51e923fd3c46191e049fab409a130edd599c98da8c0a52702bd034d7bf99ad54",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_584ae7fac1272d77cea5.f32le",
+          "start_seconds": 33.4729375,
+          "end_seconds": 38.9458125,
+          "duration_seconds": 5.472875
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 38.9458125,
+          "end_seconds": 41.9458125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_caa1dda194ce986a7144",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "057cecf2bf960ebc26aabba0d38ad31d565b682e09112389283e1b32121c7043",
+          "source_pcm_sha256": "10cee077316670a49e1954cd9c57abc64ae9f2e818c5569dfb5a447701745302",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_caa1dda194ce986a7144.f32le",
+          "start_seconds": 41.9458125,
+          "end_seconds": 48.259875,
+          "duration_seconds": 6.3140625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 48.259875,
+          "end_seconds": 51.259875,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_d86f4c043f2db7fd6088",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "05e26ba7bb2df5156f63d063eb1c0d2f165912d3bdcfa37aef9f84e79b0a55cb",
+          "source_pcm_sha256": "59422056d4dc51d6174a04feca1f48c4f8db82ad85d0a36d8aae5b69ccb4b3a5",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d86f4c043f2db7fd6088.f32le",
+          "start_seconds": 51.259875,
+          "end_seconds": 56.5959375,
+          "duration_seconds": 5.3360625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 56.5959375,
+          "end_seconds": 59.5959375,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_c450fd7334cbf9c4651f",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "05fa17083ee5b7be3bc3190823b5616c7737e212e40bae37587d33be598c8101",
+          "source_pcm_sha256": "bf8a177b2f176b9882bd1db6b4b44ddb781e5e6e2ee9b79be48245a871c26a8d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c450fd7334cbf9c4651f.f32le",
+          "start_seconds": 59.5959375,
+          "end_seconds": 63.453875,
+          "duration_seconds": 3.8579375
+        }
+      ],
+      "prefix_silence_seconds": 1.0,
+      "inter_component_silence_seconds": 3.0,
+      "suffix_silence_seconds": 1.0
+    },
+    {
+      "id": "news_group_3",
+      "pcm_path": "results/entity_streaming_budget_20261013/confirmation_long_inputs/news_group_3.f32le",
+      "pcm_sha256": "a7c2c714ae349b2556b4b441257328be4aa3f3629b155ac4064403ffb59c19ad",
+      "pcm_bytes": 4828880,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "float32_le",
+      "duration_seconds": 75.45125,
+      "library_key": "topic_06_新闻人物组织地理",
+      "library_entities": {
+        "snapshot_path": "results/entity_streaming_budget_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+        "snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+        "total_entities": 1051,
+        "enabled_entities": 1051
+      },
+      "component_count": 8,
+      "components_and_gaps": [
+        {
+          "id": "leb1_23a7c614fee25c336fd5",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "062099db5b80c998d2cfa02c38a8bca2087e78263c925af37b69de5d2d8840ea",
+          "source_pcm_sha256": "2bf9f8ee3e90d975f6261b9b9a7040b808d63a967a71dfbea488b64280871b09",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_23a7c614fee25c336fd5.f32le",
+          "start_seconds": 1.0,
+          "end_seconds": 7.8100625,
+          "duration_seconds": 6.8100625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 7.8100625,
+          "end_seconds": 10.8100625,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_b2b2e45b447c0d90e2c4",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "0621316da8025e1b1315388369d2e48ffb5645ff6db49ee6205531c9457b8bf5",
+          "source_pcm_sha256": "9586a920bd60bda12266ea435831735fde00020288e0668482cefb1ad97b1c5b",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b2b2e45b447c0d90e2c4.f32le",
+          "start_seconds": 10.8100625,
+          "end_seconds": 15.338125,
+          "duration_seconds": 4.5280625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 15.338125,
+          "end_seconds": 18.338125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_b5b9984f8ca2ae184219",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "066af7e16921583aae0da85641e0b91acb42219f31884dfc30141e9c6e6e1000",
+          "source_pcm_sha256": "fc5ede0fca02ace509f7d780c0fe60f404f33e95e1b5bd017b219419e306c612",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b5b9984f8ca2ae184219.f32le",
+          "start_seconds": 18.338125,
+          "end_seconds": 26.838125,
+          "duration_seconds": 8.5
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 26.838125,
+          "end_seconds": 29.838125,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_a883e56879ede2829eb1",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "067184f3441fa7c3309a1226686f07d73f9805c7933c16b10ce2c24b88baea02",
+          "source_pcm_sha256": "411a29d99f04d802ab7f104808602adc773fc3ce6e4ef4f39d130dda9a04b32a",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a883e56879ede2829eb1.f32le",
+          "start_seconds": 29.838125,
+          "end_seconds": 36.56225,
+          "duration_seconds": 6.724125
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 36.56225,
+          "end_seconds": 39.56225,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_4202dbfe70377e16c8dd",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "06a5e78fbb6bd9857335b7985da64ebde73fcb3bd9a4259e2b60f6af78065096",
+          "source_pcm_sha256": "d5d15f07574484612ac04692e3b8e6ae54ffffe7baaba83d004baefc0736ae1d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4202dbfe70377e16c8dd.f32le",
+          "start_seconds": 39.56225,
+          "end_seconds": 46.5451875,
+          "duration_seconds": 6.9829375
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 46.5451875,
+          "end_seconds": 49.5451875,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_9cdb8f764d38db303ba2",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "06f8522716a4b751c5fb0f5d7f16eae20f2e0e7a6dbf34c62547345e0f3f93c3",
+          "source_pcm_sha256": "e40e68a7ab09b8d69ffe85ef4461d24c3c69f3530e0579af756dbd244f125719",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9cdb8f764d38db303ba2.f32le",
+          "start_seconds": 49.5451875,
+          "end_seconds": 55.1001875,
+          "duration_seconds": 5.555
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 55.1001875,
+          "end_seconds": 58.1001875,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_c70169fe827dd09d11e0",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "0721a2e33b9749f0609bda61c50be38920d95c2746f5eae3323f16e2630ef908",
+          "source_pcm_sha256": "521a2a9c22fa7e8c07ea44747e83b0cd95a8084c120d6654c2b6ae6202600a63",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c70169fe827dd09d11e0.f32le",
+          "start_seconds": 58.1001875,
+          "end_seconds": 65.12925,
+          "duration_seconds": 7.0290625
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 65.12925,
+          "end_seconds": 68.12925,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_c3962ad13fe330456d71",
+          "source_split": "confirmation",
+          "library_key": "topic_06_新闻人物组织地理",
+          "selection_hash": "0725cc41c671830f83e3bc8ab4124f675e0b34eb3c4838f1adc9fbaad85b1d85",
+          "source_pcm_sha256": "47a9b4d183df7717720b546798e1172da4eb0b80929078e54dca7e7388ccd93d",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c3962ad13fe330456d71.f32le",
+          "start_seconds": 68.12925,
+          "end_seconds": 74.45125,
+          "duration_seconds": 6.322
+        }
+      ],
+      "prefix_silence_seconds": 1.0,
+      "inter_component_silence_seconds": 3.0,
+      "suffix_silence_seconds": 1.0
+    },
+    {
+      "id": "medical_all",
+      "pcm_path": "results/entity_streaming_budget_20261013/confirmation_long_inputs/medical_all.f32le",
+      "pcm_sha256": "43b0916c0c63333c2965388add868bb24dc4bfd2bf5d98db8a587a261b874585",
+      "pcm_bytes": 4318080,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "float32_le",
+      "duration_seconds": 67.47,
+      "library_key": "topic_03_医疗健康",
+      "library_entities": {
+        "snapshot_path": "results/entity_streaming_budget_20261013/library_snapshots/topic_03_医疗健康.db",
+        "snapshot_sha256": "dd17bdc0dd77310678c5bc66ed1628bc1534f13531e080481836360381ac4e11",
+        "total_entities": 101,
+        "enabled_entities": 101
+      },
+      "component_count": 6,
+      "components_and_gaps": [
+        {
+          "id": "leb1_eede37ba9b425e23ebc5",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "044f65a7b81694049a6fa575b7a5e422aa720b006626691a7ed29a7e3f17a4a3",
+          "source_pcm_sha256": "f5d89e7e73a29089c9a3c5e66952439fb435bba0c465149295d0c3bf6f9a4352",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_eede37ba9b425e23ebc5.f32le",
+          "start_seconds": 1.0,
+          "end_seconds": 15.05,
+          "duration_seconds": 14.05
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 15.05,
+          "end_seconds": 18.05,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_c2e42d33297da72546bb",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "050e75ae5fa865bcb522ee0398c743a907e11914392f4627d12eb4dc3f02a897",
+          "source_pcm_sha256": "ede62769bd8dbf52f6404e4cbdfa41481c8f68dd863cb6fbc54e714283643627",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c2e42d33297da72546bb.f32le",
+          "start_seconds": 18.05,
+          "end_seconds": 26.234,
+          "duration_seconds": 8.184
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 26.234,
+          "end_seconds": 29.234,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_0388f679f686eaa86038",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "077e8dc1cbdb9b250b466521a877aa49cda57a6f5a2f7c6c405af2f4ce2481db",
+          "source_pcm_sha256": "abd6c35ee3e2c242519073298b9b435651dbb6a84aea4dfe31823e4a4fb68a27",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_0388f679f686eaa86038.f32le",
+          "start_seconds": 29.234,
+          "end_seconds": 37.754,
+          "duration_seconds": 8.52
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 37.754,
+          "end_seconds": 40.754,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_bb15a0169b1affd30555",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "08fc78dfe17576f7ad00e88057dc176d7c33a5fc518684b10fce8e07c5a09697",
+          "source_pcm_sha256": "c3eab9eef15dabff40c1b73e42f68d215b576532b90c91c5862f18eb1fa210ce",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bb15a0169b1affd30555.f32le",
+          "start_seconds": 40.754,
+          "end_seconds": 47.522,
+          "duration_seconds": 6.768
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 47.522,
+          "end_seconds": 50.522,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_4fb6e96b6e6802c45f58",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "0a8885743fbe2d3afb1a9e204f4463c5b7737686974aa829151daeb40243645d",
+          "source_pcm_sha256": "04e8168236d5db0b7b816e84a0010a82178aca731666b19367f291939f44a5ac",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4fb6e96b6e6802c45f58.f32le",
+          "start_seconds": 50.522,
+          "end_seconds": 56.234,
+          "duration_seconds": 5.712
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 56.234,
+          "end_seconds": 59.234,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "leb1_23b49363b4e868bf587d",
+          "source_split": "confirmation",
+          "library_key": "topic_03_医疗健康",
+          "selection_hash": "26c407d5b01ce739336f7feda22cba905cb8f8d855a6f060b8b6a584ac1ba157",
+          "source_pcm_sha256": "e35d6f5ff95db84b2d292c8b3ef6d098d802ed1698c75774c8d9016678aa9ee6",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_23b49363b4e868bf587d.f32le",
+          "start_seconds": 59.234,
+          "end_seconds": 66.47,
+          "duration_seconds": 7.236
+        }
+      ],
+      "prefix_silence_seconds": 1.0,
+      "inter_component_silence_seconds": 3.0,
+      "suffix_silence_seconds": 1.0
+    },
+    {
+      "id": "automotive_all",
+      "pcm_path": "results/entity_streaming_budget_20261013/confirmation_long_inputs/automotive_all.f32le",
+      "pcm_sha256": "75ed00292fc12d0f4911bb10c8a7c0d85e0dab39c92a77d8083d86d0d129d6bf",
+      "pcm_bytes": 3682688,
+      "sample_rate_hz": 16000,
+      "channels": 1,
+      "sample_format": "float32_le",
+      "duration_seconds": 57.542,
+      "library_key": "automotive",
+      "library_entities": {
+        "snapshot_path": "results/entity_streaming_budget_20261013/library_snapshots/automotive.db",
+        "snapshot_sha256": "89800f54a738e06c31986023650efc0471c05c7fdb372801189191bb0eabfd4d",
+        "total_entities": 33,
+        "enabled_entities": 33
+      },
+      "component_count": 6,
+      "components_and_gaps": [
+        {
+          "id": "rel_0a8848c822ea75843e81",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "05295a0e5174cad55a3ce864f4118e327e5358056a6fe045e30bb72befba287e",
+          "source_pcm_sha256": "83ca0265fc251d981400d72832c222367e2768a46f72ab21244053ceef8d8433",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0a8848c822ea75843e81.f32le",
+          "start_seconds": 1.0,
+          "end_seconds": 5.525,
+          "duration_seconds": 4.525
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 5.525,
+          "end_seconds": 8.525,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "rel_03a353905f848e057f09",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "05d47d2e56921ad1adcdb7b3ad576cd90e5153218f6b05965fa68bea4bfeafaf",
+          "source_pcm_sha256": "73be050006c43e4d40a66197a393186ea264dfae6da9cba9aa2500b612dcc133",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_03a353905f848e057f09.f32le",
+          "start_seconds": 8.525,
+          "end_seconds": 14.375,
+          "duration_seconds": 5.85
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 14.375,
+          "end_seconds": 17.375,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "rel_075015e1002683015712",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "05f5e5233fe2a505bdac16f8132404bbaec973547ffd6b549e9b923b946b58d7",
+          "source_pcm_sha256": "2e7cacc14e2a5f9e971795d1b5c40d94700ee9625709a954fb9189e443a6c4fe",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_075015e1002683015712.f32le",
+          "start_seconds": 17.375,
+          "end_seconds": 21.468,
+          "duration_seconds": 4.093
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 21.468,
+          "end_seconds": 24.468,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "rel_04a0147177d312bf8007",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "07016b65e3a7f09e8985d3c8d213f74451ebbd22819b1c72e2b2c25ce5f44487",
+          "source_pcm_sha256": "e68ff2723282f0a3839fca583b90be15b16d413e3cd576d055473d7a83d0779a",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_04a0147177d312bf8007.f32le",
+          "start_seconds": 24.468,
+          "end_seconds": 31.124,
+          "duration_seconds": 6.656
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 31.124,
+          "end_seconds": 34.124,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "rel_0161c3d79d43da67735c",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "0a62d1ab3ed8c83fb07ae8f60e46043b60c4570df9c2f9aae8a85a6f4275d14d",
+          "source_pcm_sha256": "0936616d9e2160c580290f7ec6b7db452e43f421d7590e8cc4d95fd696c3699b",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0161c3d79d43da67735c.f32le",
+          "start_seconds": 34.124,
+          "end_seconds": 45.099,
+          "duration_seconds": 10.975
+        },
+        {
+          "kind": "inserted_silence",
+          "duration_seconds": 3.0,
+          "start_seconds": 45.099,
+          "end_seconds": 48.099,
+          "value": "zero_f32le"
+        },
+        {
+          "id": "rel_0a42bee6830e54c8fdcc",
+          "source_split": "confirmation",
+          "library_key": "automotive",
+          "selection_hash": "0faae32da90b25ee816d1f24abd76f07c9a63c82dac3c1dc240c672ff340c0ef",
+          "source_pcm_sha256": "a07b3b7c0d79a9cbe25fbc1f9a1476ff89b37d07b90500057748a488dc0a0e1c",
+          "source_pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0a42bee6830e54c8fdcc.f32le",
+          "start_seconds": 48.099,
+          "end_seconds": 56.542,
+          "duration_seconds": 8.443
+        }
+      ],
+      "prefix_silence_seconds": 1.0,
+      "inter_component_silence_seconds": 3.0,
+      "suffix_silence_seconds": 1.0
+    }
+  ],
+  "grouping_rule": {
+    "ordering_within_library": "ascending selection_hash",
+    "news_library_key": "topic_06_新闻人物组织地理",
+    "news_selection": "first 24 confirmation rows, split consecutively into 3 groups of 8 after sorting",
+    "medical_library_key": "topic_03_医疗健康",
+    "medical_selection": "all 6 confirmation rows sorted by selection_hash in one group",
+    "automotive_library_key": "automotive",
+    "automotive_selection": "all 6 confirmation rows sorted by selection_hash in one group",
+    "group_library_key": "Preserve each component domain library key exactly; use the full frozen library snapshot without removing entries.",
+    "pcm_order": "Original PCM byte order within each component; components concatenated in the listed order.",
+    "silence": "One second zero float32_le mono PCM at beginning and end; three seconds inserted only between adjacent components."
+  },
+  "scope_note": "Synthetic concatenations of existing confirmation recordings. These are not natural long-form audio and do not constitute entirely new/unseen data. No references or standard transcripts were read."
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "samples": 4000,
+  "domains": {
+    "人名机构地名": 4000
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "55d9d5315bfeba2f8019eb9bad0c00cc433a84da06c2912964ca94ac3001498d",
+  "scoring_reference_sha256": "6e102e7662bd71c17ed52ec5190e696993febfda33e230ced42f7df0ec8f9e5c",
+  "vocabulary_hashes": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/aishell_pool.jsonl": "c891bc10f3f40bc46317b9aeae20ca3e973da2c6a3626e9b3207578fbb7e4322"
+  },
+  "baseline_reused": 0,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

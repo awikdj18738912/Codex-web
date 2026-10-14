@@ -1,0 +1,50 @@
+[
+  {
+    "case": 3,
+    "repetition": 0,
+    "policy": "confidence_fusion",
+    "changes": [
+      {
+        "operation": "replace",
+        "before": "，",
+        "after": "。",
+        "before_context": "王禅不杀无名之辈。王宗虎、厉飞羽，不值一提，真让韩某有些意外。不可",
+        "after_context": "王禅不杀无名之辈。王宗虎、厉飞羽。不值一提，真让韩某有些意外。不可"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false
+  },
+  {
+    "case": 35,
+    "repetition": 0,
+    "policy": "confidence_fusion",
+    "changes": [
+      {
+        "operation": "delete",
+        "before": "啊",
+        "after": "",
+        "before_context": "，在Substack里面找Web啊，就能找到修订后的文字稿呢。我会",
+        "after_context": "，在Substack里面找Web，就能找到修订后的文字稿呢。我会"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false
+  },
+  {
+    "case": 10,
+    "repetition": 0,
+    "policy": "weak_structure_rule_only",
+    "changes": [
+      {
+        "operation": "insert",
+        "before": "",
+        "after": "，",
+        "before_context": "韩立，请。哼！啊！左，右，左，右左，嘿！我！左！",
+        "after_context": "韩立，请。哼！啊！左，右，左，右，左，嘿！我！左！"
+      }
+    ],
+    "correctness": "unverified",
+    "audio_checked": false
+  }
+]

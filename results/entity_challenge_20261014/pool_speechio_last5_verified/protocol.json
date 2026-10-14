@@ -1,0 +1,34 @@
+{
+  "asr_url": "http://127.0.0.1:8766",
+  "health": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "chunk_seconds": 2.0,
+  "transport_samples": 16000,
+  "context": "",
+  "language": "Chinese",
+  "reference_at_inference": false,
+  "module_at_inference": false,
+  "audio_transform": "original mono PCM16 to float32 only",
+  "inference_input_sha256": "d5eae9eef89ffe86a3b34931fa3d290170b356c21a57822462b30083e0c69214",
+  "order": "round_robin_domains_hash"
+}

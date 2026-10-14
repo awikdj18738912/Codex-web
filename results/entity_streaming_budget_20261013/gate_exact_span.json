@@ -1,0 +1,211 @@
+{
+  "status": "complete",
+  "scope": "same frozen development split (60 only); confirmation split excluded",
+  "margin_definition": "candidate score minus highest-scoring candidate with identical start/end and a different canonical; 1.0 when no exact-span competitor",
+  "score_thresholds": [
+    0.63
+  ],
+  "margin_thresholds": [
+    0.04,
+    0.08
+  ],
+  "counts_by_gate": {
+    "score>=0.63,exact_span_margin>=0.04": {
+      "qualifying_samples": 43,
+      "qualifying_candidates": 117,
+      "old_changes_total": 21,
+      "retained": 21,
+      "lost": 0,
+      "retained_reference_present": 20,
+      "retained_reference_mismatch": 1,
+      "lost_reference_present": 0,
+      "lost_reference_mismatch": 0
+    },
+    "score>=0.63,exact_span_margin>=0.08": {
+      "qualifying_samples": 41,
+      "qualifying_candidates": 97,
+      "old_changes_total": 21,
+      "retained": 20,
+      "lost": 1,
+      "retained_reference_present": 19,
+      "retained_reference_mismatch": 1,
+      "lost_reference_present": 1,
+      "lost_reference_mismatch": 0
+    }
+  },
+  "focused_case": {
+    "id": "leb1_f07e56df52c2f10f6c28",
+    "original": "时年二三岁的杨祝军在北京抢劫杀害了一名出租车司机。",
+    "old_changes": [
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "杨祝军",
+        "canonical": "杨柱军",
+        "entity_id": 536,
+        "phonetic_score": 1.0,
+        "character_score": 0.666667,
+        "length_score": 1.0,
+        "retrieval_score": 0.966667,
+        "boundary_issue": null,
+        "evidence_surface": "杨柱军",
+        "entity_type": "PERSON",
+        "match_type": "AUDIO_REPLAY_CONFIRMED"
+      }
+    ],
+    "candidates": [
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "杨祝军",
+        "canonical": "杨柱军",
+        "score": 0.966667,
+        "margin": 0.0166670000000001,
+        "overlaps_old_change": true,
+        "exact_span_margin": 0.28
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "祝军",
+        "canonical": "朱军",
+        "score": 0.95,
+        "margin": -0.0166670000000001,
+        "overlaps_old_change": true,
+        "exact_span_margin": 0.26333299999999993
+      },
+      {
+        "start": 5,
+        "end": 9,
+        "observed": "的杨祝军",
+        "canonical": "杨柱军",
+        "score": 0.765,
+        "margin": -0.18499999999999994,
+        "overlaps_old_change": true,
+        "exact_span_margin": 0.20999999999999996
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "杨祝",
+        "canonical": "扬州",
+        "score": 0.755,
+        "margin": -0.21166700000000005,
+        "overlaps_old_change": true,
+        "exact_span_margin": 0.06833299999999998
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "observed": "抢劫",
+        "canonical": "王杰",
+        "score": 0.704,
+        "margin": 1.0,
+        "overlaps_old_change": false,
+        "exact_span_margin": 1.0
+      },
+      {
+        "start": 14,
+        "end": 16,
+        "observed": "杀害",
+        "canonical": "上海",
+        "score": 0.704,
+        "margin": 1.0,
+        "overlaps_old_change": false,
+        "exact_span_margin": 1.0
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "杨祝军",
+        "canonical": "朱军",
+        "score": 0.686667,
+        "margin": -0.28,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.28
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "杨祝",
+        "canonical": "杨柱军",
+        "score": 0.686667,
+        "margin": -0.26333299999999993,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.06833299999999998
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "observed": "祝军",
+        "canonical": "杨柱军",
+        "score": 0.686667,
+        "margin": -0.26333299999999993,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.26333299999999993
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "一名",
+        "canonical": "黎明",
+        "score": 0.67,
+        "margin": 0.0066670000000000895,
+        "overlaps_old_change": false,
+        "exact_span_margin": 0.0066670000000000895
+      },
+      {
+        "start": 6,
+        "end": 8,
+        "observed": "杨祝",
+        "canonical": "杨柳",
+        "score": 0.663333,
+        "margin": -0.3033340000000001,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.09166700000000005
+      },
+      {
+        "start": 17,
+        "end": 19,
+        "observed": "一名",
+        "canonical": "迟名",
+        "score": 0.663333,
+        "margin": -0.0066670000000000895,
+        "overlaps_old_change": false,
+        "exact_span_margin": -0.0066670000000000895
+      },
+      {
+        "start": 5,
+        "end": 8,
+        "observed": "的杨祝",
+        "canonical": "扬州",
+        "score": 0.556667,
+        "margin": -0.41000000000000003,
+        "overlaps_old_change": true,
+        "exact_span_margin": 1.0
+      },
+      {
+        "start": 6,
+        "end": 9,
+        "observed": "杨祝军",
+        "canonical": "扬州",
+        "score": 0.556667,
+        "margin": -0.41000000000000003,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.41000000000000003
+      },
+      {
+        "start": 5,
+        "end": 9,
+        "observed": "的杨祝军",
+        "canonical": "朱军",
+        "score": 0.555,
+        "margin": -0.411667,
+        "overlaps_old_change": true,
+        "exact_span_margin": -0.20999999999999996
+      }
+    ]
+  },
+  "reference_policy": "References used only to classify existing old changes for scoring; never used in candidate selection.",
+  "interpretation": "Offline gate-retention estimate only. Prompt changes require actual ASR validation; no claim of measured speed gain or accuracy gain."
+}

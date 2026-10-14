@@ -1,0 +1,91 @@
+{
+  "rule": "reference/annotation-only consistency check; ASR text not used",
+  "samples": [
+    {
+      "id": "chall_speechio_8cbd5215dc9feadca20d",
+      "pool": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/pool_speechio_existing8",
+      "reason": "normalized_gold_not_supported_by_reference",
+      "unsupported": [
+        "张三"
+      ],
+      "reference": "那持有型犯罪一般也是继续我扔了一个毒品给张三张三又给我扔过来了我又扔给他他又扔给我我又扔给他他又扔给我警察说停",
+      "gold_entities": [
+        {
+          "canonical": "张三",
+          "entity_type": "PERSON",
+          "start": 20,
+          "end": 22,
+          "annotation_method": "agent_reference_curated"
+        },
+        {
+          "canonical": "张三",
+          "entity_type": "PERSON",
+          "start": 22,
+          "end": 24,
+          "annotation_method": "agent_reference_curated"
+        }
+      ]
+    },
+    {
+      "id": "chall_speechio_da484760b37c3f98c237",
+      "pool": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/pool_speechio_existing8",
+      "reason": "normalized_gold_not_supported_by_reference",
+      "unsupported": [
+        "张三"
+      ],
+      "reference": "张三把我的手机给偷走了但他不知道的是在他偷我手机之前我就准备把手机给他这其实相当于什么相当于偶然的承诺客观上是有承诺的",
+      "gold_entities": [
+        {
+          "canonical": "张三",
+          "entity_type": "PERSON",
+          "start": 0,
+          "end": 2,
+          "annotation_method": "agent_reference_curated"
+        }
+      ]
+    },
+    {
+      "id": "chall_speechio_1fbfaf81a8c4258d1a34",
+      "pool": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/pool_speechio_existing8",
+      "reason": "normalized_gold_not_supported_by_reference",
+      "unsupported": [
+        "张三"
+      ],
+      "reference": "这个叫牵连为了 A 而实施 B 有一年就考过一道题目我到张三家去偷东西诶结果偷到一个警官证我才知道他是警察",
+      "gold_entities": [
+        {
+          "canonical": "张三",
+          "entity_type": "PERSON",
+          "start": 28,
+          "end": 30,
+          "annotation_method": "agent_reference_curated"
+        }
+      ]
+    },
+    {
+      "id": "chall_speechio_1b17977bc36745d477cb",
+      "pool": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/pool_speechio_new14",
+      "reason": "normalized_gold_not_supported_by_reference",
+      "unsupported": [
+        "熊二"
+      ],
+      "reference": "谢谢老板妈妈现在是要去熊大熊二家了吧",
+      "gold_entities": [
+        {
+          "canonical": "熊大",
+          "entity_type": "PERSON",
+          "start": 11,
+          "end": 13,
+          "annotation_method": "agent_reference_curated"
+        },
+        {
+          "canonical": "熊二",
+          "entity_type": "PERSON",
+          "start": 13,
+          "end": 15,
+          "annotation_method": "agent_reference_curated"
+        }
+      ]
+    }
+  ]
+}

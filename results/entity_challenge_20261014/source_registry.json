@@ -1,0 +1,409 @@
+{
+  "dataset": "yuekai/speechio_test",
+  "revision": "bdba6aa3daeddb2996eaa31c44bbdf633a07a31f",
+  "dataset_page": "https://huggingface.co/datasets/yuekai/speechio_test",
+  "official_source": "https://github.com/SpeechColab/Leaderboard/blob/master/README.md",
+  "purpose": "Chinese multi-domain entity challenge source and reference catalog",
+  "subset_count_expected": 27,
+  "subset_count_verified": 27,
+  "license": {
+    "mirror_declared_license": "Apache-2.0",
+    "underlying_audio_note": "Hugging Face dataset card declares Apache-2.0 for the repackaging. The original SpeechIO README says audio is crawled from public YouTube/TV/podcast sources, but does not establish a blanket redistribution license for those underlying works. Treat the audio as evaluation-only and preserve each source's applicable terms; do not infer that Apache-2.0 clears underlying programme copyrights.",
+    "hf_dataset_card": "https://huggingface.co/datasets/yuekai/speechio_test",
+    "official_source_readme": "https://github.com/SpeechColab/Leaderboard/blob/master/README.md"
+  },
+  "assets": [
+    {
+      "subset": "SPEECHIO_ASR_ZH00000",
+      "domain_labels": {
+        "name": "调试集",
+        "scenario": "视频会议、论坛演讲",
+        "topic": "经济、货币、金融"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00000.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00000/test-00000-of-00001.parquet",
+      "size_bytes": 182820999,
+      "sha256_lfs_oid": "f2d9838b7efb49cba921a03ca358372beb8a27b26c8c30612a62923457b7f102",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00001",
+      "domain_labels": {
+        "name": "新闻联播",
+        "scenario": "新闻播报",
+        "topic": "时政"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00001.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00001/test-00000-of-00001.parquet",
+      "size_bytes": 997624175,
+      "sha256_lfs_oid": "2afc059f523c091cac45ecd76999842db7a7e118cbc76ddc1537c61102c6b8af",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00002",
+      "domain_labels": {
+        "name": "鲁豫有约",
+        "scenario": "访谈电视节目",
+        "topic": "名人工作/生活"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00002.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00002/test-00000-of-00001.parquet",
+      "size_bytes": 317421570,
+      "sha256_lfs_oid": "0da7f86d9f67bb62ab6d89479bf38823aa5e70fd9c26d471e393016c938a2a74",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00003",
+      "domain_labels": {
+        "name": "天下足球",
+        "scenario": "专题电视节目",
+        "topic": "足球"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/source/speechio/SPEECHIO_ASR_ZH00003.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00003/test-00000-of-00001.parquet",
+      "size_bytes": 275687229,
+      "sha256_lfs_oid": "eccfd2f166310773e9c3bd4c053cebcfaced2ae5d8171b0a22f8698de21e01ea",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00004",
+      "domain_labels": {
+        "name": "罗振宇跨年演讲",
+        "scenario": "会场演讲",
+        "topic": "社会、人文、商业"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00004.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00004/test-00000-of-00001.parquet",
+      "size_bytes": 324856106,
+      "sha256_lfs_oid": "d1535dbd7303060d1b33e32d0e6ee66c403e6d23ae54d8366b66ac6115275369",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00005",
+      "domain_labels": {
+        "name": "李永乐讲堂",
+        "scenario": "在线教育",
+        "topic": "科普"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00005.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00005/test-00000-of-00001.parquet",
+      "size_bytes": 504843705,
+      "sha256_lfs_oid": "ebdf5cbb17a645d727183658026ca5bbc5d507848f3f08b026ce188857197de4",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00006",
+      "domain_labels": {
+        "name": "王者荣耀；张大仙、骚白",
+        "scenario": "直播",
+        "topic": "游戏"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00006.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00006/test-00000-of-00001.parquet",
+      "size_bytes": 190916933,
+      "sha256_lfs_oid": "d1fd65d450d22917576894f9c9fbf3cdda07dcd8718e31f195b565e34f1c1f32",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00007",
+      "domain_labels": {
+        "name": "直播带货；李佳琪、薇娅",
+        "scenario": "直播",
+        "topic": "电商、美妆"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00007.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00007/test-00000-of-00001.parquet",
+      "size_bytes": 112614529,
+      "sha256_lfs_oid": "e31705dfde58b127a5d5a22ca2c231f051f6cd6ced8f2c396a3ab7e667e6a49a",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00008",
+      "domain_labels": {
+        "name": "老罗语录",
+        "scenario": "线下培训",
+        "topic": "段子、做人"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00008.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00008/test-00000-of-00001.parquet",
+      "size_bytes": 147828846,
+      "sha256_lfs_oid": "2aac98ec8c223aa3f28a341cfa98085ecde47cc0f1f6e09fdeef1d2bc0bd9aa7",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00009",
+      "domain_labels": {
+        "name": "故事FM",
+        "scenario": "播客",
+        "topic": "人生故事、见闻"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00009.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00009/test-00000-of-00001.parquet",
+      "size_bytes": 533470184,
+      "sha256_lfs_oid": "47128fe033abc3cbc8ff26f3d459be9ccc48ff535526f3b54608d87e0c0f4467",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00010",
+      "domain_labels": {
+        "name": "创业内幕",
+        "scenario": "播客",
+        "topic": "创业、产品、投资"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00010.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00010/test-00000-of-00001.parquet",
+      "size_bytes": 481965331,
+      "sha256_lfs_oid": "23ebbe3a038801d7ec267f8f4d5ee17c625ab7e3d3a29dd68995fe93fa55f95c",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00011",
+      "domain_labels": {
+        "name": "罗翔刑法法考",
+        "scenario": "在线教育",
+        "topic": "法律、法考"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00011.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00011/test-00000-of-00001.parquet",
+      "size_bytes": 382625718,
+      "sha256_lfs_oid": "43650aa1b9f6f6eaa4ae17acac7beab72a3f2581cc92a2c86aef1ac54a9fd3a0",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00012",
+      "domain_labels": {
+        "name": "张雪峰考研",
+        "scenario": "在线教育",
+        "topic": "考研、高校报考"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00012.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00012/test-00000-of-00001.parquet",
+      "size_bytes": 388750664,
+      "sha256_lfs_oid": "1604811085387034d32d719d52163f5e3d8afc3a78687e5cf84f77cddcc4e691",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00013",
+      "domain_labels": {
+        "name": "谷阿莫；牛叔说电影",
+        "scenario": "短视频",
+        "topic": "电影剪辑"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00013.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00013/test-00000-of-00001.parquet",
+      "size_bytes": 205032661,
+      "sha256_lfs_oid": "8478e5bf91189aee742681752ee8b4fe65b1918bbd5da6d7f067bb7c8b5bef2f",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00014",
+      "domain_labels": {
+        "name": "贫穷料理；琼斯爱生活",
+        "scenario": "短视频",
+        "topic": "美食、烹饪"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00014.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00014/test-00000-of-00001.parquet",
+      "size_bytes": 116476040,
+      "sha256_lfs_oid": "dfbb4f778cba2b50ccfb7d5739e057eecfa2458d544b5f0ecc0a326578031f2f",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00015",
+      "domain_labels": {
+        "name": "单田芳《白眉大侠》",
+        "scenario": "评书",
+        "topic": "江湖、武侠"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00015.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00015/test-00000-of-00001.parquet",
+      "size_bytes": 235332266,
+      "sha256_lfs_oid": "cb3af89e09148111cd556c48c432ee7d86f14dd405cff03af3bfe734f7098b06",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00016",
+      "domain_labels": {
+        "name": "德云社演出",
+        "scenario": "剧场相声",
+        "topic": "包袱段子"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00016.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00016/test-00000-of-00001.parquet",
+      "size_bytes": 116375852,
+      "sha256_lfs_oid": "eae61b100dd73d54d8233494cc33c8b8a141cf9f5e6cc045144ef30d73895afa",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00017",
+      "domain_labels": {
+        "name": "吐槽大会",
+        "scenario": "脱口秀电视节目",
+        "topic": "明星糗事"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00017.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00017/test-00000-of-00001.parquet",
+      "size_bytes": 207042277,
+      "sha256_lfs_oid": "82dc2f4fb0fabc30d051f85167ed9462cabe07bd30f5d4c772c544412fde0b94",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00018",
+      "domain_labels": {
+        "name": "小猪佩奇；熊出没",
+        "scenario": "少儿动画",
+        "topic": "童话故事、日常"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00018.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00018/test-00000-of-00001.parquet",
+      "size_bytes": 98147195,
+      "sha256_lfs_oid": "da8d48ca0675d5fd50d163411e51b8d1754a57012d836f9b5b14b31f34d64b83",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00019",
+      "domain_labels": {
+        "name": "CCTV5 NBA 转播",
+        "scenario": "体育赛事解说",
+        "topic": "篮球、NBA"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00019.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00019/test-00000-of-00001.parquet",
+      "size_bytes": 80144905,
+      "sha256_lfs_oid": "52b112a0dbb8b46e90460932ddf0e02f24a27d8c0e8e5dea48c12c4c991d8e27",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00020",
+      "domain_labels": {
+        "name": "篮球人物",
+        "scenario": "纪录片",
+        "topic": "篮球明星、成长"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00020.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00020/test-00000-of-00001.parquet",
+      "size_bytes": 250953745,
+      "sha256_lfs_oid": "ac6c501343d7b919d43a355eab7883e5842955f83e23b5cf7ee92673fa30647f",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00021",
+      "domain_labels": {
+        "name": "汽车之家评测",
+        "scenario": "短视频",
+        "topic": "汽车测评"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/source/speechio/SPEECHIO_ASR_ZH00021.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00021/test-00000-of-00001.parquet",
+      "size_bytes": 200074765,
+      "sha256_lfs_oid": "7fe119b08b6c264188fb1f660690fca45992822f4207bbcbcde00206675c9dec",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00022",
+      "domain_labels": {
+        "name": "小艾大叔豪宅带看",
+        "scenario": "短视频",
+        "topic": "房地产、豪宅"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00022.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00022/test-00000-of-00001.parquet",
+      "size_bytes": 193495317,
+      "sha256_lfs_oid": "248ade4c839e0dba0cb2509d78fcae06f2c2481a8653c495bdfcc8900e9089c7",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00023",
+      "domain_labels": {
+        "name": "无聊开箱；Zealer 评测",
+        "scenario": "短视频",
+        "topic": "产品开箱评测"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00023.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00023/test-00000-of-00001.parquet",
+      "size_bytes": 243676795,
+      "sha256_lfs_oid": "f8900461d0beab54eb0d288df8268791884b2d70066dc4c20b075c6d63d76bd5",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00024",
+      "domain_labels": {
+        "name": "付老师种植技术",
+        "scenario": "短视频",
+        "topic": "农业、种植"
+      },
+      "local_parquet_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/speechio_professional_entity_eval_20261010/source/SPEECHIO_ASR_ZH00024.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00024/test-00000-of-00001.parquet",
+      "size_bytes": 305407298,
+      "sha256_lfs_oid": "ae907b988cf59830cf045ec6937e4c9fb9f43391be0e4649eebf298f7b20ae68",
+      "verified": true,
+      "provisioning": "reused"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00025",
+      "domain_labels": {
+        "name": "石国鹏讲历史",
+        "scenario": "线下培训",
+        "topic": "历史、古希腊哲学"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00025.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00025/test-00000-of-00001.parquet",
+      "size_bytes": 162770044,
+      "sha256_lfs_oid": "aa25cbdae5867185340fb640f971483e757fa0c1cb1f28d4b571da85e10e9cc6",
+      "verified": true,
+      "provisioning": "downloaded"
+    },
+    {
+      "subset": "SPEECHIO_ASR_ZH00026",
+      "domain_labels": {
+        "name": "张震鬼故事",
+        "scenario": "广播节目",
+        "topic": "鬼故事"
+      },
+      "local_parquet_path": "/home/aim0/data/datasets/ASR/entity_challenge_20261014/speechio/SPEECHIO_ASR_ZH00026.parquet",
+      "remote_path": "SPEECHIO_ASR_ZH00026/test-00000-of-00001.parquet",
+      "size_bytes": 279569367,
+      "sha256_lfs_oid": "e6721ea0823f572a41c76c84774b749745244197ddba94d2d1d5d5c53a114e6d",
+      "verified": true,
+      "provisioning": "downloaded"
+    }
+  ],
+  "errors": [],
+  "catalog_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/source_catalog.jsonl",
+  "catalog_rows": 43178,
+  "catalog_fields": [
+    "subset",
+    "row_index",
+    "segment_id",
+    "text",
+    "duration",
+    "speaker",
+    "parquet_path",
+    "domain_labels"
+  ],
+  "catalog_audio_bytes_included": false
+}

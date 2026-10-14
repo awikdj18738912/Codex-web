@@ -1,0 +1,71 @@
+{
+  "production_files": [
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_audio_repair.py",
+      "unchanged": true,
+      "sha256": "aec0d8572d58759ae7eba1c7428bb9b32e6473c1bbb659cc67dcfb6023f27f12"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_streaming_replay.py",
+      "unchanged": true,
+      "sha256": "98d9e5e43c8dece4e5d89ec7fe39dafeff07d7e38981f321c6578228185861c6"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/web_app.py",
+      "unchanged": true,
+      "sha256": "f8d7a58d8092df97c8be366b8b75cb8f202827c98e63c618a824b0daf4f9d112"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/qwen_asr_stream_server.py",
+      "unchanged": true,
+      "sha256": "e0c6aa713eb44b9329f556a11d3878635965e8ce46451a239c489e178765123f"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_retrieval.py",
+      "unchanged": true,
+      "sha256": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e"
+    },
+    {
+      "file": "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_matcher.py",
+      "unchanged": true,
+      "sha256": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8"
+    }
+  ],
+  "production_database_sha256": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+  "private_worker_pid": 1892329,
+  "private_worker_stopped": true,
+  "quiescence_before_stop": {
+    "pending_tasks": 0
+  },
+  "production_web_health": {
+    "ok": true,
+    "window_edit_policy": "compat",
+    "strict_local_protocol_version": null,
+    "entity_db": true,
+    "entity_asr_context_enabled": false,
+    "entity_audio_repair_enabled": true,
+    "refinement_gate_mode": "tri_state",
+    "asr_api_style": "current",
+    "learned_window_gate": {
+      "mode": "on",
+      "ready": true,
+      "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+      "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+      "threshold": 0.8,
+      "load_error": null,
+      "scored_windows": 172,
+      "would_skip_windows": 78,
+      "vetoed_windows": 78,
+      "scoring_errors": 0,
+      "scope": "window_refine_only",
+      "calibrated": false
+    },
+    "numeric_normalization_enabled": true,
+    "numeric_backend": "zh-itn",
+    "zh_itn_enabled": true,
+    "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+    "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+  },
+  "tests": "38 passed; tests/test_entity_audio_repair.py tests/test_entity_streaming_replay.py and experiment test_candidate.py",
+  "decision": "Do not promote V5: confirmation stresses lost one entity mention and increased average total time. Production entity algorithms and database preserved."
+}

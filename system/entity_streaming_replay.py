@@ -168,7 +168,7 @@ class StreamingEntityReplay:
             self.reason = "candidate_detection_failed"
 
     async def _run(self):
-        from .entity_audio_repair import REPLAY_PREFIX
+        from .entity_audio_repair import REPLAY_PREFIX, REPLAY_DECODE_SECONDS
         context = EntityASRContext(
             REPLAY_PREFIX + json.dumps(self.terms, ensure_ascii=False), self.terms
         )
@@ -178,7 +178,9 @@ class StreamingEntityReplay:
             max_audio_bytes=self.owner.max_audio_bytes,
         )
         try:
-            ready = await guard.request("/stream/start", params=dict(self.owner._params, context=context.text))
+            ready = await guard.request("/stream/start", params=dict(
+                self.owner._params, context=context.text,
+                chunk_seconds=REPLAY_DECODE_SECONDS))
             if ready.get("context_applied") is not True:
                 self.reason = "backend_context_unsupported"
                 return

@@ -1,0 +1,19 @@
+{
+  "rule": "incremental_preflight_v6",
+  "candidate_sha256": "589377ec3361cfa2ba545744b721863bc7b97da33dff0cf8aceaea5421800a97",
+  "worker_sha256": "eb835e22a5ad71041d4cd0e8f4918ff21915d279ff73dbad6df3b29c54200fa0",
+  "sample_plan_hashes": {
+    "long_test_plan.json": "9a432055f2d987a7c66e9bed5f670adc795dc2b11901397245d3c03c4450ff2a",
+    "known_dense_test_plan.json": "6aec0747c6e6021111b680f6ce5366a69f873cc9e3fcd72fec44c60b38e6635a",
+    "independent_test_plan.json": "c4af55d05926822a8c69297a1a4075ea9a8b5ea68140eeeccb32d98c4c1ca2ef"
+  },
+  "minimum_source_seconds": 45,
+  "maximum_planned_windows": 2,
+  "minimum_audio_saving": 0.4,
+  "finish_wait_seconds": 0.8,
+  "window_limit_seconds": 60,
+  "replay_budget_seconds": 60,
+  "ambiguity_margin": 0.04,
+  "score_threshold": 0.63,
+  "independent_tuning": false
+}

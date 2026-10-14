@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "experiment": "entity_replay_decode_step_20261014",
+  "purpose": "Controlled same-ASR-draft replay regression inputs for V7 decode-step comparison.",
+  "scope_note": "All selected material comes from the previously measured 2506-item benchmark pool; this is a known-success regression set plus negative controls, not unseen validation. No reference/gold text is included. source_text is reconstructed from the old audio-arm raw_text using validated entity_audio_repair changes, or copied directly from raw_text when there were no changes.",
+  "source_files": {
+    "metadata_jsonl": "results/entity_modes_dataset_20261013/inference_inputs.jsonl",
+    "metadata_sha256": "a76da4071667b7a5d37e18148b39f6bae633c99ca5689c01a32c16387a693433",
+    "old_results_jsonl": "results/entity_modes_dataset_20261013/results.jsonl",
+    "old_results_sha256": "8e7d44c74ce690d67b95c875137712fb686bbd2bcd646a550d7d7ba6a7b215c7"
+  },
+  "selection": {
+    "changed_examples": "All old results.jsonl audio-arm records with entity_audio_repair.change_count > 0; each change is checked at canonical-position adjusted by preceding length deltas, inverse-applied right-to-left, and forward-applied from recovered source offsets; both reconstruction assertions must reproduce old raw_text exactly.",
+    "changed_count": 174,
+    "negative_controls": "Select 32 metadata cohort=negative IDs outside changed set sorted by SHA256(\"review-step-controls:\" + id); require old audio-arm change_count=0 and empty changes.",
+    "negative_control_count": 32,
+    "total_count": 206,
+    "output_order": "Deterministic hash order for changed records, with controls interleaved after the first 32 changed records.",
+    "uniqueness_verified": true
+  },
+  "validation": {
+    "restoration_failures": 0,
+    "changed_reconstruction_assertions": "For every change, canonical substring at start + cumulative prior length deltas matched old raw_text; inverse replacements reconstructed source_text; source observed spans matched at original start/end; forward replacements reconstructed old raw_text exactly.",
+    "metadata_result_pcm_hash_mismatches": 0,
+    "source_pcm_hash_failures": 0,
+    "duration_failures": 0,
+    "negative_controls_with_any_changes": 0,
+    "component_ids_unique": true
+  },
+  "v7_design": "Only second-pass replay ASR decode step changes from 2 to 10 seconds; first-pass ASR remains 2 seconds. source_text is the same old ASR draft, not gold/reference.",
+  "output": {
+    "path": "results/entity_replay_decode_step_20261014/controlled_regression_inputs.jsonl",
+    "sha256": "0c0afb42eae556844e9e74c59a73988a07a79cd2f9f83a4b0413440cbbc6312b",
+    "row_count": 206,
+    "cohort_counts": {
+      "positive": 173,
+      "negative": 33
+    },
+    "old_change_count_counts": {
+      "1": 168,
+      "0": 32,
+      "2": 6
+    }
+  }
+}

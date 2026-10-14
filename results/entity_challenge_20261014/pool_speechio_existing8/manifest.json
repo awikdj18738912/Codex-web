@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "samples": 2745,
+  "domains": {
+    "金融经济": 155,
+    "人物访谈": 234,
+    "足球": 796,
+    "科学教育": 433,
+    "创业投资": 289,
+    "法律司法": 456,
+    "汽车交通": 195,
+    "农业种植": 187
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "f0e31435d5f79209d3dcd1ab22fd80e0a825810ab9d0b650ec9f9d9e0b1d9ab4",
+  "scoring_reference_sha256": "018e442493741388a4157b661eb858639afd4264616f6a730b12a40d05e60fdc",
+  "vocabulary_hashes": {
+    "results/entity_challenge_20261014/vocabulary_review/reviewed_existing8.json": "c12c8b1ed90ae5909c69d1c8be3f23f1e3ed39cef5dd9efbd26bc2325c8d7c4f"
+  },
+  "baseline_reused": 75,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

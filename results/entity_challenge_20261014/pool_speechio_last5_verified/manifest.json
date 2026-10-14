@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "samples": 1422,
+  "domains": {
+    "篮球": 450,
+    "房地产建筑": 157,
+    "数码电子": 153,
+    "历史哲学": 212,
+    "悬疑文学": 450
+  },
+  "seed": "entity-challenge-20261014-v1",
+  "inference_input_sha256": "d5eae9eef89ffe86a3b34931fa3d290170b356c21a57822462b30083e0c69214",
+  "scoring_reference_sha256": "b6ee8b9868c73b98c5975aa37f027981ef12879e34f46e9c792536110cb719da",
+  "vocabulary_hashes": {
+    "results/entity_challenge_20261014/vocabulary_review/reviewed_last5_verified.json": "7301b168837be12bc768ec3cefb8bd5f2760986ffe5b99f82090470e6cc4bcfb"
+  },
+  "baseline_reused": 0,
+  "normalization": "zh-ITN, OpenCC t2s, NFKC/casefold, strip Unicode P/Z/C",
+  "selection": "reference-only candidate admission; raw baseline later determines difficulty; no module results used",
+  "annotation_limitation": "Source references and dictionaries; no per-item audio listening claim"
+}

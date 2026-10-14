@@ -1,0 +1,97 @@
+{
+  "text": "啊！啊",
+  "fragments": [
+    {
+      "index": 0,
+      "text": "啊！",
+      "start": 0,
+      "end": 2,
+      "confidence": {
+        "score": null,
+        "covered_text_score": null,
+        "coverage": 0.0,
+        "lexical_characters": 1,
+        "covered_lexical_characters": 0,
+        "scored_tokens": 0,
+        "token_weight": 0,
+        "min_token_probability": null,
+        "low_probability_token_ratio": null,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct"
+      }
+    },
+    {
+      "index": 1,
+      "text": "啊",
+      "start": 2,
+      "end": 3,
+      "confidence": {
+        "score": null,
+        "covered_text_score": null,
+        "coverage": 0.0,
+        "lexical_characters": 1,
+        "covered_lexical_characters": 0,
+        "scored_tokens": 0,
+        "token_weight": 0,
+        "min_token_probability": null,
+        "low_probability_token_ratio": null,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct"
+      }
+    }
+  ],
+  "windows": [
+    {
+      "index": 0,
+      "text": "啊！啊",
+      "raw_source_text": "啊！啊",
+      "start": 0,
+      "end": 3,
+      "fragment_indices": [
+        0,
+        1
+      ],
+      "fragment_count": 2,
+      "final_tail": true,
+      "confidence": {
+        "score": null,
+        "covered_text_score": null,
+        "coverage": 0.0,
+        "lexical_characters": 2,
+        "covered_lexical_characters": 0,
+        "scored_tokens": 0,
+        "token_weight": 0,
+        "min_token_probability": null,
+        "low_probability_token_ratio": null,
+        "low_probability_reference_threshold": 0.8,
+        "evidence_revisions": [],
+        "calibrated": false,
+        "production_skip_allowed": false,
+        "aggregation": "UTF8_overlap_weighted_geometric_mean_of_generation_token_probabilities; pure punctuation excluded",
+        "scope": "raw_ASR_spelling_score_not_cleanup_need_or_probability_whole_window_correct",
+        "min_fragment_score": null
+      }
+    }
+  ],
+  "pending_text": "",
+  "pending_fragment_indices": [],
+  "partition": {
+    "window_size": 3,
+    "one_punctuation_window": true,
+    "fixed_groups": true,
+    "window_max_chars": 80,
+    "group_numeric_self_corrections": true,
+    "source_chunks_supplied": true,
+    "implementation": "CumulativeWindowRefinement._fixed_chunks"
+  },
+  "calibrated": false,
+  "production_skip_allowed": false
+}

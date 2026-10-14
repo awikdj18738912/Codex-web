@@ -75,6 +75,14 @@ class WindowConfidenceTest(unittest.TestCase):
         self.assertEqual(score['coverage'],0.)
         self.assertIsNone(score['score'])
 
+    def test_invalid_utf8_replacement_cannot_be_hidden_by_lexical_coverage(self):
+        ledger=TokenScoreLedger()
+        raw='你好\ufffd'
+        ledger.update('',raw,raw.encode(),[])
+        projection=ledger.text_projection(raw,'Chinese')
+        self.assertEqual(projection['status'],'unsupported')
+        self.assertIsNone(score_source_range(projection,0,len(raw))['score'])
+
     def test_current_punctuation_decimal_and_enumeration_rules(self):
         text='材料已备齐，会议将在今天开始；请核对金额：金额是3.14元。苹果、梨都备齐！'
         result=project_window_scores(scored_projection(text),final=True)

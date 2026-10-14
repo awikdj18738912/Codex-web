@@ -1,0 +1,4234 @@
+"""Browser WebSocket UI for a pluggable streaming ASR backend and AgenticASR."""
+
+from __future__ import annotations
+
+import argparse
+import asyncio
+from dataclasses import replace
+from difflib import SequenceMatcher
+import json
+import re
+import sys
+import time
+import threading
+import uuid
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from enum import Enum
+from math import isfinite
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.responses import FileResponse
+from pydantic import BaseModel, Field
+import uvicorn
+
+from .live_qwen_refiner import TransformersRefiner, _append_record
+from .entity_store import EntityDefinition, EntityStore
+from .entity_asr_context import build_entity_asr_context
+from .deterministic_cleanup import clean_transcript_deterministically
+from .repetition_preservation import (repetition_preservation_violations, restore_preserved_repetitions,
+                                      source_repetition_edit_violations,warm_source_repetition_analysis)
+from .entity_matcher import EntityCandidateMatcher, EntityFuzzyMode
+from .entity_pipeline import (
+    fallback_entity_segment,
+    FinalizedEntitySegment,
+    finalize_entity_segment,
+    has_placeholder_failure,
+    has_retryable_integrity_failure,
+    prepare_entity_segment,
+)
+from .protection import EntityProtector, strip_refiner_key_suffix
+from .refinement_gate import (
+    HypothesisStability,
+    HypothesisTracker,
+    RefinementGate,
+    RefinementGateDecision,
+    RefinementGateMode,
+)
+from .refinement_guard import (
+    RepetitionReviewCandidate,
+    apply_repetition_review_decisions,
+    detect_boundary_anomalies,
+    find_model_proposed_deletions,
+    find_repetition_review_candidates,
+    has_repetition_review_candidate,
+    has_complete_repetition_review_context,
+    join_refined_segments,
+    preserve_safe_numeric_edits,
+    preserve_safe_repetition_edits,
+    reject_reasons,
+    restore_rule_numeric_surfaces,
+    split_for_refinement,
+)
+from .numeric_normalizer import ContextualNumericNormalizer
+from .zh_itn_bridge import DEFAULT_LIBRARY as DEFAULT_ZH_ITN_LIBRARY, ZhITNNormalizer
+from .window_refinement import (
+    CumulativeWindowRefinement,
+    StreamingRefinementDisplay,
+)
+from .session_memory import SessionEntityMemory
+from .refinement_protocol import (
+    NUMERIC_RULES_PROTOCOL_VERSION,
+    STRICT_LOCAL_PROTOCOL_VERSION,
+    WINDOW_EDIT_POLICIES,
+    apply_structured_patch,
+    parse_window_edit_policy,
+)
+from .repetition_plausibility import RepetitionPlausibility
+from .learned_window_gate import DEFAULT_MODEL_DIR, GATE_MODES, LearnedWindowGate
+
+WEB_DIR = Path(__file__).resolve().parent / "web"
+REFINEMENT_LOG_DIR = Path(__file__).resolve().parents[1] / "results" / "web"
+# Refining the complete cumulative hypothesis for every streaming chunk is
+# expensive and can monopolize the single GPU-backed refiner when a long file
+# is uploaded (especially if the browser has more than one open connection).
+# Keep short early hypotheses responsive. On ``finish``, route the authoritative
+# ASR snapshot through the same streaming worker, then run final reconciliation.
+STREAMING_INTERMEDIATE_MAX_CHARS = 240
+# One refinement pass costs about half a second while a sentence window only
+# grows a few characters per ASR chunk, so retriggering it immediately mostly
+# regenerates the same active window.  Run at most one pass per interval.
+# Finished passes are published to the browser, so this interval is also the
+# refined-pane update cadence.
+STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS = 1.0
+REFINER_LOCK_TIMEOUT_SECONDS = 30.0
+FINAL_REFINEMENT_TIMEOUT_SECONDS = 30.0
+# Long recordings are refined one bounded segment at a time.  Give the final
+# pass a length-aware deadline while retaining a hard upper bound for broken
+# model calls or disconnected clients.
+FINAL_REFINEMENT_MAX_TIMEOUT_SECONDS = 300.0
+WEBSOCKET_SEND_TIMEOUT_SECONDS = 10.0
+ASR_CONTROL_REQUEST_TIMEOUT_SECONDS = 120.0
+# Streaming recognition becomes more expensive as the active Qwen context
+# grows.  A long recording can therefore have an occasional slow chunk even
+# though the session is healthy.  Keep control requests bounded more tightly,
+# but allow chunk processing to finish before the browser's watchdog fires.
+ASR_CHUNK_REQUEST_TIMEOUT_SECONDS = 300.0
+ASR_CHUNK_STATUS_INTERVAL_SECONDS = 10.0
+class ASRApiStyle(str, Enum):
+    """Wire protocol used between the Web service and streaming ASR."""
+
+    CURRENT = "current"
+    LEGACY_V1 = "legacy_v1"
+
+    @classmethod
+    def parse(cls, value: str | "ASRApiStyle") -> "ASRApiStyle":
+        if isinstance(value, cls):
+            return value
+        try:
+            return cls(value)
+        except ValueError as error:
+            choices = ", ".join(style.value for style in cls)
+            raise ValueError(
+                f"unsupported ASR API style {value!r}; expected one of: {choices}"
+            ) from error
+
+
+class EntityInput(BaseModel):
+    canonical_text: str
+    entity_type: str = "TERM"
+    domain: str = "general"
+    normalization_policy: str = "preserve"
+    priority: int = 0
+    aliases: list[str] = Field(default_factory=list)
+
+
+class EntityEnabledInput(BaseModel):
+    enabled: bool
+
+
+class _RefinerCallsClosed(RuntimeError):
+    """Raised when a timed-out/disconnected session forbids new model calls."""
+
+
+class _RefinerSessionStats:
+    """Thread-safe accounting for every real Refiner invocation in one socket."""
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._accepting_new_calls = True
+        self._call_count = 0
+        self._initial_call_count = 0
+        self._retry_call_count = 0
+        self._intermediate_call_count = 0
+        self._final_call_count = 0
+        self._completed_call_count = 0
+        self._failed_call_count = 0
+        self._inflight_call_count = 0
+        self._completed_wall_latency_ms = 0.0
+        self._gate_skipped_segment_count = 0
+        self._busy_segment_count = 0
+        self._closed_call_rejection_count = 0
+
+    def begin_call(self, *, final: bool, retry: bool) -> float | None:
+        """Reserve one actual call atomically, returning its start timestamp."""
+
+        with self._lock:
+            if not self._accepting_new_calls:
+                self._closed_call_rejection_count += 1
+                return None
+            self._call_count += 1
+            self._inflight_call_count += 1
+            if retry:
+                self._retry_call_count += 1
+            else:
+                self._initial_call_count += 1
+            if final:
+                self._final_call_count += 1
+            else:
+                self._intermediate_call_count += 1
+        return time.perf_counter()
+
+    def finish_call(self, started_at: float, *, failed: bool) -> None:
+        with self._lock:
+            self._inflight_call_count -= 1
+            self._completed_call_count += 1
+            if failed:
+                self._failed_call_count += 1
+            self._completed_wall_latency_ms += (
+                time.perf_counter() - started_at
+            ) * 1000
+
+    def record_gate_skip(self) -> None:
+        with self._lock:
+            self._gate_skipped_segment_count += 1
+
+    def record_busy_segment(self) -> None:
+        with self._lock:
+            self._busy_segment_count += 1
+
+    def close_new_calls(self) -> None:
+        """Prevent a cancelled background thread from starting more calls."""
+
+        with self._lock:
+            self._accepting_new_calls = False
+
+    def snapshot(self) -> dict[str, object]:
+        with self._lock:
+            observed_opportunities = (
+                self._initial_call_count
+                + self._gate_skipped_segment_count
+                + self._busy_segment_count
+            )
+            return {
+                "schema_version": 1,
+                "call_count": self._call_count,
+                "initial_call_count": self._initial_call_count,
+                "retry_call_count": self._retry_call_count,
+                "intermediate_call_count": self._intermediate_call_count,
+                "final_call_count": self._final_call_count,
+                "completed_call_count": self._completed_call_count,
+                "failed_call_count": self._failed_call_count,
+                "inflight_call_count": self._inflight_call_count,
+                "completed_wall_latency_ms": round(
+                    self._completed_wall_latency_ms, 3
+                ),
+                "gate_skipped_segment_count": self._gate_skipped_segment_count,
+                "busy_segment_count": self._busy_segment_count,
+                "closed_call_rejection_count": self._closed_call_rejection_count,
+                "observed_initial_opportunity_count": observed_opportunities,
+                "accepting_new_calls": self._accepting_new_calls,
+                "stats_complete": (
+                    not self._accepting_new_calls
+                    and self._inflight_call_count == 0
+                ),
+            }
+
+
+def _entity_dict(definition: EntityDefinition) -> dict[str, object]:
+    return {
+        "entity_id": definition.entity_id,
+        "canonical_text": definition.canonical_text,
+        "entity_type": definition.entity_type,
+        "domain": definition.domain,
+        "normalization_policy": definition.normalization_policy,
+        "priority": definition.priority,
+        "aliases": list(definition.aliases),
+        "enabled": definition.enabled,
+        "source": definition.source,
+        "created_at": definition.created_at,
+        "updated_at": definition.updated_at,
+    }
+
+
+def _confidence_metadata(payload: dict[str, object]) -> dict[str, object]:
+    """Keep confidence provenance/coverage instead of reducing it to a float."""
+
+    token_count = payload.get("confidence_token_count")
+    min_probability = payload.get("confidence_min_probability")
+    return {
+        "calibrated": payload.get("confidence_calibrated") is True,
+        "covers_full_text": payload.get("confidence_covers_full_text") is True,
+        "scope": (
+            payload.get("confidence_scope")
+            if isinstance(payload.get("confidence_scope"), str)
+            else None
+        ),
+        "source": (
+            payload.get("confidence_source")
+            if isinstance(payload.get("confidence_source"), str)
+            else None
+        ),
+        "token_count": (
+            int(token_count)
+            if isinstance(token_count, int) and not isinstance(token_count, bool)
+            else None
+        ),
+        "min_probability": (
+            float(min_probability)
+            if isinstance(min_probability, (int, float))
+            and not isinstance(min_probability, bool)
+            else None
+        ),
+    }
+
+
+def _repetition_review_cache_key(
+    candidate: RepetitionReviewCandidate,
+) -> tuple[int, int, str, str, str]:
+    """Reuse a decision only for the same candidate and five-sentence context."""
+    return (
+        candidate.start,
+        candidate.end,
+        candidate.source,
+        candidate.target,
+        candidate.context,
+    )
+
+
+def _repetition_candidate_context_offset(
+    text: str, candidate: RepetitionReviewCandidate,
+) -> int | None:
+    """Locate this candidate inside its context using the source-owned offset."""
+
+    context = candidate.context
+    for start in range(max(0, candidate.end - len(context)), candidate.start + 1):
+        if (
+            text[start : start + len(context)] == context
+            and start <= candidate.start
+            and candidate.end <= start + len(context)
+        ):
+            local_start = candidate.start - start
+            if context[local_start : local_start + len(candidate.source)] == candidate.source:
+                return local_start
+    return None
+
+
+def _repetition_decision_from_candidate_response(
+    text: str, candidate: RepetitionReviewCandidate, response: str,
+) -> list[dict[str, object]] | None:
+    """Read a focused KEEP/REMOVE answer, with legacy transcript support."""
+
+    if _repetition_candidate_context_offset(text, candidate) is None:
+        return None
+    answer = strip_refiner_key_suffix(response).strip().strip("`\"'“”‘’。.!！").upper()
+    action = {
+        "KEEP": "keep",
+        "REMOVE": "remove",
+        "保留": "keep",
+        "删除": "remove",
+    }.get(answer)
+    if action is not None:
+        return [{
+            "index": candidate.index,
+            "action": action,
+            "reason": "model_candidate_decision",
+        }]
+    return _repetition_decision_from_refined_context(text, candidate, response)
+
+
+def _repetition_decision_from_refined_context(
+    text: str, candidate: RepetitionReviewCandidate, response: str
+) -> list[dict[str, object]] | None:
+    """Accept a model edit only when it changes exactly this repeated span."""
+
+    context = candidate.context
+    # The same phrase may occur elsewhere in a window.  Align the candidate
+    # with its source-owned offset rather than replacing the first occurrence.
+    local_start = _repetition_candidate_context_offset(text, candidate)
+    if local_start is None:
+        return None
+    local_end = local_start + len(candidate.source)
+    if context[local_start:local_end] != candidate.source:
+        return None
+    expected = context[:local_start] + candidate.target + context[local_end:]
+    refined, _, issue = apply_structured_patch(
+        context, strip_refiner_key_suffix(response)
+    )
+    if issue is not None:
+        return None
+    if refined == context:
+        action = "keep"
+    elif refined == expected:
+        action = "remove"
+    elif (
+        expected.startswith(refined)
+        and refined.endswith(tuple("。！？!?；;"))
+        and any(
+            mark in refined[local_start + len(candidate.target):]
+            for mark in "。！？!?；;"
+        )
+    ):
+        # A text Refiner may stop at a complete sentence before the end of
+        # the supplied context.  Its entire visible answer must still equal
+        # the expected candidate-only edit; never apply the omitted suffix.
+        action = "remove"
+    elif (
+        (candidate.kind == "character_run"
+         or candidate.kind == "punctuated_run" and len(candidate.target) == 1)
+        and _model_deleted_only_candidate_copy(
+            context, refined, local_start, local_end, candidate.target
+        )
+    ):
+        return [
+            {
+                "index": candidate.index,
+                "action": "remove",
+                "reason": "model_aligned_candidate_edit",
+            }
+        ]
+    else:
+        return None
+    return [
+        {
+            "index": candidate.index,
+            "action": action,
+            "reason": "model_local_text_review",
+        }
+    ]
+
+
+def _model_deleted_only_candidate_copy(
+    source: str, refined: str, start: int, end: int, target: str
+) -> bool:
+    """Project a model deletion at one source-owned candidate span.
+
+    Other model edits are ignored.  An unchanged anchor on each available
+    side must identify the candidate, and no replacement or insertion may
+    touch its interior.
+    """
+
+    matched: list[tuple[int, str]] = []
+    deleted = False
+    left_anchor = start == 0
+    right_anchor = end == len(source)
+    opcodes = SequenceMatcher(
+        None, source, refined, autojunk=False
+    ).get_opcodes()
+    # A wrapped explanation is not a plain transcript even if it contains
+    # the desired edit somewhere inside it.
+    if opcodes and (opcodes[0][0] == "insert" or opcodes[-1][0] == "insert"):
+        return False
+    for tag, source_start, source_end, target_start, _ in opcodes:
+        overlap_start = max(start, source_start)
+        overlap_end = min(end, source_end)
+        if tag == "equal":
+            if source_start < start:
+                left_anchor = True
+            if source_end > end:
+                right_anchor = True
+            for source_index in range(overlap_start, overlap_end):
+                matched.append((
+                    target_start + source_index - source_start,
+                    source[source_index],
+                ))
+        elif tag == "delete" and overlap_start < overlap_end:
+            deleted = True
+        elif tag == "insert":
+            if start < source_start < end:
+                return False
+        elif overlap_start < overlap_end:
+            return False
+
+    aligned = bool(matched) and (
+        deleted
+        and left_anchor
+        and right_anchor
+        and "".join(character for _, character in matched) == target
+        and [position for position, _ in matched]
+        == list(range(matched[0][0], matched[0][0] + len(matched)))
+    )
+    if aligned:
+        return True
+    # SequenceMatcher can align the comma of ``喂，喂，`` to the first
+    # comma and report deletion of the second copy plus the following comma.
+    # Recheck the complete replacement with source-owned surrounding anchors.
+    for left_width in range(min(3, start), 0, -1):
+        left = source[start - left_width:start]
+        for right_width in range(min(3, len(source) - end), 0, -1):
+            if left_width + right_width < 3:
+                continue
+            right = source[end:end + right_width]
+            original = left + source[start:end] + right
+            replacement = left + target + right
+            if (source.count(original) == 1
+                    and refined.count(replacement) == 1
+                    and refined.count(original) == 0):
+                return True
+    return False
+
+
+def _repetition_candidate_sentence(
+    text: str, candidate: RepetitionReviewCandidate, *, final: bool
+) -> tuple[str, int, int] | None:
+    """Find the candidate's complete sentence, without its neighboring sentences."""
+
+    start = text.rfind(
+        candidate.context, 0, candidate.start + len(candidate.context) + 1
+    )
+    if start < 0 or not start <= candidate.start < candidate.end <= start + len(candidate.context):
+        return None
+    marks = "。！？!?；;\n"
+    left = max((index + 1 for index in range(candidate.start)
+                if text[index] in marks), default=0)
+    right = next((index + 1 for index in range(candidate.end, len(text))
+                  if text[index] in marks), None)
+    if right is None:
+        if not final:
+            return None
+        right = len(text)
+    return text[left:right], candidate.start - left, candidate.end - left
+
+
+def _reviewed_source_spans(
+    source_spans: object,
+    before: str,
+    after: str,
+    reviews: list[dict[str, object]],
+) -> list[dict[str, object]] | None:
+    """Keep accepted local review edits attached to their original ASR spans."""
+
+    if not isinstance(source_spans, (list, tuple)):
+        return None
+    entries: list[dict[str, object]] = []
+    prefix = ""
+    for span in source_spans:
+        if not isinstance(span, dict):
+            return None
+        source = span.get("source_text")
+        clean = span.get("clean_text")
+        if not isinstance(source, str) or not isinstance(clean, str):
+            return None
+        extended = join_refined_segments((prefix, clean))
+        if not extended.endswith(clean):
+            return None
+        entries.append({
+            "source_text": source,
+            "clean_text": clean,
+            "state": span.get("state", "active"),
+            "start": len(extended) - len(clean),
+            "end": len(extended),
+        })
+        prefix = extended
+    if prefix != before:
+        return None
+
+    applied = sorted(
+        (record for record in reviews
+         if record.get("decision") == "remove" and record.get("applied") is True),
+        key=lambda record: int(record["start"]),
+        reverse=True,
+    )
+    if not applied:
+        return None
+    for record in applied:
+        start, end = record.get("start"), record.get("end")
+        source, target = record.get("source"), record.get("target")
+        if (
+            not isinstance(start, int) or not isinstance(end, int)
+            or not isinstance(source, str) or not isinstance(target, str)
+            or before[start:end] != source
+        ):
+            return None
+        left = next((i for i, item in enumerate(entries)
+                     if item["start"] <= start < item["end"]), None)
+        right = next((i for i, item in enumerate(entries)
+                      if item["start"] < end <= item["end"]), None)
+        if left is None or right is None or left > right:
+            return None
+        affected = entries[left:right + 1]
+        combined = join_refined_segments(item["clean_text"] for item in affected)
+        local_start = start - affected[0]["start"]
+        local_end = end - affected[0]["start"]
+        if combined[local_start:local_end] != source:
+            return None
+        entries[left:right + 1] = [{
+            "source_text": "".join(item["source_text"] for item in affected),
+            "clean_text": combined[:local_start] + target + combined[local_end:],
+            "state": (
+                "active" if any(item["state"] == "active" for item in affected)
+                else "committed"
+            ),
+            "start": affected[0]["start"],
+            "end": affected[-1]["end"],
+        }]
+    if clean_transcript_deterministically(
+        join_refined_segments(item["clean_text"] for item in entries)
+    ) != after:
+        return None
+    return [
+        {key: item[key] for key in ("source_text", "clean_text", "state")}
+        for item in entries
+    ]
+
+
+def _committed_clean_prefix_length(
+    text: str, source_spans: object,
+) -> int:
+    """Map complete fixed-group outputs to a safe prefix in displayed text."""
+    if not isinstance(source_spans, (list, tuple)):
+        return 0
+    committed_parts: list[str] = []
+    prefix_length = 0
+    for span in source_spans:
+        if not isinstance(span, dict) or span.get("state") != "committed":
+            break
+        clean = span.get("clean_text")
+        if not isinstance(clean, str) or not clean:
+            break
+        committed_parts.append(clean)
+        committed_prefix = clean_transcript_deterministically(
+            join_refined_segments(committed_parts)
+        )
+        if not committed_prefix or not text.startswith(committed_prefix):
+            committed_parts.pop()
+            break
+        prefix_length = len(committed_prefix)
+    return prefix_length
+
+
+def _review_matches_window(review: dict[str, object], window_text: str) -> bool:
+    candidate = str(review.get("source", ""))
+    context = str(review.get("context", ""))
+    if not candidate or candidate not in window_text:
+        return False
+    if not context:
+        return review.get("decision") == "deferred"
+    if window_text in context or context in window_text:
+        return True
+    overlap = SequenceMatcher(None, window_text, context, autojunk=False)
+    minimum_overlap = min(12, max(1, len(window_text) // 3))
+    return overlap.find_longest_match().size >= minimum_overlap
+
+
+def _render_refinement_log_report(
+    records: list[dict[str, object]], mode: str, trace_id: str,
+) -> str:
+    """Render one completed WebSocket trace for the existing paged log UI."""
+
+    final_record = next(
+        (item for item in reversed(records) if item.get("event") == "final_result"),
+        {},
+    )
+    raw_text = str(final_record.get("raw_text", ""))
+    clean_text = str(final_record.get("output", ""))
+    review_map: dict[tuple[object, ...], dict[str, object]] = {}
+    reviews = final_record.get("reviews", [])
+    if isinstance(reviews, list):
+        for review in reviews:
+            if not isinstance(review, dict):
+                continue
+            key = (
+                review.get("start"), review.get("end"),
+                review.get("source"), review.get("target"),
+            )
+            review_map[key] = review
+    unique_reviews = sorted(
+        review_map.values(), key=lambda item: (int(item.get("start", 0)), int(item.get("end", 0)))
+    )
+    reviews_by_revision: dict[tuple[str, str], list[dict[str, object]]] = {}
+    review_event_revisions: set[tuple[str, str]] = set()
+    for item in records:
+        if item.get("event") != "stream_review":
+            continue
+        revision_key = (
+            str(item.get("phase", "stream")), str(item.get("revision", ""))
+        )
+        review_event_revisions.add(revision_key)
+        event_reviews = item.get("reviews")
+        if isinstance(event_reviews, list):
+            reviews_by_revision.setdefault(revision_key, []).extend(
+                review for review in event_reviews if isinstance(review, dict)
+            )
+    attached_reviews: set[tuple[object, ...]] = set()
+    pages: list[str] = []
+
+    def review_identity(review: dict[str, object]) -> tuple[object, ...]:
+        return (
+            review.get("start"), review.get("end"),
+            review.get("source"), review.get("target"),
+            review.get("decision"), review.get("reason"),
+        )
+
+    def code_block(value: object) -> str:
+        text = str(value) if value is not None else "（空）"
+        text = text.replace("```", "``\u200b`")
+        return f"```text\n{text}\n```"
+
+    def timestamp(value: object) -> str:
+        try:
+            return datetime.fromisoformat(str(value)).astimezone().strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
+        except (TypeError, ValueError):
+            return str(value or "时间未知")
+
+    window_events = [item for item in records if item.get("event") == "window_result"]
+    for event in window_events:
+        segments = event.get("segments")
+        if not isinstance(segments, list) or not segments:
+            segments = [{"source": event.get("input", ""), "output": event.get("output", "")}]
+        for segment in segments:
+            if not isinstance(segment, dict):
+                continue
+            source = str(segment.get("source") or event.get("input", ""))
+            page_number = len(pages) + 1
+            phase = {"stream": "流式", "final": "结束阶段"}.get(
+                str(event.get("phase", "")), str(event.get("phase", "未知阶段"))
+            )
+            revision = event.get("revision", "—")
+            segment_index = segment.get("segment_index", "—")
+            calls = segment.get("model_calls")
+            window_kind = segment.get("window_kind")
+            required_window_chunks = segment.get("required_window_chunks")
+            window_label = (
+                f"K={required_window_chunks}"
+                if isinstance(required_window_chunks, int)
+                else "固定大小"
+            )
+            if window_kind == "pending_tail":
+                input_label = f"未满 {window_label} 窗口的待处理尾部："
+            elif window_kind == "complete_k3_window":
+                input_label = (
+                    f"完整 {window_label} 窗口的 Refiner 输入："
+                    if isinstance(calls, list) and calls
+                    else f"完整 {window_label} 片段（门控检查，未调用 Refiner）："
+                )
+            elif window_kind == "final_short_tail":
+                input_label = (
+                    f"结束阶段不足 {window_label} 的尾部 Refiner 输入："
+                    if isinstance(calls, list) and calls
+                    else f"结束阶段不足 {window_label} 的尾部片段（门控检查）："
+                )
+            elif isinstance(calls, list) and calls:
+                input_label = "Refiner 实际输入片段："
+            else:
+                input_label = "门控检查片段（非 Refiner 调用窗口）："
+            body = [
+                f"## {page_number}. {timestamp(event.get('captured_at'))} · {phase} · 修订 {revision} · 片段 {segment_index}",
+                "",
+                input_label,
+                "",
+                code_block(source),
+                "",
+            ]
+            gate = segment.get("gate")
+            if isinstance(gate, dict):
+                gate_reasons = gate.get("reasons") or []
+                cleanup_signals = gate.get("cleanup_signals") or []
+                body.append(
+                    "门控：`{}`；原因：`{}`；触发信号：`{}`。".format(
+                        gate.get("action", "未知"),
+                        ", ".join(str(item) for item in gate_reasons) or "无",
+                        ", ".join(str(item) for item in cleanup_signals) or "无",
+                    )
+                )
+                body.append("")
+
+            if isinstance(calls, list) and calls:
+                body.extend(["普通窗口精修调用：", ""])
+                for call_number, call in enumerate(calls, 1):
+                    if not isinstance(call, dict):
+                        continue
+                    call_kind = "占位符保护重试" if call.get("strict_placeholders") else "模型调用"
+                    body.extend([
+                        f"{call_number}. {call_kind}输入：",
+                        "",
+                        code_block(call.get("input", "")),
+                        "",
+                        "模型输出：",
+                        "",
+                        code_block(call.get("output", call.get("error", "无输出"))),
+                        "",
+                    ])
+                outcome = str(segment.get("outcome", "未知"))
+                outcome_label = {"accepted": "接受", "rejected": "拒绝"}.get(outcome, outcome)
+                reject_reasons = segment.get("reject_reasons") or []
+                body.extend([
+                    f"窗口验收：{outcome_label}；拒绝原因：`{', '.join(map(str, reject_reasons)) or '无'}`。",
+                    "",
+                ])
+            else:
+                body.extend(["此片段没有调用 Refiner。", ""])
+
+            body.extend(["此片段当前输出：", "", code_block(segment.get("output", segment.get("baseline", source))), ""])
+            revision_key = (
+                str(event.get("phase", "")), str(event.get("revision", ""))
+            )
+            window_reviews = (
+                reviews_by_revision.get(revision_key, [])
+                if revision_key in review_event_revisions
+                else unique_reviews
+            )
+            local_reviews = [
+                review for review in window_reviews
+                if _review_matches_window(review, source)
+            ]
+            local_reviews.extend(
+                review for review in segment.get("local_deletion_reviews", [])
+                if isinstance(review, dict)
+            )
+            if local_reviews:
+                body.extend(["此片段关联的局部候选复核：", ""])
+                for review_number, review in enumerate(local_reviews, 1):
+                    attached_reviews.add(review_identity(review))
+                    decision = str(review.get("decision", "unresolved"))
+                    reason = str(review.get("reason", "未知"))
+                    if decision == "deferred":
+                        deferred_reason = {
+                            "incomplete_k3_group": "所属 K=3 窗口未完成",
+                            "awaiting_five_sentence_context": "等待五句稳定上下文",
+                        }.get(reason, reason)
+                        body.append(
+                            f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；状态：待复核；原因：{deferred_reason}（未调用模型）。"
+                        )
+                        body.append("")
+                        continue
+                    decision_label = {
+                        "keep": "保留",
+                        "remove": "删除",
+                        "unresolved": "未判定",
+                    }.get(decision, decision)
+                    body.extend([
+                        f"{review_number}. 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：{decision_label}；原因：`{reason}`；已应用：`{review.get('applied', False)}`。",
+                    ])
+                    if review.get("model_response"):
+                        body.extend(["模型复核输出：", "", code_block(review["model_response"]), ""])
+                    score_fields = (
+                        ("候选分数差", "candidate_score_margin"),
+                        ("全文 plausibility 分数差", "plausibility_margin"),
+                        ("局部 plausibility 分数差", "local_plausibility_margin"),
+                    )
+                    scores = [f"{label}：{review[key]}" for label, key in score_fields if review.get(key) is not None]
+                    if scores:
+                        body.extend(["；".join(scores), ""])
+                    if review.get("context"):
+                        body.extend(["复核上下文：", "", code_block(review["context"]), ""])
+            else:
+                body.extend(["此片段没有关联到局部候选复核。", ""])
+            pages.append("\n".join(body).rstrip())
+
+    if not pages:
+        pages.append(
+            "## 1. 转录窗口\n\n转录片段：\n\n"
+            + code_block(raw_text)
+            + "\n\n转录输出：\n\n"
+            + code_block(clean_text)
+        )
+
+    appendix = [
+        "## 未可靠归属到单个窗口",
+        "",
+        "### 本次转录概览",
+        "",
+        f"完成时间：{timestamp(final_record.get('captured_at'))}；模式：`{mode}`；追踪编号：`{trace_id}`。",
+    ]
+    if final_record.get("final_refinement_mode") in {"on", "off"}:
+        appendix.append(
+            "结束阶段全文重跑：{}；复用窗口：{}；重新处理窗口：{}。".format(
+                "启用" if final_record["final_refinement_mode"] == "on" else "关闭",
+                final_record.get("window_cache_reused_group_count", 0),
+                final_record.get("window_cache_reprocessed_group_count", 0),
+            )
+        )
+    stats = final_record.get("refiner_session_stats")
+    if isinstance(stats, dict):
+        appendix.extend([
+            f"Refiner 调用：{stats.get('call_count', 0)} 次；初次调用：{stats.get('initial_call_count', 0)} 次；重试：{stats.get('retry_call_count', 0)} 次；门控跳过：{stats.get('gate_skipped_segment_count', 0)} 次。",
+        ])
+    appendix.extend([
+        "",
+        "原始转写全文：",
+        "",
+        code_block(raw_text),
+        "",
+        "最终精修全文：",
+        "",
+        code_block(clean_text),
+        "",
+    ])
+    unassigned = []
+    for review in unique_reviews:
+        if review_identity(review) in attached_reviews:
+            continue
+        unassigned.append(review)
+    if unassigned:
+        appendix.extend(["未关联到单个窗口的候选复核：", ""])
+        for review in unassigned:
+            appendix.append(
+                f"- 候选：`{review.get('source', '')}` → `{review.get('target', '')}`；决定：`{review.get('decision', 'unresolved')}`；原因：`{review.get('reason', '未知')}`；已应用：`{review.get('applied', False)}`。"
+            )
+    return "\n\n---\n\n".join(pages) + "\n\n" + "\n".join(appendix) + "\n"
+
+
+def _write_refinement_log_report(
+    directory: Path, trace_id: str, mode: str, records: list[dict[str, object]],
+) -> Path:
+    """Atomically save a completed transcription for the existing log page."""
+
+    captured_at = datetime.now(timezone.utc)
+    filename = (
+        f"refinement_windows_grouped_{captured_at:%Y%m%d_%H%M%S_%f}_{trace_id}.md"
+    )
+    report_path = directory / filename
+    temporary_path = directory / f".{filename}.tmp"
+    directory.mkdir(parents=True, exist_ok=True)
+    report = _render_refinement_log_report(records, mode, trace_id)
+    try:
+        temporary_path.write_text(report, encoding="utf-8")
+        temporary_path.replace(report_path)
+    except OSError:
+        temporary_path.unlink(missing_ok=True)
+        raise
+    return report_path
+
+
+def _stream_request(
+    asr_url: str,
+    endpoint: str,
+    session_id: str | None = None,
+    data: bytes = b"",
+    params: dict[str, str] | None = None,
+    *,
+    api_style: str | ASRApiStyle = ASRApiStyle.CURRENT,
+) -> dict[str, object]:
+    style = ASRApiStyle.parse(api_style)
+    request_data = data
+    content_type = "application/octet-stream"
+    method = "POST"
+    if style is ASRApiStyle.CURRENT:
+        query_params = dict(params or {})
+        if session_id:
+            query_params["session_id"] = session_id
+        query = urllib.parse.urlencode(query_params)
+        url = f"{asr_url.rstrip('/')}{endpoint}"
+        if query:
+            url = f"{url}?{query}"
+    else:
+        if endpoint == "/stream/start":
+            url = f"{asr_url.rstrip('/')}/v1/stream/start"
+            request_data = json.dumps(params or {}, ensure_ascii=False).encode("utf-8")
+            content_type = "application/json"
+        else:
+            if not session_id:
+                raise ValueError(f"{endpoint} requires a streaming ASR session_id")
+            encoded_session_id = urllib.parse.quote(session_id, safe="")
+            if endpoint == "/stream/chunk":
+                url = (
+                    f"{asr_url.rstrip('/')}/v1/stream/"
+                    f"{encoded_session_id}/chunk"
+                )
+            elif endpoint == "/stream/finish":
+                url = (
+                    f"{asr_url.rstrip('/')}/v1/stream/"
+                    f"{encoded_session_id}/finish"
+                )
+                request_data = b"{}"
+                content_type = "application/json"
+            elif endpoint == "/stream/cancel":
+                url = f"{asr_url.rstrip('/')}/v1/stream/{encoded_session_id}"
+                request_data = None
+                method = "DELETE"
+            else:
+                raise ValueError(f"unsupported streaming ASR endpoint: {endpoint}")
+    request = urllib.request.Request(
+        url,
+        data=request_data,
+        headers={"Content-Type": content_type},
+        method=method,
+    )
+    try:
+        timeout = (
+            ASR_CHUNK_REQUEST_TIMEOUT_SECONDS
+            if endpoint == "/stream/chunk"
+            else ASR_CONTROL_REQUEST_TIMEOUT_SECONDS
+        )
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError) as error:
+        raise RuntimeError(f"streaming ASR request failed: {error}") from error
+    if not isinstance(payload, dict) or payload.get("error"):
+        raise RuntimeError(f"streaming ASR error: {payload}")
+    return payload
+
+
+async def _stream_request_async(
+    asr_url: str,
+    endpoint: str,
+    session_id: str | None = None,
+    data: bytes = b"",
+    params: dict[str, str] | None = None,
+    *,
+    api_style: str | ASRApiStyle = ASRApiStyle.CURRENT,
+) -> dict[str, object]:
+    """Run the blocking ASR HTTP adapter without stopping the WebSocket loop."""
+
+    style = ASRApiStyle.parse(api_style)
+    if style is ASRApiStyle.CURRENT:
+        # Preserve the original call shape so existing test doubles and custom
+        # adapters that implement the current protocol remain compatible.
+        return await asyncio.to_thread(
+            _stream_request,
+            asr_url,
+            endpoint,
+            session_id,
+            data,
+            params,
+        )
+    return await asyncio.to_thread(
+        _stream_request,
+        asr_url,
+        endpoint,
+        session_id,
+        data,
+        params,
+        api_style=style,
+    )
+
+
+def create_app(
+    refiner_model: Path,
+    refiner_device: str,
+    asr_url: str,
+    language: str | None,
+    max_new_tokens: int,
+    output: Path | None,
+    entity_db: Path | None = None,
+    entity_fuzzy_mode: str = "shadow",
+    refinement_gate_mode: str = "off",
+    rule_protection: bool = True,
+    numeric_normalization: bool = False,
+    asr_api_style: str = ASRApiStyle.CURRENT.value,
+    final_refinement_mode: str = "off",
+    zh_itn_library: Path | None = None,
+    entity_asr_context: bool = False,
+    window_edit_policy: str = "compat",
+    entity_asr_echo_guard: bool = True,
+    entity_audio_repair: bool = False,
+    experimental_gate_router=None,
+    experimental_gate_tasks: tuple[str, ...] = ("window_refine",),
+    learned_window_gate_mode: str = "off",
+    learned_window_gate_model_dir: Path = DEFAULT_MODEL_DIR,
+) -> FastAPI:
+    if not set(experimental_gate_tasks).issubset({"window_refine", "local_edit_review"}):
+        raise ValueError("Unknown experimental gate task")
+    if learned_window_gate_mode != "off" and experimental_gate_router is not None:
+        raise ValueError("Cannot combine the learned window gate with an experimental router")
+    if learned_window_gate_mode != "off" and RefinementGateMode.parse(refinement_gate_mode) is not RefinementGateMode.TRI_STATE:
+        raise ValueError("The learned window gate requires refinement_gate_mode=tri_state")
+    learned_window_gate = LearnedWindowGate(learned_window_gate_mode, learned_window_gate_model_dir)
+    if learned_window_gate.load_error:
+        print(f"Learned window gate unavailable; preserving native routing: {learned_window_gate.load_error}", flush=True)
+    warm_source_repetition_analysis()
+    window_edit_policy = parse_window_edit_policy(window_edit_policy)
+    final_refinement_mode = str(final_refinement_mode).strip().lower()
+    if final_refinement_mode not in {"on", "off"}:
+        raise ValueError("final_refinement_mode must be 'on' or 'off'")
+    zh_itn = ZhITNNormalizer(zh_itn_library) if zh_itn_library is not None else None
+    if zh_itn is not None and numeric_normalization:
+        raise ValueError("zh-itn and legacy numeric normalization cannot both be enabled")
+    app = FastAPI(docs_url=None, redoc_url=None)
+    print("Loading AgenticASR Refiner...", flush=True)
+    refiner = TransformersRefiner(refiner_model, refiner_device, max_new_tokens,
+                                 **({"window_edit_policy": window_edit_policy} if window_edit_policy != "compat" else {}))
+    refiner_lock = threading.Lock()
+    repetition_plausibility = RepetitionPlausibility(refiner_device)
+
+    def review_final_repetition_text(
+        text: str,
+        *,
+        final: bool,
+        call_stats: _RefinerSessionStats | None,
+        streaming: bool = False,
+        eligible_prefix_length: int | None = None,
+        review_cache: dict[
+            tuple[int, int, str, str, str], dict[str, object]
+        ] | None = None,
+        response_cache: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] | None = None,
+        source_text: str | None = None,
+    ) -> tuple[str, list[dict[str, object]], float, int, int]:
+        """Review structural repetitions in a stable stream window or final text."""
+
+        if (not final and not streaming) or not text:
+            return text, [], 0.0, 0, 0
+        all_candidates = find_repetition_review_candidates(
+            text,
+            max_candidates=128,
+            numeric_rule_mode=zh_itn is not None,
+        )
+        if not all_candidates:
+            return text, [], 0.0, 0, 0
+
+        deferred_records: list[dict[str, object]] = []
+        if final or eligible_prefix_length is None:
+            candidates = all_candidates
+        else:
+            stable_end = min(max(0, eligible_prefix_length), len(text))
+            stable_text = text[:stable_end]
+            candidates = list(
+                find_repetition_review_candidates(
+                    stable_text,
+                    max_candidates=128,
+                    numeric_rule_mode=zh_itn is not None,
+                )
+            )
+            for candidate in all_candidates:
+                if candidate.end <= stable_end:
+                    continue
+                deferred_records.append({
+                    key: value
+                    for key, value in candidate.public_dict().items()
+                    if key != "context"
+                } | {
+                    "decision": "deferred",
+                    "reason": "incomplete_k3_group",
+                    "applied": False,
+                    "model_called": False,
+                })
+            ready_candidates: list[RepetitionReviewCandidate] = []
+            for candidate in candidates:
+                if has_complete_repetition_review_context(
+                    stable_text, candidate, following_sentences=2,
+                ):
+                    ready_candidates.append(candidate)
+                else:
+                    deferred_records.append({
+                        key: value
+                        for key, value in candidate.public_dict().items()
+                        if key != "context"
+                    } | {
+                        "decision": "deferred",
+                        "reason": "awaiting_five_sentence_context",
+                        "applied": False,
+                        "model_called": False,
+                    })
+            candidates = ready_candidates
+
+        if not candidates:
+            return text, deferred_records, 0.0, 0, 0
+
+        reviewable_candidates = []
+        for candidate in candidates:
+            projected = text[:candidate.start] + candidate.target + text[candidate.end:]
+            preservation = repetition_preservation_violations(text, projected)
+            if source_text is not None:
+                preservation=tuple(dict.fromkeys((*preservation,
+                    *source_repetition_edit_violations(source_text,text,projected))))
+            if preservation:
+                # Resolve source-evidenced KEEP before cached REMOVE decisions
+                # or neural scoring. The commit guard remains a second check.
+                deferred_records.append({
+                    **candidate.public_dict(), "decision": "keep",
+                    "reason": "source_repetition_preservation",
+                    "preservation_reasons": list(preservation),
+                    "applied": False, "model_called": False,
+                })
+            else:
+                if experimental_gate_router is not None and "local_edit_review" in experimental_gate_tasks:
+                    routed = experimental_gate_router(dict(
+                        task_kind="local_edit_review", domain="general",
+                        baseline_text=candidate.context, available_context=candidate.context,
+                        candidate_local_start=_repetition_candidate_context_offset(text, candidate),
+                        candidate={key:getattr(candidate,key) for key in ("source","target","kind")},
+                    ), "refine")
+                    if routed.get("action") == "keep":
+                        deferred_records.append({
+                            **candidate.public_dict(), "decision":"keep",
+                            "reason":"experimental_gate_veto", "applied":False,
+                            "model_called":False,
+                        })
+                        continue
+                reviewable_candidates.append(candidate)
+        candidates = reviewable_candidates
+        if not candidates:
+            return text, deferred_records, 0.0, 0, 0
+
+        cached_decisions: list[dict[str, object]] = []
+        cached_unresolved_records: list[dict[str, object]] = []
+        pending_candidates: list[RepetitionReviewCandidate] = []
+        for candidate in candidates:
+            cached = (
+                review_cache.get(_repetition_review_cache_key(candidate))
+                if review_cache is not None
+                else None
+            )
+            action = cached.get("action") if isinstance(cached, dict) else None
+            if action in {"keep", "remove"}:
+                cached_decisions.append(
+                    {
+                        "index": candidate.index,
+                        "action": action,
+                        "reason": str(cached.get("reason", "streaming_cache")),
+                    }
+                )
+            elif action == "unresolved":
+                cached_unresolved_records.append({
+                    **candidate.public_dict(),
+                    "decision": "unresolved",
+                    "reason": str(cached.get("reason", "model_uncertain")),
+                    "model_response": str(cached.get("model_response", "")),
+                    "model_response_cache_hit": True,
+                    **{
+                        key: cached[key]
+                        for key in (
+                            "candidate_score_margin",
+                            "plausibility_margin",
+                            "plausibility_reason",
+                            "local_plausibility_margin",
+                            "local_plausibility_reason",
+                        )
+                        if key in cached
+                    },
+                })
+            else:
+                pending_candidates.append(candidate)
+
+        if not pending_candidates:
+            if cached_decisions:
+                # Cached decisions must retain their applied records.  The
+                # streaming display uses those records to attach an edit to
+                # its source-owned spans.  Dropping them here left the text
+                # clean while the spans reverted to raw ASR on the next pass.
+                reviewed_text, applied_records = apply_repetition_review_decisions(
+                    text,
+                    candidates,
+                    cached_decisions,
+                    numeric_rule_mode=zh_itn is not None,
+                )
+                return (
+                    reviewed_text,
+                    [*deferred_records, *cached_unresolved_records, *applied_records],
+                    0.0,
+                    0,
+                    0,
+                )
+            return text, [*deferred_records, *cached_unresolved_records], 0.0, 0, 0
+
+        records: list[dict[str, object]] = [
+            *deferred_records, *cached_unresolved_records,
+        ]
+        if not refiner_lock.acquire(timeout=REFINER_LOCK_TIMEOUT_SECONDS):
+            records.extend([
+                {
+                    **candidate.public_dict(),
+                    "decision": "unresolved",
+                    "reason": "review_unavailable",
+                }
+                for candidate in pending_candidates
+            ])
+            if cached_decisions:
+                text, cached_records = apply_repetition_review_decisions(
+                    text,
+                    candidates,
+                    cached_decisions,
+                    numeric_rule_mode=zh_itn is not None,
+                )
+                records.extend(cached_records)
+            return text, records, 0.0, 0, 0
+
+        total_latency_ms = 0.0
+        model_call_count = 0
+        response_cache_hit_count = 0
+        decisions: list[dict[str, object]] = list(cached_decisions)
+        model_responses: dict[int, str] = {}
+        response_cache_hits: set[int] = set()
+        batch_responses: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] = {}
+        batch_completion_status: dict[tuple[str, int, str, str], bool] = {}
+        candidate_score_margins: dict[int, float] = {}
+        plausibility_evidence: dict[int, dict[str, object]] = {}
+        model_completion_status: dict[int, bool] = {}
+        try:
+            reviewer = getattr(refiner, "review_repetition", None)
+            reviewer_with_status = getattr(
+                refiner, "review_repetition_with_status", None
+            )
+            candidate_reviewer = getattr(
+                refiner, "review_repetition_candidate_with_status", None
+            )
+            if not any(callable(item) for item in (
+                reviewer, reviewer_with_status, candidate_reviewer
+            )):
+                records.extend([
+                    {
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": "review_unavailable",
+                    }
+                    for candidate in pending_candidates
+                ])
+                reviewed_text = text
+                if cached_decisions:
+                    reviewed_text, cached_records = apply_repetition_review_decisions(
+                        text,
+                        candidates,
+                        cached_decisions,
+                        numeric_rule_mode=zh_itn is not None,
+                    )
+                    records.extend(cached_records)
+                return reviewed_text, records, total_latency_ms, 0, 0
+            for candidate in pending_candidates:
+                local_start = _repetition_candidate_context_offset(text, candidate)
+                if local_start is None:
+                    records.append({
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": "invalid_candidate_context",
+                    })
+                    continue
+                request_key = (
+                    candidate.context, local_start, candidate.source, candidate.target
+                )
+                completed = False
+                cached_response = batch_responses.get(request_key)
+                if cached_response is not None:
+                    response, score_margin = cached_response
+                    completed = batch_completion_status.get(request_key, False)
+                    response_cache_hit_count += 1
+                    response_cache_hits.add(candidate.index)
+                    response_latency_ms = 0.0
+                elif (
+                    response_cache is not None
+                    and request_key in response_cache
+                ):
+                    response, score_margin = response_cache[request_key]
+                    completed = True
+                    batch_responses[request_key] = (response, score_margin)
+                    response_cache_hit_count += 1
+                    response_cache_hits.add(candidate.index)
+                    response_latency_ms = 0.0
+                else:
+                    score_margin = None
+                    started_at = (
+                        call_stats.begin_call(final=final, retry=False)
+                        if call_stats is not None
+                        else time.perf_counter()
+                    )
+                    if started_at is None:
+                        records.append(
+                            {
+                                **candidate.public_dict(),
+                                "decision": "unresolved",
+                                "reason": "review_calls_closed",
+                            }
+                        )
+                        continue
+                    model_call_count += 1
+                    try:
+                        if callable(candidate_reviewer):
+                            reviewed = candidate_reviewer(
+                                candidate.context, candidate.source,
+                                candidate.target, local_start,
+                            )
+                            response, response_latency_ms, completed = reviewed[:3]
+                            if len(reviewed) > 3:
+                                score_margin = reviewed[3]
+                        elif callable(reviewer_with_status):
+                            response, response_latency_ms, completed = (
+                                reviewer_with_status(candidate.context)
+                            )
+                        else:
+                            # Keep test doubles and other Refiner adapters that
+                            # implement the original two-value API compatible.
+                            response, response_latency_ms = reviewer(
+                                candidate.context
+                            )
+                            completed = True
+                    except BaseException:
+                        if call_stats is not None:
+                            call_stats.finish_call(started_at, failed=True)
+                        records.append(
+                            {
+                                **candidate.public_dict(),
+                                "decision": "unresolved",
+                                "reason": "review_failed",
+                            }
+                        )
+                        continue
+                    if call_stats is not None:
+                        call_stats.finish_call(started_at, failed=False)
+                    if not isinstance(response, str):
+                        response = str(response)
+                    batch_responses[request_key] = (response, score_margin)
+                    batch_completion_status[request_key] = completed is True
+                    if (
+                        completed is True
+                        and response.strip()
+                        and response_cache is not None
+                    ):
+                        response_cache[request_key] = (response, score_margin)
+                        if len(response_cache) > 1024:
+                            for old_context in tuple(response_cache)[:256]:
+                                response_cache.pop(old_context, None)
+
+                total_latency_ms += response_latency_ms
+                model_responses[candidate.index] = response
+                model_completion_status[candidate.index] = completed is True
+                if score_margin is not None:
+                    candidate_score_margins[candidate.index] = float(score_margin)
+                decision = _repetition_decision_from_candidate_response(
+                    text, candidate, response
+                )
+                if candidate.kind == "character_run" and decision is None:
+                    sentence = _repetition_candidate_sentence(
+                        text, candidate, final=final
+                    )
+                    if sentence is not None:
+                        sentence_text, local_start, local_end = sentence
+                        plausibility = repetition_plausibility.decide(
+                            sentence_text, local_start, local_end, candidate.target
+                        )
+                        plausibility_evidence[candidate.index] = {
+                            "plausibility_margin": plausibility.margin,
+                            "plausibility_reason": plausibility.reason,
+                        }
+                        if (
+                            plausibility.decision == "unresolved"
+                            and candidate.source == candidate.target * 2
+                        ):
+                            local_plausibility = repetition_plausibility.decide_short_context(
+                                sentence_text, local_start, local_end, candidate.target
+                            )
+                            plausibility_evidence[candidate.index].update({
+                                "local_plausibility_margin": local_plausibility.margin,
+                                "local_plausibility_reason": local_plausibility.reason,
+                            })
+                            if local_plausibility.decision in {"remove", "keep"}:
+                                plausibility = local_plausibility
+                        if plausibility.decision in {"remove", "keep"}:
+                            decision = [{
+                                "index": candidate.index,
+                                "action": plausibility.decision,
+                                "reason": plausibility.reason,
+                            }]
+                if decision is None:
+                    record = {
+                        **candidate.public_dict(),
+                        "decision": "unresolved",
+                        "reason": (
+                            "model_uncertain"
+                            if response.strip().upper() == "UNRESOLVED"
+                            else "invalid_response"
+                        ),
+                        "model_response": response,
+                        "model_completed": model_completion_status.get(
+                            candidate.index, False
+                        ),
+                        **(
+                            {"candidate_score_margin": candidate_score_margins[candidate.index]}
+                            if candidate.index in candidate_score_margins else {}
+                        ),
+                        **plausibility_evidence.get(candidate.index, {}),
+                    }
+                    if candidate.index in response_cache_hits:
+                        record["model_response_cache_hit"] = True
+                    records.append(record)
+                else:
+                    decisions.extend(decision)
+            if decisions:
+                reviewed_text, applied_records = apply_repetition_review_decisions(
+                    text,
+                    candidates,
+                    decisions,
+                    numeric_rule_mode=zh_itn is not None,
+                )
+            else:
+                reviewed_text, applied_records = text, ()
+            applied_by_index = {
+                int(record["index"]): record for record in applied_records
+            }
+            # A cached deletion was already validated on an earlier stream
+            # pass.  Still emit its applied record on this pass so the
+            # source-span map can carry the edit forward to the browser.
+            records.extend(
+                applied_by_index[item["index"]]
+                for item in cached_decisions
+                if int(item["index"]) in applied_by_index
+            )
+            for candidate in pending_candidates:
+                if candidate.index not in applied_by_index:
+                    continue
+                record = {
+                    **applied_by_index[candidate.index],
+                    "model_response": model_responses[candidate.index],
+                    **(
+                        {"candidate_score_margin": candidate_score_margins[candidate.index]}
+                        if candidate.index in candidate_score_margins else {}
+                    ),
+                    **plausibility_evidence.get(candidate.index, {}),
+                }
+                if candidate.index in response_cache_hits:
+                    record["model_response_cache_hit"] = True
+                records.append(record)
+            records.sort(key=lambda record: int(record["index"]))
+
+            if review_cache is not None:
+                decision_by_index = {
+                    int(item["index"]): item for item in decisions
+                }
+                unresolved_by_index = {
+                    int(item["index"]): item
+                    for item in records
+                    if item.get("decision") == "unresolved"
+                }
+                for candidate in pending_candidates:
+                    decision = decision_by_index.get(candidate.index)
+                    unresolved = unresolved_by_index.get(candidate.index)
+                    action = (
+                        str(decision.get("action", "")).lower()
+                        if decision is not None
+                        else "unresolved"
+                        if unresolved is not None
+                        and unresolved.get("model_completed") is True
+                        else ""
+                    )
+                    applied_record = applied_by_index.get(candidate.index)
+                    if action == "keep" or (
+                        action == "remove"
+                        and isinstance(applied_record, dict)
+                        and applied_record.get("applied") is True
+                    ):
+                        review_cache[_repetition_review_cache_key(candidate)] = {
+                            "action": action,
+                            "reason": str(
+                                decision.get("reason", "streaming_cache")
+                            ),
+                        }
+                    elif action == "unresolved" and unresolved is not None:
+                        review_cache[_repetition_review_cache_key(candidate)] = {
+                            "action": "unresolved",
+                            "reason": str(unresolved.get("reason", "model_uncertain")),
+                            **{
+                                key: unresolved[key]
+                                for key in (
+                                    "model_response",
+                                    "candidate_score_margin",
+                                    "plausibility_margin",
+                                    "plausibility_reason",
+                                    "local_plausibility_margin",
+                                    "local_plausibility_reason",
+                                )
+                                if key in unresolved
+                            },
+                        }
+                if len(review_cache) > 1024:
+                    for key in tuple(review_cache)[:256]:
+                        review_cache.pop(key, None)
+            return (
+                reviewed_text,
+                records,
+                total_latency_ms,
+                model_call_count,
+                response_cache_hit_count,
+            )
+        finally:
+            refiner_lock.release()
+
+    entity_store = EntityStore(entity_db) if entity_db is not None else None
+    fuzzy_mode = EntityFuzzyMode.parse(entity_fuzzy_mode)
+    refinement_gate = RefinementGate(
+        refinement_gate_mode,
+        # The ASR backend currently exposes an uncalibrated suffix
+        # log-probability, not full-segment confidence.  Treating that value
+        # as a reason to refine every clean segment caused the Refiner to
+        # introduce more errors than it removed.
+        refine_on_unverified_confidence=(
+            RefinementGateMode.parse(refinement_gate_mode)
+            is not RefinementGateMode.TRI_STATE
+        ),
+    )
+    # Window ownership and cache/retry semantics must not change when only
+    # the routing gate is switched. Use the established fixed K=3 pipeline
+    # for every gate mode, including the full-Refiner (off) baseline.
+    window_pipeline_config = {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": True,
+        "fixed_groups": True,
+        "stream_reprocess_rejected": False,
+        "final_reprocess_rejected": final_refinement_mode == "on",
+        "group_numeric_self_corrections": zh_itn is not None,
+    }
+    numeric_normalizer = ContextualNumericNormalizer()
+    selected_asr_api_style = ASRApiStyle.parse(asr_api_style)
+
+    async def request_asr(
+        endpoint: str,
+        session_id: str | None = None,
+        data: bytes = b"",
+        params: dict[str, str] | None = None,
+    ) -> dict[str, object]:
+        return await _stream_request_async(
+            asr_url,
+            endpoint,
+            session_id,
+            data,
+            params,
+            api_style=selected_asr_api_style,
+        )
+
+    def managed_entity_store() -> EntityStore:
+        if entity_store is None:
+            raise HTTPException(
+                status_code=409,
+                detail="实体数据库未启用；请使用 --entity-db 启动服务。",
+            )
+        return entity_store
+
+    def refine_update(
+        raw_text: str,
+        detected_language: str | None,
+        final: bool,
+        protector: EntityProtector,
+        asr_confidence: float | None,
+        matcher: EntityCandidateMatcher | None = None,
+        *,
+        single_window: bool = False,
+        confidence_metadata: dict[str, object] | None = None,
+        call_stats: _RefinerSessionStats | None = None,
+        trace_segments: list[dict[str, object]] | None = None,
+        pending_only: bool = False,
+    ) -> dict[str, object]:
+        confidence_metadata = dict(confidence_metadata or {})
+        trace_segment: dict[str, object] | None = None
+
+        def invoke_refiner(
+            text: str,
+            *,
+            hints: tuple[str, ...],
+            strict_placeholders: bool = False,
+        ) -> tuple[str, float]:
+            started_at = (
+                call_stats.begin_call(final=final, retry=strict_placeholders)
+                if call_stats is not None
+                else time.perf_counter()
+            )
+            if started_at is None:
+                raise _RefinerCallsClosed(
+                    "refiner calls are closed for this WebSocket session"
+                )
+            try:
+                numeric_rules_refine = (
+                    getattr(refiner, "refine_with_numeric_rules", None)
+                    if zh_itn is not None
+                    else None
+                )
+                if callable(numeric_rules_refine):
+                    refine_method = numeric_rules_refine
+                else:
+                    refine_method = refiner.refine
+                refine_kwargs = dict(entity_hints=hints,strict_placeholders=strict_placeholders)
+                if getattr(refiner,"supports_entity_candidates",False):
+                    refine_kwargs["entity_candidates"] = prepared.refiner_candidates
+                result = refine_method(text,**refine_kwargs)
+            except BaseException as error:
+                if trace_segment is not None:
+                    trace_segment.setdefault("model_calls", []).append(
+                        {"input": text, "strict_placeholders": strict_placeholders,
+                         "numeric_policy": (
+                             "zh-itn-surface-locked" if zh_itn is not None
+                             else "model-driven"
+                         ),
+                         "error": type(error).__name__}
+                    )
+                if call_stats is not None:
+                    call_stats.finish_call(started_at, failed=True)
+                raise
+            if trace_segment is not None:
+                trace_segment.setdefault("model_calls", []).append(
+                    {"input": text, "output": result[0],
+                     "strict_placeholders": strict_placeholders,
+                     "numeric_policy": (
+                         "zh-itn-surface-locked" if zh_itn is not None
+                         else "model-driven"
+                     )}
+                )
+            if call_stats is not None:
+                call_stats.finish_call(started_at, failed=False)
+            return result
+
+        clean_parts: list[str] = []
+        protected_entities: list[dict[str, str]] = []
+        entity_hints: list[str] = []
+        entity_normalizations: list[dict[str, str]] = []
+        numeric_normalizations: list[dict[str, object]] = []
+        numeric_rule_repairs: list[dict[str, object]] = []
+        numeric_fallbacks: list[dict[str, object]] = []
+        safe_numeric_repairs: list[dict[str, object]] = []
+        safe_repetition_repairs: list[dict[str, object]] = []
+        local_deletion_reviews: list[dict[str, object]] = []
+        repetition_reviews: list[dict[str, object]] = []
+        entity_audit_issues: list[str] = []
+        entity_candidates: list[dict[str, object]] = []
+        refiner_reject_reasons: list[str] = []
+        refiner_masked_outputs: list[str] = []
+        structured_patch_audits: list[dict[str, object]] = []
+        boundary_anomalies: list[dict[str, object]] = []
+        placeholder_retry_count = 0
+        refiner_retry_count = 0
+        refiner_retry_reasons: list[str] = []
+        refinement_gate_decisions: list[dict[str, object]] = []
+        refinement_gate_skipped_segments = 0
+        refiner_executed = False
+        total_latency_ms = 0.0
+        numeric_rule_latency_ms = 0.0
+        matcher_latency_ms = 0.0
+        refiner_available = True
+
+        def restore_rule_numeric_surface(
+            source: str, candidate: str, segment_index: int,
+        ) -> str:
+            if zh_itn is None:
+                return candidate
+            candidate_without_key = strip_refiner_key_suffix(candidate).strip()
+            repaired = restore_rule_numeric_surfaces(
+                source, candidate_without_key
+            )
+            if repaired is None:
+                return candidate
+            if repaired != candidate_without_key:
+                numeric_rule_repairs.append({
+                    "segment_index": segment_index,
+                    "source_text": source,
+                    "model_text": candidate_without_key,
+                    "restored_text": repaired,
+                    "reason": "rule_owned_numeric_surface_restored",
+                })
+            return repaired
+
+        segments = (raw_text,) if single_window and raw_text else split_for_refinement(
+            raw_text, one_punctuation_window=True
+        )
+        for segment_index, segment in enumerate(segments):
+            # Normalize a completed ASR window once, before entity masking and
+            # model inference. An unfinished K=3 tail remains raw for now.
+            zh_result = None
+            if zh_itn is not None and not pending_only:
+                numeric_started_at = time.perf_counter()
+                zh_result = zh_itn.normalize(segment)
+                numeric_rule_latency_ms += (
+                    time.perf_counter() - numeric_started_at
+                ) * 1000
+            prepared = prepare_entity_segment(
+                zh_result.text if zh_result is not None else segment,
+                protector,
+                matcher,
+                # Apply high-confidence, low-risk fuzzy normalization in every
+                # window.  Streaming hypotheses may still revise their tail,
+                # but source-owned cache invalidation will reprocess a revised
+                # span; withholding an already verified term until ``finish``
+                # made the displayed intermediate text inconsistent with the
+                # final result.
+                allow_auto=True,
+                confidence=asr_confidence,
+            )
+            protection = prepared.protection
+            hints = prepared.hints
+            normalized_baseline = (
+                numeric_normalizer.normalize(prepared.baseline_text)
+                if numeric_normalization and zh_itn is None
+                else None
+            )
+            baseline_text = (
+                normalized_baseline.text
+                if normalized_baseline is not None
+                else prepared.baseline_text
+            )
+            boundary_anomalies.extend(
+                {
+                    "segment_index": segment_index + 1,
+                    **anomaly.public_dict(),
+                }
+                for anomaly in detect_boundary_anomalies(baseline_text)
+            )
+            masked_text = (
+                numeric_normalizer.normalize(protection.masked_text).text
+                if numeric_normalization and zh_itn is None
+                else protection.masked_text
+            )
+            gate_decision = refinement_gate.decide(
+                segment if zh_result is not None else baseline_text,
+                asr_confidence=asr_confidence,
+                calibrated=(
+                    confidence_metadata.get("calibrated") is True
+                ),
+                covers_segment=(
+                    confidence_metadata.get("covers_full_text") is True
+                ),
+                entity_hints=hints,
+                is_final=final,
+                numeric_refinement=(
+                    not numeric_normalization and zh_itn is None
+                ),
+                numeric_rule_mode=zh_itn is not None,
+                numeric_rule_text=baseline_text if zh_result is not None else None,
+            )
+            if pending_only:
+                gate_decision = RefinementGateDecision(
+                    mode=gate_decision.mode,
+                    should_refine=False,
+                    reasons=("incomplete_fixed_group",),
+                    visible_chars=gate_decision.visible_chars,
+                    asr_confidence=gate_decision.asr_confidence,
+                    cleanup_signals=gate_decision.cleanup_signals,
+                    calibrated=gate_decision.calibrated,
+                    covers_segment=gate_decision.covers_segment,
+                    action="defer",
+                )
+            if (experimental_gate_router is not None and "window_refine" in experimental_gate_tasks
+                    and gate_decision.action == "refine"):
+                routed = experimental_gate_router(dict(
+                    task_kind="window_refine", domain=getattr(matcher,"selected_domain","general"),
+                    raw_text=segment, baseline_text=baseline_text, available_context="",
+                ), gate_decision.action)
+                if routed.get("action") == "keep":
+                    gate_decision = replace(gate_decision,should_refine=False,action="keep",
+                                            reasons=("experimental_gate_veto",))
+            # A numeric-only call has no evidence for changing the punctuation
+            # that separates this group from the next one. Keep its terminal
+            # mark while leaving genuine cleanup and boundary-repair calls free
+            # to revise ASR punctuation.
+            preserve_numeric_boundary = (
+                gate_decision.should_refine
+                and gate_decision.cleanup_signals == ("numeric_normalization",)
+                and not hints
+            )
+            learned_decision = None
+            if learned_window_gate.mode != "off" and gate_decision.action == "refine":
+                learned_decision = learned_window_gate.decide(dict(
+                    task_kind="window_refine", domain=getattr(matcher,"selected_domain","general"),
+                    raw_text=segment, baseline_text=baseline_text, available_context="",
+                ), gate_decision.action)
+                if learned_decision["action"] == "keep":
+                    gate_decision = replace(gate_decision, should_refine=False, action="keep",
+                                            reasons=("learned_window_gate_veto",))
+            gate_record = {"segment_index": segment_index + 1, **gate_decision.public_dict()}
+            if learned_decision is not None:
+                gate_record["learned_window_gate"] = learned_decision
+            refinement_gate_decisions.append(gate_record)
+            trace_segment = (
+                {"segment_index": segment_index + 1, "source": segment,
+                 "baseline": baseline_text, "masked_input": masked_text,
+                 "gate": gate_decision.public_dict(), "model_calls": []}
+                if trace_segments is not None else None
+            )
+            if trace_segment is not None:
+                if zh_result is not None:
+                    trace_segment["numeric_rule"] = {
+                        "rule_pack": zh_itn.rule_pack,
+                        "decision_reason": getattr(zh_result, "decision_reason", ""),
+                        "candidate_count": getattr(zh_result, "candidate_count", 0),
+                        "changes": [change.public_dict() for change in zh_result.changes],
+                    }
+                trace_segments.append(trace_segment)
+            if zh_result is not None:
+                numeric_normalizations.extend(
+                    {
+                        **change.public_dict(),
+                        "segment_index": segment_index + 1,
+                        "engine": "zh-itn",
+                        "rule_pack": zh_itn.rule_pack,
+                    }
+                    for change in zh_result.changes
+                )
+            if not gate_decision.should_refine:
+                # Waiting for a complete source group is shared scheduling,
+                # not a gate saving. In particular, gate=off must not report
+                # incomplete tails as windows skipped by a routing gate.
+                if gate_decision.action != "defer":
+                    refinement_gate_skipped_segments += 1
+                    if call_stats is not None:
+                        call_stats.record_gate_skip()
+                clean_segment = baseline_text
+                if not numeric_normalization and zh_itn is None:
+                    approximate_fallback = numeric_normalizer.normalize_approximate(
+                        clean_segment
+                    )
+                    clean_segment = approximate_fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "gate_kept_approximate_number",
+                        }
+                        for change in approximate_fallback.changes
+                    )
+                changes = list(prepared.normalizations)
+                if normalized_baseline is not None:
+                    numeric_normalizations.extend(
+                        change.public_dict() for change in normalized_baseline.changes
+                    )
+                clean_parts.append(clean_segment)
+                protected_entities.extend(
+                    span.public_dict() for span in protection.spans
+                )
+                entity_hints.extend(hints)
+                entity_normalizations.extend(changes)
+                entity_candidates.extend(
+                    match.public_dict() for match in prepared.report.matches
+                )
+                matcher_latency_ms += prepared.report.matcher_latency_ms
+                entity_audit_issues.extend(
+                    protector.audit_unmasked(clean_segment, protection)
+                )
+                if trace_segment is not None:
+                    trace_segment.update({
+                        "outcome": "deferred" if pending_only else "gate_skip",
+                        "output": clean_segment,
+                    })
+                continue
+            # A stale browser connection must not be able to block the final
+            # result forever.  After one timeout, preserve all remaining source
+            # segments and report the quality fallback in the response.
+            lock_acquired = (
+                refiner_available
+                and refiner_lock.acquire(timeout=REFINER_LOCK_TIMEOUT_SECONDS)
+            )
+            if not lock_acquired:
+                refiner_available = False
+                if call_stats is not None:
+                    call_stats.record_busy_segment()
+                if zh_itn is not None:
+                    clean_segment = baseline_text
+                else:
+                    fallback = numeric_normalizer.normalize(
+                        prepared.baseline_text,
+                        preserve_single_one_counts=not numeric_normalization,
+                    )
+                    clean_segment = fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "refiner_unavailable",
+                        }
+                        for change in fallback.changes
+                    )
+                changes = list(prepared.normalizations)
+                if normalized_baseline is not None:
+                    numeric_normalizations.extend(
+                        change.public_dict() for change in normalized_baseline.changes
+                    )
+                refiner_reject_reasons.append(
+                    f"segment_{segment_index + 1}:refiner_busy"
+                )
+                if trace_segment is not None:
+                    trace_segment.update({"outcome": "refiner_busy", "output": clean_segment})
+            else:
+                refiner_executed = True
+                candidate_for_numeric_salvage: str | None = None
+                rejected_model_text: str | None = None
+                try:
+                    refined_candidate, latency_ms = invoke_refiner(
+                        masked_text,
+                        hints=hints,
+                    )
+                    total_latency_ms += latency_ms
+                    refiner_masked_outputs.append(refined_candidate)
+                    structured_candidate, patch_payload, structured_issue = apply_structured_patch(
+                        masked_text, refined_candidate, policy=window_edit_policy
+                    )
+                    structured_patch_audits.append(
+                        _patch_audit(patch_payload, structured_issue)
+                    )
+                    if structured_issue:
+                        finalized = fallback_entity_segment(prepared,(structured_issue,))
+                    else:
+                        structured_candidate = restore_rule_numeric_surface(
+                            masked_text, structured_candidate, segment_index + 1
+                        )
+                        candidate_for_numeric_salvage = structured_candidate
+                        finalized = finalize_entity_segment(
+                            structured_candidate,
+                            prepared,
+                            protector,
+                            preserve_terminal_only=preserve_numeric_boundary,
+                            numeric_rule_mode=zh_itn is not None,
+                            entity_patch=patch_payload,
+                        )
+                    if has_retryable_integrity_failure(finalized.reject_reasons):
+                        initial_reasons = finalized.reject_reasons
+                        retry_candidate, retry_latency_ms = invoke_refiner(
+                            masked_text,
+                            hints=hints,
+                            strict_placeholders=True,
+                        )
+                        refiner_retry_count += 1
+                        if has_placeholder_failure(initial_reasons):
+                            placeholder_retry_count += 1
+                        refiner_retry_reasons.extend(
+                            f"segment_{segment_index + 1}:{reason}"
+                            for reason in initial_reasons
+                        )
+                        total_latency_ms += retry_latency_ms
+                        refiner_masked_outputs.append(retry_candidate)
+                        candidate_for_numeric_salvage = retry_candidate
+                        structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
+                            masked_text, retry_candidate, policy=window_edit_policy
+                        )
+                        structured_patch_audits.append(
+                            _patch_audit(retry_payload, structured_retry_issue)
+                        )
+                        if structured_retry_issue:
+                            finalized = fallback_entity_segment(prepared,(structured_retry_issue,))
+                        else:
+                            structured_retry = restore_rule_numeric_surface(
+                                masked_text, structured_retry, segment_index + 1
+                            )
+                            candidate_for_numeric_salvage = structured_retry
+                            finalized = finalize_entity_segment(
+                                structured_retry,
+                                prepared,
+                                protector,
+                                preserve_terminal_only=preserve_numeric_boundary,
+                                numeric_rule_mode=zh_itn is not None,
+                                entity_patch=retry_payload,
+                            )
+                finally:
+                    refiner_lock.release()
+                clean_segment = finalized.text
+                salvaged_candidate: str | None = None
+                if finalized.reject_reasons and candidate_for_numeric_salvage and window_edit_policy == "compat":
+                    restored_candidate = protector.restore(
+                        candidate_for_numeric_salvage,
+                        protection,
+                    )
+                    if restored_candidate.accepted:
+                        rejected_model_text = strip_refiner_key_suffix(
+                            restored_candidate.text
+                        ).strip()
+                        repetition_salvaged = preserve_safe_repetition_edits(
+                            prepared.baseline_text,
+                            restored_candidate.text,
+                            numeric_rule_mode=zh_itn is not None,
+                        )
+                        if repetition_salvaged is not None:
+                            safe_repetition_repairs.append(
+                                {
+                                    "source_text": prepared.baseline_text,
+                                    "salvaged_text": repetition_salvaged,
+                                    "reason": "safe_adjacent_repetition_after_integrity_fallback",
+                                }
+                            )
+                        numeric_salvaged = (
+                            preserve_safe_numeric_edits(
+                                prepared.baseline_text,
+                                restored_candidate.text,
+                            ) if zh_itn is None else None
+                        )
+                        if numeric_salvaged is not None:
+                            safe_numeric_repairs.append(
+                                {
+                                    "source_text": prepared.baseline_text,
+                                    "salvaged_text": numeric_salvaged,
+                                    "reason": "equivalent_numeric_surface_after_integrity_fallback",
+                                }
+                            )
+                        if repetition_salvaged is not None:
+                            combined = (
+                                preserve_safe_numeric_edits(
+                                    repetition_salvaged,
+                                    restored_candidate.text,
+                                )
+                                or repetition_salvaged
+                            ) if zh_itn is None else repetition_salvaged
+                            salvaged_candidate = combined
+                        elif numeric_salvaged is not None:
+                            salvaged_candidate = numeric_salvaged
+                if finalized.reject_reasons:
+                    # In zh-itn mode, the already-normalized source is the
+                    # fallback authority. The legacy mode retains its old
+                    # post-Refiner Python conversion for direct callers.
+                    fallback_source = (
+                        salvaged_candidate
+                        if salvaged_candidate is not None
+                        else prepared.baseline_text
+                    )
+                    if zh_itn is not None:
+                        clean_segment = fallback_source
+                    else:
+                        fallback = numeric_normalizer.normalize(
+                            fallback_source,
+                            preserve_single_one_counts=not numeric_normalization,
+                        )
+                        clean_segment = fallback.text
+                        numeric_fallbacks.extend(
+                            {
+                                **change.public_dict(),
+                                "segment_index": segment_index + 1,
+                                "reason": "refiner_rejected",
+                                "refiner_reject_reasons": list(
+                                    finalized.reject_reasons
+                                ),
+                            }
+                            for change in fallback.changes
+                        )
+                elif not numeric_normalization and zh_itn is None:
+                    approximate_fallback = numeric_normalizer.normalize_approximate(
+                        clean_segment
+                    )
+                    clean_segment = approximate_fallback.text
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "reason": "model_omitted_approximate_number",
+                        }
+                        for change in approximate_fallback.changes
+                    )
+                changes = list(finalized.normalizations)
+                if numeric_normalization and zh_itn is None:
+                    normalized_output = numeric_normalizer.normalize(clean_segment)
+                    clean_segment = normalized_output.text
+                    segment_changes = (
+                        normalized_output.changes
+                        if normalized_output.changes
+                        else normalized_baseline.changes
+                    )
+                    numeric_normalizations.extend(
+                        change.public_dict() for change in segment_changes
+                    )
+                if finalized.reject_reasons and rejected_model_text:
+                    reviewer = getattr(
+                        refiner, "review_repetition_candidate_with_status", None
+                    )
+                    for candidate in find_model_proposed_deletions(
+                        prepared.baseline_text, rejected_model_text,
+                    ):
+                        review_record: dict[str, object] = {
+                            **candidate.public_dict(),
+                            "segment_index": segment_index + 1,
+                            "decision": "unresolved",
+                            "reason": "review_unavailable",
+                            "applied": False,
+                        }
+                        local_deletion_reviews.append(review_record)
+                        projected = (
+                            prepared.baseline_text[:candidate.start]
+                            + candidate.target
+                            + prepared.baseline_text[candidate.end:]
+                        )
+                        preservation = repetition_preservation_violations(
+                            prepared.baseline_text, projected,
+                        )
+                        if preservation:
+                            review_record.update(
+                                decision="keep", reason="source_repetition_preservation",
+                                preservation_reasons=list(preservation), model_called=False,
+                            )
+                            continue
+                        if not callable(reviewer):
+                            continue
+                        local_start = _repetition_candidate_context_offset(
+                            prepared.baseline_text, candidate,
+                        )
+                        if local_start is None:
+                            review_record["reason"] = "invalid_candidate_context"
+                            continue
+                        if not refiner_lock.acquire(
+                            timeout=REFINER_LOCK_TIMEOUT_SECONDS
+                        ):
+                            continue
+                        started_at = (
+                            call_stats.begin_call(final=final, retry=False)
+                            if call_stats is not None else time.perf_counter()
+                        )
+                        if started_at is None:
+                            refiner_lock.release()
+                            review_record["reason"] = "review_calls_closed"
+                            continue
+                        try:
+                            try:
+                                response, latency_ms, completed, *extra = reviewer(
+                                    candidate.context, candidate.source,
+                                    candidate.target, local_start,
+                                )
+                            except Exception:
+                                if call_stats is not None:
+                                    call_stats.finish_call(started_at, failed=True)
+                                review_record["reason"] = "review_failed"
+                                continue
+                            if call_stats is not None:
+                                call_stats.finish_call(started_at, failed=False)
+                        finally:
+                            refiner_lock.release()
+                        total_latency_ms += latency_ms
+                        review_record["model_response"] = str(response)
+                        review_record["model_completed"] = completed is True
+                        if extra and extra[0] is not None:
+                            review_record["candidate_score_margin"] = extra[0]
+                        decision = _repetition_decision_from_candidate_response(
+                            prepared.baseline_text, candidate, str(response),
+                        )
+                        if not decision:
+                            review_record["reason"] = "invalid_or_uncertain_response"
+                            continue
+                        action = decision[0]["action"]
+                        review_record["decision"] = action
+                        review_record["reason"] = "model_candidate_decision"
+                        if action != "remove" or completed is not True:
+                            continue
+                        # Locate the source span again after numeric fallback;
+                        # a normalization may have shifted its original offset.
+                        if clean_segment.count(candidate.source) != 1:
+                            review_record["reason"] = "source_not_unique_after_fallback"
+                            continue
+                        offset = clean_segment.index(candidate.source)
+                        edited = (
+                            clean_segment[:offset]
+                            + clean_segment[offset + len(candidate.source):]
+                        )
+                        failures = reject_reasons(
+                            clean_segment,
+                            edited,
+                            numeric_rule_mode=zh_itn is not None,
+                        )
+                        if failures:
+                            review_record["reason"] = "isolated_edit_rejected"
+                            review_record["reject_reasons"] = list(failures)
+                            continue
+                        clean_segment = edited
+                        review_record["applied"] = True
+                if trace_segment is not None:
+                    trace_segment["local_deletion_reviews"] = [
+                        dict(review) for review in local_deletion_reviews
+                        if review.get("segment_index") == segment_index + 1
+                    ]
+                if finalized.reject_reasons:
+                    refiner_reject_reasons.extend(
+                        f"segment_{segment_index + 1}:{reason}"
+                        for reason in finalized.reject_reasons
+                    )
+                if trace_segment is not None:
+                    trace_segment.update({
+                        "outcome": "rejected" if finalized.reject_reasons else "accepted",
+                        "reject_reasons": list(finalized.reject_reasons),
+                        "output": clean_segment,
+                    })
+            clean_parts.append(clean_segment)
+            protected_entities.extend(span.public_dict() for span in protection.spans)
+            entity_hints.extend(hints)
+            entity_normalizations.extend(changes)
+            entity_candidates.extend(
+                match.public_dict() for match in prepared.report.matches
+            )
+            matcher_latency_ms += prepared.report.matcher_latency_ms
+            entity_audit_issues.extend(protector.audit_unmasked(clean_segment, protection))
+        clean_text = clean_transcript_deterministically(
+            join_refined_segments(clean_parts)
+        )
+        return {
+            "event": "final" if final else "update",
+            "raw_text": raw_text,
+            "clean_text": clean_text,
+            "asr_language": detected_language,
+            "asr_confidence": asr_confidence,
+            "asr_confidence_metadata": confidence_metadata,
+            "refiner_latency_ms": round(total_latency_ms),
+            "numeric_rule_latency_ms": round(numeric_rule_latency_ms, 3),
+            "refiner_executed": refiner_executed,
+            "refiner_accepted": not refiner_reject_reasons,
+            "refiner_reject_reasons": refiner_reject_reasons,
+            "placeholder_retry_count": placeholder_retry_count,
+            "refiner_retry_count": refiner_retry_count,
+            "refiner_retry_reasons": refiner_retry_reasons,
+            "refiner_masked_outputs": refiner_masked_outputs,
+            "structured_patch_audits": structured_patch_audits,
+            "window_edit_policy": window_edit_policy,
+            "strict_local_protocol_version": STRICT_LOCAL_PROTOCOL_VERSION if window_edit_policy == "strict_local" else None,
+            "boundary_anomalies": boundary_anomalies,
+            "boundary_reviews": [],
+            "refinement_gate_mode": refinement_gate.mode.value,
+            "refinement_gate_config": refinement_gate.config_dict(),
+            "refinement_gate_decisions": refinement_gate_decisions,
+            "refinement_gate_skipped_segments": refinement_gate_skipped_segments,
+            "entity_audit_issues": list(dict.fromkeys(entity_audit_issues)),
+            "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
+            "entity_normalizations": entity_normalizations,
+            "numeric_normalizations": numeric_normalizations,
+            "numeric_rule_repairs": numeric_rule_repairs,
+            "numeric_fallbacks": numeric_fallbacks,
+            "safe_numeric_repairs": safe_numeric_repairs,
+            "safe_repetition_repairs": safe_repetition_repairs,
+            "local_deletion_reviews": local_deletion_reviews,
+            "repetition_reviews": repetition_reviews,
+            "boundary_echo_repairs": [],
+            "protected_entities": protected_entities,
+            "entity_candidates": entity_candidates,
+            "entity_matcher_latency_ms": round(matcher_latency_ms, 3),
+            "entity_fuzzy_mode": fuzzy_mode.value,
+            "entity_matching_config_version": (
+                matcher.config.version if matcher is not None else None
+            ),
+            "rule_protection_enabled": rule_protection,
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
+        }
+
+    def _patch_audit(
+        payload: dict[str, object] | None, issue: str | None
+    ) -> dict[str, object]:
+        if payload is None:
+            return {
+                "format": "legacy_text",
+                "accepted": issue is None,
+                "issue": issue,
+                "window_edit_policy": window_edit_policy,
+            }
+        return {
+            "format": "json_patch",
+            "action": payload.get("action"),
+            "source": payload.get("source", ""),
+            "target": payload.get("target", ""),
+            "reason": payload.get("reason", ""),
+            "accepted": issue is None,
+            "issue": issue,
+            "window_edit_policy": window_edit_policy,
+        }
+
+    def fallback_update(
+        raw_text: str,
+        detected_language: str | None,
+        protector: EntityProtector,
+        asr_confidence: float | None,
+        matcher: EntityCandidateMatcher | None,
+        reason: str,
+        started_at: float,
+        confidence_metadata: dict[str, object] | None = None,
+        apply_numeric_fallback: bool = False,
+        apply_zh_itn: bool = True,
+    ) -> dict[str, object]:
+        # Preserve the complete ASR text and still apply deterministic entity
+        # normalization when the neural Refiner exceeds the final deadline.
+        clean_parts: list[str] = []
+        protected_entities: list[dict[str, str]] = []
+        entity_hints: list[str] = []
+        entity_normalizations: list[dict[str, str]] = []
+        numeric_normalizations: list[dict[str, object]] = []
+        numeric_rule_repairs: list[dict[str, object]] = []
+        numeric_fallbacks: list[dict[str, object]] = []
+        entity_audit_issues: list[str] = []
+        entity_candidates: list[dict[str, object]] = []
+        matcher_latency_ms = 0.0
+        numeric_rule_latency_ms = 0.0
+        for segment in split_for_refinement(
+            raw_text, one_punctuation_window=True
+        ):
+            zh_result = None
+            if zh_itn is not None and apply_zh_itn:
+                numeric_started_at = time.perf_counter()
+                zh_result = zh_itn.normalize(segment)
+                numeric_rule_latency_ms += (
+                    time.perf_counter() - numeric_started_at
+                ) * 1000
+            prepared = prepare_entity_segment(
+                zh_result.text if zh_result is not None else segment,
+                protector,
+                matcher,
+                allow_auto=True,
+                confidence=asr_confidence,
+            )
+            protection = prepared.protection
+            normalized = (
+                numeric_normalizer.normalize(
+                    prepared.baseline_text,
+                    preserve_single_one_counts=(
+                        apply_numeric_fallback and not numeric_normalization
+                    ),
+                )
+                if zh_itn is None and (numeric_normalization or apply_numeric_fallback)
+                else None
+            )
+            clean_parts.append(
+                normalized.text if normalized is not None else prepared.baseline_text
+            )
+            if normalized is not None:
+                if numeric_normalization:
+                    numeric_normalizations.extend(
+                        change.public_dict() for change in normalized.changes
+                    )
+                elif apply_numeric_fallback:
+                    numeric_fallbacks.extend(
+                        {
+                            **change.public_dict(),
+                            "reason": "refiner_unavailable",
+                        }
+                        for change in normalized.changes
+                    )
+            if zh_result is not None:
+                numeric_normalizations.extend(
+                    {
+                        **change.public_dict(),
+                        "engine": "zh-itn",
+                        "rule_pack": zh_itn.rule_pack,
+                    }
+                    for change in zh_result.changes
+                )
+            protected_entities.extend(span.public_dict() for span in protection.spans)
+            entity_hints.extend(prepared.hints)
+            entity_normalizations.extend(prepared.normalizations)
+            entity_candidates.extend(
+                match.public_dict() for match in prepared.report.matches
+            )
+            matcher_latency_ms += prepared.report.matcher_latency_ms
+            entity_audit_issues.extend(
+                protector.audit_unmasked(prepared.baseline_text, protection)
+            )
+        return {
+            "event": "final",
+            "raw_text": raw_text,
+            "clean_text": clean_transcript_deterministically(
+                join_refined_segments(clean_parts)
+            ),
+            "asr_language": detected_language,
+            "asr_confidence": asr_confidence,
+            "asr_confidence_metadata": dict(confidence_metadata or {}),
+            "refiner_latency_ms": round((time.perf_counter() - started_at) * 1000),
+            "refiner_executed": True,
+            "refiner_accepted": False,
+            "refiner_reject_reasons": [reason],
+            "placeholder_retry_count": 0,
+            "refiner_retry_count": 0,
+            "refiner_retry_reasons": [],
+            "refiner_masked_outputs": [],
+            "structured_patch_audits": [],
+            "boundary_reviews": [],
+            "boundary_anomalies": [
+                anomaly
+                for segment in split_for_refinement(
+                    raw_text, one_punctuation_window=True
+                )
+                for anomaly in (
+                    {
+                        "segment_text": segment,
+                        **item.public_dict(),
+                    }
+                    for item in detect_boundary_anomalies(segment)
+                )
+            ],
+            "refinement_gate_mode": refinement_gate.mode.value,
+            "refinement_gate_config": refinement_gate.config_dict(),
+            "refinement_gate_decisions": [],
+            "refinement_gate_skipped_segments": 0,
+            "entity_audit_issues": list(dict.fromkeys(entity_audit_issues)),
+            "entity_refinement_hints": list(dict.fromkeys(entity_hints)),
+            "entity_normalizations": entity_normalizations,
+            "numeric_normalizations": numeric_normalizations,
+            "numeric_rule_repairs": numeric_rule_repairs,
+            "numeric_fallbacks": numeric_fallbacks,
+            "safe_numeric_repairs": [],
+            "safe_repetition_repairs": [],
+            "local_deletion_reviews": [],
+            "repetition_reviews": [],
+            "boundary_echo_repairs": [],
+            "protected_entities": protected_entities,
+            "entity_candidates": entity_candidates,
+            "entity_matcher_latency_ms": round(matcher_latency_ms, 3),
+            "entity_fuzzy_mode": fuzzy_mode.value,
+            "entity_matching_config_version": (
+                matcher.config.version if matcher is not None else None
+            ),
+            "rule_protection_enabled": rule_protection,
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "numeric_rule_latency_ms": round(numeric_rule_latency_ms, 3),
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
+        }
+
+    @app.get("/")
+    def index() -> FileResponse:
+        return FileResponse(
+            WEB_DIR / "index.html",
+            headers={"Cache-Control": "no-store"},
+        )
+
+    @app.get("/refinement-log")
+    def refinement_log_page() -> FileResponse:
+        return FileResponse(
+            WEB_DIR / "refinement_log.html",
+            headers={"Cache-Control": "no-store"},
+        )
+
+    @app.get("/api/refinement-log")
+    def refinement_log_data() -> dict[str, object]:
+        candidates = sorted(
+            REFINEMENT_LOG_DIR.glob("refinement_windows_grouped_*.md"),
+            key=lambda path: path.stat().st_mtime_ns,
+            reverse=True,
+        )
+        if not candidates:
+            raise HTTPException(
+                status_code=404,
+                detail="还没有生成按窗口整理的精修日志。",
+            )
+        log_path = candidates[0]
+        content = log_path.read_text(encoding="utf-8")
+        headings = list(re.finditer(r"(?m)^## (\d+)\. .+$", content))
+        pages = [
+            content[match.start():headings[index + 1].start()
+                   if index + 1 < len(headings) else content.find(
+                       "\n## 未可靠归属到单个窗口", match.start()
+                   ) if "\n## 未可靠归属到单个窗口" in content[match.start():] else len(content)]
+            for index, match in enumerate(headings)
+        ]
+        appendix_marker = "\n## 未可靠归属到单个窗口"
+        appendix_offset = content.find(appendix_marker)
+        appendix = content[appendix_offset + 1:] if appendix_offset >= 0 else ""
+        return {
+            "name": log_path.name,
+            "updated_at": datetime.fromtimestamp(
+                log_path.stat().st_mtime, tz=timezone.utc
+            ).isoformat(),
+            "pages": pages,
+            "appendix": appendix,
+        }
+
+    @app.get("/health")
+    def health() -> dict[str, object]:
+        return {
+            "ok": True,
+            "window_edit_policy": window_edit_policy,
+            "strict_local_protocol_version": STRICT_LOCAL_PROTOCOL_VERSION if window_edit_policy == "strict_local" else None,
+            "entity_db": entity_store is not None,
+            "entity_asr_context_enabled": entity_asr_context,
+            "entity_audio_repair_enabled": entity_audio_repair and entity_store is not None,
+            "refinement_gate_mode": refinement_gate.mode.value,
+            "asr_api_style": selected_asr_api_style.value,
+            "window_pipeline": dict(window_pipeline_config),
+            "final_refinement_mode": final_refinement_mode,
+            "learned_window_gate": learned_window_gate.status(),
+            "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
+            "numeric_backend": "zh-itn" if zh_itn is not None else "python",
+            "zh_itn_enabled": zh_itn is not None,
+            "zh_itn_rule_pack": zh_itn.rule_pack if zh_itn is not None else None,
+            "numeric_rule_protocol_version": (
+                NUMERIC_RULES_PROTOCOL_VERSION if zh_itn is not None else None
+            ),
+        }
+
+    @app.get("/api/entities")
+    def list_entities(
+        query: str = "",
+        entity_type: str | None = None,
+        include_disabled: bool = True,
+    ) -> dict[str, object]:
+        definitions = managed_entity_store().list_entities(include_disabled=include_disabled)
+        keyword = query.strip().casefold()
+        type_filter = entity_type.strip().upper() if entity_type and entity_type.strip() else None
+        filtered = [
+            definition
+            for definition in definitions
+            if (
+                not keyword
+                or keyword in definition.canonical_text.casefold()
+                or any(keyword in alias.casefold() for alias in definition.aliases)
+            )
+            and (type_filter is None or definition.entity_type == type_filter)
+        ]
+        return {"entities": [_entity_dict(definition) for definition in filtered]}
+
+    @app.post("/api/entities", status_code=201)
+    def create_entity(payload: EntityInput) -> dict[str, object]:
+        store = managed_entity_store()
+        try:
+            store.get_entity(payload.canonical_text.strip(), payload.domain.strip())
+        except KeyError:
+            pass
+        else:
+            raise HTTPException(
+                status_code=409,
+                detail="该标准名称与领域组合已存在，请使用编辑操作。",
+            )
+        try:
+            definition = store.upsert_entity(
+                payload.canonical_text,
+                entity_type=payload.entity_type,
+                domain=payload.domain,
+                normalization_policy=payload.normalization_policy,
+                priority=payload.priority,
+                aliases=payload.aliases,
+                source="ui",
+            )
+        except ValueError as error:
+            raise HTTPException(status_code=422, detail=str(error)) from error
+        return _entity_dict(definition)
+
+    @app.put("/api/entities/{entity_id}")
+    def update_entity(entity_id: int, payload: EntityInput) -> dict[str, object]:
+        try:
+            definition = managed_entity_store().update_entity(
+                entity_id,
+                payload.canonical_text,
+                entity_type=payload.entity_type,
+                domain=payload.domain,
+                normalization_policy=payload.normalization_policy,
+                priority=payload.priority,
+                aliases=payload.aliases,
+                source="ui",
+            )
+        except KeyError as error:
+            raise HTTPException(status_code=404, detail="实体不存在或已被删除。") from error
+        except ValueError as error:
+            raise HTTPException(status_code=422, detail=str(error)) from error
+        return _entity_dict(definition)
+
+    @app.patch("/api/entities/{entity_id}/enabled")
+    def set_entity_enabled(entity_id: int, payload: EntityEnabledInput) -> dict[str, object]:
+        store = managed_entity_store()
+        if not store.set_enabled_by_id(entity_id, enabled=payload.enabled):
+            raise HTTPException(status_code=404, detail="实体不存在或已被删除。")
+        return _entity_dict(store.get_entity_by_id(entity_id))
+
+    @app.delete("/api/entities/{entity_id}")
+    def delete_entity(entity_id: int) -> dict[str, bool]:
+        if not managed_entity_store().delete_entity(entity_id):
+            raise HTTPException(status_code=404, detail="实体不存在或已被删除。")
+        return {"deleted": True}
+
+    @app.websocket("/ws/stream")
+    async def stream(websocket: WebSocket) -> None:
+        await websocket.accept()
+        send_lock = asyncio.Lock()
+        connection_open = True
+
+        async def send_json(payload: dict[str, object]) -> bool:
+            nonlocal connection_open
+            if not connection_open:
+                return False
+            async with send_lock:
+                if not connection_open:
+                    return False
+                try:
+                    await asyncio.wait_for(
+                        websocket.send_json(payload),
+                        timeout=WEBSOCKET_SEND_TIMEOUT_SECONDS,
+                    )
+                except (RuntimeError, WebSocketDisconnect, asyncio.TimeoutError):
+                    connection_open = False
+                    return False
+            return True
+
+        requested_language = websocket.query_params.get("language") or language
+        requested_mode = (websocket.query_params.get("mode") or "online").lower()
+        requested_domain = (websocket.query_params.get("domain") or "general").strip() or "general"
+        context_option=websocket.query_params.get("entity_asr_context")
+        if context_option is not None and context_option not in {"0","1"}:
+            await send_json({"event":"error","detail":"entity_asr_context must be 0 or 1"})
+            await websocket.close()
+            return
+        context_enabled = context_option=="1" if context_option is not None else entity_asr_context
+        repair_option = websocket.query_params.get("entity_audio_repair")
+        if repair_option is not None and repair_option not in {"0", "1"}:
+            await send_json({"event": "error", "detail": "entity_audio_repair must be 0 or 1"})
+            await websocket.close()
+            return
+        # Explicit legacy prompting remains compatible with older clients.
+        repair_enabled = repair_option == "1" if repair_option is not None else entity_audio_repair and not context_enabled
+        if repair_enabled and context_enabled:
+            await send_json({"event": "error", "detail": "Choose entity audio repair or initial glossary prompting, not both"})
+            await websocket.close()
+            return
+        asr_entity_context_applied=False
+        requested_chunk_seconds = websocket.query_params.get("asr_chunk_seconds")
+        if requested_chunk_seconds is not None:
+            try:
+                chunk_seconds = float(requested_chunk_seconds)
+                valid_chunk_seconds = isfinite(chunk_seconds) and chunk_seconds > 0
+            except (TypeError, ValueError):
+                valid_chunk_seconds = False
+            if not valid_chunk_seconds:
+                await send_json({
+                    "event": "error",
+                    "detail": "asr_chunk_seconds must be a positive finite number",
+                })
+                await websocket.close()
+                return
+        if requested_mode not in {"online", "offline", "streaming"}:
+            await send_json(
+                {"event": "error", "detail": "mode must be online, offline, or streaming"}
+            )
+            await websocket.close()
+            return
+        session_id: str | None = None
+        last_raw_text = ""
+        finished = False
+        received_chunk_count = 0
+        asr_activity: dict[str, object] = {}
+        session_memory = SessionEntityMemory()
+        refiner_session_stats = _RefinerSessionStats()
+        entity_context_guard = None
+        entity_audio_guard = None
+        entity_context_guard_revision = 0
+
+        async def request_entity_session_asr(endpoint,session_id=None,data=b"",params=None):
+            if entity_audio_guard is not None:
+                return await entity_audio_guard.request(endpoint,session_id,data,params)
+            if entity_context_guard is not None:
+                return await entity_context_guard.request(endpoint,session_id,data,params)
+            return await request_asr(endpoint,session_id,data,params)
+        hypothesis_tracker = HypothesisTracker()
+        trace_id = uuid.uuid4().hex
+        trace_path = (
+            output.with_name(f"{output.stem}.stream_trace.jsonl")
+            if output is not None else None
+        )
+        trace_lock = threading.Lock()
+        refinement_log_records: list[dict[str, object]] = []
+        trace_context: dict[str, object] = {"phase": "stream", "revision": None}
+
+        def record_trace(event: str, **details: object) -> None:
+            if trace_path is None:
+                return
+            try:
+                record = {
+                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                    "trace_id": trace_id,
+                    "event": event,
+                    **details,
+                }
+                with trace_lock:
+                    _append_record(trace_path, record)
+                    if event in {"window_result", "stream_review", "final_result"}:
+                        refinement_log_records.append(record)
+            except (OSError, TypeError, ValueError):
+                # Diagnostics must never change a transcription decision.
+                pass
+
+        def attach_refiner_session_stats(
+            result: dict[str, object], *, close: bool = False
+        ) -> dict[str, object]:
+            if close:
+                refiner_session_stats.close_new_calls()
+            snapshot = refiner_session_stats.snapshot()
+            result["refiner_session_stats"] = snapshot
+            result["window_pipeline"] = dict(window_pipeline_config)
+            # Flat aliases keep JSONL analysis and the browser console simple.
+            result["session_refiner_call_count"] = snapshot["call_count"]
+            result["session_refiner_initial_call_count"] = snapshot[
+                "initial_call_count"
+            ]
+            result["session_refiner_retry_call_count"] = snapshot[
+                "retry_call_count"
+            ]
+            result["session_refiner_intermediate_call_count"] = snapshot[
+                "intermediate_call_count"
+            ]
+            result["session_refiner_final_call_count"] = snapshot[
+                "final_call_count"
+            ]
+            result["session_gate_skipped_segment_count"] = snapshot[
+                "gate_skipped_segment_count"
+            ]
+            result["entity_asr_context_requested"] = context_enabled
+            result["entity_asr_context_applied"] = asr_entity_context_applied
+            result["entity_audio_repair_requested"] = repair_enabled
+            if entity_audio_guard is not None:
+                result["entity_audio_repair"] = entity_audio_guard.snapshot()
+                if result.get("event") == "final" and entity_audio_guard.changes:
+                    # These are ASR-stage corrections, not extra free edits by
+                    # the Refiner; keep their origin visible in entity history.
+                    result["entity_normalizations"] = [
+                        *[change for change in result.get("entity_normalizations", []) if change.get("stage") != "asr_audio_repair"],
+                        *[dict(change, stage="asr_audio_repair") for change in entity_audio_guard.changes],
+                    ]
+            if entity_context_guard is not None:
+                result["entity_asr_context_guard"] = entity_context_guard.snapshot()
+                if entity_context_guard.fallback_active:
+                    result["entity_asr_context_applied"] = False
+            return result
+
+        def session_refine_update(*args, **kwargs) -> dict[str, object]:
+            kwargs["call_stats"] = refiner_session_stats
+            window_chunk_count = kwargs.pop("_trace_window_chunks", None)
+            required_window_chunks = kwargs.pop("_trace_required_chunks", None)
+            pending_only = kwargs.get("pending_only", False)
+            is_final = bool(args[2]) if len(args) > 2 else bool(kwargs.get("final", False))
+            segments: list[dict[str, object]] = []
+            phase = trace_context["phase"]
+            revision = trace_context["revision"]
+            if trace_path is not None:
+                kwargs["trace_segments"] = segments
+            try:
+                result = refine_update(*args, **kwargs)
+            except Exception as error:
+                record_trace(
+                    "window_error", phase=phase, revision=revision,
+                    input=args[0] if args else None, segments=segments,
+                    error=type(error).__name__,
+                )
+                raise
+            if trace_path is not None:
+                if pending_only:
+                    window_kind = "pending_tail"
+                elif (
+                    isinstance(window_chunk_count, int)
+                    and isinstance(required_window_chunks, int)
+                    and window_chunk_count == required_window_chunks
+                ):
+                    window_kind = "complete_k3_window"
+                elif is_final and isinstance(window_chunk_count, int):
+                    window_kind = "final_short_tail"
+                elif isinstance(required_window_chunks, int):
+                    window_kind = "fixed_group"
+                else:
+                    window_kind = "gate_segment"
+                for segment in segments:
+                    segment["window_kind"] = window_kind
+                    if isinstance(window_chunk_count, int):
+                        segment["window_chunk_count"] = window_chunk_count
+                    if isinstance(required_window_chunks, int):
+                        segment["required_window_chunks"] = required_window_chunks
+            record_trace(
+                "window_result", phase=phase, revision=revision,
+                input=args[0] if args else None, segments=segments,
+                output=result.get("clean_text"),
+                reject_reasons=result.get("refiner_reject_reasons"),
+            )
+            return result
+
+        def session_prepare_pending(*args, **kwargs) -> dict[str, object]:
+            kwargs["pending_only"] = True
+            return session_refine_update(*args, **kwargs)
+
+        definitions = (
+            entity_store.list_entities(domain=requested_domain)
+            if entity_store is not None
+            else ()
+        )
+        session_asr_context = build_entity_asr_context(definitions,requested_domain) if context_enabled else None
+        if repair_enabled:
+            from .entity_audio_repair import EntityAudioRepair
+
+            async def audio_repair_status(snapshot):
+                return await send_json({"event": "status", "stage": "entity_audio_repair",
+                                        "entity_audio_repair": snapshot,
+                                        "elapsed_seconds": snapshot["elapsed_seconds"]})
+
+            entity_audio_guard = EntityAudioRepair(request_asr, definitions, on_status=audio_repair_status)
+        if entity_asr_echo_guard and session_asr_context is not None and session_asr_context.text:
+            from .entity_asr_echo_guard import EntityASREchoGuard
+            entity_context_guard = EntityASREchoGuard(request_asr,session_asr_context)
+        protector = EntityProtector(
+            definitions,
+            session_memory=session_memory,
+            enable_rule_protection=rule_protection,
+            # Numeric values are normalized deterministically before the
+            # Refiner and verified again afterwards.  Do not expose them as
+            # fragile __ENTITY_NNN__ placeholders.
+            protect_numeric_spans=False,
+        )
+        matcher = (
+            EntityCandidateMatcher(
+                definitions,
+                selected_domain=requested_domain,
+                mode=fuzzy_mode,
+            )
+            if definitions and fuzzy_mode is not EntityFuzzyMode.OFF
+            else None
+        )
+        pending_refinement: tuple[
+            str,
+            str | None,
+            float | None,
+            dict[str, object],
+            str,
+            int,
+            int,
+            tuple[str, ...] | None,
+        ] | None = None
+        streaming_refiner_task: asyncio.Task[None] | None = None
+        streaming_finish_requested = False
+        latest_refinement_revision = 0
+        last_refinement_started_at: float | None = None
+        last_streaming_group_signature: (
+            tuple[tuple[tuple[str, ...], ...], str] | None
+        ) = None
+        vad_source_segments: list[str] = []
+        seen_vad_segment_ids: set[int] = set()
+        # Derive punctuation chunks only from ASR/VAD-completed source
+        # segments, then route each complete K=3 group in every gate mode.
+        window_refinement = CumulativeWindowRefinement(
+            session_refine_update,
+            window_size=3,
+            one_punctuation_window=True,
+            fixed_groups=True,
+            prepare_pending=session_prepare_pending,
+            group_numeric_self_corrections=zh_itn is not None,
+        )
+        refinement_display = StreamingRefinementDisplay()
+        streaming_repetition_cache: dict[
+            tuple[int, int, str, str, str], dict[str, object]
+        ] = {}
+        streaming_repetition_response_cache: dict[
+            tuple[str, int, str, str], tuple[str, float | None]
+        ] = {}
+        streaming_repetition_reviews: list[dict[str, object]] = []
+
+        def consume_completed_segments(payload: dict[str, object]) -> int:
+            """Consume request-scoped ASR segment events exactly once."""
+            nonlocal entity_context_guard_revision
+            revision = payload.get("entity_asr_context_guard_revision",0)
+            audio_revision = payload.get("entity_audio_repair_revision", 0)
+            if isinstance(audio_revision, int) and not isinstance(audio_revision, bool):
+                revision = max(revision, audio_revision) if isinstance(revision, int) and not isinstance(revision, bool) else audio_revision
+            if isinstance(revision,int) and not isinstance(revision,bool) and revision > entity_context_guard_revision:
+                entity_context_guard_revision = revision
+                seen_vad_segment_ids.clear()
+                vad_source_segments.clear()
+            events = payload.get("completed_segments")
+            if not isinstance(events, list):
+                return 0
+            added = 0
+            for event in events:
+                if not isinstance(event, dict):
+                    continue
+                segment_id = event.get("segment_id")
+                text_value = event.get("text")
+                if (
+                    not isinstance(segment_id, int)
+                    or isinstance(segment_id, bool)
+                    or segment_id < 1
+                    or segment_id in seen_vad_segment_ids
+                    or not isinstance(text_value, str)
+                    or not text_value.strip()
+                ):
+                    continue
+                seen_vad_segment_ids.add(segment_id)
+                vad_source_segments.append(text_value.strip())
+                added += 1
+            return added
+
+        def transcript_event(
+            raw_text: str,
+            detected_language: str | None,
+            asr_confidence: float | None,
+            confidence_metadata: dict[str, object],
+            *,
+            deferred: bool,
+            gate_decision: RefinementGateDecision | None = None,
+            stability: HypothesisStability | None = None,
+        ) -> dict[str, object]:
+            """Publish raw ASR immediately while retaining valid refinements."""
+
+            payload: dict[str, object] = {
+                "event": "transcript",
+                "raw_text": raw_text,
+                "asr_language": detected_language,
+                "asr_confidence": asr_confidence,
+                "asr_confidence_metadata": confidence_metadata,
+                "refiner_deferred": deferred,
+            }
+            if gate_decision is not None:
+                public_gate = gate_decision.public_dict()
+                payload["refinement_gate_action"] = public_gate["action"]
+                payload["refinement_gate_state"] = public_gate["state"]
+                payload["refinement_gate_reasons"] = public_gate["reasons"]
+            if stability is not None:
+                payload["refinement_hypothesis"] = {
+                    "stable": stability.stable,
+                    "unchanged_updates": stability.unchanged_updates,
+                    "revision_ratio": round(stability.revision_ratio, 4),
+                    "tail_age_ms": round(stability.tail_age_ms, 1),
+                    "sentence_complete": stability.sentence_complete,
+                }
+            payload.update(refinement_display.compose(raw_text))
+            return payload
+
+        def intermediate_gate(
+            raw_text: str,
+            asr_confidence: float | None,
+            confidence_metadata: dict[str, object],
+        ) -> tuple[HypothesisStability, RefinementGateDecision | None]:
+            stability = hypothesis_tracker.observe(raw_text)
+            if refinement_gate.mode is not RefinementGateMode.TRI_STATE:
+                return stability, None
+            decision = refinement_gate.decide(
+                raw_text,
+                asr_confidence=asr_confidence,
+                calibrated=confidence_metadata.get("calibrated") is True,
+                covers_segment=confidence_metadata.get("covers_full_text") is True,
+                is_final=False,
+                stable=stability.stable,
+                tail_age_ms=stability.tail_age_ms,
+                revision_ratio=stability.revision_ratio,
+                unchanged_updates=stability.unchanged_updates,
+                numeric_refinement=(
+                    not numeric_normalization and zh_itn is None
+                ),
+                numeric_rule_mode=zh_itn is not None,
+            )
+            return stability, decision
+
+        def finalize_streaming_windows(
+            raw_text: str,
+            detected_language: str | None,
+            final: bool,
+            protector: EntityProtector,
+            asr_confidence: float | None,
+            confidence_metadata: dict[str, object],
+            matcher_value: EntityCandidateMatcher | None,
+            source_segments: tuple[str, ...] | None = None,
+            reprocess_rejected: bool = True,
+        ) -> dict[str, object]:
+            """Reuse committed streaming refinements and finalize only the tail.
+
+            Intermediate and final windows both allow high-confidence, low-risk
+            fuzzy entity normalization.  The source-owned window cache still
+            invalidates any span revised by ASR, while the final entity-only
+            fallback remains as an idempotent consistency pass.
+            """
+
+            # Finalize through the same sentence-bounded window path even if
+            # the client finished before an intermediate refinement completed.
+            # This keeps online, offline, and streaming modes from sending the
+            # entire final hypothesis to the Refiner in one request.
+            if source_segments:
+                result = window_refinement.update_segments(
+                    source_segments,
+                    detected_language,
+                    final,
+                    protector,
+                    asr_confidence,
+                    matcher_value,
+                    confidence_metadata=confidence_metadata,
+                    raw_text=raw_text,
+                    reprocess_rejected=reprocess_rejected,
+                )
+            else:
+                result = window_refinement.update(
+                    raw_text,
+                    detected_language,
+                    final,
+                    protector,
+                    asr_confidence,
+                    matcher_value,
+                    confidence_metadata=confidence_metadata,
+                    reprocess_rejected=reprocess_rejected,
+                )
+            result["window_cache_partition"] = (
+                "vad_segments"
+                if source_segments
+                else "raw_text"
+            )
+            result["final_vad_source_segment_count"] = len(source_segments or ())
+            result["asr_confidence"] = asr_confidence
+            result["asr_confidence_metadata"] = dict(confidence_metadata)
+            entity_result = fallback_update(
+                str(result["clean_text"]),
+                detected_language,
+                protector,
+                asr_confidence,
+                matcher_value,
+                "streaming_final_entity_normalization",
+                time.perf_counter(),
+                confidence_metadata,
+                apply_zh_itn=False,
+            )
+            result["clean_text"] = entity_result["clean_text"]
+            result["entity_audit_issues"] = list(
+                dict.fromkeys(
+                    [
+                        *result.get("entity_audit_issues", []),
+                        *entity_result["entity_audit_issues"],
+                    ]
+                )
+            )
+            result["entity_refinement_hints"] = list(
+                dict.fromkeys(
+                    [
+                        *result.get("entity_refinement_hints", []),
+                        *entity_result["entity_refinement_hints"],
+                    ]
+                )
+            )
+            result["entity_normalizations"] = [
+                *result.get("entity_normalizations", []),
+                *entity_result["entity_normalizations"],
+            ]
+            result["numeric_normalizations"] = [
+                *result.get("numeric_normalizations", []),
+                *entity_result["numeric_normalizations"],
+            ]
+            result["numeric_fallbacks"] = [
+                *result.get("numeric_fallbacks", []),
+                *entity_result["numeric_fallbacks"],
+            ]
+            result["protected_entities"] = [
+                *result.get("protected_entities", []),
+                *entity_result["protected_entities"],
+            ]
+            result["entity_candidates"] = [
+                *entity_result["entity_candidates"],
+                *result.get("entity_candidates", []),
+            ]
+            result["entity_matcher_latency_ms"] = round(
+                float(result.get("entity_matcher_latency_ms", 0.0))
+                + float(entity_result["entity_matcher_latency_ms"]),
+                3,
+            )
+            (
+                reviewed_text,
+                review_records,
+                review_latency_ms,
+                review_model_calls,
+                response_cache_hits,
+            ) = (
+                review_final_repetition_text(
+                    str(result["clean_text"]),
+                    final=final,
+                    call_stats=refiner_session_stats,
+                    review_cache=streaming_repetition_cache,
+                    response_cache=streaming_repetition_response_cache,
+                    source_text=raw_text,
+                )
+            )
+            result["clean_text"] = clean_transcript_deterministically(
+                reviewed_text
+            )
+            result["repetition_reviews"] = [
+                *streaming_repetition_reviews,
+                *result.get("repetition_reviews", []),
+                *review_records,
+            ]
+            result["refiner_latency_ms"] = round(
+                float(result.get("refiner_latency_ms", 0.0)) + review_latency_ms
+            )
+            result["refiner_executed"] = bool(
+                result.get("refiner_executed", False) or review_model_calls
+            )
+            result["repetition_review_model_calls"] = review_model_calls
+            result["repetition_response_cache_hits"] = response_cache_hits
+            if final:
+                restored, restorations = restore_preserved_repetitions(raw_text, str(result["clean_text"]))
+                result["repetition_restorations"] = restorations
+                if restorations:
+                    result["clean_text"] = restored
+                    # Final-only display ownership; do not write a full-source
+                    # restoration into a differently partitioned window cache.
+                    result["refinement_source_spans"] = [{
+                        "source_text": raw_text, "clean_text": restored, "state": "final",
+                    }]
+            return result
+
+        async def process_audio_chunk(audio: bytes) -> tuple[dict[str, object], int]:
+            """Forward one chunk while keeping a slow, healthy session visible."""
+
+            nonlocal received_chunk_count
+            received_chunk_count += 1
+            chunk_index = received_chunk_count
+            started_at = time.perf_counter()
+            task = asyncio.create_task(
+                request_entity_session_asr("/stream/chunk", session_id, audio)
+            )
+            while True:
+                try:
+                    payload = await asyncio.wait_for(
+                        asyncio.shield(task),
+                        timeout=ASR_CHUNK_STATUS_INTERVAL_SECONDS,
+                    )
+                    record_trace(
+                        "asr_chunk_timing",
+                        chunk_index=chunk_index,
+                        web_round_trip_ms=round(
+                            (time.perf_counter() - started_at) * 1000.0, 3
+                        ),
+                        server_timing=payload.get("asr_timing"),
+                    )
+                    return payload, chunk_index
+                except asyncio.TimeoutError:
+                    if not await send_json(
+                        {
+                            "event": "status",
+                            "stage": "asr_chunk",
+                            "chunk_index": chunk_index,
+                            "elapsed_seconds": round(
+                                time.perf_counter() - started_at
+                            ),
+                        }
+                    ):
+                        raise RuntimeError(
+                            "client disconnected while ASR chunk was processing"
+                        )
+
+        async def run_streaming_refiner() -> None:
+            nonlocal pending_refinement, streaming_finish_requested
+            nonlocal latest_refinement_revision, last_refinement_started_at
+            nonlocal last_streaming_group_signature
+            while pending_refinement is not None:
+                # Refine only a bounded tail of the cumulative ASR hypothesis;
+                # committed results stay cached for finalization.
+                if streaming_finish_requested:
+                    pending_refinement = None
+                    return
+                if last_refinement_started_at is not None:
+                    remaining = (
+                        STREAMING_REFINEMENT_MIN_INTERVAL_SECONDS
+                        - (time.perf_counter() - last_refinement_started_at)
+                    )
+                    if remaining > 0:
+                        # Newer hypotheses keep replacing the pending request
+                        # while we wait, so the next pass always refines the
+                        # freshest cumulative transcript.
+                        await asyncio.sleep(remaining)
+                        if streaming_finish_requested or pending_refinement is None:
+                            pending_refinement = None
+                            return
+                (
+                    tail_value,
+                    language_value,
+                    confidence_value,
+                    confidence_metadata_value,
+                    full_raw_value,
+                    tail_start,
+                    revision,
+                    source_segments_value,
+                ) = pending_refinement
+                pending_refinement = None
+                # Claim the revision only now that this pass really starts.
+                # One pass runs at a time, so the publish guard below can no
+                # longer see a newer revision and discard a finished result.
+                latest_refinement_revision = revision
+                last_refinement_started_at = time.perf_counter()
+                trace_context.update(phase="stream", revision=revision)
+                record_trace(
+                    "pass_started", revision=revision,
+                    raw_text=full_raw_value, tail=tail_value,
+                    source_segments=source_segments_value,
+                )
+                try:
+                    if source_segments_value:
+                        owned_raw_value = join_refined_segments(
+                            source_segments_value
+                        )
+                        result = await asyncio.to_thread(
+                            window_refinement.update_segments,
+                            source_segments_value,
+                            language_value,
+                            False,
+                            protector,
+                            confidence_value,
+                            matcher,
+                            confidence_metadata=confidence_metadata_value,
+                            raw_text=owned_raw_value,
+                            reprocess_rejected=False,
+                        )
+                    else:
+                        result = await asyncio.to_thread(
+                            window_refinement.update,
+                            full_raw_value,
+                            language_value,
+                            False,
+                            protector,
+                            confidence_value,
+                            matcher,
+                            confidence_metadata=confidence_metadata_value,
+                            reprocess_rejected=False,
+                        )
+                    before_review = str(result["clean_text"])
+                    eligible_prefix_length = (
+                        _committed_clean_prefix_length(
+                            before_review,
+                            result.get("refinement_source_spans"),
+                        )
+                    )
+                    (
+                        reviewed_text,
+                        review_records,
+                        review_latency_ms,
+                        review_model_calls,
+                        response_cache_hits,
+                    ) = await asyncio.to_thread(
+                        review_final_repetition_text,
+                        before_review,
+                        final=False,
+                        streaming=True,
+                        eligible_prefix_length=eligible_prefix_length,
+                        call_stats=refiner_session_stats,
+                        review_cache=streaming_repetition_cache,
+                        response_cache=streaming_repetition_response_cache,
+                        source_text=full_raw_value,
+                    )
+                    result["clean_text"] = clean_transcript_deterministically(
+                        reviewed_text
+                    )
+                    reviewed_spans = _reviewed_source_spans(
+                        result.get("refinement_source_spans"),
+                        before_review,
+                        str(result["clean_text"]),
+                        review_records,
+                    )
+                    reviewed_group_cache_updates = (
+                        window_refinement.remember_reviewed_source_spans(
+                            reviewed_spans
+                        )
+                        if reviewed_spans is not None
+                        else 0
+                    )
+                    if reviewed_spans is not None:
+                        result["refinement_source_spans"] = reviewed_spans
+                    record_trace(
+                        "stream_review", phase="stream", revision=revision,
+                        input=before_review, model_review_output=reviewed_text,
+                        output=result["clean_text"], reviews=review_records,
+                        source_spans_updated=reviewed_spans is not None,
+                        reviewed_group_cache_updates=reviewed_group_cache_updates,
+                        review_model_calls=review_model_calls,
+                        response_cache_hits=response_cache_hits,
+                    )
+                    result["repetition_reviews"] = [
+                        *result.get("repetition_reviews", []),
+                        *review_records,
+                    ]
+                    result["refiner_latency_ms"] = round(
+                        float(result.get("refiner_latency_ms", 0.0))
+                        + review_latency_ms
+                    )
+                    result["refiner_executed"] = bool(
+                        result.get("refiner_executed", False)
+                        or review_model_calls
+                    )
+                    streaming_repetition_reviews.extend(review_records)
+                    # A finish request may be waiting for this pass.  Publish
+                    # it unless the pass was explicitly invalidated after a
+                    # timeout or replaced by a newer hypothesis.
+                    if streaming_finish_requested or revision != latest_refinement_revision:
+                        record_trace(
+                            "pass_not_published", revision=revision,
+                            reason=("finish_requested" if streaming_finish_requested
+                                    else "superseded"),
+                            output=result.get("clean_text"),
+                        )
+                        continue
+                    result["refinement_revision"] = revision
+                    result["event"] = "update"
+                    refinement_display.accept(result, revision)
+                    result["raw_text"] = full_raw_value
+                    # ASR may have advanced while this model call was running.
+                    # Publish the real result for history/metrics, but render it
+                    # together with the newest source-owned pending tail.
+                    result.update(
+                        refinement_display.compose(last_raw_text or full_raw_value)
+                    )
+                    attach_refiner_session_stats(result)
+                    sent = await send_json(result)
+                    record_trace(
+                        "pass_published" if sent else "pass_send_failed",
+                        revision=revision, output=result.get("clean_text"),
+                        display_refined_text=result.get("display_refined_text"),
+                        pending_raw_text=result.get("pending_raw_text"),
+                        source_spans=result.get("refinement_source_spans"),
+                    )
+                    if not sent:
+                        return
+                except Exception as error:
+                    record_trace(
+                        "pass_error", revision=revision,
+                        error=type(error).__name__, detail=str(error),
+                    )
+                    if revision == latest_refinement_revision:
+                        last_streaming_group_signature = None
+                    if (
+                        not streaming_finish_requested
+                        and revision == latest_refinement_revision
+                    ):
+                        await send_json({"event": "error", "detail": str(error)})
+                if streaming_finish_requested:
+                    pending_refinement = None
+                    return
+
+        def queue_streaming_refinement(
+            tail_value: str,
+            language_value: str | None,
+            confidence_value: float | None,
+            confidence_metadata_value: dict[str, object],
+            full_raw_value: str,
+            tail_start: int,
+            source_segments_value: tuple[str, ...] | None = None,
+            *,
+            force: bool = False,
+        ) -> None:
+            nonlocal pending_refinement, streaming_refiner_task
+            nonlocal last_streaming_group_signature
+            if not force:
+                effective_source_segments = source_segments_value or None
+                group_signature, pending_signature = (
+                    window_refinement.streaming_input_signature(
+                        full_raw_value,
+                        source_chunks=effective_source_segments,
+                    )
+                )
+                # An incomplete K-window still needs a lightweight pass so
+                # pending-text normalization can reach the live display. It
+                # does not invoke the Refiner; rerun it only when that pending
+                # source text changes. Once a complete group exists, its
+                # exact signature alone controls model-window scheduling.
+                queue_signature = (
+                    group_signature,
+                    pending_signature if not group_signature else "",
+                )
+                if not group_signature and not pending_signature:
+                    record_trace(
+                        "pass_skipped",
+                        reason="waiting_for_complete_group",
+                        raw_text=full_raw_value,
+                    )
+                    return
+                if queue_signature == last_streaming_group_signature:
+                    record_trace(
+                        "pass_skipped",
+                        reason=(
+                            "pending_text_unchanged"
+                            if not group_signature
+                            else "no_new_complete_group"
+                        ),
+                        complete_group_count=len(group_signature),
+                        pending_tail_present=bool(pending_signature),
+                        raw_text=full_raw_value,
+                    )
+                    return
+                last_streaming_group_signature = queue_signature
+            # Enqueueing must not invalidate the pass that is already
+            # running: the revision is claimed in run_streaming_refiner.
+            revision = latest_refinement_revision + 1
+            record_trace(
+                "pass_queued", revision=revision,
+                replaced_pending=pending_refinement is not None,
+                raw_text=full_raw_value, tail=tail_value,
+                source_segments=source_segments_value,
+            )
+            pending_refinement = (
+                tail_value,
+                language_value,
+                confidence_value,
+                confidence_metadata_value,
+                full_raw_value,
+                tail_start,
+                revision,
+                source_segments_value,
+            )
+            if streaming_refiner_task is None or streaming_refiner_task.done():
+                streaming_refiner_task = asyncio.create_task(run_streaming_refiner())
+
+        async def drain_streaming_refinements() -> None:
+            """Wait until the active pass and newest queued snapshot are done."""
+
+            nonlocal streaming_refiner_task
+            started_at = time.perf_counter()
+            while True:
+                task = streaming_refiner_task
+                if task is None or task.done():
+                    if task is not None:
+                        try:
+                            task.result()
+                        except Exception as error:
+                            record_trace(
+                                "stream_worker_error",
+                                error=type(error).__name__,
+                                detail=str(error),
+                            )
+                    if pending_refinement is None:
+                        break
+                    streaming_refiner_task = asyncio.create_task(
+                        run_streaming_refiner()
+                    )
+                    task = streaming_refiner_task
+                try:
+                    await asyncio.wait_for(
+                        asyncio.shield(task),
+                        timeout=ASR_CHUNK_STATUS_INTERVAL_SECONDS,
+                    )
+                except asyncio.TimeoutError:
+                    await send_json(
+                        {
+                            "event": "status",
+                            "stage": "stream_refinement_drain",
+                            "elapsed_seconds": round(
+                                time.perf_counter() - started_at
+                            ),
+                        }
+                    )
+                except Exception as error:
+                    # Per-pass model failures are handled inside the worker.
+                    # Recover only if an unexpected worker-level failure left
+                    # a newer snapshot queued.
+                    record_trace(
+                        "stream_worker_error",
+                        error=type(error).__name__,
+                        detail=str(error),
+                    )
+                    if pending_refinement is None:
+                        break
+                    streaming_refiner_task = None
+            record_trace(
+                "stream_refinement_drain_complete",
+                elapsed_seconds=round(time.perf_counter() - started_at, 3),
+                revision=latest_refinement_revision,
+            )
+
+        async def refine_final(
+            raw_text: str,
+            detected_language: str | None,
+            protector: EntityProtector,
+            asr_confidence: float | None,
+            confidence_metadata: dict[str, object],
+            source_segments: tuple[str, ...] | None = None,
+        ) -> dict[str, object]:
+            started_at = time.perf_counter()
+            # All browser modes use the same bounded sentence-window finalizer;
+            # the mode only controls when intermediate updates are published.
+            finalizer = finalize_streaming_windows
+            task = asyncio.create_task(
+                asyncio.to_thread(
+                    finalizer,
+                    raw_text,
+                    detected_language,
+                    True,
+                    protector,
+                    asr_confidence,
+                    confidence_metadata,
+                    matcher,
+                    source_segments,
+                    final_refinement_mode == "on",
+                )
+            )
+            loop = asyncio.get_running_loop()
+            segment_count = max(
+                1,
+                len(
+                    split_for_refinement(
+                        raw_text,
+                        one_punctuation_window=True,
+                    )
+                ),
+            )
+            deadline_seconds = min(
+                FINAL_REFINEMENT_MAX_TIMEOUT_SECONDS,
+                max(
+                    FINAL_REFINEMENT_TIMEOUT_SECONDS,
+                    15.0 + segment_count * 8.0,
+                ),
+            )
+            deadline = loop.time() + deadline_seconds
+            while True:
+                remaining = deadline - loop.time()
+                if remaining <= 0:
+                    task.cancel()
+                    raise asyncio.TimeoutError
+                try:
+                    return await asyncio.wait_for(
+                        asyncio.shield(task), timeout=min(8.0, remaining)
+                    )
+                except asyncio.TimeoutError:
+                    # Keep reverse proxies and the browser informed while a
+                    # long transcript is being refined.
+                    await send_json(
+                        attach_refiner_session_stats(
+                            {
+                                "event": "status",
+                                "stage": "final_refinement",
+                                "elapsed_seconds": round(
+                                    time.perf_counter() - started_at
+                                ),
+                            }
+                        )
+                    )
+
+        try:
+            start_params = (
+                {"language": requested_language} if requested_language else {}
+            )
+            if requested_chunk_seconds is not None:
+                start_params["chunk_seconds"] = requested_chunk_seconds
+            if session_asr_context is not None and session_asr_context.text:
+                start_params["context"] = session_asr_context.text
+            start = await request_entity_session_asr(
+                "/stream/start",
+                params=start_params or None,
+            )
+            session_id = str(start["session_id"])
+            asr_entity_context_applied = start.get("context_applied") is True
+            record_trace(
+                "asr_session_started", mode=requested_mode,
+                asr_chunk_seconds=start.get("chunk_seconds"),
+                window_pipeline=dict(window_pipeline_config),
+                refinement_gate_mode=refinement_gate.mode.value,
+                learned_window_gate_mode=learned_window_gate.mode,
+            )
+            await send_json({
+                "event": "ready", "trace_id": trace_id,
+                "window_pipeline": dict(window_pipeline_config),
+                "asr_chunk_seconds": start.get("chunk_seconds"),
+                "entity_asr_context_requested": context_enabled,
+                "entity_asr_context_applied": asr_entity_context_applied,
+                "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
+                "entity_asr_context_digest": start.get("context_digest"),
+                "entity_audio_repair_requested": repair_enabled,
+                "entity_audio_repair": entity_audio_guard.snapshot() if entity_audio_guard is not None else None,
+            })
+            while True:
+                message = await websocket.receive()
+                if message.get("type") == "websocket.disconnect":
+                    connection_open = False
+                    break
+                text = message.get("text")
+                if text:
+                    command = json.loads(text)
+                    if command.get("event") != "finish":
+                        continue
+                    payload = await request_entity_session_asr("/stream/finish", session_id)
+                    consume_completed_segments(payload)
+                    asr_activity = {
+                        key: payload.get(key)
+                        for key in (
+                            "vad",
+                            "vad_speech_detected",
+                            "vad_segment_ended",
+                            "vad_skipped_chunks",
+                            "silence_skipped_chunks",
+                            "asr_segment_count",
+                            "segmentation_mode",
+                        )
+                        if key in payload
+                    }
+                    final_raw = str(payload.get("text", "")).strip()
+                    final_source_segments = tuple(vad_source_segments) or None
+                    if (
+                        final_source_segments is not None
+                        and join_refined_segments(final_source_segments) != final_raw
+                    ):
+                        # A mixed/older backend may omit an event. Never let an
+                        # incomplete event stream drop text from final output.
+                        final_source_segments = None
+                    last_raw_text = final_raw
+                    detected_language = payload.get("language")
+                    asr_confidence = _optional_confidence(payload.get("confidence"))
+                    confidence_metadata = _confidence_metadata(payload)
+                    if final_raw:
+                        # ASR completion does not end streaming refinement:
+                        # submit its authoritative snapshot to the same rolling
+                        # window worker before starting final reconciliation.
+                        if not await send_json(
+                            transcript_event(
+                                final_raw,
+                                (
+                                    detected_language
+                                    if isinstance(detected_language, str)
+                                    else None
+                                ),
+                                asr_confidence,
+                                confidence_metadata,
+                                deferred=True,
+                            )
+                        ):
+                            finished = True
+                            break
+                    if requested_mode in {"online", "offline", "streaming"}:
+                        # First finish work already admitted to the streaming
+                        # queue so the final ASR snapshot cannot replace it.
+                        await drain_streaming_refinements()
+                        if final_raw:
+                            queue_streaming_refinement(
+                                final_raw,
+                                detected_language
+                                if isinstance(detected_language, str)
+                                else None,
+                                asr_confidence,
+                                confidence_metadata,
+                                final_raw,
+                                0,
+                                final_source_segments,
+                                force=True,
+                            )
+                            # The authoritative final ASR text also traverses
+                            # the streaming path; only after it completes may
+                            # whole-transcript final reconciliation begin.
+                            await drain_streaming_refinements()
+                        streaming_finish_requested = True
+                        pending_refinement = None
+                    if final_raw:
+                        refinement_started = time.perf_counter()
+                        trace_context.update(phase="final", revision=latest_refinement_revision)
+                        record_trace(
+                            "final_started", revision=latest_refinement_revision,
+                            raw_text=final_raw,
+                            source_segments=final_source_segments,
+                            final_refinement_mode=final_refinement_mode,
+                        )
+                        try:
+                            result = await refine_final(
+                                final_raw,
+                                detected_language if isinstance(detected_language, str) else None,
+                                protector,
+                                asr_confidence,
+                                confidence_metadata,
+                                final_source_segments,
+                            )
+                        except asyncio.TimeoutError:
+                            refiner_session_stats.close_new_calls()
+                            result = fallback_update(
+                                final_raw,
+                                detected_language if isinstance(detected_language, str) else None,
+                                protector,
+                                asr_confidence,
+                                matcher,
+                                "final_refinement_timeout",
+                                refinement_started,
+                                confidence_metadata,
+                                apply_numeric_fallback=True,
+                            )
+                        except Exception as error:
+                            refiner_session_stats.close_new_calls()
+                            # A model/runtime failure must not erase a
+                            # complete ASR result that was already published.
+                            result = fallback_update(
+                                final_raw,
+                                detected_language if isinstance(detected_language, str) else None,
+                                protector,
+                                asr_confidence,
+                                matcher,
+                                f"final_refinement_error:{type(error).__name__}",
+                                refinement_started,
+                                confidence_metadata,
+                                apply_numeric_fallback=True,
+                            )
+                        result["refinement_revision"] = latest_refinement_revision
+                        result["final_refinement_mode"] = final_refinement_mode
+                        result["entity_asr_context_requested"] = context_enabled
+                        result["entity_asr_context_applied"] = asr_entity_context_applied
+                        result["entity_asr_context_term_count"] = len(session_asr_context.terms) if session_asr_context else 0
+                        attach_refiner_session_stats(result, close=True)
+                        record_trace(
+                            "final_result", revision=latest_refinement_revision,
+                            raw_text=final_raw,
+                            output=result.get("clean_text"),
+                            final_refinement_mode=final_refinement_mode,
+                            reviews=result.get("repetition_reviews"),
+                            reject_reasons=result.get("refiner_reject_reasons"),
+                            window_cache_partition=result.get("window_cache_partition"),
+                            window_cache_reused_group_count=result.get(
+                                "window_cache_reused_group_count", 0
+                            ),
+                            window_cache_reprocessed_group_count=result.get(
+                                "window_cache_reprocessed_group_count", 0
+                            ),
+                            window_cache_reprocess_reasons=result.get(
+                                "window_cache_reprocess_reasons", {}
+                            ),
+                            repetition_review_model_calls=result.get(
+                                "repetition_review_model_calls", 0
+                            ),
+                            repetition_response_cache_hits=result.get(
+                                "repetition_response_cache_hits", 0
+                            ),
+                            refiner_session_stats=result.get("refiner_session_stats"),
+                        )
+                        if output is not None:
+                            refinement_log_file: str | None = None
+                            try:
+                                refinement_log_path = _write_refinement_log_report(
+                                    output.parent,
+                                    trace_id,
+                                    requested_mode,
+                                    refinement_log_records,
+                                )
+                                refinement_log_file = refinement_log_path.name
+                            except (OSError, TypeError, ValueError) as error:
+                                record_trace(
+                                    "refinement_log_write_failed",
+                                    error=type(error).__name__,
+                                    detail=str(error),
+                                )
+                            _append_record(
+                                output,
+                                {
+                                    "captured_at": datetime.now(timezone.utc).isoformat(),
+                                    "trace_id": trace_id,
+                                    "refinement_log_file": refinement_log_file,
+                                    "mode": requested_mode,
+                                    "entity_domain": requested_domain,
+                                    "entity_asr_context_requested": context_enabled,
+                                    "entity_asr_context_applied": asr_entity_context_applied,
+                                    "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
+                                    "asr_language": result["asr_language"],
+                                    "asr_confidence": result["asr_confidence"],
+                                    "asr_confidence_metadata": result[
+                                        "asr_confidence_metadata"
+                                    ],
+                                    "asr_activity": asr_activity,
+                                    "output": {
+                                        "raw_text": result["raw_text"],
+                                        "clean_text": result["clean_text"],
+                                        "final_refinement_mode": result.get(
+                                            "final_refinement_mode", final_refinement_mode
+                                        ),
+                                        "refinement_revision": result.get(
+                                            "refinement_revision"
+                                        ),
+                                        "llm_latency_ms": result["refiner_latency_ms"],
+                                        "refiner_executed": result["refiner_executed"],
+                                        "refiner_accepted": result["refiner_accepted"],
+                                        "refiner_reject_reasons": result[
+                                            "refiner_reject_reasons"
+                                        ],
+                                        "placeholder_retry_count": result[
+                                            "placeholder_retry_count"
+                                        ],
+                                        "refiner_retry_count": result[
+                                            "refiner_retry_count"
+                                        ],
+                                        "refiner_retry_reasons": result[
+                                            "refiner_retry_reasons"
+                                        ],
+                                        "refiner_masked_outputs": result[
+                                            "refiner_masked_outputs"
+                                        ],
+                                        "structured_patch_audits": result[
+                                            "structured_patch_audits"
+                                        ],
+                                        "boundary_anomalies": result[
+                                            "boundary_anomalies"
+                                        ],
+                                        "boundary_reviews": result.get(
+                                            "boundary_reviews", []
+                                        ),
+                                        "refinement_gate_mode": result[
+                                            "refinement_gate_mode"
+                                        ],
+                                        "refinement_gate_config": result[
+                                            "refinement_gate_config"
+                                        ],
+                                        "window_pipeline": result["window_pipeline"],
+                                        "refinement_gate_decisions": result[
+                                            "refinement_gate_decisions"
+                                        ],
+                                        "refinement_gate_skipped_segments": result[
+                                            "refinement_gate_skipped_segments"
+                                        ],
+                                        "entity_audit_issues": result[
+                                            "entity_audit_issues"
+                                        ],
+                                        "entity_refinement_hints": result[
+                                            "entity_refinement_hints"
+                                        ],
+                                        "entity_normalizations": result[
+                                            "entity_normalizations"
+                                        ],
+                                        "numeric_normalizations": result[
+                                            "numeric_normalizations"
+                                        ],
+                                        "numeric_rule_repairs": result.get(
+                                            "numeric_rule_repairs", []
+                                        ),
+                                        "numeric_backend": result.get("numeric_backend"),
+                                        "numeric_rule_latency_ms": result.get(
+                                            "numeric_rule_latency_ms", 0.0
+                                        ),
+                                        "numeric_rule_protocol_version": result.get(
+                                            "numeric_rule_protocol_version"
+                                        ),
+                                        "numeric_fallbacks": result[
+                                            "numeric_fallbacks"
+                                        ],
+                                        "safe_numeric_repairs": result[
+                                            "safe_numeric_repairs"
+                                        ],
+                                        "safe_repetition_repairs": result.get(
+                                            "safe_repetition_repairs", []
+                                        ),
+                                        "repetition_reviews": result.get(
+                                            "repetition_reviews", []
+                                        ),
+                                        "local_deletion_reviews": result.get(
+                                            "local_deletion_reviews", []
+                                        ),
+                                        "boundary_echo_repairs": result[
+                                            "boundary_echo_repairs"
+                                        ],
+                                        "protected_entities": result[
+                                            "protected_entities"
+                                        ],
+                                        "entity_candidates": result[
+                                            "entity_candidates"
+                                        ],
+                                        "entity_matcher_latency_ms": result[
+                                            "entity_matcher_latency_ms"
+                                        ],
+                                        "entity_fuzzy_mode": result[
+                                            "entity_fuzzy_mode"
+                                        ],
+                                        "entity_matching_config_version": result[
+                                            "entity_matching_config_version"
+                                        ],
+                                        "rule_protection_enabled": result[
+                                            "rule_protection_enabled"
+                                        ],
+                                        "numeric_normalization_enabled": result[
+                                            "numeric_normalization_enabled"
+                                        ],
+                                        "refiner_session_stats": result[
+                                            "refiner_session_stats"
+                                        ],
+                                    },
+                                },
+                            )
+                        await send_json(result)
+                    else:
+                        empty_result: dict[str, object] = {
+                            "event": "final",
+                            "asr_confidence": asr_confidence,
+                            "asr_confidence_metadata": confidence_metadata,
+                        }
+                        attach_refiner_session_stats(empty_result, close=True)
+                        await send_json(empty_result)
+                    finished = True
+                    break
+                audio = message.get("bytes")
+                if not audio:
+                    continue
+                if requested_mode == "offline":
+                    payload, chunk_index = await process_audio_chunk(audio)
+                    completed_now = consume_completed_segments(payload)
+                    if not await send_json(
+                        {"event": "chunk_ack", "chunk_index": chunk_index}
+                    ):
+                        break
+                    raw_text = str(payload.get("text", "")).strip()
+                    if raw_text and (raw_text != last_raw_text or completed_now):
+                        last_raw_text = raw_text
+                        detected_language = payload.get("language")
+                        asr_confidence = _optional_confidence(
+                            payload.get("confidence")
+                        )
+                        confidence_metadata = _confidence_metadata(payload)
+                        language_value = (
+                            detected_language
+                            if isinstance(detected_language, str)
+                            else None
+                        )
+                        stability, gate_decision = intermediate_gate(
+                            raw_text, asr_confidence, confidence_metadata
+                        )
+                        is_deferred = (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "defer"
+                        )
+                        has_repetition_candidate = has_repetition_review_candidate(
+                            raw_text,
+                            numeric_rule_mode=zh_itn is not None,
+                        )
+                        record_trace(
+                            "asr_hypothesis", mode=requested_mode,
+                            chunk_index=chunk_index, raw_text=raw_text,
+                            completed_segments=completed_now,
+                            gate=gate_decision.public_dict() if gate_decision else None,
+                            repetition_candidate=has_repetition_candidate,
+                            deferred=is_deferred,
+                        )
+                        if not await send_json(
+                            transcript_event(
+                                raw_text,
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                deferred=is_deferred,
+                                gate_decision=gate_decision,
+                                stability=stability,
+                            )
+                        ):
+                            break
+                        if completed_now:
+                            tail_start = max(
+                                0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                            )
+                            queue_streaming_refinement(
+                                raw_text[tail_start:],
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                raw_text,
+                                tail_start,
+                                tuple(vad_source_segments),
+                            )
+                            continue
+                        record_trace(
+                            "pass_skipped",
+                            reason="waiting_for_asr_completed_segment",
+                            raw_text=raw_text,
+                            completed_source_segment_count=len(vad_source_segments),
+                            gate_action=(
+                                gate_decision.public_dict()["action"]
+                                if gate_decision is not None else None
+                            ),
+                            repetition_candidate=has_repetition_candidate,
+                        )
+                        continue
+                    continue
+                payload, chunk_index = await process_audio_chunk(audio)
+                completed_now = consume_completed_segments(payload)
+                if requested_mode == "streaming":
+                    await send_json(
+                        {"event": "chunk_ack", "chunk_index": chunk_index}
+                    )
+                raw_text = str(payload.get("text", "")).strip()
+                if raw_text and (raw_text != last_raw_text or completed_now):
+                    last_raw_text = raw_text
+                    detected_language = payload.get("language")
+                    asr_confidence = _optional_confidence(payload.get("confidence"))
+                    confidence_metadata = _confidence_metadata(payload)
+                    language_value = (
+                        detected_language if isinstance(detected_language, str) else None
+                    )
+                    if requested_mode in {"online", "streaming"}:
+                        stability, gate_decision = intermediate_gate(
+                            raw_text, asr_confidence, confidence_metadata
+                        )
+                        is_deferred = (
+                            gate_decision is not None
+                            and gate_decision.public_dict()["action"] == "defer"
+                        )
+                        has_repetition_candidate = has_repetition_review_candidate(
+                            raw_text,
+                            numeric_rule_mode=zh_itn is not None,
+                        )
+                        record_trace(
+                            "asr_hypothesis", mode=requested_mode,
+                            chunk_index=chunk_index, raw_text=raw_text,
+                            completed_segments=completed_now,
+                            gate=gate_decision.public_dict() if gate_decision else None,
+                            repetition_candidate=has_repetition_candidate,
+                            deferred=is_deferred,
+                        )
+                        if not await send_json(
+                            transcript_event(
+                                raw_text,
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                deferred=is_deferred,
+                                gate_decision=gate_decision,
+                                stability=stability,
+                            )
+                        ):
+                            break
+                        if completed_now:
+                            tail_start = max(
+                                0, len(raw_text) - STREAMING_INTERMEDIATE_MAX_CHARS
+                            )
+                            queue_streaming_refinement(
+                                raw_text[tail_start:],
+                                language_value,
+                                asr_confidence,
+                                confidence_metadata,
+                                raw_text,
+                                tail_start,
+                                tuple(vad_source_segments),
+                            )
+                            continue
+                        record_trace(
+                            "pass_skipped",
+                            reason="waiting_for_asr_completed_segment",
+                            raw_text=raw_text,
+                            completed_source_segment_count=len(vad_source_segments),
+                            gate_action=(
+                                gate_decision.public_dict()["action"]
+                                if gate_decision is not None else None
+                            ),
+                            repetition_candidate=has_repetition_candidate,
+                        )
+                        continue
+                    else:
+                        if not await send_json(
+                            attach_refiner_session_stats(
+                                await asyncio.to_thread(
+                                    session_refine_update,
+                                    raw_text,
+                                    language_value,
+                                    False,
+                                    protector,
+                                    asr_confidence,
+                                    matcher,
+                                    confidence_metadata=confidence_metadata,
+                                )
+                            )
+                        ):
+                            break
+        except (RuntimeError, ValueError, KeyError, json.JSONDecodeError) as error:
+            await send_json({"event": "error", "detail": str(error)})
+        except WebSocketDisconnect:
+            pass
+        except Exception as error:
+            await send_json({"event": "error", "detail": f"后台处理失败：{error}"})
+        finally:
+            connection_open = False
+            refiner_session_stats.close_new_calls()
+            if streaming_refiner_task is not None and not streaming_refiner_task.done():
+                streaming_refiner_task.cancel()
+            if session_id is not None and not finished:
+                try:
+                    await request_entity_session_asr("/stream/cancel", session_id)
+                except (RuntimeError, TimeoutError):
+                    pass
+            if entity_context_guard is not None:
+                entity_context_guard.close()
+            if entity_audio_guard is not None:
+                entity_audio_guard.close()
+
+    return app
+
+
+def _optional_confidence(value: object) -> float | None:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    confidence = float(value)
+    return confidence if 0 <= confidence <= 1 else None
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Serve the local AgenticASR streaming browser UI")
+    parser.add_argument("--refiner-model", type=Path, required=True)
+    parser.add_argument("--refiner-device", default="cuda:1")
+    parser.add_argument("--asr-url", default="http://127.0.0.1:8766")
+    parser.add_argument(
+        "--asr-api-style",
+        choices=[style.value for style in ASRApiStyle],
+        default=ASRApiStyle.CURRENT.value,
+        help="current uses /stream endpoints; legacy_v1 uses the original /v1/stream/{session_id} contract",
+    )
+    parser.add_argument("--language", default="Chinese", help="use auto for automatic detection")
+    parser.add_argument("--max-new-tokens", type=int, default=256)
+    parser.add_argument("--window-edit-policy", choices=WINDOW_EDIT_POLICIES, default="compat",
+                        help="strict_local requires bounded JSON patches and preserves the source window boundary")
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=8081)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--entity-db",
+        type=Path,
+        help="optional SQLite database containing verified protected entities",
+    )
+    parser.add_argument(
+        "--entity-fuzzy-mode",
+        choices=[mode.value for mode in EntityFuzzyMode],
+        default="shadow",
+        help="off, shadow, hint, or guarded normalization with confirmation for phonetic edits",
+    )
+    parser.add_argument("--enable-entity-asr-context",action="store_true",
+                        help="default new sessions to bounded canonical ASR context; browser can opt out")
+    parser.add_argument("--enable-entity-audio-repair", action="store_true",
+                        help="default sessions to type-independent glossary candidate verification against the same audio")
+    parser.add_argument(
+        "--refinement-gate-mode",
+        choices=[mode.value for mode in RefinementGateMode],
+        default="off",
+        help="off refines every complete window; conservative uses two-state gating; tri_state emits KEEP/DEFER/REFINE; all modes share fixed K=3 windows",
+    )
+    parser.add_argument(
+        "--final-refinement-mode",
+        choices=("on", "off"),
+        default="off",
+        help=(
+            "on reruns previously rejected windows at finish; off reuses cached "
+            "window results and only processes changed source or the short tail"
+        ),
+    )
+    parser.add_argument("--learned-window-gate-mode", choices=GATE_MODES, default="off",
+                        help="off disables; shadow records window scores; on permits window-only vetoes")
+    parser.add_argument("--learned-window-gate-model-dir", type=Path, default=DEFAULT_MODEL_DIR,
+                        help="local linear_training directory containing frozen selection.json and model")
+    parser.add_argument(
+        "--disable-rule-protection",
+        action="store_true",
+        help="disable automatic URL/email/date/time/number/identifier/acronym masking",
+    )
+    parser.add_argument(
+        "--disable-numeric-normalization",
+        action="store_true",
+        help="keep model-driven numeric normalization enabled (legacy alias)",
+    )
+    parser.add_argument(
+        "--enable-numeric-normalization",
+        action="store_true",
+        help="enable legacy deterministic context-bound Chinese number normalization",
+    )
+    parser.add_argument(
+        "--enable-zh-itn",
+        action="store_true",
+        help="run the conservative zh-itn rule library once before Refiner",
+    )
+    parser.add_argument(
+        "--zh-itn-library", type=Path, default=DEFAULT_ZH_ITN_LIBRARY,
+        help="shared library path used with --enable-zh-itn",
+    )
+    args = parser.parse_args(argv)
+    if not args.refiner_model.exists():
+        parser.error(f"Refiner model not found: {args.refiner_model}")
+    if args.max_new_tokens < 1 or not 1 <= args.port <= 65535:
+        parser.error("--max-new-tokens must be positive and --port must be valid")
+    if (
+        args.enable_zh_itn
+        and args.enable_numeric_normalization
+        and not args.disable_numeric_normalization
+    ):
+        parser.error("--enable-zh-itn cannot be combined with --enable-numeric-normalization")
+    return args
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+    app = create_app(
+        args.refiner_model.resolve(),
+        args.refiner_device,
+        args.asr_url,
+        None if args.language.lower() == "auto" else args.language,
+        args.max_new_tokens,
+        args.output.resolve() if args.output else None,
+        args.entity_db.resolve() if args.entity_db else None,
+        args.entity_fuzzy_mode,
+        args.refinement_gate_mode,
+        not args.disable_rule_protection,
+        args.enable_numeric_normalization and not args.disable_numeric_normalization,
+        args.asr_api_style,
+        args.final_refinement_mode,
+        args.zh_itn_library.resolve() if args.enable_zh_itn else None,
+        args.enable_entity_asr_context,
+        args.window_edit_policy,
+        entity_audio_repair=args.enable_entity_audio_repair,
+        learned_window_gate_mode=args.learned_window_gate_mode,
+        learned_window_gate_model_dir=args.learned_window_gate_model_dir,
+    )
+    # Float32 audio gains little from deflate, while compressing each PCM
+    # frame adds CPU work to the file-streaming critical path.
+    uvicorn.run(app, host=args.host, port=args.port, log_level="info",
+                ws_per_message_deflate=False)
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except (FileNotFoundError, RuntimeError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        raise SystemExit(1) from error

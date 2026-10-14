@@ -1,0 +1,131 @@
+{
+  "dataset": "entity_challenge_aishell_20261014",
+  "selection_seed": "entity-challenge-aishell-20261014-v1",
+  "selection": "Reference-only; sort by rare PERSON frequency score, then stable SHA-256 tie hash; cap at 8000.",
+  "official_source": {
+    "corpus": "AISHELL-1",
+    "audio_home": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/wav",
+    "official_annotation_source": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_library_20261003/source/aishell_ner_transcript.txt",
+    "official_annotation_rows": 141600,
+    "official_annotation_sha256": "7158a025c6cbbb779607bce64f04d1e5eeaf26938a73eb085d371e42076e77a9",
+    "official_transcript": "/home/aim0/data/datasets/ASR/aishell1/data/AISHELL-1/data_aishell/transcript/aishell_transcript_v0.8.txt",
+    "official_transcript_rows": 141600,
+    "official_transcript_sha256": "b5f33b9e0b47548e20a5ea4e504297f80df41d559133924c4e5b7b544c15b5c4",
+    "official_split_manifests_sha256": {
+      "train": "be4bf560e24b7e9342acfc49d3fe5d8c4d5621126cb4d079881386af4a620464",
+      "dev": "7561748070de26a4150823851cdb71012244439436142b03e07ca5150204bb1a",
+      "test": "7860051c209ebb96d11709c88b3ae212e2cad072e3f5e4592a38003db977cb33"
+    },
+    "provenance_note": "AISHELL-1 corpus and AISHELL-NER annotation/transcript source used by the existing AISHELL entity benchmark preparation."
+  },
+  "alignment": {
+    "aligned_audio_recordings_with_annotation": 141600,
+    "annotation_reference_mismatches": 0,
+    "all_audio_recordings_by_split": {
+      "train": 120418,
+      "dev": 14331,
+      "test": 7176
+    },
+    "audio_missing_or_unannotated_count": 325
+  },
+  "exclusions": {
+    "source_recording_ids_excluded": 2188,
+    "counts_by_origin": {
+      "large_entity_benchmark_source_recording_ids": 2131,
+      "entity_modes_2506_aishell_recording_ids": 2131,
+      "protected_new181_aishell_source_ids": 57,
+      "protected_new181_aishell_pcm_hashes": 57
+    },
+    "excluded_records_by_split": {
+      "test": 1880
+    },
+    "protected_new181_reference_accessed": false,
+    "protected_pcm_hashes_read_from_metadata": 57,
+    "protected_aishell_ids_excluded_by_exact_recording_id": true
+  },
+  "candidate_counts": {
+    "available_after_valid_entity_filter_and_exclusions_and_reference_dedup": 41516,
+    "selected": 8000,
+    "cap": 8000,
+    "duplicate_normalized_references_removed": 2819,
+    "unique_normalized_references_selected": 8000,
+    "selected_rows_with_person": 8000,
+    "available_unique_references_by_split": {
+      "train": 36638,
+      "dev": 4546,
+      "test": 332
+    },
+    "eligible_rows_before_reference_dedup_by_split": {
+      "train": 39023,
+      "dev": 4948,
+      "test": 364
+    }
+  },
+  "selected_entity_mentions_by_type": {
+    "PERSON": 9681,
+    "LOC": 1467,
+    "ORG": 2901
+  },
+  "selected_recordings_by_split": {
+    "train": 7190,
+    "dev": 786,
+    "test": 24
+  },
+  "entity_policy": {
+    "types": [
+      "PERSON",
+      "LOC",
+      "ORG"
+    ],
+    "retained_native_annotations": "Every valid native PERSON/LOC/ORG span on a selected row is retained; filtering only removes single-character, non-Han, and explicit generic spans.",
+    "generic_terms_exact_match": [
+      "专家",
+      "中国人",
+      "代表",
+      "企业",
+      "先生",
+      "先生们",
+      "公司",
+      "医生",
+      "协会",
+      "单位",
+      "同学",
+      "团队",
+      "国人",
+      "女士",
+      "女士们",
+      "委员",
+      "委员会",
+      "学生",
+      "小组",
+      "居民",
+      "工作人员",
+      "市民",
+      "患者",
+      "政府",
+      "政府部门",
+      "教授",
+      "朋友",
+      "村民",
+      "法院",
+      "研究院",
+      "网友",
+      "群众",
+      "老师",
+      "记者",
+      "负责人",
+      "部门",
+      "银行",
+      "领导"
+    ],
+    "span_convention": "Zero-based Unicode code-point offsets [start,end) into official reference; whitespace-free reference slice equals the annotated entity spelling.",
+    "deduplication": "NFKC/casefold normalization with Unicode punctuation, whitespace, and control characters removed; keep one recording per normalized complete reference.",
+    "rarity": "PERSON name frequency counted over all 141600 official annotation rows, before split/exclusion; inverse-frequency logarithmic score, +100 PERSON preference and +0.25 for any 3-character PERSON.",
+    "audio_processing": "No audio decoding, conversion, or ASR performed; audio_path points to source WAV."
+  },
+  "output": {
+    "pool_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/aishell_pool.jsonl",
+    "pool_sha256": "c891bc10f3f40bc46317b9aeae20ca3e973da2c6a3626e9b3207578fbb7e4322",
+    "stats_json": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/aishell_pool_stats.json"
+  }
+}

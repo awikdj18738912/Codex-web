@@ -109,6 +109,9 @@ class TokenScoreLedger:
         # SDK parsing may collapse excessive repetition. Do not guess offsets
         # for transformed text, even if a repeated suffix happens to match.
         raw = self.raw
+        if '\ufffd' in text:
+            return dict(status="unsupported", reason="replacement_character_in_transcription", text=text,
+                        spans=[], calibrated=False, production_skip_allowed=False)
         payload = raw if forced_language or "<asr_text>" not in raw else raw.split("<asr_text>", 1)[1]
         if payload.strip() != text:
             return dict(status="unsupported", reason="parser_changed_transcription_text", text=text,

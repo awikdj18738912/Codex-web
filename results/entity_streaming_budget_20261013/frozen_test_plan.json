@@ -1,0 +1,3710 @@
+{
+  "schema_version": 1,
+  "experiment": "entity_streaming_budget_20261013",
+  "data_scope": "Previously seen development/evaluation material only; not a protected holdout.",
+  "selection_seed": "entity_streaming_budget_20261013",
+  "selection_hash": "SHA-256 of UTF-8 `seed:stratum:id`; sort ascending within stratum.",
+  "stratum_definition": {
+    "old_changed": "Old audio arm has at least one applied entity_audio_repair change.",
+    "old_replayed_no_change": "Not a control; old repair checks>0 and applied changes=0.",
+    "no_replay_or_negative": "No old replay, or cohort is negative/no_registered_target. Actual changed rows take precedence."
+  },
+  "stratum_population_and_selection": {
+    "no_replay_or_negative": {
+      "population_count": 951,
+      "development_count": 20,
+      "confirmation_count": 40,
+      "total_selected": 60
+    },
+    "old_changed": {
+      "population_count": 174,
+      "development_count": 20,
+      "confirmation_count": 40,
+      "total_selected": 60
+    },
+    "old_replayed_no_change": {
+      "population_count": 1381,
+      "development_count": 20,
+      "confirmation_count": 40,
+      "total_selected": 60
+    }
+  },
+  "sample_count": 180,
+  "development_count": 60,
+  "confirmation_count": 120,
+  "input_source_sha256": {
+    "inference_inputs.jsonl": "a76da4071667b7a5d37e18148b39f6bae633c99ca5689c01a32c16387a693433",
+    "old_results.jsonl": "8e7d44c74ce690d67b95c875137712fb686bbd2bcd646a550d7d7ba6a7b215c7",
+    "pure_asr/results.jsonl": "25197cffd60d94c40e54b2d8c3cf5a69845e9bde034a0ddd236a59236a6bf063",
+    "library_metadata.json": "7f8cbe26a10c6e9a4ea2679d6ad3435249cc5b1fc8217a31408fb2d397518220"
+  },
+  "source_audio_rows": 2506,
+  "pure_asr_rows_validated": 2506,
+  "library_snapshots": {
+    "automotive": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/automotive.db",
+      "snapshot_sha256": "89800f54a738e06c31986023650efc0471c05c7fdb372801189191bb0eabfd4d",
+      "total_entities": 33,
+      "enabled_entities": 33
+    },
+    "football": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/football.db",
+      "snapshot_sha256": "3ba846b264d40728811f95689f5b42ecebe577edd34ecbe9fcf252cb5d7e9af7",
+      "total_entities": 57,
+      "enabled_entities": 57
+    },
+    "topic_01_体育文化": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_01_体育文化.db",
+      "snapshot_sha256": "4b8ac8d14a7de3539cf25172c217a3277f2b406054496f611a7f36ba0c74e26d",
+      "total_entities": 26,
+      "enabled_entities": 26
+    },
+    "topic_02_农业生态": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_02_农业生态.db",
+      "snapshot_sha256": "76fc63189d9a3dd14ef62062b1ccf2c3b1f1fd6eac1770b0509f944e3d107094",
+      "total_entities": 28,
+      "enabled_entities": 28
+    },
+    "topic_03_医疗健康": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_03_医疗健康.db",
+      "snapshot_sha256": "dd17bdc0dd77310678c5bc66ed1628bc1534f13531e080481836360381ac4e11",
+      "total_entities": 101,
+      "enabled_entities": 101
+    },
+    "topic_04_历史教育": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_04_历史教育.db",
+      "snapshot_sha256": "9bbc5bd43f76ff7744103d3287a16afc3d98479e608955ef2fc1dba3bad50248",
+      "total_entities": 24,
+      "enabled_entities": 24
+    },
+    "topic_06_新闻人物组织地理": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_06_新闻人物组织地理.db",
+      "snapshot_sha256": "546dbd180c2076c3878b241fea196dfe4c7f5a301541618f143bffcaa211ee27",
+      "total_entities": 1051,
+      "enabled_entities": 1051
+    },
+    "topic_08_科技计算机通信": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_08_科技计算机通信.db",
+      "snapshot_sha256": "a09e2c9ca49501c1e240ae0bd36967a042a4344753be01cd4bdd4aa5e7c19489",
+      "total_entities": 24,
+      "enabled_entities": 24
+    },
+    "topic_09_自然科学化学": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_09_自然科学化学.db",
+      "snapshot_sha256": "41f2b33e9d76d61f39f35c529a3b103b690ff7f6001662664037d14c99b206ec",
+      "total_entities": 24,
+      "enabled_entities": 24
+    },
+    "topic_10_金融经济": {
+      "snapshot_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_modes_dataset_20261013/library_snapshots/topic_10_金融经济.db",
+      "snapshot_sha256": "4d68ba260ee0cd3b9816d4f072bd6730acb1b32e87c8d83b672ec282baed8716",
+      "total_entities": 26,
+      "enabled_entities": 26
+    }
+  },
+  "reference_policy": "References/gold were not read for selection and are not copied into this plan; they remain scoring-only inputs outside the inference set.",
+  "inference_fields_note": "Records contain metadata, library key, PCM path/hash, old replay/change flags and split. No reference sentence, transcript, gold entity, or text-derived sample feature is included.",
+  "samples": [
+    {
+      "id": "leb1_eede37ba9b425e23ebc5",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "wenetspeech_TEST_NET",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 14.05,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_eede37ba9b425e23ebc5.f32le",
+      "pcm_sha256": "f5d89e7e73a29089c9a3c5e66952439fb435bba0c465149295d0c3bf6f9a4352",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "044f65a7b81694049a6fa575b7a5e422aa720b006626691a7ed29a7e3f17a4a3"
+    },
+    {
+      "id": "leb1_4f579cdd4e5087b91665",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.13,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4f579cdd4e5087b91665.f32le",
+      "pcm_sha256": "c9a415c7c036e773392e6c8d65118208b72a71078ff63a6f19437d6fa1a03218",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "047bcc3f0ac23e078a909f5d46748de947d53aeb570aa5f8b82f996a3303af15"
+    },
+    {
+      "id": "leb1_dfc692a9f79e5d18f54b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.089125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dfc692a9f79e5d18f54b.f32le",
+      "pcm_sha256": "ed18a3aa6aa383f084750d7af184234b5481672566ace020a9a57d36dd03684e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "04b3eebd2c3ce3550fd4639af0d42b411a8ef6e2703f3e89a04e948fe90fee68"
+    },
+    {
+      "id": "leb1_c2e42d33297da72546bb",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.184,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c2e42d33297da72546bb.f32le",
+      "pcm_sha256": "ede62769bd8dbf52f6404e4cbdfa41481c8f68dd863cb6fbc54e714283643627",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "050e75ae5fa865bcb522ee0398c743a907e11914392f4627d12eb4dc3f02a897"
+    },
+    {
+      "id": "leb1_c6a4d75e1f1755437053",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 4.923938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c6a4d75e1f1755437053.f32le",
+      "pcm_sha256": "0aed7c710e37b6484cd2dbc04c1be8bda61bf7606db319a11afa439972aa5602",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "05164ed0d1e3b2e8dc7d0cf8450c56756217d70b8271947a37e303e2e9b157eb"
+    },
+    {
+      "id": "leb1_77bb8d35c191b6f17d9b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 4.395063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_77bb8d35c191b6f17d9b.f32le",
+      "pcm_sha256": "b3590848eafcbd23bd63f78db741fd50f77cdb4182adc383dabf67044ca751f3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0540d2e2933d5e387739c5d24ddd646d5dc292a3e6ab8dc1ba9f40b8e8d16be8"
+    },
+    {
+      "id": "leb1_caa1dda194ce986a7144",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.314063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_caa1dda194ce986a7144.f32le",
+      "pcm_sha256": "10cee077316670a49e1954cd9c57abc64ae9f2e818c5569dfb5a447701745302",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "057cecf2bf960ebc26aabba0d38ad31d565b682e09112389283e1b32121c7043"
+    },
+    {
+      "id": "rel_075015e1002683015712",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.093,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_075015e1002683015712.f32le",
+      "pcm_sha256": "2e7cacc14e2a5f9e971795d1b5c40d94700ee9625709a954fb9189e443a6c4fe",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "05f5e5233fe2a505bdac16f8132404bbaec973547ffd6b549e9b923b946b58d7"
+    },
+    {
+      "id": "leb1_b2b2e45b447c0d90e2c4",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.528063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b2b2e45b447c0d90e2c4.f32le",
+      "pcm_sha256": "9586a920bd60bda12266ea435831735fde00020288e0668482cefb1ad97b1c5b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0621316da8025e1b1315388369d2e48ffb5645ff6db49ee6205531c9457b8bf5"
+    },
+    {
+      "id": "leb1_9cdb8f764d38db303ba2",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.555,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9cdb8f764d38db303ba2.f32le",
+      "pcm_sha256": "e40e68a7ab09b8d69ffe85ef4461d24c3c69f3530e0579af756dbd244f125719",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "06f8522716a4b751c5fb0f5d7f16eae20f2e0e7a6dbf34c62547345e0f3f93c3"
+    },
+    {
+      "id": "rel_04a0147177d312bf8007",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "no_registered_target",
+      "duration_seconds": 6.656,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_04a0147177d312bf8007.f32le",
+      "pcm_sha256": "e68ff2723282f0a3839fca583b90be15b16d413e3cd576d055473d7a83d0779a",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "07016b65e3a7f09e8985d3c8d213f74451ebbd22819b1c72e2b2c25ce5f44487"
+    },
+    {
+      "id": "leb1_4c52c2793028372f19f9",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "SpeechIO",
+      "topics": [
+        "金融经济"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.284,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4c52c2793028372f19f9.f32le",
+      "pcm_sha256": "0a254befce1166f99368ca1a3f70d5a22be699c1d9f9bcd3c871cf5294b83d9c",
+      "library_key": "topic_10_金融经济",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "07512a04ae732faaf360483e64002cf1a38a1e2a1be84d8378cb6676982c014d"
+    },
+    {
+      "id": "leb1_0388f679f686eaa86038",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.52,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_0388f679f686eaa86038.f32le",
+      "pcm_sha256": "abd6c35ee3e2c242519073298b9b435651dbb6a84aea4dfe31823e4a4fb68a27",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "077e8dc1cbdb9b250b466521a877aa49cda57a6f5a2f7c6c405af2f4ce2481db"
+    },
+    {
+      "id": "leb1_28e3842a9ffbc2c7b3da",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "历史教育"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.76,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_28e3842a9ffbc2c7b3da.f32le",
+      "pcm_sha256": "4c512fe5c74baf0ff5f3709adef639e0d5c2cb21717b0cd9d5de11140ee169d2",
+      "library_key": "topic_04_历史教育",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "07d62ecbb9890e62215bba18c6014e29a33bec5dffb3956b0b14b016f82bc93a"
+    },
+    {
+      "id": "leb1_303f7fbe4d386cf6fffc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.865,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_303f7fbe4d386cf6fffc.f32le",
+      "pcm_sha256": "d26816f15cfe66d6bd97ebb316a57ff205315c7b163eb782e4157a99d2f3d38d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "07eac0408a110f32cece40fa532baf4584c2615e24382b6e2cc4cc9cd1539440"
+    },
+    {
+      "id": "leb1_5ff9addfc4c923119865",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.906,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_5ff9addfc4c923119865.f32le",
+      "pcm_sha256": "c08b498eacf60f17e2ae4c7fadb8bc676f8390368d6c5a1dfccdda6ceb4ed0c3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "08d04ea3696232a763db8ee2d662caff09c08e7d4783ed16db4f92a84d546d26"
+    },
+    {
+      "id": "leb1_bb15a0169b1affd30555",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.768,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bb15a0169b1affd30555.f32le",
+      "pcm_sha256": "c3eab9eef15dabff40c1b73e42f68d215b576532b90c91c5862f18eb1fa210ce",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "08fc78dfe17576f7ad00e88057dc176d7c33a5fc518684b10fce8e07c5a09697"
+    },
+    {
+      "id": "leb1_45154fdf31061cdd1e62",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 4.735125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_45154fdf31061cdd1e62.f32le",
+      "pcm_sha256": "8af7ccc6403eef7471a26978b19237b56f3398f928a612a47d0c9ed446276f3c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "090d80fa6f64e8e779ff93e89c2aba5a24d47be7a5c01d1d54e8af06c73f6be6"
+    },
+    {
+      "id": "leb1_fb1494d5415cd1c3aa3d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 5.445938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_fb1494d5415cd1c3aa3d.f32le",
+      "pcm_sha256": "99a98b08cbe2801b125904722f0dbe72b505e5bd9627441135c3d534f95357b5",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "09a0c8f5feb3554e8494764c77ef8b00ed7a345eee8ce3ccfe741796e99679f4"
+    },
+    {
+      "id": "rel_0161c3d79d43da67735c",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "no_registered_target",
+      "duration_seconds": 10.975,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0161c3d79d43da67735c.f32le",
+      "pcm_sha256": "0936616d9e2160c580290f7ec6b7db452e43f421d7590e8cc4d95fd696c3699b",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0a62d1ab3ed8c83fb07ae8f60e46043b60c4570df9c2f9aae8a85a6f4275d14d"
+    },
+    {
+      "id": "leb1_4fb6e96b6e6802c45f58",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.712,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4fb6e96b6e6802c45f58.f32le",
+      "pcm_sha256": "04e8168236d5db0b7b816e84a0010a82178aca731666b19367f291939f44a5ac",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0a8885743fbe2d3afb1a9e204f4463c5b7737686974aa829151daeb40243645d"
+    },
+    {
+      "id": "leb1_b3bb67f13d45a0f82eba",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.985063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b3bb67f13d45a0f82eba.f32le",
+      "pcm_sha256": "2303658f5cf41bb9293e39987ba37372c82dfdcb23e5f0e943d1bdfb7fdb580e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0a9d16bf4269420de02dd6aaa0bbfcece115b77f59c4661226ac66a7e74a0521"
+    },
+    {
+      "id": "leb1_22a39f32afd15e18237b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.646,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_22a39f32afd15e18237b.f32le",
+      "pcm_sha256": "c595f31266134339a24c4e70ee3c3bf5fbdc9845cc43d2f356aff5ff29eb6e0b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0ad601e3d84a811e9d8e5b013ad32a159e046aa5d7981a3e40a1ce9b3e08f8a2"
+    },
+    {
+      "id": "leb1_448a88f3215a80e638d3",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.696,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_448a88f3215a80e638d3.f32le",
+      "pcm_sha256": "8f219fe26dd9b450243dd318e5dfe26786473ac55ed2593ec4eb97fefb5c71a3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0af2bd29532858c86e6d1646abb7a2b53a8860209673b2f445f266227339dd1f"
+    },
+    {
+      "id": "leb1_eadc92f5e9ce4cb19d30",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.409938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_eadc92f5e9ce4cb19d30.f32le",
+      "pcm_sha256": "d5f66987eaa0c57dea7e3b401fda1dc4a3766977c1959c3d03c81fd5ada29ddb",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0bedc91065ceadd5dfa209885c0e0993584b194bdaedcd0bddd08b3ec7c59b11"
+    },
+    {
+      "id": "leb1_c8945004212cfd0f402c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.594,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c8945004212cfd0f402c.f32le",
+      "pcm_sha256": "7091d92a5c65dd0da69afde6d265b20f4512f14d5ec3ea24fecff1c269e71728",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0c0826999e041e877f5882fb24bbe05d04f8e635acf830d09931aae827213fa1"
+    },
+    {
+      "id": "leb1_f6180720cf9378c8ea7b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.196063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f6180720cf9378c8ea7b.f32le",
+      "pcm_sha256": "a5ca3a667ae108fe4fa59cd6a4254344ea4ae7418c47f573ab1af48622d08661",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0c5785954f271138e2173491e44bb23bbfb2e929d7780cf167aa0fa2de0188b7"
+    },
+    {
+      "id": "leb1_015d417b59b0bfcb0ee8",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "科技计算机通信"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.624,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_015d417b59b0bfcb0ee8.f32le",
+      "pcm_sha256": "77cf1ab8754f0445c5cdce92c8c1e7ae66fa1896f1144d3410e569d134c5dcd7",
+      "library_key": "topic_08_科技计算机通信",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0c75401ed64429dde48026c69fcdb341434c41a966de502453a1e56b9f0d4eff"
+    },
+    {
+      "id": "leb1_8384a6b5250bbf785d67",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.653063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8384a6b5250bbf785d67.f32le",
+      "pcm_sha256": "39b6699e2785f6ee183ea53277bf2579ce539e1e935ef3d924246af0e5bb2596",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0d3bcdd171075bb12deaf1c87950fa7f5cc69b00ea209a03072dbf99701df524"
+    },
+    {
+      "id": "leb1_90b2af3f9fc5e4ca4199",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "历史教育"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.456,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_90b2af3f9fc5e4ca4199.f32le",
+      "pcm_sha256": "6686b3d3cf928669e14b759e3e0e0036e193e4dc30cf969cf958362f54c33369",
+      "library_key": "topic_04_历史教育",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0d512e48d92a11463262460f06364b07d3af9544ec0c8b6e3f334b920154e19b"
+    },
+    {
+      "id": "leb1_5d48ed5dabd9e4942840",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "SpeechIO",
+      "topics": [
+        "科技计算机通信"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.92,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_5d48ed5dabd9e4942840.f32le",
+      "pcm_sha256": "df72faf32372a0349d44ce7ffe4cd7a643e300068d71d4c26b7ca5145fbc5cd7",
+      "library_key": "topic_08_科技计算机通信",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0d935de6a1c1b0c46aeba6c7206d193273322533514525d35874d0481b64abdc"
+    },
+    {
+      "id": "leb1_ff3dac4129acba999b96",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.918,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ff3dac4129acba999b96.f32le",
+      "pcm_sha256": "012c9d2aa108d21dba154e66ea5798df4bd5f2c2da04196f03b97c2b9ff03d30",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0e1949f659a2a6df8cf93948928f1c6a76ce6f4a850c7ec513a8b93d94eae0ca"
+    },
+    {
+      "id": "leb1_cbb7382c59f6dc6cbabb",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.761,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_cbb7382c59f6dc6cbabb.f32le",
+      "pcm_sha256": "87c833168360a7357925593edd17930c0c61da54f9a8d581f1e854344eaa3677",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0e8ba4aedc392c1b92f7be717b88f863bf61e14aa313d582630c013904e86562"
+    },
+    {
+      "id": "leb1_32dafbc0e03f2bfb6ffe",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 4.747063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_32dafbc0e03f2bfb6ffe.f32le",
+      "pcm_sha256": "9cdabb18c0454a34703d5a62e7be093e678d2f1cf16b871795106bf205cc2ce9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0ef8298bb9872007c9e45206b64473f1b2b372bcb1fee4e03ef8f1b67e8144c7"
+    },
+    {
+      "id": "leb1_dba858b751b9e75f2850",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.480938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dba858b751b9e75f2850.f32le",
+      "pcm_sha256": "221113ae4d70b945e088b204ed165275771bd31704ed1d9b02f2b99512d3ae70",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0f070a3571194cffc897e788f90fcce4679e90bbe6f0de6be9c295585202a7aa"
+    },
+    {
+      "id": "leb1_3d1517408e4874326147",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.824938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_3d1517408e4874326147.f32le",
+      "pcm_sha256": "9e4a26288eacb689875379fb18fe484e01737faaf4ca90346ae0192cee5b13fe",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0f2052f0000922d6bc38c4d761ec9e791d3008f5a7ae2ff3324a0593a8e534e6"
+    },
+    {
+      "id": "leb1_3000495be7238d93cb97",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "历史教育"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.392,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_3000495be7238d93cb97.f32le",
+      "pcm_sha256": "066ebd2fafe0ae98601ae8ff44bd7db48f3c0847c0e0370deee06990605a7e25",
+      "library_key": "topic_04_历史教育",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0f320fc579573852eb2008ed3762e63a95f662cdd99734e2900784de7d2f2eba"
+    },
+    {
+      "id": "rel_0a42bee6830e54c8fdcc",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.443,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0a42bee6830e54c8fdcc.f32le",
+      "pcm_sha256": "a07b3b7c0d79a9cbe25fbc1f9a1476ff89b37d07b90500057748a488dc0a0e1c",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0faae32da90b25ee816d1f24abd76f07c9a63c82dac3c1dc240c672ff340c0ef"
+    },
+    {
+      "id": "leb1_e8e7680c9d6dec720b30",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.651875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e8e7680c9d6dec720b30.f32le",
+      "pcm_sha256": "95b7d26c1b6c6620ba091f613d062ce628ed6cac2d4fe2249932811edf12fd29",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0fe858e6df766670a793b9cf0f60758fb0a9503a3a2bdfe80520f5b7d882c34a"
+    },
+    {
+      "id": "leb1_a34eda60fa68466a96cc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.090063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a34eda60fa68466a96cc.f32le",
+      "pcm_sha256": "8b9ecc1c5ae624ccd5b6fa7f3fbd048a7752936d324f7be5f4be129b8d95cb65",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "1012a4ab7e7506e01ec517e73fc934a892c303e410e29cde8378097eab519070"
+    },
+    {
+      "id": "leb1_1f10c5da2617afd2eafe",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.940063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1f10c5da2617afd2eafe.f32le",
+      "pcm_sha256": "d8bd9cf481487297dc24bc846b9ed9868b9031e721cad3c68d410586eb3b621e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0003b8adc4e304c9d60d978bbb5835fd2e2443e520ff96be479f97b9f4ca8462"
+    },
+    {
+      "id": "leb1_a61d784c2a05aa80c4ec",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.949063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a61d784c2a05aa80c4ec.f32le",
+      "pcm_sha256": "e1577b94796f6d3b9a590daf2effc57ce313b6f79f4c0d9f82a654e8c012730c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "00992992804bd5d1a7e0af2f22e046ec7f8783f5cefe1e5baa66b1a54c94d477"
+    },
+    {
+      "id": "leb1_517493d982118ffb0953",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.98,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_517493d982118ffb0953.f32le",
+      "pcm_sha256": "5a3ea81ae35b29b01c9556f55c9c273acb4474aa97aeb329883f68111b5e7736",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "01298e7fdec30690283772de93cf39dcab7f4a489b39f86f259ed716a228b942"
+    },
+    {
+      "id": "leb1_128a6ab40cc44fba024d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.568125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_128a6ab40cc44fba024d.f32le",
+      "pcm_sha256": "25086e3400a6d66b6707f4af961cd26a3d9832839db8df7cb95dfeaf748b2f8b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0147e72855feb6e85c7afcb7579ef79e33e84ec69783a5900e069864933b8c67"
+    },
+    {
+      "id": "leb1_d44adec501140b24c76f",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "wenetspeech_TEST_NET",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.63,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d44adec501140b24c76f.f32le",
+      "pcm_sha256": "13ba2f85f7b6a79f86d0e997b044a7733c57cb47d0a600a4533b1be14ade21dc",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "015c28ec2b2cad5ce2b5b330a31ab757793e5f292e637e6606f3c6a6e2218dbd"
+    },
+    {
+      "id": "leb1_10dc2537c7ac9c4e76f2",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 8.574938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_10dc2537c7ac9c4e76f2.f32le",
+      "pcm_sha256": "f47fcbe9dcd588794446ec37abd300d30fc8a7dadd8eb558347f8ab02878451a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0163258b3e5bd410a21ac678404885ee717f6e1dbe6664fc7d8ca53c4a104b88"
+    },
+    {
+      "id": "leb1_4d134666675978dc3ab9",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 6.234,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4d134666675978dc3ab9.f32le",
+      "pcm_sha256": "f1a85a507a48d4aaacca5a400ce54bfec43814229f78ec8c7a4b6b6e564f8570",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "016d4b197797f8a277d2b729b263886fa36541b9838e9da42b44ebd65cfeee89"
+    },
+    {
+      "id": "leb1_76c0c1d7dd606cbcd2ff",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.852063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_76c0c1d7dd606cbcd2ff.f32le",
+      "pcm_sha256": "c86ebc88a3dc269fbdfa19bdc709c3e785c0e91263bb663169fcfb99018fcb55",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "018a745bf662677128a5926a579bc5c4ca24f822607f6310c6e6b7d1b1cfacae"
+    },
+    {
+      "id": "leb1_19a50b44479f49d5c2ff",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 6.339125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_19a50b44479f49d5c2ff.f32le",
+      "pcm_sha256": "0d354eaec73be655cdd3088d29c389da87893c650eb1fa9bbc68945d78bd94d0",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "01ffd7b6b6a2953acf5883c0f2bb13586b74f942c49159a23faedee63d7bfc99"
+    },
+    {
+      "id": "leb1_5c29855cfe18dc0f700d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.261938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_5c29855cfe18dc0f700d.f32le",
+      "pcm_sha256": "fe1d70607f988240fb811d68c5f677dd793f917f28eb9f9d2fb12886740063ff",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "020680d32639acbfd498b53217873635f46179d391d7d7bd89039a6fbfabe10e"
+    },
+    {
+      "id": "leb1_ab2f5022d76e2bdbca4d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.296125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ab2f5022d76e2bdbca4d.f32le",
+      "pcm_sha256": "7062b01edbc77abd200c5f8ef00afbdbec4c440fcef3d62818943b543f099fda",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0220a1a1470807370af1fa1958bd989b34d2a8f6cb964bdb7cd9a0a1730faa0d"
+    },
+    {
+      "id": "leb1_26d926d1a580ec637a30",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.831063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_26d926d1a580ec637a30.f32le",
+      "pcm_sha256": "9d14e671567e2d0d03a9cf949c97f10de35813faf28fd5e3aec79af0fe4c5511",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "024829d1c664888d939351a933904f9acddb3a86b69a08a778122b74f9e82eeb"
+    },
+    {
+      "id": "leb1_57cf049945ebb9b50a15",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "农业生态"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.136,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_57cf049945ebb9b50a15.f32le",
+      "pcm_sha256": "ebf98db820364b41ad113f367943d8144d5e3d44cf3c1c88d9b4def258df64f8",
+      "library_key": "topic_02_农业生态",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "02b58bd8dadd3bf50bde446cf9e0a624ea5c20bcab219c6d6923be8f0836129c"
+    },
+    {
+      "id": "leb1_dd94ac12838dc948ff23",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "SpeechIO",
+      "topics": [
+        "农业生态"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 2.925,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dd94ac12838dc948ff23.f32le",
+      "pcm_sha256": "6682d992e962347daddf4448aef2a7a33585e39f14edbef8df369829aee53648",
+      "library_key": "topic_02_农业生态",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "02e5f10c8a5500787e6babb4bfcbc864e12228584a45fa73d84290da45c85c7d"
+    },
+    {
+      "id": "leb1_598df14e9f76e8c128c1",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.27,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_598df14e9f76e8c128c1.f32le",
+      "pcm_sha256": "8ce3e299b82ac5dae46e279ae5a04c89bc0f02889993300212bea7bb49007b6b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "03005c9690056223910676c306d41ba7a1c82bd9bb6dd5652c575351426115b5"
+    },
+    {
+      "id": "leb1_aa4b23acb58807758c37",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 5.657938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_aa4b23acb58807758c37.f32le",
+      "pcm_sha256": "fe01e0cccb07737b20f752df5d75f7cd0e61f839c7ce769fbec06910fe646696",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "03150a48b534fc81d7d2b836e0bde2df8b9e9146be1de2d7f7cbf0ff6d128327"
+    },
+    {
+      "id": "leb1_5ef7e318dbb611f57bea",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 3.427,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_5ef7e318dbb611f57bea.f32le",
+      "pcm_sha256": "b80be36df772322dcf15dc7fcc9b2399acd671c5a1904e7f9661a7f14379ee94",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "0330721cbd3cec675388cc661224b8f5a1fe9d4dae6e2852e9c5861c047f8d1f"
+    },
+    {
+      "id": "leb1_37efb9cfe4f74c09c04d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "自然科学化学"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 10.008,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_37efb9cfe4f74c09c04d.f32le",
+      "pcm_sha256": "d54eef98d600720f35123cc4f73174a6f4b388606a015503195ade637d29db89",
+      "library_key": "topic_09_自然科学化学",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "03817c3d8ca149bb8b4615b916c3305866ec48c9451382969cc14c0de538e72c"
+    },
+    {
+      "id": "rel_03ffd4784c5275232291",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "no_registered_target",
+      "duration_seconds": 9.789,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_03ffd4784c5275232291.f32le",
+      "pcm_sha256": "3b4f326b239ad4da7e13455b12227b5f3319e4d2a9a11ebd02a02c02b2afc322",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "03cfdef07cdc01aaa29a204baaafa386c5b0ccef707f3ac1db3ff719012704ed"
+    },
+    {
+      "id": "leb1_bda64273c682e4cce368",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.160875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bda64273c682e4cce368.f32le",
+      "pcm_sha256": "d207c65fc302066d0b006bae9a142c317448f62aa91db4078711caa4ad35dcd0",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": false,
+      "old_replay_checks": 0,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "no_replay_or_negative",
+      "selection_hash": "044eaa9bb4ed2a5b3e50d70264362e0d8a55d57d7b48e8824de7be60e70e4f8e"
+    },
+    {
+      "id": "leb1_e14f69d4954539658618",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.382063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e14f69d4954539658618.f32le",
+      "pcm_sha256": "05d7ff4df9cf517855deeefa4763eb8fc610f439acff3050d5071d6c21806dcb",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "209937ba69e9616431a7deda0ca29387484a2c82d2f10004e7765904a2de42ec"
+    },
+    {
+      "id": "leb1_6892f9860b9561d7d44d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.851063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_6892f9860b9561d7d44d.f32le",
+      "pcm_sha256": "a02b1af0e782bc2a66b57a87b2fb475b275c2b72d2482c67d800ecb0648d70c2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "20e634e4c003ab0913f838eedd19ecbe9c3b6617385a160729cb36c16369165c"
+    },
+    {
+      "id": "leb1_67c922fda45f7b2dde4a",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.550063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_67c922fda45f7b2dde4a.f32le",
+      "pcm_sha256": "c717684d041dcf04be0333071a975dc1bbd20cae3326d81f45df4b9512a2c542",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "21a2c82e88db5668a3fe8f95cee187d560326622ba8d7606a08e68ecddc29562"
+    },
+    {
+      "id": "leb1_3ecb102aa9126726014c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.198,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_3ecb102aa9126726014c.f32le",
+      "pcm_sha256": "a7a9f6aa2cd7a869744c9ab4012f34ea7a9581d8e8c6ecaa850b5ccb6762fede",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "23cf1243258b3d808c909a66a2e74a23327b51938f1fc2202a355ba5e17a97ff"
+    },
+    {
+      "id": "leb1_a0cd79a26c130818e910",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.372063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a0cd79a26c130818e910.f32le",
+      "pcm_sha256": "8edb54cc9aa7e443c1a3e2a256055035c3905dc5cc3396aeca89a4f9368164cf",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 2,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "24d292e6c4bb5acc6e154f567c7636bc6899cbab42c399b3ef266e8961882966"
+    },
+    {
+      "id": "leb1_a62174f74e9d16fb5fe0",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.060063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a62174f74e9d16fb5fe0.f32le",
+      "pcm_sha256": "cfa1093ff6ad045c33fab6b9015fc162def453e4c996b30715ffdae18103fae7",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "266001e6c81a435e37adb5af128c669602bfbb96fb1e1873584a9c8848355137"
+    },
+    {
+      "id": "leb1_23b49363b4e868bf587d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.236,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_23b49363b4e868bf587d.f32le",
+      "pcm_sha256": "e35d6f5ff95db84b2d292c8b3ef6d098d802ed1698c75774c8d9016678aa9ee6",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "26c407d5b01ce739336f7feda22cba905cb8f8d855a6f060b8b6a584ac1ba157"
+    },
+    {
+      "id": "leb1_67de1092cbdb32d4b61a",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.673125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_67de1092cbdb32d4b61a.f32le",
+      "pcm_sha256": "77dc182f2a630eddbec4a7aaa0806e51e5553ea492b02a09870208ead5533833",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "27171eabe941faeb5ad5050770049e9ca4097bdd2a74f95851c78d2e1ff825dd"
+    },
+    {
+      "id": "leb1_a577f69e98ab735bf987",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.45775,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a577f69e98ab735bf987.f32le",
+      "pcm_sha256": "b79b65a2a87de109de23151a521d5ebf891f43ddc3d1486dd713e9325ceff90b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 2,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "274c049f1cd3a047842bdb9c3ac36473623c1e375a3c77858bea5b0467a3d2f7"
+    },
+    {
+      "id": "leb1_63545025b741f1f4be61",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.104,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_63545025b741f1f4be61.f32le",
+      "pcm_sha256": "a0403bd8158495bb7c1ae924e415524c155950b6991550eb43eed2c419f01479",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "2b442cb822e4dceafbe6fb775455c9867690750245e61d663776ee675d4e0a25"
+    },
+    {
+      "id": "leb1_40e603a8a48492a0491d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.79,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_40e603a8a48492a0491d.f32le",
+      "pcm_sha256": "b6668c2a7bdf69b8dd9e979bb71e30764679ae8535b7bb43abbde195a489fde4",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 2,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "2c660d055b10139b2000c9235044fd2c6aa2bc0414bd71cd19540d97dbc3957a"
+    },
+    {
+      "id": "leb1_18ecf3b6d7f8c58b6402",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.897,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_18ecf3b6d7f8c58b6402.f32le",
+      "pcm_sha256": "f17a6d7c6694a94d17ebbc516798bcd8f6e7b9c2d3d93fcd73f8eee181aac6fc",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "2dc2e21a086593c47f825ba3d2daa6f3ef72ac85a1f30966e0d8b9099fa1246f"
+    },
+    {
+      "id": "leb1_15328b95b81704e905bf",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.546125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_15328b95b81704e905bf.f32le",
+      "pcm_sha256": "80c10c5929fc28113ca1205443bb20a58dac2cf434a34ae2a0b45fd7e4e6d01e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "2e2e0fc6b62b6f7bf65b13654fb94d4f7eaa1a20a3f2ba2bbca8ffd93d14a06f"
+    },
+    {
+      "id": "leb1_15af9c01a0e93091f7ea",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.495875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_15af9c01a0e93091f7ea.f32le",
+      "pcm_sha256": "40384dfb9ba303ea83d100ba60f46813d54a95a44280790309db96528f92e88c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3086e52bff5194a5328553e33572b00e74a945ea26b1a30690f5a83899186f54"
+    },
+    {
+      "id": "leb1_9deb38c9074f275dd74c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.362063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9deb38c9074f275dd74c.f32le",
+      "pcm_sha256": "7ff48be8bc1d0b4ef718fcc66867328c0d090bb5434e9c7dcc2ac59a93a6e644",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "30aea5bbfc5f430a4c3c4f35439bffd2f3656cd7f90871c8f44c5f9a96f18e74"
+    },
+    {
+      "id": "leb1_b340620dd5eb38a3f5de",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.146938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b340620dd5eb38a3f5de.f32le",
+      "pcm_sha256": "8f5d5714d9f2c0a819324c386914c2e5241cb761ab5d7aaa6a2ee8e6ab00444d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3212cab16a8c73cb792e5fd4ac787bb18fd3f7cbef9c77690a1d3dbbdf361d05"
+    },
+    {
+      "id": "leb1_da93b0cb29f6285ad0a9",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.667938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_da93b0cb29f6285ad0a9.f32le",
+      "pcm_sha256": "011ffa8f00ac61e6f8116c2cf815cb76e6f0dbc345a9ed7deb22af81c762a7c7",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "322817b25ec8a6dbf157317e97e160cbaa5d583905690f9d3b4f109cb37a04ab"
+    },
+    {
+      "id": "leb1_8901768de9e75a736083",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.223875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8901768de9e75a736083.f32le",
+      "pcm_sha256": "431eb9a29044a87682cb7a8682e9daf03df6056effb17e8c5c106e50a720650e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3258104d71a5d2da4eb10a9c56df06bd6bd0c6fbad7f1accee71da647f979a72"
+    },
+    {
+      "id": "leb1_d39d7292a9660cc1eef6",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "negative",
+      "duration_seconds": 4.723125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d39d7292a9660cc1eef6.f32le",
+      "pcm_sha256": "67204cee3431fa82ec170bab3b0b237387e8401a425ae3b2a967c304c86f523f",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3367918bbdeb1bc40c00103b4c1aa0033f385b22b3256c63941c3b590c1678c6"
+    },
+    {
+      "id": "leb1_c485dd423a2c3face4d8",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.865938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c485dd423a2c3face4d8.f32le",
+      "pcm_sha256": "50ecf4a6e86bbe0894da649d1264f8dd78afc5aff73a0895a77b8d1879334f1c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "34406444edeaaf1d5876031904653e736f8afd32c19c19034cd043f3fc377cc0"
+    },
+    {
+      "id": "leb1_bb973943ca354993b0b3",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.691875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bb973943ca354993b0b3.f32le",
+      "pcm_sha256": "7f5d95d3bfae055e04ddaa745f75cc4058e9fa6149be2ffefc8ba1e8b0c38632",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3459d1e1db357d21194d3cfb82284f6f53c350e2ab8319612d93c9f2792a4704"
+    },
+    {
+      "id": "leb1_8142154500ac0d7d858d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 14.699938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8142154500ac0d7d858d.f32le",
+      "pcm_sha256": "4dbcc91fb5f286c2322273ffc442816e0f839edf6ebdc7cde94df6d5de08578e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3577a82b155fe4546fe6f8f296dd6e556b74ef9350559ef53e8a9e550b3e6f83"
+    },
+    {
+      "id": "leb1_7973b4339293a0077b38",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.5,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7973b4339293a0077b38.f32le",
+      "pcm_sha256": "3f3ae2ffca84facc7b3d9ad873ad0181a44372934138960f391c5884109d045d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3836b93bb3ffe79667011f6c9ab101b25884bc7d0b79802ead650e87a6d01499"
+    },
+    {
+      "id": "leb1_e85d04d552b3d7575f56",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.051063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e85d04d552b3d7575f56.f32le",
+      "pcm_sha256": "62ea5207b866f328f10b224b8e65994ba5e48e4ba94219f17e7edf2fec1d8cd6",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "392db111802cb891efd3b71a662e07c1fb949303247c6836398589fd521d1e82"
+    },
+    {
+      "id": "leb1_8a8ac66f9efe9b488899",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.933,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8a8ac66f9efe9b488899.f32le",
+      "pcm_sha256": "9ce8cc49487978ae9b4fc32fc009b33f9116da63ac7359b73998ea5470580390",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3a8d34c921608b1872de0dbabdf034761929a9053eac073c98ce0cefd7054dfc"
+    },
+    {
+      "id": "leb1_1501f86fd1ce0089a685",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.893063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1501f86fd1ce0089a685.f32le",
+      "pcm_sha256": "6b4d9a9afd28dae1def114dc01dd1942cc9897d547f58665fa3040419927fb49",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3a9d56b547c5b3680ed6e07157c0a90f87bd76483399f887652aa4d51ce4b419"
+    },
+    {
+      "id": "leb1_dfc7aa7580f536ed6c05",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.241,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dfc7aa7580f536ed6c05.f32le",
+      "pcm_sha256": "0560a644be96e09cbb789bdef71f10982db3601ed52b62d10db379af629d1100",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3d02fceaa83d5003dde0007b472592d99ba3211dfcfe8608077d5d28dc9c5cd0"
+    },
+    {
+      "id": "leb1_c88e12039bc97e5ca0fd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.728,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c88e12039bc97e5ca0fd.f32le",
+      "pcm_sha256": "17274cd695eddb5055f515c23c09890ca01e298ea957fb50d283a6e21a7de780",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "3e57fe1b721c4783b176f90b15c15527d48632d83a97eb21ced0e48aaaac0b44"
+    },
+    {
+      "id": "leb1_2bf54bec164ed1b66a87",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.544188,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_2bf54bec164ed1b66a87.f32le",
+      "pcm_sha256": "d9ab0feb5f224352f1cc1fde0b10601e796e0ac73d4cb4d8818c19e322932566",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "42026af383fd876f9212c4ec45dd04d253665bb7c55fe27a55bd62ea3c3cfc11"
+    },
+    {
+      "id": "leb1_42c151ed5fceacb021e3",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.235875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_42c151ed5fceacb021e3.f32le",
+      "pcm_sha256": "640f964f4b12c4b5e9818d18e766f167b9f9631c4bd4a8bbbce0338ec5a9ecd2",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "440a6489dbe5d72335d1c9a4f5cb1b31cdec9a2323b8ed984c7c574eec155dcf"
+    },
+    {
+      "id": "leb1_12f44c784b4de1aac536",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.383063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_12f44c784b4de1aac536.f32le",
+      "pcm_sha256": "e263643fc4da71655bfa723d9d8cf3d1953bf2c8ef85606d3706ca1770ab79c8",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "44e99bc2174c88b33db7f2e3ed8d681a68a60dc5963a4156bd0891132536e4c6"
+    },
+    {
+      "id": "leb1_58a5f91cb24f60b61b41",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.952125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_58a5f91cb24f60b61b41.f32le",
+      "pcm_sha256": "a18d7d2821c1a2bc990ca673e8bfa24a4ab033517bcceedfeb6b1e158d77f047",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "47932a17b91924c127b20d880dfbd5116fd329379bb3d835129d4a42c2d2db83"
+    },
+    {
+      "id": "leb1_1f9306f5d316e11ab39b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.428,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1f9306f5d316e11ab39b.f32le",
+      "pcm_sha256": "c6cbfd218a4ee187fcf73ea29a0b57e39d52def6cc85de0896c850440282554e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4a786f790770a6b2df78895c34a855d526159c0148d480a1eec6298aadb33250"
+    },
+    {
+      "id": "leb1_077d55045b4c7f6ddca0",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.008063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_077d55045b4c7f6ddca0.f32le",
+      "pcm_sha256": "e6851b9243f7c88077a6007cf7de996c5f54e7be8f366159ce6639cfc35221c5",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4cb4c1c264486666f5f3ad922c1f6829c22876fb52dbdfabb4f68193346ca3fb"
+    },
+    {
+      "id": "leb1_799c64005f3ad29ffa75",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.068,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_799c64005f3ad29ffa75.f32le",
+      "pcm_sha256": "4be204ab52aad17650ac8cde1ac2c3488fcefaf8a9e6b5cef1eba10b851cacfa",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4cbd2de5a40ebdc1930ad2f40ed81e803d786fc4db090068a912d3f37875418e"
+    },
+    {
+      "id": "leb1_825878750030a372520a",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.775875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_825878750030a372520a.f32le",
+      "pcm_sha256": "5ea87c6797b9d08ac402068abf5c2fcedec1311d20bbc676e5dd073ab110176c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4d22e4beb44e12d6dd713cd605b88781026b0b911651b6e7b94c3512c1fc19b7"
+    },
+    {
+      "id": "leb1_4f74f35a3fe13b81f12c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.472875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4f74f35a3fe13b81f12c.f32le",
+      "pcm_sha256": "378cfaa55cae76e6ff8464a3c106ae6897f63f218f1f91163c7fb047c2b01c5a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4d9b43958665b0a0222336d600876a51af4c531ef9e46be4299b925854e20e92"
+    },
+    {
+      "id": "leb1_ed9ad8d267a92a6f8087",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.790063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ed9ad8d267a92a6f8087.f32le",
+      "pcm_sha256": "01c269e4603cb4bec3b9dc1f8ae6fdc9609e7d96a16145871f7dac2bc61c637a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4eb85d31f8012ef0ac57823a9d9ebf489c3a73f86949b2f22d08b6f9fb92bf2d"
+    },
+    {
+      "id": "leb1_b2dedb959088d482445e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.994875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b2dedb959088d482445e.f32le",
+      "pcm_sha256": "5e0417b542484649ec7352b5c0ade081a956db2119c074a4dab2b5cc8d865c7e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "4f9e33b409fcd2451de14c8926a01824c6dd8c9c0de56a47f61c069eabdc2c0b"
+    },
+    {
+      "id": "rel_1f7fd7064cdc1e3fff8a",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO football",
+      "topics": [
+        "football"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.16,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_1f7fd7064cdc1e3fff8a.f32le",
+      "pcm_sha256": "b300a98b6f6fc93d886b76bd58807fa14156b8797f3ce592c64e2deeadd26a15",
+      "library_key": "football",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "confirmation",
+      "stratum": "old_changed",
+      "selection_hash": "51dde394048568f855c2c69c0faf051536e07c7a42d8dedf2f0a586d9af9989c"
+    },
+    {
+      "id": "leb1_9e359aa1d44e3a70a54f",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.863063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9e359aa1d44e3a70a54f.f32le",
+      "pcm_sha256": "5a76d9b8b876b894aa99e5628f51fe5aa68f4cffc488621bea3dfcded6efd2f3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "00004f8e1c69f97a532ce6cf13fcff6f72f0ec8381c9d50947d1978e9ce5cea2"
+    },
+    {
+      "id": "leb1_eccd3f33ceb6f45ee603",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.274875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_eccd3f33ceb6f45ee603.f32le",
+      "pcm_sha256": "1ed554ae819c1abac264983594b393a6ea7e541f251a3e7b5d4267d032f590e9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "0118657a3ebdcace6043dd0b0c55edd5055b261284b5750cf73b3ade43ed95ed"
+    },
+    {
+      "id": "leb1_15e70253f30d7fcabe80",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.046125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_15e70253f30d7fcabe80.f32le",
+      "pcm_sha256": "104edb40d991d551927397c415beb1b542882a73727a13c667eefa2cad873872",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "027b9a6faafd486abe2df8e92dbd199f69b9dd76f0f5947f5140ffec6f47436d"
+    },
+    {
+      "id": "leb1_59d10f5b62cacde75bcc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.400875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_59d10f5b62cacde75bcc.f32le",
+      "pcm_sha256": "af1591f5b0f96eddce8d72929ab5a3c8d83d6c8271bc931dead518a40fccdc24",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "02a503aa941d776563d8f4f3cb5a64de6266a1e0bdb4a111ed02c228a03fbc7e"
+    },
+    {
+      "id": "leb1_4b0f586ca126eeca45d2",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.026875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4b0f586ca126eeca45d2.f32le",
+      "pcm_sha256": "b9991ee3701781e9c93abef848e691b35bb03ad5bd2cab5880fd18e41f3dbced",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 2,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "03892a23c1c9b69e1b25f7d5d912e85865743608d1b5c9d9b90917d520836bfe"
+    },
+    {
+      "id": "leb1_b01e6daf155faf72e4cd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.156,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b01e6daf155faf72e4cd.f32le",
+      "pcm_sha256": "9c7d31b3aeeceb4e85205b8d6d1f1c4178cbdf29281b93f889b57b9a2e43bc7b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "066bfbd42f70fe5d13ac2ff4f210c592760634c386cb6ed7fe75e9f3098682d9"
+    },
+    {
+      "id": "leb1_9773d58fee85e7a8c5e6",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.873063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_9773d58fee85e7a8c5e6.f32le",
+      "pcm_sha256": "abbedf748fd40fed9a66db835c5bfa76a45df34af82517a41063f2a0e042ff63",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "07216a1eb32ea1cd62603f874b2b62f442cf7a01b5c9576cb5dab1ef78b71047"
+    },
+    {
+      "id": "leb1_3d7f0d88ec8429e3ef51",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.611063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_3d7f0d88ec8429e3ef51.f32le",
+      "pcm_sha256": "47b0b65858b5f445a97fad3e8b964fcda1dfb44c82abcd1d9ce574cd306e3dac",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "08a02db6b85c6483a5ceb83d31056df17052b8e34ad3f08bcce26bf357b80052"
+    },
+    {
+      "id": "leb1_e83b5fda123bd241b441",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.782,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e83b5fda123bd241b441.f32le",
+      "pcm_sha256": "1e63c74ce5cfb6f240b8dcda304a2278b13ab53a1dbbf8cd170b27679dc6f9ef",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "08ecb5ae055c57cf58b4db183ac27e0cdac82cc991599705639ead30b455314b"
+    },
+    {
+      "id": "leb1_6de3d889556870b388bc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.769063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_6de3d889556870b388bc.f32le",
+      "pcm_sha256": "076ca45b75cf260c31ca26f37fc8af715e58bc43269f093469e418e5820072e8",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "095daf0415ecdb950a8a3a1024c29f4a551934e614a8cbfd7769bad4d0e01903"
+    },
+    {
+      "id": "leb1_f07e56df52c2f10f6c28",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.892063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f07e56df52c2f10f6c28.f32le",
+      "pcm_sha256": "a633992144e50805f4cfcaf82cae4c1bf48eb3bbab27a9298145e5cda26eb58f",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "09f68198de1748a35576b9beba3a2fec727524a08757bd46e993a967761da437"
+    },
+    {
+      "id": "leb1_ee7fcdc180c1a4e592cd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.218,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ee7fcdc180c1a4e592cd.f32le",
+      "pcm_sha256": "1a2d0f953a8afebe0090263abf1447b05ac4a3a03e9fbd1cbc394350d3e41f48",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "1108b47f8b60c9845c84144396896761309a5e29a74410a98e5f3003e0f8209f"
+    },
+    {
+      "id": "leb1_2dd353e1eb17cd46d116",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.545188,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_2dd353e1eb17cd46d116.f32le",
+      "pcm_sha256": "7c336fa495acdabd43809d41f02bff00b8244729eb4a6f15788bb816fc8d48eb",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "119cbc809e7e9e3fadf1a87a73e41aa8091d1a19040aead7cd422dee1c03a4cb"
+    },
+    {
+      "id": "leb1_e14b37c68c06a727ce7c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.706063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e14b37c68c06a727ce7c.f32le",
+      "pcm_sha256": "cf1d51b385ab159ff51a36ed891e23f3cf31e25acc7164a0767e70c735ca94f3",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "12792058b1f287b070132b012bc8c82d44e31f3fca42d071b365847843d36b7a"
+    },
+    {
+      "id": "leb1_4966d90ddc7149f84e5a",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.725063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4966d90ddc7149f84e5a.f32le",
+      "pcm_sha256": "52e5e55c1c5ccaee4afd368f2db92815d2580367f337571b6fcd765a2978673e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "12ad21f81cf0229be9f794e7191f9e108f4670b3fd4a61ea876a17c4f272ee33"
+    },
+    {
+      "id": "leb1_aa04b5beb269f79acc6e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "医疗健康",
+        "自然科学化学"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.024,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_aa04b5beb269f79acc6e.f32le",
+      "pcm_sha256": "b8042ecbacd9e878f126196899e93e61380fb3a5f5e999ec17595b6e0ca1aeaf",
+      "library_key": "topic_03_医疗健康",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "14b5ee6a2feae3191f9332898206681cf6fe65f155691e5d6001f600c689218a"
+    },
+    {
+      "id": "leb1_11db4713d2d08770d093",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.815188,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_11db4713d2d08770d093.f32le",
+      "pcm_sha256": "5dcab1122b5e4974f48489677396768edc994781841c96938207a64174652cb4",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "16a7f003ccdecef8a1126bf8a8e150c2d12c6b2d4539c6ededd9f3d9e5163526"
+    },
+    {
+      "id": "leb1_88c4c3e795a59e4951b3",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.307,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_88c4c3e795a59e4951b3.f32le",
+      "pcm_sha256": "4d1a44be57773b70ef7d41361a787498e7685b4061fd2033142a4c2e6bbcfca0",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "1a766f138f53b58b57e397d253d39b8fcc5324c41f092e919a2d8bc670cbe09e"
+    },
+    {
+      "id": "leb1_abc5458e4f246f1f23cd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.195063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_abc5458e4f246f1f23cd.f32le",
+      "pcm_sha256": "03e6815ba178c4ae0817fedf783734cb79c31af442f969c277404c61eac3a5aa",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "1ee642b798ca46db8772782873b0dbd4085db3fb1479febbb0f9b1cf446d319b"
+    },
+    {
+      "id": "leb1_38459bb96fdd7d36ecc1",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.180938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_38459bb96fdd7d36ecc1.f32le",
+      "pcm_sha256": "2ebc216be66d477ff0ef4a5718448edd61e5efa76e90715a399fbcea5450c5e9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": true,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 1,
+      "split": "development",
+      "stratum": "old_changed",
+      "selection_hash": "20270b335a90a0e2788821ac411ce772e3f42321ea17d929b6d173fda02ad09b"
+    },
+    {
+      "id": "leb1_1f413ff4f6ed2b321529",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.133063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1f413ff4f6ed2b321529.f32le",
+      "pcm_sha256": "0605cb6e780de05a5b9dd7b337b425adfbdaa04942ca2df0483bb5c701161e46",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "040ebe4645a66e92546386007a962325d06e1728c68cd19786a3d3fd332d9a94"
+    },
+    {
+      "id": "leb1_f8aa995fb0a80b4786fd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.450063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f8aa995fb0a80b4786fd.f32le",
+      "pcm_sha256": "a64460ee12d62edaebab887cad8655fef8c2a24ac3ca3766147891b77fa00594",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0426aaaf393be0e69ecc8794bc553e0b71c64b1c3919264cb10e6ca8e172aca1"
+    },
+    {
+      "id": "leb1_1d755d0121631b3c856d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.886,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_1d755d0121631b3c856d.f32le",
+      "pcm_sha256": "9794c6617f53f7531aac8f3476f5c9733cc484b2e4bc21e70d8d72e39431188a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "046d0f8054732acffc25f559c60f7bc49379ea914273f2d84aedd469569f8b47"
+    },
+    {
+      "id": "leb1_7b46f7c7aede878ca9bc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.190188,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7b46f7c7aede878ca9bc.f32le",
+      "pcm_sha256": "b6b0b43ec2050f5c6ab06c13b34c2dc6e22a6bf91292745cdd9fdde61aea4169",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "049c16a8816391bda20caf019bf238ae8a9078865d603000c4f593df6eae2d7b"
+    },
+    {
+      "id": "leb1_ee4aeca7c361b9287381",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.522,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_ee4aeca7c361b9287381.f32le",
+      "pcm_sha256": "77991af53c4215f4e58145115c4cf153ff6a5feb6c942762cd1efee0ecea1bd9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "049c49b10307c98626f3834de3c00312ad1e04ee145e29837076d4310e56056b"
+    },
+    {
+      "id": "leb1_46ba41f80a921aeec184",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.073,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_46ba41f80a921aeec184.f32le",
+      "pcm_sha256": "cb30d5ca946949fcbcb4d0736f5163fa8a071cf18a2464ff33cb22825dafff13",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "04e12c5fdff30b18ee5de91ede7ff7657faed0ed05d0122ad7d0564c03569cc9"
+    },
+    {
+      "id": "leb1_e19c714db5de2d83b241",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.536,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e19c714db5de2d83b241.f32le",
+      "pcm_sha256": "330306d6a199fdb3489b4b662c338f8fd9f3b821391a7de7a389880508434391",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "04f62faf9b09804a1766b1352894a128afaffa7d99ffa6330853a39eafdaa6e9"
+    },
+    {
+      "id": "leb1_7e010aaa31000a3f3ad7",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.617938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7e010aaa31000a3f3ad7.f32le",
+      "pcm_sha256": "0bf1432dea3fa8164a72d8e65a8a99f4134024dd670f4c65d40b92d9deac091a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "04fa7d1e729097e15307ae6f8453c065f57b1ee1b65cb2f38325817d6ad10f6e"
+    },
+    {
+      "id": "rel_0a8848c822ea75843e81",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.525,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0a8848c822ea75843e81.f32le",
+      "pcm_sha256": "83ca0265fc251d981400d72832c222367e2768a46f72ab21244053ceef8d8433",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "05295a0e5174cad55a3ce864f4118e327e5358056a6fe045e30bb72befba287e"
+    },
+    {
+      "id": "leb1_584ae7fac1272d77cea5",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.472875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_584ae7fac1272d77cea5.f32le",
+      "pcm_sha256": "51e923fd3c46191e049fab409a130edd599c98da8c0a52702bd034d7bf99ad54",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "05563f4ad9a17524bdd917f8b6c282c068948acd11d14f73bc0da11e8942c25f"
+    },
+    {
+      "id": "rel_03a353905f848e057f09",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.85,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_03a353905f848e057f09.f32le",
+      "pcm_sha256": "73be050006c43e4d40a66197a393186ea264dfae6da9cba9aa2500b612dcc133",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "05d47d2e56921ad1adcdb7b3ad576cd90e5153218f6b05965fa68bea4bfeafaf"
+    },
+    {
+      "id": "leb1_d86f4c043f2db7fd6088",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.336063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d86f4c043f2db7fd6088.f32le",
+      "pcm_sha256": "59422056d4dc51d6174a04feca1f48c4f8db82ad85d0a36d8aae5b69ccb4b3a5",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "05e26ba7bb2df5156f63d063eb1c0d2f165912d3bdcfa37aef9f84e79b0a55cb"
+    },
+    {
+      "id": "leb1_c450fd7334cbf9c4651f",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.857938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c450fd7334cbf9c4651f.f32le",
+      "pcm_sha256": "bf8a177b2f176b9882bd1db6b4b44ddb781e5e6e2ee9b79be48245a871c26a8d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "05fa17083ee5b7be3bc3190823b5616c7737e212e40bae37587d33be598c8101"
+    },
+    {
+      "id": "leb1_23a7c614fee25c336fd5",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.810063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_23a7c614fee25c336fd5.f32le",
+      "pcm_sha256": "2bf9f8ee3e90d975f6261b9b9a7040b808d63a967a71dfbea488b64280871b09",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "062099db5b80c998d2cfa02c38a8bca2087e78263c925af37b69de5d2d8840ea"
+    },
+    {
+      "id": "leb1_b5b9984f8ca2ae184219",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.5,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b5b9984f8ca2ae184219.f32le",
+      "pcm_sha256": "fc5ede0fca02ace509f7d780c0fe60f404f33e95e1b5bd017b219419e306c612",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "066af7e16921583aae0da85641e0b91acb42219f31884dfc30141e9c6e6e1000"
+    },
+    {
+      "id": "leb1_a883e56879ede2829eb1",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.724125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_a883e56879ede2829eb1.f32le",
+      "pcm_sha256": "411a29d99f04d802ab7f104808602adc773fc3ce6e4ef4f39d130dda9a04b32a",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "067184f3441fa7c3309a1226686f07d73f9805c7933c16b10ce2c24b88baea02"
+    },
+    {
+      "id": "leb1_4202dbfe70377e16c8dd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.982938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4202dbfe70377e16c8dd.f32le",
+      "pcm_sha256": "d5d15f07574484612ac04692e3b8e6ae54ffffe7baaba83d004baefc0736ae1d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "06a5e78fbb6bd9857335b7985da64ebde73fcb3bd9a4259e2b60f6af78065096"
+    },
+    {
+      "id": "leb1_c70169fe827dd09d11e0",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.029063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c70169fe827dd09d11e0.f32le",
+      "pcm_sha256": "521a2a9c22fa7e8c07ea44747e83b0cd95a8084c120d6654c2b6ae6202600a63",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0721a2e33b9749f0609bda61c50be38920d95c2746f5eae3323f16e2630ef908"
+    },
+    {
+      "id": "leb1_c3962ad13fe330456d71",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.322,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c3962ad13fe330456d71.f32le",
+      "pcm_sha256": "47a9b4d183df7717720b546798e1172da4eb0b80929078e54dca7e7388ccd93d",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0725cc41c671830f83e3bc8ab4124f675e0b34eb3c4838f1adc9fbaad85b1d85"
+    },
+    {
+      "id": "leb1_22ffa651f2a1bfca99d4",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.927,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_22ffa651f2a1bfca99d4.f32le",
+      "pcm_sha256": "9cfb9fdf6d6fcd32d6be9b933a86c283b8251342f5065d27e4832b4af21862b6",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0743684ad9bdbac90dd5e5f56e40b73b50c6025c0af5654e917a4664ed612a72"
+    },
+    {
+      "id": "leb1_4aa4219062ac0303a6cd",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.777125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4aa4219062ac0303a6cd.f32le",
+      "pcm_sha256": "1effad881486b6cb8ab03e72f5e934d2eda7b1535acc9f187363f1ba691eeb4c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0767b48e0563cbd2d9cac59b92f271a9ea06f4613a8ffcadf8192f3a627fb5ce"
+    },
+    {
+      "id": "leb1_f70dd75860169ea57f4d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.108875,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f70dd75860169ea57f4d.f32le",
+      "pcm_sha256": "b920071f8fa1e5351ebc737c028eadb2e66abbc62e5a55f1a7132b9790b9c136",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "078d21a51439fb44de39566f5ed63c8813cbf0a669f600fc10b6f545589437b3"
+    },
+    {
+      "id": "leb1_e2d5411decc08e51b474",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.364,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_e2d5411decc08e51b474.f32le",
+      "pcm_sha256": "54de8a8fbf5a4618c018623801d8ae4a1cc0e63901ccb44244477b7ca5b3b149",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "087bfb805f84ee162ae3faa71f2891890a04e4089a5e36ab99ccaffb3f604a70"
+    },
+    {
+      "id": "leb1_178b393053c63afcc4e8",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.227063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_178b393053c63afcc4e8.f32le",
+      "pcm_sha256": "79413f0fc50d5bcf70b4b762ad282b830a6ef670096354aa78921c8d3c0f12ab",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "08a9aca3073b95f372c29d17be59cd70138f908b466e4e0f2ed2a6032dc2da9a"
+    },
+    {
+      "id": "leb1_497313a5c38cfcafca73",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.960938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_497313a5c38cfcafca73.f32le",
+      "pcm_sha256": "1c69d289288e746c2bf99a501a9e76e43a3132f0937fa653cb91093d10fc94e1",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "097908e56277d9ae240798565e24bc0afa0943e02299d155bb04fb61f52d0d51"
+    },
+    {
+      "id": "leb1_aa83e0467e8133125366",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.288125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_aa83e0467e8133125366.f32le",
+      "pcm_sha256": "6d28ddb77694af499b9caec01c8a89e5d195c414afb8d3ddb4b2531aa45070a9",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "098744ec7aaeff9892b30ec99ead3230f24a25aaedcd80584d696c18c74af5a1"
+    },
+    {
+      "id": "leb1_b7fe2b14503c4bf293ad",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.043,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b7fe2b14503c4bf293ad.f32le",
+      "pcm_sha256": "566a4e8f683a1ca10e470f18f39259c4002c02bcfe9516a3ba751c32d931704b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0a54222e47fc7147055231aa4e89c025c74ffefeb475171dbc336442b5ef8436"
+    },
+    {
+      "id": "leb1_dad8f06e274039ed84fc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.560063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dad8f06e274039ed84fc.f32le",
+      "pcm_sha256": "07fbff1c4ff2a9787c581515199e8bd010e754cbe67579ee6fe96592decdc349",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0a755518474c76ff6c83c731ad91d25f330eb7e1bb393ef8f45012247997ce65"
+    },
+    {
+      "id": "leb1_0ad9e1f7f053f9ab1f32",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 10.428,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_0ad9e1f7f053f9ab1f32.f32le",
+      "pcm_sha256": "140cb8a5c7733d42e9ba1f23a91d584826fa382dccea1fa92596045eb204d1d4",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0aa30ba00964d1ad4fc1ae936a3058568a5af3b8800a37c3920e46f181955720"
+    },
+    {
+      "id": "leb1_c142b2105107953ee18e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.899938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c142b2105107953ee18e.f32le",
+      "pcm_sha256": "e6c7b3be74cd207ef7d8128810887e26240414d2d3a2a24a4f96ff2775687056",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0b01c2ab0c85304e173aa4e2af60e861f7595b079bad6038444e8ace5845cf6e"
+    },
+    {
+      "id": "leb1_613d25587266b7c377b7",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.492188,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_613d25587266b7c377b7.f32le",
+      "pcm_sha256": "1813bbe389dfdb64a9e4e2adddddf86fd4262ddfbbc40d177e196216f0791bb4",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0b08975b7b9ed95f096f281746cb140891ccb2961d6af27e6a1755922f5600c2"
+    },
+    {
+      "id": "leb1_7f4625c2fc754718654e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.482938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7f4625c2fc754718654e.f32le",
+      "pcm_sha256": "8d8f3367503eab4a7b199c3ca88884b2e2ee534d6f897f9e9c3fd86245624899",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0b63142d5b15c7b765e3b96be5291fc0b7c2427ac21d3c98fd54e45d4f1922ac"
+    },
+    {
+      "id": "leb1_7f47629ae657d4b1b295",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.475063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7f47629ae657d4b1b295.f32le",
+      "pcm_sha256": "a2637cd08bbbb525b4ceee8bdcd2c81474951d9f59fac259b952c54a6149f36e",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0b6e4e778c15625b62be8045b056c694410cd8969e0ad9d39d08bc6104c62676"
+    },
+    {
+      "id": "leb1_4e27277b685dccd9753a",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.751938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_4e27277b685dccd9753a.f32le",
+      "pcm_sha256": "7bba7b33e372d622e7b6bf40b4c8812bfcc43843fcb7a61a023a641ee58a0a29",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0be60e0372b9a1e8c60f640a07f1d5af9095f38b3401fdaaf6a771d56925e6f1"
+    },
+    {
+      "id": "leb1_24a7e22faa67f0990c10",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "commonvoice_zh-CN_test",
+      "topics": [
+        "体育文化"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.16,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_24a7e22faa67f0990c10.f32le",
+      "pcm_sha256": "ff23f0f8dc0fbfc49da960b1c021973d24e162d9c50ede35ebbc6de579326d08",
+      "library_key": "topic_01_体育文化",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0bf81b2276d2a43415ae69630a505b04666f5291af9b38b2462da3c425eceaea"
+    },
+    {
+      "id": "leb1_7685438edd893c5ac39d",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.928,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7685438edd893c5ac39d.f32le",
+      "pcm_sha256": "024fc35651d4d301a277f4f55b96e11e606399325e5647479d25223ad182094f",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0c0e25a5a547faee95dc964b56166e3901074611ba7121519da44be7aabf8d40"
+    },
+    {
+      "id": "leb1_dd5cbda1c207cf4efa8e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.852,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_dd5cbda1c207cf4efa8e.f32le",
+      "pcm_sha256": "5e4c97c99663e6382f3afbb65c805800aaf5142fba23879963eddd8ae04e47b0",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0c4ef1a9bd1523cbfe698f390cf3b48dc9dedb29bf5e801958a378b8c4fc7f9a"
+    },
+    {
+      "id": "leb1_de2acddadd631206e988",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.037938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_de2acddadd631206e988.f32le",
+      "pcm_sha256": "fc28835e3e9ee5b475761651bc804fe57ee7ce6869fb5c04a5fca62823116760",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0c6360a60f6dc3678da1df6f3af53bf361a0e78b53545210c24df9df45fb06ae"
+    },
+    {
+      "id": "leb1_87cb191163a7ffde50fa",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.378938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_87cb191163a7ffde50fa.f32le",
+      "pcm_sha256": "239f00bd9e2ed92774957bb8fb8ee73af03f87c6a99f91d55c4d6829640d8a45",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0c852b8080ab4bdc2fecaa63249c3fa7bccf74a0ee31ad7eb0a0c3dc494da0bc"
+    },
+    {
+      "id": "leb1_019c86dd64ae72bfecce",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.048938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_019c86dd64ae72bfecce.f32le",
+      "pcm_sha256": "4ab6f75c592ee4160629677f49da872eec1850264175c5f5a364af9060784ee7",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "confirmation",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0cc688585ed4a92b8fc887b9eac56ee1cf34c34ac4be1b856d18fea60b4dcb69"
+    },
+    {
+      "id": "leb1_852383def84836fddd5e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.167,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_852383def84836fddd5e.f32le",
+      "pcm_sha256": "7e4c3c05f8079aa796a860299b36c89383cf1537c67ccd447640a0a39cb8cb22",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "004320bdeb42a8c381f23c6e5d59fa82bac548da1454cf69e698da1657ae2b0a"
+    },
+    {
+      "id": "leb1_cf0269dbcadc1864a54b",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.63,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_cf0269dbcadc1864a54b.f32le",
+      "pcm_sha256": "13956b7d8708cbe33ac5e9d0bdfb419f7de1fb0ae09dd09952663780849cd1ce",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "00b045f5333eaad54405470a34cc179fb80f688db61dfaa5660473c900382037"
+    },
+    {
+      "id": "leb1_921751089c64840fd61c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.485,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_921751089c64840fd61c.f32le",
+      "pcm_sha256": "e63ad7d7faf6ffa66e2ff97ce8962afa7feae7bdca05f28c83d45cefe34cbc11",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "00b2bc9759d8ffdb197fd1f7f8637f241d5fbdf839122ca80de6d028470aca32"
+    },
+    {
+      "id": "leb1_7e21bfa3221bbfe31b2c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.213,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7e21bfa3221bbfe31b2c.f32le",
+      "pcm_sha256": "d480f12dfe9cbc31d450b482e859968bf3aabaa24241168302accd6a24986662",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "011a9799b1d62c4daac9eb5f6fcbf58c80c5226755d8a7275e444e7a9be7d199"
+    },
+    {
+      "id": "leb1_f7148f7d6ea0e483e93c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.167938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_f7148f7d6ea0e483e93c.f32le",
+      "pcm_sha256": "6626212d94a9d9aaa1310265e64951caf69e60ac2f64885e5ea39fd790b60a52",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "01238eaf78b01708be327929b0959a87fede8fc1aadcdc2a2e77e7b9c0a8a0cf"
+    },
+    {
+      "id": "leb1_c8ade8566dd87261edc8",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.574,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c8ade8566dd87261edc8.f32le",
+      "pcm_sha256": "56f7d215e48db0d5484e1b230d408295e46a03e7a212eabd0c994946a8812e92",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "014a93617653f3400b104bf7fd43ed091a1849e8ae806f56198f5ef793e15c42"
+    },
+    {
+      "id": "leb1_d8b562b3a7814efbfe08",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.699938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_d8b562b3a7814efbfe08.f32le",
+      "pcm_sha256": "ae323c3af791cf5addc258d318de17cb6647d500d1dd8aa122d1ac966f8b0d9b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "016b2a4c6a41d476cffbdb9689f44769b67640f79c0639a73cb5ce40a79924ab"
+    },
+    {
+      "id": "leb1_bc9ec26a4451962cb5b6",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.24,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_bc9ec26a4451962cb5b6.f32le",
+      "pcm_sha256": "20336fc027986b4fcd90e58675296678a26032064c9ae6eaefbd2777df62254c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "016e726dcde7215aabe9da07561921779add0d6c2a81f1bf0754dfa8753fc435"
+    },
+    {
+      "id": "leb1_b5aa277e79ddb0f55f8e",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 8.130125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b5aa277e79ddb0f55f8e.f32le",
+      "pcm_sha256": "247208473e5c3650203718ea77defda66e1725f3e5f1079abfc8d2aaae894e67",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0173fe5f92977705fc0394abc16b10574cab861908b063ccacbfa51d550cac2a"
+    },
+    {
+      "id": "leb1_02009d0964680dd5659c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 3.813938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_02009d0964680dd5659c.f32le",
+      "pcm_sha256": "aa688ec996194600496e88643aa4c1dade59eef8451c502e546c18a793d40b10",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0233e4f8284c6104f64a0b9edc020b188077cdb9c5ece1d928b3b12994aed7f0"
+    },
+    {
+      "id": "leb1_b25edcf3255029cc7de2",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.115,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_b25edcf3255029cc7de2.f32le",
+      "pcm_sha256": "38350172d349967ae2602ca39a84a3ffe94965af8d2c3a286bf651cc14917154",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "0275248f37b8493e892ee27e67668e1dc007f1c92885d659d7b48759240b26dd"
+    },
+    {
+      "id": "leb1_fa95c472ec14eeccb7d1",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.198,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_fa95c472ec14eeccb7d1.f32le",
+      "pcm_sha256": "6dd3f604e439ba3f5ce50db53adb61a6f28bd5d9ecdf14cce7c273491def8b36",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "02896e1aeaabaa65e4f581bcb9f6337a1440f2310221a0cca13116fa0feea347"
+    },
+    {
+      "id": "leb1_6d11cc25ed0334e20c28",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 6.766,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_6d11cc25ed0334e20c28.f32le",
+      "pcm_sha256": "920c9e6e0d6704f47f7d4dcfe4c4e757503caf074b861962baf8fa30d9c3964b",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "028bf0a92e3b8a060f071805908124d854da529e6a5eb0a7e01ad62b6b174006"
+    },
+    {
+      "id": "leb1_5b818547b2f9c574492f",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 9.24,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_5b818547b2f9c574492f.f32le",
+      "pcm_sha256": "969d50540b3c9baa7e42e3b94aa0363079054a44df3bde34fce3d9ecb5bdc4e0",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "029ba6b71fee548ca1282432a8bdce363bfc99cfb406731e3a3e8702e1413bec"
+    },
+    {
+      "id": "leb1_c4a94ab6905beb84d544",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.355,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_c4a94ab6905beb84d544.f32le",
+      "pcm_sha256": "8a0fb8bfbca837260e943dd43ebb45bfc079e794af597025a6315fcd86e81b86",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "02a3319841acc7825f4c0c805eec3281652d76bd54fc598fcbf9aee64dbfa7ac"
+    },
+    {
+      "id": "rel_0eace37df677e0285b31",
+      "corpus": "entity_reliable_data_20261012_pilot",
+      "source": "SpeechIO automotive",
+      "topics": [
+        "automotive"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 5.284,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_reliable_data_20261012/pilot/pcm/rel_0eace37df677e0285b31.f32le",
+      "pcm_sha256": "5039851e08909b4edddffee49dbd3091f2fd760b1abedb80dc2f2fc40c6d946c",
+      "library_key": "automotive",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "02e5361fcf99fcd1406407f21b2abd47263a84472e463db31ec4e85ef33f8ed4"
+    },
+    {
+      "id": "leb1_8703d77a7fb731c5d17c",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 7.455063,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_8703d77a7fb731c5d17c.f32le",
+      "pcm_sha256": "25d8594845f9af3d5a6b7d89098ceda5231d8a94064d04ba0bfb6a2b689260e5",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "032472e46fb848864586fd44f084edc25d4474e52c689b5ddd7861bcff835eaa"
+    },
+    {
+      "id": "leb1_7863b611b75fafc40053",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.506125,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7863b611b75fafc40053.f32le",
+      "pcm_sha256": "2718f841f7fc7a639dfd44b988d4960198cb4031e93f96de9a91ab387693d305",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "032eb9b85bfc6776842e9adef8553ce885ba9455db4e987123a15554bff2216d"
+    },
+    {
+      "id": "leb1_7afcdaf53a0b5e93b3ae",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.271,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_7afcdaf53a0b5e93b3ae.f32le",
+      "pcm_sha256": "5131a0e1be323919d086b121a47c11fa8cd816dd2d9ae1078b60141e5a8f830c",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "037e721a462a4c1d5219a0e1f910d037e82895c3ec0911c42247c1f60eae7126"
+    },
+    {
+      "id": "leb1_6deffb0891a04af70ddc",
+      "corpus": "large_entity_benchmark_v1_20261010",
+      "source": "AISHELL-1 test / AISHELL-NER",
+      "topics": [
+        "新闻人物组织地理"
+      ],
+      "cohort": "positive",
+      "duration_seconds": 4.449938,
+      "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/large_entity_benchmark_v1_20261010/dataset/pcm/leb1_6deffb0891a04af70ddc.f32le",
+      "pcm_sha256": "051905048cbd2166d8b71c7618a7f6b9634041e553f9c707d0c0bc748ede0c35",
+      "library_key": "topic_06_新闻人物组织地理",
+      "old_changed": false,
+      "old_replayed": true,
+      "old_replay_checks": 1,
+      "old_change_count": 0,
+      "split": "development",
+      "stratum": "old_replayed_no_change",
+      "selection_hash": "03b4b6312eca4b4c430b9a1dae22ac520229489e3c7a22ca82e57e4a5aee39e9"
+    }
+  ]
+}
