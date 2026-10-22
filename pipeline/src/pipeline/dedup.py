@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Character n-gram deduplication and dataset-distribution statistics."""
 from collections import Counter, defaultdict
+from math import ceil, floor
 
 from tqdm import tqdm
 
@@ -33,33 +34,69 @@ def is_duplicate(text: str, existing_ngrams: list[set[str]], threshold: float = 
 
 def deduplicate(items: list[dict], text_key: str = "input", threshold: float = 0.75) -> list[dict]:
     """Retain the first record from each near-duplicate group."""
-    seen_ngrams: list[set[str]] = []
-    postings: dict[str, set[int]] = defaultdict(set)
     unique_items = []
-
+    deduper = StreamingDeduplicator(threshold)
     for item in tqdm(items, desc="Dedup", unit="item"):
+        if deduper.add(item, text_key=text_key):
+            unique_items.append(item)
+    return unique_items
+
+
+class StreamingDeduplicator:
+    """Incremental exact Jaccard deduplicator over retained records."""
+
+    def __init__(self, threshold: float = 0.75):
+        self.threshold = threshold
+        self._ngrams: list[set[str]] = []
+        self._postings: dict[tuple[bool, str], set[int]] = defaultdict(set)
+
+    def add(self, item: dict, text_key: str = "input") -> bool:
+        """Return True iff item is retained; empty text keeps legacy behavior."""
         text = item.get(text_key, "")
         if not text:
-            unique_items.append(item)
-            continue
+            return True
 
-        ngrams = char_ngrams(text)
+        grams = char_ngrams(text)
+        fragment = bool((item.get("meta") or {}).get("is_fragment"))
+        a = len(grams)
+        t = self.threshold
+
+        # Legacy lookup considers only records sharing at least one gram. At
+        # t <= 0 every such record qualifies; at t > 1 none can qualify.
         candidate_ids: set[int] = set()
-        for ngram in ngrams:
-            candidate_ids.update(postings.get(ngram, ()))
-        is_dup = any(
-            jaccard_similarity(ngrams, seen_ngrams[index]) >= threshold
-            for index in candidate_ids
-        )
+        if t <= 0:
+            for gram in grams:
+                candidate_ids.update(self._postings.get((fragment, gram), ()))
+        elif t <= 1:
+            # Round the pruning bounds outward. This leaves a harmless extra
+            # candidate at floating point boundaries while avoiding a false
+            # negative from ceil/floor rounding in the bound calculation.
+            min_common = floor(t * a)
+            min_size = max(1, min_common)
+            max_size = ceil(a / t)
+            # If J(A,B) >= t, intersection >= t*|A|. Using floor(t*a)
+            # conservatively, any chosen p=a-floor(t*a)+1 grams therefore
+            # intersects B. Probe the rarest p grams to limit fanout.
+            p = min(a, max(1, a - min_common + 1))
+            rarest = sorted(
+                grams,
+                key=lambda gram: len(self._postings.get((fragment, gram), ())),
+            )[:p]
+            for gram in rarest:
+                candidate_ids.update(self._postings.get((fragment, gram), ()))
+            candidate_ids = {
+                idx for idx in candidate_ids
+                if min_size <= len(self._ngrams[idx]) <= max_size
+            }
 
-        if not is_dup:
-            retained_index = len(seen_ngrams)
-            seen_ngrams.append(ngrams)
-            for ngram in ngrams:
-                postings[ngram].add(retained_index)
-            unique_items.append(item)
+        if any(jaccard_similarity(grams, self._ngrams[idx]) >= t for idx in candidate_ids):
+            return False
 
-    return unique_items
+        idx = len(self._ngrams)
+        self._ngrams.append(grams)
+        for gram in grams:
+            self._postings[(fragment, gram)].add(idx)
+        return True
 
 
 def compute_distribution(items: list[dict]) -> dict:

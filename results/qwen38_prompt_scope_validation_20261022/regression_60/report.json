@@ -1,0 +1,65 @@
+{
+  "requested_cases": 60,
+  "generation_records": 60,
+  "generation_errors": 0,
+  "valid_blind_comparisons": 60,
+  "same_model": true,
+  "model": "Qwen3.8-27B-AWQ-INT4",
+  "comparison": "Same model and source; old_prompt and new_prompt identify prompt variants only.",
+  "rating_distributions": {
+    "old_prompt": {
+      "MINOR": 7,
+      "PASS": 53
+    },
+    "new_prompt": {
+      "FAIL": 1,
+      "MINOR": 3,
+      "PASS": 56
+    }
+  },
+  "paired_wins": {
+    "TIE": 56,
+    "new_prompt": 3,
+    "old_prompt": 1
+  },
+  "candidate_text_identity": {
+    "identical": 44,
+    "different": 16
+  },
+  "new_prompt_output_changes": {
+    "same": 44,
+    "changed": 16
+  },
+  "control_cases": {
+    "manifest_count": 12,
+    "valid_reviewed": 12,
+    "new_prompt_changed": 1,
+    "new_prompt_unchanged": 11,
+    "new_prompt_not_pass": 0,
+    "old_prompt_not_pass": 0
+  },
+  "known_failure_cases_92_162_final_ratings": {
+    "92": {
+      "old_prompt": "MINOR",
+      "new_prompt": "FAIL"
+    },
+    "162": {
+      "old_prompt": "PASS",
+      "new_prompt": "PASS"
+    }
+  },
+  "lead_adjudications": 5,
+  "limitations": [
+    "这是提示词开发诊断子集，不是独立测试集；结果不能解释为总体准确率或总体改进率。",
+    "old_prompt 与 new_prompt 是同一 Qwen3.8-27B-AWQ-INT4 模型的提示词版本标签，不代表不同教师或不同模型。",
+    "盲审评级用于该固定样本的诊断；选择机制包含预设诊断案例和控制案例。",
+    "审查模型出现将拼字辅助判漏、把相同的重复误判仅一边存在等错误；5条主代理裁定保留，未覆盖原始盲审。"
+  ],
+  "decision": "Do not promote candidate: cleanup improved on 3 cases but one existing difficult case regressed to semantic FAIL. Restore prior prompt; fresh200 prepared but not run.",
+  "promotion_gate": {
+    "criterion": "Known semantic regression blocks expansion even if PASS count increases",
+    "passed": false,
+    "blocking_case_no": 92,
+    "fresh_validation_started": false
+  }
+}

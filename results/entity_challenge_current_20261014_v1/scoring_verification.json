@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "dataset_integrity": true,
+  "expected_unique_ids": 2000,
+  "scored_unique_ids": 2000,
+  "duplicate_run_ids": [],
+  "missing_ids": [],
+  "extra_ids": [],
+  "references_schema": "references.json: {schema_version, samples: {id: {reference, gold_entities}}}",
+  "normalization": "ZhITNNormalizer(ROOT/zh-itn/zh-itn/build/libzh_itn_bridge.so), OpenCC(t2s), NFKC, casefold, remove Unicode P/Z/C",
+  "metric": "Gold canonical mentions normalized then merged; count occurrences with str.count (non-overlapping) and clip hits by the gold count. CER is character edit distance on normalized text."
+}

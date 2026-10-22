@@ -1,0 +1,732 @@
+{
+  "W001": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“那人人性”是待核对的重复/改口候选，建议仅核对“那人人性→那人性”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "那人性到底是什么呢？所以这可能也是在人类历史上一直以来的一个基本的争论吧。嗯，"
+  },
+  "W002": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "当前源码已移除semantic_content_loss，保存的模型候选删除“就是”已通过校验；历史实验拒绝仍保留。是否需要这种表达清理由你核查。",
+    "guard_recheck": {
+      "scope": "saved_candidate_recheck_no_new_model_calls",
+      "source": "就是关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论，",
+      "historical_reject_reasons": [
+        "semantic_content_loss"
+      ],
+      "current_results": [
+        {
+          "candidate": "关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论。",
+          "text": "关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论。",
+          "accepted": true,
+          "reject_reasons": [],
+          "normalizations": []
+        },
+        {
+          "candidate": "关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论。",
+          "text": "关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论。",
+          "accepted": true,
+          "reject_reasons": [],
+          "normalizations": []
+        }
+      ],
+      "guard_source_sha256": "da0275bbbcc3d0b8c5ea39e39bcb34282d9f5fa817e74696e1aac573e97ae8ee",
+      "removed_rule": "semantic_content_loss"
+    }
+  },
+  "W003": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "你已确认只删句首“而”可以接受。当前整个semantic_content_loss规则已移除，保存的候选继续通过；不再需要“而在”专用例外。历史回放仍保留原拒绝记录。",
+    "assistant_target": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+    "guard_recheck": {
+      "scope": "saved_candidate_recheck_no_new_model_calls",
+      "source": "而在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+      "historical_reject_reasons": [
+        "semantic_content_loss"
+      ],
+      "current_results": [
+        {
+          "candidate": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+          "text": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+          "accepted": true,
+          "reject_reasons": [],
+          "normalizations": []
+        },
+        {
+          "candidate": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+          "text": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+          "accepted": true,
+          "reject_reasons": [],
+          "normalizations": []
+        }
+      ],
+      "guard_source_sha256": "da0275bbbcc3d0b8c5ea39e39bcb34282d9f5fa817e74696e1aac573e97ae8ee",
+      "removed_rule": "semantic_content_loss"
+    }
+  },
+  "W004": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“正义。”应与下一窗“是人类的发现……”连读的可能性较高；当前窗口边界分开，模型没有修好。建议只核对跨窗断句，不能删除“正义”。"
+  },
+  "W005": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W006": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W007": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "“皆为利利往”中的“利利”是待听音的重复候选；当前模型仅改末尾标点，没有修好这处。建议只核对重复，不改引文意思。",
+    "assistant_target": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利往，"
+  },
+  "W008": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W009": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W010": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W011": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W012": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W013": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W014": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W015": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W016": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“哎呀，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。 这里包含电话对话的转述，若“哎呀”表达引用语气可全部保留。",
+    "assistant_target": "一个人给我打电话，说罗翔好多年没见面了，"
+  },
+  "W017": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "模型只给“这是法家的观点”加一个“个”，属于可有可无的措辞变化。原文“我说叔借多少钱”若有识别问题需听音核查，模型本次没有解决。"
+  },
+  "W018": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W019": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W020": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“父父子→父子”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。 人名“毛中纲”及“他是。”的处理另需核对，不随此次重复删除改名。 该窗口本身被新门控跳过，但整条转录终态的局部审核又补回了这处重复清理；不能算作终态漏修。",
+    "assistant_target": "认为真小人远比伪君子要好得多。他是。这个毛中纲父子的批语呢，"
+  },
+  "W021": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W022": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W023": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W024": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W025": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“他们他们→他们”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "对对对对对对，因为你因为他们那个时代没有人说自己是法家，不敢说，"
+  },
+  "W026": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“儒家儒家→儒家”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "不敢说，他也不他他们都说自己是儒家啊，是儒家的跟法家，"
+  },
+  "W027": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“有有有”是待核对的重复/改口候选，建议仅核对“有有有→有”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。 同窗“之之争”也需核对删除一个“之”；“毅力/义利”的术语问题须听音，不随去重强改。",
+    "assistant_target": "他其实。他确实有这个毅力之之争，对对对。"
+  },
+  "W028": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“孟孟子争争论”是待核对的重复/改口候选，建议仅核对“孟孟子争争论→孟子争论”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "那孟子就讨论人性是善还是恶，对，而和跟孟子争论的人呢，"
+  },
+  "W029": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W030": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“实色性也”可能是术语识别问题，并伴有“就是。要吃饭”的断句。当前模型输出退回原文；需听音核对术语和跨句连接。"
+  },
+  "W031": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“呃，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "要上床。"
+  },
+  "W032": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W033": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W034": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“人。有道德”被拆到相邻窗口，当前模型未修好；可核对只删除“人”后的句号。"
+  },
+  "W035": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W036": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W037": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“嗯，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "动物没有。那么到了荀子，"
+  },
+  "W038": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W039": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“荀子认为人是人性的”文字疑似识别/断句问题；低分补充已送审，但当前模型仍未解决，需听音确认。"
+  },
+  "W040": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W041": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选清理“嗯，”“呢”；当前模型已删，但“另外呢”也属于正常口语，允许直接跳过。标点仍保留。",
+    "assistant_target": "另外，还有一种善，"
+  },
+  "W042": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W043": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "仅“嗯”的删除本次可接受；句末“改造。恶的本性”跨窗断句尚未修好，可另行核对。",
+    "assistant_target": "所以荀子的观点叫化性起伪，就是要通过善去改造。"
+  },
+  "W044": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W045": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“儒家的大师教说了……”疑似识别错误；本次模型退回原文，不能用文本常识强改所说内容。"
+  },
+  "W046": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“他这个他这个”是待核对的重复/改口候选，建议仅核对“他这个他这个→他这个”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "啊对，对对，但是他这个变化呢，"
+  },
+  "W047": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W048": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“春秋晚年晚期”是待核对的重复/改口候选，建议仅核对“春秋晚年晚期→春秋晚期”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "呃春秋晚期嘛，所以礼坏乐崩嘛，对，"
+  },
+  "W049": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W050": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“啊，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。 主要问题“末末年”仍未修复，删除“啊”不能算该重复已解决。",
+    "assistant_target": "到了韩非是战国末年，战国末末年确实就是道德完全崩溃，"
+  },
+  "W051": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "“就就”是待核对的重复；可先只删一个“就”。“完全一”里的“一”是否为识别错另需听音，当前模型未成功修复。",
+    "assistant_target": "对啊，完全一就没有底线了。是，"
+  },
+  "W052": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“嗯，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "韩非子的观察呢，他其实具有一定的经验性的意义，"
+  },
+  "W053": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W054": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W055": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W056": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W057": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W058": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W059": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W060": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W061": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W062": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“向我学习法律”结合上下文可能是“像我学习法律”，需要听音；当前模型未修复。"
+  },
+  "W063": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W064": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W065": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“你这你”是待核对的重复/改口候选，建议仅核对“你这你→你”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "这又是有争议的。你存不存在那个东西，也是有争议。"
+  },
+  "W066": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W067": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W068": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "“取决于。你的相信”把谓语与宾语拆开；当前模型已接受删除这一个句号。只修断句，保留后续问答。",
+    "assistant_target": "这其实取决于你的相信。你取决于什么？"
+  },
+  "W069": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "同一人名在多窗出现不同形式；当前模型没有统一纠正。需确认真实名称与音频，不把高分视为名字正确。"
+  },
+  "W070": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "原句“你认为一切都是力”无需改成“你觉得”；模型还丢失引号、改接话标点。暂建议保留原文，不把这种改写当精修收益。",
+    "unsafe_model_edit": true
+  },
+  "W071": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W072": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“适当去马斯霍斯”是人名/上下文疑点，补充门控已送审，但本次只处理引号/尾标点，没有修好名字。"
+  },
+  "W073": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W074": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W075": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“适当和马叙斯”同样需听音核对人名；补充门控已送审，模型原文回退。"
+  },
+  "W076": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W077": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W078": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W079": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W080": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W081": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“苏格兰，你就提醒斯拉霍马去死”与前后人物对话不协调，需听音确认。当前模型只改末尾标点，未恢复人名或真实原话。"
+  },
+  "W082": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W083": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W084": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W085": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W086": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“不是他”可能是“不是，他……”的接话/反驳，模型将其删除可能丢失立场；“啊哈”也可能是正常回应。请听音决定是否仅修标点，而非采用整段删除。"
+  },
+  "W087": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“那是是是”是待核对的重复/改口候选，建议仅核对“那是是是→那是”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "你说的这是一种推演方式。那是，就是从这个我们承认有公平、有正义，"
+  },
+  "W088": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W089": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“逻辑。起点”疑似误断句，建议只核对删除句号；当前模型未改，补充门控也跳过。"
+  },
+  "W090": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W091": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W092": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W093": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前模型已接受“来来→来、推推演→推演、我们我们→我们”。建议仅这三处删除；保留“嗯哼”，末尾“所有人都是。”与后窗衔接另需核对。",
+    "assistant_target": "那我们现在来做一个推演啊。嗯哼，我们就假设所有人都是。"
+  },
+  "W094": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W095": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W096": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“两个两种”是待核对的重复/改口候选，建议仅核对“两个两种→两种”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "也为了利的，所有人都是为了利的。那我们就只有两种选择，"
+  },
+  "W097": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W098": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W099": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W100": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W101": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“又又”是待核对的重复/改口候选，建议仅核对“又又→又”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "也不能从义的角度选。嗯哼，又从利义的角度选，"
+  },
+  "W102": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W103": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W104": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "当前模型把独立回应“嗯哼”变成“哼”，建议不接受这处删除。前面的“引引入”可能有重复，但本次模型没修好，需听音确定。",
+    "unsafe_model_edit": true
+  },
+  "W105": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W106": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“与人方愚蠢的方法”疑似识别问题，分数不完整触发了补充送审，但模型未修好，需听音。"
+  },
+  "W107": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W108": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W109": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W110": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“我们两从2个极端讲”疑似口误/识别问题，模型未修好；请听音确认再给目标。"
+  },
+  "W111": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W112": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W113": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W114": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "主问题是“首首先”的重复，当前模型没有修掉它，只删除了两个语气“啊”。这些语气删除可选，但不能算重复已修好；建议核对只删一个“首”。",
+    "assistant_target": "首先从防范角度讲啊，我们是不是该建立一个法律啊？对，"
+  },
+  "W115": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“因此。出发点从利出发。未必导致恶果”可能需连接断句；模型未改。只审核标点，保留所有内容。"
+  },
+  "W116": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W117": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W118": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "重点风险：本次管线接受了“不太好→比较好”，改变否定含义。该改动不应直接采用；仅“呃”的删除可考虑，必须保留“不太好”。",
+    "assistant_target": "人类彼此为敌，这个不太好，",
+    "unsafe_model_edit": true
+  },
+  "W119": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W120": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“让让渡→让渡”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "坐下来聊一聊，我们让渡一部分的利益，对，"
+  },
+  "W121": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W122": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“嗯，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "但这里面有一个巨大的逻辑问题在于，"
+  },
+  "W123": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W124": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“你也让渡我的利益”是否应为“你的利益”不能单凭逻辑替换代词，需听音；当前模型未改。"
+  },
+  "W125": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W126": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W127": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W128": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W129": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W130": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W131": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“标志是，是啊”可能含说话人接话，不能自动当作口吃删除。"
+  },
+  "W132": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W133": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议将“机制。机制”接成一次“机制”；当前管线已接受重复删除。请听音确认是否为另一位说话人接话；不要求把最后逗号变句号。",
+    "assistant_target": "人类可以有合作共赢的机制，但是如果我们的立足点是在于利益为起点，"
+  },
+  "W134": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“因为它会变量”疑似识别错误；模型只改逗号未修词，需听音。"
+  },
+  "W135": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W136": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W137": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“假假设”是待核对的重复/改口候选，建议仅核对“假假设→假设”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "这些问题是，不是他同样，你以那个都很难假设的公平与正义为起点，"
+  },
+  "W138": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "文字中“就就”是待核对的重复/改口候选，建议仅核对“就就→就”。本次完整模型管线没有成功应用这处修复，可能未提出或被保护拒绝；不能据此声称当前模型已能修好。",
+    "assistant_target": "以什么大义为起点，他同样会走向那个结果。因为也还是就会出现一大堆的伪君子，"
+  },
+  "W139": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“呃，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "是会有伪君子，然后互相骗，"
+  },
+  "W140": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“呃，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，"
+  },
+  "W141": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“谁是谁是→谁是”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "谁是老大。所以法家一直认为儒家太虚伪，对，"
+  },
+  "W142": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W143": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "“太太堕落→太堕落”本次已接受；“我我”“法法”仍保留。可接受局部修复，但不要记为整窗已修好。",
+    "assistant_target": "我我要法法家太残忍或者太堕落。对对，所以在某种意义上，"
+  },
+  "W144": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W145": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“他只好摆嘛”重复可能是强调或接话；模型没有安全删除，建议听音后再决定。"
+  },
+  "W146": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W147": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“嗯，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。 保留“很多很多”的强调，不删称呼。",
+    "assistant_target": "非常有意思啊！今天跟易老师学了很多很多啊，"
+  },
+  "W148": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选删除“争论啊”中的语气“啊”；当前模型能删，但无需删窗口末逗号。这不是确定的必要精修。",
+    "assistant_target": "尤其关于这个中国古代的义利之争，儒家跟法家的争论，我们今天讨论的问题，"
+  },
+  "W149": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“确实我。受益匪浅”可能是误断句，模型未改且补充门控跳过；建议只核对句号。"
+  },
+  "W150": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“呃，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "谢谢罗老师，其实我最想告诉大家的一句话就是："
+  },
+  "W151": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "可选口语清理：仅删除“呃，”，当前模型已产生这一删除；是否保留语气、引用或接话由你决定。",
+    "assistant_target": "没有结论就是最好的结论。为什么要进行这样一些讨论？"
+  },
+  "W152": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“甚甚至→甚至”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "甚至我们人类为什么要发明一个叫哲学的东西？啊，对，"
+  },
+  "W153": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W154": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W155": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W156": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“能够。帮能够帮助大家磨磨刀子”含断句与改口候选；当前模型整段改动被拒绝。可核对只删“帮能够”或重接断句，保留“磨磨”的正常动词用法。"
+  },
+  "W157": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "按当前文字暂未见必须由 Refiner 处理的问题；模型未改、退回或仅改变窗口末标点不作为需要精修的证据。"
+  },
+  "W158": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "“是啊，是啊”“谢谢叶老师”可能正常回应与致谢，不能因为正则重复就默认删除。"
+  },
+  "W159": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议只核对并清理“谢谢谢谢老师→谢谢老师”；本次当前模型管线已接受这一局部改动。其他措辞、接话和标点保留。真实强调/接话仍请听音确认。",
+    "assistant_target": "谢谢老师，谢谢叶老师啊。"
+  }
+}

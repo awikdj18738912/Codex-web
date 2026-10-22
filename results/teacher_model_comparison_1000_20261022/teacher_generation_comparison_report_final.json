@@ -1,0 +1,230 @@
+{
+  "teacher": "Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "regeneration_prompt": "current pipeline/configs/prompts_clean.json (snapshotted in generation_provenance.json)",
+  "generation": {
+    "model": "Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+    "records": 1000,
+    "generation_errors": 0,
+    "changed_vs_existing_target": 379,
+    "unchanged": 621,
+    "by_stratum": {
+      "boundary_punctuation": {
+        "records": 100,
+        "same_as_old": 32,
+        "changed": 68,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "clean_or_passthrough": {
+        "records": 100,
+        "same_as_old": 70,
+        "changed": 30,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "english_entity_or_code": {
+        "records": 150,
+        "same_as_old": 91,
+        "changed": 59,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "multi_correction": {
+        "records": 200,
+        "same_as_old": 114,
+        "changed": 86,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "numeric_surface": {
+        "records": 100,
+        "same_as_old": 55,
+        "changed": 45,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "other_cleanup": {
+        "records": 200,
+        "same_as_old": 144,
+        "changed": 56,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "single_correction": {
+        "records": 150,
+        "same_as_old": 115,
+        "changed": 35,
+        "empty_outputs": 0,
+        "format_errors": 0
+      }
+    },
+    "elapsed_wall_seconds": 1333.2,
+    "predictions_sha256": "0de85eb18590af80024eb19c32ab68c6ed9e71c7de839dcc8beda03785b39ede"
+  },
+  "blind_review": {
+    "sample_n": 200,
+    "source_status": {
+      "CLEAR": 200
+    },
+    "risk_strata": {
+      "multi_correction": 40,
+      "clean_or_passthrough": 20,
+      "numeric_surface": 20,
+      "english_entity_or_code": 30,
+      "boundary_punctuation": 20,
+      "other_cleanup": 40,
+      "single_correction": 30
+    },
+    "old_target_verdicts": {
+      "PASS": 189,
+      "MINOR": 7,
+      "FAIL": 4
+    },
+    "regenerated_target_verdicts": {
+      "PASS": 185,
+      "MINOR": 11,
+      "FAIL": 4
+    },
+    "pairwise_winners": {
+      "TIE": 174,
+      "regenerated": 11,
+      "old": 15
+    },
+    "old_vs_regenerated_outputs": {
+      "same": 121,
+      "changed": 79
+    },
+    "verdicts_by_stratum": {
+      "multi_correction": {
+        "old": {
+          "PASS": 36,
+          "FAIL": 2,
+          "MINOR": 2
+        },
+        "regenerated": {
+          "PASS": 35,
+          "FAIL": 2,
+          "MINOR": 3
+        },
+        "winner": {
+          "TIE": 33,
+          "old": 4,
+          "regenerated": 3
+        }
+      },
+      "clean_or_passthrough": {
+        "old": {
+          "PASS": 20
+        },
+        "regenerated": {
+          "PASS": 20
+        },
+        "winner": {
+          "TIE": 19,
+          "regenerated": 1
+        }
+      },
+      "numeric_surface": {
+        "old": {
+          "PASS": 20
+        },
+        "regenerated": {
+          "PASS": 20
+        },
+        "winner": {
+          "TIE": 18,
+          "regenerated": 1,
+          "old": 1
+        }
+      },
+      "english_entity_or_code": {
+        "old": {
+          "PASS": 28,
+          "FAIL": 1,
+          "MINOR": 1
+        },
+        "regenerated": {
+          "PASS": 29,
+          "FAIL": 1
+        },
+        "winner": {
+          "regenerated": 2,
+          "TIE": 25,
+          "old": 3
+        }
+      },
+      "boundary_punctuation": {
+        "old": {
+          "MINOR": 2,
+          "PASS": 17,
+          "FAIL": 1
+        },
+        "regenerated": {
+          "MINOR": 3,
+          "PASS": 16,
+          "FAIL": 1
+        },
+        "winner": {
+          "regenerated": 2,
+          "TIE": 16,
+          "old": 2
+        }
+      },
+      "other_cleanup": {
+        "old": {
+          "PASS": 38,
+          "MINOR": 2
+        },
+        "regenerated": {
+          "MINOR": 3,
+          "PASS": 37
+        },
+        "winner": {
+          "old": 3,
+          "TIE": 35,
+          "regenerated": 2
+        }
+      },
+      "single_correction": {
+        "old": {
+          "PASS": 30
+        },
+        "regenerated": {
+          "PASS": 28,
+          "MINOR": 2
+        },
+        "winner": {
+          "TIE": 28,
+          "old": 2
+        }
+      }
+    },
+    "semantic_or_fidelity_failures": {
+      "old": 4,
+      "regenerated": 4
+    },
+    "clean_controls": {
+      "n": 20,
+      "regenerated_changed": 4,
+      "old_verdicts": {
+        "PASS": 20
+      },
+      "regenerated_verdicts": {
+        "PASS": 20
+      }
+    },
+    "lead_adjudications": 3,
+    "quote_validation_errors": 0
+  },
+  "decision": "Do not replace the broader training set with same-teacher reruns yet. On this risk-stratified sample, most outputs were tied; old targets had 15 wins vs 11 for regenerated targets after main adjudication. Apply selective replacement only after a target-specific audit confirms improvement.",
+  "limitations": [
+    "The sample was risk-stratified, not a prevalence estimate for the 84,875 training records.",
+    "Both targets come from the same 30B teacher; this tests regeneration with the current prompt, not a different teacher model.",
+    "The 200 judgments are model-assisted and not full human expert annotation.",
+    "The sample comes from the training split and is a data-repair diagnostic, not a student-model test set.",
+    "Regeneration used the current pipeline prompt; historical targets may have been generated under earlier prompt versions."
+  ],
+  "sample_sha256": "c2a64191ff18ab29c13bf79411b232e3cd1bd0678b1f3d41c1ab12c537d7af23",
+  "prediction_sha256": "0de85eb18590af80024eb19c32ab68c6ed9e71c7de839dcc8beda03785b39ede",
+  "first_pass_review_sha256": "b319c7ba9df8a2236f0e1534d46fcc7b36e6c05a7811ba8b0a072e5e3994f0ad"
+}

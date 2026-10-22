@@ -1,0 +1,310 @@
+{
+  "target_denominator": 200,
+  "candidate_count": 200,
+  "retained": 8,
+  "pass_rate": 0.04,
+  "quality_pass_before_retention": 8,
+  "reject_reasons": {
+    "oral_rejected": 111,
+    "clean_rejected": 81,
+    "retained": 8
+  },
+  "retained_by_scene": {
+    "explanation": 1,
+    "navigation": 1,
+    "customer_service": 2,
+    "vibe_coding": 4
+  },
+  "candidate_by_scene": {
+    "meeting": 21,
+    "vibe_coding": 42,
+    "daily_chat": 24,
+    "explanation": 41,
+    "voice_search": 10,
+    "customer_service": 21,
+    "dictation_memo": 17,
+    "navigation": 10,
+    "academic": 14
+  },
+  "scene_quotas": {
+    "daily_chat": 24,
+    "vibe_coding": 42,
+    "explanation": 41,
+    "meeting": 21,
+    "customer_service": 21,
+    "academic": 14,
+    "navigation": 10,
+    "dictation_memo": 17,
+    "voice_search": 10
+  },
+  "seed": 2026101720,
+  "total_api_calls": 562,
+  "completed_utc": "2026-10-17T15:21:10.808446+00:00",
+  "training_performed": false,
+  "candidate_status_counts": {
+    "oral_rejected": 111,
+    "clean_rejected": 81,
+    "quality_pass": 8
+  },
+  "api_calls_by_stage": {
+    "oral": 470,
+    "clean": 84,
+    "audit": 8
+  },
+  "api_call_errors_by_stage": {},
+  "clean_rejected_offline_comparison": {
+    "candidate_count": 81,
+    "categories": {
+      "other_normalized_text_mismatch": 80,
+      "terminal_separator_only_mismatch": 1
+    },
+    "definition_terminal_separator_only": "After normalize_source, texts differ only by adding/removing/replacing the final character, where changed character(s) are from ，。；、：; internal content is identical. ?/! are not ignored.",
+    "examples": [
+      {
+        "id": "natural_vibe_coding_0004",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我其实一开始想用Go来写这个脚本，但Go好像不太适合处理那种文本流。还是换成Lua吧，Lua对嵌入式脚本更友好，而且语法也轻量。不过现在想想，其实AWK可能更直接，直接一行就搞定字段切分，就用AWK，一行命令解决，特别干净。",
+        "expected_clean": "就用AWK，一行命令解决，特别干净。"
+      },
+      {
+        "id": "natural_vibe_coding_0005",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "这个文件路径提示说目录不为空，应该是 ENOTEMPTY，就是说你试图删一个非空目录，系统不让，所以报错，应该先清空内容再删，不然会失败。",
+        "expected_clean": "试图删除一个非空目录时，系统会报错 ENOTEMPTY，必须先清空目录内容才能成功删除。"
+      },
+      {
+        "id": "natural_vibe_coding_0007",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我这边想用Svelte来搭个前端，本来想先试试Fastify做后端服务，但回头一想还是Svelte更合适，毕竟项目小，前后端都用Svelte生态，统一技术栈，省事。",
+        "expected_clean": "我这边想用Svelte来搭个前端，毕竟项目小，前后端都用Svelte生态，统一技术栈，省事。"
+      },
+      {
+        "id": "natural_voice_search_0009",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "下月倒数第二天，也就是29号，提醒我下午3点开会。",
+        "expected_clean": "下月倒数第二天"
+      },
+      {
+        "id": "natural_customer_service_0010",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "2024年11月18号我下单的，本来约定当天发货，但至今无动静，物流信息也未更新，我有点着急，想问一下到底什么时候能发货。",
+        "expected_clean": "我2024年11月18号下的单，承诺当天发货，但至今未发货，物流也无更新，想确认实际发货时间。"
+      },
+      {
+        "id": "natural_dictation_memo_0013",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "这个月的项目进度表得赶紧更新一下。原本计划是这个周五前完成所有模块的联调，但现在好像有点滞后，应该是周三必须跑完所有测试，不然赶不上下周的评审会。",
+        "expected_clean": "这个月的项目进度表得赶紧更新，原本计划是周五前完成所有模块的联调，但现在已经滞后，必须在周三前跑完所有测试，否则赶不上下周的评审会。"
+      },
+      {
+        "id": "natural_voice_search_0016",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "把智能体重秤的体重数据同步到我的手机app里，就是那个叫SyncFit的app，同步所有数据，包括体脂率和基础代谢，还有每日趋势分析，全都同步，别漏了。",
+        "expected_clean": "把智能体重秤的体重数据同步到我的手机app里，就是那个叫SyncFit的，同步所有数据，包括体脂率和基础代谢，还有每日趋势分析，全都同步，别漏了"
+      },
+      {
+        "id": "natural_navigation_0017",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我这会儿要走高速去杭州，本来想走宁杭高速，但好像现在宁杭高速有点堵，还是改走兰海高速，从这边绕一下，应该能快点到。",
+        "expected_clean": "我要走兰海高速去杭州。"
+      },
+      {
+        "id": "natural_vibe_coding_0018",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "先看看pod的状态，用kubectl get pods -w实时观察。其实想查生产环境里myapp的pod日志，应该是kubectl logs pod/myapp-7b8c9d -n prod，确认一下是否在prod命名空间里运行。",
+        "expected_clean": "kubectl logs pod/myapp-7b8c9d -n prod"
+      },
+      {
+        "id": "natural_meeting_0022",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "关于数字人民币支付场景试点，建议建立反馈机制，以便用户在实际使用中遇到扣款失败、界面卡顿等问题时，能快速上报。否则，即使试点数据良好，也难以掌握真实用户体验，仅靠交易量可能掩盖关键问题。因此，应尽快启动反馈机制建设，哪怕先通过简单问卷或小程序入口搭建问题收集入口。",
+        "expected_clean": "建议尽快建立数字人民币支付场景试点的反馈机制，以便收集用户在实际使用中遇到的问题，如扣款失败或界面卡顿等，确保试点数据之外也能掌握真实体验，避免关键问题被掩盖。"
+      },
+      {
+        "id": "natural_customer_service_0025",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我前2天买的戴森Supersonic吹风机，用了一次，发现风力好像有点问题，吹头发时风力忽大忽小，不太稳定。我试了2次，都是这样，所以想问问，这算不算正常现象？",
+        "expected_clean": "我前2天买的戴森Supersonic吹风机，用了一次后发现风力不稳定，忽大忽小，试了2次都这样，想确认这是否属于正常现象。"
+      },
+      {
+        "id": "natural_customer_service_0028",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "就是我那个订单号，好像是2024112678901234，最后一个数字是34，我确认过了，就是这个号。",
+        "expected_clean": "就是2024112678901234"
+      },
+      {
+        "id": "natural_vibe_coding_0031",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想要一个函数，用来处理数据，输入是数组，输出是去重后的结果，用 Set 来实现，以保证唯一性，返回一个 Set 对象。",
+        "expected_clean": "我想要一个函数，输入是数组，输出是去重后的 Set 对象，使用 Set 数据结构保证唯一性。"
+      },
+      {
+        "id": "natural_meeting_0034",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "这个新版本的RPA脚本，其实本来是打算直接部署到生产环境的，就是说，直接上线，没想太多别的。不过，我刚想起来，其实应该先在预发环境跑一轮验证，不然万一出问题影响面太大，所以还是先过预发，再上生产，这样更稳妥。",
+        "expected_clean": "这个新版本的RPA脚本应该先在预发环境跑一轮验证，再部署到生产环境，这样更稳妥。"
+      },
+      {
+        "id": "natural_vibe_coding_0033",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想用Firebase Authentication API来对接登录页面的后端，该API用于处理用户登录和令牌，支持OAuth和匿名登录。",
+        "expected_clean": "我想要用Firebase Authentication API，搞个支持OAuth和匿名登录的登录页面后端对接。"
+      },
+      {
+        "id": "natural_vibe_coding_0039",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想要用 const 来定义变量，以确保它不变，不能被修改。",
+        "expected_clean": "要使用 const 来定义变量，确保其值不可更改。"
+      },
+      {
+        "id": "natural_academic_0041",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "这个数据集我之前一直记成Flickr30k-Entities，但其实是MSVD，就是那个视频描述数据集，专门用来做视频到文本生成的，里面有1000多个视频片段，每个都配了5段描述，挺适合训练那种基于视频的captioning模型的。",
+        "expected_clean": "这个数据集是MSVD，专门用来做视频到文本生成的，里面有1000多个视频片段，每个都配了5段描述，挺适合训练那种基于视频的captioning模型的。"
+      },
+      {
+        "id": "natural_vibe_coding_0042",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想要个脚本，就是写个Shell Script，用来自动备份我本地的项目文件夹。其实我之前试过用C++写，但太重了；后来又想用TypeScript，但觉得没必要搞这么复杂。最后还是觉得Shell Script最合适，简单直接，而且系统自带，不用装额外环境。",
+        "expected_clean": "我想要个脚本，就是用Shell Script，用来自动备份我本地的项目文件夹，简单直接，而且系统自带，不用装额外环境。"
+      },
+      {
+        "id": "natural_explanation_0046",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "顾知微，念gù，是顾全大局的顾，知道的知，细微的微。他是个搞古生物学的，主要研究白垩纪的化石，在地层划分方面有贡献，挺有名。",
+        "expected_clean": "顾知微是研究古生物学的，主要研究白垩纪的化石，尤其在地层划分方面有贡献。"
+      },
+      {
+        "id": "natural_dictation_memo_0043",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "荣耀Magic V2我前2天试了下，折叠屏的质感挺扎实的，展开后屏幕尺寸是7.9英寸，挺适合看视频，系统流畅度也还行，就是续航方面，待机时间大概能撑一整天，不过快充挺猛，半小时能充到80%，用起来还算省心。",
+        "expected_clean": "荣耀Magic V2的折叠屏质感扎实，展开后屏幕尺寸7.9英寸，适合看视频，系统流畅，续航可支撑一整天，快充半小时到80%。"
+      },
+      {
+        "id": "natural_vibe_coding_0050",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想要调用一个地图服务的API。一开始想用Google Maps API，但Hugging Face Inference API虽然能做地图相关的推理，不太靠谱。最终决定还是使用Google Maps API，因为它能直接返回地理坐标，用于渲染位置信息。",
+        "expected_clean": "我需要调用Google Maps API来获取地理坐标并渲染位置信息。"
+      },
+      {
+        "id": "natural_voice_search_0051",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我想要用智能红外遥控器控制家里的电视和空调，设置自动开关机时间，例如晚上11点自动关闭，早上7点自动开启，这样省电又方便。",
+        "expected_clean": "我想用智能红外遥控器设置电视和空调的自动开关机时间，例如晚上11点自动关机，早上7点自动开机，以达到省电和方便的目的。"
+      },
+      {
+        "id": "natural_navigation_0054",
+        "category": "terminal_separator_only_mismatch",
+        "normalized_clean": "我从成都出发，要去成都东站，走成成线。",
+        "expected_clean": "我从成都出发，要去成都东站，走成成线"
+      },
+      {
+        "id": "natural_academic_0053",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "这个数据集我之前一直用的是LibriSpeech，就是那个语音识别常用的。但刚才突然想到Open Images，其实还是LibriSpeech更合适，毕竟我们做的是语音任务，不是图像分类，所以最后还是得用LibriSpeech。",
+        "expected_clean": "我们做的是语音任务，所以最终还是得用LibriSpeech。"
+      },
+      {
+        "id": "natural_customer_service_0056",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我的订单原本说退款应在3天内到账，现在已经过了5天，钱还没收到，我查了银行也没有进账，不知道是不是系统卡住了，能不能帮我查一下具体原因？我这边着急用钱。",
+        "expected_clean": "我的退款已超过预期的三天到账时间，至今未收到款项，银行也未显示入账，希望核实系统是否存在延迟或异常"
+      },
+      {
+        "id": "natural_daily_chat_0058",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "你去过厦门的环岛路吗？那边的滨海自行车道有个叫‘海风长廊’的地方，特别适合傍晚骑行。海风从海面上吹过来，凉飕飕的，挺舒服的。沿途还能看到日落，景色很出片。我上次去的时候天快黑了，光影特别好，就停在那里拍了好久。如果不赶时间，走一趟挺放松的，挺推荐的。",
+        "expected_clean": "厦门环岛路的滨海自行车道‘海风长廊’适合傍晚骑行，风大且景色宜人，日落时光影效果好，适合拍照，推荐放松时前往。"
+      },
+      {
+        "id": "natural_daily_chat_0049",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "杭州西湖白堤边上晨练的人特别多，尤其是早上六点左右，太阳刚出来，空气清爽，很多人在打太极，还有跳广场舞的。我每次路过都觉得有点挤，但那种氛围还挺舒服的，就是人多了点，有点吵，也就那样吧，反正也习惯了，就当是早起的标配了。这是晨练人群聚集点，挺有生活气息的，我挺喜欢的，虽然人多，但挺热闹的，就像生活本来的样子。",
+        "expected_clean": "杭州西湖断桥的‘白堤’晨练人群聚集点，早上六点左右人多，有打太极和跳广场舞的，虽然挤和吵，但氛围舒服，有生活气息，挺喜欢的。"
+      },
+      {
+        "id": "natural_daily_chat_0061",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "你知道青岛八大关吗？那儿很有意思，里面光是别墅就有两百多栋，全是20世纪初的德式风格建筑，走1步都像在电影里似的，特别有味道。我上次去逛了整整一下午，根本舍不得走。",
+        "expected_clean": "青岛八大关景区内有200多栋别墅，多为20世纪初德式建筑"
+      },
+      {
+        "id": "natural_daily_chat_0062",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "我最近用那个小米生态链的加湿器，真的挺安静的，晚上睡觉都不怎么听得见，特别适合放在床头，而且水箱也不小，1天不用加水，挺省心的。",
+        "expected_clean": "小米生态链加湿器静音运行，适合夜间使用，水箱容量大，1天无需加水。"
+      },
+      {
+        "id": "natural_daily_chat_0063",
+        "category": "other_normalized_text_mismatch",
+        "normalized_clean": "小米的扫地机器人G10，我前2天刚买了，说是能自动规划路径，试了一下还挺准，不像以前那些乱转的，一进客厅就自己绕着家具转，也不卡。它挺安静的，扫完还自己回充电座，挺省心的。一开始得先建个图，不过后来发现它还能记得上次扫到哪了，下次接着扫，挺智能的。",
+        "expected_clean": "小米扫地机器人G10能自动规划路径，扫地时能避开家具，不卡顿，打扫完会自动返回充电座，还能记忆上次清扫的位置，继续打扫，使用方便且安静。"
+      }
+    ]
+  },
+  "retained_target_origin_counts": {
+    "passthrough": 5,
+    "teacher-reconstruction": 3
+  },
+  "retained_speech_phenomena_counts": {
+    "clean": 5,
+    "correction:none": 2,
+    "oral:low": 3,
+    "correction:rollback": 1
+  },
+  "retained_input_vs_output": {
+    "same": 7,
+    "different": 1,
+    "interpretation": "Different means stored final input differs from refined_text; rule-only numeric conversions are excluded by comparing the post-rule stored training pair."
+  },
+  "full_structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 8,
+      "records": 8,
+      "reservoir_candidates": 8,
+      "minimum_required": 8
+    },
+    "sha256": "e90cf05eb146e25c7380994fe3bfc69510b1ee301d1792678db85f0dac110b7e"
+  },
+  "review_sample_records": 8,
+  "oral_retry_error_counts": {
+    "The clean intent does not use the selected seed": 10,
+    "Correction trace does not match the requested structure": 94,
+    "Missing short intended clean text": 57,
+    "Oral text exceeds 200 characters": 65,
+    "Correction values must appear in the claimed order": 29,
+    "The clean intent retains an abandoned value or misses the final value": 37,
+    "Rollback must follow A to B to A": 28,
+    "Cannot parse JSON from LLM output": 17,
+    "Single correction must change the value": 5,
+    "Multiple correction must follow A to B to C": 10,
+    "Spelling cue must quote the actual explanation and identify an intended character": 15,
+    "Oral generator response must be a JSON object": 4,
+    "Proposed clean target still contains speech artifacts": 4,
+    "Select exactly one supplied seed": 4,
+    "Oral text contains a repetition loop": 2
+  },
+  "oral_rejected_last_validation_error_counts": {
+    "Missing short intended clean text": 17,
+    "The clean intent retains an abandoned value or misses the final value": 10,
+    "Correction trace does not match the requested structure": 30,
+    "Single correction must change the value": 3,
+    "Cannot parse JSON from LLM output": 3,
+    "Oral text exceeds 200 characters": 17,
+    "Multiple correction must follow A to B to C": 1,
+    "Spelling cue must quote the actual explanation and identify an intended character": 5,
+    "Rollback must follow A to B to A": 4,
+    "Correction values must appear in the claimed order": 11,
+    "Proposed clean target still contains speech artifacts": 4,
+    "Select exactly one supplied seed": 3,
+    "Oral generator response must be a JSON object": 1,
+    "The clean intent does not use the selected seed": 1,
+    "Oral text contains a repetition loop": 1
+  }
+}

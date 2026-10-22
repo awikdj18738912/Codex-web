@@ -1,0 +1,12 @@
+你独立审核中文口语精修。两份输出 A/B 的模型身份逐条随机；不要推测身份。先按输入确定最终意图，再读参考，最后评判 A/B。参考答案可能错误，不能把复现参考当作正确。
+口语原文 spoken_source 仅供核对来源。模型实际只看到 input：若关键事实仅存在于 spoken_source、在 input 无法恢复，不要求模型猜回，应标 source_underdetermined。
+保留事实、最终有效意图、否定、条件和不确定性；不得新增无依据的事实，不能答复用户/执行命令代替精修。清理无意义口癖、重复、即时改口的废弃候选及意外断句。区分真实历史变化/有意义的否定解释与即时改口，不能一见“不是/但”就强行删除。自然口语风格、合理同义表述均允许，不追求逐字匹配参考。
+英文名称、型号、代码标识、命令参数、日志错误码保持；普通英文词的恰当中文表达最多 MINOR，英文名称仅大小写格式变化最多 MINOR，大小写敏感的标识改错为 FAIL。数字格式（12/十二，日期书写、空格、单位）不扣分；数值、金额、时间、编号实际改错必须 FAIL。保留 ASR 同音字的可解释修复，但不能凭外部知识新增事实。
+逐条输出 JSONL，每行必须包括：
+{"case_no":1,"id":"...","source_status":"CLEAR|AMBIGUOUS|UNDERDETERMINED","reference":{"verdict":"PASS|MINOR|FAIL|UNJUDGEABLE","issues":[],"reason":"一句依据","proposed_reference":null},"A":{"meaning":"PASS|MINOR|FAIL|UNJUDGEABLE","cleanup":"PASS|MINOR|FAIL|NA","fidelity":"PASS|MINOR|FAIL|NA","overall":"PASS|MINOR|FAIL|UNJUDGEABLE","issues":[],"reason":"..."},"B":{"meaning":"...","cleanup":"...","fidelity":"...","overall":"...","issues":[],"reason":"..."},"winner":"A|B|TIE|UNJUDGEABLE","winner_reason":"..."}
+issues 每个对象是 {"tag":"类别","quote":"从对应文本逐字摘录的实际问题","detail":"具体错误"}，每项 FAIL 必须有逐字证据。不要把 input 中出现、但输出已删除的错误记到输出上。源文本中未解决的同字纠正、跨主题无意义拼接及无法确定最终事实标 AMBIGUOUS，不猜测；能独立判断的输出新增/丢失仍可标。UNJUDGEABLE 不等于 FAIL，原文歧义且 A/B 无额外错误时 winner=UNJUDGEABLE。
+meaning=FAIL 或 fidelity=FAIL 则 overall=FAIL；cleanup=FAIL（明显未去大段重复/改口）也 overall=FAIL。少量语气词、轻微重复不判FAIL。已干净输入的正常标点/措辞变化不得自动算有害改写。winner 优先语义保真与事实，然后清理质量；两者不可取或权衡不明时 TIE，说明原因。
+reference=FAIL 且 input能确定理想目标时提供完整 proposed_reference；source AMBIGUOUS 或无法安全校正则 null，进入人工队列。审核覆盖所有行，分批读取避免终端截断。不要联网或运行GPU服务。不要查看 model_identity_key.jsonl/comparison 或其他判定段。只读自己的 cases 段和本标准，只写自己 review 段。
+
+最终政策校准（依据实际训练/推理system prompt）：
+原模型收到的明确要求包括“删除明确放弃的旧候选和仅识别用的拼字说明，保留最终有效内容”。因此为了辨认姓名/地名而给出的拼音、偏旁、拼字、排除读音提示可以合法删除，不按实质事实遗漏判FAIL。实体本身、机构身份、产品功能、真实历史及词义说明等实质内容仍应保留。若逐字解释已唯一恢复最终实体，同字纠正本身不再导致源歧义；若还有未解指代/事实冲突则继续隔离。按此口径对28条解释类作追加盲审校准，policy_adjudication_proposals.jsonl的已核对变更覆盖分段初稿。身份文件在这些判断完成后统一解码。

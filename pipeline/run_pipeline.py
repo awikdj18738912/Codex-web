@@ -11,8 +11,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 SCRIPTS_DIR = PROJECT_ROOT / "scripts"
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from configs.scenes import SCENE_REGISTRY
-from configs.settings import ASR_MODE, VLLM_BASE_URL
+from configs.scenes import get_enabled_scenes, validate_enabled_scene
+from configs.settings import ASR_MODE, FINAL_DIR, VLLM_BASE_URL
 from src.services.vllm_lifecycle import (
     ensure_speech_services_ready,
     ensure_vllm_started,
@@ -58,6 +58,8 @@ def step2_clean_text(args):
         cmd += ["--scene", args.scene]
     if args.base_url:
         cmd += ["--base-url", args.base_url]
+    if args.target_mode:
+        cmd += ["--target-mode", args.target_mode]
     return run_cmd(cmd, "Step 2: Clean Text (Oral -> Clean)")
 
 
@@ -93,16 +95,27 @@ def step4_assemble(args):
 
 def step5_finalize(args):
     """Run quality control and deduplication."""
-    cmd = [PYTHON, str(SCRIPTS_DIR / "05_finalize.py")]
+    cmd = [PYTHON, str(SCRIPTS_DIR / "05_finalize.py"), "--save-rejects"]
     if args.base_url:
         cmd += ["--base-url", args.base_url]
-    return run_cmd(cmd, "Step 5: Finalize Dataset")
+    if not run_cmd(cmd, "Step 5: Finalize Dataset"):
+        return False
+    final = Path(FINAL_DIR)
+    audit_cmd = [
+        PYTHON, str(SCRIPTS_DIR / "audit_dataset.py"),
+        "--input", str(final / "train.jsonl"),
+        "--report", str(final / "acceptance_report.json"),
+        "--sample-output", str(final / "review_sample.jsonl"),
+    ]
+    if args.min_final_records:
+        audit_cmd += ["--min-records", str(args.min_final_records)]
+    return run_cmd(audit_cmd, "Step 5: Automatic acceptance report")
 
 
 def get_scenes(args) -> list[str]:
     if args.scene:
-        return [args.scene]
-    return list(SCENE_REGISTRY.keys())
+        return [validate_enabled_scene(args.scene)]
+    return get_enabled_scenes()
 
 
 def _llm_base_url(args) -> str:
@@ -145,6 +158,10 @@ def main():
                         help="maximum LLM concurrency")
     parser.add_argument("--force-seeds", action="store_true",
                         help="regenerate existing seed pools")
+    parser.add_argument("--target-mode", choices=["construction", "teacher"], default=None,
+                        help="Step 2 target source (default: CLEAN_TARGET_MODE or construction)")
+    parser.add_argument("--min-final-records", type=int, default=0,
+                        help="fail final acceptance if the retained dataset is smaller than this")
     parser.add_argument("--asr-mode", type=str, default=None, choices=["llm_sim", "text_sim", "tts_asr"],
                         help="Step 3 input-generation mode")
     parser.add_argument("--asr-strength", type=str, default=None, choices=["light", "medium", "heavy"],
@@ -159,6 +176,8 @@ def main():
                         help="Qwen3-ASR service URL")
     parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
+    if args.min_final_records < 0:
+        parser.error("--min-final-records must be nonnegative")
 
     level = logging.DEBUG if args.verbose else logging.INFO
     logging.basicConfig(

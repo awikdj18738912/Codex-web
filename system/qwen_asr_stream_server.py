@@ -17,6 +17,8 @@ from flask import Flask, jsonify, request
 from .audio_activity import is_silence, pcm_peak, pcm_rms
 from .backends import SAMPLE_RATE, VAD_WINDOW, build_vad
 from .qwen_confidence import QwenVLLMConfidenceDecoder, state_confidence_payload
+from .asr_window_confidence import QwenWindowConfidenceDecoder
+from .confidence_supplement import compose_projections
 from .stream_vad import StreamingVADGate
 from .entity_asr_context import validate_asr_context, context_digest, MAX_ASR_CONTEXT_CHARS
 
@@ -44,6 +46,7 @@ class Session:
     unfixed_chunk_num: int | None = None
     unfixed_token_num: int | None = None
     context: str = ""
+    confidence_projections: list[dict] = field(default_factory=list, repr=False)
 
 
 _SENTENCE_END_RE = re.compile(r"[.!?。！？][\"'”’》〉』】）)]*$")
@@ -235,6 +238,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="mark the score as calibrated after fitting temperature on a dev set",
     )
+    parser.add_argument("--confidence-window-scores", action="store_true",
+                        help="retain source-aligned token evidence across VAD states for supplementary review")
     parser.add_argument(
         "--segment-seconds",
         type=float,
@@ -270,6 +275,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error("--confidence-temperature must be positive")
     if args.confidence_calibrated and args.confidence_logprobs == 0:
         parser.error("--confidence-calibrated requires --confidence-logprobs")
+    if args.confidence_window_scores and args.confidence_logprobs == 0:
+        parser.error("--confidence-window-scores requires --confidence-logprobs")
     if args.silence_rms_threshold < 0:
         parser.error("--silence-rms-threshold must be non-negative")
     if not 0 <= args.vad_threshold <= 1:
@@ -302,7 +309,7 @@ def main(argv: list[str] | None = None) -> int:
         max_new_tokens=32,
     )
     decoder = (
-        QwenVLLMConfidenceDecoder(
+        (QwenWindowConfidenceDecoder if args.confidence_window_scores else QwenVLLMConfidenceDecoder)(
             asr,
             top_logprobs=args.confidence_logprobs,
             temperature=args.confidence_temperature,
@@ -443,6 +450,12 @@ def main(argv: list[str] | None = None) -> int:
         session.last_confidence = segment_confidence
         completed_event: dict[str, object] | None = None
         if segment_text:
+            if args.confidence_window_scores:
+                projection = getattr(session.state, "_window_confidence_projection", None)
+                session.confidence_projections.append(
+                    projection if isinstance(projection, dict) and projection.get("text") == segment_text
+                    else dict(status="unsupported", text=segment_text, spans=[])
+                )
             session.committed_text = _join_transcripts(
                 session.committed_text, segment_text
             )
@@ -579,6 +592,18 @@ def main(argv: list[str] | None = None) -> int:
                 key: round(value, 3) for key, value in asr_timing.items()
             }
         response.update(confidence_payload(session))
+        if args.confidence_window_scores:
+            parts = list(session.confidence_projections)
+            active = response["active_segment"]
+            if active:
+                projection = getattr(session.state, "_window_confidence_projection", None)
+                parts.append(projection if isinstance(projection, dict) and projection.get("text") == active
+                             else dict(status="unsupported", text=active, spans=[]))
+            projection = compose_projections(parts)
+            if projection["text"] != response["text"]:
+                projection = dict(status="unsupported", text=response["text"], spans=[],
+                                  reason="cumulative_projection_mismatch", calibrated=False)
+            response["confidence_projection"] = projection
         return response
 
     @app.get("/health")
@@ -591,6 +616,7 @@ def main(argv: list[str] | None = None) -> int:
             "api_styles": ["current", "legacy_v1"],
             "confidence_logprobs": args.confidence_logprobs,
             "confidence_calibrated": args.confidence_calibrated,
+            "confidence_window_scores": args.confidence_window_scores,
             "silence_rms_threshold": args.silence_rms_threshold,
             "vad": args.vad,
             "vad_model": str(args.vad_model),

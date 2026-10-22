@@ -1,0 +1,47 @@
+{
+  "ok": true,
+  "window_edit_policy": "compat",
+  "strict_local_protocol_version": null,
+  "entity_db": true,
+  "entity_asr_context_enabled": false,
+  "entity_audio_repair_enabled": false,
+  "refinement_gate_mode": "tri_state",
+  "asr_api_style": "current",
+  "window_pipeline": {
+    "version": "fixed_k3_v1",
+    "window_size": 3,
+    "one_punctuation_window": true,
+    "fixed_groups": true,
+    "stream_reprocess_rejected": false,
+    "final_reprocess_rejected": false,
+    "group_numeric_self_corrections": true
+  },
+  "final_refinement_mode": "off",
+  "learned_window_gate": {
+    "mode": "off",
+    "ready": false,
+    "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+    "model_sha256": null,
+    "threshold": null,
+    "load_error": null,
+    "scored_windows": 0,
+    "would_skip_windows": 0,
+    "vetoed_windows": 0,
+    "scoring_errors": 0,
+    "scope": "window_refine_only",
+    "calibrated": false
+  },
+  "confidence_supplement": {
+    "mode": "on",
+    "low_fragment_threshold": 0.8,
+    "missing_evidence": "review",
+    "high_score_veto": false,
+    "calibrated": false,
+    "purpose": "supplement_native_review_not_certify_cleanup_need"
+  },
+  "numeric_normalization_enabled": true,
+  "numeric_backend": "zh-itn",
+  "zh_itn_enabled": true,
+  "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+  "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+}

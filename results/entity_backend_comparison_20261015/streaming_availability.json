@@ -1,0 +1,32 @@
+{
+  "test_samples": 1829,
+  "arms": {
+    "qwen_ctc_sidecar": {
+      "final_gain_mentions": 451,
+      "gain_already_in_nonfinal_partial": 361,
+      "gain_in_two_consecutive_nonfinal_partials": 291,
+      "final_correct_mentions": 1675,
+      "final_correct_seen_nonfinal": 1419,
+      "final_correct_in_two_consecutive_nonfinal": 1281,
+      "nonfinal_updates": 11554,
+      "samples": 1829
+    },
+    "native_hotword": {
+      "final_gain_mentions": 488,
+      "gain_already_in_nonfinal_partial": 463,
+      "gain_in_two_consecutive_nonfinal_partials": 424,
+      "final_correct_mentions": 1570,
+      "final_correct_seen_nonfinal": 1487,
+      "final_correct_in_two_consecutive_nonfinal": 1387,
+      "nonfinal_updates": 31466,
+      "samples": 1829
+    }
+  },
+  "definitions": {
+    "final_gain_mentions": "Gold canonical mention counts gained over Qwen final, clipped per reference.",
+    "gain_already_in_nonfinal_partial": "Final gains whose canonical already occurred in an ordinary partial before end-of-input flush. For hybrid this is audio-availability replay, not a measured concurrent schedule.",
+    "gain_in_two_consecutive_nonfinal_partials": "Same condition in two adjacent ordinary update events. This is an observation, not a guarantee the text never later changes.",
+    "native_vs_qwen": "Native gains include a recognizer/model change, not only the hotword effect.",
+    "latency_limit": "No wall-clock or gold spoken entity-end timestamps are inferred. A saved Qwen partial may already have paid network/model latency."
+  }
+}

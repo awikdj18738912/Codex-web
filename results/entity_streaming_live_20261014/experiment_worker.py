@@ -19,9 +19,8 @@ definitions={k:EntityStore(v['snapshot_path']).list_entities(include_disabled=Tr
 library=contextvars.ContextVar('eval_library',default=None)
 policy=contextvars.ContextVar('eval_policy',default='old')
 controllers=weakref.WeakSet()
-old_repair=audio.EntityAudioRepair
-spec=importlib.util.spec_from_file_location('system._incremental_experiment',OUT/'candidate.py')
-new=importlib.util.module_from_spec(spec);sys.modules[spec.name]=new;spec.loader.exec_module(new)
+old_repair=audio._LegacyEntityAudioRepair
+production_repair=audio.EntityAudioRepair
 
 class EvaluationStore(EntityStore):
     def list_entities(self,*,domain=None,include_disabled=False):
@@ -30,7 +29,7 @@ class EvaluationStore(EntityStore):
         return tuple(d for d in definitions[key] if (include_disabled or d.enabled) and (domain is None or d.domain in (domain,'general')))
 
 def repair(request,definitions,**kwargs):
-    cls=new.StreamingEntityRepair if policy.get()=='new' else old_repair
+    cls=production_repair if policy.get()=='new' else old_repair
     measured=dict(primary_pcm_seconds=0.,replay_pcm_seconds=0.,primary_http_calls=0,
         replay_http_calls=0,primary_wall_seconds=0.,replay_wall_seconds=0.,primary_finish_text=None,
         active_http_requests=0,primary_reported_model_ms=0.,replay_reported_model_ms=0.)
@@ -72,6 +71,7 @@ class Router:
             for c in tuple(controllers):
                 pending+=sum(not t.done() for t in getattr(c,'_cleanup_tasks',()))
                 task=getattr(c,'_review',None);pending+=bool(task and not task.done())
+                live_task=getattr(c,'_live_worker',None);pending+=bool(live_task and not live_task.done())
                 shadow=getattr(c,'_streaming',None)
                 if shadow:
                     pending+=sum(not t.done() for t in shadow.late_cleanup)

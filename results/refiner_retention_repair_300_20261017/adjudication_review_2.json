@@ -1,0 +1,24 @@
+{
+  "reviews": [
+    {
+      "id": "scale_daily_chat_0060",
+      "decision": "pass",
+      "source_quote": "嗯，今晚去重庆洪崖洞夜景拍，",
+      "target_quote": "今晚去重庆洪崖洞夜景拍照，",
+      "reason": "复核 api_calls.jsonl 中该 ID 的 asr 请求与响应：请求中的 observed oral prefix 明确包含“今晚去重庆洪崖洞夜景拍照”，fixed clean target 也逐字包含“拍照，”；ASR 响应只把输入转写成“拍”，目标恢复了源口语前缀中可观察到的“照”。这属于修复 ASR 漏字，不是根据未提供的后文补写。",
+      "source_issue": "ASR 输入相对已观察到的口语前缀漏掉“照”；前缀在“拍照”处结束，后文未提供。",
+      "evidence": {
+        "stage": "asr",
+        "request_observed_oral_prefix": "嗯，今晚去重庆洪崖洞夜景拍照",
+        "request_fixed_clean_target": "今晚去重庆洪崖洞夜景拍照，",
+        "response_input": "嗯，今晚去重庆洪崖洞夜景拍，",
+        "response_target": "今晚去重庆洪崖洞夜景拍照，"
+      }
+    }
+  ],
+  "counts": {
+    "pass": 1,
+    "fail": 0,
+    "uncertain": 0
+  }
+}

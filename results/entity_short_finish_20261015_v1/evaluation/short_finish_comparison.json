@@ -1,0 +1,252 @@
+{
+  "old_run_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_scene_eval_20261014_v2",
+  "new_run_dir": "results/entity_short_finish_20261015_v1/evaluation",
+  "partial": true,
+  "comparison_scope": "仅使用旧/新 comparisons 的共同 ID；partial 运行允许 results 与 comparisons 覆盖不同，计数以 comparison 共同 ID 为准",
+  "expected_unique_samples": 2000,
+  "common_samples": 315,
+  "old_unique_samples": 2000,
+  "new_unique_samples": 315,
+  "new_results_unique_samples": 315,
+  "comparison_ids_missing_new_results": 0,
+  "primary_text_drift_samples": 0,
+  "primary_text_same_subset": {
+    "samples": 315,
+    "old_entity_audio_raw": {
+      "samples": 315,
+      "hits": 191,
+      "mentions": 369,
+      "recall": 0.5176151761517616,
+      "cer_errors": 575,
+      "cer_reference_chars": 8261,
+      "cer": 0.06960416414477666
+    },
+    "new_entity_audio_raw": {
+      "samples": 315,
+      "hits": 309,
+      "mentions": 369,
+      "recall": 0.8373983739837398,
+      "cer_errors": 422,
+      "cer_reference_chars": 8261,
+      "cer": 0.05108340394625348
+    }
+  },
+  "metrics_by_duration": {
+    "全量": {
+      "saved_baseline": {
+        "samples": 315,
+        "hits": 160,
+        "mentions": 369,
+        "recall": 0.43360433604336046,
+        "cer_errors": 611,
+        "cer_reference_chars": 8261,
+        "cer": 0.07396199007384094
+      },
+      "old_entity_audio_raw": {
+        "samples": 315,
+        "hits": 191,
+        "mentions": 369,
+        "recall": 0.5176151761517616,
+        "cer_errors": 575,
+        "cer_reference_chars": 8261,
+        "cer": 0.06960416414477666
+      },
+      "new_entity_audio_raw": {
+        "samples": 315,
+        "hits": 309,
+        "mentions": 369,
+        "recall": 0.8373983739837398,
+        "cer_errors": 422,
+        "cer_reference_chars": 8261,
+        "cer": 0.05108340394625348
+      },
+      "new_paired_primary": {
+        "samples": 315,
+        "hits": 160,
+        "mentions": 369,
+        "recall": 0.43360433604336046,
+        "cer_errors": 611,
+        "cer_reference_chars": 8261,
+        "cer": 0.07396199007384094
+      }
+    },
+    "<=4秒": {
+      "saved_baseline": {
+        "samples": 86,
+        "hits": 49,
+        "mentions": 93,
+        "recall": 0.5268817204301075,
+        "cer_errors": 121,
+        "cer_reference_chars": 1324,
+        "cer": 0.09138972809667674
+      },
+      "old_entity_audio_raw": {
+        "samples": 86,
+        "hits": 49,
+        "mentions": 93,
+        "recall": 0.5268817204301075,
+        "cer_errors": 121,
+        "cer_reference_chars": 1324,
+        "cer": 0.09138972809667674
+      },
+      "new_entity_audio_raw": {
+        "samples": 86,
+        "hits": 76,
+        "mentions": 93,
+        "recall": 0.8172043010752689,
+        "cer_errors": 83,
+        "cer_reference_chars": 1324,
+        "cer": 0.06268882175226587
+      },
+      "new_paired_primary": {
+        "samples": 86,
+        "hits": 49,
+        "mentions": 93,
+        "recall": 0.5268817204301075,
+        "cer_errors": 121,
+        "cer_reference_chars": 1324,
+        "cer": 0.09138972809667674
+      }
+    },
+    "(4,8]秒": {
+      "saved_baseline": {
+        "samples": 164,
+        "hits": 78,
+        "mentions": 198,
+        "recall": 0.3939393939393939,
+        "cer_errors": 338,
+        "cer_reference_chars": 4397,
+        "cer": 0.07687059358653628
+      },
+      "old_entity_audio_raw": {
+        "samples": 164,
+        "hits": 100,
+        "mentions": 198,
+        "recall": 0.5050505050505051,
+        "cer_errors": 313,
+        "cer_reference_chars": 4397,
+        "cer": 0.0711848987946327
+      },
+      "new_entity_audio_raw": {
+        "samples": 164,
+        "hits": 169,
+        "mentions": 198,
+        "recall": 0.8535353535353535,
+        "cer_errors": 226,
+        "cer_reference_chars": 4397,
+        "cer": 0.05139868091880828
+      },
+      "new_paired_primary": {
+        "samples": 164,
+        "hits": 78,
+        "mentions": 198,
+        "recall": 0.3939393939393939,
+        "cer_errors": 338,
+        "cer_reference_chars": 4397,
+        "cer": 0.07687059358653628
+      }
+    },
+    ">8秒": {
+      "saved_baseline": {
+        "samples": 65,
+        "hits": 33,
+        "mentions": 78,
+        "recall": 0.4230769230769231,
+        "cer_errors": 152,
+        "cer_reference_chars": 2540,
+        "cer": 0.05984251968503937
+      },
+      "old_entity_audio_raw": {
+        "samples": 65,
+        "hits": 42,
+        "mentions": 78,
+        "recall": 0.5384615384615384,
+        "cer_errors": 141,
+        "cer_reference_chars": 2540,
+        "cer": 0.05551181102362205
+      },
+      "new_entity_audio_raw": {
+        "samples": 65,
+        "hits": 64,
+        "mentions": 78,
+        "recall": 0.8205128205128205,
+        "cer_errors": 113,
+        "cer_reference_chars": 2540,
+        "cer": 0.044488188976377956
+      },
+      "new_paired_primary": {
+        "samples": 65,
+        "hits": 33,
+        "mentions": 78,
+        "recall": 0.4230769230769231,
+        "cer_errors": 152,
+        "cer_reference_chars": 2540,
+        "cer": 0.05984251968503937
+      }
+    }
+  },
+  "old_to_new_audio_sample_changes": {
+    "entity_improved": 107,
+    "entity_degraded": 0,
+    "cer_improved": 107,
+    "cer_degraded": 0,
+    "recovered_gold_mentions": 118,
+    "lost_gold_mentions": 0
+  },
+  "short_finish": {
+    "sample_count": 315,
+    "result_coverage_samples": 315,
+    "finalcheck_coverage_samples": 153,
+    "timed_out_samples": 0,
+    "error_samples": 0,
+    "counters": {
+      "short_finish_checks": 153.0,
+      "short_finish_changes": 118.0,
+      "short_finish_timed_out": 0.0,
+      "short_finish_errors": 0.0,
+      "short_finish_wall_seconds": 47.590266838204116,
+      "short_finish_candidates": 926.0,
+      "short_finish_replay_seconds": 880.1911875
+    },
+    "configuration": {
+      "short_finish_max_seconds": 16.0,
+      "short_finish_wait_seconds": 4.0
+    },
+    "wall_seconds_all_samples": {
+      "count": 315,
+      "sum": 47.590266838204116,
+      "mean": 0.15108021218477496,
+      "p50": 0.021455497946590185,
+      "p95": 0.38098903107456866,
+      "max": 1.5001410702243447
+    },
+    "wall_seconds_checks_gt_zero": {
+      "count": 153,
+      "sum": 46.350684652570635,
+      "mean": 0.3029456513239911,
+      "p50": 0.28027586080133915,
+      "p95": 0.5607933603227139,
+      "max": 1.5001410702243447
+    }
+  },
+  "false_edit_audit": {
+    "old": {
+      "candidate_sample_count": 0,
+      "candidate_count": 0,
+      "candidate_sample_ids": [],
+      "method": "For each sample and each stage, names come only from row.library_path. Prefer canonical values recorded in changes/rule_changes; fallback scans that sample's library. Listed only when the stage output adds an occurrence relative to its before text and the canonical is absent from the standard reference. Conservative automatic candidates; no human review claimed."
+    },
+    "new": {
+      "candidate_sample_count": 0,
+      "candidate_count": 0,
+      "candidate_sample_ids": [],
+      "method": "For each sample and each stage, names come only from row.library_path. Prefer canonical values recorded in changes/rule_changes; fallback scans that sample's library. Listed only when the stage output adds an occurrence relative to its before text and the canonical is absent from the standard reference. Conservative automatic candidates; no human review claimed."
+    }
+  },
+  "interpretation": {
+    "full_evaluation": true,
+    "same_fixed_known_glossary": true,
+    "incremental_wall_is_browser_latency": false,
+    "production_service_restarted": false
+  }
+}

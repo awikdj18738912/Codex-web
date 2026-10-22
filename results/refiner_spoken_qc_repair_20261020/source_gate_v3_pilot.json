@@ -1,0 +1,114 @@
+{
+  "prompt_version": "spoken-source-plus-meaning-v5",
+  "examples_in_prompt_not_reused": true,
+  "results": [
+    {
+      "case": "academic_1",
+      "expected": false,
+      "passed": false,
+      "matches": true,
+      "reason": "source_quality: 源文本含有中文术语后附括号英文对照，属于无法从文本确认的编者注释，不适合作为纯口语源文本。",
+      "evidence": {
+        "consistent": false,
+        "verdict_valid": true,
+        "reason": "源文本含有中文术语后附括号英文对照，属于无法从文本确认的编者注释，不适合作为纯口语源文本。",
+        "raw_response": "{\"pass\": false, \"reason\": \"源文本含有中文术语后附括号英文对照，属于无法从文本确认的编者注释，不适合作为纯口语源文本。\"}",
+        "validator": "spoken-source-deterministic-v1"
+      }
+    },
+    {
+      "case": "academic_4",
+      "expected": false,
+      "passed": false,
+      "matches": true,
+      "reason": "source_quality: 主题连贯性不足。文本从真菌数据特征提取、流形降维，突然转向深度量子化学模拟的自洽场方法，再跳至无人机对抗训练，虽每段技术描述看似自然，但缺乏合理逻辑衔接或共同目标，未体现同一研究问题或实验设计的演进。多个技术领域仅以‘然后’‘我后来又加了’等词串联，无明确主线，属于拼接式跑题，不符合学术口语中围绕单一研究主题的连贯表达要求。",
+      "evidence": {
+        "consistent": false,
+        "verdict_valid": true,
+        "reason": "主题连贯性不足。文本从真菌数据特征提取、流形降维，突然转向深度量子化学模拟的自洽场方法，再跳至无人机对抗训练，虽每段技术描述看似自然，但缺乏合理逻辑衔接或共同目标，未体现同一研究问题或实验设计的演进。多个技术领域仅以‘然后’‘我后来又加了’等词串联，无明确主线，属于拼接式跑题，不符合学术口语中围绕单一研究主题的连贯表达要求。",
+        "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"主题连贯性不足。文本从真菌数据特征提取、流形降维，突然转向深度量子化学模拟的自洽场方法，再跳至无人机对抗训练，虽每段技术描述看似自然，但缺乏合理逻辑衔接或共同目标，未体现同一研究问题或实验设计的演进。多个技术领域仅以‘然后’‘我后来又加了’等词串联，无明确主线，属于拼接式跑题，不符合学术口语中围绕单一研究主题的连贯表达要求。\"\n}"
+      }
+    },
+    {
+      "case": "english_only_zh_mix",
+      "expected": false,
+      "passed": false,
+      "matches": true,
+      "reason": "source_quality: zh/zh-en-mix 源文本没有中文内容，整段为外语。",
+      "evidence": {
+        "consistent": false,
+        "verdict_valid": true,
+        "reason": "zh/zh-en-mix 源文本没有中文内容，整段为外语。",
+        "raw_response": "{\"pass\": false, \"reason\": \"zh/zh-en-mix 源文本没有中文内容，整段为外语。\"}",
+        "validator": "spoken-source-deterministic-v1"
+      }
+    },
+    {
+      "case": "spoken_term_gloss",
+      "expected": true,
+      "passed": true,
+      "matches": true,
+      "reason": "The refined text preserves the complete intended meaning with proper formatting and normalization, including correct capitalization of 'Perplexity' and removal of redundant repetition.",
+      "evidence": {
+        "consistent": true,
+        "verdict_valid": true,
+        "reason": "文本围绕模型评估指标困惑度（Perplexity）展开，中文主句‘我们用困惑度，也就是Perplexity，评估模型’自然连贯，符合学术场景中中英混用口语表达习惯；‘也就是’表明英文术语是口述补充，非编辑标记；无拼接或跑题，主题一致。",
+        "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"文本围绕模型评估指标困惑度（Perplexity）展开，中文主句‘我们用困惑度，也就是Perplexity，评估模型’自然连贯，符合学术场景中中英混用口语表达习惯；‘也就是’表明英文术语是口述补充，非编辑标记；无拼接或跑题，主题一致。\"\n}"
+      }
+    },
+    {
+      "case": "dictated_code",
+      "expected": true,
+      "passed": true,
+      "matches": true,
+      "reason": "The refined text is identical to the input and preserves the complete final intended meaning without alteration or omission.",
+      "evidence": {
+        "consistent": true,
+        "verdict_valid": true,
+        "reason": "源文本为自然口语表达，符合vibe_coding场景中开发者口头指令的语境。'把代码改成print(\"hello\")，其他地方别动'是典型的技术操作口令，语义完整、逻辑连贯，无编辑标记（如括号内英文术语说明）、无语言不符（全为中文，夹杂代码片段属正常zh-en-mix场景），且主题聚焦于代码修改，未出现拼接或跑题。",
+        "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"源文本为自然口语表达，符合vibe_coding场景中开发者口头指令的语境。'把代码改成print(\\\"hello\\\")，其他地方别动'是典型的技术操作口令，语义完整、逻辑连贯，无编辑标记（如括号内英文术语说明）、无语言不符（全为中文，夹杂代码片段属正常zh-en-mix场景），且主题聚焦于代码修改，未出现拼接或跑题。\"\n}"
+      }
+    },
+    {
+      "case": "stage_direction",
+      "expected": false,
+      "passed": false,
+      "matches": true,
+      "reason": "source_quality: 包含编辑标记‘（旁白：手机响起）’，该内容非说话人实际口述，而是外部旁白说明，不符合口语ASR训练样本要求。",
+      "evidence": {
+        "consistent": false,
+        "verdict_valid": true,
+        "reason": "包含编辑标记‘（旁白：手机响起）’，该内容非说话人实际口述，而是外部旁白说明，不符合口语ASR训练样本要求。",
+        "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"包含编辑标记‘（旁白：手机响起）’，该内容非说话人实际口述，而是外部旁白说明，不符合口语ASR训练样本要求。\"\n}"
+      }
+    },
+    {
+      "case": "clean_daily",
+      "expected": true,
+      "passed": true,
+      "matches": true,
+      "reason": "The refined text is identical to the input and preserves the complete final intended meaning without any alterations or omissions.",
+      "evidence": {
+        "consistent": true,
+        "verdict_valid": true,
+        "reason": "文本为日常对话场景中自然的口语表达，语义连贯，主题统一（提醒开会），无编辑标记、语言不符或拼接跑题问题。",
+        "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"文本为日常对话场景中自然的口语表达，语义连贯，主题统一（提醒开会），无编辑标记、语言不符或拼接跑题问题。\"\n}"
+      }
+    },
+    {
+      "case": "related_metrics",
+      "expected": true,
+      "passed": true,
+      "matches": true,
+      "reason": "The refined text is identical to the input and preserves the complete final intended meaning without any alterations or omissions.",
+      "evidence": {
+        "consistent": true,
+        "verdict_valid": true,
+        "reason": "文本围绕模型评估指标（准确率、召回率、F1分数）展开，主题连贯；使用中文句法为主，自然混用英文术语（如F1），符合学术场景口语表达；无编辑标记、旁白或舞台指令，括号未出现，无拼接或跑题迹象。",
+        "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"文本围绕模型评估指标（准确率、召回率、F1分数）展开，主题连贯；使用中文句法为主，自然混用英文术语（如F1），符合学术场景口语表达；无编辑标记、旁白或舞台指令，括号未出现，无拼接或跑题迹象。\"\n}"
+      }
+    }
+  ],
+  "matched": 8,
+  "total": 8
+}

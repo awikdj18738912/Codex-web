@@ -12,6 +12,7 @@ from .refinement_guard import (
     preserve_terminal_punctuation,
     reject_reasons,
     source_punctuation_lost,
+    window_context_reject_reasons,
 )
 
 _TRUSTED_ENTITY_MATCH_TYPES = frozenset({'EXACT_ALIAS','EXACT_CANONICAL','EXACT_ACRONYM_PRESENTATION','CONTEXT_PINYIN','CONTEXT_OMISSION','CONTEXT_NEAR_PINYIN','CONTEXT_ALIAS_PINYIN','CONTEXT_ALIAS_NEAR_PINYIN'})
@@ -87,9 +88,22 @@ def has_placeholder_failure(reasons: tuple[str, ...]) -> bool:
     return any(reason.startswith(_PLACEHOLDER_REJECT_PREFIXES) for reason in reasons)
 
 
-def has_retryable_integrity_failure(reasons: tuple[str, ...]) -> bool:
+def has_retryable_integrity_failure(
+    reasons: tuple[str, ...], *, numeric_rule_mode: bool = False
+) -> bool:
     """Return whether a stricter second refinement attempt can recover output."""
 
+    # Placeholder damage has a targeted retry prompt. Numeric failures use
+    # the validated source fallback instead of spending a second generation
+    # on a request whose numbers already belong to the rule backend.
+    if numeric_rule_mode and not has_placeholder_failure(reasons) and any(
+        reason in {
+            "numeric_value_mismatch", "numeric_rule_surface_mismatch",
+            "partial_numeric_range_conversion",
+        }
+        for reason in reasons
+    ):
+        return False
     return has_placeholder_failure(reasons) or any(
         reason
         in {
@@ -98,7 +112,6 @@ def has_retryable_integrity_failure(reasons: tuple[str, ...]) -> bool:
             "entity_sentence_boundary_lost",
             "source_punctuation_lost",
             "numeric_value_mismatch",
-            "semantic_content_loss",
             "semantic_substitution",
             "unsupported_insertion",
         }
@@ -167,6 +180,7 @@ def finalize_entity_segment(
     allow_boundary_punctuation_repair: bool = False,
     numeric_rule_mode: bool = False,
     entity_patch: dict[str, object] | None = None,
+    window_context: dict[str, str] | None = None,
 ) -> FinalizedEntitySegment:
     trusted_baseline = prepared.trusted_baseline_text or prepared.baseline_text
     trusted_changes = tuple(
@@ -206,6 +220,9 @@ def finalize_entity_segment(
             restored_text,
             numeric_rule_mode=numeric_rule_mode,
         ),
+        *window_context_reject_reasons(
+            prepared.baseline_text, restored_text, **(window_context or {}),
+        ),
     )
     if reasons:
         # Legacy checkpoints can propose the right entity spelling in prose
@@ -226,6 +243,9 @@ def finalize_entity_segment(
                 *_unconfirmed_entity_edit_reasons(prepared, projected_text, patch),
                 *reject_reasons(prepared.baseline_text, projected_text,
                                 numeric_rule_mode=numeric_rule_mode),
+                *window_context_reject_reasons(
+                    prepared.baseline_text, projected_text, **(window_context or {}),
+                ),
             )
             if not projection_reasons:
                 change = {

@@ -1,0 +1,109 @@
+{
+  "items": [
+    {
+      "id": "auto_daily_chat_01",
+      "prior_manual_decision": "pass",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "之前说武汉地铁站的艺术墙挺有意思，后来查了才知道背后是本地非遗传承人的手作故事，现在想想，这设计灵感还真得从城市记忆里找。不过最打动我的还是那句‘墙里墙外都是家’，这说法才最贴切。"
+      }
+    },
+    {
+      "id": "auto_daily_chat_02",
+      "prior_manual_decision": "fail",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我之前去成都春熙路地铁站口，听说那家网红奶茶店排队很久。后来我试了，发现最好别赶早高峰。其实喝‘芋圆波波’的话，晚上8点以后去，人少，但后来我改主意了，还是别去排队了。直接在三顿半买‘春日限定’的咖啡豆，手冲一下，也挺好，反正省事。"
+      }
+    },
+    {
+      "id": "auto_daily_chat_03",
+      "prior_manual_decision": "uncertain",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "贵阳青岩古镇的古城墙遗址公园晚上7点有灯光秀，之前说六点开始，现在改回七点，还是七点开始吧。"
+      }
+    },
+    {
+      "id": "auto_daily_chat_07",
+      "prior_manual_decision": "pass",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "青岛栈桥的海鸥迁徙高峰期通常出现在11月中旬至次年3月上旬，不过最近几天游客太多，海鸥都躲到远处去了，本来想拍几张照片，结果还是得等天气好点再去。"
+      }
+    },
+    {
+      "id": "auto_explanation_02",
+      "prior_manual_decision": "fail",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "就是‘小’加‘米’，小米粥的那种小米，不是李娜，也不是九寨沟，更不是格力，也不是耐克，就是那种谷物，小米，对，就是小米，不是别的！"
+      }
+    },
+    {
+      "id": "auto_explanation_04",
+      "prior_manual_decision": "fail",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "国家电网，就是搞电力的，负责发电、输电和配电，简称G-D-W。"
+      }
+    },
+    {
+      "id": "auto_explanation_07",
+      "prior_manual_decision": "fail",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "张伟用的支付宝，就是那个付钱用的，不是张晓峰用的，也不是华为或星巴克，是支付宝，bǎo zhàng fú，不是‘宝章福’，是‘保障福’，对，就是它。"
+      }
+    },
+    {
+      "id": "auto_explanation_08",
+      "prior_manual_decision": "fail",
+      "accepted": false,
+      "reason": "identification_cue_residue",
+      "audit": {
+        "surface_issues": [
+          "identification_cue_residue"
+        ]
+      }
+    }
+  ],
+  "known_bad_total": 5,
+  "known_bad_rejected": 1,
+  "prior_good_accepted": 2
+}

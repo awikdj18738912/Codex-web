@@ -115,7 +115,7 @@ class LearnedWindowGateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             curl = root / 'curl'
-            curl.write_text('#!/bin/bash\nprintf \'{"window_edit_policy":"compat","refinement_gate_mode":"tri_state","final_refinement_mode":"off","zh_itn_enabled":false,"window_pipeline":{"version":"fixed_k3_v1","window_size":3,"one_punctuation_window":true,"fixed_groups":true,"stream_reprocess_rejected":false,"final_reprocess_rejected":false,"group_numeric_self_corrections":false}}\\n\'\n')
+            curl.write_text('#!/bin/bash\nprintf \'{"window_edit_policy":"compat","refinement_gate_mode":"tri_state","final_refinement_mode":"off","zh_itn_enabled":false,"window_pipeline":{"version":"fixed_k3_context_v2","window_size":3,"one_punctuation_window":true,"fixed_groups":true,"stream_reprocess_rejected":false,"final_reprocess_rejected":false,"group_numeric_self_corrections":false,"adjacent_context":true,"context_lookahead_chunks":1,"context_protocol":"v1-read-only-adjacent-context"}}\\n\'\n')
             curl.chmod(0o755)
             env = dict(os.environ, PATH=str(root) + ':' + os.environ['PATH'],
                        WINDOW_EDIT_POLICY='compat', LEARNED_WINDOW_GATE_MODE='shadow',

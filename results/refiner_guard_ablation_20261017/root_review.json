@@ -1,0 +1,39 @@
+{
+  "experimenter": "gpt-6-luna delegated agent",
+  "reviewer": "primary agent",
+  "checks": [
+    {
+      "group": "both_on",
+      "retained": 255,
+      "candidate_count": 300,
+      "valid_oral_count": 280
+    },
+    {
+      "group": "numeric_off",
+      "retained": 258,
+      "candidate_count": 300,
+      "valid_oral_count": 280
+    },
+    {
+      "group": "english_off",
+      "retained": 257,
+      "candidate_count": 300,
+      "valid_oral_count": 280
+    },
+    {
+      "group": "both_off",
+      "retained": 260,
+      "candidate_count": 300,
+      "valid_oral_count": 280
+    },
+    {
+      "group": "prompt_removed_both_off",
+      "retained": 258,
+      "candidate_count": 300,
+      "valid_oral_count": 280
+    }
+  ],
+  "baseline_matches_observed_255": true,
+  "source_hash_changes_after_report": [],
+  "scope": "Review of code paths, request cache matching, group counts, retained IDs and reported boundary cases. No manual label changes."
+}

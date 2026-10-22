@@ -1,0 +1,162 @@
+{
+  "review_type": "independent_manual_text_review",
+  "source_file": "final/train.jsonl",
+  "summary_file": "summary.json",
+  "scope": "Reviewed each source/target pair directly. Labels and QC fields were treated as metadata, not proof of correctness.",
+  "overall": "mixed",
+  "counts": {
+    "pass": 14,
+    "fail": 2,
+    "uncertain": 2,
+    "total": 18
+  },
+  "reviews": [
+    {
+      "id": "academic_01",
+      "status": "pass",
+      "evidence": "Source and target are verbatim: “TACO-2023…ResNet-50…PSNR…0.942…”. Numeric, entity, fact and uncertainty content unchanged.",
+      "notes": "Actual source is clean, matching requested passthrough."
+    },
+    {
+      "id": "explanation_01",
+      "status": "pass",
+      "evidence": "Source repeats 小米/不是小眯 and gives the character explanation “‘小’加‘米’”; target keeps the distinction, the character explanation, and 小米, while removing opening fillers and recap repetition.",
+      "notes": "No English entity or numeric drift."
+    },
+    {
+      "id": "meeting_01",
+      "status": "uncertain",
+      "evidence": "Source first says “先解决供应链延迟导致交付延期的问题”，then “啊，不对，应该先搞清楚数据加密标准未达标被审计否决的事”，and ends “最后还是得先提交Q1预算调整申请”. Target retains both the first priority and the corrected issue (“需要…但更关键的是…”) plus the final Q1 action.",
+      "notes": "The explicit “不对” appears to supersede the first “先” action, yet target retains it as a current requirement. It is unclear whether solving A remains a separate obligation; flag for human resolution rather than accepting as clean convergence."
+    },
+    {
+      "id": "customer_service_01",
+      "status": "pass",
+      "evidence": "Target keeps purchase date 11月11号, order ORD20231111002, address 北京市朝阳区建国路88号, and damage date 2023年10月25号. It removes dotted pauses/repetition.",
+      "notes": "The source itself has a chronological inconsistency (damage predates purchase); target preserves both dates and does not create it."
+    },
+    {
+      "id": "navigation_01",
+      "status": "pass",
+      "evidence": "Source asks “大概要多久啊，3小时40分钟？”; target says “大概需要3小时40分钟”, retaining approximation and the proposed duration."
+    },
+    {
+      "id": "customer_service_02",
+      "status": "pass",
+      "evidence": "Source and target are identical, including 2024-01-05, Tmall flagship store, shipping status, and request to check logistics."
+    },
+    {
+      "id": "explanation_02",
+      "status": "fail",
+      "evidence": "Source explicitly states “后来我改了” before explaining the corrected form; target omits that historical event and retains only the current spelling/explanation (“栈桥…不是‘站桥’”).",
+      "notes": "The correction result is retained, but the independently stated past act of changing it is lost."
+    },
+    {
+      "id": "daily_chat_02",
+      "status": "uncertain",
+      "evidence": "The source says “不是7.9元起售的那家喜茶，是朝阳大悦城三楼的茶饮店”, then corrects to “就是喜茶的芝士葡萄冰茶”. Target preserves both the negated Heytea reference and the final Heytea beverage.",
+      "notes": "Final value appears, but the retained earlier description makes the referent relationship ambiguous. Cannot verify that the target has resolved the contradiction."
+    },
+    {
+      "id": "meeting_03",
+      "status": "pass",
+      "evidence": "Source and target are identical: date 2025-01-08, 200ms limit, and project impact are all preserved."
+    },
+    {
+      "id": "vibe_coding_03",
+      "status": "pass",
+      "evidence": "Target retains gRPC, async, const, and “500 Internal Server Error”; only adds punctuation."
+    },
+    {
+      "id": "daily_chat_03",
+      "status": "pass",
+      "evidence": "Source states 30 minutes/80%, corrects the actual duration to 40 minutes, then explicitly returns to “30分钟内充到80%更靠谱”. Target retains the final preference for 30 minutes and 80%, and also retains the earlier reported 40-minute correction."
+    },
+    {
+      "id": "academic_03",
+      "status": "pass",
+      "evidence": "Target is identical to source and preserves both 3.14159 and 2.71828 with their negation/explanation relation."
+    },
+    {
+      "id": "voice_search_03",
+      "status": "pass",
+      "evidence": "Source repeats the exact same request after “啊不对”; target keeps “播放流浪地球电影” once. There is no distinct replacement value to lose."
+    },
+    {
+      "id": "dictation_memo_03",
+      "status": "pass",
+      "evidence": "Target keeps Chen Jing, Surface Laptop 5, iPhone 15, and the delivery-confirmation/email ordering; it only changes “带资料/发邮件” to “携带资料/发送邮件”.",
+      "notes": "Despite correction metadata, the source text itself contains no actual spoken correction."
+    },
+    {
+      "id": "voice_search_04",
+      "status": "pass",
+      "evidence": "Source and target are identical: “支付宝，今年国庆节的活动安排是怎样的？”"
+    },
+    {
+      "id": "dictation_memo_04",
+      "status": "fail",
+      "evidence": "Source is a sequence of fragments: “2024年三月十五号，安排会议，嗯……5000元，测试功能，2024年五月二十号”. Target asserts “预算5000元，用于测试功能，计划于2024年五月二十号完成”.",
+      "notes": "Budget role, purpose relation, and completion/deadline relation are not explicit in the source. These may be plausible but are added facts/relations, so this pair fails strict no-drift review."
+    },
+    {
+      "id": "vibe_coding_04",
+      "status": "pass",
+      "evidence": "Source asks whether const caused the 500 error, then corrects itself with “啊不对，是Go那边的问题？” Target retains the tentative question before the correction and the final Go diagnosis. Next.js, JavaScript, const, and the error are preserved."
+    },
+    {
+      "id": "navigation_05",
+      "status": "pass",
+      "evidence": "Target preserves 南京南站, high-speed rail, approximately 1 hour 15 minutes, direct exit, and destination 合肥站; it removes repeated 合肥站/fillers without changing the destination."
+    }
+  ],
+  "generation_control_audit": {
+    "status": "flags_found",
+    "flags": [
+      {
+        "id": "vibe_coding_03",
+        "requested": "multiple correction",
+        "observed_source": "“把那个gRPC服务改成用async处理” is an instruction to change the service; the remaining clause reports a 500 error. No self-repair or multiple abandoned alternatives are stated.",
+        "flag": "Requested correction control appears mismatched; correction metadata should not be read as evidence of actual spoken self-correction."
+      },
+      {
+        "id": "dictation_memo_03",
+        "requested": "multiple correction",
+        "observed_source": "A task list with “用Surface Laptop 5带资料，iPhone 15确认收货后发邮件”; no corrected/retracted alternative appears.",
+        "flag": "Requested correction control appears mismatched. Its repair tag says the two entities were replaced with themselves (no change), which is not an actual correction in the text."
+      },
+      {
+        "id": "vibe_coding_04",
+        "requested": "no correction, boundary control",
+        "observed_source": "“是不是……const那里写错了，啊不对，是Go那边的问题？” explicitly contains a correction.",
+        "flag": "Source contains a correction despite requested_correction=none; the target does preserve the final Go diagnosis."
+      },
+      {
+        "id": "academic_01",
+        "requested": "no correction, passthrough",
+        "observed_source": "Polished, identical source and target with speech_phenomena=[clean].",
+        "flag": "Matches passthrough; no mismatch."
+      },
+      {
+        "id": "customer_service_02",
+        "requested": "no correction, passthrough",
+        "observed_source": "Polished, identical source and target with speech_phenomena=[clean].",
+        "flag": "Matches passthrough; no mismatch."
+      },
+      {
+        "id": "meeting_03",
+        "requested": "no correction, passthrough",
+        "observed_source": "Polished, identical source and target with speech_phenomena=[clean].",
+        "flag": "Matches passthrough; no mismatch."
+      },
+      {
+        "id": "voice_search_04",
+        "requested": "no correction, passthrough",
+        "observed_source": "Polished, identical source and target with speech_phenomena=[clean].",
+        "flag": "Matches passthrough; no mismatch."
+      }
+    ],
+    "note": "Actual source text was compared against requested controls; metadata labels were not used to infer that the intended behavior occurred."
+  },
+  "review_limitations": "This is a text-level review of the 18 accepted train pairs. It does not establish audio fidelity or validate rejected attempts. The two uncertain pairs need adjudication before describing the whole pilot as clean."
+}

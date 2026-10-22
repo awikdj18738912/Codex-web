@@ -1,0 +1,44 @@
+{
+  "status": "complete",
+  "verified_utc": "2026-10-15T15:33:36.493911+00:00",
+  "full_audio_seconds": 1005.4826875,
+  "configured_entities": 31,
+  "input_pcm_verified": true,
+  "frozen_glossary_verified": true,
+  "source_code_unchanged_during_test": true,
+  "primary_context_applied": false,
+  "primary_equals_prior_raw": true,
+  "all_edits_recorded_as_patches": true,
+  "retained_patches": 7,
+  "changed_glossary_entries": 6,
+  "glossary_spelling_patches": 7,
+  "audio_review_patches": 0,
+  "audio_review_checks": 18,
+  "audio_review_error_count": 0,
+  "ctc_mode": "off",
+  "human_adjudicated_accuracy_reported": false,
+  "real_time_latency_reported": false,
+  "production_services_restarted": false,
+  "health_after": {
+    "8081": true,
+    "8051": true,
+    "8766": true
+  },
+  "source_sha256": {
+    "system/entity_audio_repair.py": "36a2166a511c6d2ee94e7390c7dd82c9791c4ef77370e26ecd288dda26a032cd",
+    "system/entity_streaming_live.py": "4d2c028fce2ae205e96d05dba5a8eb3ffb6581ef605995715210f0a7565de5d1",
+    "system/entity_direct_spelling.py": "1a581e359726a20785eacd0243d1e64d85e2fd131589e1d586ee0139ad241701",
+    "system/entity_boundaries.py": "fa040371f7dcf5e1fce9fc2c0ad059478166049574ec7d9e237713b3022917f7"
+  },
+  "artifact_sha256": {
+    "manifest.json": "b399aa882608f1a6ea67341dfa0cce1a66ddaa356375e7f89cc88f7e25e67ed0",
+    "immune_entities.db": "312d71c6727e0f5338322397bc3532ef27bb6aeadff88f3e5ffd7aa0c7e3cc0f",
+    "approved_candidates.json": "b608b8cfc42a04f45ecd81b67023039efd4c661ffe4618e6c45d2e6cc8dc186f",
+    "registered_entities.json": "699df52b93b41be1388a48928480a9574ca0d032dc1e72f6511b157db5b26602",
+    "quality/off.json": "7f50884abbd9679eef62e3f1283b89b0d93e4b16c6164d8920979fb5b39b7845",
+    "primary_before.txt": "9281af6d50e85b976caa600045ba175eed9acf8159efe9cecea6b96aa4082506",
+    "entity_after.txt": "2f58cadebfab0ab6805760833b0a5fc53962d9493fb773d75c6452dce74aaca3",
+    "comparison.json": "89d448206d21376e628bb2bc1ad457ecd7f56b940acf102721e975a1bfb913cb",
+    "REPORT.md": "c007fdb277ab97f6d2d88466de15695db85b291941551395397408c13c50d428"
+  }
+}

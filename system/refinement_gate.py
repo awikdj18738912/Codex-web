@@ -34,7 +34,7 @@ _DISFLUENCY_RE = re.compile(
 )
 _EMBEDDED_DISFLUENCY_RE = re.compile(r"(?:嗯+|呃+)")
 _SELF_CORRECTION_RE = re.compile(
-    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|更正一下)"
+    r"(?:不对|哦不|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|更正一下)"
 )
 # A normal sentence boundary is also ``汉字 + 标点 + 汉字``.  Do not treat
 # that shape alone as an ASR anomaly.  The routing signal is deliberately
@@ -273,6 +273,7 @@ class RefinementGate:
         numeric_refinement: bool = False,
         numeric_rule_mode: bool = False,
         numeric_rule_text: str | None = None,
+        numeric_rule_spans: tuple[tuple[int, int], ...] = (),
     ) -> RefinementGateDecision:
         source = text.strip()
         visible_chars = len(_VISIBLE_RE.findall(source))
@@ -280,6 +281,7 @@ class RefinementGate:
             source,
             numeric_rule_mode=numeric_rule_mode,
             numeric_rule_text=numeric_rule_text,
+            numeric_rule_spans=numeric_rule_spans,
         )
         hints = tuple(item.strip() for item in entity_hints if item.strip())
 
@@ -530,11 +532,24 @@ def _cleanup_signals(
     *,
     numeric_rule_mode: bool = False,
     numeric_rule_text: str | None = None,
+    numeric_rule_spans: tuple[tuple[int, int], ...] = (),
 ) -> tuple[str, ...]:
     signals: list[str] = []
-    if _REPEATED_CJK_RE.search(text) or _REPEATED_SINGLE_RE.search(text):
+    def is_rule_only(match: re.Match[str]) -> bool:
+        return numeric_rule_mode and any(
+            start <= match.start() and match.end() <= end
+            for start, end in numeric_rule_spans
+        )
+
+    if any(
+        not is_rule_only(match)
+        for pattern in (_REPEATED_CJK_RE, _REPEATED_SINGLE_RE)
+        for match in pattern.finditer(text)
+    ):
         signals.append("repeated_character")
-    if _REPEATED_PHRASE_RE.search(text):
+    if any(
+        not is_rule_only(match) for match in _REPEATED_PHRASE_RE.finditer(text)
+    ):
         signals.append("repeated_phrase")
     if _DISFLUENCY_RE.search(text):
         signals.append("disfluency")

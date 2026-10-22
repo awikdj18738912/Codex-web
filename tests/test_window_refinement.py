@@ -345,7 +345,7 @@ class WindowTest(unittest.TestCase):
                 "refiner_latency_ms": 1,
                 "refiner_executed": True,
                 "refiner_accepted": accepted,
-                "refiner_reject_reasons": [] if accepted else ["semantic_content_loss"],
+                "refiner_reject_reasons": [] if accepted else ["semantic_substitution"],
                 "entity_audit_issues": [],
                 "entity_refinement_hints": [],
                 "entity_normalizations": [],

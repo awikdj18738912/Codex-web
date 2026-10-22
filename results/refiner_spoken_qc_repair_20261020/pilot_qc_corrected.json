@@ -1,0 +1,92 @@
+[
+  {
+    "case": "editorial_alias",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined text removes the redundant '（Perplexity）' in parentheses while preserving the complete intended meaning, including the key metrics and their implications. No essential information is omitted, and the original intent regarding model performance and validation is fully maintained.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined text removes the redundant '（Perplexity）' in parentheses while preserving the complete intended meaning, including the key metrics and their implications. No essential information is omitted, and the original intent regarding model performance and validation is fully maintained.\"}"
+    }
+  },
+  {
+    "case": "spoken_alias_kept",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript removes the filler '嗯' while preserving the complete intended meaning, including the use of perplexity (Perplexity) for model evaluation. The content is faithful and unchanged in substance.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript removes the filler '嗯' while preserving the complete intended meaning, including the use of perplexity (Perplexity) for model evaluation. The content is faithful and unchanged in substance.\"}"
+    }
+  },
+  {
+    "case": "literal_code",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined text is identical to the input and preserves the complete final intended meaning without alteration or omission.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined text is identical to the input and preserves the complete final intended meaning without alteration or omission.\"}"
+    }
+  },
+  {
+    "case": "filler",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript removes conversational fillers ('嗯，那个，') while preserving the core meeting time and action, accurately reflecting the speaker's final intended meaning.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript removes conversational fillers ('嗯，那个，') while preserving the core meeting time and action, accurately reflecting the speaker's final intended meaning.\"}"
+    }
+  },
+  {
+    "case": "correction",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript correctly captures the speaker's final intended meaning, which is that the meeting is on Wednesday, correcting the initial mistake of saying Tuesday. The correction is fully preserved, and no meaningful content is lost.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript correctly captures the speaker's final intended meaning, which is that the meeting is on Wednesday, correcting the initial mistake of saying Tuesday. The correction is fully preserved, and no meaningful content is lost.\"}"
+    }
+  },
+  {
+    "case": "stage_direction",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript removes the parenthetical pause instruction '(停顿两秒)' which is not part of the spoken content but a stage direction, and preserves the complete intended meaning of the original speech.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript removes the parenthetical pause instruction '(停顿两秒)' which is not part of the spoken content but a stage direction, and preserves the complete intended meaning of the original speech.\"}"
+    }
+  }
+]

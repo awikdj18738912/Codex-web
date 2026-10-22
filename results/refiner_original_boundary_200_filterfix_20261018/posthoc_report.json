@@ -1,0 +1,565 @@
+{
+  "candidate_count": 200,
+  "unique_serials": 200,
+  "serial_range": [
+    0,
+    199
+  ],
+  "missing_serials": [],
+  "duplicate_serials": [],
+  "candidate_status_counts": {
+    "quality_pass": 151,
+    "audit_rejected": 35,
+    "oral_rejected": 14
+  },
+  "clean_rejected": 0,
+  "keyword_rejected": 0,
+  "asr_rejected": 0,
+  "assembly_rejected": 0,
+  "export_rejected": 0,
+  "audit_rejected_reason_categories": {
+    "cleanup_complete": 30,
+    "source_valid": 4,
+    "audit_target_not_clean_or_not_exact": 1
+  },
+  "audit_issue_kind_counts": {
+    "cleanup": 64,
+    "source": 4,
+    "meaning": 1
+  },
+  "unsupported_content_edits_occurrences": 0,
+  "candidate_by_scene_and_status": {
+    "customer_service": {
+      "quality_pass": 18,
+      "audit_rejected": 1,
+      "oral_rejected": 2
+    },
+    "explanation": {
+      "audit_rejected": 20,
+      "quality_pass": 19,
+      "oral_rejected": 2
+    },
+    "daily_chat": {
+      "quality_pass": 19,
+      "oral_rejected": 3,
+      "audit_rejected": 2
+    },
+    "meeting": {
+      "quality_pass": 17,
+      "oral_rejected": 4
+    },
+    "navigation": {
+      "quality_pass": 9,
+      "audit_rejected": 1
+    },
+    "vibe_coding": {
+      "quality_pass": 37,
+      "audit_rejected": 4,
+      "oral_rejected": 1
+    },
+    "dictation_memo": {
+      "quality_pass": 13,
+      "audit_rejected": 3,
+      "oral_rejected": 1
+    },
+    "voice_search": {
+      "audit_rejected": 3,
+      "quality_pass": 7
+    },
+    "academic": {
+      "audit_rejected": 1,
+      "quality_pass": 12,
+      "oral_rejected": 1
+    }
+  },
+  "retained_by_scene": {
+    "daily_chat": 19,
+    "customer_service": 18,
+    "explanation": 19,
+    "meeting": 17,
+    "navigation": 9,
+    "vibe_coding": 37,
+    "dictation_memo": 13,
+    "voice_search": 7,
+    "academic": 12
+  },
+  "candidate_tags_by_status": {
+    "filler": {
+      "quality_pass": 80,
+      "audit_rejected": 25
+    },
+    "hesitation": {
+      "quality_pass": 40,
+      "audit_rejected": 10
+    },
+    "repetition": {
+      "quality_pass": 48,
+      "audit_rejected": 13
+    },
+    "rollback correction": {
+      "audit_rejected": 9,
+      "quality_pass": 15
+    },
+    "spelling clarification": {
+      "audit_rejected": 1,
+      "quality_pass": 1
+    },
+    "homophonic contrast": {
+      "audit_rejected": 1
+    },
+    "false_start": {
+      "quality_pass": 28,
+      "audit_rejected": 4
+    },
+    "stuttering": {
+      "quality_pass": 32,
+      "audit_rejected": 7
+    },
+    "content_word_repetition": {
+      "quality_pass": 16
+    },
+    "multi_stage_correction": {
+      "quality_pass": 2
+    },
+    "rollback_correction": {
+      "quality_pass": 12,
+      "audit_rejected": 3
+    },
+    "A": {
+      "quality_pass": 3
+    },
+    "B": {
+      "quality_pass": 3
+    },
+    "C": {
+      "quality_pass": 3
+    },
+    "intentional_punctuation_insertion": {
+      "quality_pass": 1
+    },
+    "boundary_punctuation": {
+      "quality_pass": 12,
+      "audit_rejected": 1
+    },
+    "false start": {
+      "quality_pass": 11,
+      "audit_rejected": 10
+    },
+    "content-word repetition": {
+      "quality_pass": 19,
+      "audit_rejected": 12
+    },
+    "contrastive explanation": {
+      "quality_pass": 5,
+      "audit_rejected": 9
+    },
+    "correction": {
+      "quality_pass": 2,
+      "audit_rejected": 1
+    },
+    "spoken spelling": {
+      "audit_rejected": 3,
+      "quality_pass": 3
+    },
+    "misplaced_punctuation": {
+      "quality_pass": 2
+    },
+    "clean": {
+      "quality_pass": 13,
+      "audit_rejected": 1
+    },
+    "initial error with homophonic variant": {
+      "quality_pass": 1,
+      "audit_rejected": 1
+    },
+    "self-correction to accurate spelling": {
+      "quality_pass": 1
+    },
+    "explicit spelling and character contrast": {
+      "quality_pass": 1
+    },
+    "slight pause after time markers": {
+      "quality_pass": 1
+    },
+    "natural emphasis on key numbers and names": {
+      "quality_pass": 1
+    },
+    "explicit correction from 'Permission denied' to 'fix the permission issue'": {
+      "quality_pass": 1
+    },
+    "轻微重复": {
+      "quality_pass": 10
+    },
+    "语义修正": {
+      "quality_pass": 2
+    },
+    "filler_words": {
+      "quality_pass": 1
+    },
+    "false_starts": {
+      "quality_pass": 1
+    },
+    "repetition_of_content_words": {
+      "quality_pass": 1
+    },
+    "hesitation_markers": {
+      "quality_pass": 1
+    },
+    "initial correction": {
+      "quality_pass": 1
+    },
+    "reformulation": {
+      "quality_pass": 2
+    },
+    "final clarification": {
+      "quality_pass": 1
+    },
+    "repetition of content words": {
+      "quality_pass": 2,
+      "audit_rejected": 1
+    },
+    "spontaneous correction": {
+      "quality_pass": 1
+    },
+    "minimal repetition": {
+      "quality_pass": 6
+    },
+    "spoken spelling with contrast": {
+      "quality_pass": 1
+    },
+    "lexical clarification": {
+      "quality_pass": 1
+    },
+    "self_correction": {
+      "audit_rejected": 3,
+      "quality_pass": 7
+    },
+    "revision": {
+      "audit_rejected": 2,
+      "quality_pass": 1
+    },
+    "final_confirmation": {
+      "audit_rejected": 1
+    },
+    "repetition of content word": {
+      "audit_rejected": 1
+    },
+    "intentional punctuation error": {
+      "quality_pass": 1
+    },
+    "corrected_statement": {
+      "quality_pass": 2
+    },
+    "misinserted_punctuation": {
+      "audit_rejected": 1
+    },
+    "self-correction": {
+      "audit_rejected": 3,
+      "quality_pass": 2
+    },
+    "contrastive clarification": {
+      "audit_rejected": 1
+    },
+    "spelling emphasis": {
+      "audit_rejected": 1
+    },
+    "slight pause": {
+      "quality_pass": 1
+    },
+    "自然语速": {
+      "quality_pass": 1
+    },
+    "语调上扬表示意图": {
+      "quality_pass": 1
+    },
+    "deliberate punctuation break": {
+      "quality_pass": 1
+    },
+    "explicit correction from A to B": {
+      "quality_pass": 2
+    },
+    "语速自然": {
+      "quality_pass": 2
+    },
+    "语调平稳": {
+      "quality_pass": 1
+    },
+    "hesitation marker": {
+      "quality_pass": 1
+    },
+    "minor pause after '然后'": {
+      "quality_pass": 1
+    },
+    "slight emphasis on '如果'": {
+      "quality_pass": 1
+    },
+    "self-correction with phonetic clarification": {
+      "audit_rejected": 1
+    },
+    "final confirmation with character-level spelling": {
+      "audit_rejected": 1
+    },
+    "same spelling": {
+      "quality_pass": 1
+    },
+    "same pronunciation": {
+      "quality_pass": 1
+    },
+    "homophones but different spelling": {
+      "quality_pass": 1
+    },
+    "explicit_correction": {
+      "quality_pass": 7
+    },
+    "自然语流": {
+      "quality_pass": 1
+    },
+    "适度填充": {
+      "quality_pass": 1
+    },
+    "intentional_punctuation_break": {
+      "quality_pass": 1
+    },
+    "intentional_punctuation_disruption": {
+      "quality_pass": 1
+    },
+    "mild_filler_repetition": {
+      "quality_pass": 1
+    },
+    "repetition of '要跟进一下' for emphasis": {
+      "quality_pass": 1
+    },
+    "minor pause before '230000元'": {
+      "quality_pass": 1
+    },
+    "slight increase in pitch on 'vivo X100'": {
+      "quality_pass": 1
+    },
+    "slight hesitation": {
+      "quality_pass": 1
+    },
+    "A: initial statement with meta-learning as main focus": {
+      "quality_pass": 1
+    },
+    "B: revision adding Swin Transformer as enhancement": {
+      "quality_pass": 1
+    },
+    "C: final emphasis on Neural ODEs as the key innovation": {
+      "quality_pass": 1
+    },
+    "multi-stage correction": {
+      "audit_rejected": 1,
+      "quality_pass": 1
+    },
+    "故意误插标点": {
+      "quality_pass": 1
+    },
+    "明确纠正": {
+      "quality_pass": 1
+    },
+    "concise_spoken_spelling": {
+      "quality_pass": 1
+    },
+    "minor hesitation": {
+      "quality_pass": 1
+    },
+    "slight repetition": {
+      "quality_pass": 1
+    },
+    "natural intonation": {
+      "quality_pass": 2
+    },
+    "repetition of '了' for natural flow": {
+      "quality_pass": 1
+    },
+    "minimal filler": {
+      "quality_pass": 1
+    },
+    "clear final intent": {
+      "quality_pass": 1
+    },
+    "spelling cue": {
+      "quality_pass": 1
+    },
+    "hesitations": {
+      "quality_pass": 1
+    },
+    "fillers": {
+      "quality_pass": 1
+    },
+    "content-word repetitions": {
+      "quality_pass": 1
+    },
+    "自然停顿": {
+      "quality_pass": 3
+    },
+    "语义聚焦": {
+      "quality_pass": 1
+    },
+    "spontaneous tone": {
+      "quality_pass": 1
+    },
+    "句内误插分号": {
+      "quality_pass": 1
+    },
+    "slight pause after '周杰'": {
+      "audit_rejected": 1
+    },
+    "slight emphasis on '25000000元'": {
+      "audit_rejected": 1
+    },
+    "natural pause between clauses": {
+      "quality_pass": 1
+    },
+    "smooth lexical transition": {
+      "quality_pass": 1
+    },
+    "concise spoken spelling": {
+      "audit_rejected": 2
+    },
+    "insertion": {
+      "quality_pass": 1
+    },
+    "填充词": {
+      "quality_pass": 3
+    },
+    "内容词重复": {
+      "quality_pass": 2
+    },
+    "语义短语内部误插标点": {
+      "quality_pass": 1
+    },
+    "修正与反修正": {
+      "quality_pass": 1
+    },
+    "语流中断与重启": {
+      "quality_pass": 1
+    },
+    "initial statement": {
+      "quality_pass": 1
+    },
+    "revision to clarify timing": {
+      "quality_pass": 1
+    },
+    "final confirmation of action": {
+      "quality_pass": 1
+    },
+    "语义短语内误插中文标点": {
+      "quality_pass": 1
+    },
+    "轻微语流断裂": {
+      "quality_pass": 1
+    },
+    "不完整句式": {
+      "quality_pass": 1
+    },
+    "repetition of '别忘了' for emphasis": {
+      "quality_pass": 1
+    },
+    "语义连贯": {
+      "quality_pass": 1
+    },
+    "light emphasis on spelling": {
+      "quality_pass": 1
+    },
+    "spoken_spelling": {
+      "audit_rejected": 1,
+      "quality_pass": 1
+    },
+    "displaced correction": {
+      "audit_rejected": 1
+    },
+    "final_intended_meaning_recoverable": {
+      "audit_rejected": 1
+    },
+    "语调自然": {
+      "quality_pass": 1
+    },
+    "语速适中": {
+      "quality_pass": 1
+    },
+    "重复": {
+      "quality_pass": 1
+    },
+    "语气词": {
+      "quality_pass": 1
+    },
+    "句内误插标点": {
+      "quality_pass": 1
+    },
+    "语义中断后恢复": {
+      "quality_pass": 1
+    },
+    "contrastive_explanation": {
+      "quality_pass": 1
+    },
+    "explicit correction": {
+      "quality_pass": 1
+    },
+    "spelling contrast": {
+      "quality_pass": 1
+    },
+    "repetition of '飞利浦'": {
+      "quality_pass": 1
+    },
+    "explicit correction from '老款' to '新款'": {
+      "quality_pass": 1
+    },
+    "语气连贯": {
+      "quality_pass": 1
+    }
+  },
+  "boundary_punctuation": {
+    "candidate_count": 13,
+    "status_counts": {
+      "quality_pass": 12,
+      "audit_rejected": 1
+    },
+    "by_scene": {
+      "meeting": {
+        "quality_pass": 3
+      },
+      "daily_chat": {
+        "quality_pass": 3,
+        "audit_rejected": 1
+      },
+      "vibe_coding": {
+        "quality_pass": 2
+      },
+      "customer_service": {
+        "quality_pass": 4
+      }
+    },
+    "quality_pass": 12,
+    "retained": 12
+  },
+  "passthrough_vs_teacher": {
+    "retained_target_origin_counts": {
+      "teacher-reconstruction": 138,
+      "passthrough": 13
+    },
+    "retained_input_equal_output": 20,
+    "retained_input_differs_from_output": 131
+  },
+  "api_calls": 558,
+  "api_calls_by_stage": {
+    "oral": 200,
+    "clean": 172,
+    "audit": 186
+  },
+  "full_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 151,
+      "records": 151,
+      "reservoir_candidates": 151,
+      "minimum_required": 151
+    },
+    "input_sha256": "d5870c60bb46c8670781b0b37d176d4fa4a1d96f59519c4e89fe34c2291f94e5"
+  }
+}

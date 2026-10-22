@@ -1,0 +1,1466 @@
+{
+  "purpose": "fresh prompt-scope development/validation sample; not an independent final test set",
+  "seed": 20261022,
+  "sample_size": 200,
+  "train_rows": 84875,
+  "excluded_unique_id_count": 1299,
+  "excluded_id_count_by_file": {
+    "results/teacher_model_comparison_1000_20261022/sample_1000.jsonl": 1000,
+    "results/targeted_repair_pilot_20261022/pilot_sample_100.jsonl": 100,
+    "results/refiner_training_pair_audit_200_20261022/gpt_review_200.jsonl": 200
+  },
+  "excluded_ids_union_sha256": "82c1631b2fd495fbb20c9fba9c10b54ca963f6890afe87bec3cfc44fcab9e1b8",
+  "source_files": {
+    "train_sft": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021/train_sft.json",
+    "split_manifest": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021/split_manifest.jsonl",
+    "train_sft_sha256": "7c909f65dfd7e4a64f7573a844b181323721304d41fdd58a96b7ed13d1fe282d",
+    "split_manifest_sha256": "69a814527277a747af35e19a3192fd7e6a8d68ad0313c320c1ddd22466f587b4"
+  },
+  "alignment": "Every included output_index was joined to split_manifest train and input/target SHA-256 values were checked against the exact human/gpt conversation strings before sampling.",
+  "selected_input_target_hashes": [
+    {
+      "case_no": 1,
+      "id": "customer_service_5898",
+      "output_index": 44828,
+      "input_sha256": "03cbc8c100223b7a2ec7b911f111583f17a88a22a8472e7b477cbdebc2283d07",
+      "target_sha256": "967e40128010e1319b5b3bd0eeefde39ecca08ebf4d4fa2476d7e337bd8d992f"
+    },
+    {
+      "case_no": 2,
+      "id": "dictation_memo_4648",
+      "output_index": 53547,
+      "input_sha256": "6764b851bf801687ed5035c5f36739b8cac319fb8613852c6d140f11e2a8d05d",
+      "target_sha256": "52dea8fae4221c23104f850099dc6c14323aaf948f2d22a21c3cb9a73cfd6d8d"
+    },
+    {
+      "case_no": 3,
+      "id": "vibe_coding_16634",
+      "output_index": 40363,
+      "input_sha256": "c6cb5d5f55f23df5ae84413bbb6bc3fd1739c4256c68d923100a39730dba0778",
+      "target_sha256": "3044b1d08b3d48765cd3847d7d8525ff5e91f5922d88917fb2964c3f598c83b6"
+    },
+    {
+      "case_no": 4,
+      "id": "meeting_5657",
+      "output_index": 77864,
+      "input_sha256": "83253562c4c4ee529c86b9940775b5d75b9cff582435dcd2f8f0c4faac65a5e1",
+      "target_sha256": "1694429b517bba1baa8b92f1c120bc03af13985d7b02725d488047b5f9e2ed8b"
+    },
+    {
+      "case_no": 5,
+      "id": "navigation_3472",
+      "output_index": 29510,
+      "input_sha256": "9a2eef0eadded5ebeb682352ed11c5d39fdbbd90f705a6f6fd12f60529188b81",
+      "target_sha256": "7f6223e08feddc9ed2dbe480b26a6b3575080732205792db34a6dc5aa6568dde"
+    },
+    {
+      "case_no": 6,
+      "id": "customer_service_8950",
+      "output_index": 68519,
+      "input_sha256": "d5ed2283047c5f10cde08f8d23948512bedf71b7d0673f2907372d30fc8526c3",
+      "target_sha256": "025919dbdeef6af9197754980cf243adb6d0c430d4e04449563df20e3f6e86bb"
+    },
+    {
+      "case_no": 7,
+      "id": "daily_chat_6829",
+      "output_index": 6416,
+      "input_sha256": "4014183eb60a7fd65673e29ebe618d2c055b51b0d996985e4884988eda7184de",
+      "target_sha256": "15974a0c65462026c748eed2f81f62ce256384a835ebc33be2a6bd6e0ffa2f83"
+    },
+    {
+      "case_no": 8,
+      "id": "daily_chat_6082",
+      "output_index": 50625,
+      "input_sha256": "315fade52343e5b53b16e0ddf4f1083f1471ed0dfa3dd71cbd2e77292387c621",
+      "target_sha256": "388e315e267a339f9d497ccac4d3e0ba7077faa8124a0c29e895e154fe210dfb"
+    },
+    {
+      "case_no": 9,
+      "id": "customer_service_219",
+      "output_index": 50802,
+      "input_sha256": "6d297e4ed965fc60106d7f4dc17b5c534c2ae84de8fba0a3ce813ada2f63cf62",
+      "target_sha256": "6d297e4ed965fc60106d7f4dc17b5c534c2ae84de8fba0a3ce813ada2f63cf62"
+    },
+    {
+      "case_no": 10,
+      "id": "meeting_5393",
+      "output_index": 52107,
+      "input_sha256": "5a0ddea345373adf2ffc35abc12b70657c1ee34e3a2ff9bff78ba5496ee79dab",
+      "target_sha256": "c383f096950c560b4aa7e679029d7194d2278b7aecd5808d678bb94565dbafb2"
+    },
+    {
+      "case_no": 11,
+      "id": "explanation_12103",
+      "output_index": 8389,
+      "input_sha256": "21d17bc497852e847f63bac619fbc0585ed3cfdf1a31fd1e5a7192fbd4cdcd7c",
+      "target_sha256": "073cab6cef01010f57569012bb14fca2f89742841ca8ce50fdece2154894c720"
+    },
+    {
+      "case_no": 12,
+      "id": "explanation_16890",
+      "output_index": 7377,
+      "input_sha256": "d47e359e1bdb34e2f9d84a44a2411835feaaa3b1a4b1270d2c4ece775c855b53",
+      "target_sha256": "7428eed484dd20e62611248b30964407b332d3dfbbf68683799507240fb5c585"
+    },
+    {
+      "case_no": 13,
+      "id": "daily_chat_13607",
+      "output_index": 64749,
+      "input_sha256": "da90f52b68368e33a52243eee179e05094aadd4a042d5056ed0a39de886424eb",
+      "target_sha256": "c2f89eec8058efac41d8a0a75158452c7e418937f19a8693af8a673c89540219"
+    },
+    {
+      "case_no": 14,
+      "id": "explanation_11528",
+      "output_index": 45380,
+      "input_sha256": "f47bc55cb9878a08a0ddc43f77ae79de444a552bf6ab60cfee6ec5c4e1022bb1",
+      "target_sha256": "f75d1276867e49d78a00df37e8dd694680c45d9eeda7efdf34410b0054907b6d"
+    },
+    {
+      "case_no": 15,
+      "id": "daily_chat_11918",
+      "output_index": 80549,
+      "input_sha256": "b1032266edd1f643a64ff63d75a6f6ee6533740dc2a1ba62b2cf540b28ef6f83",
+      "target_sha256": "c14f3c011bdecf04517feb81f2145b573991c03cc62185e8191edc4070b10e88"
+    },
+    {
+      "case_no": 16,
+      "id": "academic_5439",
+      "output_index": 50344,
+      "input_sha256": "96219d723ad0318673c2c96d39163581a3d8a748a1f9bda8aa5f9006b8975f34",
+      "target_sha256": "12a0c4bca089d39f77328f9bc586f3fbb6e0d48148c7470d38c972d2e3c9c880"
+    },
+    {
+      "case_no": 17,
+      "id": "vibe_coding_16312",
+      "output_index": 29230,
+      "input_sha256": "3dea423a2c6868243ffdac98e1a581596f690cadfc6e59e5af9edac1b1e63806",
+      "target_sha256": "3dea423a2c6868243ffdac98e1a581596f690cadfc6e59e5af9edac1b1e63806"
+    },
+    {
+      "case_no": 18,
+      "id": "explanation_13003",
+      "output_index": 12401,
+      "input_sha256": "d7f1e4affe580d12381f6ee1412449dcf12805fcdd2bffa7b19d4a0c36dd0063",
+      "target_sha256": "9f4609c19bb1619092208d5f00ed55df60ad831fd09a12a405d7934e0c5a1ae1"
+    },
+    {
+      "case_no": 19,
+      "id": "explanation_19126",
+      "output_index": 8852,
+      "input_sha256": "1fa8d69fbf5d8b398180afc520b38a46ff27271d0d49a6a9dafc09d909733b18",
+      "target_sha256": "7d73693535ead120790115c0d1cc1c18b856ea0946e2d8484af9eede8004ac7c"
+    },
+    {
+      "case_no": 20,
+      "id": "vibe_coding_4160",
+      "output_index": 45934,
+      "input_sha256": "af844006307047370b4e278a0541e59e5a26f37b310a2432d668f2e637c22428",
+      "target_sha256": "e47cad48e2a47639d7d9acc0372d8938911a22d90a6bc1655d2088bca91a6694"
+    },
+    {
+      "case_no": 21,
+      "id": "meeting_273",
+      "output_index": 59727,
+      "input_sha256": "acb7bbd772dee3161a5195b9a3b0d33ad90f548f0e5c3b8ded801c2ed2c61887",
+      "target_sha256": "15d724631544a0c40fd08a84344db80e27ac03502211a50695477f08d1c676eb"
+    },
+    {
+      "case_no": 22,
+      "id": "vibe_coding_18127",
+      "output_index": 40451,
+      "input_sha256": "e729871b1e39f7bb76f0ca7370006edca6b83ba2c3d26cc1a5da9cf22f177929",
+      "target_sha256": "477f1fa11240032d1f7da350421be8803c505c09f430811d45afa661b8c8d024"
+    },
+    {
+      "case_no": 23,
+      "id": "dictation_memo_6229",
+      "output_index": 45651,
+      "input_sha256": "131f432276aec7050b99d7f9a7bd02d812e49fea766c4d478dc2b2bf534faf51",
+      "target_sha256": "fd2d3cabfe06a6b14d6a611edbabe7c6cb495cb9e8abbbbdc01594eae419d682"
+    },
+    {
+      "case_no": 24,
+      "id": "daily_chat_2991",
+      "output_index": 66836,
+      "input_sha256": "73564d0337a9b70ce6d5824bfbd65a2a31921daf8ed1291a0c0910392b9699c5",
+      "target_sha256": "3f8ce3e0f1abe3beb84ac21bfc011fa5cf9b167cd83b612232337df7a89140f2"
+    },
+    {
+      "case_no": 25,
+      "id": "vibe_coding_4157",
+      "output_index": 1850,
+      "input_sha256": "5588326d895a0e3ebca68734f03b31fcf5d40d7c1e5c4a396f345705a68bcb6b",
+      "target_sha256": "6d25b69fffb331a682361c7acb1131e49f21169a693bae8cb35dbf44078f28a3"
+    },
+    {
+      "case_no": 26,
+      "id": "vibe_coding_10148",
+      "output_index": 76494,
+      "input_sha256": "db66c13b31387ed89f41d97b420f47c9a26f1b963d53fcb407314b12c9a9e3bf",
+      "target_sha256": "4c9103634ec02ab2f07d3995041fe661cf524c849d44491f9930591ca2346efe"
+    },
+    {
+      "case_no": 27,
+      "id": "dictation_memo_2466",
+      "output_index": 22046,
+      "input_sha256": "6d5515e3320ae57b985e0c5fb8679e6dc229d27ce2d364cf0dfa59cfb9fe2f58",
+      "target_sha256": "c69d926d61b47db3f511c603504f34d089d2a9c49fe1c9cfd92b0b9420ba9798"
+    },
+    {
+      "case_no": 28,
+      "id": "explanation_3491",
+      "output_index": 18585,
+      "input_sha256": "857cd30c2e0be33e86837e8a50d0ccbf7dfda7c54ddadb313ff113fd31ca75d0",
+      "target_sha256": "a2dd0b14fadb4e54f1f8612ed7d8ae96edee4a78ef44a834a0ef37e8e7ac2fa1"
+    },
+    {
+      "case_no": 29,
+      "id": "dictation_memo_3849",
+      "output_index": 64707,
+      "input_sha256": "8bdef40ea89484847407c9567d460fe6a642cd6c0968d2936655fd10e23b9ae6",
+      "target_sha256": "8797673d26e40a935ce3ab03ee38c63df6394c34d2a941c29e2f4d66f46b6fa2"
+    },
+    {
+      "case_no": 30,
+      "id": "explanation_20521",
+      "output_index": 12173,
+      "input_sha256": "f2150603846a2374614ece99def2cafcd1ad6adfc7da6ecddd55bd7bd096eb53",
+      "target_sha256": "8098323cebf3fded7a8b43f35d97dd775269ae2b1a7ef1651f192de2fe8dd42e"
+    },
+    {
+      "case_no": 31,
+      "id": "vibe_coding_3724",
+      "output_index": 74217,
+      "input_sha256": "ba268e4829982dccfb5497fba8d706d2b98015cf48e4371ea94f457c40bef46c",
+      "target_sha256": "4f70d6304fe710f760fde03bfb922e76efd21ccfd826dfa3883b2bea0d89a8e8"
+    },
+    {
+      "case_no": 32,
+      "id": "explanation_16765",
+      "output_index": 62212,
+      "input_sha256": "35f9a0ca51c3cbfe9db827dcd3205862b9fee211e5eef34b533ff0477320175d",
+      "target_sha256": "f89ae97b18563a3fc6c5bcf42cc752741882927a78a456fd76cc13f826f2771a"
+    },
+    {
+      "case_no": 33,
+      "id": "dictation_memo_8807",
+      "output_index": 16595,
+      "input_sha256": "7807aff25e79d5c6d42de70fe66e0c7bfb8e5e1793032f8f94309ff67f6cab42",
+      "target_sha256": "f73e28c9b6814ec793233a1debf44241c27ce67a1d20edb55b0dd2dada15d45b"
+    },
+    {
+      "case_no": 34,
+      "id": "vibe_coding_20723",
+      "output_index": 84475,
+      "input_sha256": "526312cbc8f6a1dd85ef2730e8689201698bcde4e2bdeff56c9dbc9c1ccbc95a",
+      "target_sha256": "c89bbdf1584167325858d04b90f92ecbcc46827af012f132cdb30a27197050b8"
+    },
+    {
+      "case_no": 35,
+      "id": "meeting_6199",
+      "output_index": 44820,
+      "input_sha256": "d484b9a1888d71d645f77ffcd48b760bd585015cafc6f8e5ca230c1c8653446b",
+      "target_sha256": "49c4fa70cddc07329a19add88ef3b100436b5ac4f993258180a6484d35f125cd"
+    },
+    {
+      "case_no": 36,
+      "id": "explanation_3641",
+      "output_index": 19145,
+      "input_sha256": "d7a33d7a5ffc29b6ce804311dc44e8edd14d029ed1d290d96251f673b87e01f4",
+      "target_sha256": "d7a33d7a5ffc29b6ce804311dc44e8edd14d029ed1d290d96251f673b87e01f4"
+    },
+    {
+      "case_no": 37,
+      "id": "explanation_23760",
+      "output_index": 71892,
+      "input_sha256": "fe1a15d6b538815dc9b255f3b6ded473b5507b21c2828de9c657faf0679439d0",
+      "target_sha256": "d89c327a2181a9a792fc4ebc2a8b24e6d309da410d350d4a56bea107d5969e8a"
+    },
+    {
+      "case_no": 38,
+      "id": "meeting_716",
+      "output_index": 55702,
+      "input_sha256": "3c7f70affe0e2c084cb0466f6ec63bdc8ba761f90523feb9038d353075bbd03e",
+      "target_sha256": "2948dfd3083f82ea6d51c24410f9a41567fd0bd0ba391b31a53a2bc7838cccc2"
+    },
+    {
+      "case_no": 39,
+      "id": "vibe_coding_20445",
+      "output_index": 52304,
+      "input_sha256": "43f41abe7f0e26c96863ce28916b4e6a6b0945a1a1cc74ca005bd86cfad0ce3e",
+      "target_sha256": "25fd4f6a2d22dbf9738841158562ce8e0411849e4b8a0db846affbcb542cdfcf"
+    },
+    {
+      "case_no": 40,
+      "id": "dictation_memo_6321",
+      "output_index": 52149,
+      "input_sha256": "608987716342306d2682904c84b0b15e8ec53ad2eb57aeedcd479855d1fbd187",
+      "target_sha256": "f7918c4e71abf90fed44d99bba49d20130bbc7524843d097213b051c6b307727"
+    },
+    {
+      "case_no": 41,
+      "id": "customer_service_6019",
+      "output_index": 63893,
+      "input_sha256": "1716bd7785ae57a5be1681f72fbfb6f8296c150eb4b421867883f56f5fdd8b59",
+      "target_sha256": "f3919fad6a4a3aec317656ed000e0d3d9623b5bc47e9560b78b7409092b7c5d9"
+    },
+    {
+      "case_no": 42,
+      "id": "explanation_11708",
+      "output_index": 69547,
+      "input_sha256": "4dd552db294f7f1f9aea62a3754094494d43d7579c18b9f326b846a1befcb3e9",
+      "target_sha256": "e06202709cadf51c9008062d7857b100da8be77c673b9255d58c56afca3300eb"
+    },
+    {
+      "case_no": 43,
+      "id": "explanation_5225",
+      "output_index": 30886,
+      "input_sha256": "c0338eae62c1b78ae8552536c94673c117c7d43b90517d68d0aa430c824b8c86",
+      "target_sha256": "fe5fc5767d361ee5c49639411f4696fb705fb3c0992045f3760b8a131ceb01b2"
+    },
+    {
+      "case_no": 44,
+      "id": "vibe_coding_19792",
+      "output_index": 5000,
+      "input_sha256": "99b058b4a5c926477cc764e7b28dd0691dce919390126b382dead59c08bfe39c",
+      "target_sha256": "99b058b4a5c926477cc764e7b28dd0691dce919390126b382dead59c08bfe39c"
+    },
+    {
+      "case_no": 45,
+      "id": "navigation_24",
+      "output_index": 8649,
+      "input_sha256": "c73bf46506ea91526dac8ab17905b211e4533fd67eb479adcb8142c6053a0431",
+      "target_sha256": "c284e305964d0304f68aa2632d68a35199feb6ec06a9f94ca363811a3abd164e"
+    },
+    {
+      "case_no": 46,
+      "id": "navigation_3557",
+      "output_index": 55721,
+      "input_sha256": "30bc3e6851869a3ae14e8a14853562151ed1b1edfe256aeaca45753574ec3e99",
+      "target_sha256": "30bc3e6851869a3ae14e8a14853562151ed1b1edfe256aeaca45753574ec3e99"
+    },
+    {
+      "case_no": 47,
+      "id": "dictation_memo_5742",
+      "output_index": 19731,
+      "input_sha256": "11a844b48c75170fe25a1be53edea8a1bd6d003ab6f1468b3fafe099a8de1d92",
+      "target_sha256": "10b428f0fe621a230289d91779b24cfaf87710a7a9b07961d375c85318fb0d81"
+    },
+    {
+      "case_no": 48,
+      "id": "navigation_324",
+      "output_index": 79376,
+      "input_sha256": "0d2b219285cd81417dc66b82302da3040084af2960b92cea6f51f64c28bf3203",
+      "target_sha256": "b4ab07187787e8068df4df97b7bc61bc5521a7ce8a17e0e4cbfc5fd9e1075389"
+    },
+    {
+      "case_no": 49,
+      "id": "dictation_memo_540",
+      "output_index": 13387,
+      "input_sha256": "8da5bbc85950b971d4756f260109029b40d2570caebab83672e01ea5642542d8",
+      "target_sha256": "8bbcfe86e8a4b37e02e265f30028d3c02cd94242aa04a658d32f9eed100d1b43"
+    },
+    {
+      "case_no": 50,
+      "id": "daily_chat_12750",
+      "output_index": 5881,
+      "input_sha256": "110c6f828a7f160b176e751d28e82c4cbc711e3af759ea4b42f22e66165627b5",
+      "target_sha256": "0f431577bb84d4be5e9648658af706d4727beca16f3f9884750d3c5ab6e93f32"
+    },
+    {
+      "case_no": 51,
+      "id": "dictation_memo_4851",
+      "output_index": 53311,
+      "input_sha256": "85de6e6ba219239f96c01e29291ec02a2938808d3e9663c7550d7b1f288b3bc7",
+      "target_sha256": "be0fa89b1e37353b8517c82476aff7969aa46a054ba52c9ea514cd0eaa190436"
+    },
+    {
+      "case_no": 52,
+      "id": "vibe_coding_4915",
+      "output_index": 9406,
+      "input_sha256": "37687b97d21c691b7e1384444cbc4d680ca6a823a29b5292dd2a48df3638a1df",
+      "target_sha256": "eb49b26d181f1c4321f70124f5d21f183ca9e9463f1a89e5328ffa6b86dbf070"
+    },
+    {
+      "case_no": 53,
+      "id": "explanation_17721",
+      "output_index": 76337,
+      "input_sha256": "3f95906c35ca1d7b472cdf4f59d8b6b5c5cfb136729fe6833e68260a8a0274b0",
+      "target_sha256": "b7a3299142b0497646cb3711aa5ede3f43147b04fe618e72274fa34420e38c6f"
+    },
+    {
+      "case_no": 54,
+      "id": "dictation_memo_2894",
+      "output_index": 84367,
+      "input_sha256": "54609f9f94dd9be6ee30cebfa46389b381ef7d3eaa6aaebbbb76cf3efcba1a82",
+      "target_sha256": "ea057bbda3c4507c3b7542a27c282a8616b5f99436191c6d0048a54cfec1959e"
+    },
+    {
+      "case_no": 55,
+      "id": "vibe_coding_624",
+      "output_index": 67812,
+      "input_sha256": "5bbbb785b7ebd9e244a4cf10c5946fcc8d5bb72fe04f2a683fa08356654603cc",
+      "target_sha256": "c8a212f76e979c2403462e898abfea97d4cddba51873f684c11ad141c9e06f84"
+    },
+    {
+      "case_no": 56,
+      "id": "explanation_21279",
+      "output_index": 41614,
+      "input_sha256": "6f4915fe67f7fdb935de77047969564f922c808ffbfc34731e6ca1e7744ec125",
+      "target_sha256": "c99cd146328d38f591904e79d6a809370afbd9e51afbdc81f03f4c33e96544d3"
+    },
+    {
+      "case_no": 57,
+      "id": "explanation_2662",
+      "output_index": 37899,
+      "input_sha256": "624541b29288cfc1b1bea66515b5ca96d60cea6d3d799983e405b358f19081da",
+      "target_sha256": "9d0101e581aa91010bf2c5ab7acfd1d2e121384a4985318d675617fcbe5bf6c2"
+    },
+    {
+      "case_no": 58,
+      "id": "customer_service_9191",
+      "output_index": 58204,
+      "input_sha256": "760b871f7d182f8f20e5276ebbe35a2602c091754e0a107900846ec462eeba10",
+      "target_sha256": "5b02a49724bf5ea6558619c2ebb3f56db0f32585b14a9fed8ce2a313c770205c"
+    },
+    {
+      "case_no": 59,
+      "id": "dictation_memo_3297",
+      "output_index": 51562,
+      "input_sha256": "4bdb041203cffb194dc7549c86faae811d4dcbb4ee81a4aa6b08646208962151",
+      "target_sha256": "a88aa27611778d11153e459ea4ecf8fa81b004377669c10a7d7d844b49ad7490"
+    },
+    {
+      "case_no": 60,
+      "id": "vibe_coding_2329",
+      "output_index": 4970,
+      "input_sha256": "94775c19829141419b06b9b075542ee69624f0f0d38e00f48003bce717556ddc",
+      "target_sha256": "9e8c1db0fde28c5f6c1fe3049906ca971aaa3882b6a1918ad4afad4fc2992dc1"
+    },
+    {
+      "case_no": 61,
+      "id": "daily_chat_6579",
+      "output_index": 78683,
+      "input_sha256": "eee46ffb8392d2c77fc56a7617aad59eb2af753d2c6d1d618a05f6ba316cea55",
+      "target_sha256": "eee46ffb8392d2c77fc56a7617aad59eb2af753d2c6d1d618a05f6ba316cea55"
+    },
+    {
+      "case_no": 62,
+      "id": "explanation_13007",
+      "output_index": 49979,
+      "input_sha256": "e6da4da324e744c8c70068910c03c481c587000a0a8feff897b65d2eb810bdf2",
+      "target_sha256": "5b1c9fbe174b8a7cd500e77f318f0da0ee0d08ec2b77dc86053e3b83c0088747"
+    },
+    {
+      "case_no": 63,
+      "id": "dictation_memo_1589",
+      "output_index": 13341,
+      "input_sha256": "6b022fb9229b72797fdb3f561e2a839949066e94a6fc4c362c4fd030552dfa72",
+      "target_sha256": "8e9b63ede64d85f10d47d44d24a737723c2e93fd1f2b48a7632b55ebcb2f61ee"
+    },
+    {
+      "case_no": 64,
+      "id": "customer_service_9927",
+      "output_index": 13494,
+      "input_sha256": "02fcb138155e5a71643f41466c13ee4d661be46c65f7e6814ea8694e533059f4",
+      "target_sha256": "3c7960df3f386410590acaad7d260e58981c5aa02989bd0909aa60128b846d90"
+    },
+    {
+      "case_no": 65,
+      "id": "explanation_18242",
+      "output_index": 7252,
+      "input_sha256": "de6c4283a39a44b56822d2a3a3e25eaf7965f275716c993e56ac6f2721633cb7",
+      "target_sha256": "fd07a33f6761cb193449820d368509f5e514bc12b7c410a8003ea944a53085d9"
+    },
+    {
+      "case_no": 66,
+      "id": "customer_service_148",
+      "output_index": 51910,
+      "input_sha256": "14536da571cce9b8f9b2b519d41bc02ac952368bd211c3dc9fb6bf8850945faa",
+      "target_sha256": "23e81167cb058796d51b50eabd862e292be597d1e1aca43f0a09ab06d36b18e0"
+    },
+    {
+      "case_no": 67,
+      "id": "explanation_22318",
+      "output_index": 68838,
+      "input_sha256": "7bedc1a1e2a6d6e0f5119e87f99a660ac66e9ee50568664c8b63fe6fe67114c6",
+      "target_sha256": "f867fdfedd63a1d06b673dcd8c524c9341623ed701b86981368f9570c897ad19"
+    },
+    {
+      "case_no": 68,
+      "id": "dictation_memo_8223",
+      "output_index": 52315,
+      "input_sha256": "bff40c6471c57f3d369aa4079c2265c91c29f17dffbf29e818b5b95b3faec16d",
+      "target_sha256": "b30a76add1b70ea08bc8ace0fe3e7ebcaede42a5e15a99975a4bb0a26a028311"
+    },
+    {
+      "case_no": 69,
+      "id": "navigation_2384",
+      "output_index": 37676,
+      "input_sha256": "b925e0973ccbf2a5bfcc012cd344f5f66d2eaf67857208b1e95d8a9e5a227ac6",
+      "target_sha256": "483f7533f79fda95b1ae1e400e45ee0022e4c170e267b88144495bde36c4a76a"
+    },
+    {
+      "case_no": 70,
+      "id": "navigation_2953",
+      "output_index": 79143,
+      "input_sha256": "b0d20545754cdaa5ce67d0fc5ca390efe432eadded437b9a71178e1d7bdb68ad",
+      "target_sha256": "501a2891a55c04f2c9ffe5105696613880ca8c95eaa2311facb009282c9f2df2"
+    },
+    {
+      "case_no": 71,
+      "id": "vibe_coding_523",
+      "output_index": 33212,
+      "input_sha256": "2e187334831d387e7eab87e022a5d5a15177912ed26bc5ab192e6b7144e695c7",
+      "target_sha256": "fb8ccaab8f2dc7409b995eba51c6e60034674829ad5c5f2a22140cddce349d8c"
+    },
+    {
+      "case_no": 72,
+      "id": "vibe_coding_3276",
+      "output_index": 238,
+      "input_sha256": "6315be5fb7dbbbf658fc7b7b19703046f5b628c65ead26da57bed2856b0e7340",
+      "target_sha256": "89ec0d6859882ab081e3772438547daba289149bcffab8106014f8a0a7af913c"
+    },
+    {
+      "case_no": 73,
+      "id": "explanation_23962",
+      "output_index": 79699,
+      "input_sha256": "ab05b412b4181e596097a9552fbe77780f8c599ea8c73d9edd035c8573ef4f24",
+      "target_sha256": "705c261e59a6cc5bb573211ef76482e9c13fb854c87279dbd24571aa85204546"
+    },
+    {
+      "case_no": 74,
+      "id": "customer_service_6961",
+      "output_index": 6849,
+      "input_sha256": "65c8b7d8ae870e2241c747c20d9fbcdadb1bdffd940b2588bdea4745f867260b",
+      "target_sha256": "65c8b7d8ae870e2241c747c20d9fbcdadb1bdffd940b2588bdea4745f867260b"
+    },
+    {
+      "case_no": 75,
+      "id": "dictation_memo_2339",
+      "output_index": 62107,
+      "input_sha256": "e99dab0363476e0dae19dfbb81204991c2cfdcb2273f1e544c160de67f74da7e",
+      "target_sha256": "54794be824b5db28d250ae4eedd24e6f2279bed74fb955a166e210c683c91138"
+    },
+    {
+      "case_no": 76,
+      "id": "explanation_1082",
+      "output_index": 55508,
+      "input_sha256": "aca5c7b117442a3eeb48aacc0b2a4f150b9377a56d496ed22601345257e5aff6",
+      "target_sha256": "3e18546c1a99140d90aa7330e9fa33b34bc0ee631aab5b54bd490bd94f8b1db9"
+    },
+    {
+      "case_no": 77,
+      "id": "vibe_coding_3350",
+      "output_index": 36615,
+      "input_sha256": "52940b5f1831d9df63f2b410a76858dd12ae188673743ee50fa2ae9e8901caa3",
+      "target_sha256": "c5975322d6f4ab9c0e318d1a1dc1a1ce951dffffec29a36850afd4424eba11b7"
+    },
+    {
+      "case_no": 78,
+      "id": "dictation_memo_1064",
+      "output_index": 35106,
+      "input_sha256": "69eb838312c77fc8a57515e32116004a29dea957b73cc540e094b32ddffe5a97",
+      "target_sha256": "1ddbe4f5851a4df248146b8431fc8510cfd7b434e6a4e27f4739ecf27f32d78b"
+    },
+    {
+      "case_no": 79,
+      "id": "explanation_3663",
+      "output_index": 66106,
+      "input_sha256": "bf867662f0292336351a979c4e7cbbabc2d9c489b3c79e630c9751a30795efd0",
+      "target_sha256": "4f886a274a66b9160f836307cb055ba6676dfa1862854c5be9c4ee92db58121b"
+    },
+    {
+      "case_no": 80,
+      "id": "customer_service_3153",
+      "output_index": 14636,
+      "input_sha256": "9ad4121197c91f963fea36661328ecc9d127434d40a943f18fefaaa687762b81",
+      "target_sha256": "4e2f8a892858a71c80b340f3781c0995b7b60b5bd0ddea54be047c578024981d"
+    },
+    {
+      "case_no": 81,
+      "id": "explanation_16968",
+      "output_index": 13791,
+      "input_sha256": "19cc9f3c9a16b117178c70b9c43e0b210cdda484e44cd9e689a013fc618c2df0",
+      "target_sha256": "19cc9f3c9a16b117178c70b9c43e0b210cdda484e44cd9e689a013fc618c2df0"
+    },
+    {
+      "case_no": 82,
+      "id": "vibe_coding_4038",
+      "output_index": 27549,
+      "input_sha256": "c372204b700de7905d8e164baba07cfbaad7232886f069460ff1644d3a3c44b0",
+      "target_sha256": "92c0f959c3d9c177a331915c1e1ddb3c64aed4c20979fbb3a8b024c33d02178d"
+    },
+    {
+      "case_no": 83,
+      "id": "meeting_520",
+      "output_index": 12546,
+      "input_sha256": "8b886b8fdf70922cbfdf402f0ab7535dca5d4465980e1987c4726a4c74c3a246",
+      "target_sha256": "8b886b8fdf70922cbfdf402f0ab7535dca5d4465980e1987c4726a4c74c3a246"
+    },
+    {
+      "case_no": 84,
+      "id": "explanation_13226",
+      "output_index": 66916,
+      "input_sha256": "0764651ceeca07c606810e10080c9ae96c98aff8e4c756c76dbc9288d06d3ae3",
+      "target_sha256": "aef069298cfc4fb02f8b725c07e23a4024e3e4bd7932cc0309de43d152650882"
+    },
+    {
+      "case_no": 85,
+      "id": "explanation_16088",
+      "output_index": 31191,
+      "input_sha256": "56b5d6b25fe41f0153fd5c3b7ed9e9433181fc9b4b83b70075a336d3933e6737",
+      "target_sha256": "0b0f2bc262d2baf2dcdb728e71a5f5f218100e40f17750dd9e3cccb1f55e3319"
+    },
+    {
+      "case_no": 86,
+      "id": "vibe_coding_2603",
+      "output_index": 75559,
+      "input_sha256": "0d0bd75c7246895ac7567a5bb4cda487314107053757c7952eb879fa1d48a379",
+      "target_sha256": "11204ba1684e0b5aadbf459f40d19c8e9b3feaab972f35abedc76b19df895d7c"
+    },
+    {
+      "case_no": 87,
+      "id": "customer_service_7212",
+      "output_index": 55965,
+      "input_sha256": "1a53598593642fa8ee29c32091694c1a5bfad6fc738abe6bb855a9c6dd07a2f6",
+      "target_sha256": "1a53598593642fa8ee29c32091694c1a5bfad6fc738abe6bb855a9c6dd07a2f6"
+    },
+    {
+      "case_no": 88,
+      "id": "vibe_coding_16444",
+      "output_index": 61872,
+      "input_sha256": "898b86d668e698223e6b03aecf2cf7b655a7f5decd1ae44e1936f8875b65a83f",
+      "target_sha256": "119a65a039bafc173a1f1a1f0a69b559b326fef22eb98f08a78bcda8bfe8176f"
+    },
+    {
+      "case_no": 89,
+      "id": "meeting_4740",
+      "output_index": 66874,
+      "input_sha256": "a9b43cb37a6563db3b899c57f3f9c0e1992ca8a0feea154e6f5fa17a6b978047",
+      "target_sha256": "59c8b4c19e0ed4d710324d5030f74d0163a16e57b02fa519be8331a7908c204c"
+    },
+    {
+      "case_no": 90,
+      "id": "academic_5913",
+      "output_index": 20757,
+      "input_sha256": "24b4a72645208456b5210a1eaf7e658f8a45353a6746fdd351718f5e24147f18",
+      "target_sha256": "1fee3d95f514f8bdedf5c55fa17f77e5c3b2d77a17e9968f7a78a2bf5347314a"
+    },
+    {
+      "case_no": 91,
+      "id": "meeting_8412",
+      "output_index": 53424,
+      "input_sha256": "cae357e4e9e483ebd688682744e11373cda69f7f84b2c96fb125597f9a7f2a76",
+      "target_sha256": "ad500dc0a2f06012f8672fd54c1ce30a9357e3e388478b52ede6d05822219b8b"
+    },
+    {
+      "case_no": 92,
+      "id": "vibe_coding_18155",
+      "output_index": 24006,
+      "input_sha256": "7f07ebf01da546e2015906e8d1210ed9261df72d41db2f2ef8ecc8057b402706",
+      "target_sha256": "9c81ea70cac6a4ab9581839980e74d71717f0b2d94357318ad1c63fa0df13c65"
+    },
+    {
+      "case_no": 93,
+      "id": "vibe_coding_18010",
+      "output_index": 73548,
+      "input_sha256": "b1bdc7d9bef656b15e6709fe8bdf58f6ec371202481dda7d61462686b9b4db07",
+      "target_sha256": "fa634dea6f5d7dd43239f541b9f56942a5d8d193ad33a50b049db2243ff49314"
+    },
+    {
+      "case_no": 94,
+      "id": "vibe_coding_19597",
+      "output_index": 30555,
+      "input_sha256": "b7dc166670382f480d76db0a0a1b05a069a7f20cce47f818a005f8f0c37c7eb8",
+      "target_sha256": "bdea80f87e91e8ed40a60f8c4822ef6f686ca8ee25c4868d2fa0b1fa1140df1e"
+    },
+    {
+      "case_no": 95,
+      "id": "explanation_7302",
+      "output_index": 61389,
+      "input_sha256": "85a1f027ada42d74ab06023a1e4a3b4b907667f44a4fafc0712a264718c52426",
+      "target_sha256": "69a94653a4d2fee98b61d81f53c839ab6735e15e9181d234e9d8b47d3b57a73b"
+    },
+    {
+      "case_no": 96,
+      "id": "vibe_coding_14752",
+      "output_index": 14271,
+      "input_sha256": "f2172cfaffecdbe14fe5dd3c49917fa806e74f64390395b608956cbe07b0e831",
+      "target_sha256": "afdec88c0d9e39afe87eb423c116bcace6c8d10c6c2aacb2c1b8132fce6d8bb7"
+    },
+    {
+      "case_no": 97,
+      "id": "vibe_coding_84",
+      "output_index": 7470,
+      "input_sha256": "bfeb2ffbf761365c348f39ff74cde8fc9ea79c764bb081ae45ad8c5f1c1b641f",
+      "target_sha256": "945fc563fea900ebb8d46018c45494e54c36587dfc1f1261c66879be2907280d"
+    },
+    {
+      "case_no": 98,
+      "id": "vibe_coding_3604",
+      "output_index": 41341,
+      "input_sha256": "e59290034093abd0c3ec2fb68360b588d9a618bd285834e47283ab1a1ace077d",
+      "target_sha256": "e59290034093abd0c3ec2fb68360b588d9a618bd285834e47283ab1a1ace077d"
+    },
+    {
+      "case_no": 99,
+      "id": "explanation_11104",
+      "output_index": 48000,
+      "input_sha256": "0615af3229fa07944b0089e4e15939e07e261f52b8d034659d63173b35c8d815",
+      "target_sha256": "518eab3f796f1fc8000b0df3b352d844f328c85c553bf682320ca6676de40d2c"
+    },
+    {
+      "case_no": 100,
+      "id": "customer_service_9530",
+      "output_index": 74128,
+      "input_sha256": "764de2174113a7a625fb795ac57980fa5c542b3d4260be10d1b606f769058018",
+      "target_sha256": "16ea228a0bdb60aadcfb8d8c1f60226488b6557fedb374f1f23bc76bee244738"
+    },
+    {
+      "case_no": 101,
+      "id": "academic_7553",
+      "output_index": 47156,
+      "input_sha256": "f430ef7a7c46dfcee130696c331e9831311cbf57a53df7875eb6504d1ec578e1",
+      "target_sha256": "077cf39db9af09f909f4c3b0b179bfa46897d722004d987f105af9ac7be7e4ec"
+    },
+    {
+      "case_no": 102,
+      "id": "customer_service_10974",
+      "output_index": 77882,
+      "input_sha256": "7d2cec4d848b7d7488ba0a2fc0ae1a0a074d5eb36b4e95a40be19ca0a999b213",
+      "target_sha256": "8338c37306f0012b33c5de418bacc28e58e302c9b5417ef56c21cfa1c05edaf4"
+    },
+    {
+      "case_no": 103,
+      "id": "daily_chat_6005",
+      "output_index": 2191,
+      "input_sha256": "e35da91fd80f3dc6f1a111df3fea08bb352e911ee2fc3fcd3b3bd20fb7075dbf",
+      "target_sha256": "152820387516d778c2461a51f0d69f6733f5c5588902e143f4841d6f829fa1fb"
+    },
+    {
+      "case_no": 104,
+      "id": "dictation_memo_6796",
+      "output_index": 6900,
+      "input_sha256": "840e11e38c4cbf3d84d94c9f17bf1d52e2da73dfce04272d3c6c4b919f180b71",
+      "target_sha256": "8f7df540397bfbb065fe1730809850ec65f16a7497e3025cf5fd09b057b6e5cc"
+    },
+    {
+      "case_no": 105,
+      "id": "explanation_23326",
+      "output_index": 6728,
+      "input_sha256": "401ae72b2662a93a3aa36ef3032afb0cf5312dfe4eb3338c1a5812b2a287442c",
+      "target_sha256": "401ae72b2662a93a3aa36ef3032afb0cf5312dfe4eb3338c1a5812b2a287442c"
+    },
+    {
+      "case_no": 106,
+      "id": "meeting_8297",
+      "output_index": 66185,
+      "input_sha256": "32eee0ffa5204de58ce3efc758d287a3a9eb7d9d571873e74dc8264a2315fc31",
+      "target_sha256": "ae9374721ef998b7c20728b68758843123d2bfe5a874647ea826dda8640720ae"
+    },
+    {
+      "case_no": 107,
+      "id": "navigation_577",
+      "output_index": 6690,
+      "input_sha256": "8702ff400dbf405fb9372b2123aaf6c3f7ac6af4eb50957834786a2d37969a97",
+      "target_sha256": "e606bdafac06730bfcbe487a2769f858b92eb50f6f8448faf81677c101902f3f"
+    },
+    {
+      "case_no": 108,
+      "id": "vibe_coding_1016",
+      "output_index": 48902,
+      "input_sha256": "47d6cd2b969936d56689b8012beef88252bb38de4c5cae345e177e15e38ee6ae",
+      "target_sha256": "ab60a153f8e996f13cc09cba6f80b2f359fc9f9805e4eafa2a5c9cbca8cfde66"
+    },
+    {
+      "case_no": 109,
+      "id": "voice_search_5382",
+      "output_index": 9828,
+      "input_sha256": "ab29a976c7a9390ff42878128cc5cf6cbabe1867ee8dcded24ada801390da6a0",
+      "target_sha256": "e379787f258de6f35d708b187a0f93bd41a98a9a57a76e630376fce35b514586"
+    },
+    {
+      "case_no": 110,
+      "id": "academic_6177",
+      "output_index": 79860,
+      "input_sha256": "2f4a074979280d5229345b833bcb3a85ec5f7d1eb017f738184800b56226e328",
+      "target_sha256": "b6710d6cba5b6d892b5f2fd5b609f31dd4a775ea3c8c99e8933788b611d7e2d5"
+    },
+    {
+      "case_no": 111,
+      "id": "customer_service_6344",
+      "output_index": 37403,
+      "input_sha256": "8f306fa935cda0f4a247a743b704e3559a6f9d1c6b9c2e3eb7c83f871efa83a8",
+      "target_sha256": "95d4ccc5cc2281abe1dde68d3e87785028cb34be653c68fb80d8feca12b4432e"
+    },
+    {
+      "case_no": 112,
+      "id": "daily_chat_9522",
+      "output_index": 39947,
+      "input_sha256": "96b00ebe6f377ff4988fa606534e2cdc8b95c5b88eaaae4ae93b4f3d0b43f149",
+      "target_sha256": "d5962cdca9e6b3306e029706d7d12c8977304ca0dc3a862eb9c85b891482f03d"
+    },
+    {
+      "case_no": 113,
+      "id": "dictation_memo_4468",
+      "output_index": 68639,
+      "input_sha256": "1f7a179ab6bf0e093789d46780cf02576fe58145eee3957853de512c472b978c",
+      "target_sha256": "a58a36e894b14aa0475e772b5632a581b18353c6f62cda4dc17669f921d1ad93"
+    },
+    {
+      "case_no": 114,
+      "id": "explanation_16232",
+      "output_index": 3566,
+      "input_sha256": "58ef462f05ca9c0c1bbb612ca8c583c870fb147ce4ad675e97708dfeb75504cf",
+      "target_sha256": "c0861c19f2478c4b458e7805d20f26d555a15ae032e76a5bde78df7ba340de0c"
+    },
+    {
+      "case_no": 115,
+      "id": "meeting_10355",
+      "output_index": 41483,
+      "input_sha256": "be2d470cebc7cb2efd8b0822c47ee9a5acaa05d9e169deb1002fc253b4f8751e",
+      "target_sha256": "1f57a8a2d37199d9eaf8706a503e14372fcbc8a7bd9a17e5178fc9871056d0b2"
+    },
+    {
+      "case_no": 116,
+      "id": "navigation_3589",
+      "output_index": 30630,
+      "input_sha256": "9b2a89ebdee42f76905b75a701a276a82b5d6926ae11ee8ea39f049b6f0e4237",
+      "target_sha256": "eeb641f9e0381cd40e4c3e73968624dec98b5190c09bf6aa45e0cbe740b5b644"
+    },
+    {
+      "case_no": 117,
+      "id": "vibe_coding_15981",
+      "output_index": 53853,
+      "input_sha256": "497b1f2b83261196df5d5dcbd615c7278b61be6e58a411638b5d7facac57b703",
+      "target_sha256": "e3defb3810944bd4a2423f94570fbf66d287a72053a9a286c1ef6a047b4cb7d9"
+    },
+    {
+      "case_no": 118,
+      "id": "voice_search_3184",
+      "output_index": 22701,
+      "input_sha256": "1173c4365c664929e4bbd0865275a1f59b13f62bc82d28373d7099953f9e35f2",
+      "target_sha256": "dd9b8a4ca7b3c4cdcc49ae79c40fb8882fb3eb1d859357fcffd8d35baa24a286"
+    },
+    {
+      "case_no": 119,
+      "id": "academic_3429",
+      "output_index": 64311,
+      "input_sha256": "58bbdecb6abd34d88e834b877670bd09e11bbb20db3b684c9817905f091c53c3",
+      "target_sha256": "39eeb8c732dd1d43378acebe3ca5303a5b39dc2eaee8c040594818c6e00744d5"
+    },
+    {
+      "case_no": 120,
+      "id": "customer_service_1653",
+      "output_index": 24355,
+      "input_sha256": "713de47fbb2ac596682ee5a6cf00c312c00f722d0c3c9507c6a5dac62c678ca7",
+      "target_sha256": "c28d7a8a3585afcb32a5dfcc68e23572d361a02ce2c8803d551cb25c43de0d33"
+    },
+    {
+      "case_no": 121,
+      "id": "academic_7072",
+      "output_index": 72706,
+      "input_sha256": "809085b135ce0c3e815ad34ec5f0324a6a0510e2fef8ca4d1db35583923705b2",
+      "target_sha256": "b4e2572b799bb6dfb5de09b199b6822feabaa84375fea16d7d3cec5da5f12c23"
+    },
+    {
+      "case_no": 122,
+      "id": "customer_service_2542",
+      "output_index": 75369,
+      "input_sha256": "e900e1584f29c0adf51c1b4fd9916f7a7fa4e0423a1cc30bcc1747210a9e5f79",
+      "target_sha256": "ea7d1ca972e39bc0d62092a266383410eaaee6a03e32cb12debe675300682e92"
+    },
+    {
+      "case_no": 123,
+      "id": "daily_chat_4570",
+      "output_index": 30798,
+      "input_sha256": "299953c6ab12856ae113147398b2ddf2883b6b654ed664a1d47a4be681813cc5",
+      "target_sha256": "4dbc5b8b4e5ed7a0f9d431069f142f8a47980c26280a861b72fc891ccc0ad6d5"
+    },
+    {
+      "case_no": 124,
+      "id": "dictation_memo_1780",
+      "output_index": 68244,
+      "input_sha256": "cdcb309521cce29fffa888b3637a5811739cabd7bfd46ce6de5e598497a1c18e",
+      "target_sha256": "d192f4847cb253874790f0f0ca4d2da4f681fcb5e022e0874f9b48d1a5ad8ff5"
+    },
+    {
+      "case_no": 125,
+      "id": "explanation_16880",
+      "output_index": 12792,
+      "input_sha256": "a1438c1c8ed5040eb95a8b050947c95a5fb7f794c224ef71c8241c46b8e41a42",
+      "target_sha256": "f606c38b5980c07b208b625bc9288b135a430597434c4d99b408a934673ba7c4"
+    },
+    {
+      "case_no": 126,
+      "id": "meeting_2063",
+      "output_index": 80085,
+      "input_sha256": "2d1a3013dd5f6c26e947e3e0361affe37ae3c2ad10e249194948398e5bc4f2ad",
+      "target_sha256": "eac3f4e00bb13bf0718eb21593738a23c61d721a3302eda23e5814a16af1db8b"
+    },
+    {
+      "case_no": 127,
+      "id": "navigation_5099",
+      "output_index": 6117,
+      "input_sha256": "74c72716b02fab11ade8a2ef51dfeed8d01fc27a49baf0e4927feae9661b9ce4",
+      "target_sha256": "74c72716b02fab11ade8a2ef51dfeed8d01fc27a49baf0e4927feae9661b9ce4"
+    },
+    {
+      "case_no": 128,
+      "id": "vibe_coding_8127",
+      "output_index": 70598,
+      "input_sha256": "274092f8ca6fbfb835c989dcbe15a73ae9a4264e002c123125e82979b96a5d07",
+      "target_sha256": "274092f8ca6fbfb835c989dcbe15a73ae9a4264e002c123125e82979b96a5d07"
+    },
+    {
+      "case_no": 129,
+      "id": "voice_search_2290",
+      "output_index": 20519,
+      "input_sha256": "58f5b01bee530207ed7723b6c3ef5372a247d0c9c8aa15a9526265fb43771c3f",
+      "target_sha256": "1096249ab74fc93f47f07c33b892cdd60b8c7eb6dd5c7d3acf96421c9dcbe2af"
+    },
+    {
+      "case_no": 130,
+      "id": "academic_4216",
+      "output_index": 50005,
+      "input_sha256": "44f3b527acd20fd141fdb7f0100da4a6e6f911466a5728be857db0100e3d30f5",
+      "target_sha256": "44f3b527acd20fd141fdb7f0100da4a6e6f911466a5728be857db0100e3d30f5"
+    },
+    {
+      "case_no": 131,
+      "id": "customer_service_8453",
+      "output_index": 50443,
+      "input_sha256": "f01a3ef39c083fcb30d7f171b782dd1784f4e4367dfbf834ac340b549dfe8d16",
+      "target_sha256": "323eb20baaef440407ed6ea85f5054ba8599dc8e7b216111d442efa156ce96ff"
+    },
+    {
+      "case_no": 132,
+      "id": "daily_chat_12852",
+      "output_index": 84276,
+      "input_sha256": "e2cf8df625133c1b0fd7d95adb7cee1f0e0b6e0a75db963c9211c3f8501f21c2",
+      "target_sha256": "0dd1638316b1ec2cfab78a22546a4bd470b1ef8f8b705c672da4fd27cdd20434"
+    },
+    {
+      "case_no": 133,
+      "id": "dictation_memo_2072",
+      "output_index": 70544,
+      "input_sha256": "1b6be9d015c5c20e3a91bb6058f052068ae3b554ecc4b175a7fa16b5ad32e9f0",
+      "target_sha256": "1111da529a241618797ddb849a7b09386eb9bd4e229b295a4821c94228e276ab"
+    },
+    {
+      "case_no": 134,
+      "id": "explanation_588",
+      "output_index": 20012,
+      "input_sha256": "f3799ca50ebfec1585b9cef14cdadcb96858e15c97dc9c53439c5f127202bd0d",
+      "target_sha256": "f3799ca50ebfec1585b9cef14cdadcb96858e15c97dc9c53439c5f127202bd0d"
+    },
+    {
+      "case_no": 135,
+      "id": "meeting_7112",
+      "output_index": 5554,
+      "input_sha256": "50a68d19e957c6d9f15980519c67f8bc72af668652ff69df0dfdaf2c184fc54b",
+      "target_sha256": "efa4615a24af1601d93d01ecd1e0e8349d1fd9747022302da08ad6f2fcfac441"
+    },
+    {
+      "case_no": 136,
+      "id": "navigation_1970",
+      "output_index": 75774,
+      "input_sha256": "bcb5c9b55814bcdd21e5b08f39b4ff47569d0de4aeab8f22282f58cc8d8c2b5a",
+      "target_sha256": "059cb69a225c72399f1c9df4bbcbf1a6c61716632ca02b622b20ce363da6cbc5"
+    },
+    {
+      "case_no": 137,
+      "id": "vibe_coding_2046",
+      "output_index": 25297,
+      "input_sha256": "8f7133dca9dc8bb65046ce2e9a9f51d519c8fe3379015963bae3caada3f9937d",
+      "target_sha256": "6996bbe90a64a00b3c243d9c27afb62ca277f96c937d92d7a5321e1d435501d6"
+    },
+    {
+      "case_no": 138,
+      "id": "voice_search_3874",
+      "output_index": 41000,
+      "input_sha256": "d1f3084ff9f726e4eed01b5bb6f93e5402c65da5faced3dd7f03800ad37d405c",
+      "target_sha256": "73f45a05aff6f090f8dd884b27af70e3504d1e81d0e7b174f0f0ffdf0b09294a"
+    },
+    {
+      "case_no": 139,
+      "id": "academic_4351",
+      "output_index": 73095,
+      "input_sha256": "0035c05128ee1facf8b602733ead105ad3ac419c1c8f78e5e040a03e57e24a35",
+      "target_sha256": "b115490aca81d4940802b624a4382260182c6ee6ad148a92ec29fec8fe69b6d1"
+    },
+    {
+      "case_no": 140,
+      "id": "customer_service_9458",
+      "output_index": 62367,
+      "input_sha256": "e9cd8171d24106d497582c79f5ec3369265cc159e6c1461512333bc6bb7c4eca",
+      "target_sha256": "e31c441b5bd1475f2daef7deae904f443e875dc66a80cac0e0bf5c1cb27ea36e"
+    },
+    {
+      "case_no": 141,
+      "id": "academic_5426",
+      "output_index": 44606,
+      "input_sha256": "d9677eec0a8b40705fd3f64869504f3a09334b0aebe0b16bcba7163ce6acf30b",
+      "target_sha256": "db6cacb3ad0c8e1acd852f62d01b6ade94ffa6ca703cf9a8eacf7c2867c4a2e1"
+    },
+    {
+      "case_no": 142,
+      "id": "customer_service_5222",
+      "output_index": 47941,
+      "input_sha256": "582e324566d2e69ca2858da7c1d6fb4f493a343e0d6b1524fe4ded6934c0c3f2",
+      "target_sha256": "7f07143c8dc67d75659739d112a35be88cb57d54fb2c50a82c53108befd1e111"
+    },
+    {
+      "case_no": 143,
+      "id": "daily_chat_3386",
+      "output_index": 63227,
+      "input_sha256": "def8befd1754abcbcadd2da7ad5c1eae17b412791e59c0070405da4ba84ff7af",
+      "target_sha256": "cfe1c73c1ff9d277b3c57ab62e26fa2674c2a37e34d859ef24706d26e6667807"
+    },
+    {
+      "case_no": 144,
+      "id": "dictation_memo_9521",
+      "output_index": 17444,
+      "input_sha256": "05a86ce41b511621a8f3d6e18434bb0083a9fb3c493c57bfce091633ed7dd441",
+      "target_sha256": "9ba233d4995ef9d8175b5652be571bc4adf851255c963ef610d6d3b8f0f0048d"
+    },
+    {
+      "case_no": 145,
+      "id": "explanation_15564",
+      "output_index": 25681,
+      "input_sha256": "efb485b6b5ba4b518a3d19534ef9285b0f49f0cc2e998bab39a2e7090ceda380",
+      "target_sha256": "10794c8070a3ea053afd65f3a133a759540a4b5b873119c50c7c32c8c936b76f"
+    },
+    {
+      "case_no": 146,
+      "id": "meeting_2605",
+      "output_index": 33291,
+      "input_sha256": "e0b8a4c597eaaa1c19443fb7367f17a0ca36c438d92ee1f2ffc860300bec547e",
+      "target_sha256": "967ad14e17ab334be13b440674cde6d29bf09051c5eae84be57e6be96d851a45"
+    },
+    {
+      "case_no": 147,
+      "id": "navigation_1223",
+      "output_index": 2156,
+      "input_sha256": "622b5e11abef8a9d82f3a7081479ec8fb683a6380afa37a80f8ace7ed36d9e21",
+      "target_sha256": "29d7c2be828de8ba2695c168eb4d0d684204a9d75ff61e665d607a1a15de2e0f"
+    },
+    {
+      "case_no": 148,
+      "id": "vibe_coding_12903",
+      "output_index": 15583,
+      "input_sha256": "6b7bab431ca88e00ce3a36b5760a0b38d3e65a3dd7b501eb7a4246428a8742c0",
+      "target_sha256": "6b7bab431ca88e00ce3a36b5760a0b38d3e65a3dd7b501eb7a4246428a8742c0"
+    },
+    {
+      "case_no": 149,
+      "id": "voice_search_3145",
+      "output_index": 4952,
+      "input_sha256": "79441a3f54ae46e3f87643bb243660a4081e666d9e697f40aaa9c8b15a745904",
+      "target_sha256": "aed2e8aa9feeb4b32a87164a87a8cf90c5e4e0660a65ad57d4bcc530f7dcfeb0"
+    },
+    {
+      "case_no": 150,
+      "id": "academic_4847",
+      "output_index": 49142,
+      "input_sha256": "1ccd2a2b36c2e4c694a7624e8b4cf3bd9cab2ca91f9ffd22a65c2c00e9bb481b",
+      "target_sha256": "d2b0be0bdead3bd526172106ca1ec0c4413b3ad2592416c5463a21a9a4bcd72a"
+    },
+    {
+      "case_no": 151,
+      "id": "customer_service_1499",
+      "output_index": 4160,
+      "input_sha256": "834ce2ea5664527a0cd6bd9c6c24db3b75e5c60509c248b7771d636ddbfc9c46",
+      "target_sha256": "155d8818a50074962616c164fa3cae4e5ff45ec5bf9dd6f69b05fb84b0ee051c"
+    },
+    {
+      "case_no": 152,
+      "id": "daily_chat_9471",
+      "output_index": 60588,
+      "input_sha256": "d059e9af810520aea963d65e8ebe70bea8ce87b3e19ee7448bfcb3b378ac362f",
+      "target_sha256": "ebdbc954a412832fa469c46f38e38568b68627679a9077bba6dfda4774e7ad8b"
+    },
+    {
+      "case_no": 153,
+      "id": "dictation_memo_3267",
+      "output_index": 72656,
+      "input_sha256": "22f1165bc1c1496052f275c41eaaf45d1d03c90f9b2d3fd50143fa22a568753b",
+      "target_sha256": "c3244fc91af929521725142cf17b776e802088c01a06aa454257da34cad0373f"
+    },
+    {
+      "case_no": 154,
+      "id": "explanation_17042",
+      "output_index": 69264,
+      "input_sha256": "423f95aab3e7448e8eeb070b12635a8c7722a3cc6726251aa503e115e2175516",
+      "target_sha256": "2fb6099d47432f4d040138138df9d4e67fa7bcf91ffcfe2157d4d4fca9d611f1"
+    },
+    {
+      "case_no": 155,
+      "id": "meeting_3089",
+      "output_index": 12455,
+      "input_sha256": "a92ab1b7d524ca2d9808d7dac5e519dbabc71586382a13950f2f072cc0f4605c",
+      "target_sha256": "a17447ec5261d8670222b9ef00e2209c719920a15110f919c6b809485691e571"
+    },
+    {
+      "case_no": 156,
+      "id": "navigation_5868",
+      "output_index": 47535,
+      "input_sha256": "7c16685d4967659db64a535a55a98954210801f4037a3387e901880943d498c0",
+      "target_sha256": "ceff43aad956617db3a2e8ad7bb0266d090efe8e9026f929377a7b875506dc1a"
+    },
+    {
+      "case_no": 157,
+      "id": "vibe_coding_19812",
+      "output_index": 14858,
+      "input_sha256": "af50a13fa39812e9ebdf4a84487a3f0045f69ab8fef91ace85829761ea38cc92",
+      "target_sha256": "af50a13fa39812e9ebdf4a84487a3f0045f69ab8fef91ace85829761ea38cc92"
+    },
+    {
+      "case_no": 158,
+      "id": "voice_search_4838",
+      "output_index": 17980,
+      "input_sha256": "81e179c09162878c8949b21e0e91223c86cd675f9ac1d7108cddd0dd45cc2128",
+      "target_sha256": "fcf2b5f0c72810456f5dfc6a70d408a43330a3f662983a5ed7e6b46dfdcc1dec"
+    },
+    {
+      "case_no": 159,
+      "id": "academic_2518",
+      "output_index": 84159,
+      "input_sha256": "7b3aef9be9ad0bcc356dcaf4c84c425409ed1b83522aceb9c132dbae0572b2f4",
+      "target_sha256": "2273ab7eb05f49a42964dd59eb14b1e84ecc269b0e78fb40ef6ddbb3711cd56c"
+    },
+    {
+      "case_no": 160,
+      "id": "customer_service_6364",
+      "output_index": 67055,
+      "input_sha256": "975652e3243cef3e55079a45d0b44089558e5981e5e2e2ede1ca34f8b1002ba7",
+      "target_sha256": "975652e3243cef3e55079a45d0b44089558e5981e5e2e2ede1ca34f8b1002ba7"
+    },
+    {
+      "case_no": 161,
+      "id": "academic_7245",
+      "output_index": 66063,
+      "input_sha256": "bed02bcb26daa75165afbd242ff55582ff15f912e909fa9da25e18c78975cbfe",
+      "target_sha256": "701344c10669416fbd53ae0c566531ede626137aa4af3e57dd9b63c67996094e"
+    },
+    {
+      "case_no": 162,
+      "id": "customer_service_10068",
+      "output_index": 58433,
+      "input_sha256": "eecbea226d9f1d1a3afe6c9c9d3b4943eef8b1d145e2fed30922760240ff8842",
+      "target_sha256": "cd42006956f7484fbd1cba1feb0bbc523c57b71c063f6ef176e0016c42352fd3"
+    },
+    {
+      "case_no": 163,
+      "id": "daily_chat_2579",
+      "output_index": 81596,
+      "input_sha256": "9d539f5a7a0d14b183bbcb9f6a8f99ca7f6d8da60a89b3d661268037d2a19221",
+      "target_sha256": "bd614ee97ad02261c4221284cebcc256a07a2753d38c82faf2fb18fef520943a"
+    },
+    {
+      "case_no": 164,
+      "id": "dictation_memo_3056",
+      "output_index": 52289,
+      "input_sha256": "e6337ad91c16b753c474d754cf24b4e2e523638e6ed63d59e3f320bc61f55256",
+      "target_sha256": "7415e3c014e5df1b5e7240bac733e1b6c91013bf53ed8320627537c76262e0a3"
+    },
+    {
+      "case_no": 165,
+      "id": "explanation_7095",
+      "output_index": 1286,
+      "input_sha256": "e92301b009a343ff655358ffd8ae8d0d4b8b91b43ca649f7381a17e5b7d7a603",
+      "target_sha256": "16a7c816e37980c405964dff392b343af78bdf0d44863a524a36f3b3253261b9"
+    },
+    {
+      "case_no": 166,
+      "id": "meeting_9487",
+      "output_index": 61055,
+      "input_sha256": "fa43fd299a65104ae480fb4ae960839e8f87d079fff54a1512e49e22ee91e98f",
+      "target_sha256": "14b1b07fb234872877e1982e6169abd137d55185f94bd28a37b9854cbd591a18"
+    },
+    {
+      "case_no": 167,
+      "id": "navigation_1533",
+      "output_index": 46260,
+      "input_sha256": "04d645b4137b6b1d33cbf69c5df35aa11c02464292fb18c6a5b8c2bf89343d77",
+      "target_sha256": "2eaf0ac510c17b541d64b91e6418086a3bba420e3805cec6ce8231b556a67e09"
+    },
+    {
+      "case_no": 168,
+      "id": "vibe_coding_15908",
+      "output_index": 38510,
+      "input_sha256": "8ebcfac3f18142ba40f13aea4d396f49065d6cb4988120cc76cad8cdc0b329fe",
+      "target_sha256": "d40ec9cc2b3486fa8970d3f954cb0d029c6da2ef6d347a05f05fea8da88f98b2"
+    },
+    {
+      "case_no": 169,
+      "id": "voice_search_1195",
+      "output_index": 71342,
+      "input_sha256": "f852a63a1871b837f5c1a3f9f20f31f860ab8e1da7b7e1fb4fa09d294f9b91dc",
+      "target_sha256": "f852a63a1871b837f5c1a3f9f20f31f860ab8e1da7b7e1fb4fa09d294f9b91dc"
+    },
+    {
+      "case_no": 170,
+      "id": "academic_3010",
+      "output_index": 14826,
+      "input_sha256": "326a1b76e98917f573d90ad1d583e4a0de7f3720c903956154ede30d4515dc56",
+      "target_sha256": "c8a7c829cd08217137e59b63ea89be6fe82add0e1765ac04f6a55f26ac33c224"
+    },
+    {
+      "case_no": 171,
+      "id": "customer_service_7622",
+      "output_index": 4728,
+      "input_sha256": "4bd0e05a55ce261f203dc66f5c9ba676f8b69cfa7d38b18fe75aef9665f73cd8",
+      "target_sha256": "a2301776cec2f240f6414253d07e79dfa6c87a0da2a0ccaafff41ea7f4385d11"
+    },
+    {
+      "case_no": 172,
+      "id": "daily_chat_6633",
+      "output_index": 78216,
+      "input_sha256": "01d219b2c2ccc1cd32bfafde21942efc96ac3a41edd49bf7e6126f7881e5ac01",
+      "target_sha256": "f3645241f826062c69dee8c242547be1587e8b519b9da76ba7138e6729f965e2"
+    },
+    {
+      "case_no": 173,
+      "id": "dictation_memo_4115",
+      "output_index": 42626,
+      "input_sha256": "350050a957cadffa78bd614e16e328ae5f484104deda9d7a51aee2567e3b0cfa",
+      "target_sha256": "178a8a191c857e2e4a1d3f4008b61e2a9620b11246bfaa517b1afdb81e560356"
+    },
+    {
+      "case_no": 174,
+      "id": "explanation_17273",
+      "output_index": 77381,
+      "input_sha256": "5d8e92332907524303674b668bb22f82a8f69d0e9317c10cf907184250842685",
+      "target_sha256": "5d819b04430dfc1e14c6357b25bcdb2699cc1dae6a50648672067c94a07baf88"
+    },
+    {
+      "case_no": 175,
+      "id": "meeting_9610",
+      "output_index": 47159,
+      "input_sha256": "9d4c35240da27f9eaa95298977b9ef56a84ad70318ada70c16aed1dac2be72f2",
+      "target_sha256": "14fc4a5a793102037844dfa4ead39736008d8ad03676ab9a73b908e658975ab5"
+    },
+    {
+      "case_no": 176,
+      "id": "navigation_1315",
+      "output_index": 37449,
+      "input_sha256": "90fac07e4995d93c7399fb5aa810b76a90832702eeeeb2e2c5b6abc2a4facbf0",
+      "target_sha256": "24d1811050fc6d1d301c2501ba8a5e24ccfbe07f63a3f63ed12090a067e3dd5f"
+    },
+    {
+      "case_no": 177,
+      "id": "vibe_coding_6782",
+      "output_index": 20768,
+      "input_sha256": "61e209664d93db104bdaa2dd5b7ebd76009044a7a9ab1f10a8d7e08b7e9cdae6",
+      "target_sha256": "901e6d85c92295c00ee2fc23b79c02e7846e6af3f0afd67726cb84356b419583"
+    },
+    {
+      "case_no": 178,
+      "id": "voice_search_3480",
+      "output_index": 56321,
+      "input_sha256": "473df0092774a84a03f4861c99912a96dc22ea3457c9dc1950314034eea27105",
+      "target_sha256": "80701f01d778145fa714dc5f5090bf29acf98fdd4d7529c360a779df90c78de9"
+    },
+    {
+      "case_no": 179,
+      "id": "academic_6883",
+      "output_index": 22892,
+      "input_sha256": "50ea8c27cc9e2931d774806e72e17473659af763791bfd7d675e1d9655bb99cf",
+      "target_sha256": "f26a0866eaeb69845394efdd4dc511353194eed4aabd35126bcdcf9dfeb45123"
+    },
+    {
+      "case_no": 180,
+      "id": "customer_service_7900",
+      "output_index": 71066,
+      "input_sha256": "40e7025fd0103e5e424d0f8c2d205f748de9b0efebd9fb95723b80b07cf00f37",
+      "target_sha256": "deab2c0877054cd4f4904dce619a638f11d4b2cb2727b9dd94584b35a296aa2c"
+    },
+    {
+      "case_no": 181,
+      "id": "academic_1280",
+      "output_index": 3014,
+      "input_sha256": "22e94f92fbbb127b4490a88459f2a4acffbbc94705b0dc8e522d54a3f5bf3974",
+      "target_sha256": "22e94f92fbbb127b4490a88459f2a4acffbbc94705b0dc8e522d54a3f5bf3974"
+    },
+    {
+      "case_no": 182,
+      "id": "customer_service_362",
+      "output_index": 17939,
+      "input_sha256": "78bcaa06731e59603bfcdeca49e8fc551af15f629ba66925087f9d021f3659c9",
+      "target_sha256": "78bcaa06731e59603bfcdeca49e8fc551af15f629ba66925087f9d021f3659c9"
+    },
+    {
+      "case_no": 183,
+      "id": "daily_chat_6979",
+      "output_index": 51789,
+      "input_sha256": "6d78b732610b88090fd05a3caf12a66a9781784b2f963f73e94daa80f6653712",
+      "target_sha256": "6d78b732610b88090fd05a3caf12a66a9781784b2f963f73e94daa80f6653712"
+    },
+    {
+      "case_no": 184,
+      "id": "dictation_memo_8280",
+      "output_index": 54121,
+      "input_sha256": "817222975c7cfc54451ed91bdc22e65701aea6420087f3d0821e549c8ae01319",
+      "target_sha256": "817222975c7cfc54451ed91bdc22e65701aea6420087f3d0821e549c8ae01319"
+    },
+    {
+      "case_no": 185,
+      "id": "explanation_7516",
+      "output_index": 48609,
+      "input_sha256": "b6ee9b262f879741b6bf55a88c6b44f24c362a3671b4b28131302ea87d261cc9",
+      "target_sha256": "b6ee9b262f879741b6bf55a88c6b44f24c362a3671b4b28131302ea87d261cc9"
+    },
+    {
+      "case_no": 186,
+      "id": "meeting_10132",
+      "output_index": 41248,
+      "input_sha256": "7350965af7848536d3af2d83e49b284a8c9bbcb15b89decb24630880413ebb9c",
+      "target_sha256": "7350965af7848536d3af2d83e49b284a8c9bbcb15b89decb24630880413ebb9c"
+    },
+    {
+      "case_no": 187,
+      "id": "navigation_1167",
+      "output_index": 19199,
+      "input_sha256": "0851395cd77ccbfe66a51e2f26c819436c4a19210fd10615c1b817bbc6dde312",
+      "target_sha256": "0851395cd77ccbfe66a51e2f26c819436c4a19210fd10615c1b817bbc6dde312"
+    },
+    {
+      "case_no": 188,
+      "id": "vibe_coding_14048",
+      "output_index": 18761,
+      "input_sha256": "08d02ee524d1a306cbd3daefc53afdb369e39c89d1815c688f3f9cec862ad568",
+      "target_sha256": "08d02ee524d1a306cbd3daefc53afdb369e39c89d1815c688f3f9cec862ad568"
+    },
+    {
+      "case_no": 189,
+      "id": "voice_search_2342",
+      "output_index": 73425,
+      "input_sha256": "a7e4ba50e6a55cc63341fb7e8b2e9edf6a9e531554528d24ae1234b2a3a2081f",
+      "target_sha256": "a7e4ba50e6a55cc63341fb7e8b2e9edf6a9e531554528d24ae1234b2a3a2081f"
+    },
+    {
+      "case_no": 190,
+      "id": "academic_2547",
+      "output_index": 76325,
+      "input_sha256": "c15603e97a9aee91eb8660c8ddd228715a7f97fb4f93deec0dfe00b66c94c823",
+      "target_sha256": "c15603e97a9aee91eb8660c8ddd228715a7f97fb4f93deec0dfe00b66c94c823"
+    },
+    {
+      "case_no": 191,
+      "id": "customer_service_3008",
+      "output_index": 81334,
+      "input_sha256": "0a5e37414995fef21b2a2d4fe41d08217723ee906cb0716385ede0d49966d170",
+      "target_sha256": "0a5e37414995fef21b2a2d4fe41d08217723ee906cb0716385ede0d49966d170"
+    },
+    {
+      "case_no": 192,
+      "id": "daily_chat_1747",
+      "output_index": 12828,
+      "input_sha256": "ea47d15e507d17c816d7e260c621e8fcd469c7b1de254e9d215119b0a289ba86",
+      "target_sha256": "ea47d15e507d17c816d7e260c621e8fcd469c7b1de254e9d215119b0a289ba86"
+    },
+    {
+      "case_no": 193,
+      "id": "dictation_memo_4708",
+      "output_index": 76503,
+      "input_sha256": "fcc31e568c96d0be4922750ae05a1ff1f4fd00f35f2af42d892f83dd733aa361",
+      "target_sha256": "fcc31e568c96d0be4922750ae05a1ff1f4fd00f35f2af42d892f83dd733aa361"
+    },
+    {
+      "case_no": 194,
+      "id": "explanation_5795",
+      "output_index": 15311,
+      "input_sha256": "626aa41c3d9ddd730c288bd87d364b4d2a9b53579085a1d136f1d064eb37fc36",
+      "target_sha256": "626aa41c3d9ddd730c288bd87d364b4d2a9b53579085a1d136f1d064eb37fc36"
+    },
+    {
+      "case_no": 195,
+      "id": "meeting_7785",
+      "output_index": 25340,
+      "input_sha256": "12f269e658449dec0c3c26dd3b43a4183139aa0cd66f14e1d47ee5141ea4610c",
+      "target_sha256": "12f269e658449dec0c3c26dd3b43a4183139aa0cd66f14e1d47ee5141ea4610c"
+    },
+    {
+      "case_no": 196,
+      "id": "navigation_2961",
+      "output_index": 19058,
+      "input_sha256": "4e9bbb6992d3a7520440c7d6facd7c22fa990ea95bdd0de1b60dc30b30b85d19",
+      "target_sha256": "4e9bbb6992d3a7520440c7d6facd7c22fa990ea95bdd0de1b60dc30b30b85d19"
+    },
+    {
+      "case_no": 197,
+      "id": "vibe_coding_7700",
+      "output_index": 44176,
+      "input_sha256": "3f044a3def0d6eb66a823ceec97dfbd0b801e6447ad3653ddf8a6e6be8929f34",
+      "target_sha256": "3f044a3def0d6eb66a823ceec97dfbd0b801e6447ad3653ddf8a6e6be8929f34"
+    },
+    {
+      "case_no": 198,
+      "id": "voice_search_4834",
+      "output_index": 41276,
+      "input_sha256": "d9b6c043b024b06289d63aef183179734078ab22ecc438eb8f500e09bf779b58",
+      "target_sha256": "d9b6c043b024b06289d63aef183179734078ab22ecc438eb8f500e09bf779b58"
+    },
+    {
+      "case_no": 199,
+      "id": "academic_4785",
+      "output_index": 84000,
+      "input_sha256": "b37d9a718fc5520af007afc549a1d6034f4cc7a4331c37518971ec517a1514cc",
+      "target_sha256": "b37d9a718fc5520af007afc549a1d6034f4cc7a4331c37518971ec517a1514cc"
+    },
+    {
+      "case_no": 200,
+      "id": "customer_service_3706",
+      "output_index": 59342,
+      "input_sha256": "80610810823e0a8ec8d9fff3f0d263fbe866429afda3a9d568f7930c162656e2",
+      "target_sha256": "80610810823e0a8ec8d9fff3f0d263fbe866429afda3a9d568f7930c162656e2"
+    }
+  ],
+  "category_counts": {
+    "code_switch_candidate": 119,
+    "multiple_revisions_candidate": 88,
+    "unexpected_break_candidate": 120,
+    "single_revision_candidate": 37,
+    "source_equals_target_control": 40
+  },
+  "special_stratum_counts": {
+    "multiple_revisions_candidate": 20,
+    "single_revision_candidate": 20,
+    "code_switch_candidate": 20,
+    "unexpected_break_candidate": 20,
+    "source_equals_target_control": 20
+  },
+  "category_shortfalls": {
+    "multiple_revisions_candidate": 0,
+    "single_revision_candidate": 0,
+    "code_switch_candidate": 0,
+    "unexpected_break_candidate": 0,
+    "source_equals_target_control": 0
+  },
+  "selection_stratum_counts": {
+    "remaining_train_random": 100,
+    "multiple_revisions_candidate": 20,
+    "single_revision_candidate": 20,
+    "code_switch_candidate": 20,
+    "unexpected_break_candidate": 20,
+    "source_equals_target_control": 20
+  },
+  "scene_counts": {
+    "customer_service": 26,
+    "dictation_memo": 25,
+    "vibe_coding": 35,
+    "meeting": 18,
+    "navigation": 16,
+    "daily_chat": 17,
+    "explanation": 36,
+    "academic": 17,
+    "voice_search": 10
+  },
+  "heuristics_note": "Category cues are noisy selection heuristics only; no target was used to judge or revise any example. existing_target is retained solely as evidence and must not be sent to the teacher.",
+  "independence_note": "This sample is for development/prompt validation and should not be reported as an independent final test set. Shared source dataset, prior project exposure, and heuristic selection can create leakage or selection bias.",
+  "sample_sha256": "860f0f635be4545ac8a68ac0419919bceaf684cb8a4fb9a390c12a4b662f05b6",
+  "generation_status": "prepared_not_run_regression_gate_failed"
+}

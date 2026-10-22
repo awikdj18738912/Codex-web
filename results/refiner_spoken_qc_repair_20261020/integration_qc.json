@@ -1,0 +1,139 @@
+{
+  "cases": 6,
+  "matching_expected": 6,
+  "results": [
+    {
+      "case": "real_academic_1",
+      "expected": false,
+      "passed": false,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "source_quality: 括号内内容'Perplexity'是书面术语对照，不符合纯口语ASR文本训练数据的要求。",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"括号内内容'Perplexity'是书面术语对照，不符合纯口语ASR文本训练数据的要求。\"\n}",
+        "decision_stage": "source",
+        "source_audit": {
+          "consistent": false,
+          "verdict_valid": true,
+          "reason": "括号内内容'Perplexity'是书面术语对照，不符合纯口语ASR文本训练数据的要求。",
+          "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"括号内内容'Perplexity'是书面术语对照，不符合纯口语ASR文本训练数据的要求。\"\n}"
+        }
+      }
+    },
+    {
+      "case": "narrator",
+      "expected": false,
+      "passed": false,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "source_quality: 括号内为制作说明，非说话人实际说出的内容，不符合纯口语ASR文本训练数据要求。",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"括号内为制作说明，非说话人实际说出的内容，不符合纯口语ASR文本训练数据要求。\"\n}",
+        "decision_stage": "source",
+        "source_audit": {
+          "consistent": false,
+          "verdict_valid": true,
+          "reason": "括号内为制作说明，非说话人实际说出的内容，不符合纯口语ASR文本训练数据要求。",
+          "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"括号内为制作说明，非说话人实际说出的内容，不符合纯口语ASR文本训练数据要求。\"\n}"
+        }
+      }
+    },
+    {
+      "case": "spoken_term",
+      "expected": true,
+      "passed": true,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": true,
+        "reason": "The refined text is identical to the input and preserves the complete final intended meaning without alterations, omissions, or hallucinations.",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\"pass\":true,\"reason\":\"The refined text is identical to the input and preserves the complete final intended meaning without alterations, omissions, or hallucinations.\"}",
+        "decision_stage": "meaning",
+        "source_audit": {
+          "consistent": true,
+          "verdict_valid": true,
+          "reason": "",
+          "raw_response": "{\"pass\": true, \"reason\": \"\"}"
+        }
+      }
+    },
+    {
+      "case": "code",
+      "expected": true,
+      "passed": true,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": true,
+        "reason": "The refined text is identical to the input and preserves the complete final intended meaning without alteration or omission.",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\"pass\":true,\"reason\":\"The refined text is identical to the input and preserves the complete final intended meaning without alteration or omission.\"}",
+        "decision_stage": "meaning",
+        "source_audit": {
+          "consistent": true,
+          "verdict_valid": true,
+          "reason": "",
+          "raw_response": "{\"pass\": true, \"reason\": \"\"}"
+        }
+      }
+    },
+    {
+      "case": "clean_question",
+      "expected": true,
+      "passed": true,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": true,
+        "reason": "The refined text is identical to the input and preserves the complete intended meaning without alterations or omissions.",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\"pass\":true,\"reason\":\"The refined text is identical to the input and preserves the complete intended meaning without alterations or omissions.\"}",
+        "decision_stage": "meaning",
+        "source_audit": {
+          "consistent": true,
+          "verdict_valid": true,
+          "reason": "",
+          "raw_response": "{\"pass\": true, \"reason\": \"\"}"
+        }
+      }
+    },
+    {
+      "case": "correction",
+      "expected": true,
+      "passed": true,
+      "matches_expected": true,
+      "audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": true,
+        "reason": "最终意图是将学习率设为0.9，已准确保留。",
+        "parser_version": "strict-json-bool-v2",
+        "prompt_version": "spoken-source-plus-meaning-v2",
+        "verdict_valid": true,
+        "raw_response": "{\"pass\":true,\"reason\":\"最终意图是将学习率设为0.9，已准确保留。\"}",
+        "decision_stage": "meaning",
+        "source_audit": {
+          "consistent": true,
+          "verdict_valid": true,
+          "reason": "",
+          "raw_response": "{\"pass\": true, \"reason\": \"\"}"
+        }
+      }
+    }
+  ],
+  "scope": "Six diagnostic cases, distinct from prompt examples; not a full dataset quality estimate"
+}

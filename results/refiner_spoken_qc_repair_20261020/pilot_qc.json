@@ -1,0 +1,92 @@
+[
+  {
+    "case": "editorial_alias",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined text removes redundant repetition ('Perplexity' was mentioned twice) while preserving all key information, including the perplexity value, model performance, relative position encoding, and Brier Score validation. No details are omitted or altered in meaning.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined text removes redundant repetition ('Perplexity' was mentioned twice) while preserving all key information, including the perplexity value, model performance, relative position encoding, and Brier Score validation. No details are omitted or altered in meaning.\"}"
+    }
+  },
+  {
+    "case": "spoken_alias_kept",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "去除口语词'嗯'后，保留了原句的完整技术含义和表达，未丢失任何关键信息，且符合自然口语转写规范。",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"去除口语词'嗯'后，保留了原句的完整技术含义和表达，未丢失任何关键信息，且符合自然口语转写规范。\"}"
+    }
+  },
+  {
+    "case": "literal_code",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined text is identical to the input and preserves the complete final intended meaning without alterations, omissions, or hallucinations.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined text is identical to the input and preserves the complete final intended meaning without alterations, omissions, or hallucinations.\"}"
+    }
+  },
+  {
+    "case": "filler",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript removes conversational fillers ('嗯，那个，') while preserving the complete and final intended meaning of the original spoken statement.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript removes conversational fillers ('嗯，那个，') while preserving the complete and final intended meaning of the original spoken statement.\"}"
+    }
+  },
+  {
+    "case": "correction",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The refined transcript correctly captures the final intended day for the meeting, correcting the initial error from Tuesday to Wednesday, and removes the filler '啊不对' which was a self-correction. The final meaning is preserved accurately.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The refined transcript correctly captures the final intended day for the meeting, correcting the initial error from Tuesday to Wednesday, and removes the filler '啊不对' which was a self-correction. The final meaning is preserved accurately.\"}"
+    }
+  },
+  {
+    "case": "stage_direction",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The pause annotation is removed as non-essential filler, and the punctuation is normalized. The core message and intent remain unchanged.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The pause annotation is removed as non-essential filler, and the punctuation is normalized. The core message and intent remain unchanged.\"}"
+    }
+  }
+]

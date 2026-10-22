@@ -197,7 +197,7 @@ def revise_entity_audio_payload(payload, segments, corrected, changes):
     return revised
 
 
-class EntityAudioRepair:
+class _LegacyEntityAudioRepair:
     """Session-owned audio replay; failures preserve the completed first pass."""
 
     def __init__(self, request, definitions, *, on_status=None,
@@ -206,8 +206,9 @@ class EntityAudioRepair:
                  minimum_replay_score=MIN_REPLAY_SCORE, local_replay=True,
                  streaming_replay=True):
         self._request = request
+        from .entity_mixed_spelling import supported_surface
         self.definitions = tuple(d for d in definitions if d.enabled and d.normalization_policy == "normalize"
-                                 and any(re.fullmatch(r"[\u3400-\u9fff]{2,24}", s)
+                                 and any(supported_surface(s)
                                          for s in (d.canonical_text, *d.aliases)))
         self._on_status = on_status
         self.replay_chunk_bytes = replay_chunk_bytes
@@ -583,3 +584,48 @@ class EntityAudioRepair:
                 except Exception:
                     pass
             guard.close()
+
+
+from .entity_streaming_live import LiveEntityMixin
+
+
+class EntityAudioRepair(LiveEntityMixin, _LegacyEntityAudioRepair):
+    """Incremental confirmation with a bounded final check for short audio.
+
+    The legacy state/helpers remain available for archived regression tests;
+    this public controller does not use their whole-recording repair path.
+    """
+    def __init__(self, request, definitions, **kwargs):
+        definitions = tuple(definitions)
+        self._live_spelling_definitions = definitions
+        ctc_session = kwargs.pop("ctc_session", None)
+        ctc_mode = kwargs.pop("ctc_mode", "off")
+        names = ("candidate_score", "candidate_margin", "window_seconds",
+                 "cache_seconds", "finish_wait", "maximum_queue", "replay_ratio",
+                 "maximum_replay_seconds", "request_timeout", "enable_live",
+                 "short_finish_max_seconds", "short_finish_wait")
+        options = {name: kwargs.pop(name) for name in names if name in kwargs}
+        options.setdefault("candidate_score", kwargs.get("minimum_replay_score", MIN_REPLAY_SCORE))
+        if kwargs.get("verification_timeout") is not None:
+            options.setdefault("request_timeout", min(3., kwargs["verification_timeout"]))
+        options.setdefault("enable_live", kwargs.pop("streaming_replay", True))
+        kwargs["streaming_replay"] = False
+        super().__init__(request, definitions, **kwargs)
+        self._init_live(request, ctc_session=ctc_session, ctc_mode=ctc_mode, **options)
+        if not options["enable_live"] and self.enabled:
+            self.enabled = False
+            self.phase, self.reason = "skipped", "streaming_entity_review_disabled"
+
+    async def request(self, endpoint, session_id=None, data=b"", params=None):
+        return await self._request_live(endpoint, session_id, data, params)
+
+    def snapshot(self):
+        result = super().snapshot()
+        if hasattr(self, "_live_stats"):
+            result["incremental"] = self._live_snapshot()
+            result["elapsed_seconds"] = round(self._live_stats["review_wall_seconds"], 3)
+        return result
+
+    def close(self):
+        self._close_live()
+        super().close()

@@ -1,0 +1,74 @@
+{
+  "numeric_only": {
+    "refiner_only": {
+      "observations": 36,
+      "total_ms": 15967.103990260512,
+      "mean_ms": 443.5306663961253,
+      "median_ms": 442.24969390779734,
+      "p95_ms": 825.863225851208,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "zh_itn_web_chain": {
+      "observations": 36,
+      "total_ms": 244.7223449125886,
+      "mean_ms": 6.797842914238572,
+      "median_ms": 7.4963385704904795,
+      "p95_ms": 15.513178892433643,
+      "model_calls": 0,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 223.833
+    }
+  },
+  "all": {
+    "refiner_only": {
+      "observations": 72,
+      "total_ms": 30450.58216713369,
+      "mean_ms": 422.92475232130124,
+      "median_ms": 411.76842036657035,
+      "p95_ms": 822.6304221898317,
+      "model_calls": 72,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "zh_itn_web_chain": {
+      "observations": 72,
+      "total_ms": 13877.294489182532,
+      "mean_ms": 192.74020123864628,
+      "median_ms": 113.58250165358186,
+      "p95_ms": 479.1584121994674,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 3,
+      "rule_ms": 409.065
+    }
+  },
+  "numeric_cleanup": {
+    "zh_itn_web_chain": {
+      "observations": 36,
+      "total_ms": 13632.572144269943,
+      "mean_ms": 378.682559563054,
+      "median_ms": 368.5167692601681,
+      "p95_ms": 524.8316009528935,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 3,
+      "rule_ms": 185.232
+    },
+    "refiner_only": {
+      "observations": 36,
+      "total_ms": 14483.478176873177,
+      "mean_ms": 402.3188382464771,
+      "median_ms": 343.95169746130705,
+      "p95_ms": 822.6304221898317,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    }
+  }
+}

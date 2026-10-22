@@ -1,6 +1,7 @@
-"""Production entity local replay tests.
+"""Historical legacy local-replay regression tests.
 
-No model/ASR is invoked.
+These protect the archived offline fallback behavior, not the production
+default streaming entity policy. No model/ASR is invoked.
 """
 from __future__ import annotations
 
@@ -32,7 +33,7 @@ def candidate(text, observed, canonical, *, score, start=None, evidence_surface=
 
 def repair_for(text, audio_seconds, events, bounds):
     definition = V2.EntityDefinition(1, "标准实体", "TERM", "general", "normalize", 0, ())
-    repair = V2.EntityAudioRepair(_unused_request, [definition])
+    repair = V2._LegacyEntityAudioRepair(_unused_request, [definition])
     repair._audio_size = int(audio_seconds * RATE_BYTES)
     repair._segments = {e["segment_id"]: dict(e) for e in events}
     repair._segment_audio = dict(bounds)
@@ -111,7 +112,7 @@ def test_v2_preserves_original_global_weak_score_gate(monkeypatch):
     monkeypatch.setattr(V2,"GenericEntitySelector",FakeSelector)
     async def no_network_request(*args,**kwargs):
         raise AssertionError("global weak gate should return before ASR replay")
-    repair=V2.EntityAudioRepair(no_network_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
+    repair=V2._LegacyEntityAudioRepair(no_network_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
     result=asyncio.run(repair._repair({"text":text}))
     assert result["text"]==text
     assert repair.reason=="weak_candidates"
@@ -163,7 +164,7 @@ def test_v2_eligible_weak_candidates_over_window_limit_trigger_full_audio_fallba
 
     async def no_network_request(*args,**kwargs):
         raise AssertionError("_repair should use the overridden replay helper")
-    repair=V2.EntityAudioRepair(no_network_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
+    repair=V2._LegacyEntityAudioRepair(no_network_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
     repair._audio_size=100*RATE_BYTES
     repair._segments={e["segment_id"]:dict(e) for e in events}
     repair._segment_audio={1:(0,2*RATE_BYTES),2:(10*RATE_BYTES,12*RATE_BYTES),3:(20*RATE_BYTES,22*RATE_BYTES)}
@@ -201,7 +202,7 @@ def test_v2_segment_revision_is_atomic_after_a_later_local_replay_error(monkeypa
         if endpoint=="/stream/cancel": return {"cancelled":True}
         raise AssertionError(endpoint)
 
-    repair=V2.EntityAudioRepair(fake_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
+    repair=V2._LegacyEntityAudioRepair(fake_request,[V2.EntityDefinition(1,"标准实体","TERM","general","normalize",0,())])
     repair._localized_windows=lambda source,candidates:[[0,1,[c1]],[1,2,[c2]]]
     calls=[]
     async def fail_second_window(start,end,context):

@@ -1,0 +1,183 @@
+{
+  "review_type": "independent_manual_text_review",
+  "source_file": "final/train.jsonl",
+  "summary_file": "summary.json",
+  "scope": "逐条检查实际 oral_text、refined_text 与 meta.generation_plan.expected_clean/correction_values/spelling_parts；不把自动 QC 字段当作结论。",
+  "overall": "mixed; human adjudication recommended for uncertain controls and destination subtype",
+  "counts": {
+    "pass": 13,
+    "fail": 0,
+    "uncertain": 5,
+    "total": 18
+  },
+  "dataset_coverage": {
+    "expected_scenes": 9,
+    "expected_per_scene": 2,
+    "actual_unique": 18,
+    "all_nine_scenes_have_two": true,
+    "scene_counts": {
+      "academic": 2,
+      "vibe_coding": 2,
+      "customer_service": 2,
+      "dictation_memo": 2,
+      "voice_search": 2,
+      "daily_chat": 2,
+      "meeting": 2,
+      "navigation": 2,
+      "explanation": 2
+    }
+  },
+  "control_coverage": {
+    "observed_summary_controls": {
+      "clean": 7,
+      "correction:none": 6,
+      "correction:single": 3,
+      "correction:rollback": 2,
+      "boundary_punctuation": 4,
+      "explanation": 1
+    },
+    "correction_types_present": [
+      "none",
+      "single",
+      "rollback"
+    ],
+    "correction_types_absent": [
+      "multiple"
+    ],
+    "all_expected_clean_match_targets": true,
+    "correction_trace_audit": "All non-empty traces in accepted rows are present in source in declared order; single traces retain only the final value, and both rollback traces follow A-B-A and retain A.",
+    "spelling_audit": "The only accepted spelling cue is explanation_05: source says “巷子的巷”; target removes the cue while retaining the original “巷” verification question.",
+    "boundary_cases": [
+      "customer_service_01",
+      "meeting_02",
+      "voice_search_03",
+      "academic_06"
+    ],
+    "oral_level_flags": [
+      "meeting_02 requested oral:high but source has only two fillers and a short boundary break.",
+      "navigation_02 requested oral:high but source has one filler and a short repeated “请”.",
+      "explanation_05 requested oral:high but source has two fillers, one short repeated “请”, and a spelling cue. These may be weaker than high-level oral control."
+    ],
+    "metadata_flags": [
+      {
+        "id": "daily_chat_01",
+        "flag": "meta.is_fragment=true，但实际 input/oral_text 是完整自然问句“朝阳大悦城三楼的茶饮店有新口味，你试过吗？”，且目标保留完整疑问；碎片标记与实际文本不符。"
+      },
+      {
+        "id": "vibe_coding_01",
+        "flag": "单次纠正的两个值 Django（框架）与 Go（语言）粒度不同；目标可恢复最终值，但严格同类型检查需人工判断。"
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "id": "academic_01",
+      "status": "pass",
+      "evidence": "源/目标均为“Llama-3-8B在低资源场景下的推理效率表现如何？”，expected_clean 完全匹配。型号、疑问语气和问号都保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "vibe_coding_01",
+      "status": "uncertain",
+      "evidence": "源：“请用Django，不对，Go语言实现一个支持gRPC的微服务。” trace=[Django, Go]，按序出现；两者同为实现语言/框架候选，目标只留最终 Go，gRPC 原样保留。expected_clean 与目标一致。",
+      "notes": "single correction 轨迹可恢复最终 Go，expected_clean 与目标一致；但 Django 是框架而 Go 是语言，严格按“候选同类型”要求时类型粒度不一致，需要人工确认。"
+    },
+    {
+      "id": "customer_service_01",
+      "status": "pass",
+      "evidence": "源：“请。更正发票上的地址信息。”目标“请更正发票上的地址信息。”语义为同一请求；保留祈使意图，修复句中断句。",
+      "notes": "boundary control 确实体现在“请。更正”边界。"
+    },
+    {
+      "id": "dictation_memo_01",
+      "status": "pass",
+      "evidence": "源：“预算定在12000元，不对，30000元。”trace=[12000元, 30000元] 按序；目标只保留最终30000元，金额单位和“预算”关系保留。",
+      "notes": "single correction 符合。"
+    },
+    {
+      "id": "voice_search_01",
+      "status": "uncertain",
+      "evidence": "源：“导航到最近的地铁站出口，不对，附近的公交站，最后改成，最近的地铁站出口。”trace=[最近的地铁站出口, 附近的公交站, 最近的地铁站出口] 按序；目标恢复最后的地铁站出口。",
+      "notes": "A-B-A rollback 成立，候选都是导航目的地；但中间值从地铁出口换为公交站，细分地点类别不同，按严格同类型纠正标准需人工确认。"
+    },
+    {
+      "id": "daily_chat_01",
+      "status": "pass",
+      "evidence": "源/目标均表达“朝阳大悦城三楼的茶饮店有新口味，你试过吗？”，目标只去掉“呃，那个”，疑问语气完整。expected_clean 完全匹配。",
+      "notes": "none correction 与实际源相符。"
+    },
+    {
+      "id": "customer_service_02",
+      "status": "pass",
+      "evidence": "源/目标相同：“请帮我查询订单ORD20240105004的物流信息。”订单号逐字保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "meeting_02",
+      "status": "uncertain",
+      "evidence": "源：“嗯，那个，新。版本API接口部署后，系统响应时间需控制在200ms以内。”目标合并“新。版本”为“新版本”，并保留API、200ms和条件要求。",
+      "notes": "boundary control 可见；但 oral:high 标签对应的源只有两个填充词及一个短边界中断，未见明显高强度口语/重复，控制强度可能不足。"
+    },
+    {
+      "id": "navigation_02",
+      "status": "uncertain",
+      "evidence": "源：“请导航到合肥，不对，苏州火车站。”trace=[合肥, 苏州火车站] 按序；目标保留最后的苏州火车站。",
+      "notes": "single correction 有明确改口且最终值正确；但候选粒度为城市与火车站，严格同类型是否通过需人工确认。"
+    },
+    {
+      "id": "meeting_03",
+      "status": "pass",
+      "evidence": "源/目标相同：“客户留存率提升12.7%是本次会议的重点。”百分比及陈述语气保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "daily_chat_03",
+      "status": "pass",
+      "evidence": "源：“芝士葡萄冰茶，不对，芝士芒果冰茶，最后改成，芝士葡萄冰茶我今天下午点了，等会儿送到。”trace 为葡萄→芒果→葡萄；目标只保留最终葡萄口味，下午点单及稍后送达均保留。",
+      "notes": "rollback 轨迹合规，两个纠正候选同属饮品口味。"
+    },
+    {
+      "id": "voice_search_03",
+      "status": "pass",
+      "evidence": "源：“请。关闭灯光。”目标“请关闭灯光。”只修复边界，关闭灯光命令不变。",
+      "notes": "boundary control 可见，none correction 符合。"
+    },
+    {
+      "id": "explanation_04",
+      "status": "pass",
+      "evidence": "源/目标相同：“请确认‘苹果’是指水果还是公司。”二选一确认疑问完整保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "vibe_coding_05",
+      "status": "pass",
+      "evidence": "源/目标相同：“请用kubectl apply部署配置文件。”kubectl apply 拼写和命令意图保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "dictation_memo_05",
+      "status": "pass",
+      "evidence": "源/目标相同：“请安排会议，时间定在明天上午10点。”时间及安排意图保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "explanation_05",
+      "status": "uncertain",
+      "evidence": "源：“请确认‘宽窄巷子’的‘巷’字是否正确，巷子的巷。”目标保留“是否正确”的核验疑问，并删除冗余提示“巷子的巷”；expected_clean 一致。",
+      "notes": "拼字 cue 确实从目标清除。但 oral:high 对应的源只含“嗯，那个，请，请”及 cue，明显高强度重复/口语表现有限，控制强度可能不足。"
+    },
+    {
+      "id": "navigation_06",
+      "status": "pass",
+      "evidence": "源/目标相同：“请导航到杭州→苏州。”箭头路线和目的地顺序保留。",
+      "notes": "clean passthrough 一致。"
+    },
+    {
+      "id": "academic_06",
+      "status": "pass",
+      "evidence": "源：“F1-score在。不平衡数据集评估中表现更稳健。”目标合并为“F1-score在不平衡数据集评估中表现更稳健。”实体、陈述含义、肯定语气保留。",
+      "notes": "boundary control 可见；仅有轻微“嗯”及标点边界，符合低强度口语清理；型号与肯定陈述保持。"
+    }
+  ],
+  "limitations": "Text-level review only; it does not validate source audio or ASR fidelity. Five uncertain items concern correction candidate type granularity or whether requested oral intensity is realized; daily_chat_01 also has an is_fragment metadata mismatch."
+}

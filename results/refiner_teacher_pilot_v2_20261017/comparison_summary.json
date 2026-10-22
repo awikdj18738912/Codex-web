@@ -1,0 +1,51 @@
+{
+  "fixed_raw_review": {
+    "v1_pass": 12,
+    "v2_pass": 16,
+    "total": 16,
+    "v2_pair_guard_accepted": 15,
+    "known_limit": "Fixed development cases overlap prompt examples; not held-out accuracy."
+  },
+  "qc_controls": {
+    "bad_rejected": 3,
+    "bad_total": 4,
+    "good_accepted": 4,
+    "good_total": 4
+  },
+  "oral_character_lengths": {
+    "v1": {
+      "valid_oral": 24,
+      "min_characters": 129,
+      "median_characters": 269.5,
+      "max_characters": 647,
+      "over_200": 20
+    },
+    "v2": {
+      "valid_oral": 23,
+      "min_characters": 46,
+      "median_characters": 103,
+      "max_characters": 342,
+      "over_200": 2
+    }
+  },
+  "pipeline": {
+    "v1_sft_candidates": 11,
+    "v2_oral_requests": 24,
+    "v2_valid_oral": 23,
+    "v2_clean_accepted": 8,
+    "v2_sft_candidates": 8
+  },
+  "candidate_review_counts": {
+    "pass": 2,
+    "fail": 5,
+    "uncertain": 1
+  },
+  "production_code_changed_during_run": false,
+  "remaining_issues": [
+    "Known false weekday rejection in numeric literal validator",
+    "English/numeric policy rejection includes legitimate cleanup and actual rewrites; not all rejections are teacher errors",
+    "Semantic QC still falsely accepts targets and invents removal claims",
+    "One oral generation repeated until max output tokens and was not valid JSON",
+    "Candidate source and target quality still insufficient for full-scale generation"
+  ]
+}

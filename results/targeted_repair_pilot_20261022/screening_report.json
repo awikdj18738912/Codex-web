@@ -1,0 +1,52 @@
+{
+  "script_version": "1.1.1",
+  "source_sha256": {
+    "train_sft.json": "7c909f65dfd7e4a64f7573a844b181323721304d41fdd58a96b7ed13d1fe282d",
+    "split_manifest.jsonl": "69a814527277a747af35e19a3192fd7e6a8d68ad0313c320c1ddd22466f587b4"
+  },
+  "hash_validation": "all rows matched manifest input_sha256 and target_sha256",
+  "data_source": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021",
+  "input_rows_scanned": 84875,
+  "manifest_train_rows": 84875,
+  "risk_rows": 13412,
+  "control_rows": 71463,
+  "risk_counts_by_type": {
+    "target_residual_correction": 5600,
+    "arabic_number_value_loss": 5261,
+    "english_entity_or_code_loss": 3258,
+    "time_qualifier_loss": 140
+  },
+  "risk_counts_by_primary_type": {
+    "english_entity_or_code_loss": 3258,
+    "arabic_number_value_loss": 4781,
+    "time_qualifier_loss": 94,
+    "target_residual_correction": 5279
+  },
+  "scene_counts": {
+    "academic": 5861,
+    "customer_service": 8794,
+    "daily_chat": 10259,
+    "dictation_memo": 7327,
+    "explanation": 17481,
+    "meeting": 8792,
+    "navigation": 4393,
+    "vibe_coding": 17574,
+    "voice_search": 4394
+  },
+  "pilot_requested": 100,
+  "pilot_risk_count": 80,
+  "pilot_control_count": 20,
+  "pilot_actual_count": 100,
+  "selection": "deterministic risk-type priority with scene round-robin; stable SHA-256 tie-break; controls scene-round-robin",
+  "screening_scope": "heuristic risk flags only; no judgment that any data is bad and no bad-data-rate estimate",
+  "known_limitations": [
+    "Chinese numeral expression equivalence is not normalized.",
+    "Numbers from withdrawn candidates can be flagged if absent in target; surrounding context needs human review."
+  ],
+  "files": {
+    "script": "/home/aim0/桌面/tan/ASR/Codex-web/results/targeted_repair_pilot_20261022/screen_dataset.py",
+    "risk_queue": "/home/aim0/桌面/tan/ASR/Codex-web/results/targeted_repair_pilot_20261022/risk_queue.jsonl",
+    "pilot_sample": "/home/aim0/桌面/tan/ASR/Codex-web/results/targeted_repair_pilot_20261022/pilot_sample_100.jsonl",
+    "report": "/home/aim0/桌面/tan/ASR/Codex-web/results/targeted_repair_pilot_20261022/screening_report.json"
+  }
+}

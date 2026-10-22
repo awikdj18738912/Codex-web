@@ -1,0 +1,116 @@
+{
+  "dataset": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014_scene_v2/dataset",
+  "partial": false,
+  "scored_unique_samples": 2000,
+  "expected_samples": 2000,
+  "arms": {
+    "saved_baseline": {
+      "samples": 2000,
+      "entity_hits": 1342,
+      "entity_expected": 2658,
+      "cer_errors": 3116,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5048908954100828,
+      "cer": 0.06626403538618578
+    },
+    "paired_primary": {
+      "samples": 2000,
+      "entity_hits": 1342,
+      "entity_expected": 2658,
+      "cer_errors": 3116,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5048908954100828,
+      "cer": 0.06626403538618578
+    },
+    "entity_audio_raw": {
+      "samples": 2000,
+      "entity_hits": 1440,
+      "entity_expected": 2658,
+      "cer_errors": 2999,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5417607223476298,
+      "cer": 0.06377594419870704
+    },
+    "saved_baseline_rules": {
+      "samples": 2000,
+      "entity_hits": 1342,
+      "entity_expected": 2658,
+      "cer_errors": 3116,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5048908954100828,
+      "cer": 0.06626403538618578
+    },
+    "entity_rules_auto": {
+      "samples": 2000,
+      "entity_hits": 1440,
+      "entity_expected": 2658,
+      "cer_errors": 2999,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5417607223476298,
+      "cer": 0.06377594419870704
+    }
+  },
+  "paired_changes": {
+    "primary_vs_saved_drift": {
+      "comparable": 2000,
+      "raw_text_different": 0,
+      "cer_errors_changed": 0,
+      "entity_hits_changed": 0
+    },
+    "entity_audio_raw_vs_primary_entity_improved_samples": 94,
+    "entity_audio_raw_vs_primary_entity_degraded_samples": 0,
+    "entity_audio_raw_vs_primary_cer_improved_samples": 93,
+    "entity_audio_raw_vs_primary_cer_degraded_samples": 0,
+    "entity_rules_auto_coverage_samples": 2000,
+    "entity_rules_auto_unavailable_samples": 0,
+    "entity_rules_auto_vs_saved_cer_improved_samples": 93,
+    "entity_rules_auto_vs_saved_cer_degraded_samples": 0
+  },
+  "audio_review": {
+    "samples_with_check": 297,
+    "checks": 326,
+    "samples_with_changes": 94,
+    "changes": 99,
+    "seconds": 2327.201356593985,
+    "recovered_mentions": 98,
+    "lost_mentions": 0,
+    "replay_pcm_seconds": 2129.9621875000003,
+    "replay_wall_seconds": 98.25835273787379,
+    "incremental_errors": 0
+  },
+  "incremental_totals": {
+    "detections": 2609,
+    "candidates": 8154,
+    "low_score_rejected": 3961,
+    "ambiguous_rejected": 2077,
+    "oversized_rejected": 0,
+    "budget_rejected": 0,
+    "queue_rejected": 0,
+    "unmapped": 0,
+    "late_candidates_kept": 15,
+    "completed_windows": 326,
+    "cache_reused": 0
+  },
+  "module_error_count": 0,
+  "false_edit_audit": {
+    "candidate_sample_count": 0,
+    "candidates": [],
+    "method": "For each sample and each stage, names come only from row.library_path. Prefer canonical values recorded in changes/rule_changes; fallback scans that sample's library. Listed only when the stage output adds an occurrence relative to its before text and the canonical is absent from the standard reference. Conservative automatic candidates; no human review claimed."
+  },
+  "integrity": {
+    "reference_count": 2000,
+    "dataset_sample_count": 2000,
+    "dataset_sample_row_count": 2000,
+    "baseline_count": 2000,
+    "baseline_row_count": 2000,
+    "run_row_count": 2000,
+    "run_unique_count": 2000,
+    "duplicate_run_ids": [],
+    "missing_reference_ids": [],
+    "missing_dataset_ids": [],
+    "missing_baseline_ids": [],
+    "extra_baseline_ids": [],
+    "missing_run_ids": [],
+    "extra_run_ids": []
+  }
+}

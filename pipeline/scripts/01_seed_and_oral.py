@@ -18,6 +18,7 @@ from configs.settings import (
     SEED_PER_ROUND,
     TOTAL_SAMPLES,
 )
+from configs.scenes import get_enabled_scenes, validate_enabled_scene
 from src.generators.oral_text_generator import OralTextGenerator
 from src.generators.seed_generator import SeedGenerator, dedupe_seed_dict
 from src.services.llm_client import AsyncLLMClient
@@ -157,11 +158,15 @@ def main():
     logger = logging.getLogger(__name__)
 
     loader = PromptLoader()
+    enabled = set(get_enabled_scenes())
     available = loader.list_scenes("seed")
     if args.scene:
-        scenes = [args.scene]
+        try:
+            scenes = [validate_enabled_scene(args.scene)]
+        except ValueError as exc:
+            parser.error(str(exc))
     else:
-        scenes = [s for s in available if s != "passthrough"]
+        scenes = [s for s in available if s in enabled]
 
     logger.info("=== Step 1: Seed + Oral Text ===")
     logger.info("Scenes (%d): %s", len(scenes), ", ".join(scenes))
@@ -169,7 +174,7 @@ def main():
     targets: dict[str, int] = {}
     rounds_map: dict[str, tuple[int, int]] = {}
     for scene in scenes:
-        t = int(args.total * SCENE_DISTRIBUTION.get(scene, 0.05))
+        t = int(args.total * SCENE_DISTRIBUTION[scene])
         targets[scene] = t
         completed, total, _ = _calc_rounds(scene, t, resume=not args.no_resume)
         if args.rounds is not None:

@@ -32,6 +32,7 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 VLLM_BASE_URL = os.environ.get("VLLM_BASE_URL", "http://localhost:8000/v1")
 VLLM_MODEL_NAME = os.environ.get("VLLM_MODEL_NAME", "google/gemma-4-31b-it")
+LLM_HTTP_TIMEOUT = float(os.environ.get("LLM_HTTP_TIMEOUT", "600"))
 VLLM_START_SCRIPT = os.environ.get(
     "VLLM_START_SCRIPT", str(PROJECT_ROOT / "pipeline" / "scripts" / "start_vllm.sh")
 )
@@ -55,30 +56,25 @@ else:
     LLM_MODEL_NAME = VLLM_MODEL_NAME
     LLM_API_KEY = "EMPTY"
 
-# Internal bilingual scene keys sum to the paper's ten scene-level ratios.
+# Default corpus is Chinese and natural Chinese-English terminology mix only.
+# Preserve the existing relative weights for the nine zh / zh-en-mix scenes;
+# the original combined weight was 0.58, so normalize those weights to 1.0.
 SCENE_DISTRIBUTION = {
-    "daily_chat": 0.07,
-    "english_daily": 0.08,
-    "vibe_coding": 0.12,
-    "explanation": 0.12,
-    "meeting": 0.06,
-    "english_meeting": 0.05,
-    "customer_service": 0.06,
-    "english_customer_service": 0.05,
-    "academic": 0.04,
-    "english_academic": 0.05,
-    "navigation": 0.03,
-    "dictation_memo": 0.05,
-    "english_dictation": 0.05,
-    "voice_search": 0.03,
-    "english_voice_search": 0.04,
-    "english_tech": 0.10,
+    "daily_chat": 0.07 / 0.58,
+    "vibe_coding": 0.12 / 0.58,
+    "explanation": 0.12 / 0.58,
+    "meeting": 0.06 / 0.58,
+    "customer_service": 0.06 / 0.58,
+    "academic": 0.04 / 0.58,
+    "navigation": 0.03 / 0.58,
+    "dictation_memo": 0.05 / 0.58,
+    "voice_search": 0.03 / 0.58,
 }
 
 NOISE_DISTRIBUTION = {"none": 0.20, "light": 0.25, "medium": 0.25, "heavy": 0.30}
 ASR_SIMULATION_RATIO = float(os.environ.get("ASR_SIMULATION_RATIO", "0.20"))
 
-# llm_sim reproduces the paper. text_sim and tts_asr are diagnostic extensions.
+# Aligned text-noise generation; text_sim and tts_asr are diagnostic extensions.
 ASR_MODE = os.environ.get("ASR_MODE", "llm_sim")
 ASR_STRENGTH = os.environ.get("ASR_STRENGTH", "medium")
 ASR_TTS_PROVIDER = os.environ.get("ASR_TTS_PROVIDER", "moss_api")
@@ -102,6 +98,11 @@ ASR_FALLBACK_TEXT_SIM = os.environ.get("ASR_FALLBACK_TEXT_SIM", "1").lower() not
 }
 
 PASSTHROUGH_RATIO = float(os.environ.get("PASSTHROUGH_RATIO", "0.08"))
+# Fraction of non-passthrough Chinese or mixed-language Oral samples with one
+# intentionally misplaced punctuation boundary, chosen freely by the teacher.
+BOUNDARY_PUNCTUATION_RATIO = float(
+    os.environ.get("BOUNDARY_PUNCTUATION_RATIO", "0.10")
+)
 SELF_CORRECTION_RATIO = float(os.environ.get("SELF_CORRECTION_RATIO", "0.18"))
 MULTI_CORRECTION_RATIO = float(os.environ.get("MULTI_CORRECTION_RATIO", "0.08"))
 EXPLANATION_CORRECTION_RATIO = float(
@@ -115,17 +116,22 @@ KEYWORD_INCLUDE_EXPLAINED_ENTITIES = os.environ.get(
 KEYWORD_QC_MODE = os.environ.get("KEYWORD_QC_MODE", "rule")
 
 TEMPERATURE_CLEAN = 0.8
+# Deterministically constructed full pairs already have a known clean target.
+# Use "teacher" to retain the independent reconstruction experiment.
+CLEAN_TARGET_MODE = os.environ.get("CLEAN_TARGET_MODE", "construction").strip().lower()
+if CLEAN_TARGET_MODE not in {"construction", "teacher"}:
+    raise ValueError("CLEAN_TARGET_MODE must be construction or teacher")
 TEMPERATURE_ORAL = 0.9
 TEMPERATURE_SEED = 0.85
-LLM_MAX_CONCURRENT = 20
+LLM_MAX_CONCURRENT = int(os.environ.get("LLM_MAX_CONCURRENT", "20"))
 LLM_MAX_TOKENS_SEED = 6_164
-LLM_MAX_TOKENS_ORAL = 4_096
+LLM_MAX_TOKENS_ORAL = int(os.environ.get("LLM_MAX_TOKENS_ORAL", "4096"))
 LLM_MAX_TOKENS_CLEAN = 4_096
 LLM_MAX_TOKENS_QC = 1_024
 LLM_MAX_TOKENS_DEFAULT = 4_096
 DEDUP_THRESHOLD = 0.75
 
-DATA_DIR = str(PROJECT_ROOT / "data")
+DATA_DIR = os.environ.get("ASR_DATA_DIR", str(PROJECT_ROOT / "data"))
 SEEDS_DIR = str(Path(DATA_DIR) / "seeds")
 RAW_DIR = str(Path(DATA_DIR) / "raw")
 PROCESSED_DIR = str(Path(DATA_DIR) / "processed")

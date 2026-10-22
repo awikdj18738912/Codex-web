@@ -1,0 +1,856 @@
+{
+  "validation": {
+    "complete_round_arm_coverage": true,
+    "round_count": 1,
+    "pcm_and_library_hash_match": true,
+    "expected_packets_per_run": 3750,
+    "pacing_packets_checked": 7500,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "arms_medians": {
+    "raw": {
+      "first_external_text_wall_seconds": 2.2568701999261975,
+      "total_wall_seconds": 600.1848461609334,
+      "finish_tail_from_last_packet_submit_seconds": 0.12037250492721796,
+      "finish_tail_from_finish_call_seconds": 0.11633719503879547,
+      "max_cumulative_schedule_lateness_seconds": 0.6788865393027663,
+      "chunk_request_total_seconds": 61.09732765657827
+    },
+    "entity": {
+      "first_external_text_wall_seconds": 2.2249274058267474,
+      "total_wall_seconds": 604.9780562641099,
+      "finish_tail_from_last_packet_submit_seconds": 0.4366426579654217,
+      "finish_tail_from_finish_call_seconds": 0.42688815109431744,
+      "max_cumulative_schedule_lateness_seconds": 19.753401258029044,
+      "chunk_request_total_seconds": 172.9230741802603
+    }
+  },
+  "arm_max_and_median_send_lateness": {
+    "raw": {
+      "max_seconds": 0.6788865393027663,
+      "median_seconds": 0.6788865393027663
+    },
+    "entity": {
+      "max_seconds": 19.753401258029044,
+      "median_seconds": 19.753401258029044
+    }
+  },
+  "per_minute_packet_request_latency": {
+    "raw:minute_1": {
+      "audio_start_seconds": 0,
+      "audio_end_seconds": 60,
+      "sample_count": 375,
+      "p50_seconds": 0.005009994376450777,
+      "p95_seconds": 0.11413221033290032,
+      "max_seconds": 0.23780976282432675
+    },
+    "entity:minute_1": {
+      "audio_start_seconds": 0,
+      "audio_end_seconds": 60,
+      "sample_count": 375,
+      "p50_seconds": 0.0058670202270150185,
+      "p95_seconds": 0.12435317770577968,
+      "max_seconds": 1.2125616041012108
+    },
+    "raw:minute_2": {
+      "audio_start_seconds": 60,
+      "audio_end_seconds": 120,
+      "sample_count": 375,
+      "p50_seconds": 0.005459827836602926,
+      "p95_seconds": 0.12152756219729784,
+      "max_seconds": 0.21133866207674146
+    },
+    "entity:minute_2": {
+      "audio_start_seconds": 60,
+      "audio_end_seconds": 120,
+      "sample_count": 375,
+      "p50_seconds": 0.007204656954854727,
+      "p95_seconds": 0.14125767881050708,
+      "max_seconds": 0.23119745682924986
+    },
+    "raw:minute_3": {
+      "audio_start_seconds": 120,
+      "audio_end_seconds": 180,
+      "sample_count": 375,
+      "p50_seconds": 0.004878765903413296,
+      "p95_seconds": 0.11963434363715351,
+      "max_seconds": 0.224996839184314
+    },
+    "entity:minute_3": {
+      "audio_start_seconds": 120,
+      "audio_end_seconds": 180,
+      "sample_count": 375,
+      "p50_seconds": 0.008232731837779284,
+      "p95_seconds": 0.14482865598984065,
+      "max_seconds": 0.24693947099149227
+    },
+    "raw:minute_4": {
+      "audio_start_seconds": 180,
+      "audio_end_seconds": 240,
+      "sample_count": 375,
+      "p50_seconds": 0.004747374914586544,
+      "p95_seconds": 0.12325530340895065,
+      "max_seconds": 0.3108250889927149
+    },
+    "entity:minute_4": {
+      "audio_start_seconds": 180,
+      "audio_end_seconds": 240,
+      "sample_count": 375,
+      "p50_seconds": 0.007782091852277517,
+      "p95_seconds": 0.15332032539881765,
+      "max_seconds": 0.24821253586560488
+    },
+    "raw:minute_5": {
+      "audio_start_seconds": 240,
+      "audio_end_seconds": 300,
+      "sample_count": 375,
+      "p50_seconds": 0.004804990720003843,
+      "p95_seconds": 0.12106920373626058,
+      "max_seconds": 0.8385128071531653
+    },
+    "entity:minute_5": {
+      "audio_start_seconds": 240,
+      "audio_end_seconds": 300,
+      "sample_count": 375,
+      "p50_seconds": 0.006938396953046322,
+      "p95_seconds": 0.14946049256250263,
+      "max_seconds": 0.4050586591474712
+    },
+    "raw:minute_6": {
+      "audio_start_seconds": 300,
+      "audio_end_seconds": 360,
+      "sample_count": 375,
+      "p50_seconds": 0.004905894864350557,
+      "p95_seconds": 0.11616255380213263,
+      "max_seconds": 0.2895717201754451
+    },
+    "entity:minute_6": {
+      "audio_start_seconds": 300,
+      "audio_end_seconds": 360,
+      "sample_count": 375,
+      "p50_seconds": 0.008457761257886887,
+      "p95_seconds": 0.1404969760682435,
+      "max_seconds": 0.27579403202980757
+    },
+    "raw:minute_7": {
+      "audio_start_seconds": 360,
+      "audio_end_seconds": 420,
+      "sample_count": 375,
+      "p50_seconds": 0.0051347180269658566,
+      "p95_seconds": 0.13576020682230597,
+      "max_seconds": 0.27310778480023146
+    },
+    "entity:minute_7": {
+      "audio_start_seconds": 360,
+      "audio_end_seconds": 420,
+      "sample_count": 375,
+      "p50_seconds": 0.010516197886317968,
+      "p95_seconds": 0.15054290848784152,
+      "max_seconds": 0.24565617879852653
+    },
+    "raw:minute_8": {
+      "audio_start_seconds": 420,
+      "audio_end_seconds": 480,
+      "sample_count": 375,
+      "p50_seconds": 0.004909671377390623,
+      "p95_seconds": 0.11295329416170721,
+      "max_seconds": 0.8251553899608552
+    },
+    "entity:minute_8": {
+      "audio_start_seconds": 420,
+      "audio_end_seconds": 480,
+      "sample_count": 375,
+      "p50_seconds": 0.04799457220360637,
+      "p95_seconds": 0.16075491397641603,
+      "max_seconds": 3.0813152380287647
+    },
+    "raw:minute_9": {
+      "audio_start_seconds": 480,
+      "audio_end_seconds": 540,
+      "sample_count": 375,
+      "p50_seconds": 0.005137227009981871,
+      "p95_seconds": 0.11886370331048965,
+      "max_seconds": 0.22648110007867217
+    },
+    "entity:minute_9": {
+      "audio_start_seconds": 480,
+      "audio_end_seconds": 540,
+      "sample_count": 375,
+      "p50_seconds": 0.050248096231371164,
+      "p95_seconds": 0.18408043952658776,
+      "max_seconds": 4.503698981832713
+    },
+    "raw:minute_10": {
+      "audio_start_seconds": 540,
+      "audio_end_seconds": 600,
+      "sample_count": 375,
+      "p50_seconds": 0.005055534653365612,
+      "p95_seconds": 0.11137094032019378,
+      "max_seconds": 0.22965693986043334
+    },
+    "entity:minute_10": {
+      "audio_start_seconds": 540,
+      "audio_end_seconds": 600,
+      "sample_count": 375,
+      "p50_seconds": 0.047788440715521574,
+      "p95_seconds": 0.20416169827803973,
+      "max_seconds": 10.385152523871511
+    }
+  },
+  "per_round_deltas_entity_minus_raw": [
+    {
+      "round": 0,
+      "first_external_text_wall_seconds": -0.03194279409945011,
+      "total_wall_seconds": 4.793210103176534,
+      "finish_tail_from_last_packet_submit_seconds": 0.3162701530382037,
+      "finish_tail_from_finish_call_seconds": 0.31055095605552197,
+      "max_cumulative_schedule_lateness_seconds": 19.074514718726277,
+      "chunk_request_total_seconds": 111.82574652368203,
+      "actual_primary_text_identical": true
+    }
+  ],
+  "paired_delta_medians": {
+    "first_external_text_wall_seconds": -0.03194279409945011,
+    "total_wall_seconds": 4.793210103176534,
+    "finish_tail_from_last_packet_submit_seconds": 0.3162701530382037,
+    "finish_tail_from_finish_call_seconds": 0.31055095605552197,
+    "max_cumulative_schedule_lateness_seconds": 19.074514718726277,
+    "chunk_request_total_seconds": 111.82574652368203
+  },
+  "target_spelling_observations": [
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "中国水利水电科学研究院",
+      "first_primary_wall_seconds": 8.817649356089532,
+      "first_published_wall_seconds": 8.817707126960158,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "长江",
+      "first_primary_wall_seconds": 25.421643207781017,
+      "first_published_wall_seconds": 25.42180462181568,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "黄河",
+      "first_primary_wall_seconds": 33.04863946978003,
+      "first_published_wall_seconds": 33.04874085076153,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "湖北荆州",
+      "first_primary_wall_seconds": 54.42364606074989,
+      "first_published_wall_seconds": 54.423734882846475,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 62.44003022601828,
+      "first_published_wall_seconds": 62.44011994684115,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 97.48343857796863,
+      "first_published_wall_seconds": 97.48354052985087,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "西湖",
+      "first_primary_wall_seconds": 103.8964463477023,
+      "first_published_wall_seconds": 103.89657126972452,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 112.5639601489529,
+      "first_published_wall_seconds": 112.56401325995103,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 112.5639601489529,
+      "first_published_wall_seconds": 112.56401325995103,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 114.5913354898803,
+      "first_published_wall_seconds": 114.59147779177874,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 114.5913354898803,
+      "first_published_wall_seconds": 114.59147779177874,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 118.60330015281215,
+      "first_published_wall_seconds": 118.60335946409032,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 118.60330015281215,
+      "first_published_wall_seconds": 118.60335946409032,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "二滩",
+      "first_primary_wall_seconds": 120.52772182505578,
+      "first_published_wall_seconds": 120.52782794693485,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 120.52772182505578,
+      "first_published_wall_seconds": 120.52782794693485,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "蓄滞洪区",
+      "first_primary_wall_seconds": 213.17716967407614,
+      "first_published_wall_seconds": 213.17729292484,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "华北平原",
+      "first_primary_wall_seconds": 274.1309796636924,
+      "first_published_wall_seconds": 274.1310917260125,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "太行山",
+      "first_primary_wall_seconds": 282.85128398472443,
+      "first_published_wall_seconds": 282.8513959357515,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "河南林州",
+      "first_primary_wall_seconds": 288.8812104319222,
+      "first_published_wall_seconds": 288.88136070314795,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "红旗渠",
+      "first_primary_wall_seconds": 290.8934452519752,
+      "first_published_wall_seconds": 290.89356018276885,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "陕西",
+      "first_primary_wall_seconds": 326.0559930447489,
+      "first_published_wall_seconds": 326.0561218447983,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "秦岭",
+      "first_primary_wall_seconds": 330.1541194729507,
+      "first_published_wall_seconds": 330.1542207431048,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "汉江",
+      "first_primary_wall_seconds": 330.1541194729507,
+      "first_published_wall_seconds": 330.1542207431048,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "关中平原",
+      "first_primary_wall_seconds": 332.1107074180618,
+      "first_published_wall_seconds": 332.11082278890535,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "甘肃",
+      "first_primary_wall_seconds": 335.0192922060378,
+      "first_published_wall_seconds": 335.01936080586165,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "安徽",
+      "first_primary_wall_seconds": 343.1751443990506,
+      "first_published_wall_seconds": 343.17529700975865,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "南水北调",
+      "first_primary_wall_seconds": 365.85287323314697,
+      "first_published_wall_seconds": 365.852941242978,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "江苏扬州",
+      "first_primary_wall_seconds": 384.3807365037501,
+      "first_published_wall_seconds": 384.38086347514763,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "淮河",
+      "first_primary_wall_seconds": 396.36733932979405,
+      "first_published_wall_seconds": 396.36743882112205,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "青海省",
+      "first_primary_wall_seconds": 445.89453860512003,
+      "first_published_wall_seconds": 445.8946084449999,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "玛多县",
+      "first_primary_wall_seconds": 445.89453860512003,
+      "first_published_wall_seconds": 445.8946084449999,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "河南省",
+      "first_primary_wall_seconds": 473.25123319402337,
+      "first_published_wall_seconds": 473.2514183348976,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "开封市",
+      "first_primary_wall_seconds": 475.21563397999853,
+      "first_published_wall_seconds": 475.21570478985086,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "黄土高原",
+      "first_primary_wall_seconds": 503.24172399472445,
+      "first_published_wall_seconds": 503.24183001508936,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "澜沧江",
+      "first_primary_wall_seconds": 542.1052929060534,
+      "first_published_wall_seconds": 542.1054248660803,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "三江源国家公园",
+      "first_primary_wall_seconds": 546.1729044411331,
+      "first_published_wall_seconds": 546.173026882112,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "黄河三角洲国家级自然保护区",
+      "first_primary_wall_seconds": 552.5138813490048,
+      "first_published_wall_seconds": 552.5140088289045,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "国家水网",
+      "first_primary_wall_seconds": 591.5400786367245,
+      "first_published_wall_seconds": 591.5401576468721,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "中国水利水电科学研究院",
+      "first_primary_wall_seconds": 8.810232040006667,
+      "first_published_wall_seconds": 8.817777777090669,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "长江",
+      "first_primary_wall_seconds": 25.410011746920645,
+      "first_published_wall_seconds": 25.42509110691026,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "黄河",
+      "first_primary_wall_seconds": 33.042402118910104,
+      "first_published_wall_seconds": 33.06389203900471,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "湖北荆州",
+      "first_primary_wall_seconds": 54.416345483157784,
+      "first_published_wall_seconds": 54.43573498399928,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 62.42701955791563,
+      "first_published_wall_seconds": 62.4538930892013,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 97.47901789890602,
+      "first_published_wall_seconds": 97.50779299205169,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "西湖",
+      "first_primary_wall_seconds": 103.89023412484676,
+      "first_published_wall_seconds": 103.91834089392796,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 112.5556697268039,
+      "first_published_wall_seconds": 112.59020886104554,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 112.5556697268039,
+      "first_published_wall_seconds": 112.59020886104554,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 114.58145682187751,
+      "first_published_wall_seconds": 114.597971748095,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 114.58145682187751,
+      "first_published_wall_seconds": 114.597971748095,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 118.59415573114529,
+      "first_published_wall_seconds": 118.61366461822763,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 118.59415573114529,
+      "first_published_wall_seconds": 118.61366461822763,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "二滩",
+      "first_primary_wall_seconds": 120.51765871886164,
+      "first_published_wall_seconds": 120.53600057493895,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 120.51765871886164,
+      "first_published_wall_seconds": 120.53600057493895,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "蓄滞洪区",
+      "first_primary_wall_seconds": 213.17309293383732,
+      "first_published_wall_seconds": 213.21571196708828,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "华北平原",
+      "first_primary_wall_seconds": 274.1272706328891,
+      "first_published_wall_seconds": 274.1673414851539,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "太行山",
+      "first_primary_wall_seconds": 282.8480665287934,
+      "first_published_wall_seconds": 282.87850856408477,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "河南林州",
+      "first_primary_wall_seconds": 288.8731800909154,
+      "first_published_wall_seconds": 288.90379004506394,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "红旗渠",
+      "first_primary_wall_seconds": 290.8836872591637,
+      "first_published_wall_seconds": 290.9022679878399,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "陕西",
+      "first_primary_wall_seconds": 326.05136770615354,
+      "first_published_wall_seconds": 326.05384301487356,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "秦岭",
+      "first_primary_wall_seconds": 330.1462839702144,
+      "first_published_wall_seconds": 330.18556298688054,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "汉江",
+      "first_primary_wall_seconds": 330.1462839702144,
+      "first_published_wall_seconds": 330.18556298688054,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "关中平原",
+      "first_primary_wall_seconds": 332.10400456702337,
+      "first_published_wall_seconds": 332.13561877887696,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "甘肃",
+      "first_primary_wall_seconds": 335.01701593678445,
+      "first_published_wall_seconds": 335.0187186258845,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "安徽",
+      "first_primary_wall_seconds": 343.1733491551131,
+      "first_published_wall_seconds": 343.17591650318354,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "南水北调",
+      "first_primary_wall_seconds": 365.84563471982256,
+      "first_published_wall_seconds": 365.8793885940686,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "江苏扬州",
+      "first_primary_wall_seconds": 384.3739506988786,
+      "first_published_wall_seconds": 384.41045223595574,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "淮河",
+      "first_primary_wall_seconds": 396.36982984188944,
+      "first_published_wall_seconds": 396.4004143238999,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "青海省",
+      "first_primary_wall_seconds": 445.89405250921845,
+      "first_published_wall_seconds": 445.89654390513897,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "玛多县",
+      "first_primary_wall_seconds": 445.89405250921845,
+      "first_published_wall_seconds": 445.89654390513897,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "河南省",
+      "first_primary_wall_seconds": 482.04423960484564,
+      "first_published_wall_seconds": 482.04604628216475,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "开封市",
+      "first_primary_wall_seconds": 482.6307730320841,
+      "first_published_wall_seconds": 482.6688651670702,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "黄土高原",
+      "first_primary_wall_seconds": 506.87556709116325,
+      "first_published_wall_seconds": 506.89252586103976,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "澜沧江",
+      "first_primary_wall_seconds": 545.0778047312051,
+      "first_published_wall_seconds": 545.1158449440263,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "三江源国家公园",
+      "first_primary_wall_seconds": 546.6332657509483,
+      "first_published_wall_seconds": 546.6617842637934,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "黄河三角洲国家级自然保护区",
+      "first_primary_wall_seconds": 555.8161575221457,
+      "first_published_wall_seconds": 555.83560584113,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "国家水网",
+      "first_primary_wall_seconds": 603.0927226399072,
+      "first_published_wall_seconds": 603.1086611449718,
+      "present_in_final": true
+    }
+  ],
+  "final_entity_changes": [],
+  "goupitan_spelling_transitions": [
+    {
+      "round": 0,
+      "arm": "raw",
+      "wall_seconds": 118.60335946409032,
+      "from_spelling": null,
+      "to_spelling": "构皮滩"
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "wall_seconds": 118.61366461822763,
+      "from_spelling": null,
+      "to_spelling": "构皮滩"
+    }
+  ],
+  "limitations": [
+    "Single manifest input; repetition count and coverage are derived from complete rounds.",
+    "No human reference, no CER or entity precision/recall claim.",
+    "Target-term publication times are lexical observations, not causal evidence of an entity edit.",
+    "Timing excludes model/library preparation and downstream Web refinement.",
+    "Returned text/patch observation times are not audio entity-end timestamps.",
+    "Real-time pacing measures user-visible streaming latency, not offline file throughput."
+  ]
+}

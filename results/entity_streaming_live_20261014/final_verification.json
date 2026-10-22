@@ -1,0 +1,169 @@
+{
+  "protected_files": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/system/web_app.py": {
+      "before": "417c202f847103c8b2666ea2779e37c1d710da3c55bc95e5d85f013aa7ead31f",
+      "after": "417c202f847103c8b2666ea2779e37c1d710da3c55bc95e5d85f013aa7ead31f"
+    },
+    "/home/aim0/桌面/tan/ASR/Codex-web/system/qwen_asr_stream_server.py": {
+      "before": "543c11dd14e356c5118b4c9ba7cdb818790c76cd324d02fce63f466e2cb9d2dd",
+      "after": "543c11dd14e356c5118b4c9ba7cdb818790c76cd324d02fce63f466e2cb9d2dd"
+    },
+    "/home/aim0/桌面/tan/ASR/Codex-web/system/web/index.html": {
+      "before": "f8c462813d7a46213382ea35bb77d7beac28e1ce15c4d86971a2d0c098eb8abb",
+      "after": "f8c462813d7a46213382ea35bb77d7beac28e1ce15c4d86971a2d0c098eb8abb"
+    },
+    "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_matcher.py": {
+      "before": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8",
+      "after": "a01fef3eef17fbdbcae667a1021ac26d27d1a368c6fb1201f566ab24997501b8"
+    },
+    "/home/aim0/桌面/tan/ASR/Codex-web/system/entity_retrieval.py": {
+      "before": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e",
+      "after": "3432770d1326e992ea8a6fef3b81d5e3c2e4ecfb9f1637e187c9ff260905530e"
+    },
+    "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db": {
+      "before": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d",
+      "after": "a45a6473d81608b63f30f7270c137c027814ebc179d1858e01d7e2572caf8a1d"
+    }
+  },
+  "health": {
+    "8081": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "window_pipeline": {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": true,
+        "fixed_groups": true,
+        "stream_reprocess_rejected": false,
+        "final_reprocess_rejected": false,
+        "group_numeric_self_corrections": true
+      },
+      "final_refinement_mode": "off",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 17,
+        "would_skip_windows": 6,
+        "vetoed_windows": 6,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "confidence_supplement": {
+        "mode": "off",
+        "low_fragment_threshold": 0.8,
+        "missing_evidence": "review",
+        "high_score_veto": false,
+        "calibrated": false,
+        "purpose": "supplement_native_review_not_certify_cleanup_need"
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8051": {
+      "ok": true,
+      "window_edit_policy": "compat",
+      "strict_local_protocol_version": null,
+      "entity_db": true,
+      "entity_asr_context_enabled": false,
+      "entity_audio_repair_enabled": true,
+      "refinement_gate_mode": "tri_state",
+      "asr_api_style": "current",
+      "window_pipeline": {
+        "version": "fixed_k3_v1",
+        "window_size": 3,
+        "one_punctuation_window": true,
+        "fixed_groups": true,
+        "stream_reprocess_rejected": false,
+        "final_reprocess_rejected": false,
+        "group_numeric_self_corrections": true
+      },
+      "final_refinement_mode": "off",
+      "learned_window_gate": {
+        "mode": "on",
+        "ready": true,
+        "model_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/gate_terminal_gain_round4_20261012/linear_training",
+        "model_sha256": "154d59fd58e30414bdbe973d6125dbc504f0def56c5457e7ec98483b3f8d8de5",
+        "threshold": 0.8,
+        "load_error": null,
+        "scored_windows": 0,
+        "would_skip_windows": 0,
+        "vetoed_windows": 0,
+        "scoring_errors": 0,
+        "scope": "window_refine_only",
+        "calibrated": false
+      },
+      "confidence_supplement": {
+        "mode": "off",
+        "low_fragment_threshold": 0.8,
+        "missing_evidence": "review",
+        "high_score_veto": false,
+        "calibrated": false,
+        "purpose": "supplement_native_review_not_certify_cleanup_need"
+      },
+      "numeric_normalization_enabled": true,
+      "numeric_backend": "zh-itn",
+      "zh_itn_enabled": true,
+      "zh_itn_rule_pack": "zh-itn-strict-conservative-v90",
+      "numeric_rule_protocol_version": "v1-rule-owned-number-surface"
+    },
+    "8766": {
+      "api_styles": [
+        "current",
+        "legacy_v1"
+      ],
+      "asr_send_chunk_seconds": 0.5,
+      "confidence_calibrated": false,
+      "confidence_logprobs": 5,
+      "context_supported": true,
+      "max_context_chars": 2048,
+      "mode": "streaming",
+      "ok": true,
+      "segmentation_mode": "vad_finalize",
+      "silence_rms_threshold": 0.002,
+      "vad": "silero",
+      "vad_min_silence": 0.7,
+      "vad_min_speech": 0.25,
+      "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+      "vad_preroll": 0.7,
+      "vad_tail_pad": 1.0,
+      "vad_threshold": 0.5
+    }
+  },
+  "production_source_hashes": {
+    "system/entity_audio_repair.py": "5dc551915521478a59ed13b7dd1eb1b38e815033616aa9e99f69567c1df63950",
+    "system/entity_streaming_live.py": "a357dcdf6dd8e87a056ec634addce242f02e9857b050b50bf87fd3c69d52044d"
+  },
+  "exact_entity_source_matches_final_worker": true,
+  "asr_pid": 1455505,
+  "asr_pid_unchanged": true,
+  "checks": {
+    "main_pytest_passed": 146,
+    "subtests_passed": 81,
+    "historical_local_pytest_passed": 9
+  },
+  "private_worker_stopped": true,
+  "deployed_full_audio_smoke": {
+    "trace_id": "562841d8e8ca44e28a0d68c21f5ed3fe",
+    "first_corrected_raw": {
+      "elapsed_seconds": 8.685587579850107,
+      "uploaded_audio_seconds": 60.0
+    },
+    "replay_audio_seconds": 28.0,
+    "changes": 1,
+    "no_full_audio_fallback": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "captured_at_utc": "2026-10-16T17:05:09.745326+00:00",
+  "source_sha256": {
+    "pipeline/configs/settings.py": "b979028df9b1f0307cdddfe75b08988040fe248f1ddf2b551da1ecf3815ee836",
+    "pipeline/configs/prompts_clean.json": "ec7b4d7a0a6c405c30d65244a85ca5419851b055d753c574142389525e9c894f",
+    "pipeline/configs/prompts.json": "39f554f3fedb232dc247556cd867b8963f956ad72e5c19b5094ad79d2d6f10f4",
+    "pipeline/src/generators/oral_text_generator.py": "abe4e0554b1ec62d04bb818373cc9ee9b8424712b40411a16b751f10203f12c1",
+    "pipeline/src/generators/clean_text_generator.py": "84a6d419ab2e0f693c320785b8e3ae48b0299f6e33e0a1d896a25c0bf1093483",
+    "pipeline/src/generators/asr_simulator.py": "1ca6401f7b26491af76bcc508732ef80ecad9a0515f8c0c492dd9967e1b3263b",
+    "pipeline/src/utils/numeric_policy.py": "f7a0f663f883cb26d970c8aa5f62bb26d86d51f932481c1c06edd5eacb9a5208",
+    "pipeline/src/utils/english_entity_policy.py": "85595cef1bcd46a0b172d62afd3c8f1f4f6cba41eeb8b8c6408011864c574fa0",
+    "pipeline/scripts/04_assemble.py": "248ab10b660132d7e86296392842070a3dca17a66ecb8a9a9294521826f4bf82",
+    "pipeline/scripts/05_finalize.py": "e0b9cf40662f87f7b7abc25f00d1125c343f5adb8bb819bdf782dbe58fa5acea",
+    "pipeline/scripts/export_sft.py": "eb720f28050e2fde4cad7a8553456046ae788d649aaf2534c3ed911e0f83a140",
+    "system/refinement_guard.py": "5f1be6ab4abe51354aff032238ef48b85290690fd0913382b0b2edd556fe3499"
+  },
+  "teacher_source": "https://huggingface.co/cyankiwi/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "original_project": "https://github.com/AnXMuy/AgenticASR",
+  "notes": [
+    "Production pipeline files were not modified during this pilot.",
+    "Fixed diagnostics and completed daily/coding seed pools resumed after a seed-request timeout.",
+    "Explanation pilot seed pool uses eight entries/category; production prompt still requests 40."
+  ]
+}

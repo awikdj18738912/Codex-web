@@ -341,7 +341,7 @@ class _GrowingStreamRequest:
 def _complete_window_stream_request(*args, **kwargs):
     payload = _stable_stream_request(*args, **kwargs)
     if "text" in payload:
-        text = "第一段原始文本。第二段原始文本。第三段原始文本。"
+        text = "第一段原始文本。第二段原始文本。第三段原始文本。第四段原始文本。"
         payload["text"] = text
         if "completed_segments" in payload:
             payload["completed_segments"][0]["text"] = text
@@ -349,10 +349,10 @@ def _complete_window_stream_request(*args, **kwargs):
 
 
 class _GrowingGroupStreamRequest(_GrowingStreamRequest):
-    """Each event completes a K=3 group, so neural streaming can run."""
+    """Each event supplies a K=3 group and its right-context lookahead."""
 
-    FIRST = "第一句原始文本。附件已经检查。会议即将开始。"
-    SECOND = "第二句原始文本。资料已经准备。工作正常进行。"
+    FIRST = "第一句原始文本。附件已经检查。会议即将开始。补充说明。"
+    SECOND = "第二句原始文本。资料已经准备。工作正常进行。随后继续。"
     TRANSCRIPTS = (FIRST, FIRST + SECOND)
 
     def __call__(self, *args, **kwargs):
@@ -363,7 +363,7 @@ class _GrowingGroupStreamRequest(_GrowingStreamRequest):
 
 
 class _VadEventStreamRequest:
-    SEGMENTS = ("甲段原始，", "乙段原始。", "丙段原始。")
+    SEGMENTS = ("甲段原始，", "乙段原始。", "丙段原始。", "丁段原始。")
 
     def __init__(self) -> None:
         self.chunk_count = 0
@@ -652,6 +652,68 @@ def _multi_stage_correction_stream_request(
 
 @unittest.skipIf(web_app is None, "FastAPI is not installed")
 class WebAppFinishTest(unittest.TestCase):
+    def test_numeric_optimization_retries_only_targeted_failures(self) -> None:
+        from system.entity_pipeline import has_retryable_integrity_failure
+        for reasons in (
+            ("numeric_value_mismatch",),
+            ("numeric_rule_surface_mismatch",),
+            ("numeric_value_mismatch", "severe_content_loss"),
+        ):
+            with self.subTest(reasons=reasons):
+                self.assertFalse(has_retryable_integrity_failure(reasons, numeric_rule_mode=True))
+        self.assertTrue(has_retryable_integrity_failure(("numeric_value_mismatch",)))
+        self.assertTrue(has_retryable_integrity_failure(("severe_content_loss",), numeric_rule_mode=True))
+        self.assertTrue(has_retryable_integrity_failure(
+            ("numeric_value_mismatch", "placeholder_count:__ENTITY_000__:0"), numeric_rule_mode=True
+        ))
+
+    def test_numeric_optimization_core_preserves_values_and_skips_phone_model_call(self) -> None:
+        if not web_app.DEFAULT_ZH_ITN_LIBRARY.is_file():
+            self.skipTest("build zh-itn bridge for this integration test")
+        from system.protection import EntityProtector
+
+        class Refiner(_IdentityRefiner):
+            calls = []
+
+            def refine(self, text, *, entity_hints=(), strict_placeholders=False):
+                self.calls.append((text, strict_placeholders))
+                if "体温为37度" in text:
+                    return "体温为38度。", 1.0
+                if "会议在9点30分" in text:
+                    return "会议在9:30开始。", 1.0
+                return text, 1.0
+
+        refiner = Refiner()
+        with patch.object(web_app, "TransformersRefiner", return_value=refiner):
+            app = web_app.create_app(Path("/tmp/fake-refiner"), "cpu", "http://fake-asr",
+                "Chinese", 64, None, refinement_gate_mode="tri_state",
+                zh_itn_library=web_app.DEFAULT_ZH_ITN_LIBRARY)
+        endpoint = next(r.endpoint for r in app.routes if getattr(r, "path", None) == "/ws/stream")
+        closure = dict(zip(endpoint.__code__.co_freevars, endpoint.__closure__))
+        core = closure["refine_update"].cell_contents
+
+        def run(text):
+            refiner.calls.clear()
+            return core(text, "Chinese", True,
+                EntityProtector((), enable_rule_protection=True, protect_numeric_spans=False),
+                None, single_window=True)
+
+        result = run("联系电话是一三八零零一三八零零零，备用电话是幺三九九幺二六三七九七。")
+        self.assertEqual(refiner.calls, [])
+        self.assertEqual(result["clean_text"], "联系电话是13800138000，备用电话是13991263797。")
+
+        result = run("嗯，会议在九点三十分开始。")
+        self.assertEqual(len(refiner.calls), 1)
+        self.assertEqual(result["clean_text"], "会议在9点30分开始。")
+        self.assertEqual(result["refiner_retry_count"], 0)
+        self.assertEqual(result["refiner_reject_reasons"], [])
+
+        result = run("嗯，体温为三十七度。")
+        self.assertEqual(len(refiner.calls), 1)
+        self.assertEqual(result["clean_text"], "嗯，体温为37度。")
+        self.assertEqual(result["refiner_retry_count"], 0)
+        self.assertIn("segment_1:numeric_value_mismatch", result["refiner_reject_reasons"])
+
     def test_learned_window_switch_shadow_on_and_health(self) -> None:
         from experiments.scripts.collect_gate_pairs import closure_value
         from system.learned_window_gate import LearnedWindowGate
@@ -824,7 +886,9 @@ class WebAppFinishTest(unittest.TestCase):
             decision = "REMOVE"
 
             def refine(self, text, *, entity_hints=(), strict_placeholders=False):
-                return "春秋晚期嘛，所以礼崩嘛。", 1.0
+                # Whole-output rejection now comes from an independent
+                # unsupported insertion, not the removed deletion veto.
+                return "春秋晚期嘛，所以礼崩嘛。新增事实没有依据。", 1.0
 
             def review_repetition_candidate_with_status(
                 self, context, candidate, target, local_start,
@@ -932,7 +996,7 @@ class WebAppFinishTest(unittest.TestCase):
         )
 
         self.assertIn("完整 K=3 片段（门控检查，未调用 Refiner）", report)
-        self.assertIn("未满 K=3 窗口的待处理尾部", report)
+        self.assertIn("等待凑满 K=3 或右侧上下文的待处理尾部", report)
         self.assertIn("完整 K=3 窗口的 Refiner 输入", report)
         self.assertIn("所属 K=3 窗口未完成（未调用模型）", report)
         self.assertIn("决定：`remove`", report)
@@ -997,7 +1061,7 @@ class WebAppFinishTest(unittest.TestCase):
     def test_local_review_asks_about_each_candidate_in_shared_context(self) -> None:
         source = (
             "第一句。第二句。现在开始，首首先谈人人性的问题。"
-            "第五句补充背景。第六句继续说明。"
+            "第五句补充背景。第六句继续说明。第七句提供下文。"
         )
 
         class _FocusedRefiner(_IdentityRefiner):
@@ -1047,7 +1111,7 @@ class WebAppFinishTest(unittest.TestCase):
                     update = self._await_event(websocket, "update")
                     self.assertEqual(
                         update["clean_text"],
-                        "第一句。第二句。现在开始，首先谈人人性的问题。第五句补充背景。第六句继续说明。",
+                        "第一句。第二句。现在开始，首先谈人人性的问题。第五句补充背景。第六句继续说明。第七句提供下文。",
                         (update["repetition_reviews"], _FocusedRefiner.calls),
                     )
                     decisions = {
@@ -1072,7 +1136,7 @@ class WebAppFinishTest(unittest.TestCase):
         source = (
             "第一句。第二句。所以不要去谈什么正义，天下熙熙皆为利来，"
             "天下攘攘皆为利利往，所以没有正义，强权即真理。"
-            "第五句。第六句。"
+            "第五句。第六句。第七句。"
         )
 
         class _UndecidedRefiner(_IdentityRefiner):
@@ -1135,7 +1199,7 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(
                         update["clean_text"],
                         "第一句。第二句。所以不要去谈什么正义，天下熙熙皆为利来，"
-                        "天下攘攘皆为利往，所以没有正义，强权即真理。第五句。第六句。",
+                        "天下攘攘皆为利往，所以没有正义，强权即真理。第五句。第六句。第七句。",
                     )
                     review = next(item for item in update["repetition_reviews"]
                                   if item["source"] == "利利")
@@ -1874,7 +1938,7 @@ class WebAppFinishTest(unittest.TestCase):
                 ) as websocket:
                     self.assertEqual(websocket.receive_json()["event"], "ready")
                     result = None
-                    for _ in range(3):
+                    for _ in range(4):
                         websocket.send_bytes(b"pcm")
                         result = self._await_event(websocket, "update")
 
@@ -1972,7 +2036,7 @@ class WebAppFinishTest(unittest.TestCase):
     def test_invalid_repetition_review_keeps_original_model_response(self) -> None:
         source = (
             "第一句。第二句。模拟普通人接到警察电话：‘喂，喂，是郭庆子是吧？’"
-            "我是警察。天哪。第五句。"
+            "我是警察。天哪。第五句。第六句。第七句。"
         )
 
         class _InvalidReviewRefiner(_IdentityRefiner):
@@ -2026,9 +2090,9 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(review["reason"], "invalid_response")
                     self.assertEqual(review["model_response"], "无法确定，请保留原文。")
 
-    def test_local_repetition_review_waits_for_its_complete_k3_group(self) -> None:
+    def test_local_repetition_review_waits_for_group_and_right_context(self) -> None:
         first_four = "第一句。第二句。第三句。第四句出现裸裸的问题。"
-        full_text = first_four + "第五句补充背景。第六句继续说明。"
+        full_text = first_four + "第五句补充背景。第六句继续说明。第七句提供下文。"
 
         class _ReviewRecordingRefiner(_IdentityRefiner):
             review_contexts: list[str] = []
@@ -2063,7 +2127,7 @@ class WebAppFinishTest(unittest.TestCase):
                         "completed_segments": [
                             {
                                 "segment_id": 2,
-                                "text": "第五句补充背景。第六句继续说明。",
+                                "text": "第五句补充背景。第六句继续说明。第七句提供下文。",
                                 "vad_boundary": True,
                             }
                         ],
@@ -2353,11 +2417,11 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
                         final["clean_text"],
-                        "第一段精修文本。第二段精修文本。第三段精修文本。",
+                        "第一段精修文本。第二段精修文本。第三段精修文本。第四段精修文本。",
                     )
-                    self.assertEqual(len(_CountingRefiner.calls), calls_before_finish)
+                    self.assertEqual(len(_CountingRefiner.calls), calls_before_finish + 1)
                     self.assertEqual(
-                        final["session_refiner_call_count"], calls_before_finish
+                        final["session_refiner_call_count"], calls_before_finish + 1
                     )
                     self.assertEqual(
                         final["session_refiner_intermediate_call_count"],
@@ -2365,7 +2429,7 @@ class WebAppFinishTest(unittest.TestCase):
                     )
                     self.assertEqual(
                         final["session_refiner_final_call_count"],
-                        0,
+                        1,
                     )
 
     def test_online_final_uses_sentence_bounded_window(self) -> None:
@@ -2437,6 +2501,8 @@ class WebAppFinishTest(unittest.TestCase):
                     text = "甲，甲，乙。"
                     if self.chunks == 3:
                         text += "尾部还未完成"
+                    if self.chunks >= 4:
+                        text += "后续内容。"
                     response = {
                         "text": "甲，甲，" if self.chunks == 1 else text,
                         "language": "Chinese",
@@ -2447,10 +2513,14 @@ class WebAppFinishTest(unittest.TestCase):
                             {"segment_id": 2, "text": "甲，", "vad_boundary": True},
                             {"segment_id": 3, "text": "乙。", "vad_boundary": True},
                         ]
+                    elif self.chunks == 4:
+                        response["completed_segments"] = [
+                            {"segment_id": 4, "text": "后续内容。", "vad_boundary": True},
+                        ]
                     return response
                 if endpoint == "/stream/finish":
                     return {
-                        "text": "甲，甲，乙。尾部还未完成",
+                        "text": "甲，甲，乙。尾部还未完成后续内容。",
                         "language": "Chinese",
                     }
                 if endpoint == "/stream/cancel":
@@ -2478,8 +2548,16 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(_CountingRefiner.calls, [])
 
                     websocket.send_bytes(b"pcm")
+                    self._await_event(websocket, "transcript")
+                    self.assertEqual(_CountingRefiner.calls, [])
+                    pending = self._await_event(websocket, "update")
+                    self.assertEqual(pending["refinement_state"], "waiting_for_context")
+                    self.assertEqual(_CountingRefiner.calls, [])
+
+                    websocket.send_bytes(b"pcm")
+                    self._await_event(websocket, "transcript")
                     completed = self._await_event(websocket, "update")
-                    self.assertEqual(completed["committed_chunks"], 3)
+                    self.assertEqual(completed["event"], "update")
                     self.assertEqual(_CountingRefiner.calls, ["甲，甲，乙。"])
 
                     websocket.send_json({"event": "finish"})
@@ -2727,9 +2805,9 @@ class WebAppFinishTest(unittest.TestCase):
                     self.assertEqual(final["event"], "final")
                     self.assertEqual(
                         final["clean_text"],
-                        "第一段精修文本。第二段精修文本。第三段精修文本。",
+                        "第一段精修文本。第二段精修文本。第三段精修文本。第四段精修文本。",
                     )
-                    self.assertEqual(len(_CountingRefiner.calls), calls_before_finish)
+                    self.assertEqual(len(_CountingRefiner.calls), calls_before_finish + 1)
 
     def test_severe_content_loss_retries_with_strict_preservation(self) -> None:
         with (

@@ -1,0 +1,29 @@
+{
+  "audio": "测试音频5.mp3",
+  "source_audio_sha256": "7ca9fbdb0174731b88aee56c5b824394b0dc5669a2343b9e1094d5492cd0e9ba",
+  "frozen_ASR_sha256": "4be1d8bbf801080669810f07c98f97cc503fb459f673f9749520d5843efe2adb",
+  "policies": [
+    "all_refine",
+    "native",
+    "supplement",
+    "deployed_learned"
+  ],
+  "low_threshold": 0.8,
+  "threshold_frozen_before_refiner": true,
+  "missing_evidence": "review",
+  "high_score_veto": false,
+  "calibrated": false,
+  "learned_veto_disabled_in_supplement": true,
+  "numeric_backend": "zh-itn",
+  "entity_db": "/home/aim0/桌面/tan/ASR/AgenticASR_entity_e5bedb3/data/entities.db",
+  "refiner_model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "dtype": "float32",
+  "device": "cuda:0",
+  "final_refinement_mode": "off",
+  "window_pipeline": "fixed_k3_v1",
+  "source_chunks": "fresh ASR VAD-completed segments",
+  "independent_acceptance": false,
+  "human_labels": 0,
+  "references_passed_to_model": false,
+  "production_services_restarted": false
+}

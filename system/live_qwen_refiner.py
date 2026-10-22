@@ -49,6 +49,7 @@ from .refinement_protocol import (
     apply_structured_patch,
     parse_window_edit_policy,
     strict_local_system_prompt,
+    window_context_messages,
 )
 from .session_memory import SessionEntityMemory
 
@@ -66,6 +67,7 @@ class TransformersRefiner:
     # when it is incomplete.
     GENERATION_MAX_TIME_SECONDS = 12.0
     supports_entity_candidates = True
+    supports_window_context = True
 
     def __init__(self, model_path: Path, device_map: str, max_new_tokens: int, *, window_edit_policy: str = "compat") -> None:
         self.window_edit_policy = parse_window_edit_policy(window_edit_policy)
@@ -96,6 +98,7 @@ class TransformersRefiner:
         entity_hints: Iterable[str] = (),
         strict_placeholders: bool = False,
         entity_candidates: Iterable[dict[str,str]] = (),
+        window_context: dict[str, str] | None = None,
     ) -> tuple[str, float]:
         return self._refine_with_system_prompt(
             raw_text,
@@ -104,6 +107,7 @@ class TransformersRefiner:
             entity_hints=entity_hints,
             strict_placeholders=strict_placeholders,
             entity_candidates=entity_candidates,
+            window_context=window_context,
         )
 
     def refine_with_numeric_rules(
@@ -113,6 +117,7 @@ class TransformersRefiner:
         entity_hints: Iterable[str] = (),
         strict_placeholders: bool = False,
         entity_candidates: Iterable[dict[str,str]] = (),
+        window_context: dict[str, str] | None = None,
     ) -> tuple[str, float]:
         """Refine language while leaving rule-normalized number surfaces intact."""
 
@@ -124,6 +129,7 @@ class TransformersRefiner:
             strict_placeholders=strict_placeholders,
             strict_placeholder_prompt=NUMERIC_RULES_STRICT_PLACEHOLDER_PROMPT,
             entity_candidates=entity_candidates,
+            window_context=window_context,
         )
 
     def _refine_with_system_prompt(
@@ -135,11 +141,15 @@ class TransformersRefiner:
         strict_placeholders: bool,
         strict_placeholder_prompt: str = STRICT_PLACEHOLDER_PROMPT,
         entity_candidates: Iterable[dict[str,str]] = (),
+        window_context: dict[str, str] | None = None,
     ) -> tuple[str, float]:
         hints = tuple(dict.fromkeys(item.strip() for item in entity_hints if item.strip()))
         user_content = raw_text
+        if window_context is not None:
+            context_prompt, user_content = window_context_messages(raw_text, **window_context)
+            system_prompt += context_prompt
         if hints:
-            user_content = f"{raw_text}\n<KEY>[{'、'.join(hints[:16])}]"
+            user_content += f"\n<KEY>[{'、'.join(hints[:16])}]"
         candidates = list(entity_candidates)[:16]
         if candidates:
             user_content += "\n<ENTITY_CANDIDATES>"+json.dumps(candidates,ensure_ascii=False)
@@ -147,6 +157,7 @@ class TransformersRefiner:
                 "术语候选仅供核对，并非已确认事实。保持原句关系。"
                 "只有上下文明确支持时才选择标准名；需要改术语时只返回单个JSON局部补丁，"
                 "source严格等于候选observed，target严格等于canonical，reason为entity_correction。"
+                "source也必须逐字且唯一地出现在当前可修改正文中，不能引用只读上下文。"
                 "有歧义则返回action为keep，不得只改候选的一部分。"
             )
         messages = [

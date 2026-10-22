@@ -1,0 +1,101 @@
+{
+  "upstream": "https://github.com/AnXMuy/AgenticASR",
+  "commit": "b0b80c53133237e682bf01b62edf013c4ddf5eaf",
+  "source_sha256": {
+    "pipeline/configs/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/configs/scenes.py": "bef97e67909aed7a287da02bc3c4bafbc9109958619948e1a057b80f81f0b3fb",
+    "pipeline/configs/settings.py": "051db5d8114a1275c780a9e136b64557d7b6649be890d40d82ea973aa66f78b9",
+    "pipeline/run_pipeline.py": "c7721cc5e5cb0442e67f99e17cac89884953e4bc368ce37c35ea073be44121f6",
+    "pipeline/scripts/01_seed_and_oral.py": "db4a9031fde3c0dc16958b5225dc291ca5897147b53f619d86184e1645e5e7c9",
+    "pipeline/scripts/02_clean_text.py": "2bed997ab091676517c79227f45b26e2eae52133b32572d7c0c0be0ff51c7b72",
+    "pipeline/scripts/03_simulate_asr.py": "0400599586b555e834b7935cee3b7517f6014b36c315c3d3747700235f1cc6f6",
+    "pipeline/scripts/04_assemble.py": "ac900414f1140487bd202eecad4ff2f67731500cb754f06539dd150879b5b2e5",
+    "pipeline/scripts/05_finalize.py": "1ca519eac903af592cbc29e552f40afa61c25568fbf887d38108a22264f90e0e",
+    "pipeline/scripts/convert_to_mlx.py": "4b1546f040e5358d9c406e1b8d919ecf23329f7ebf318b85d2835d6307c27dec",
+    "pipeline/scripts/export_sft.py": "894bd741d7fb5a6999c0d4daac0ac7090a16c2e538629f158ef3222990361b9c",
+    "pipeline/src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/src/generators/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/src/generators/asr_simulator.py": "a50ee771469dac39443a73063c08b1a6c8f9d0a1636454cad3f10c2fef0d3823",
+    "pipeline/src/generators/clean_text_generator.py": "6508164486067d024bbf06b279c04b2381b5a9d58fe0682b25674d0b4cac4da5",
+    "pipeline/src/generators/oral_text_generator.py": "29e9bbce74947741877e4df04896dee72076faa6c237c49fd766218fcf986ddf",
+    "pipeline/src/generators/seed_generator.py": "45786549bad4c1c7f3bdfc1c064bf8558d939da2a750c398cf23bc599b9fd2ef",
+    "pipeline/src/pipeline/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/src/pipeline/dedup.py": "be1cfb7b3494f6e2336ec7ba016bf8962b6a61170e6fb995bf74d5674fced6a2",
+    "pipeline/src/pipeline/quality_control.py": "3afd95178faa524d3822a3dcc529b75fca8386b6c6d246c838deda42ad1c5cbd",
+    "pipeline/src/services/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/src/services/llm_client.py": "ca46533404294ac377b7706daba4124db72982a036e0104b53a4575b47e0ad69",
+    "pipeline/src/services/vllm_lifecycle.py": "fb18de990ac601d395fb6b3d3e60f5093c53af3a76b7877b686ce3047df48ea2",
+    "pipeline/src/speech/__init__.py": "10ea251ce87e6a494d787b95c6a5914ff81ceb702ac080c3a0b13ffbd42aac3d",
+    "pipeline/src/speech/moss_tts_service.py": "87acc6ce881114c54354f1084672e12c89632113c969ebeb382bb9af1a40207d",
+    "pipeline/src/speech/qwen3_asr_service.py": "9616939ae387a65a9e090900bde53d89c4f35f8f33150ab7f94c2f772dd22d5e",
+    "pipeline/src/speech/tts_asr_backend.py": "87831d3c81f17e9c48423fd691819394b9befa673cd40f7efa5d47e54051719a",
+    "pipeline/src/utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipeline/src/utils/io_utils.py": "dc0489e9768d268a801e302dbe62f2ba07ea1b8860de985f0c4d951a77d7aa4d",
+    "pipeline/src/utils/keyword_utils.py": "5aa9de706579b1946d8e35a0d803aae43a3625c0a9cc6bc731b79d727d707cef",
+    "pipeline/src/utils/prompt_loader.py": "509cd4021c57cdb7451e4f111415665a22b92db2a40285153b6547664ba9dc77",
+    "pipeline/configs/prompts.json": "39f554f3fedb232dc247556cd867b8963f956ad72e5c19b5094ad79d2d6f10f4",
+    "pipeline/configs/prompts_clean.json": "626c22c60f2bb4cea89cba89b397cb6ab5c9da501c981b4a4ee14436f7dcb3f2",
+    "pipeline/configs/prompts_oral.json": "fae6312d1c69a6cb555dfdbf5bade7cd6ae94a96117d59b85429e9f48bbb122b"
+  },
+  "original_prompt_files_unchanged": true,
+  "target_valid_oral": 500,
+  "quotas": {
+    "daily_chat": 35,
+    "english_daily": 40,
+    "vibe_coding": 60,
+    "explanation": 60,
+    "meeting": 30,
+    "english_meeting": 25,
+    "customer_service": 30,
+    "english_customer_service": 25,
+    "academic": 20,
+    "english_academic": 25,
+    "navigation": 15,
+    "dictation_memo": 25,
+    "english_dictation": 25,
+    "voice_search": 15,
+    "english_voice_search": 20,
+    "english_tech": 50
+  },
+  "endpoint": "http://127.0.0.1:8010/v1",
+  "model": "refiner-teacher",
+  "actual_model": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "teacher_differs_from_paper": "Paper uses Gemma-4-31B-IT; this run uses local Qwen AWQ4bit.",
+  "execution": "Original SeedGenerator.generate_scene_seeds (one unmodified round per scene), OralTextGenerator.generate_scene until 500 valid Oral records, CleanTextGenerator.generate_scene including original keyword QC, ASRSimulator.simulate_scene, original assemble, original qc_one, original dedup.",
+  "harness_changes": [
+    "Output directories only",
+    "Two identical teachers, HTTP concurrency4 each; same upstream algorithms",
+    "HTTP timeout600 seconds instead of120",
+    "RNG initialized; original distributions unchanged",
+    "Fresh one-round seed pools rather than growing every scene to3000 entries",
+    "Original final logic called per item without final-quota capping (all scene counts <=quotas)."
+  ],
+  "no_local_training_filters": true,
+  "started_utc": "2026-10-17T07:03:22.886371+00:00",
+  "restarts": [
+    {
+      "utc": "2026-10-17T07:12:40.028395+00:00",
+      "reason": "Incomplete seed JSON; resume completed seed pools, retry missing scenes with unmodified prompts."
+    },
+    {
+      "utc": "2026-10-17T08:55:37.519463+00:00",
+      "reason": "Incomplete seed JSON; resume completed seed pools, retry missing scenes with unmodified prompts."
+    },
+    {
+      "utc": "2026-10-17T09:00:37.050599+00:00",
+      "reason": "Incomplete seed JSON; resume completed seed pools, retry missing scenes with unmodified prompts."
+    },
+    {
+      "utc": "2026-10-17T09:11:29.605019+00:00",
+      "reason": "Incomplete seed JSON; resume completed seed pools, retry missing scenes with unmodified prompts."
+    }
+  ],
+  "filesystem_wiring": "Original Oral generator hardcodes pipeline/data/seeds and raw. Added directory symlinks to isolated OUT/seeds and OUT/raw before Oral starts; no upstream source edits.",
+  "seed_api_compatibility": "After original json_object mode exhausted three retries for two English seed scenes, only those seed calls use response_format=None. Same original prompts, temperature, max tokens and parser; all Oral/Clean/ASR/QC settings remain original.",
+  "parallel_teachers": [
+    "http://127.0.0.1:8010/v1",
+    "http://127.0.0.1:8014/v1"
+  ],
+  "scheduling_restart": "During Oral switched from one teacher to two identical instances. Existing completed original checkpoint batches retained; pending uncommitted batches cancelled. API log may include queued calls cancelled before HTTP submission; count only calls with response/error separately.",
+  "seed_pool_note": "english_customer_service parsed by unmodified upstream _parse_json as a flat array of117 items from a longer truncated object; original SeedSampler accepts flat arrays. This affects seed diversity and is not manual label repair."
+}

@@ -1,0 +1,80 @@
+{
+  "timing": {
+    "numeric_cleanup": {
+      "zh_itn_web_chain": {
+        "observations": 36,
+        "total_ms": 18046.52069415897,
+        "mean_ms": 501.29224150441587,
+        "median_ms": 444.17777960188687,
+        "p95_ms": 1076.01034687832,
+        "model_calls": 45,
+        "retries": 9,
+        "rejected": 9,
+        "rule_ms": 185.284
+      },
+      "zh_itn_fast_fallback": {
+        "observations": 36,
+        "total_ms": 14852.283529005945,
+        "mean_ms": 412.56343136127623,
+        "median_ms": 392.66194496303797,
+        "p95_ms": 553.3822188153863,
+        "model_calls": 36,
+        "retries": 0,
+        "rejected": 9,
+        "rule_ms": 186.01
+      },
+      "refiner_only": {
+        "observations": 36,
+        "total_ms": 15794.31200120598,
+        "mean_ms": 438.7308889223884,
+        "median_ms": 383.9046854991466,
+        "p95_ms": 867.5738559104502,
+        "model_calls": 36,
+        "retries": 0,
+        "rejected": 0,
+        "rule_ms": 0
+      }
+    },
+    "all": {
+      "zh_itn_web_chain": {
+        "observations": 36,
+        "total_ms": 18046.52069415897,
+        "mean_ms": 501.29224150441587,
+        "median_ms": 444.17777960188687,
+        "p95_ms": 1076.01034687832,
+        "model_calls": 45,
+        "retries": 9,
+        "rejected": 9,
+        "rule_ms": 185.284
+      },
+      "zh_itn_fast_fallback": {
+        "observations": 36,
+        "total_ms": 14852.283529005945,
+        "mean_ms": 412.56343136127623,
+        "median_ms": 392.66194496303797,
+        "p95_ms": 553.3822188153863,
+        "model_calls": 36,
+        "retries": 0,
+        "rejected": 9,
+        "rule_ms": 186.01
+      },
+      "refiner_only": {
+        "observations": 36,
+        "total_ms": 15794.31200120598,
+        "mean_ms": 438.7308889223884,
+        "median_ms": 383.9046854991466,
+        "p95_ms": 867.5738559104502,
+        "model_calls": 36,
+        "retries": 0,
+        "rejected": 0,
+        "rule_ms": 0
+      }
+    }
+  },
+  "output_comparison": {
+    "pairs": 36,
+    "identical_outputs": 36,
+    "skipped_numeric_retry_opportunities": 9,
+    "output_differences": []
+  }
+}

@@ -9,6 +9,7 @@ both controls.
 from __future__ import annotations
 
 import asyncio
+from collections import deque
 import json
 import logging
 import random
@@ -20,9 +21,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from configs.scenes import SCENE_REGISTRY
-from configs.settings import LLM_MAX_CONCURRENT, LLM_MAX_TOKENS_ORAL, PASSTHROUGH_RATIO
+from configs.settings import (
+    BOUNDARY_PUNCTUATION_RATIO,
+    LLM_MAX_CONCURRENT,
+    LLM_MAX_TOKENS_ORAL,
+    PASSTHROUGH_RATIO,
+    RAW_DIR,
+    SEEDS_DIR,
+)
 from src.services.llm_client import AsyncLLMClient, LLMClient
-from src.utils.io_utils import Checkpoint, append_jsonl
+from src.utils.oral_generation_state import OralGenerationState
 
 from tqdm import tqdm
 
@@ -81,12 +89,17 @@ SCENE_CONTEXTS = {
 }
 
 SYSTEM_PROMPT = """You generate one realistic Oral transcript for Agentic Speech Recognition.
-The transcript must sound spoken rather than written, remain coherent for the requested scene,
-and preserve one unambiguous final intended meaning. Use three to five of the five candidate
-seeds. Follow the requested language, correction structure, and oral level exactly. Do not add
-facts that conflict with the selected seeds. Return strict JSON only:
+The transcript must sound like one plausible spoken turn for the requested scene, not a written
+mini-article or unrelated seed list. Use three to five candidate seeds only when they share a
+coherent topic and conversational purpose; skip seeds that do not fit. Write only content the
+speaker actually says. Do not add editorial glosses, narrator notes, stage directions, or Markdown.
+Use natural varied speech; do not force any fixed connective phrase. Follow the requested language:
+Chinese or Chinese-English-mixed scenes should use Chinese sentence structure with technical terms
+in English when natural. Literal code or formula notation may appear when the speaker actually
+dictates it. Fluent low-disfluency speech and clean passthrough samples remain valid. Follow the
+requested correction structure and oral level exactly. Do not add facts that conflict with the
+selected seeds. Return strict JSON only:
 {"oral_text":"...","selected_seeds":["..."],"speech_phenomena":["..."]}."""
-
 USER_TEMPLATE = """Scene: {scene}
 Situation: {context}
 Output language: {language}
@@ -104,7 +117,6 @@ Additional control:
 Requirements:
 - Select and use three to five candidate seeds.
 - Write one utterance, not a dialogue or explanation of the task.
-- Keep numbers and dates in natural spoken form unless this is a passthrough sample.
 - Keep technical terms in their standard language; do not create phonetic transliterations.
 - Use only ordinary sentence punctuation and no Markdown.
 - Make the speaker's final intended content recoverable without outside knowledge."""
@@ -114,9 +126,15 @@ EXPLANATION_CONTROL = (
     "one uncommon or ambiguous entity. The final spelling must be recoverable from the cue."
 )
 
+BOUNDARY_PUNCTUATION_CONTROL = (
+    "自由生成自然口语。只在某个本应连贯的语义短语内部，故意误插一种中文标点，"
+    "使句界看起来断开但语义明确可恢复；可用句号、逗号、分号、冒号、问号、叹号、顿号或省略号。"
+    "不要见标点就删，不要损坏英文句点、URL、代码、小数等字面量，不强制复用任何示例。"
+)
+
 PASSTHROUGH_CONTROL = (
     "This is a passthrough sample. Disable correction and oral controls. Produce already clean "
-    "written-form text with no fillers, repetitions, false starts, or spoken-form numbers."
+    "written-form text with no fillers, repetitions, or false starts."
 )
 
 
@@ -193,8 +211,8 @@ class OralTextGenerator:
     ) -> None:
         self.llm = async_client or AsyncLLMClient(max_concurrent=LLM_MAX_CONCURRENT)
         self.rng = rng or random.Random()
-        self.seeds_dir = PROJECT_ROOT / "data" / "seeds"
-        self.raw_dir = PROJECT_ROOT / "data" / "raw"
+        self.seeds_dir = Path(SEEDS_DIR)
+        self.raw_dir = Path(RAW_DIR)
         self.sampler = SeedSampler(self.seeds_dir, self.rng)
 
     def _language(self, scene: str) -> str:
@@ -211,14 +229,20 @@ class OralTextGenerator:
 
         correction_name = self.rng.choice(tuple(CORRECTION_STRUCTURES))
         oral_name = self.rng.choice(tuple(ORAL_LEVELS))
-        additional = EXPLANATION_CONTROL if scene == "explanation" else "None"
+        controls: list[str] = []
+        if scene == "explanation":
+            controls.append(EXPLANATION_CONTROL)
         phenomena = [f"correction:{correction_name}", f"oral:{oral_name}"]
         if scene == "explanation":
             phenomena.append("explanation")
+        language = SCENE_REGISTRY.get(scene, {}).get("language", "zh")
+        if language in {"zh", "zh-en-mix"} and self.rng.random() < BOUNDARY_PUNCTUATION_RATIO:
+            controls.append(BOUNDARY_PUNCTUATION_CONTROL)
+            phenomena.append("boundary_punctuation")
         return (
             CORRECTION_STRUCTURES[correction_name],
             ORAL_LEVELS[oral_name],
-            additional,
+            "\n".join(controls) if controls else "None",
             phenomena,
         )
 
@@ -253,10 +277,14 @@ class OralTextGenerator:
             returned_phenomena = parsed.get("speech_phenomena")
             if sampled_phenomena == ["clean"]:
                 phenomena = ["clean"]
-            elif isinstance(returned_phenomena, list):
-                phenomena = [str(item) for item in returned_phenomena]
             else:
-                phenomena = sampled_phenomena
+                phenomena = [str(item) for item in returned_phenomena] if isinstance(returned_phenomena, list) else []
+                phenomena = [item for item in phenomena if item != "boundary_punctuation"]
+                if "boundary_punctuation" in sampled_phenomena:
+                    phenomena = [item for item in phenomena if item.lower() not in {"clean", "passthrough"}]
+                phenomena.extend(item for item in sampled_phenomena if item == "boundary_punctuation")
+                if not phenomena:
+                    phenomena = sampled_phenomena
             return {
                 "id": item_id,
                 "oral_text": oral_text.strip(),
@@ -275,28 +303,35 @@ class OralTextGenerator:
         resume: bool = True,
     ) -> int:
         output_dir = self.raw_dir / scene
-        output_dir.mkdir(parents=True, exist_ok=True)
-        output_path = output_dir / "oral.jsonl"
-        checkpoint = Checkpoint(output_dir / "oral.ckpt.json")
-        generated = checkpoint.get("generated_count", 0) if resume else 0
-        attempted = checkpoint.get("attempted_count", generated) if resume else 0
-        if not resume and output_path.exists():
-            output_path.unlink()
-
-        progress = tqdm(total=max(0, total_num - generated), desc=f"Oral[{scene}]", unit="item")
-        while generated < total_num:
-            batch_size = min(LLM_MAX_CONCURRENT * 2, total_num - generated)
-            results = await asyncio.gather(
-                *(self.generate_one(scene, attempted + offset) for offset in range(batch_size))
-            )
-            attempted += batch_size
-            valid = [record for record in results if record is not None]
-            if not valid:
-                raise RuntimeError(f"all Oral generation requests failed for scene {scene}")
-            append_jsonl(valid, output_path)
-            generated += len(valid)
-            checkpoint.set("generated_count", generated)
-            checkpoint.set("attempted_count", attempted)
-            progress.update(len(valid))
-        progress.close()
-        return generated
+        state = OralGenerationState(output_dir, resume=resume)
+        retries = deque(state.pending_ids())
+        concurrency = max(1, min(LLM_MAX_CONCURRENT, getattr(self.llm, "max_concurrent", LLM_MAX_CONCURRENT)))
+        pending: dict[asyncio.Task, int] = {}
+        failures = 0
+        progress = tqdm(total=max(0, total_num - state.generated), desc=f"Oral[{scene}]", unit="item")
+        try:
+            while state.generated < total_num:
+                # Refill each completed slot without waiting for slower peers.
+                # The target includes in-flight calls, preventing overshoot.
+                while len(pending) < concurrency and state.generated + len(pending) < total_num:
+                    attempt_id = retries.popleft() if retries else state.reserve()
+                    pending[asyncio.create_task(self.generate_one(scene, attempt_id))] = attempt_id
+                done, _ = await asyncio.wait(pending, return_when=asyncio.FIRST_COMPLETED)
+                for task in done:
+                    attempt_id = pending.pop(task)
+                    record = task.result()
+                    state.finish(attempt_id, record)
+                    if record is not None:
+                        failures = 0
+                        progress.update(1)
+                    else:
+                        failures += 1
+                        if failures >= max(32, concurrency * 4):
+                            raise RuntimeError(f"repeated Oral generation failures for scene {scene}")
+            return state.generated
+        finally:
+            for task in pending:
+                task.cancel()
+            await asyncio.gather(*pending, return_exceptions=True)
+            progress.close()
+            state.close()

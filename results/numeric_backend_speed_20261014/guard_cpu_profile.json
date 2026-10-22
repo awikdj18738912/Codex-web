@@ -1,0 +1,221 @@
+{
+  "source": "results/numeric_backend_speed_20261014/observations.jsonl",
+  "scope": {
+    "group": "numeric_cleanup",
+    "policy": "zh_itn_web_chain",
+    "repetition": 0,
+    "pair_count": 12,
+    "selection": "first trace, first model_call; raw=call.input; candidate=strip_refiner_key_suffix(call.output)"
+  },
+  "benchmark": {
+    "warmup_runs_per_pair": 3,
+    "measured_runs_per_pair": 20,
+    "order": "pairs sorted by id; each round processes each pair in that order; restore then reject_reasons",
+    "clock": "time.perf_counter_ns",
+    "environment": "CPU-only; no model invocation"
+  },
+  "aggregate": {
+    "restore_rule_numeric_surfaces": {
+      "mean_ms": 0.9044618708333333,
+      "median_ms": 0.8855655
+    },
+    "reject_reasons_numeric_rule_mode": {
+      "mean_ms": 2.328467058333333,
+      "median_ms": 2.126134
+    },
+    "total_measurements_per_function": 240
+  },
+  "note": "reject_reasons(numeric_rule_mode=True) includes non-numeric integrity checks; its timing is not pure numeric validation cost.",
+  "pairs": [
+    {
+      "id": "numeric_cleanup_00",
+      "raw": "嗯，会议会议定于2026年10月14日上午9点30分，参加人数是30人。",
+      "candidate": "会议定于2026年10月14日上午9:30参加人数是30人。",
+      "restore_result": null,
+      "reject_reasons": [
+        "numeric_value_mismatch",
+        "numeric_rule_surface_mismatch"
+      ],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.95904075,
+        "median_ms": 0.9399660000000001
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 3.3636536,
+        "median_ms": 3.314367
+      }
+    },
+    {
+      "id": "numeric_cleanup_01",
+      "raw": "本次采购预算预算是123万7851元，呃，首付款为30万元。",
+      "candidate": "本次采购预算预算是123万7851元，首付款为30万元。",
+      "restore_result": "本次采购预算预算是123万7851元，首付款为30万元。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.8797514,
+        "median_ms": 0.860931
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.7810133,
+        "median_ms": 1.778661
+      }
+    },
+    {
+      "id": "numeric_cleanup_02",
+      "raw": "产品合格率达到98.5%，嗯，本季度本季度交付95142辆。",
+      "candidate": "产品合格率达到98.5%，本季度交付95142辆。",
+      "restore_result": "产品合格率达到98.5%，本季度交付95142辆。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.82437615,
+        "median_ms": 0.777256
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.60790185,
+        "median_ms": 1.5728900000000001
+      }
+    },
+    {
+      "id": "numeric_cleanup_03",
+      "raw": "测量距离为1到2米，我我觉得建筑限高36米，面积约216.03平方米。",
+      "candidate": "测量距离为1到2米，我觉得建筑限高36米，面积约216.03平方米。",
+      "restore_result": "测量距离为1到2米，我觉得建筑限高36米，面积约216.03平方米。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.90939755,
+        "median_ms": 0.8917660000000001
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.8649477,
+        "median_ms": 1.832742
+      }
+    },
+    {
+      "id": "numeric_cleanup_04",
+      "raw": "测试持续10到15分钟，呃，每隔20分钟检查检查一次。",
+      "candidate": "测试持续10到15分钟，每隔20分钟检查一次。",
+      "restore_result": "测试持续10到15分钟，每隔20分钟检查一次。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.92043065,
+        "median_ms": 0.8966965
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.8304045,
+        "median_ms": 1.798707
+      }
+    },
+    {
+      "id": "numeric_cleanup_05",
+      "raw": "联系电话是13800138000，嗯，我再说一次，联系电话是13800138000。",
+      "candidate": "联系电话是13800138000。",
+      "restore_result": null,
+      "reject_reasons": [
+        "severe_content_loss",
+        "numeric_value_mismatch",
+        "numeric_rule_surface_mismatch"
+      ],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.90608055,
+        "median_ms": 0.8746105
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 2.42507865,
+        "median_ms": 2.4105205
+      }
+    },
+    {
+      "id": "numeric_cleanup_06",
+      "raw": "第50届运动会，嗯，已有64个代表团报名报名。",
+      "candidate": "第50届运动会，已有64个代表团报名。",
+      "restore_result": "第50届运动会，已有64个代表团报名。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.7959269,
+        "median_ms": 0.7661450000000001
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.5928944,
+        "median_ms": 1.582495
+      }
+    },
+    {
+      "id": "numeric_cleanup_07",
+      "raw": "测试版本版本是4.0.8.23.1，缓存目录还有512兆字节。",
+      "candidate": "测试版本是4.0.8.23.1，缓存目录还有512MB。",
+      "restore_result": "测试版本是4.0.8.23.1，缓存目录还有512MB。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.9088619,
+        "median_ms": 0.8876105
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 2.85358185,
+        "median_ms": 2.799073
+      }
+    },
+    {
+      "id": "numeric_cleanup_08",
+      "raw": "计算结果是-3.2，呃，传感器允许误差为正负0.03。",
+      "candidate": "计算结果是-3.2，传感器允许误差为正负0.03。",
+      "restore_result": "计算结果是-3.2，传感器允许误差为正负0.03。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.8060973,
+        "median_ms": 0.780305
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 1.6096821000000001,
+        "median_ms": 1.6047060000000002
+      }
+    },
+    {
+      "id": "numeric_cleanup_09",
+      "raw": "大概有三十七度。然后哈哈哈，我一无一实的告诉你，",
+      "candidate": "大概有37度。然后我一无所有地告诉你。",
+      "restore_result": "大概有三十七度。然后我一无所有地告诉你。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 1.02621375,
+        "median_ms": 0.9783360000000001
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 3.8950985,
+        "median_ms": 3.851315
+      }
+    },
+    {
+      "id": "numeric_cleanup_10",
+      "raw": "需要12件，不对，13件，嗯，请按最后确认的数量安排配送。",
+      "candidate": "需要13件，请按最后确认的数量安排配送。",
+      "restore_result": "需要13件，请按最后确认的数量安排配送。",
+      "reject_reasons": [],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 1.10721635,
+        "median_ms": 1.0965725
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 2.2134660999999998,
+        "median_ms": 2.175999
+      }
+    },
+    {
+      "id": "numeric_cleanup_11",
+      "raw": "会议在一点，哦不，1点10分开始，嗯，请提前到会议室。",
+      "candidate": "会议在1:10分开始，请提前到会议室。",
+      "restore_result": null,
+      "reject_reasons": [
+        "numeric_value_mismatch",
+        "numeric_rule_surface_mismatch"
+      ],
+      "restore_rule_numeric_surfaces": {
+        "mean_ms": 0.8101492,
+        "median_ms": 0.7924005000000001
+      },
+      "reject_reasons_numeric_rule_mode": {
+        "mean_ms": 2.90388215,
+        "median_ms": 2.8701685
+      }
+    }
+  ]
+}

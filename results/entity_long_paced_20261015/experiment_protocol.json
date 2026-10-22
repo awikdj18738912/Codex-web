@@ -1,0 +1,26 @@
+{
+  "manifest_sha256": "564f115192cf2ec9ab9274608f416d155b95747609251bbab01995e06c79b9fb",
+  "ctc_model_files": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/model.int8.onnx": "24ffdc19ba9aaed5a6a9beaede1e087745217d82425cf4041bca0c696661801e",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/README.md": "24a953594138ebd61a4e60637febcff1cecd4f79ed05632109a937b74f9ebcd7",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/tokens.txt": "6193c7ea1c96d0d9a1e9652789b40d13a8a913b434a5451e93158f5a09fd6652"
+  },
+  "schedule": "160ms new PCM per packet at its audio clock availability; sequential requests; 750 packets per arm",
+  "round_orders": [
+    [
+      "raw",
+      "entity"
+    ],
+    [
+      "entity",
+      "raw"
+    ]
+  ],
+  "first_pass_asr_chunk_seconds": 2,
+  "primary_asr_context": false,
+  "entity_settings": "Unchanged EntityAudioRepair defaults, CTC on; graph/model setup excluded",
+  "source_of_truth_for_latency": "wall clock timestamps in run/results.jsonl and run/events.jsonl",
+  "reference_at_inference": false,
+  "human_reference_available": false,
+  "claim_scope": "Single continuous 120s known-water-scene clip, repeated twice per arm; downstream Web refinement excluded"
+}

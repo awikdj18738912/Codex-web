@@ -1,0 +1,57 @@
+{
+  "records": 1000,
+  "seed": 2026102201,
+  "source_split": "train only; not validation",
+  "source_records": 84875,
+  "requested_strata": {
+    "boundary_punctuation": 100,
+    "multi_correction": 200,
+    "english_entity_or_code": 150,
+    "numeric_surface": 100,
+    "single_correction": 150,
+    "clean_or_passthrough": 100,
+    "other_cleanup": 200
+  },
+  "actual_strata": {
+    "boundary_punctuation": 100,
+    "english_entity_or_code": 150,
+    "multi_correction": 200,
+    "other_cleanup": 200,
+    "single_correction": 150,
+    "clean_or_passthrough": 100,
+    "numeric_surface": 100
+  },
+  "by_scene": {
+    "meeting": 117,
+    "vibe_coding": 94,
+    "academic": 88,
+    "dictation_memo": 116,
+    "daily_chat": 117,
+    "voice_search": 118,
+    "navigation": 117,
+    "explanation": 117,
+    "customer_service": 116
+  },
+  "by_source_decision": {
+    "review_pass": 706,
+    "repair_accepted": 294
+  },
+  "scene_targets": {
+    "academic": 111,
+    "customer_service": 111,
+    "daily_chat": 111,
+    "dictation_memo": 111,
+    "explanation": 111,
+    "meeting": 111,
+    "navigation": 111,
+    "vibe_coding": 111,
+    "voice_search": 112
+  },
+  "stratum_shortfalls": {},
+  "sample_sha256": "c2a64191ff18ab29c13bf79411b232e3cd1bd0678b1f3d41c1ab12c537d7af23",
+  "candidate_models": [
+    "Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+    "Qwen3-4B-Instruct-2507"
+  ],
+  "note": "Risk-stratified and scene-balanced diagnostic sample, not a prevalence sample. Generation requests will contain input only; existing_target is kept for later comparison."
+}

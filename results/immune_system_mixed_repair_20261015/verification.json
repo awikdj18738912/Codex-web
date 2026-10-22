@@ -1,0 +1,16 @@
+{
+  "source_hashes_match": {
+    "system/entity_mixed_spelling.py": true,
+    "system/entity_direct_spelling.py": true,
+    "system/entity_audio_repair.py": true,
+    "system/entity_streaming_live.py": true,
+    "system/entity_boundaries.py": true,
+    "experiments/scripts/evaluate_entity_repair_material.py": true
+  },
+  "primary_identical_to_baseline": true,
+  "regression": "168 passed, 9 warnings",
+  "retained_patches_before": 7,
+  "retained_patches_after": 14,
+  "new_patches": 7,
+  "note": "Includes one FAS case normalization; patch counts are not independently adjudicated accuracy."
+}

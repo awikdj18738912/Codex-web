@@ -101,6 +101,17 @@ class WindowConfidenceTest(unittest.TestCase):
         self.assertEqual(result['windows'],[])
         self.assertEqual(result['pending_fragment_indices'],[0,1])
 
+    def test_streaming_scores_wait_for_lookahead_without_scoring_it_as_owned_source(self):
+        first = '材料已备齐，会议马上开始，请核对名单。'
+        pending = project_window_scores(scored_projection(first), final=False)
+        self.assertEqual(pending['windows'], [])
+        self.assertEqual(pending['pending_fragment_indices'], [0, 1, 2])
+        with_context = first + '后面的说明，'
+        ready = project_window_scores(scored_projection(with_context), final=False)
+        self.assertEqual([window['text'] for window in ready['windows']], [first])
+        self.assertEqual(ready['windows'][0]['fragment_indices'], [0, 1, 2])
+        self.assertEqual(ready['pending_fragment_indices'], [3])
+
     def test_numeric_self_correction_uses_project_merge(self):
         text='预算是5元，不对，应该是6元。材料已经备齐，会议马上开始。'
         result=project_window_scores(scored_projection(text),final=True)

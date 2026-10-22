@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "scope": "Structural and stored audit evidence checks; no new semantic judgment or student model evaluation.",
+  "input": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_auto_acceptance_300_20261017/final/train.jsonl",
+  "input_sha256": "0d27d349f5f3df2b1a3c209c46b571bd076d889c093d527d3a54ef1ea5bb8806",
+  "counts": {
+    "lines": 255,
+    "records": 255,
+    "reservoir_candidates": 255,
+    "minimum_required": 255
+  },
+  "errors": {
+    "total": 0,
+    "by_type": {},
+    "examples_first_50": []
+  },
+  "warnings": {
+    "exact_input_repeat_occurrences": 0,
+    "inputs_with_different_targets": 0
+  },
+  "statistics": {
+    "scene": {
+      "academic": 27,
+      "customer_service": 33,
+      "daily_chat": 30,
+      "dictation_memo": 28,
+      "explanation": 45,
+      "meeting": 29,
+      "navigation": 3,
+      "vibe_coding": 47,
+      "voice_search": 13
+    },
+    "speech_phenomena": {
+      "boundary_punctuation": 26,
+      "clean": 26,
+      "correction:multiple": 51,
+      "correction:none": 62,
+      "correction:rollback": 52,
+      "correction:single": 64,
+      "explanation": 41,
+      "oral:high": 80,
+      "oral:low": 70,
+      "oral:moderate": 79
+    },
+    "fragment": {
+      "false": 247,
+      "true": 8
+    },
+    "target_origin": {
+      "verified-construction-v1": 255
+    }
+  },
+  "sampling": {
+    "method": "fixed-seed reservoir sampling over parseable JSON object records; then union with first representative per scene and per rare speech_phenomena label (frequency <= max(1, floor(1% of parseable records)))",
+    "seed": 20261017,
+    "requested_reservoir_size": 60,
+    "reservoir_size": 60,
+    "representative_scene_count": 9,
+    "rare_control_threshold": 2,
+    "rare_control_labels": [],
+    "output_records_including_representatives": 67
+  }
+}

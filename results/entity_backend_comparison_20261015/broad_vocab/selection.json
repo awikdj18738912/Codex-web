@@ -1,0 +1,92 @@
+{
+  "model": "small-bilingual-zh-en-2023-02-16",
+  "development_samples": 171,
+  "selection_uses_test_labels": false,
+  "criterion": "Among hotword weights with complete dev coverage, maximize entity hits while not increasing normalized CER errors over broad-vocabulary beam; tie-break fewer errors then lower score. If none is safe, choose minimum CER errors, then more hits, then lower score.",
+  "beam_dev": {
+    "samples": 171,
+    "entity_hits": 89,
+    "entity_mentions": 191,
+    "entity_recall": 0.46596858638743455,
+    "cer_errors": 500,
+    "reference_chars": 4240,
+    "cer": 0.1179245283018868
+  },
+  "tested_hotword_scores": [
+    {
+      "score": 0.5,
+      "metrics": {
+        "samples": 171,
+        "entity_hits": 103,
+        "entity_mentions": 191,
+        "entity_recall": 0.5392670157068062,
+        "cer_errors": 491,
+        "reference_chars": 4240,
+        "cer": 0.11580188679245283
+      },
+      "complete": true
+    },
+    {
+      "score": 1.0,
+      "metrics": {
+        "samples": 171,
+        "entity_hits": 109,
+        "entity_mentions": 191,
+        "entity_recall": 0.5706806282722513,
+        "cer_errors": 480,
+        "reference_chars": 4240,
+        "cer": 0.11320754716981132
+      },
+      "complete": true
+    },
+    {
+      "score": 1.5,
+      "metrics": {
+        "samples": 171,
+        "entity_hits": 113,
+        "entity_mentions": 191,
+        "entity_recall": 0.5916230366492147,
+        "cer_errors": 474,
+        "reference_chars": 4240,
+        "cer": 0.11179245283018868
+      },
+      "complete": true
+    },
+    {
+      "score": 2.0,
+      "metrics": {
+        "samples": 171,
+        "entity_hits": 114,
+        "entity_mentions": 191,
+        "entity_recall": 0.5968586387434555,
+        "cer_errors": 471,
+        "reference_chars": 4240,
+        "cer": 0.11108490566037736
+      },
+      "complete": true
+    },
+    {
+      "score": 3.0,
+      "metrics": {
+        "samples": 171,
+        "entity_hits": 122,
+        "entity_mentions": 191,
+        "entity_recall": 0.6387434554973822,
+        "cer_errors": 459,
+        "reference_chars": 4240,
+        "cer": 0.10825471698113208
+      },
+      "complete": true
+    }
+  ],
+  "native_hotword_score": 3.0,
+  "selected_hotword_dev": {
+    "samples": 171,
+    "entity_hits": 122,
+    "entity_mentions": 191,
+    "entity_recall": 0.6387434554973822,
+    "cer_errors": 459,
+    "reference_chars": 4240,
+    "cer": 0.10825471698113208
+  }
+}

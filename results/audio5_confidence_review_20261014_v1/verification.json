@@ -1,0 +1,40 @@
+{
+  "counts": {
+    "windows": 159,
+    "native_refine": 61,
+    "supplement_refine": 71,
+    "learned_refine": 53,
+    "supplement_extra_review": 10,
+    "supplement_kept_native": 61,
+    "accepted_pipeline_changes": 55,
+    "accepted_lexical_changes": 30,
+    "supplement_skipped_change_candidates": 27,
+    "skipped_lexical_change_candidates": 7,
+    "suggestions": {
+      "partial": 41,
+      "keep": 96,
+      "uncertain": 22
+    },
+    "human_labels": 0,
+    "true_missing_refinement_rate": null,
+    "matched_windows": true
+  },
+  "output_sha256": {
+    "asr_final.json": "4be1d8bbf801080669810f07c98f97cc503fb459f673f9749520d5843efe2adb",
+    "raw_asr.txt": "21f9e10dca051ada66adb627ead2d1888803b37c5baca3420a429e186f651d53",
+    "audio_provenance.json": "4ee9da54f9bd5a569889ac4c8e2d59a56518ecc8e7c8d3aa5efda415a3eb0675",
+    "audio_16k.wav": "36b2d020572d7542c164623e0016aedc974eb4886a98d6ff2773f9e3f5fa40be",
+    "review_queue.jsonl": "1fe94f326528c169f1f889343c3c8b7fadbc91dce4907abe4e71336a85d4e1d3",
+    "review.html": "b06a36c9b6eaecdb10aa8b6bda172c7c81028f34d920e37257837656d00c3262",
+    "REVIEW.md": "e67fcc607ec953aae6a58bf9b4582932afc04a71b3462b1b02d0110159e0e76c",
+    "all_refine.json": "cc27ad2a553629410b04eaec48c64819f28e49d777e6fb2f032559226af9ec99",
+    "native.json": "7a304961288a75720b19af7ae59175c9612c9572758b43f559c357c3899bdf8e",
+    "supplement.json": "ed99c1437ccb90905f87dc1e6157a8f43006ae88ba0df36fa048404528dc21fc",
+    "deployed_learned.json": "a917768e80a5bc405b66d9ae2e486928807799dd632058317db326a7083e5eed",
+    "removed_semantic_loss_recheck.json": "ce6d200658463e0d74356553b38e06998a95adb0a5f0f6ffcf2c4c58628ae2dc",
+    "remove_semantic_loss_integration_v2.log": "5620d105c991dcb336e593b8272174c5c8878cc81a0806545e7675eddbc3fd06"
+  },
+  "no_human_gold_created": true,
+  "removed_output_rejection_rule": "semantic_content_loss",
+  "current_guard_regression_tests": 193
+}

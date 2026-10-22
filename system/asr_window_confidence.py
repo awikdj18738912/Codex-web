@@ -221,18 +221,20 @@ def locate_chunks(text, chunks):
 
 
 def project_window_scores(projection, *, final, source_chunks=None,
-                          group_numeric_self_corrections=True, window_size=3, max_chars=80):
+                          group_numeric_self_corrections=True, window_size=3, max_chars=80,
+                          adjacent_context=True):
     text = projection["text"]
     splitter = CumulativeWindowRefinement(None, window_size=window_size, window_max_chars=max_chars,
         one_punctuation_window=True, fixed_groups=True,
-        group_numeric_self_corrections=group_numeric_self_corrections)
+        group_numeric_self_corrections=group_numeric_self_corrections,
+        adjacent_context=adjacent_context)
     chunks, pending = splitter._fixed_chunks(text, source_chunks=source_chunks, final=final,
                                              preserve_cached_partition=False)
     offsets = locate_chunks(text, chunks)
     fragments = [dict(index=index, text=chunk, start=a, end=b,
                       confidence=score_source_range(projection, a, b))
                  for index, (chunk, (a, b)) in enumerate(zip(chunks, offsets))]
-    complete = len(chunks) if final else len(chunks) // window_size * window_size
+    complete = splitter._complete_fixed_count(chunks, final=final)
     windows = []
     for index in range(0, complete, window_size):
         group = fragments[index:min(index + window_size, complete)]
@@ -247,6 +249,7 @@ def project_window_scores(projection, *, final, source_chunks=None,
         pending_fragment_indices=list(range(complete, len(chunks))),
         partition=dict(window_size=window_size, one_punctuation_window=True, fixed_groups=True,
             window_max_chars=max_chars, group_numeric_self_corrections=group_numeric_self_corrections,
+            adjacent_context=adjacent_context,
             source_chunks_supplied=source_chunks is not None,
             implementation="CumulativeWindowRefinement._fixed_chunks"),
         calibrated=False, production_skip_allowed=False)

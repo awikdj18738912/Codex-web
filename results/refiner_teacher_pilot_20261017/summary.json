@@ -1,0 +1,122 @@
+{
+  "teacher_model_path": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "service_model": "refiner-teacher",
+  "base_url": "http://127.0.0.1:8010/v1",
+  "gpu": 0,
+  "max_model_len": 8192,
+  "request_timeout_seconds": 600,
+  "seed_entries_per_category_override": {
+    "explanation": 8
+  },
+  "elapsed_seconds_scope": "this process; completed diagnostics and two seed pools resumed after a long-request timeout",
+  "default_sampling": {
+    "passthrough": 0.08,
+    "boundary_given_non_passthrough": 0.1,
+    "asr_simulation": 0.2
+  },
+  "scenes_tested": [
+    "daily_chat",
+    "vibe_coding",
+    "explanation"
+  ],
+  "scenes_not_tested": [
+    "meeting",
+    "customer_service",
+    "academic",
+    "navigation",
+    "dictation_memo",
+    "voice_search"
+  ],
+  "generated_oral": 24,
+  "generated_clean_accepted_before_keyword_qc": 12,
+  "generated_clean_after_keyword_qc": 12,
+  "generated_asr_accepted": 11,
+  "generated_assembled": 11,
+  "generated_semantic_qc_pass": 11,
+  "generated_unique_final": 11,
+  "generated_sft_exported": 11,
+  "generated_phenomena": {
+    "minimal_repetition": 1,
+    "smooth_transition_between_topics": 1,
+    "natural_numeric_expression": 1,
+    "correction:multiple": 8,
+    "oral:low": 6,
+    "hesitation": 7,
+    "filler": 13,
+    "repetition": 11,
+    "revision": 2,
+    "oral:moderate": 8,
+    "rollback_correction": 5,
+    "correction:rollback": 7,
+    "rephrasing": 1,
+    "clarification": 1,
+    "punctuation_error": 2,
+    "correction:none": 9,
+    "boundary_punctuation": 2,
+    "false_start": 5,
+    "stuttering": 10,
+    "content_word_repetition": 3,
+    "oral:high": 10,
+    "filler_words": 2,
+    "repetition_of_content_words": 1,
+    "revision_of_content": 1,
+    "false start": 5,
+    "content-word repetition": 3,
+    "rollback correction": 1,
+    "A, change it to B, then explicitly return to A": 1,
+    "contrastive explanation": 2,
+    "explanation": 8,
+    "concise_spelling_explanation": 1,
+    "repetition of content words": 2,
+    "fillers": 1,
+    "hesitations": 1,
+    "contrastive_explanation": 1
+  },
+  "generated_fragments": 1,
+  "assembly_stats": {
+    "daily_chat": {
+      "skipped_empty": 0,
+      "skipped_short": 0,
+      "skipped_numeric_drift": 0
+    },
+    "vibe_coding": {
+      "skipped_empty": 0,
+      "skipped_short": 0,
+      "skipped_numeric_drift": 0
+    },
+    "explanation": {
+      "skipped_empty": 0,
+      "skipped_short": 0,
+      "skipped_numeric_drift": 0
+    }
+  },
+  "fixed_diagnostics": 16,
+  "fixed_clean_accepted": 16,
+  "fixed_with_exact_reference": 10,
+  "fixed_exact_reference_matches": 9,
+  "fixed_semantic_qc_pass": 13,
+  "raw_teacher_clean_responses": 40,
+  "raw_teacher_rejected_by_numeric_entity_policy": 12,
+  "raw_teacher_repaired_by_numeric_policy": 0,
+  "api_call_count": 94,
+  "elapsed_seconds": 422.57,
+  "limitations": [
+    "Small pilot, not a student-model benchmark",
+    "Same teacher generates labels and judges semantics; manual review still required",
+    "Fixed diagnostic inputs excluded from generated training pairs",
+    "No training/validation split on this small pilot"
+  ],
+  "task_review": {
+    "fixed_diagnostics_meeting_task_requirements": 12,
+    "fixed_diagnostics_not_meeting_task_requirements": 4,
+    "failed_fixed_ids": [
+      "fixed_numeric_correction",
+      "fixed_rollback",
+      "fixed_multiple",
+      "fixed_spelling_cue"
+    ],
+    "known_false_rejection": "multiple_weekday: correct target 最后定周三开会。 is rejected",
+    "quality_status": "candidate_only; task QC and numeric policy require fixes before full generation",
+    "report": "README.md"
+  }
+}

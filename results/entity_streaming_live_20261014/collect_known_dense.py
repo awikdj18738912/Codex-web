@@ -22,7 +22,7 @@ async def main(split,limit=None):
     keys=sorted(grouped);samples=[grouped[k][i] for i in range(max(map(len,grouped.values()))) for k in keys if i<len(grouped[k])]
     policy_hash=hashlib.sha256((OUT/'candidate.py').read_bytes()).hexdigest()
     protocol={'split':split,'sample_order':[s['id'] for s in samples],
-        'candidate_sha256':policy_hash,'source_hashes':worker['source_hashes'],'experiment_worker_sha256':hashlib.sha256((OUT/'experiment_worker.py').read_bytes()).hexdigest(),
+        'candidate_sha256':policy_hash,'live_core_sha256':hashlib.sha256((OUT/'live_core.py').read_bytes()).hexdigest(),'source_hashes':worker['source_hashes'],'experiment_worker_sha256':hashlib.sha256((OUT/'experiment_worker.py').read_bytes()).hexdigest(),
         'settings':{'ASR_chunk_seconds':2,'transport_bytes':64000,'max_outstanding':1,'serial_samples':True,'artificial_delay':.08,'settle_before_next_sample':True},
         'timing_scope':'Local WS connect to full final; fresh ASR and actual refiner. Excludes file reads, decode, browser/proxy.',
         'gold_at_inference':False}

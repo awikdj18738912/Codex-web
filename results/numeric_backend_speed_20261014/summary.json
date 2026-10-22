@@ -1,0 +1,186 @@
+{
+  "nonnumeric_control": {
+    "zh_itn_web_chain": {
+      "observations": 36,
+      "total_ms": 6309.958116617054,
+      "mean_ms": 175.27661435047372,
+      "median_ms": 114.94623403996229,
+      "p95_ms": 463.6534396559,
+      "model_calls": 21,
+      "retries": 3,
+      "rejected": 3,
+      "rule_ms": 45.36
+    },
+    "zh_itn_only": {
+      "observations": 36,
+      "total_ms": 46.052513644099236,
+      "mean_ms": 1.2792364901138678,
+      "median_ms": 1.0403117630630732,
+      "p95_ms": 3.8593881763517857,
+      "model_calls": 0,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "refiner_only": {
+      "observations": 36,
+      "total_ms": 12607.539710588753,
+      "mean_ms": 350.20943640524314,
+      "median_ms": 361.0314819961786,
+      "p95_ms": 451.6541860066354,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "model_web_chain": {
+      "observations": 36,
+      "total_ms": 6236.403714399785,
+      "mean_ms": 173.23343651110514,
+      "median_ms": 112.61804844252765,
+      "p95_ms": 460.49653040245175,
+      "model_calls": 21,
+      "retries": 3,
+      "rejected": 3,
+      "rule_ms": 0.0
+    }
+  },
+  "all": {
+    "zh_itn_web_chain": {
+      "observations": 108,
+      "total_ms": 24699.547303374857,
+      "mean_ms": 228.6995120682857,
+      "median_ms": 271.01241308264434,
+      "p95_ms": 652.4442010559142,
+      "model_calls": 69,
+      "retries": 12,
+      "rejected": 12,
+      "rule_ms": 451.55
+    },
+    "zh_itn_only": {
+      "observations": 108,
+      "total_ms": 455.66024584695697,
+      "mean_ms": 4.219076350434786,
+      "median_ms": 3.2148906029760838,
+      "p95_ms": 8.843586780130863,
+      "model_calls": 0,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "refiner_only": {
+      "observations": 108,
+      "total_ms": 43771.898748353124,
+      "mean_ms": 405.29535878104747,
+      "median_ms": 382.722596405074,
+      "p95_ms": 836.0405061393976,
+      "model_calls": 108,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "model_web_chain": {
+      "observations": 108,
+      "total_ms": 61460.37044143304,
+      "mean_ms": 569.077504087343,
+      "median_ms": 510.08835271932185,
+      "p95_ms": 1694.5762899704278,
+      "model_calls": 147,
+      "retries": 54,
+      "rejected": 54,
+      "rule_ms": 0.0
+    }
+  },
+  "numeric_only": {
+    "refiner_only": {
+      "observations": 36,
+      "total_ms": 16400.774971116334,
+      "mean_ms": 455.5770825310093,
+      "median_ms": 450.1613909378648,
+      "p95_ms": 842.0721599832177,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "model_web_chain": {
+      "observations": 36,
+      "total_ms": 26721.1072021164,
+      "mean_ms": 742.2529778365666,
+      "median_ms": 739.5890029147267,
+      "p95_ms": 1695.1993037946522,
+      "model_calls": 57,
+      "retries": 21,
+      "rejected": 21,
+      "rule_ms": 0.0
+    },
+    "zh_itn_web_chain": {
+      "observations": 36,
+      "total_ms": 1423.3934888616204,
+      "mean_ms": 39.5387080239339,
+      "median_ms": 7.55607895553112,
+      "p95_ms": 398.88489712029696,
+      "model_calls": 3,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 221.546
+    },
+    "zh_itn_only": {
+      "observations": 36,
+      "total_ms": 222.08174550905824,
+      "mean_ms": 6.168937375251618,
+      "median_ms": 6.894113263115287,
+      "p95_ms": 14.817452989518642,
+      "model_calls": 0,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    }
+  },
+  "numeric_cleanup": {
+    "zh_itn_web_chain": {
+      "observations": 36,
+      "total_ms": 16966.195697896183,
+      "mean_ms": 471.28321383044954,
+      "median_ms": 423.606714932248,
+      "p95_ms": 977.0738971419632,
+      "model_calls": 45,
+      "retries": 9,
+      "rejected": 9,
+      "rule_ms": 184.644
+    },
+    "zh_itn_only": {
+      "observations": 36,
+      "total_ms": 187.5259866937995,
+      "mean_ms": 5.209055185938875,
+      "median_ms": 4.6650932636111975,
+      "p95_ms": 9.023108053952456,
+      "model_calls": 0,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "refiner_only": {
+      "observations": 36,
+      "total_ms": 14763.584066648036,
+      "mean_ms": 410.0995574068899,
+      "median_ms": 349.2336410563439,
+      "p95_ms": 839.7132400423288,
+      "model_calls": 36,
+      "retries": 0,
+      "rejected": 0,
+      "rule_ms": 0
+    },
+    "model_web_chain": {
+      "observations": 36,
+      "total_ms": 28502.859524916857,
+      "mean_ms": 791.7460979143572,
+      "median_ms": 756.0492681805044,
+      "p95_ms": 1697.812280151993,
+      "model_calls": 69,
+      "retries": 30,
+      "rejected": 30,
+      "rule_ms": 0.0
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "dataset": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014/dataset",
+  "partial": false,
+  "scored_unique_samples": 2000,
+  "expected_samples": 2000,
+  "arms": {
+    "saved_baseline": {
+      "samples": 2000,
+      "entity_hits": 1342,
+      "entity_expected": 2658,
+      "cer_errors": 3116,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5048908954100828,
+      "cer": 0.06626403538618578
+    },
+    "paired_primary": {
+      "samples": 2000,
+      "entity_hits": 1342,
+      "entity_expected": 2658,
+      "cer_errors": 3116,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5048908954100828,
+      "cer": 0.06626403538618578
+    },
+    "entity_audio_raw": {
+      "samples": 2000,
+      "entity_hits": 1433,
+      "entity_expected": 2658,
+      "cer_errors": 3006,
+      "cer_reference_chars": 47024,
+      "entity_recall": 0.5391271632806621,
+      "cer": 0.06392480435522287
+    },
+    "saved_baseline_rules": {
+      "samples": 1273,
+      "entity_hits": 987,
+      "entity_expected": 1411,
+      "cer_errors": 1767,
+      "cer_reference_chars": 35834,
+      "entity_recall": 0.69950389794472,
+      "cer": 0.049310710498409335
+    },
+    "entity_rules_auto": {
+      "samples": 1273,
+      "entity_hits": 1045,
+      "entity_expected": 1411,
+      "cer_errors": 1694,
+      "cer_reference_chars": 35834,
+      "entity_recall": 0.7406094968107725,
+      "cer": 0.04727353909694703
+    }
+  },
+  "paired_changes": {
+    "primary_vs_saved_drift": {
+      "comparable": 2000,
+      "raw_text_different": 0,
+      "cer_errors_changed": 0,
+      "entity_hits_changed": 0
+    },
+    "entity_audio_raw_vs_primary_entity_improved_samples": 87,
+    "entity_audio_raw_vs_primary_entity_degraded_samples": 0,
+    "entity_audio_raw_vs_primary_cer_improved_samples": 86,
+    "entity_audio_raw_vs_primary_cer_degraded_samples": 0,
+    "entity_rules_auto_coverage_samples": 1273,
+    "entity_rules_auto_unavailable_samples": 727,
+    "entity_rules_auto_vs_saved_cer_improved_samples": 57,
+    "entity_rules_auto_vs_saved_cer_degraded_samples": 0
+  },
+  "audio_review": {
+    "samples_with_check": 303,
+    "checks": 331,
+    "samples_with_changes": 89,
+    "changes": 94,
+    "seconds": 2492.7619084864855,
+    "recovered_mentions": 91,
+    "lost_mentions": 0,
+    "replay_pcm_seconds": 2162.2488125000004,
+    "replay_wall_seconds": 101.22779902629554,
+    "incremental_errors": 0
+  },
+  "incremental_totals": {
+    "detections": 2609,
+    "candidates": 9148,
+    "low_score_rejected": 3888,
+    "ambiguous_rejected": 3074,
+    "oversized_rejected": 0,
+    "budget_rejected": 0,
+    "queue_rejected": 0,
+    "unmapped": 0,
+    "late_candidates_kept": 15,
+    "completed_windows": 331,
+    "cache_reused": 0
+  },
+  "module_error_count": 727,
+  "false_edit_audit": {
+    "candidate_sample_count": 2,
+    "candidates": [
+      {
+        "id": "chall_aishell_BAC009S0707W0383",
+        "domain": "人名机构地名",
+        "stages": [
+          {
+            "stage": "audio_raw_vs_paired_primary",
+            "unsupported_added_canonical_names": [
+              "许敏"
+            ]
+          }
+        ],
+        "note": "Conservative automatic candidates; no human review claimed."
+      },
+      {
+        "id": "leb1_c0f03a62bfeab44c3bc3",
+        "domain": "人名机构地名",
+        "stages": [
+          {
+            "stage": "audio_raw_vs_paired_primary",
+            "unsupported_added_canonical_names": [
+              "孙英杰"
+            ]
+          }
+        ],
+        "note": "Conservative automatic candidates; no human review claimed."
+      }
+    ],
+    "method": "For each sample and each stage, names come only from row.library_path. Prefer canonical values recorded in changes/rule_changes; fallback scans that sample's library. Listed only when the stage output adds an occurrence relative to its before text and the canonical is absent from the standard reference. Conservative automatic candidates; no human review claimed."
+  },
+  "integrity": {
+    "reference_count": 2000,
+    "dataset_sample_count": 2000,
+    "dataset_sample_row_count": 2000,
+    "baseline_count": 2000,
+    "baseline_row_count": 2000,
+    "run_row_count": 2000,
+    "run_unique_count": 2000,
+    "duplicate_run_ids": [],
+    "missing_reference_ids": [],
+    "missing_dataset_ids": [],
+    "missing_baseline_ids": [],
+    "extra_baseline_ids": [],
+    "missing_run_ids": [],
+    "extra_run_ids": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "baseline": "results/refiner_teacher_pilot_20261017",
+  "fresh_fixed_count": 16,
+  "generated_count_requested": 24,
+  "generated_scenes": [
+    "daily_chat",
+    "vibe_coding",
+    "explanation"
+  ],
+  "same_seed_pools": true,
+  "same_control_rng_seed": 20261017,
+  "changed_since_v1": [
+    "Oral prompt coherence, optional English and shorter lengths",
+    "Clean prompt cleanup requirements and simplified number/entity instructions",
+    "semantic QC fidelity plus cleanup completeness",
+    "ASR prompt simplified",
+    "SFT prompt simplified"
+  ],
+  "unchanged_known_issue": "Weekday self-correction may be falsely rejected by the existing numeric literal validator.",
+  "fixed_previous_failures": {
+    "fixed_numeric_correction": [
+      "预算改成500元。",
+      "预算是500元。",
+      "预算500元。"
+    ],
+    "fixed_rollback": [
+      "我想用红色吧。",
+      "我想用红色。",
+      "用红色吧。",
+      "用红色。"
+    ],
+    "fixed_multiple": [
+      "最后定周三开会。",
+      "周三开会。",
+      "定周三开会。"
+    ],
+    "fixed_spelling_cue": [
+      "收件人是钟宁。"
+    ]
+  },
+  "claim_limit": "Fixed checks are development cases included in prompt examples; improvement is not independent held-out accuracy. Generated inputs differ between runs; one small stochastic run does not isolate individual prompt changes."
+}

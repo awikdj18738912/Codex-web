@@ -1,0 +1,6724 @@
+[
+  {
+    "segment_index": 1,
+    "source": "那人人性到底是什么呢？所以这可能也是在人类历史上一直以来的一个基本的争论吧。嗯，",
+    "baseline": "那人人性到底是什么呢？所以这可能也是在人类历史上一直以来的一个基本的争论吧。嗯，",
+    "masked_input": "那人人性到底是什么呢？所以这可能也是在人类历史上一直以来的一个基本的争论吧。嗯，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 37,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "那人人性到底是什么呢？所以这可能也是在人类历史上一直以来的一个基本的争论吧。嗯，",
+        "output": "人性到底是什么呢？这可能也在人类历史上一直以来的一个基本的争论吧。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "",
+          "right_context": "就是关于德性论跟功利论的争议吧。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "",
+      "right_context": "就是关于德性论跟功利论的争议吧。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "人性到底是什么呢？这可能也在人类历史上一直以来的一个基本的争论吧。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "就是关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论，",
+    "baseline": "就是关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论，",
+    "masked_input": "就是关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 34,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "就是关于德性论跟功利论的争议吧。在柏拉图的《理想国》中，一直就有过这样的讨论，",
+        "output": "关于德性论跟功利论的争议，在柏拉图的《理想国》中一直就有过这样的讨论。<KEY>[德性论、功利论、柏拉图、理想国]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯，",
+          "right_context": "而在中国的春秋时期，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯，",
+      "right_context": "而在中国的春秋时期，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "关于德性论跟功利论的争议，在柏拉图的《理想国》中一直就有过这样的讨论。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "而在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+    "baseline": "而在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+    "masked_input": "而在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 25,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "一直就有过这样的讨论，",
+      "right_context": "换言之，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "而在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "换言之，就这个世界上有没有正义的问题，正义。",
+    "baseline": "换言之，就这个世界上有没有正义的问题，正义。",
+    "masked_input": "换言之，就这个世界上有没有正义的问题，正义。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "关于义和利的讨论。",
+      "right_context": "是人类的发现，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "换言之，就这个世界上有没有正义的问题，正义。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是人类的发现，还是人类的发明，还是一套纯粹的说辞？",
+    "baseline": "是人类的发现，还是人类的发明，还是一套纯粹的说辞？",
+    "masked_input": "是人类的发现，还是人类的发明，还是一套纯粹的说辞？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "正义。",
+      "right_context": "那你要用这个诡辩论者，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "是人类的发现，还是人类的发明，还是一套纯粹的说辞？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那你要用这个诡辩论者，或者说相对论者色拉叙马霍斯的观点，就认为正义那就是强人的利益，",
+    "baseline": "那你要用这个诡辩论者，或者说相对论者色拉叙马霍斯的观点，就认为正义那就是强人的利益，",
+    "masked_input": "那你要用这个诡辩论者，或者说相对论者色拉叙马霍斯的观点，就认为正义那就是强人的利益，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 39,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "还是一套纯粹的说辞？",
+      "right_context": "所以不要去谈什么正义，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那你要用这个诡辩论者，或者说相对论者色拉叙马霍斯的观点，就认为正义那就是强人的利益，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，",
+    "baseline": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，",
+    "masked_input": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "就认为正义那就是强人的利益，",
+      "right_context": "所以没有正义，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "所以不要去谈什么正义，天下熙熙皆为利来，天下攘攘皆为利利往，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "所以没有正义，强权即真理。但是苏格拉底不这么认为啊！",
+    "baseline": "所以没有正义，强权即真理。但是苏格拉底不这么认为啊！",
+    "masked_input": "所以没有正义，强权即真理。但是苏格拉底不这么认为啊！",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "天下攘攘皆为利利往，",
+      "right_context": "苏格拉底认为正义是客观存在的呀。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "所以没有正义，强权即真理。但是苏格拉底不这么认为啊！",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "苏格拉底认为正义是客观存在的呀。什么是正义？正义就是那种最好的东西，",
+    "baseline": "苏格拉底认为正义是客观存在的呀。什么是正义？正义就是那种最好的东西，",
+    "masked_input": "苏格拉底认为正义是客观存在的呀。什么是正义？正义就是那种最好的东西，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 31,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "但是苏格拉底不这么认为啊！",
+      "right_context": "它行为本身是好的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "苏格拉底认为正义是客观存在的呀。什么是正义？正义就是那种最好的东西，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "它行为本身是好的，而且一定也能带来好的结果。只不过这个一定能够带来好的结果，",
+    "baseline": "它行为本身是好的，而且一定也能带来好的结果。只不过这个一定能够带来好的结果，",
+    "masked_input": "它行为本身是好的，而且一定也能带来好的结果。只不过这个一定能够带来好的结果，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 35,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "正义就是那种最好的东西，",
+      "right_context": "往往是我们经验世界中肉眼不可见的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "它行为本身是好的，而且一定也能带来好的结果。只不过这个一定能够带来好的结果，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样，",
+    "baseline": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样，",
+    "masked_input": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 41,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样，",
+        "output": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "只不过这个一定能够带来好的结果，",
+          "right_context": "那儒家跟法家一个最大的争论就在于，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "只不过这个一定能够带来好的结果，",
+      "right_context": "那儒家跟法家一个最大的争论就在于，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "往往是我们经验世界中肉眼不可见的，可能是要超越经验才能看到。那回到我们中国语境下也一样。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那儒家跟法家一个最大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的，",
+    "baseline": "那儒家跟法家一个最大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的，",
+    "masked_input": "那儒家跟法家一个最大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 37,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那回到我们中国语境下也一样，",
+      "right_context": "那商鞅就认为仁义就是搞笑，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那儒家跟法家一个最大的争论就在于，儒家认为仁义是客观存在的，仁义是跟天道有关的，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那商鞅就认为仁义就是搞笑，谈什么仁义，人没有仁义，",
+    "baseline": "那商鞅就认为仁义就是搞笑，谈什么仁义，人没有仁义，",
+    "masked_input": "那商鞅就认为仁义就是搞笑，谈什么仁义，人没有仁义，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "仁义是跟天道有关的，",
+      "right_context": "只有赤裸裸的利益。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那商鞅就认为仁义就是搞笑，谈什么仁义，人没有仁义，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "只有赤裸裸的利益。人跟人之间就是互相利用的嘛，还谈什么仁义？",
+    "baseline": "只有赤裸裸的利益。人跟人之间就是互相利用的嘛，还谈什么仁义？",
+    "masked_input": "只有赤裸裸的利益。人跟人之间就是互相利用的嘛，还谈什么仁义？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "人没有仁义，",
+      "right_context": "所以商鞅就认为儒家这一套很虚伪的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "只有赤裸裸的利益。人跟人之间就是互相利用的嘛，还谈什么仁义？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "所以商鞅就认为儒家这一套很虚伪的，本来就是利益，你非要谈仁义。",
+    "baseline": "所以商鞅就认为儒家这一套很虚伪的，本来就是利益，你非要谈仁义。",
+    "masked_input": "所以商鞅就认为儒家这一套很虚伪的，本来就是利益，你非要谈仁义。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "还谈什么仁义？",
+      "right_context": "一个人给我打电话，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "所以商鞅就认为儒家这一套很虚伪的，本来就是利益，你非要谈仁义。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "一个人给我打电话，哎呀，说罗翔好多年没见面了，",
+    "baseline": "一个人给我打电话，哎呀，说罗翔好多年没见面了，",
+    "masked_input": "一个人给我打电话，哎呀，说罗翔好多年没见面了，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "你非要谈仁义。",
+      "right_context": "我说叔借多少钱？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "all_candidates_preserved:indefinite_single_one_count",
+      "candidate_count": 1,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "一个人给我打电话，哎呀，说罗翔好多年没见面了，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我说叔借多少钱？这是法家的观点，他认为一个人跟你套近乎，",
+    "baseline": "我说叔借多少钱？这是法家的观点，他认为一个人跟你套近乎，",
+    "masked_input": "我说叔借多少钱？这是法家的观点，他认为一个人跟你套近乎，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 25,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "说罗翔好多年没见面了，",
+      "right_context": "一定是有利益追求的。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "all_candidates_preserved:indefinite_single_one_count",
+      "candidate_count": 1,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "我说叔借多少钱？这是法家的观点，他认为一个人跟你套近乎，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "一定是有利益追求的。回到我们今天的话题，还是一样，",
+    "baseline": "一定是有利益追求的。回到我们今天的话题，还是一样，",
+    "masked_input": "一定是有利益追求的。回到我们今天的话题，还是一样，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他认为一个人跟你套近乎，",
+      "right_context": "这个人的批语很明显，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "一定是有利益追求的。回到我们今天的话题，还是一样，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这个人的批语很明显，他不是儒家的立场，他是赤裸裸法家的立场，",
+    "baseline": "这个人的批语很明显，他不是儒家的立场，他是赤裸裸法家的立场，",
+    "masked_input": "这个人的批语很明显，他不是儒家的立场，他是赤裸裸法家的立场，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "还是一样，",
+      "right_context": "认为真小人远比伪君子要好得多。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这个人的批语很明显，他不是儒家的立场，他是赤裸裸法家的立场，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢，",
+    "baseline": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢，",
+    "masked_input": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他是赤裸裸法家的立场，",
+      "right_context": "可以得出这个结论的。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "认为真小人远比伪君子要好得多。他是。这个毛中纲父父子的批语呢，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "可以得出这个结论的。对，真小人比伪君子好得多。",
+    "baseline": "可以得出这个结论的。对，真小人比伪君子好得多。",
+    "masked_input": "可以得出这个结论的。对，真小人比伪君子好得多。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "可以得出这个结论的。对，真小人比伪君子好得多。",
+        "output": "可以得出这个结论的。对，真小人比伪君子好得多。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "这个毛中纲父父子的批语呢，",
+          "right_context": "对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "这个毛中纲父父子的批语呢，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "可以得出这个结论的。对，真小人比伪君子好得多。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，但是呃，毛中纲父子是儒家法家，",
+    "baseline": "对，但是呃，毛中纲父子是儒家法家，",
+    "masked_input": "对，但是呃，毛中纲父子是儒家法家，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，但是呃，毛中纲父子是儒家法家，",
+        "output": "但是毛中纲父子是儒家法家<KEY>[毛中纲、儒家法家]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "真小人比伪君子好得多。",
+          "right_context": "我们另当别论啊。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "真小人比伪君子好得多。",
+      "right_context": "我们另当别论啊。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "但是毛中纲父子是儒家法家",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+    "baseline": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+    "masked_input": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+        "output": "我们别当别论了，实际上他们自己认为他们是儒家。<KEY>[儒家]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "毛中纲父子是儒家法家，",
+          "right_context": "对对对，"
+        }
+      },
+      {
+        "input": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+        "output": "我们别当别论了，实际上他们自己认为他们是儒家。<KEY>[儒家]",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "毛中纲父子是儒家法家，",
+          "right_context": "对对对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "毛中纲父子是儒家法家，",
+      "right_context": "对对对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "semantic_substitution"
+    ],
+    "output": "我们另当别论啊。对，实际上他们自己认为他们是儒家。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对对对，这搞笑了，对吧？",
+    "baseline": "对对对，这搞笑了，对吧？",
+    "masked_input": "对对对，这搞笑了，对吧？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 9,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对对对，这搞笑了，对吧？",
+        "output": "这搞笑了，对吧？",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "实际上他们自己认为他们是儒家。",
+          "right_context": "对对对对对对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "实际上他们自己认为他们是儒家。",
+      "right_context": "对对对对对对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "这搞笑了，对吧？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，",
+    "baseline": "对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，",
+    "masked_input": "对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 31,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对对对对对对，因为你因为他们他们那个时代没有人说自己是法家，不敢说，",
+        "output": "因为你因为他们那个时代没有人说自己是法家，不敢说。<KEY>[法家]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对吧？",
+          "right_context": "不敢说，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对吧？",
+      "right_context": "不敢说，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "因为你因为他们那个时代没有人说自己是法家，不敢说。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "不敢说，他也不他他们都说自己是儒家儒家啊，是儒家的跟法家，",
+    "baseline": "不敢说，他也不他他们都说自己是儒家儒家啊，是儒家的跟法家，",
+    "masked_input": "不敢说，他也不他他们都说自己是儒家儒家啊，是儒家的跟法家，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "不敢说，他也不他他们都说自己是儒家儒家啊，是儒家的跟法家，",
+        "output": "他们都说自己是儒家啊，是儒家的跟法家。<KEY>[儒家、跟法家]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "不敢说，",
+          "right_context": "他其实。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "不敢说，",
+      "right_context": "他其实。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "他们都说自己是儒家啊，是儒家的跟法家。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他其实。他确实有有有这个毅力之之争，对对对。",
+    "baseline": "他其实。他确实有有有这个毅力之之争，对对对。",
+    "masked_input": "他其实。他确实有有有这个毅力之之争，对对对。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "他其实。他确实有有有这个毅力之之争，对对对。",
+        "output": "他确实有毅力之的争论。<KEY>[毅力之]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "是儒家的跟法家，",
+          "right_context": "那孟子就讨论人性是善还是恶，"
+        }
+      },
+      {
+        "input": "他其实。他确实有有有这个毅力之之争，对对对。",
+        "output": "他确实有毅力之的争论。<KEY>[毅力之]",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "是儒家的跟法家，",
+          "right_context": "那孟子就讨论人性是善还是恶，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "是儒家的跟法家，",
+      "right_context": "那孟子就讨论人性是善还是恶，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "severe_content_loss"
+    ],
+    "output": "他其实。他确实有有有这个毅力之之争，对对对。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那孟子就讨论人性是善还是恶，对，而和跟孟孟子争争论的人呢，",
+    "baseline": "那孟子就讨论人性是善还是恶，对，而和跟孟孟子争争论的人呢，",
+    "masked_input": "那孟子就讨论人性是善还是恶，对，而和跟孟孟子争争论的人呢，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "那孟子就讨论人性是善还是恶，对，而和跟孟孟子争争论的人呢，",
+        "output": "孟子就讨论人性是善还是恶，对和孟孟子争争论的人呢<KEY>[孟子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对对对。",
+          "right_context": "是主张人性无善恶，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对对对。",
+      "right_context": "是主张人性无善恶，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "孟子就讨论人性是善还是恶，对和孟孟子争争论的人呢",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是主张人性无善恶，这人性就是一张白纸嘛，嗯哼，",
+    "baseline": "是主张人性无善恶，这人性就是一张白纸嘛，嗯哼，",
+    "masked_input": "是主张人性无善恶，这人性就是一张白纸嘛，嗯哼，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "而和跟孟孟子争争论的人呢，",
+      "right_context": "叫实色性也，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "是主张人性无善恶，这人性就是一张白纸嘛，嗯哼，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "叫实色性也，实色性也就是。要吃饭。",
+    "baseline": "叫实色性也，实色性也就是。要吃饭。",
+    "masked_input": "叫实色性也，实色性也就是。要吃饭。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "叫实色性也，实色性也就是。要吃饭。",
+        "output": "叫实色性也要吃饭。<KEY>[实色性]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼，",
+          "right_context": "呃，"
+        }
+      },
+      {
+        "input": "叫实色性也，实色性也就是。要吃饭。",
+        "output": "叫实色性也要吃饭。<KEY>[实色性]",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼，",
+          "right_context": "呃，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯哼，",
+      "right_context": "呃，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "severe_content_loss"
+    ],
+    "output": "叫实色性也，实色性也就是。要吃饭。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "呃，要上床。呃，",
+    "baseline": "呃，要上床。呃，",
+    "masked_input": "呃，要上床。呃，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 5,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "呃，要上床。呃，",
+        "output": "要上床。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "要吃饭。",
+          "right_context": "这是本性的本性，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "要吃饭。",
+      "right_context": "这是本性的本性，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "要上床。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这是本性的本性，嗯。那么，",
+    "baseline": "这是本性的本性，嗯。那么，",
+    "masked_input": "这是本性的本性，嗯。那么，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 10,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "这是本性的本性，嗯。那么，",
+        "output": "这是本性的本性。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "呃，",
+          "right_context": "儒家就认为，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "呃，",
+      "right_context": "儒家就认为，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "这是本性的本性。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "儒家就认为，如果这就是人性的话，人和动物没区别。",
+    "baseline": "儒家就认为，如果这就是人性的话，人和动物没区别。",
+    "masked_input": "儒家就认为，如果这就是人性的话，人和动物没区别。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 21,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那么，",
+      "right_context": "对。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "儒家就认为，如果这就是人性的话，人和动物没区别。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对。儒家只是认为，人和动物的区别就在于人。",
+    "baseline": "对。儒家只是认为，人和动物的区别就在于人。",
+    "masked_input": "对。儒家只是认为，人和动物的区别就在于人。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对。儒家只是认为，人和动物的区别就在于人。",
+        "output": "对。儒家认为，人和动物的区别就在于人。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "人和动物没区别。",
+          "right_context": "有道德，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "人和动物没区别。",
+      "right_context": "有道德，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "对。儒家认为，人和动物的区别就在于人。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "有道德，对。有礼仪，",
+    "baseline": "有道德，对。有礼仪，",
+    "masked_input": "有道德，对。有礼仪，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 7,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "有道德，对。有礼仪，",
+        "output": "有道德，对。有礼仪。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "人和动物的区别就在于人。",
+          "right_context": "对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "人和动物的区别就在于人。",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "有道德，对。有礼仪。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，有秩序，有规范，",
+    "baseline": "对，有秩序，有规范，",
+    "masked_input": "对，有秩序，有规范，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 7,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，有秩序，有规范，",
+        "output": "有秩序，有规范",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "有礼仪，",
+          "right_context": "嗯，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "有礼仪，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "有秩序，有规范",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，动物没有。那么到了荀子，",
+    "baseline": "嗯，动物没有。那么到了荀子，",
+    "masked_input": "嗯，动物没有。那么到了荀子，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 11,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，动物没有。那么到了荀子，",
+        "output": "动物没有。那么到了荀子。<KEY>[荀子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "有规范，",
+          "right_context": "他就不一样，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "有规范，",
+      "right_context": "他就不一样，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "动物没有。那么到了荀子。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他就不一样，人荀子不这么认为。对，",
+    "baseline": "他就不一样，人荀子不这么认为。对，",
+    "masked_input": "他就不一样，人荀子不这么认为。对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那么到了荀子，",
+      "right_context": "荀子认为人是人性的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "他就不一样，人荀子不这么认为。对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "荀子认为人是人性的，分两部分，一部分就是你们说的那个要吃饭要繁衍，",
+    "baseline": "荀子认为人是人性的，分2部分，一部分就是你们说的那个要吃饭要繁衍，",
+    "masked_input": "荀子认为人是人性的，分2部分，一部分就是你们说的那个要吃饭要繁衍，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 30,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "对吧？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "applied",
+      "candidate_count": 1,
+      "changes": [
+        {
+          "original": "两部",
+          "replacement": "2部",
+          "kind": "zh.number.complete_numeric_object",
+          "start": 11,
+          "end": 13
+        }
+      ]
+    },
+    "outcome": "gate_skip",
+    "output": "荀子认为人是人性的，分2部分，一部分就是你们说的那个要吃饭要繁衍，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对吧？那个是叫动物性。他称之为信，",
+    "baseline": "对吧？那个是叫动物性。他称之为信，",
+    "masked_input": "对吧？那个是叫动物性。他称之为信，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "一部分就是你们说的那个要吃饭要繁衍，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "对吧？那个是叫动物性。他称之为信，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，另外呢，还有一种善，",
+    "baseline": "嗯，另外呢，还有一种善，",
+    "masked_input": "嗯，另外呢，还有一种善，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 9,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，另外呢，还有一种善，",
+        "output": "另外还有一种善<KEY>[善]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "他称之为信，",
+          "right_context": "那是社会性，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "他称之为信，",
+      "right_context": "那是社会性，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "另外还有一种善",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那是社会性，对，它叫伪，",
+    "baseline": "那是社会性，对，它叫伪，",
+    "masked_input": "那是社会性，对，它叫伪，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 9,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "那是社会性，对，它叫伪，",
+        "output": "那是社会性，对，它叫伪。<KEY>[伪]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "还有一种善，",
+          "right_context": "嗯，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "还有一种善，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "那是社会性，对，它叫伪。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，所以荀子的观点叫化性起伪，就是要通过善去改造。",
+    "baseline": "嗯，所以荀子的观点叫化性起伪，就是要通过善去改造。",
+    "masked_input": "嗯，所以荀子的观点叫化性起伪，就是要通过善去改造。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，所以荀子的观点叫化性起伪，就是要通过善去改造。",
+        "output": "所以荀子的观点叫化性起伪，就是要通过善去改造。<KEY>[荀子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "它叫伪，",
+          "right_context": "恶的本性，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "它叫伪，",
+      "right_context": "恶的本性，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "所以荀子的观点叫化性起伪，就是要通过善去改造。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "恶的本性，对，那到了韩非子，",
+    "baseline": "恶的本性，对，那到了韩非子，",
+    "masked_input": "恶的本性，对，那到了韩非子，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 11,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "恶的本性，对，那到了韩非子，",
+        "output": "恶的本性，对，那到了韩非子。<KEY>[韩非子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "就是要通过善去改造。",
+          "right_context": "韩非就是把人性归为你刚才说的利害关系，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "就是要通过善去改造。",
+      "right_context": "韩非就是把人性归为你刚才说的利害关系，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "恶的本性，对，那到了韩非子。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "韩非就是把人性归为你刚才说的利害关系，对。也就是儒家的大师教说了一个最大的法家的学生，",
+    "baseline": "韩非就是把人性归为你刚才说的利害关系，对。也就是儒家的大师教说了一个最大的法家的学生，",
+    "masked_input": "韩非就是把人性归为你刚才说的利害关系，对。也就是儒家的大师教说了一个最大的法家的学生，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 40,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "韩非就是把人性归为你刚才说的利害关系，对。也就是儒家的大师教说了一个最大的法家的学生，",
+        "output": "韩非就是把人性归为你刚才说的利害关系。对，就是儒家的大师教说了一个最大的法家的学生。<KEY>[韩非]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "那到了韩非子，",
+          "right_context": "啊对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "那到了韩非子，",
+      "right_context": "啊对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "韩非就是把人性归为你刚才说的利害关系。对，就是儒家的大师教说了一个最大的法家的学生。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "啊对，对对，但是他这个他这个变化呢，",
+    "baseline": "啊对，对对，但是他这个他这个变化呢，",
+    "masked_input": "啊对，对对，但是他这个他这个变化呢，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "啊对，对对，但是他这个他这个变化呢，",
+        "output": "对了，但他这个变化呢？",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "也就是儒家的大师教说了一个最大的法家的学生，",
+          "right_context": "他是有他的历史原因的，"
+        }
+      },
+      {
+        "input": "啊对，对对，但是他这个他这个变化呢，",
+        "output": "对了，但他这个变化呢？",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "也就是儒家的大师教说了一个最大的法家的学生，",
+          "right_context": "他是有他的历史原因的，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "也就是儒家的大师教说了一个最大的法家的学生，",
+      "right_context": "他是有他的历史原因的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "severe_content_loss"
+    ],
+    "output": "啊对，对对，但是他这个他这个变化呢，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他是有他的历史原因的，对，因为在孔子的时代呢，",
+    "baseline": "他是有他的历史原因的，对，因为在孔子的时代呢，",
+    "masked_input": "他是有他的历史原因的，对，因为在孔子的时代呢，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "他是有他的历史原因的，对，因为在孔子的时代呢，",
+        "output": "他是有他的历史原因的，因为在孔子的时代呢。<KEY>[孔子的时代]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "但是他这个他这个变化呢，",
+          "right_context": "呃春秋晚年晚期嘛，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "但是他这个他这个变化呢，",
+      "right_context": "呃春秋晚年晚期嘛，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "他是有他的历史原因的，因为在孔子的时代呢。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "呃春秋晚年晚期嘛，所以礼坏乐崩嘛，对，",
+    "baseline": "呃春秋晚年晚期嘛，所以礼坏乐崩嘛，对，",
+    "masked_input": "呃春秋晚年晚期嘛，所以礼坏乐崩嘛，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "embedded_disfluency"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "呃春秋晚年晚期嘛，所以礼坏乐崩嘛，对，",
+        "output": "春秋晚期嘛，所以礼坏乐崩嘛。<KEY>[礼坏乐崩]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "因为在孔子的时代呢，",
+          "right_context": "虽然礼坏乐崩了，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "因为在孔子的时代呢，",
+      "right_context": "虽然礼坏乐崩了，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "春秋晚期嘛，所以礼坏乐崩嘛。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "虽然礼坏乐崩了，礼乐还在，对。",
+    "baseline": "虽然礼坏乐崩了，礼乐还在，对。",
+    "masked_input": "虽然礼坏乐崩了，礼乐还在，对。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "虽然礼坏乐崩了，礼乐还在，对。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "啊，到了韩非是战国末年，战国末末年确实就是道德完全崩溃，",
+    "baseline": "啊，到了韩非是战国末年，战国末末年确实就是道德完全崩溃，",
+    "masked_input": "啊，到了韩非是战国末年，战国末末年确实就是道德完全崩溃，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 25,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "啊，到了韩非是战国末年，战国末末年确实就是道德完全崩溃，",
+        "output": "到了韩非在战国末年，确实就是道德完全崩溃。<KEY>[韩非]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对。",
+          "right_context": "对啊，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对。",
+      "right_context": "对啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "到了韩非在战国末年，确实就是道德完全崩溃。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对啊，完全一就就没有底线了。是，",
+    "baseline": "对啊，完全一就就没有底线了。是，",
+    "masked_input": "对啊，完全一就就没有底线了。是，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 13,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "战国末末年确实就是道德完全崩溃，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "对啊，完全一就就没有底线了。是，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，韩非子的观察呢，他其实具有一定的经验性的意义，",
+    "baseline": "嗯，韩非子的观察呢，他其实具有一定的经验性的意义，",
+    "masked_input": "嗯，韩非子的观察呢，他其实具有一定的经验性的意义，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，韩非子的观察呢，他其实具有一定的经验性的意义，",
+        "output": "韩非子的观察其实具有一定的经验性的意义。<KEY>[韩非子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "是，",
+          "right_context": "因为他是基于对人性的一种经验性的观察，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "是，",
+      "right_context": "因为他是基于对人性的一种经验性的观察，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "韩非子的观察其实具有一定的经验性的意义。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "因为他是基于对人性的一种经验性的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察，",
+    "baseline": "因为他是基于对人性的一种经验性的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察，",
+    "masked_input": "因为他是基于对人性的一种经验性的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 43,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他其实具有一定的经验性的意义，",
+      "right_context": "它一定是不分的人类经验。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "因为他是基于对人性的一种经验性的观察，但是这里面最大的一个问题在于什么呢？就是经验性的观察，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "它一定是不分的人类经验。或者说，经验性的观察，",
+    "baseline": "它一定是不分的人类经验。或者说，经验性的观察，",
+    "masked_input": "它一定是不分的人类经验。或者说，经验性的观察，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "就是经验性的观察，",
+      "right_context": "永远是互相矛盾的。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "它一定是不分的人类经验。或者说，经验性的观察，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+    "baseline": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+    "masked_input": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "经验性的观察，",
+      "right_context": "马上又有人说你胡说八道，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "永远是互相矛盾的。我们在经验的观察中，经常会发现好人有好报，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "马上又有人说你胡说八道，好人根本没好报。因为经验世界，",
+    "baseline": "马上又有人说你胡说八道，好人根本没好报。因为经验世界，",
+    "masked_input": "马上又有人说你胡说八道，好人根本没好报。因为经验世界，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "经常会发现好人有好报，",
+      "right_context": "它总是充满着矛盾。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "马上又有人说你胡说八道，好人根本没好报。因为经验世界，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "它总是充满着矛盾。有人看到了比翼鸟，马上就歌颂爱情，",
+    "baseline": "它总是充满着矛盾。有人看到了比翼鸟，马上就歌颂爱情，",
+    "masked_input": "它总是充满着矛盾。有人看到了比翼鸟，马上就歌颂爱情，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "因为经验世界，",
+      "right_context": "在天愿做比翼鸟，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "它总是充满着矛盾。有人看到了比翼鸟，马上就歌颂爱情，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "在天愿做比翼鸟，在地愿为连理枝。那马上又有人胡说，",
+    "baseline": "在天愿做比翼鸟，在地愿为连理枝。那马上又有人胡说，",
+    "masked_input": "在天愿做比翼鸟，在地愿为连理枝。那马上又有人胡说，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "马上就歌颂爱情，",
+      "right_context": "夫妻本是同林鸟，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "在天愿做比翼鸟，在地愿为连理枝。那马上又有人胡说，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "夫妻本是同林鸟，大难临头各自飞。就是每一派。",
+    "baseline": "夫妻本是同林鸟，大难临头各自飞。就是每一派。",
+    "masked_input": "夫妻本是同林鸟，大难临头各自飞。就是每一派。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那马上又有人胡说，",
+      "right_context": "他都有经验性的追求，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "夫妻本是同林鸟，大难临头各自飞。就是每一派。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他都有经验性的追求，这就是为什么康德认为经验世界充满着令人作呕的大杂烩。他说，",
+    "baseline": "他都有经验性的追求，这就是为什么康德认为经验世界充满着令人作呕的大杂烩。他说，",
+    "masked_input": "他都有经验性的追求，这就是为什么康德认为经验世界充满着令人作呕的大杂烩。他说，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 36,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "就是每一派。",
+      "right_context": "人的道德观念一定不能建立在经验意义上，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "他都有经验性的追求，这就是为什么康德认为经验世界充满着令人作呕的大杂烩。他说，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "人的道德观念一定不能建立在经验意义上，因为通过经验意义所建立的道德永远是不稳定的。但是我自己始终是觉得。",
+    "baseline": "人的道德观念一定不能建立在经验意义上，因为通过经验意义所建立的道德永远是不稳定的。但是我自己始终是觉得。",
+    "masked_input": "人的道德观念一定不能建立在经验意义上，因为通过经验意义所建立的道德永远是不稳定的。但是我自己始终是觉得。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 49,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他说，",
+      "right_context": "向我学习法律啊！"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "人的道德观念一定不能建立在经验意义上，因为通过经验意义所建立的道德永远是不稳定的。但是我自己始终是觉得。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "向我学习法律啊！法律它要追求公平和正义。对，",
+    "baseline": "向我学习法律啊！法律它要追求公平和正义。对，",
+    "masked_input": "向我学习法律啊！法律它要追求公平和正义。对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "但是我自己始终是觉得。",
+      "right_context": "那于是一个根本性的问题是："
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "向我学习法律啊！法律它要追求公平和正义。对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那于是一个根本性的问题是：公平和正义是不是纯粹的利益计算，还是在利益计算之外之上，",
+    "baseline": "那于是一个根本性的问题是：公平和正义是不是纯粹的利益计算，还是在利益计算之外之上，",
+    "masked_input": "那于是一个根本性的问题是：公平和正义是不是纯粹的利益计算，还是在利益计算之外之上，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 38,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "会有一种我们看不到、摸不着，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那于是一个根本性的问题是：公平和正义是不是纯粹的利益计算，还是在利益计算之外之上，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "会有一种我们看不到、摸不着，但它确定存在的？一种东西，",
+    "baseline": "会有一种我们看不到、摸不着，但它确定存在的？一种东西，",
+    "masked_input": "会有一种我们看不到、摸不着，但它确定存在的？一种东西，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "还是在利益计算之外之上，",
+      "right_context": "这又是有争议的。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "会有一种我们看不到、摸不着，但它确定存在的？一种东西，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这又是有争议的。你这你存不存在那个东西，也是有争议。",
+    "baseline": "这又是有争议的。你这你存不存在那个东西，也是有争议。",
+    "masked_input": "这又是有争议的。你这你存不存在那个东西，也是有争议。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "一种东西，",
+      "right_context": "是啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这又是有争议的。你这你存不存在那个东西，也是有争议。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是啊，就是这些东西，我们永远没法去证明，",
+    "baseline": "是啊，就是这些东西，我们永远没法去证明，",
+    "masked_input": "是啊，就是这些东西，我们永远没法去证明，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "也是有争议。",
+      "right_context": "你只能选择去相信。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "是啊，就是这些东西，我们永远没法去证明，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你只能选择去相信。你是相信这个世界有天理，还是认为这个世界全都是利益？",
+    "baseline": "你只能选择去相信。你是相信这个世界有天理，还是认为这个世界全都是利益？",
+    "masked_input": "你只能选择去相信。你是相信这个世界有天理，还是认为这个世界全都是利益？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 32,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我们永远没法去证明，",
+      "right_context": "这其实取决于。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "你只能选择去相信。你是相信这个世界有天理，还是认为这个世界全都是利益？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这其实取决于。你的相信。你取决于什么？",
+    "baseline": "这其实取决于。你的相信。你取决于什么？",
+    "masked_input": "这其实取决于。你的相信。你取决于什么？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "还是认为这个世界全都是利益？",
+      "right_context": "你的相信。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这其实取决于。你的相信。你取决于什么？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你的相信。苏格拉底跟色拉霍马叙斯他们的一个著名的讨论，那苏格拉底就问色拉霍马叙斯：",
+    "baseline": "你的相信。苏格拉底跟色拉霍马叙斯他们的一个著名的讨论，那苏格拉底就问色拉霍马叙斯：",
+    "masked_input": "你的相信。苏格拉底跟色拉霍马叙斯他们的一个著名的讨论，那苏格拉底就问色拉霍马叙斯：",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 38,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "你取决于什么？",
+      "right_context": "“你认为一切都是力？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "你的相信。苏格拉底跟色拉霍马叙斯他们的一个著名的讨论，那苏格拉底就问色拉霍马叙斯：",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "“你认为一切都是力？”色拉叙马霍斯说：“对啊，",
+    "baseline": "“你认为一切都是力？”色拉叙马霍斯说：“对啊，",
+    "masked_input": "“你认为一切都是力？”色拉叙马霍斯说：“对啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那苏格拉底就问色拉霍马叙斯：",
+      "right_context": "一切都是力。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "“你认为一切都是力？”色拉叙马霍斯说：“对啊，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "一切都是力。”那于是苏格拉底问他：“那什么叫好的医生？",
+    "baseline": "一切都是力。”那于是苏格拉底问他：“那什么叫好的医生？",
+    "masked_input": "一切都是力。”那于是苏格拉底问他：“那什么叫好的医生？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "“对啊，",
+      "right_context": "”"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "一切都是力。”那于是苏格拉底问他：“那什么叫好的医生？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "”那适当去马斯霍斯说，这很简单，",
+    "baseline": "”那适当去马斯霍斯说，这很简单，",
+    "masked_input": "”那适当去马斯霍斯说，这很简单，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 13,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "“那什么叫好的医生？",
+      "right_context": "好的医生就是得名得利，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "”那适当去马斯霍斯说，这很简单，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "好的医生就是得名得利，名利双收叫好的医生。如果一个医生穷的叮当响，",
+    "baseline": "好的医生就是得名得利，名利双收叫好的医生。如果一个医生穷的叮当响，",
+    "masked_input": "好的医生就是得名得利，名利双收叫好的医生。如果一个医生穷的叮当响，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 30,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "这很简单，",
+      "right_context": "那根本就不是好的医生。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "好的医生就是得名得利，名利双收叫好的医生。如果一个医生穷的叮当响，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那根本就不是好的医生。那马上苏格拉底继续追问，那什么叫好的老师？",
+    "baseline": "那根本就不是好的医生。那马上苏格拉底继续追问，那什么叫好的老师？",
+    "masked_input": "那根本就不是好的医生。那马上苏格拉底继续追问，那什么叫好的老师？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 29,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "如果一个医生穷的叮当响，",
+      "right_context": "那适当和马叙斯又说，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那根本就不是好的医生。那马上苏格拉底继续追问，那什么叫好的老师？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那适当和马叙斯又说，好的老师也必须是名利双收。如果穷的叮当响，",
+    "baseline": "那适当和马叙斯又说，好的老师也必须是名利双收。如果穷的叮当响，",
+    "masked_input": "那适当和马叙斯又说，好的老师也必须是名利双收。如果穷的叮当响，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那什么叫好的老师？",
+      "right_context": "就不叫好的老师。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "那适当和马叙斯又说，好的老师也必须是名利双收。如果穷的叮当响，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "就不叫好的老师。那于是苏格拉底就问他，那按照你的标准？",
+    "baseline": "就不叫好的老师。那于是苏格拉底就问他，那按照你的标准？",
+    "masked_input": "就不叫好的老师。那于是苏格拉底就问他，那按照你的标准？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "如果穷的叮当响，",
+      "right_context": "衡量一个职业的好坏，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "就不叫好的老师。那于是苏格拉底就问他，那按照你的标准？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "衡量一个职业的好坏，只看结果意义上的名利，那就没有必要区分任何专业了，",
+    "baseline": "衡量一个职业的好坏，只看结果意义上的名利，那就没有必要区分任何专业了，",
+    "masked_input": "衡量一个职业的好坏，只看结果意义上的名利，那就没有必要区分任何专业了，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 32,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那按照你的标准？",
+      "right_context": "因为所有的专业的目的都是为了赚钱，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "衡量一个职业的好坏，只看结果意义上的名利，那就没有必要区分任何专业了，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "因为所有的专业的目的都是为了赚钱，所以我们不需要区分任何专业，因为我只需要学赚钱专业，",
+    "baseline": "因为所有的专业的目的都是为了赚钱，所以我们不需要区分任何专业，因为我只需要学赚钱专业，",
+    "masked_input": "因为所有的专业的目的都是为了赚钱，所以我们不需要区分任何专业，因为我只需要学赚钱专业，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 40,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那就没有必要区分任何专业了，",
+      "right_context": "我将来要找的工作就是赚钱，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "因为所有的专业的目的都是为了赚钱，所以我们不需要区分任何专业，因为我只需要学赚钱专业，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我将来要找的工作就是赚钱，我也不需要学法律，不需要学医学，",
+    "baseline": "我将来要找的工作就是赚钱，我也不需要学法律，不需要学医学，",
+    "masked_input": "我将来要找的工作就是赚钱，我也不需要学法律，不需要学医学，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "因为我只需要学赚钱专业，",
+      "right_context": "不需要学文学，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "我将来要找的工作就是赚钱，我也不需要学法律，不需要学医学，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "不需要学文学，我只需要学赚钱学。所以，",
+    "baseline": "不需要学文学，我只需要学赚钱学。所以，",
+    "masked_input": "不需要学文学，我只需要学赚钱学。所以，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "不需要学医学，",
+      "right_context": "苏格兰，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "不需要学文学，我只需要学赚钱学。所以，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "苏格兰，你就提醒斯拉霍马去死。但是我告诉你，",
+    "baseline": "苏格兰，你就提醒斯拉霍马去死。但是我告诉你，",
+    "masked_input": "苏格兰，你就提醒斯拉霍马去死。但是我告诉你，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "所以，",
+      "right_context": "什么叫好的医生？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "苏格兰，你就提醒斯拉霍马去死。但是我告诉你，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "什么叫好的医生？好的医生，第一是做医生该做的事情，",
+    "baseline": "什么叫好的医生？好的医生，第一是做医生该做的事情，",
+    "masked_input": "什么叫好的医生？好的医生，第一是做医生该做的事情，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "但是我告诉你，",
+      "right_context": "医者仁心，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "什么叫好的医生？好的医生，第一是做医生该做的事情，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "医者仁心，医术高明，这叫好的医生。",
+    "baseline": "医者仁心，医术高明，这叫好的医生。",
+    "masked_input": "医者仁心，医术高明，这叫好的医生。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "第一是做医生该做的事情，",
+      "right_context": "而一个好的医生，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "医者仁心，医术高明，这叫好的医生。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "而一个好的医生，通常能够得名得利，但得名得利只是他的附随后果。",
+    "baseline": "而一个好的医生，通常能够得名得利，但得名得利只是他的附随后果。",
+    "masked_input": "而一个好的医生，通常能够得名得利，但得名得利只是他的附随后果。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "这叫好的医生。",
+      "right_context": "不能用附随后果取代医生的本质，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "而一个好的医生，通常能够得名得利，但得名得利只是他的附随后果。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "不能用附随后果取代医生的本质，当然，这些问题是争论不休的。",
+    "baseline": "不能用附随后果取代医生的本质，当然，这些问题是争论不休的。",
+    "masked_input": "不能用附随后果取代医生的本质，当然，这些问题是争论不休的。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "但得名得利只是他的附随后果。",
+      "right_context": "不是他，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "不能用附随后果取代医生的本质，当然，这些问题是争论不休的。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "不是他，他可以有另外一种推演方式。啊哈，",
+    "baseline": "不是他，他可以有另外一种推演方式。啊哈，",
+    "masked_input": "不是他，他可以有另外一种推演方式。啊哈，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "这些问题是争论不休的。",
+      "right_context": "你说的这是一种推演方式。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "不是他，他可以有另外一种推演方式。啊哈，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你说的这是一种推演方式。那是是是，就是从这个我们承认有公平、有正义，",
+    "baseline": "你说的这是一种推演方式。那是是是，就是从这个我们承认有公平、有正义，",
+    "masked_input": "你说的这是一种推演方式。那是是是，就是从这个我们承认有公平、有正义，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 30,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "你说的这是一种推演方式。那是是是，就是从这个我们承认有公平、有正义，",
+        "output": "你说这是一种推演方式，就是从我们承认有公平、有正义。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "啊哈，",
+          "right_context": "对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "啊哈，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "你说这是一种推演方式，就是从我们承认有公平、有正义。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，而且我们应该追求公平与正义。啊，",
+    "baseline": "对，而且我们应该追求公平与正义。啊，",
+    "masked_input": "对，而且我们应该追求公平与正义。啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，而且我们应该追求公平与正义。啊，",
+        "output": "而且我们应该追求公平与正义。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "就是从这个我们承认有公平、有正义，",
+          "right_context": "你从这个逻辑。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "就是从这个我们承认有公平、有正义，",
+      "right_context": "你从这个逻辑。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "而且我们应该追求公平与正义。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你从这个逻辑。起点出发，你可以这样推演。",
+    "baseline": "你从这个逻辑。起点出发，你可以这样推演。",
+    "masked_input": "你从这个逻辑。起点出发，你可以这样推演。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "啊，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "你从这个逻辑。起点出发，你可以这样推演。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，那我可以从力的角度，同样可以推演到。",
+    "baseline": "对，那我可以从力的角度，同样可以推演到。",
+    "masked_input": "对，那我可以从力的角度，同样可以推演到。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，那我可以从力的角度，同样可以推演到。",
+        "output": "对，那我可以从力的角度，同样可以推演到。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "你可以这样推演。",
+          "right_context": "我们也要公平正义，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "你可以这样推演。",
+      "right_context": "我们也要公平正义，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "对，那我可以从力的角度，同样可以推演到。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我们也要公平正义，对。它其实啊，",
+    "baseline": "我们也要公平正义，对。它其实啊，",
+    "masked_input": "我们也要公平正义，对。它其实啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 13,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "我们也要公平正义，对。它其实啊，",
+        "output": "我们也要公平正义。它其实啊，<KEY>[公平正义]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "同样可以推演到。",
+          "right_context": "出发点不一样，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "同样可以推演到。",
+      "right_context": "出发点不一样，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我们也要公平正义。它其实啊，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "出发点不一样，它结论可以一样。嗯哼，",
+    "baseline": "出发点不一样，它结论可以一样。嗯哼，",
+    "masked_input": "出发点不一样，它结论可以一样。嗯哼，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "它其实啊，",
+      "right_context": "那我们现在来来做一个推推演啊。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "出发点不一样，它结论可以一样。嗯哼，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所有人都是。",
+    "baseline": "那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所有人都是。",
+    "masked_input": "那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所有人都是。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase",
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "那我们现在来来做一个推推演啊。嗯哼，我们我们就假设所有人都是。",
+        "output": "我们现在来做一个推演，我们假设所有人都是。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼，",
+          "right_context": "为了利的，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯哼，",
+      "right_context": "为了利的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我们现在来做一个推演，我们假设所有人都是。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "为了利的，那他就要明白一个道理：我是为了利的，",
+    "baseline": "为了利的，那他就要明白一个道理：我是为了利的，",
+    "masked_input": "为了利的，那他就要明白一个道理：我是为了利的，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我们我们就假设所有人都是。",
+      "right_context": "你是为了利的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "为了利的，那他就要明白一个道理：我是为了利的，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你是为了利的，他是为了利的，他也是为了利，",
+    "baseline": "你是为了利的，他是为了利的，他也是为了利，",
+    "masked_input": "你是为了利的，他是为了利的，他也是为了利，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我是为了利的，",
+      "right_context": "也为了利的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "你是为了利的，他是为了利的，他也是为了利，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "也为了利的，所有人都是为了利的。那我们就只有两个两种选择，",
+    "baseline": "也为了利的，所有人都是为了利的。那我们就只有两个两种选择，",
+    "masked_input": "也为了利的，所有人都是为了利的。那我们就只有两个两种选择，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他也是为了利，",
+      "right_context": "一种是互利共赢，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "也为了利的，所有人都是为了利的。那我们就只有两个两种选择，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "一种是互利共赢，一种是你死我活。嗯哼，",
+    "baseline": "一种是互利共赢，一种是你死我活。嗯哼，",
+    "masked_input": "一种是互利共赢，一种是你死我活。嗯哼，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那我们就只有两个两种选择，",
+      "right_context": "要从利这个出发，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "一种是互利共赢，一种是你死我活。嗯哼，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "要从利这个出发，这两个选择都是可能的。对，",
+    "baseline": "要从利这个出发，这2个选择都是可能的。对，",
+    "masked_input": "要从利这个出发，这2个选择都是可能的。对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "嗯哼，",
+      "right_context": "存在吧？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "applied",
+      "candidate_count": 1,
+      "changes": [
+        {
+          "original": "两个",
+          "replacement": "2个",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 9,
+          "end": 11
+        }
+      ]
+    },
+    "outcome": "gate_skip",
+    "output": "要从利这个出发，这2个选择都是可能的。对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "存在吧？嗯哼，那么怎么选呢？",
+    "baseline": "存在吧？嗯哼，那么怎么选呢？",
+    "masked_input": "存在吧？嗯哼，那么怎么选呢？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 11,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "嗯哼，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "存在吧？嗯哼，那么怎么选呢？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯哼，就不能再从利的角度选了。嗯哼，",
+    "baseline": "嗯哼，就不能再从利的角度选了。嗯哼，",
+    "masked_input": "嗯哼，就不能再从利的角度选了。嗯哼，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "那么怎么选呢？",
+      "right_context": "也不能从义的角度选。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "嗯哼，就不能再从利的角度选了。嗯哼，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "也不能从义的角度选。嗯哼，又又从利义的角度选，",
+    "baseline": "也不能从义的角度选。嗯哼，又又从利义的角度选，",
+    "masked_input": "也不能从义的角度选。嗯哼，又又从利义的角度选，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "也不能从义的角度选。嗯哼，又又从利义的角度选，",
+        "output": "也不能从义的角度选。又是从利义的角度选。<KEY>[利义]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼，",
+          "right_context": "你违背初心嘛？"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯哼，",
+      "right_context": "你违背初心嘛？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "也不能从义的角度选。又是从利义的角度选。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你违背初心嘛？对，初心是为了利嘛？",
+    "baseline": "你违背初心嘛？对，初心是为了利嘛？",
+    "masked_input": "你违背初心嘛？对，初心是为了利嘛？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "你违背初心嘛？对，初心是为了利嘛？",
+        "output": "你违背初心吗？初衷是为了利嘛？",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "又又从利义的角度选，",
+          "right_context": "对，"
+        }
+      },
+      {
+        "input": "你违背初心嘛？对，初心是为了利嘛？",
+        "output": "你违背初心吗？初衷是为了利嘛？",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "又又从利义的角度选，",
+          "right_context": "对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "又又从利义的角度选，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [
+      {
+        "index": 0,
+        "start": 7,
+        "end": 9,
+        "source": "对，",
+        "target": "",
+        "kind": "model_proposed_deletion",
+        "context": "你违背初心嘛？对，初心是为了利嘛？",
+        "segment_index": 1,
+        "decision": "keep",
+        "reason": "model_candidate_decision",
+        "applied": false,
+        "model_response": "KEEP",
+        "model_completed": true,
+        "candidate_score_margin": -0.9619
+      }
+    ],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "semantic_substitution"
+    ],
+    "output": "你违背初心嘛？对，初心是为了利嘛？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，你不能引入一个义的概念来选。嗯哼，",
+    "baseline": "对，你不能引入一个义的概念来选。嗯哼，",
+    "masked_input": "对，你不能引入一个义的概念来选。嗯哼，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，你不能引入一个义的概念来选。嗯哼，",
+        "output": "你不能引入一个义的概念来选。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "初心是为了利嘛？",
+          "right_context": "那引引入一个什么概念呢？"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "初心是为了利嘛？",
+      "right_context": "那引引入一个什么概念呢？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "你不能引入一个义的概念来选。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "那引引入一个什么概念呢？治。嗯哼。",
+    "baseline": "那引引入一个什么概念呢？治。嗯哼。",
+    "masked_input": "那引引入一个什么概念呢？治。嗯哼。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "那引引入一个什么概念呢？治。嗯哼。",
+        "output": "引引入一个什么概念呢？治。哼。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼，",
+          "right_context": "就是你有一个聪明的选择和一个愚蠢的选择，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯哼，",
+      "right_context": "就是你有一个聪明的选择和一个愚蠢的选择，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "引引入一个什么概念呢？治。哼。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "就是你有一个聪明的选择和一个愚蠢的选择，对，聪明的选择就是我让大家都得利，",
+    "baseline": "就是你有一个聪明的选择和一个愚蠢的选择，对，聪明的选择就是我让大家都得利，",
+    "masked_input": "就是你有一个聪明的选择和一个愚蠢的选择，对，聪明的选择就是我让大家都得利，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 34,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "就是你有一个聪明的选择和一个愚蠢的选择，对，聪明的选择就是我让大家都得利，",
+        "output": "你有一个聪明的选择和愚蠢的选择，聪明的选择就是我让大家都得利。<KEY>[大家都得利]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "嗯哼。",
+          "right_context": "我也得利，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "嗯哼。",
+      "right_context": "我也得利，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "numeric_value_mismatch",
+      "numeric_rule_surface_mismatch"
+    ],
+    "output": "就是你有一个聪明的选择和一个愚蠢的选择，对，聪明的选择就是我让大家都得利，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我也得利，嗯哼，与人方愚蠢的方法是他妈的，",
+    "baseline": "我也得利，嗯哼，与人方愚蠢的方法是他妈的，",
+    "masked_input": "我也得利，嗯哼，与人方愚蠢的方法是他妈的，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "聪明的选择就是我让大家都得利，",
+      "right_context": "我宁可我得不到利，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "我也得利，嗯哼，与人方愚蠢的方法是他妈的，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我宁可我得不到利，我也不让你得利，我让通通的人都没有利益，",
+    "baseline": "我宁可我得不到利，我也不让你得利，我让通通的人都没有利益，",
+    "masked_input": "我宁可我得不到利，我也不让你得利，我让通通的人都没有利益，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "与人方愚蠢的方法是他妈的，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "我宁可我得不到利，我也不让你得利，我让通通的人都没有利益，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，那叫愚蠢的选择，就两个极端哈，",
+    "baseline": "对，那叫愚蠢的选择，就2个极端哈，",
+    "masked_input": "对，那叫愚蠢的选择，就2个极端哈，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，那叫愚蠢的选择，就2个极端哈，",
+        "output": "叫愚蠢的选择，2个极端哈。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "我让通通的人都没有利益，",
+          "right_context": "对，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "我让通通的人都没有利益，",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "applied",
+      "candidate_count": 1,
+      "changes": [
+        {
+          "original": "两个",
+          "replacement": "2个",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 11,
+          "end": 13
+        }
+      ]
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "叫愚蠢的选择，2个极端哈。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，当然我们大量的是中间地带，对，",
+    "baseline": "对，当然我们大量的是中间地带，对，",
+    "masked_input": "对，当然我们大量的是中间地带，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 14,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，当然我们大量的是中间地带，对，",
+        "output": "对，当然我们大量的是中间地带。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "就两个极端哈，",
+          "right_context": "我们两从两个极端讲。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "就两个极端哈，",
+      "right_context": "我们两从两个极端讲。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "对，当然我们大量的是中间地带。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我们两从两个极端讲。那么，因此，",
+    "baseline": "我们两从2个极端讲。那么，因此，",
+    "masked_input": "我们两从2个极端讲。那么，因此，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 13,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "从利出发，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "applied",
+      "candidate_count": 1,
+      "changes": [
+        {
+          "original": "两个",
+          "replacement": "2个",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 4,
+          "end": 6
+        }
+      ]
+    },
+    "outcome": "gate_skip",
+    "output": "我们两从2个极端讲。那么，因此，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "从利出发，也可以得出公平正义来，就是说，",
+    "baseline": "从利出发，也可以得出公平正义来，就是说，",
+    "masked_input": "从利出发，也可以得出公平正义来，就是说，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "因此，",
+      "right_context": "为了保证我的利益不受侵犯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "从利出发，也可以得出公平正义来，就是说，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "为了保证我的利益不受侵犯，对，同时，",
+    "baseline": "为了保证我的利益不受侵犯，对，同时，",
+    "masked_input": "为了保证我的利益不受侵犯，对，同时，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "为了保证我的利益不受侵犯，对，同时，",
+        "output": "为了保证我的利益不受侵犯，同时，",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "就是说，",
+          "right_context": "我就得去保证你的利益不受侵犯，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "就是说，",
+      "right_context": "我就得去保证你的利益不受侵犯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "为了保证我的利益不受侵犯，同时，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我就得去保证你的利益不受侵犯，对，还保证他的利益不受侵犯。",
+    "baseline": "我就得去保证你的利益不受侵犯，对，还保证他的利益不受侵犯。",
+    "masked_input": "我就得去保证你的利益不受侵犯，对，还保证他的利益不受侵犯。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "我就得去保证你的利益不受侵犯，对，还保证他的利益不受侵犯。",
+        "output": "我就得去保证你的利益不受侵犯，还保证他的利益不受侵犯。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "同时，",
+          "right_context": "首首先从防范角度讲啊，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "同时，",
+      "right_context": "首首先从防范角度讲啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我就得去保证你的利益不受侵犯，还保证他的利益不受侵犯。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "首首先从防范角度讲啊，我们是不是该建立一个法律啊？对，",
+    "baseline": "首首先从防范角度讲啊，我们是不是该建立一个法律啊？对，",
+    "masked_input": "首首先从防范角度讲啊，我们是不是该建立一个法律啊？对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "首首先从防范角度讲啊，我们是不是该建立一个法律啊？对，",
+        "output": "首首先从防范角度讲，我们是不是该建立一个法律啊？对。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "还保证他的利益不受侵犯。",
+          "right_context": "因此。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "还保证他的利益不受侵犯。",
+      "right_context": "因此。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "首首先从防范角度讲，我们是不是该建立一个法律啊？对。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "因此。出发点从利出发。未必导致恶果。",
+    "baseline": "因此。出发点从利出发。未必导致恶果。",
+    "masked_input": "因此。出发点从利出发。未必导致恶果。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "您刚才说的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "因此。出发点从利出发。未必导致恶果。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "您刚才说的，其实就是我们法律中经常讨论的社会契约论的起源，就是大家发现，",
+    "baseline": "您刚才说的，其实就是我们法律中经常讨论的社会契约论的起源，就是大家发现，",
+    "masked_input": "您刚才说的，其实就是我们法律中经常讨论的社会契约论的起源，就是大家发现，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 33,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "未必导致恶果。",
+      "right_context": "哎呀，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "您刚才说的，其实就是我们法律中经常讨论的社会契约论的起源，就是大家发现，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "哎呀，这个现在你打我，我打你，",
+    "baseline": "哎呀，这个现在你打我，我打你，",
+    "masked_input": "哎呀，这个现在你打我，我打你，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "就是大家发现，",
+      "right_context": "人类彼此为敌，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "哎呀，这个现在你打我，我打你，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "人类彼此为敌，呃，这个不太好，",
+    "baseline": "人类彼此为敌，呃，这个不太好，",
+    "masked_input": "人类彼此为敌，呃，这个不太好，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "人类彼此为敌，呃，这个不太好，",
+        "output": "人类彼此为敌，这个不太好。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "我打你，",
+          "right_context": "这个大家都会毁灭了。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "我打你，",
+      "right_context": "这个大家都会毁灭了。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "人类彼此为敌，这个不太好。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这个大家都会毁灭了。干脆大家坐下来聊一聊。对，",
+    "baseline": "这个大家都会毁灭了。干脆大家坐下来聊一聊。对，",
+    "masked_input": "这个大家都会毁灭了。干脆大家坐下来聊一聊。对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "这个不太好，",
+      "right_context": "坐下来聊一聊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这个大家都会毁灭了。干脆大家坐下来聊一聊。对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "坐下来聊一聊，我们让让渡一部分的利益，对，",
+    "baseline": "坐下来聊一聊，我们让让渡一部分的利益，对，",
+    "masked_input": "坐下来聊一聊，我们让让渡一部分的利益，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "这样成立了一个社会共同体，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "坐下来聊一聊，我们让让渡一部分的利益，对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这样成立了一个社会共同体，对，也可以保护我们每一个人，",
+    "baseline": "这样成立了一个社会共同体，对，也可以保护我们每一个人，",
+    "masked_input": "这样成立了一个社会共同体，对，也可以保护我们每一个人，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "这样成立了一个社会共同体，对，也可以保护我们每一个人，",
+        "output": "这样成立了一个社会共同体，也可以保护我们每一个人。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对，",
+          "right_context": "嗯，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "all_candidates_preserved:indefinite_single_one_count",
+      "candidate_count": 1,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "这样成立了一个社会共同体，也可以保护我们每一个人。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，但这里面有一个巨大的逻辑问题在于，嗯，",
+    "baseline": "嗯，但这里面有一个巨大的逻辑问题在于，嗯，",
+    "masked_input": "嗯，但这里面有一个巨大的逻辑问题在于，嗯，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，但这里面有一个巨大的逻辑问题在于，嗯，",
+        "output": "但这里面有一个巨大的逻辑问题在于，",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "也可以保护我们每一个人，",
+          "right_context": "这依然只是一个假设性的理论，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "也可以保护我们每一个人，",
+      "right_context": "这依然只是一个假设性的理论，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "但这里面有一个巨大的逻辑问题在于，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这依然只是一个假设性的理论，而且它最严重的问题在于。我让渡我的利益，",
+    "baseline": "这依然只是一个假设性的理论，而且它最严重的问题在于。我让渡我的利益，",
+    "masked_input": "这依然只是一个假设性的理论，而且它最严重的问题在于。我让渡我的利益，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 31,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "嗯，",
+      "right_context": "你也让渡我的利益，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这依然只是一个假设性的理论，而且它最严重的问题在于。我让渡我的利益，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "你也让渡我的利益，与人方便，与己方便。",
+    "baseline": "你也让渡我的利益，与人方便，与己方便。",
+    "masked_input": "你也让渡我的利益，与人方便，与己方便。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我让渡我的利益，",
+      "right_context": "但是从我的角度来说，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "你也让渡我的利益，与人方便，与己方便。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "但是从我的角度来说，最好的是，我骗你，",
+    "baseline": "但是从我的角度来说，最好的是，我骗你，",
+    "masked_input": "但是从我的角度来说，最好的是，我骗你，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "与己方便。",
+      "right_context": "让渡了你的利益，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "但是从我的角度来说，最好的是，我骗你，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "让渡了你的利益，但是老子的利益绝对不让。好，",
+    "baseline": "让渡了你的利益，但是老子的利益绝对不让。好，",
+    "masked_input": "让渡了你的利益，但是老子的利益绝对不让。好，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我骗你，",
+      "right_context": "这个没问题，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "让渡了你的利益，但是老子的利益绝对不让。好，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这个没问题，这个就必须要有一个惩罚制度，对，",
+    "baseline": "这个没问题，这个就必须要有一个惩罚制度，对，",
+    "masked_input": "这个没问题，这个就必须要有一个惩罚制度，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 19,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "好，",
+      "right_context": "让你做不成这件事。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这个没问题，这个就必须要有一个惩罚制度，对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "让你做不成这件事。对，就你一旦触犯了这个，",
+    "baseline": "让你做不成这件事。对，就你一旦触犯了这个，",
+    "masked_input": "让你做不成这件事。对，就你一旦触犯了这个，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "让你做不成这件事。对，就你一旦触犯了这个，",
+        "output": "让你做不成这件事。对了，你一旦触犯了，就得把这件事做下去。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对，",
+          "right_context": "它就启动了另一个功能，"
+        }
+      },
+      {
+        "input": "让你做不成这件事。对，就你一旦触犯了这个，",
+        "output": "让你做不成这件事。对了，你一旦触犯了，就得把这件事做下去。",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对，",
+          "right_context": "它就启动了另一个功能，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "它就启动了另一个功能，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "unsupported_insertion"
+    ],
+    "output": "让你做不成这件事。对，就你一旦触犯了这个，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "它就启动了另一个功能，你就完蛋。你就不敢，",
+    "baseline": "它就启动了另一个功能，你就完蛋。你就不敢，",
+    "masked_input": "它就启动了另一个功能，你就完蛋。你就不敢，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "就你一旦触犯了这个，",
+      "right_context": "是他只能让你不敢，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "它就启动了另一个功能，你就完蛋。你就不敢，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是他只能让你不敢，他其实某种意义上说，可以说是人类从野蛮走向文明的一个标志。",
+    "baseline": "是他只能让你不敢，他其实某种意义上说，可以说是人类从野蛮走向文明的一个标志。",
+    "masked_input": "是他只能让你不敢，他其实某种意义上说，可以说是人类从野蛮走向文明的一个标志。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 35,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "你就不敢，",
+      "right_context": "标志是，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "是他只能让你不敢，他其实某种意义上说，可以说是人类从野蛮走向文明的一个标志。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "标志是，是啊，我相信这些东西相对公平啊。",
+    "baseline": "标志是，是啊，我相信这些东西相对公平啊。",
+    "masked_input": "标志是，是啊，我相信这些东西相对公平啊。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 17,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "可以说是人类从野蛮走向文明的一个标志。",
+      "right_context": "对，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "标志是，是啊，我相信这些东西相对公平啊。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对，我始终认为每个人内心中依然有对公平和正义的向往，因为对公平和正义的向往，",
+    "baseline": "对，我始终认为每个人内心中依然有对公平和正义的向往，因为对公平和正义的向往，",
+    "masked_input": "对，我始终认为每个人内心中依然有对公平和正义的向往，因为对公平和正义的向往，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 35,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "对，我始终认为每个人内心中依然有对公平和正义的向往，因为对公平和正义的向往，",
+        "output": "我始终认为每个人内心依然有对公平和正义的向往，因为对公平和正义的向往。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "我相信这些东西相对公平啊。",
+          "right_context": "人类可以有合作共赢的机制。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "我相信这些东西相对公平啊。",
+      "right_context": "人类可以有合作共赢的机制。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我始终认为每个人内心依然有对公平和正义的向往，因为对公平和正义的向往。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "人类可以有合作共赢的机制。机制，但是如果我们的立足点是在于利益为起点，",
+    "baseline": "人类可以有合作共赢的机制。机制，但是如果我们的立足点是在于利益为起点，",
+    "masked_input": "人类可以有合作共赢的机制。机制，但是如果我们的立足点是在于利益为起点，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 32,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "因为对公平和正义的向往，",
+      "right_context": "然后我们建立合作共赢。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "人类可以有合作共赢的机制。机制，但是如果我们的立足点是在于利益为起点，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "然后我们建立合作共赢。这个是非常脆弱的，因为它会变量，",
+    "baseline": "然后我们建立合作共赢。这个是非常脆弱的，因为它会变量，",
+    "masked_input": "然后我们建立合作共赢。这个是非常脆弱的，因为它会变量，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "但是如果我们的立足点是在于利益为起点，",
+      "right_context": "是会随时变的。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "然后我们建立合作共赢。这个是非常脆弱的，因为它会变量，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是会随时变的。他强大了，他有力量了，",
+    "baseline": "是会随时变的。他强大了，他有力量了，",
+    "masked_input": "是会随时变的。他强大了，他有力量了，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "因为它会变量，",
+      "right_context": "他还愿不愿意遵守这个契约？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "是会随时变的。他强大了，他有力量了，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他还愿不愿意遵守这个契约？他肯定不愿意。当然，",
+    "baseline": "他还愿不愿意遵守这个契约？他肯定不愿意。当然，",
+    "masked_input": "他还愿不愿意遵守这个契约？他肯定不愿意。当然，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他有力量了，",
+      "right_context": "这些问题是，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "他还愿不愿意遵守这个契约？他肯定不愿意。当然，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "这些问题是，不是他同样，你以那个都很难假假设的公平与正义为起点，",
+    "baseline": "这些问题是，不是他同样，你以那个都很难假假设的公平与正义为起点，",
+    "masked_input": "这些问题是，不是他同样，你以那个都很难假假设的公平与正义为起点，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 29,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "当然，",
+      "right_context": "以什么大义为起点，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "这些问题是，不是他同样，你以那个都很难假假设的公平与正义为起点，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "以什么大义为起点，他同样会走向那个结果。因为也还是就就会出现一大堆的伪君子，",
+    "baseline": "以什么大义为起点，他同样会走向那个结果。因为也还是就就会出现一大堆的伪君子，",
+    "masked_input": "以什么大义为起点，他同样会走向那个结果。因为也还是就就会出现一大堆的伪君子，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 35,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "你以那个都很难假假设的公平与正义为起点，",
+      "right_context": "是会有伪君子，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "以什么大义为起点，他同样会走向那个结果。因为也还是就就会出现一大堆的伪君子，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是会有伪君子，呃，然后互相骗，",
+    "baseline": "是会有伪君子，呃，然后互相骗，",
+    "masked_input": "是会有伪君子，呃，然后互相骗，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "是会有伪君子，呃，然后互相骗，",
+        "output": "是会有伪君子，然后互相骗。<KEY>[伪君子]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "因为也还是就就会出现一大堆的伪君子，",
+          "right_context": "呃，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "因为也还是就就会出现一大堆的伪君子，",
+      "right_context": "呃，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "是会有伪君子，然后互相骗。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "呃，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，",
+    "baseline": "呃，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，",
+    "masked_input": "呃，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "呃，骗到最后骗不下去为止，最后骗不下去就是谁的拳头大，",
+        "output": "骗到最后骗不下去为止，就是谁的拳头大。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "然后互相骗，",
+          "right_context": "谁是谁是老大。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "然后互相骗，",
+      "right_context": "谁是谁是老大。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "骗到最后骗不下去为止，就是谁的拳头大。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "谁是谁是老大。所以法家一直认为儒家太虚伪，对，",
+    "baseline": "谁是谁是老大。所以法家一直认为儒家太虚伪，对，",
+    "masked_input": "谁是谁是老大。所以法家一直认为儒家太虚伪，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "谁是谁是老大。所以法家一直认为儒家太虚伪，对，",
+        "output": "谁是老大。所以法家一直认为儒家太虚伪，对。<KEY>[法家、儒家太虚]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "最后骗不下去就是谁的拳头大，",
+          "right_context": "但是儒家又认为法家太现实。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "最后骗不下去就是谁的拳头大，",
+      "right_context": "但是儒家又认为法家太现实。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "谁是老大。所以法家一直认为儒家太虚伪，对。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "但是儒家又认为法家太现实。呃，不是，",
+    "baseline": "但是儒家又认为法家太现实。呃，不是，",
+    "masked_input": "但是儒家又认为法家太现实。呃，不是，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 15,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "但是儒家又认为法家太现实。呃，不是，",
+        "output": "但是儒家又认为法家太现实。<KEY>[儒家、法家]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对，",
+          "right_context": "我我要法法家太残忍或者太太堕落。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "我我要法法家太残忍或者太太堕落。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "但是儒家又认为法家太现实。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我我要法法家太残忍或者太太堕落。对对，所以在某种意义上，",
+    "baseline": "我我要法法家太残忍或者太太堕落。对对，所以在某种意义上，",
+    "masked_input": "我我要法法家太残忍或者太太堕落。对对，所以在某种意义上，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 25,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "我我要法法家太残忍或者太太堕落。对对，所以在某种意义上，",
+        "output": "我是要法太残忍或者太太堕落。在某种意义上，<KEY>[法太残忍]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "不是，",
+          "right_context": "他最后只好整个历史就是在他。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "不是，",
+      "right_context": "他最后只好整个历史就是在他。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我是要法太残忍或者太太堕落。在某种意义上，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他最后只好整个历史就是在他。他们两家之间摆嘛，对啊，",
+    "baseline": "他最后只好整个历史就是在他。他们2家之间摆嘛，对啊，",
+    "masked_input": "他最后只好整个历史就是在他。他们2家之间摆嘛，对啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "所以在某种意义上，",
+      "right_context": "他只好摆嘛，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "applied",
+      "candidate_count": 1,
+      "changes": [
+        {
+          "original": "两家",
+          "replacement": "2家",
+          "kind": "zh.quantity.structural_count_or_approximation",
+          "start": 16,
+          "end": 18
+        }
+      ]
+    },
+    "outcome": "gate_skip",
+    "output": "他最后只好整个历史就是在他。他们2家之间摆嘛，对啊，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他只好摆嘛，他只好摆嘛，嗯，",
+    "baseline": "他只好摆嘛，他只好摆嘛，嗯，",
+    "masked_input": "他只好摆嘛，他只好摆嘛，嗯，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 11,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase",
+        "disfluency",
+        "embedded_disfluency"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "他只好摆嘛，他只好摆嘛，嗯，",
+        "output": "他只好摆嘛，他只好摆嘛。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对啊，",
+          "right_context": "他只好摆来摆去，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对啊，",
+      "right_context": "他只好摆来摆去，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "他只好摆嘛，他只好摆嘛。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他只好摆来摆去，他没办法，对，",
+    "baseline": "他只好摆来摆去，他没办法，对，",
+    "masked_input": "他只好摆来摆去，他没办法，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "嗯，",
+      "right_context": "嗯，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "他只好摆来摆去，他没办法，对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "嗯，非常有意思啊！今天跟易老师学了很多很多啊，",
+    "baseline": "嗯，非常有意思啊！今天跟易老师学了很多很多啊，",
+    "masked_input": "嗯，非常有意思啊！今天跟易老师学了很多很多啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 20,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_phrase",
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "嗯，非常有意思啊！今天跟易老师学了很多很多啊，",
+        "output": "非常有意思啊！今天跟易老师学了很多很多啊。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "对，",
+          "right_context": "尤其关于这个中国古代的义利之争，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "尤其关于这个中国古代的义利之争，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "非常有意思啊！今天跟易老师学了很多很多啊。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，",
+    "baseline": "尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，",
+    "masked_input": "尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 33,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "今天跟易老师学了很多很多啊，",
+      "right_context": "可能也没有结论啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "尤其关于这个中国古代的义利之争，儒家跟法家的争论啊，我们今天讨论的问题，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "可能也没有结论啊，但是确实我。受益匪浅啊！",
+    "baseline": "可能也没有结论啊，但是确实我。受益匪浅啊！",
+    "masked_input": "可能也没有结论啊，但是确实我。受益匪浅啊！",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 18,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "我们今天讨论的问题，",
+      "right_context": "谢谢罗老师，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "可能也没有结论啊，但是确实我。受益匪浅啊！",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "谢谢罗老师，呃，其实我最想告诉大家的一句话就是：",
+    "baseline": "谢谢罗老师，呃，其实我最想告诉大家的一句话就是：",
+    "masked_input": "谢谢罗老师，呃，其实我最想告诉大家的一句话就是：",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 21,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "谢谢罗老师，呃，其实我最想告诉大家的一句话就是：",
+        "output": "谢谢罗老师，其实我最想告诉大家的一句话就是：",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "受益匪浅啊！",
+          "right_context": "没有结论就是最好的结论。"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "受益匪浅啊！",
+      "right_context": "没有结论就是最好的结论。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "谢谢罗老师，其实我最想告诉大家的一句话就是：",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "没有结论就是最好的结论。呃，为什么要进行这样一些讨论？",
+    "baseline": "没有结论就是最好的结论。呃，为什么要进行这样一些讨论？",
+    "masked_input": "没有结论就是最好的结论。呃，为什么要进行这样一些讨论？",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 24,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency",
+        "embedded_disfluency",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "没有结论就是最好的结论。呃，为什么要进行这样一些讨论？",
+        "output": "没有结论就是最好的结论。为什么要进行这样一些讨论？",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "其实我最想告诉大家的一句话就是：",
+          "right_context": "甚甚至我们人类为什么要发明一个叫哲学的东西？"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "其实我最想告诉大家的一句话就是：",
+      "right_context": "甚甚至我们人类为什么要发明一个叫哲学的东西？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "没有结论就是最好的结论。为什么要进行这样一些讨论？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "甚甚至我们人类为什么要发明一个叫哲学的东西？啊，对，",
+    "baseline": "甚甚至我们人类为什么要发明一个叫哲学的东西？啊，对，",
+    "masked_input": "甚甚至我们人类为什么要发明一个叫哲学的东西？啊，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 23,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "disfluency",
+        "numeric_normalization",
+        "isolated_single_character_clause"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "甚甚至我们人类为什么要发明一个叫哲学的东西？啊，对，",
+        "output": "我们人类为什么要发明一个叫哲学的东西？<KEY>[哲学]",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "为什么要进行这样一些讨论？",
+          "right_context": "哲学难道是告诉你终极真理的吗？"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "为什么要进行这样一些讨论？",
+      "right_context": "哲学难道是告诉你终极真理的吗？"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我们人类为什么要发明一个叫哲学的东西？",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "哲学难道是告诉你终极真理的吗？不是的。他是告诉你思维方式，",
+    "baseline": "哲学难道是告诉你终极真理的吗？不是的。他是告诉你思维方式，",
+    "masked_input": "哲学难道是告诉你终极真理的吗？不是的。他是告诉你思维方式，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 26,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "对思想方法，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "哲学难道是告诉你终极真理的吗？不是的。他是告诉你思维方式，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "对思想方法，对哲学就是一块磨刀石，对，",
+    "baseline": "对思想方法，对哲学就是一块磨刀石，对，",
+    "masked_input": "对思想方法，对哲学就是一块磨刀石，对，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "numeric_handled_by_rule_pack"
+      ],
+      "visible_chars": 16,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "numeric_normalization"
+      ]
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "他是告诉你思维方式，",
+      "right_context": "他是用来磨刀子的，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "对思想方法，对哲学就是一块磨刀石，对，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "他是用来磨刀子的，但他本身不是刀子。我就非常希望，",
+    "baseline": "他是用来磨刀子的，但他本身不是刀子。我就非常希望，",
+    "masked_input": "他是用来磨刀子的，但他本身不是刀子。我就非常希望，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 22,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "对，",
+      "right_context": "我今天跟罗老师的这个对话能够。"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "他是用来磨刀子的，但他本身不是刀子。我就非常希望，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "我今天跟罗老师的这个对话能够。帮能够帮助大家磨磨刀子吧，啊，",
+    "baseline": "我今天跟罗老师的这个对话能够。帮能够帮助大家磨磨刀子吧，啊，",
+    "masked_input": "我今天跟罗老师的这个对话能够。帮能够帮助大家磨磨刀子吧，啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 27,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "disfluency"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "我今天跟罗老师的这个对话能够。帮能够帮助大家磨磨刀子吧，啊，",
+        "output": "我今天跟罗老师的这个对话能够帮助大家磨磨刀子吧。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "我就非常希望，",
+          "right_context": "但这个刀子不会用来刑事犯罪啊，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "我就非常希望，",
+      "right_context": "但这个刀子不会用来刑事犯罪啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "我今天跟罗老师的这个对话能够帮助大家磨磨刀子吧。",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "但这个刀子不会用来刑事犯罪啊，我们可以用来解开一些谜团。是啊，",
+    "baseline": "但这个刀子不会用来刑事犯罪啊，我们可以用来解开一些谜团。是啊，",
+    "masked_input": "但这个刀子不会用来刑事犯罪啊，我们可以用来解开一些谜团。是啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "keep",
+      "state": "KEEP",
+      "reasons": [
+        "stable_clean_segment"
+      ],
+      "visible_chars": 28,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": []
+    },
+    "model_calls": [],
+    "window_context": {
+      "left_context": "啊，",
+      "right_context": "是啊，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "outcome": "gate_skip",
+    "output": "但这个刀子不会用来刑事犯罪啊，我们可以用来解开一些谜团。是啊，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "是啊，是啊，谢谢叶老师啊，",
+    "baseline": "是啊，是啊，谢谢叶老师啊，",
+    "masked_input": "是啊，是啊，谢谢叶老师啊，",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 10,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "是啊，是啊，谢谢叶老师啊，",
+        "output": "谢谢叶老师啊，谢谢叶老师啊",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "是啊，",
+          "right_context": "谢谢谢谢老师，"
+        }
+      },
+      {
+        "input": "是啊，是啊，谢谢叶老师啊，",
+        "output": "谢谢叶老师啊，谢谢叶老师啊，<KEY>[叶老师]",
+        "strict_placeholders": true,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "是啊，",
+          "right_context": "谢谢谢谢老师，"
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "是啊，",
+      "right_context": "谢谢谢谢老师，"
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "rejected",
+    "reject_reasons": [
+      "severe_content_loss",
+      "semantic_substitution"
+    ],
+    "output": "是啊，是啊，谢谢叶老师啊，",
+    "window_kind": "complete_k3_window",
+    "window_chunk_count": 3,
+    "required_window_chunks": 3
+  },
+  {
+    "segment_index": 1,
+    "source": "谢谢谢谢老师，谢谢叶老师啊。",
+    "baseline": "谢谢谢谢老师，谢谢叶老师啊。",
+    "masked_input": "谢谢谢谢老师，谢谢叶老师啊。",
+    "gate": {
+      "mode": "tri_state",
+      "action": "refine",
+      "state": "REFINE",
+      "reasons": [
+        "cleanup_signal_present"
+      ],
+      "visible_chars": 12,
+      "asr_confidence": 0.992394496649157,
+      "calibrated": false,
+      "covers_segment": false,
+      "cleanup_signals": [
+        "repeated_character",
+        "repeated_phrase"
+      ]
+    },
+    "model_calls": [
+      {
+        "input": "谢谢谢谢老师，谢谢叶老师啊。",
+        "output": "谢谢老师，谢谢叶老师啊。",
+        "strict_placeholders": false,
+        "numeric_policy": "zh-itn-surface-locked",
+        "window_context": {
+          "left_context": "谢谢叶老师啊，",
+          "right_context": ""
+        }
+      }
+    ],
+    "window_context": {
+      "left_context": "谢谢叶老师啊，",
+      "right_context": ""
+    },
+    "numeric_rule": {
+      "rule_pack": "zh-itn-strict-conservative-v90",
+      "decision_reason": "no_candidates_detected",
+      "candidate_count": 0,
+      "changes": []
+    },
+    "local_deletion_reviews": [],
+    "outcome": "accepted",
+    "reject_reasons": [],
+    "output": "谢谢老师，谢谢叶老师啊。",
+    "window_kind": "final_short_tail",
+    "window_chunk_count": 2,
+    "required_window_chunks": 3
+  }
+]

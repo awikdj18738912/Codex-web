@@ -1,0 +1,22 @@
+{
+  "manifest": "manifest.json",
+  "rounds": 1,
+  "order": [
+    "raw",
+    "entity"
+  ],
+  "packet_bytes": 10240,
+  "packet_seconds": 0.16,
+  "expected_packets_per_arm": 3750,
+  "expected_sessions": 2,
+  "expected_audio_per_session_seconds": 600.0,
+  "primary_asr_chunk_seconds": 2.0,
+  "entity_settings": "Current unchanged defaults; CTC on; no primary hotword context; long audio does not get whole-record replay at finish",
+  "timing_scope": "Real-time playback schedule with ordered HTTP; model and glossary/session setup excluded; downstream Web refiner excluded",
+  "quality_scope": "Known scene, historical model transcript used for glossary preparation; no human gold; extends an already tested excerpt",
+  "ctc_model_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/model.int8.onnx": "24ffdc19ba9aaed5a6a9beaede1e087745217d82425cf4041bca0c696661801e",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/README.md": "24a953594138ebd61a4e60637febcff1cecd4f79ed05632109a937b74f9ebcd7",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/tokens.txt": "6193c7ea1c96d0d9a1e9652789b40d13a8a913b434a5451e93158f5a09fd6652"
+  }
+}

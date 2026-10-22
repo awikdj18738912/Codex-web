@@ -1,0 +1,17 @@
+{
+  "timing": {
+    "generation_wall_seconds": 413.2,
+    "cpu_offload_gb": 3,
+    "same_runtime_and_sampling_as_baseline": true
+  },
+  "decision": "Known semantic omissions improved, but cleanup completeness regressed: 3 wins vs 4 losses, 53 ties. This 60-case development experiment does not establish overall improvement. Do not use it to start full-scale relabeling.",
+  "production_prompt_sha256": "c8cecd28916642c4d7b229882559103a9560bc42690b9b36ab9117fcaf5532d4",
+  "controls_changed_from_input": {
+    "old_prompt_changed_from_input": 1,
+    "new_prompt_changed_from_input": 2
+  },
+  "additional_limitations": [
+    "审查模型曾误将允许删除的拼音和名称辅助解释判为漏信息；原判保留，7条主代理裁定记录更正。",
+    "两边仅更换中文system/user提示词，模型和采样不变；旧输出来自此前运行，未做重复采样稳定性试验。"
+  ]
+}

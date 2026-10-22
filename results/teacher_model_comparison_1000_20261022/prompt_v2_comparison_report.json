@@ -1,0 +1,138 @@
+{
+  "comparison": "Same Qwen3-30B teacher, same 200 inputs, current prompt v1 vs targeted prompt v2",
+  "sample_n": 200,
+  "source_status": {
+    "CLEAR": 200
+  },
+  "v1_verdicts": {
+    "PASS": 194,
+    "MINOR": 5,
+    "FAIL": 1
+  },
+  "v2_verdicts": {
+    "PASS": 187,
+    "FAIL": 6,
+    "MINOR": 7
+  },
+  "pairwise_winners": {
+    "prompt_v2": 27,
+    "v1": 50,
+    "TIE": 123
+  },
+  "v1_semantic_or_fidelity_failures": 1,
+  "v2_semantic_or_fidelity_failures": 6,
+  "by_stratum": {
+    "boundary_punctuation": {
+      "v1": {
+        "PASS": 15,
+        "FAIL": 1,
+        "MINOR": 1
+      },
+      "v2": {
+        "PASS": 15,
+        "FAIL": 2
+      },
+      "winner": {
+        "prompt_v2": 4,
+        "TIE": 5,
+        "v1": 8
+      }
+    },
+    "english_entity_or_code": {
+      "v1": {
+        "PASS": 37,
+        "MINOR": 1
+      },
+      "v2": {
+        "PASS": 37,
+        "MINOR": 1
+      },
+      "winner": {
+        "v1": 5,
+        "TIE": 27,
+        "prompt_v2": 6
+      }
+    },
+    "multi_correction": {
+      "v1": {
+        "PASS": 31,
+        "MINOR": 2
+      },
+      "v2": {
+        "PASS": 28,
+        "MINOR": 3,
+        "FAIL": 2
+      },
+      "winner": {
+        "TIE": 18,
+        "prompt_v2": 6,
+        "v1": 9
+      }
+    },
+    "other_cleanup": {
+      "v1": {
+        "PASS": 43
+      },
+      "v2": {
+        "PASS": 41,
+        "MINOR": 1,
+        "FAIL": 1
+      },
+      "winner": {
+        "TIE": 29,
+        "v1": 9,
+        "prompt_v2": 5
+      }
+    },
+    "single_correction": {
+      "v1": {
+        "PASS": 20
+      },
+      "v2": {
+        "PASS": 19,
+        "MINOR": 1
+      },
+      "winner": {
+        "v1": 6,
+        "TIE": 11,
+        "prompt_v2": 3
+      }
+    },
+    "clean_or_passthrough": {
+      "v1": {
+        "PASS": 17,
+        "MINOR": 1
+      },
+      "v2": {
+        "PASS": 18
+      },
+      "winner": {
+        "TIE": 11,
+        "v1": 6,
+        "prompt_v2": 1
+      }
+    },
+    "numeric_surface": {
+      "v1": {
+        "PASS": 31
+      },
+      "v2": {
+        "PASS": 29,
+        "FAIL": 1,
+        "MINOR": 1
+      },
+      "winner": {
+        "prompt_v2": 2,
+        "TIE": 22,
+        "v1": 7
+      }
+    }
+  },
+  "limitations": [
+    "Risk-stratified diagnostic set, not a population-rate sample.",
+    "Blind review was model-assisted rather than expert human annotation.",
+    "This changes only the prompt, using the same teacher; it is not a model-size comparison."
+  ],
+  "prompt_v2_sha256": "527af80f092f13aedf19681bb9c6282dad865ead94867c53bbba585fb34b7f7a",
+  "case_sha256": "45c2b3aca8535ecfee3cdebcedd9bb348badc629b3e9433a95bda4312192f024"
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "natural_vibe_coding_0004",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " source里先后表达Go、Lua再改为AWK的真实决策过程；A保留各阶段和最终选择，B只保留AWK结论，删掉独立的技术选择历史。"
+  },
+  {
+    "id": "natural_vibe_coding_0005",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " source明确排除 File Not Found 和 Permission denied，并把ENOTEMPTY及其原因、处理方式说清；A/B均遗漏对误报错类型的纠正与排除。"
+  },
+  {
+    "id": "natural_vibe_coding_0007",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": true,
+    "equivalent": false,
+    "reason": " A漏掉曾考虑Fastify并回头改选Svelte的历史；B完整保留。"
+  },
+  {
+    "id": "natural_voice_search_0009",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留经纠正后的日期、29号和下午3点提醒事项；B只留下日期短语，漏掉明确日期及提醒内容。"
+  },
+  {
+    "id": "natural_customer_service_0010",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留下单日、约定当天发货、无动静、物流未更新、着急及询问发货时间；B删掉着急这一独立表达，并把“没动静”压成“未发货”。"
+  },
+  {
+    "id": "natural_dictation_memo_0013",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " 两者都保留周三最终测试期限和评审原因，但都漏掉从周四改为周三这一真实历史变化；B还把“好像滞后”强化为“已经滞后”，并把“周三必须跑完”改成“周三前”，改变期限含义。"
+  },
+  {
+    "id": "natural_voice_search_0016",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": true,
+    "equivalent": true,
+    "reason": " 两者都保留最终应用SyncFit和同步体重、体脂率、基础代谢及每日趋势的全部要求；被否定的FitTrack是已废弃值。"
+  },
+  {
+    "id": "natural_navigation_0017",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留最终路线和“应该能快点到”的不确定判断，但漏掉原计划宁杭高速及因拥堵而改道的历史；B还删掉绕行、拥堵缘由和不确定性，只剩路线结论。"
+  },
+  {
+    "id": "natural_vibe_coding_0018",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A仅保留最终日志命令，遗漏先前检查pods的真实操作意图，以及需要确认是否在prod命名空间运行的疑问；B保留前序命令但把它作为仍有效步骤呈现，未说明它已被后续日志查询意图取代。"
+  },
+  {
+    "id": "natural_meeting_0022",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留反馈机制的目的、问题示例、交易量盲点、尽快启动及问卷/小程序的轻量入口；B删掉尽快启动的明确时效和先用简单入口落地的方案。"
+  },
+  {
+    "id": "natural_customer_service_0025",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": true,
+    "equivalent": true,
+    "reason": " 两者均保留商品、购买时间、风力不稳定且忽大忽小、两次复现及询问是否正常；数字写法和措辞差异不改意思。"
+  },
+  {
+    "id": "natural_customer_service_0028",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留最终确认的订单号及核验信息；B只保留号码，省略说话人已确认和末两位核对信息，削弱了明确的核验说明。"
+  },
+  {
+    "id": "natural_vibe_coding_0031",
+    "source_coherent": true,
+    "A_faithful": false,
+    "B_faithful": false,
+    "equivalent": true,
+    "reason": " 两者都保留数组输入、去重后返回Set的最终要求，但都遗漏“不能用别的”这一明确实现约束；A/B在现存信息上的意思等价。"
+  },
+  {
+    "id": "natural_meeting_0034",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": false,
+    "equivalent": false,
+    "reason": " A保留原计划直接上生产、随后改为先过预发再上生产的历史变化及风险理由；B只留下最终部署顺序，删掉原计划和改口过程。"
+  },
+  {
+    "id": "natural_vibe_coding_0033",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": true,
+    "equivalent": true,
+    "reason": " 两者都保留Firebase Authentication API、登录后端对接、OAuth和匿名登录；A另保留处理用户登录和令牌的说明，属释义重复而非独立新增要求。"
+  },
+  {
+    "id": "natural_vibe_coding_0039",
+    "source_coherent": true,
+    "A_faithful": true,
+    "B_faithful": true,
+    "equivalent": true,
+    "reason": " 两者都保留最终选const定义变量并确保不可更改的要求；promise和switch是明确放弃的尝试。"
+  }
+]

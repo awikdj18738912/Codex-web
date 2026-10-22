@@ -1,0 +1,50 @@
+{
+  "total_attempts": 29,
+  "statuses": {
+    "accepted": 18,
+    "audit_rejected": 6,
+    "oral_rejected": 5
+  },
+  "accepted": 19,
+  "unique": 19,
+  "scene_counts": {
+    "academic": 2,
+    "explanation": 2,
+    "meeting": 3,
+    "navigation": 2,
+    "customer_service": 2,
+    "vibe_coding": 2,
+    "voice_search": 2,
+    "dictation_memo": 2,
+    "daily_chat": 2
+  },
+  "scenes_missing_target": [],
+  "fixed_count": 20,
+  "fixed_accepted": 20,
+  "actual_asr_fragments": 1,
+  "controls": {
+    "clean": 4,
+    "correction:rollback": 3,
+    "explanation": 2,
+    "correction:multiple": 4,
+    "correction:none": 5,
+    "boundary_punctuation": 3,
+    "correction:single": 3
+  },
+  "elapsed_seconds": 128.79,
+  "api_calls": 108,
+  "warning": "No issues found in this retained synthetic pilot; this is not a guarantee of future generation quality or student-model performance.",
+  "pre_fix_unique": 18,
+  "finalization_note": "Re-finalized the same 19 actually generated and audited candidates after separating full/partial dedup indexes. No targets were manually rewritten.",
+  "manual_review": {
+    "passed": 19,
+    "failed": 0,
+    "uncertain": 0
+  },
+  "fixed_task_review_passed": 20,
+  "known_bad_controls_rejected": 4,
+  "correct_controls_accepted": 4,
+  "regression_tests_passed": 65,
+  "main_attempts": 29,
+  "supplementary_verified_fragments": 1
+}

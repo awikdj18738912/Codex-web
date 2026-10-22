@@ -1,0 +1,88 @@
+{
+  "scope": "Offline diagnosis of the completed 200-candidate run; labels describe the recorded rejection gate, not independent human ground truth.",
+  "denominators": {
+    "fixed_candidates": 200,
+    "valid_oral": 184,
+    "final_retained": 39,
+    "raw_candidate_retention_rate": 0.195,
+    "retention_per_valid_oral": 0.21195652173913043,
+    "upstream_reference_valid_oral": 500,
+    "upstream_reference_retained": 480,
+    "upstream_reference_rate": 0.96
+  },
+  "candidate_terminal_stages": {
+    "quality_pass": 39,
+    "clean_rejected": 77,
+    "audit_rejected": 68,
+    "oral_rejected": 16
+  },
+  "clean_rejection_deterministic_diagnosis": {
+    "numeric_guard_only": 35,
+    "english_entity_guard_only": 18,
+    "both_numeric_and_english_guards": 19,
+    "numeric_guard_total": 54,
+    "english_entity_guard_total": 37,
+    "unique_rejections_by_numeric_or_english_guards": 72,
+    "surface_issue": 4,
+    "other_target_guard": 1
+  },
+  "audit_rejection_diagnosis": {
+    "unsupported_content_edits_rule_before_semantic_model": 59,
+    "semantic_model_or_other_audit": 9,
+    "unsupported_edits_rule": "For non-fragment pairs, character insertions/replacements in target versus ASR input are rejected before LLM audit unless recognition_repair is enabled. These pairs represent simulated ASR outputs, where corrections may require replacements."
+  },
+  "oral_generation_failures": 16,
+  "punctuation_boundary_controlled": {
+    "count": 9,
+    "stage_outcomes": {
+      "audit_rejected": 4,
+      "clean_rejected": 3,
+      "quality_pass": 2
+    },
+    "by_scene": {
+      "meeting": {
+        "audit_rejected": 1,
+        "clean_rejected": 1
+      },
+      "navigation": {
+        "audit_rejected": 1
+      },
+      "vibe_coding": {
+        "clean_rejected": 1
+      },
+      "academic": {
+        "audit_rejected": 2,
+        "clean_rejected": 1
+      },
+      "daily_chat": {
+        "quality_pass": 1
+      },
+      "explanation": {
+        "quality_pass": 1
+      }
+    },
+    "quality_pass": 2,
+    "retained": 2
+  },
+  "dedup_removed": 0,
+  "retained_input_output": {
+    "same": 24,
+    "different": 15
+  },
+  "structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 39,
+      "records": 39,
+      "reservoir_candidates": 39,
+      "minimum_required": 39
+    },
+    "input_sha256": "4a4e10b2a79f29d47394b91f1489c6aba067e2d7a64751f1baa5d7e8e321fcdd"
+  },
+  "interpretation": "Most recorded losses in this run occurred at the local deterministic numeric/English preservation and unsupported-edit gates; only 9 audit-stage failures were semantic-model or other audit outcomes. The original 96% run used 500 valid Oral records and upstream QC/dedup logic, so direct comparison is confounded by acceptance gates and denominator."
+}

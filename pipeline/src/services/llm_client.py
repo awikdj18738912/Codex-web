@@ -17,6 +17,7 @@ from configs.settings import (
     LLM_BASE_URL,
     LLM_MODEL_NAME,
     LLM_API_KEY,
+    LLM_HTTP_TIMEOUT,
     USE_OPENROUTER,
     LLM_MAX_TOKENS_DEFAULT,
 )
@@ -183,7 +184,7 @@ class AsyncLLMClient:
         model: str = LLM_MODEL_NAME,
         api_key: str = LLM_API_KEY,
         max_retries: int = 3,
-        timeout: float = 120.0,
+        timeout: float = LLM_HTTP_TIMEOUT,
         max_concurrent: int = 8,
         use_reasoning: bool = False,
     ):

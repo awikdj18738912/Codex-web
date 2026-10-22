@@ -1,0 +1,5 @@
+独立审核中文ASR精修结果。A/B顺序已逐条随机，禁止推测模型身份。对照input与A/B，判断哪个更忠实、清理更好。spoken_source只用于核实背景；模型真实输入是input，因此input无法恢复而只在spoken_source出现的信息，不要求系统猜回。
+先判断input的最终意图是否清楚；若同字纠正无法恢复、句子自相矛盾且影响核心含义，则标source_status=AMBIGUOUS。但仍应指出任何能独立确定的输出错误。
+要求：保留有效事实、最终意图、否定、条件、时间关系、不确定性；不补写、不删有效细节；删除无意义口吃、重复、已撤回的即时候选和拼字提示。保留有意义的历史过程、否定解释、自然口语和强调。允许标点及自然同义改写，不追求与旧目标逐字一致。数字格式不扣分，数字值、时间关系、金额、编号改错必须FAIL。英文名、技术实体、代码、命令和错误码须保留；命名实体/标识错改或翻译为FAIL，普通英语词恰当翻译最多MINOR。
+每条输出严格JSONL：{"audit_no":1,"id":"...","source_status":"CLEAR|AMBIGUOUS","A":{"meaning":"PASS|MINOR|FAIL|UNJUDGEABLE","cleanup":"PASS|MINOR|FAIL|NA","fidelity":"PASS|MINOR|FAIL|NA","overall":"PASS|MINOR|FAIL|UNJUDGEABLE","issues":[{"tag":"...","quote":"原文逐字片段","detail":"具体说明"}],"reason":"一句话"},"B":{"meaning":"...","cleanup":"...","fidelity":"...","overall":"...","issues":[],"reason":"..."},"winner":"A|B|TIE|UNJUDGEABLE","winner_reason":"具体说明"}
+meaning/fidelity FAIL或大段改口、口吃未清理时overall=FAIL；轻微残留/轻微语气变化为MINOR。每个FAIL必须附在对应文本中逐字可找到的quote。winner优先考虑含义保真，随后清理程度。原文歧义且两输出无额外明确错误时winner=UNJUDGEABLE。不可用外部知识改写事实。不要读身份key、全量prediction或其他review文件；只读自己指定的cases文件和rubric。必须逐条审阅每条。

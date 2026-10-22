@@ -35,6 +35,41 @@ def digest_bytes(value):
     return hashlib.sha256(value).hexdigest()
 
 
+def digest_file(path):
+    return digest_bytes(path.read_bytes())
+
+
+def verify_protocol(protocol):
+    expected_files = {
+        "candidate_sha256": OUT / "candidate.py",
+        "experiment_worker_sha256": OUT / "experiment_worker.py",
+        "live_core_sha256": OUT / "live_core.py",
+    }
+    verified = {}
+    for field, path in expected_files.items():
+        expected = protocol.get(field)
+        if not expected:
+            raise ValueError(f"protocol is missing {field}")
+        actual = digest_file(path)
+        if actual != expected:
+            raise ValueError(f"protocol {field} does not match {path.name}")
+        verified[field] = actual
+
+    worker_path = OUT / "worker.json"
+    if not worker_path.is_file():
+        raise FileNotFoundError(f"missing worker snapshot: {worker_path}")
+    worker = json.loads(worker_path.read_text())
+    source_hashes = protocol.get("source_hashes") or {}
+    if not source_hashes or source_hashes != worker.get("source_hashes"):
+        raise ValueError("protocol source_hashes do not match worker.json")
+    for relative, expected in source_hashes.items():
+        path = OUT / "source_snapshot" / relative
+        if not path.is_file() or digest_file(path) != expected:
+            raise ValueError(f"source snapshot hash mismatch: {relative}")
+    return {**verified, "source_hash_count": len(source_hashes),
+            "source_hashes": source_hashes}
+
+
 def distribution(values):
     values = sorted(float(v) for v in values)
     if not values:
@@ -172,6 +207,7 @@ def run(partial=False):
                           for field in fields}
     protocol_path = OUT / "long_protocol.json"
     protocol = json.loads(protocol_path.read_text()) if protocol_path.exists() else {}
+    protocol_hashes = verify_protocol(protocol)
     report = {"scope": "Three sparse concatenated development stresses with references, plus one Li development latency/target-presence case without complete reference.",
         "partial": partial, "complete": len(by_key) == len(ids) * len(ARMS),
         "result_rows": len(rows), "paired_ids": len(paired), "skipped_incomplete_trailing_row": skipped_trailing,
@@ -182,8 +218,7 @@ def run(partial=False):
         "input_hashes": {"long_test_plan.json": digest_bytes(plan_bytes),
                          "sparse_development/references.json": digest_bytes(REFS_PATH.read_bytes()),
                          "long_results.jsonl": digest_bytes(raw_results)},
-        "source_code_hashes": {"candidate_sha256": protocol.get("candidate_sha256"),
-                               "protocol_source_hashes": protocol.get("source_hashes", {})}}
+        "source_code_hashes": protocol_hashes}
     output = OUT / (("partial_" if partial else "") + "long_score.json")
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({"output": output.name, "result_rows": len(rows), "paired_ids": len(paired),

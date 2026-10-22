@@ -1,0 +1,21 @@
+{
+  "secondary_diagnostic": "Added to address primary native hotword token coverage. Separate dev selection and full held-out test; main frozen arms unchanged.",
+  "date": "2026-10-15",
+  "dev_grid": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3
+  ],
+  "selection_rule": "Same development CER-constrained entity recall rule against beam as main protocol.",
+  "official_configuration": "INT8 encoder/joiner, FP32 decoder, CPU2threads, beam4; INT8 decoder diagnostic excluded.",
+  "model_sha256": {
+    "encoder-epoch-99-avg-1.int8.onnx": "db6f51551762e40e549166fe041ea3e45464370b595e9ad23f06478ec3794fbb",
+    "decoder-epoch-99-avg-1.onnx": "89be509a83175261695bdef5fd1c7b9ab1129a663d1284e7ba9f8507b21e0906",
+    "joiner-epoch-99-avg-1.int8.onnx": "bdda356d6f9b8c2d7cee9ee0e26075fa537490f7fd06520be408d287073667b9",
+    "tokens.txt": "a8e0e4ec53810e433789b54a5c0134a7eaa2ffca595a6334d54c00da858841d3"
+  },
+  "model_dir": "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-small-bilingual-zh-en-2023-02-16",
+  "base_protocol": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/protocol.json"
+}

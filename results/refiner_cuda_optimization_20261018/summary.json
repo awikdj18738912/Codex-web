@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-18T12:43:15.814257+08:00",
+  "benchmark": {
+    "eager": 144.62816274515112,
+    "graph": 570.971547195101,
+    "graph_repeat": 575.8353173490639,
+    "graph_speedup": 3.9478586767447803,
+    "fixed_tokens_each_run": 4096,
+    "error_count_total": 0
+  },
+  "production_observation": {
+    "seconds": 50,
+    "new_valid_oral": 95,
+    "new_failed_attempts": 12,
+    "records_per_hour": 6840,
+    "note": "short observation window, not final semantic-QC throughput"
+  },
+  "data_check": {
+    "preserved_records": 3566,
+    "complete_jsonl_records": 3838,
+    "unique_ids": true,
+    "sqlite_integrity": "ok",
+    "sqlite_status_counts": {
+      "invalid": 463,
+      "pending": 8,
+      "valid": 3838
+    }
+  },
+  "checks": {
+    "passed": 20,
+    "files": [
+      "tests/test_oral_continuous_generation.py",
+      "tests/test_boundary_punctuation_pipeline.py",
+      "tests/test_generate_corpus_state.py"
+    ]
+  },
+  "runtime": {
+    "tmux_teacher": "teacher_graph_8010",
+    "tmux_generator": "refiner_zh_100k_20261018",
+    "endpoint": "http://127.0.0.1:8010/v1",
+    "cuda_graph": "FULL_DECODE_ONLY",
+    "capture_sizes": [
+      1,
+      2,
+      4
+    ],
+    "capture_extra_gib": 0.09,
+    "concurrency": 8,
+    "oral_max_tokens": 1024
+  }
+}

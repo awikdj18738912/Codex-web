@@ -1,0 +1,198 @@
+{
+  "dataset": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014_scene_v2/dataset",
+  "eval_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_scene_eval_20261014_v2",
+  "samples": 2000,
+  "totals": {
+    "group": [
+      "all"
+    ],
+    "samples": 2000,
+    "unique_ids": 2000,
+    "baseline_hit_mentions": 1342,
+    "audio_repaired_hit_mentions": 1440,
+    "recovered_mentions": 98,
+    "lost_mentions": 0,
+    "no_check_error_samples": 0,
+    "checks": 326
+  },
+  "by_duration": [
+    {
+      "group": [
+        "4_to_8s"
+      ],
+      "samples": 1290,
+      "unique_ids": 1290,
+      "baseline_hit_mentions": 883,
+      "audio_repaired_hit_mentions": 940,
+      "recovered_mentions": 57,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 156
+    },
+    {
+      "group": [
+        "gt_8s"
+      ],
+      "samples": 294,
+      "unique_ids": 294,
+      "baseline_hit_mentions": 207,
+      "audio_repaired_hit_mentions": 248,
+      "recovered_mentions": 41,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 169
+    },
+    {
+      "group": [
+        "le_4s"
+      ],
+      "samples": 416,
+      "unique_ids": 416,
+      "baseline_hit_mentions": 252,
+      "audio_repaired_hit_mentions": 252,
+      "recovered_mentions": 0,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 1
+    }
+  ],
+  "by_duration_and_tail_position": [
+    {
+      "group": [
+        "4_to_8s",
+        "non_tail"
+      ],
+      "samples": 690,
+      "unique_ids": 690,
+      "baseline_hit_mentions": 448,
+      "audio_repaired_hit_mentions": 485,
+      "recovered_mentions": 37,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 87
+    },
+    {
+      "group": [
+        "4_to_8s",
+        "tail_only"
+      ],
+      "samples": 362,
+      "unique_ids": 362,
+      "baseline_hit_mentions": 216,
+      "audio_repaired_hit_mentions": 219,
+      "recovered_mentions": 3,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 33
+    },
+    {
+      "group": [
+        "4_to_8s",
+        "tail_present"
+      ],
+      "samples": 238,
+      "unique_ids": 238,
+      "baseline_hit_mentions": 219,
+      "audio_repaired_hit_mentions": 236,
+      "recovered_mentions": 17,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 36
+    },
+    {
+      "group": [
+        "gt_8s",
+        "non_tail"
+      ],
+      "samples": 227,
+      "unique_ids": 227,
+      "baseline_hit_mentions": 155,
+      "audio_repaired_hit_mentions": 190,
+      "recovered_mentions": 35,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 127
+    },
+    {
+      "group": [
+        "gt_8s",
+        "tail_only"
+      ],
+      "samples": 40,
+      "unique_ids": 40,
+      "baseline_hit_mentions": 30,
+      "audio_repaired_hit_mentions": 31,
+      "recovered_mentions": 1,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 22
+    },
+    {
+      "group": [
+        "gt_8s",
+        "tail_present"
+      ],
+      "samples": 27,
+      "unique_ids": 27,
+      "baseline_hit_mentions": 22,
+      "audio_repaired_hit_mentions": 27,
+      "recovered_mentions": 5,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 20
+    },
+    {
+      "group": [
+        "le_4s",
+        "non_tail"
+      ],
+      "samples": 139,
+      "unique_ids": 139,
+      "baseline_hit_mentions": 81,
+      "audio_repaired_hit_mentions": 81,
+      "recovered_mentions": 0,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 1
+    },
+    {
+      "group": [
+        "le_4s",
+        "tail_only"
+      ],
+      "samples": 247,
+      "unique_ids": 247,
+      "baseline_hit_mentions": 148,
+      "audio_repaired_hit_mentions": 148,
+      "recovered_mentions": 0,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 0
+    },
+    {
+      "group": [
+        "le_4s",
+        "tail_present"
+      ],
+      "samples": 30,
+      "unique_ids": 30,
+      "baseline_hit_mentions": 23,
+      "audio_repaired_hit_mentions": 23,
+      "recovered_mentions": 0,
+      "lost_mentions": 0,
+      "no_check_error_samples": 0,
+      "checks": 0
+    }
+  ],
+  "method_notes": {
+    "duration_buckets": {
+      "le_4s": "duration <= 4 seconds",
+      "4_to_8s": "4 < duration <= 8 seconds",
+      "gt_8s": "duration > 8 seconds"
+    },
+    "tail_definition": "Text-position approximation: a gold canonical in reference has fewer than 8 remaining normalized characters after it. tail_present means at least one target mention is in this tail; tail_only means all located mentions are; non_tail means none are. Not audio timing and does not imply the actual implementation necessarily rejects the case; the 8-character right-context constraint applies to incomplete segments, while completed segments may be handled differently.",
+    "trace_definition": "Observational primary last-chunk and finish fields from asr_trace.jsonl only. No entity first-occurrence time is inferred.",
+    "repaired_hit_definition": "Offline scorer score_entities on result.raw_text (audio-repair output); this does not rerun inference.",
+    "no_check_error_definition": "Samples with zero recorded entity repair checks and a recorded module/result error."
+  }
+}

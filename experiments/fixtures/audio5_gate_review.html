@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audio5 门控结果离线核验</title>
+  <style>
+    :root { color-scheme: light; --ink:#17212b; --muted:#5b6875; --line:#d8e0e7; --paper:#fff; --wash:#f3f6f8; --blue:#175b91; --amber:#8a4b00; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--wash); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { padding:22px max(20px,calc((100vw - 1180px)/2)); color:white; background:#18384d; }
+    header h1 { margin:0 0 5px; font-size:22px; }
+    header p { max-width:950px; margin:0; color:#d5e5ef; }
+    main { max-width:1180px; margin:18px auto 60px; padding:0 18px; }
+    .toolbar,.card,.panel { border:1px solid var(--line); border-radius:10px; background:var(--paper); }
+    .toolbar { position:sticky; top:0; z-index:3; display:flex; align-items:center; flex-wrap:wrap; gap:9px; padding:10px 12px; box-shadow:0 3px 12px #17212b12; }
+    button,select,input,textarea { font:inherit; }
+    button,select { min-height:36px; padding:5px 10px; border:1px solid #b8c5cf; border-radius:6px; color:var(--ink); background:white; }
+    button { cursor:pointer; }
+    button.primary { color:white; border-color:var(--blue); background:var(--blue); }
+    button:disabled { opacity:.45; cursor:not-allowed; }
+    .toolbar label { display:flex; align-items:center; gap:6px; }
+    #position { min-width:90px; color:var(--muted); text-align:center; }
+    #loadStatus { margin-left:auto; color:var(--muted); }
+    .card { margin-top:14px; padding:18px; }
+    .title-line { display:flex; align-items:baseline; flex-wrap:wrap; gap:10px; }
+    h2 { margin:0; font-size:19px; }
+    .muted { color:var(--muted); }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#e8f0f5; color:#25465b; font-size:13px; }
+    .recommendation { margin:14px 0; padding:10px 12px; border-left:4px solid #d18a2b; background:#fff7e9; }
+    .recommendation strong { display:block; }
+    .unsafe { margin:12px 0; padding:11px 13px; border:2px solid #a51d22; border-radius:7px; color:#741419; background:#fff0f0; font-weight:700; }
+    .outcome { margin:10px 0; padding:9px 11px; border-left:4px solid #52758a; background:#edf4f7; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; }
+    .panel { min-width:0; padding:12px; }
+    .panel h3 { margin:0 0 7px; font-size:15px; }
+    pre,.text-block { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font:14px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .diff { border-top:1px solid var(--line); margin-top:9px; padding-top:8px; }
+    .diff-row { margin:4px 0; }
+    .diff-row b { color:var(--muted); font:600 12px system-ui,sans-serif; }
+    .context { margin-top:11px; }
+    audio { width:100%; margin:8px 0 2px; }
+    .audio-note { color:var(--amber); font-size:13px; }
+    .review-form { display:grid; grid-template-columns:minmax(210px,1fr) minmax(210px,2fr); gap:10px 14px; align-items:start; }
+    .field { display:flex; flex-direction:column; gap:4px; }
+    .field.full { grid-column:1/-1; }
+    textarea { width:100%; min-height:86px; resize:vertical; padding:8px; border:1px solid #b8c5cf; border-radius:6px; }
+    input[type=text] { width:100%; padding:7px 8px; border:1px solid #b8c5cf; border-radius:6px; }
+    .heard { align-self:center; display:flex; gap:8px; align-items:center; }
+    .form-actions { grid-column:1/-1; display:flex; align-items:center; flex-wrap:wrap; gap:9px; }
+    #reviewStatus { color:var(--muted); }
+    .empty { margin:30px 0; text-align:center; color:var(--muted); }
+    @media (max-width:720px) { .grid,.review-form { grid-template-columns:1fr; } .field.full,.form-actions { grid-column:auto; } #loadStatus { width:100%; margin-left:0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Audio5 门控结果离线核验</h1>
+    <p>请先听音频，再核验助手建议和各策略文本。建议仅供参考，必须由人工听辨确认；音频时间是 VAD 请求边界，不是词级定位。</p>
+    <p>下方策略输出保留历史回放。semantic_content_loss 已从当前源码移除；保存候选的新校验复核另列，旧输出和统计不覆盖。</p>
+  </header>
+  <main>
+    <section class="toolbar" aria-label="窗口导航与筛选">
+      <label>筛选
+        <select id="filter">
+          <option value="all">全部窗口</option>
+          <option value="recommend_refine">建议精修</option>
+          <option value="recommend_partial">建议部分精修</option>
+          <option value="supplement_missed">supplement 跳过但模型改动</option>
+          <option value="unreviewed">未核验</option>
+        </select>
+      </label>
+      <button id="previous" type="button">上一窗口</button>
+      <span id="position">0 / 0</span>
+      <button id="next" type="button">下一窗口</button>
+      <label>跳至 <input id="jump" type="number" min="1" value="1" style="width:76px"></label>
+      <button id="go" type="button">前往</button>
+      <button id="undo" type="button">撤销上次保存</button>
+      <button id="export" type="button">导出 JSONL</button>
+      <button id="downloadQueue" type="button">下载完整核验队列</button>
+      <span id="loadStatus" role="status">正在读取 review_queue.jsonl…</span>
+    </section>
+    <div id="content" aria-live="polite"></div>
+  </main>
+  <script>
+    (() => {
+      "use strict";
+      let STORE_KEY = "audio5_gate_review_v1";
+      const content = document.getElementById("content");
+      const status = document.getElementById("loadStatus");
+      const filter = document.getElementById("filter");
+      const position = document.getElementById("position");
+      const previous = document.getElementById("previous");
+      const next = document.getElementById("next");
+      const undoButton = document.getElementById("undo");
+      let rows = [];
+      let queueText = "";
+      let visible = [];
+      let cursor = 0;
+      let state = { labels: {}, undo: [] };
+
+      function loadState() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+          if (saved && typeof saved === "object") {
+            state.labels = saved.labels && typeof saved.labels === "object" ? saved.labels : {};
+            state.undo = Array.isArray(saved.undo) ? saved.undo : [];
+          }
+        } catch (_) { state = { labels: {}, undo: [] }; }
+      }
+      function persist() {
+        localStorage.setItem(STORE_KEY, JSON.stringify(state));
+        undoButton.disabled = state.undo.length === 0;
+      }
+      function node(tag, text, className) {
+        const el = document.createElement(tag);
+        if (text !== undefined && text !== null) el.textContent = String(text);
+        if (className) el.className = className;
+        return el;
+      }
+      function section(title, value, className) {
+        const box = node("section", null, "panel " + (className || ""));
+        box.append(node("h3", title));
+        box.append(node("pre", value == null || value === "" ? "（空）" : value));
+        return box;
+      }
+      function recommendationKind(row) {
+        const value = String(row.assistant_recommendation || "").toLowerCase();
+        if (/partial|部分/.test(value)) return "recommend_partial";
+        if (/whole|refine|精修/.test(value)) return "recommend_refine";
+        return "";
+      }
+      function matches(row, key) {
+        if (key === "all") return true;
+        if (key === "unreviewed") return !state.labels[String(row.id)];
+        if (key === "supplement_missed") {
+          return row.miss_candidate === true;
+        }
+        if (key === "recommend_refine") return !!recommendationKind(row);
+        return recommendationKind(row) === key;
+      }
+      function setVisible(reset) {
+        visible = rows.map((row, index) => ({ row, index })).filter(item => matches(item.row, filter.value));
+        if (reset || cursor >= visible.length) cursor = 0;
+        render();
+      }
+      function addEdits(parent, edits) {
+        if (!Array.isArray(edits) || edits.length === 0) {
+          parent.append(node("p", "没有模型提议的编辑。", "muted"));
+          return;
+        }
+        edits.forEach((edit, i) => {
+          const block = node("div", null, "diff");
+          block.append(node("div", "提议 " + (i + 1) + (edit && edit.miss_candidate === true ? " · miss_candidate" : ""), "muted"));
+          const before = node("div", null, "diff-row");
+          before.append(node("b", "改前："), document.createTextNode(" " + String(edit && edit.before != null ? edit.before : "")));
+          block.append(before);
+          const after = node("div", null, "diff-row");
+          after.append(node("b", "改后："), document.createTextNode(" " + String(edit && edit.after != null ? edit.after : "")));
+          block.append(after);
+          parent.append(block);
+        });
+      }
+      function addModelCalls(parent, calls) {
+        if (!Array.isArray(calls) || calls.length === 0) {
+          parent.append(node("p", "没有模型候选输出。", "muted"));
+          return;
+        }
+        calls.forEach((call, index) => {
+          const block = node("div", null, "diff");
+          block.append(node("strong", "候选输出 " + (index + 1) + "（可能被保护拒绝）"));
+          block.append(section("模型输入", call && call.input));
+          block.append(section("模型候选文本", call && call.output));
+          if (call && Array.isArray(call.reject_reasons) && call.reject_reasons.length) {
+            block.append(node("div", "拒绝原因：" + call.reject_reasons.join("、"), "unsafe"));
+          }
+          parent.append(block);
+        });
+      }
+      function render() {
+        content.replaceChildren();
+        undoButton.disabled = state.undo.length === 0;
+        previous.disabled = cursor <= 0 || visible.length === 0;
+        next.disabled = cursor >= visible.length - 1 || visible.length === 0;
+        position.textContent = visible.length ? (cursor + 1) + " / " + visible.length : "0 / 0";
+        if (!visible.length) {
+          content.append(node("p", rows.length ? "此筛选下没有窗口。" : "队列为空或尚未加载。", "empty"));
+          return;
+        }
+        const row = visible[cursor].row;
+        const saved = state.labels[String(row.id)] || {};
+        const card = node("article", null, "card");
+        const title = node("div", null, "title-line");
+        title.append(node("h2", "窗口 " + String(row.window_index ?? "—")));
+        title.append(node("span", "ID " + String(row.id ?? ""), "badge"));
+        title.append(node("span", "原生 " + String(row.native_action ?? "—") + " · 补充 " + String(row.supplement_action ?? "—") + " · learned " + String(row.learned_action ?? "—"), "muted"));
+        card.append(title);
+
+        const rec = node("div", null, "recommendation");
+        const recommendationLabels = {partial:"仅核对指定部分",whole:"整窗送审",keep:"暂建议跳过",uncertain:"需要听音确认"};
+        rec.append(node("strong", "我的建议 · 待用户核验：" + (recommendationLabels[row.assistant_recommendation] || "未提供")));
+        rec.append(node("div", row.assistant_reason || "未提供建议理由。"));
+        card.append(rec);
+
+        if (row.unsafe_model_edit === true) {
+          card.append(node("div", "注意：检测到模型改动可能改变原意或破坏回复。请重点听辨原音，并以最终策略输出和模型候选输出的区分为准。", "unsafe"));
+        }
+        const outcomeText = "全量精修保护结果：" + String(row.full_refine_outcome || "未提供") +
+          "；拒绝原因：" + (Array.isArray(row.full_refine_reject_reasons) && row.full_refine_reject_reasons.length
+            ? row.full_refine_reject_reasons.join("、") : "无 / 未记录");
+        card.append(node("div", outcomeText, "outcome"));
+        if (row.guard_recheck) {
+          const current = row.guard_recheck.current_results?.[0];
+          card.append(node("div", "当前校验复核：" + (current?.accepted ? "接受" : "拒绝") +
+            "。使用已保存的模型候选重新校验，未重新调用模型；上方执行结果保留历史记录。", "outcome"));
+          if (current?.text) card.append(section("当前校验接受的文本", current.text));
+        }
+        const assistantTarget = node("section", null, "panel context");
+        assistantTarget.append(node("h3", "助手建议的局部目标 · 仅供核对，不是人工标签"));
+        assistantTarget.append(node("pre", row.assistant_target || "（未提供）"));
+        card.append(assistantTarget);
+
+        const grid = node("div", null, "grid");
+        grid.append(section("原始 ASR", row.raw_text));
+        grid.append(section("规则结果", row.baseline_text));
+        grid.append(section("全量精修策略", row.output_all_refine));
+        grid.append(section("原生门控策略", row.output_native));
+        grid.append(section("置信补充策略", row.output_supplement));
+        grid.append(section("既有学习门控策略", row.output_learned));
+        const edits = node("section", null, "panel");
+        edits.append(node("h3", "窗口实际输出相对规则结果的改动"));
+        edits.append(node("p", "此处展示保护管线之后实际返回的文本差异；被拒绝的原始候选另列如下。", "muted"));
+        addEdits(edits, row.proposed_edits);
+        grid.append(edits);
+        const modelProposals = node("section", null, "panel");
+        modelProposals.append(node("h3", "模型原始候选输出 · 可能被保护拒绝"));
+        addModelCalls(modelProposals, row.model_calls);
+        grid.append(modelProposals);
+        card.append(grid);
+        if (row.terminal_outputs) {
+          const terminal = node("details", null, "panel context");
+          terminal.append(node("summary", "整条转录终态结果：包含后级局部补救"));
+          terminal.append(node("p", "按原文位置对齐用于显示；跨窗替换可能存在对齐歧义。不能仅凭窗口跳过就认定最终漏修。", "muted"));
+          if (row.terminal_alignment_ambiguous) terminal.append(node("p", "此窗口边界落在替换区，对齐有歧义，请结合全文。", "audio-note"));
+          for (const [policy, text] of Object.entries(row.terminal_outputs)) terminal.append(section(policy, text));
+          card.append(terminal);
+        }
+
+        const calls = node("section", null, "panel context");
+        calls.append(node("h3", "模型调用"));
+        calls.append(node("pre", Array.isArray(row.model_calls) ? JSON.stringify(row.model_calls, null, 2) : "（无）"));
+        card.append(calls);
+
+        const audioPanel = node("section", null, "panel context");
+        audioPanel.append(node("h3", "音频与置信信息"));
+        const start = Number(row.audio_start) || 0;
+        const end = Number(row.audio_end) || 0;
+        audioPanel.append(node("div", "片段边界：" + start.toFixed(2) + "s – " + end.toFixed(2) + "s；最低片段分数：" + String(row.score_min_fragment ?? "未知") + "；证据状态：" + String(row.score_status ?? "未知")));
+        const audio = document.createElement("audio");
+        audio.controls = true;
+        audio.preload = "metadata";
+        if (row.audio_url === "audio_16k.wav") audio.src = "./audio_16k.wav";
+        audioPanel.append(audio);
+        const replay = node("button", "重放本段", "");
+        replay.type = "button";
+        replay.addEventListener("click", () => {
+          if (!audio.src) return;
+          const beginPlayback = () => {
+            audio.currentTime = Math.max(0, start - 2);
+            audio.play().catch(() => {});
+          };
+          if (audio.readyState < 1) audio.addEventListener("loadedmetadata", beginPlayback, { once:true });
+          else beginPlayback();
+        });
+        audio.addEventListener("timeupdate", () => {
+          if (end > start && audio.currentTime >= end) audio.pause();
+        });
+        audioPanel.append(replay);
+        audioPanel.append(node("p", "音频时间仅表示 VAD 请求边界，不是词级定位。播放器从片段起点前约 2 秒开始，播放至片段终点。", "audio-note"));
+        card.append(audioPanel);
+
+        const context = node("div", null, "grid context");
+        context.append(section("左侧上下文", row.left_context));
+        context.append(section("右侧上下文", row.right_context));
+        card.append(context);
+
+        const form = node("form", null, "panel context review-form");
+        form.addEventListener("submit", event => event.preventDefault());
+        const decisionField = node("label", null, "field");
+        decisionField.append(node("span", "人工结论"));
+        const decision = document.createElement("select");
+        decision.required = true;
+        decision.append(new Option("请选择…", ""));
+        for (const [value, label] of [["whole", "whole（整窗精修）"], ["partial", "partial（仅部分精修）"], ["keep", "keep（应跳过）"], ["uncertain", "uncertain（待定）"]]) {
+          decision.append(new Option(label, value));
+        }
+        decision.value = saved.decision || "";
+        decisionField.append(decision);
+        form.append(decisionField);
+
+        const reviewerField = node("label", null, "field");
+        reviewerField.append(node("span", "核验人（可选）"));
+        const reviewer = document.createElement("input");
+        reviewer.type = "text";
+        reviewer.value = saved.reviewer || "";
+        reviewerField.append(reviewer);
+        form.append(reviewerField);
+
+        const targetField = node("label", null, "field full");
+        targetField.append(node("span", "我的可接受目标文本（默认空；助手建议目标不会自动填入）"));
+        const target = document.createElement("textarea");
+        target.value = saved.target || "";
+        targetField.append(target);
+        form.append(targetField);
+
+        const noteField = node("label", null, "field full");
+        noteField.append(node("span", "备注"));
+        const note = document.createElement("textarea");
+        note.value = saved.note || "";
+        noteField.append(note);
+        form.append(noteField);
+
+        const heardLabel = node("label", null, "heard");
+        const heard = document.createElement("input");
+        heard.type = "checkbox";
+        heard.checked = saved.heard === true;
+        heardLabel.append(heard, document.createTextNode("我已听过并核验音频"));
+        form.append(heardLabel);
+
+        const actions = node("div", null, "form-actions");
+        const save = node("button", "保存本条核验", "primary");
+        save.type = "button";
+        save.addEventListener("click", () => {
+          if (!decision.value) { reviewStatus.textContent = "请先选择人工结论；未保存任何标签。"; return; }
+          const key = String(row.id);
+          state.undo.push({ key, previous: state.labels[key] || null });
+          state.labels[key] = {
+            id: row.id,
+            window_basis: row.window_basis ?? null,
+            decision: decision.value,
+            target: target.value,
+            note: note.value,
+            heard: heard.checked,
+            reviewer: reviewer.value,
+            reviewed_at: new Date().toISOString(),
+          };
+          persist();
+          reviewStatus.textContent = "已保存到此浏览器的 localStorage。";
+          setVisible(false);
+        });
+        actions.append(save);
+        const reviewStatus = node("span", saved.decision ? "本地已有保存记录。" : "尚未保存。", "muted");
+        reviewStatus.id = "reviewStatus";
+        actions.append(reviewStatus);
+        form.append(actions);
+        card.append(form);
+        content.append(card);
+      }
+
+      function undo() {
+        const last = state.undo.pop();
+        if (!last) return;
+        if (last.previous) state.labels[last.key] = last.previous;
+        else delete state.labels[last.key];
+        persist();
+        render();
+      }
+      function exportJsonl() {
+        const lines = Object.values(state.labels).map(label => JSON.stringify(label));
+        const blob = new Blob([lines.length ? lines.join("\n") + "\n" : ""], { type:"application/x-ndjson;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "audio5_gate_review_labels.jsonl";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+      function downloadQueue() {
+        if (!queueText) return;
+        const blob = new Blob([queueText], { type:"application/x-ndjson;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "review_queue.jsonl";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+      previous.addEventListener("click", () => { if (cursor > 0) { cursor--; render(); } });
+      next.addEventListener("click", () => { if (cursor < visible.length - 1) { cursor++; render(); } });
+      filter.addEventListener("change", () => setVisible(true));
+      undoButton.addEventListener("click", undo);
+      document.getElementById("export").addEventListener("click", exportJsonl);
+      document.getElementById("downloadQueue").addEventListener("click", downloadQueue);
+      document.getElementById("go").addEventListener("click", () => {
+        const number = Number(document.getElementById("jump").value);
+        const index = rows.findIndex(row => row.window_index === number);
+        if (index < 0) return;
+        filter.value = "all";
+        visible = rows.map((row, index) => ({row,index}));
+        cursor = index;
+        render();
+      });
+
+      async function start() {
+        try {
+          const response = await fetch("./review_queue.jsonl");
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          queueText = await response.text();
+          rows = queueText.split(/\r?\n/).filter(line => line.trim()).map((line, index) => {
+            try { return JSON.parse(line); }
+            catch (error) { throw new Error("第 " + (index + 1) + " 行 JSON 无效：" + error.message); }
+          });
+          STORE_KEY += "-" + String(rows[0]?.window_basis || "unknown").slice(0,24);
+          loadState();
+          undoButton.disabled = state.undo.length === 0;
+          const changed = rows.filter(row => row.output_all_refine !== row.baseline_text).length;
+          status.textContent = "已读取 " + rows.length + " 个窗口；全量策略实际输出有文本改动 " + changed + " 条。标签只在手动保存后写入。";
+          setVisible(true);
+        } catch (error) {
+          status.textContent = "读取失败：" + error.message + "。请通过本地静态服务器打开页面。";
+          content.append(node("p", "无法载入 review_queue.jsonl。", "empty"));
+        }
+      }
+      start();
+    })();
+  </script>
+</body>
+</html>

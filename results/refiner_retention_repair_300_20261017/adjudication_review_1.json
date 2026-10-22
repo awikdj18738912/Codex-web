@@ -1,0 +1,22 @@
+{
+  "id": "scale_daily_chat_0060",
+  "decision": "pass",
+  "classification": "allowed_asr_omission_repair",
+  "evidence": [
+    {
+      "source": "api_calls.jsonl asr request.user_prompt",
+      "quote": "Observed oral prefix:\n嗯，今晚去重庆洪崖洞夜景拍照"
+    },
+    {
+      "source": "attempts.jsonl oral.oral_text",
+      "quote": "嗯，今晚去重庆洪崖洞夜景拍照，听说灯光特别漂亮。"
+    },
+    {
+      "source": "api_calls.jsonl asr response.input",
+      "quote": "嗯，今晚去重庆洪崖洞夜景拍，"
+    }
+  ],
+  "source_quote": "嗯，今晚去重庆洪崖洞夜景拍照",
+  "target_quote": "今晚去重庆洪崖洞夜景拍照，",
+  "reason": "“照”已出现在ASR请求明确标注的Observed oral prefix中，也出现在attempts.jsonl记录的原口语oral_text里。ASR返回的input把该已观察字符漏掉，target恢复它属于对观察内容的漏字修复；它不是利用截断点之后的“听说灯光特别漂亮”等未观察后文补写。"
+}

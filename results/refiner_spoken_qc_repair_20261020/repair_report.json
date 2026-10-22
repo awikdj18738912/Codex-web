@@ -1,0 +1,19 @@
+{
+  "code_fix_complete": true,
+  "parser_version": "strict-json-bool-v2",
+  "qc_prompt_version": "spoken-source-plus-meaning-v2",
+  "regression_tests_passed": 37,
+  "diagnostic_cases": 6,
+  "diagnostic_cases_matching_expected": 6,
+  "source_records_scanned": 100000,
+  "parenthesis_candidates": 5873,
+  "source_candidates_are_not_automatic_rejects": true,
+  "legacy_dataset_status": "needs_source_quality_review",
+  "existing_training_texts_changed": false,
+  "training_started": false,
+  "limitations": [
+    "Six teacher diagnostic cases are not a full quality estimate.",
+    "Generation prompts cannot guarantee every response is natural spoken Chinese.",
+    "Legacy teacher raw verdicts were not saved; parser fixes cannot retrospectively certify them."
+  ]
+}

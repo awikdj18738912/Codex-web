@@ -18,6 +18,53 @@ STRICT_LOCAL_REASONS = frozenset({
 })
 _TERMINAL_BOUNDARY_CHARS = frozenset("，,、。！？!?；;：:…“”‘’\"'")
 
+WINDOW_CONTEXT_PROTOCOL_VERSION = "v1-read-only-adjacent-context"
+
+
+def window_context_messages(
+    source: str, *, left_context: str = "", right_context: str = "",
+) -> tuple[str, str]:
+    """Separate source-owned text from adjacent, read-only ASR context."""
+
+    instructions = (
+        "用户消息是当前窗口（current_window），是唯一允许修改和输出的正文。"
+        "系统提示中的read_only_left_context和read_only_right_context是只读的相邻ASR原文，"
+        "仅帮助判断语义、重复和断句，不得修改、复制到输出或作为补丁source。"
+        "相邻上下文中的标点可能是ASR误断句，不要把标点块当成完整句子。"
+        "窗口末尾的词可能是下文的主语或句子开头，必须结合右侧上下文判断，"
+        "不得仅因窗口末尾缺少谓语或与前文出现过相同词语就删除它。"
+        "优先只返回一个严格JSON对象，且只能包含action、source、target、reason四个字符串字段。"
+        '无需修改返回{"action":"keep","source":"","target":"","reason":"no_change"}。'
+        "需要修改返回action为replace的局部补丁，source必须逐字且唯一地"
+        "出现在current_window中，target不得包含相邻上下文。"
+        "如返回转录文本，只能返回用户消息的精修结果，不能输出任何只读上下文。"
+        "只读上下文缺失时，保留存疑的窗口边缘词，不得猜测或补写下文。"
+    )
+    context = json.dumps(
+        {
+            "read_only_left_context": left_context,
+            "read_only_right_context": right_context,
+        },
+        ensure_ascii=False,
+    )
+    return instructions + "\n只读上下文JSON：" + context, source
+
+
+def apply_window_context_patch(source: str, response: str, *, policy: str = "compat"):
+    """Validate scoped patches; legacy prose is checked after entity restoration."""
+
+    if policy == "compat" and not response.lstrip().startswith(("{", "```")):
+        return apply_structured_patch(source, response, policy=policy)
+
+    payload, issue = _strict_local_payload(response.strip())
+    if issue:
+        return source, payload, "window_context_invalid_patch"
+    if payload["action"] == "keep" and (
+        payload["source"] or payload["target"] or payload["reason"] != "no_change"
+    ):
+        return source, payload, "window_context_invalid_keep"
+    return apply_structured_patch(source, response, policy=policy)
+
 
 def parse_window_edit_policy(value: str) -> str:
     policy = str(value).strip().lower()

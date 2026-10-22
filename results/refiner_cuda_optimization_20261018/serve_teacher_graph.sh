@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export CUDA_VISIBLE_DEVICES="0,1"
+exec /home/aim0/data/conda/envs/vllm/bin/vllm serve \
+  /home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit \
+  --served-model-name refiner-teacher \
+  --host 127.0.0.1 --port 8010 \
+  --data-parallel-size 2 --data-parallel-backend mp \
+  --tensor-parallel-size 1 \
+  --max-model-len 8192 --max-num-seqs 4 --max-num-batched-tokens 2048 \
+  --gpu-memory-utilization 0.92 --dtype bfloat16 --compilation-config '{"mode":0,"cudagraph_mode":"FULL_DECODE_ONLY","cudagraph_capture_sizes":[1,2,4]}'

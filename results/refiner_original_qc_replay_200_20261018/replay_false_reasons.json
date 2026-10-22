@@ -1,0 +1,58 @@
+{
+  "denominator": 200,
+  "validated_oral": 186,
+  "assembled_pairs": 186,
+  "qc_pass": 184,
+  "qc_reject": 2,
+  "rejected_candidates": [
+    {
+      "serial": 51,
+      "id": "original_navigation_0051",
+      "scene": "navigation",
+      "reason": "The refined text incorrectly states the speaker's intended destination as 'Zhenzhou' (Zhengzhou) and 'Tiananmen Square', but the final intended meaning in the input transcript is clearly 'Xining' (Xining), with the speaker correcting themselves from 'Suzhou' to 'Zhengzhou' and then ultimately confirming 'Xining' as the final destination. The refined text omits the final correction and misrepresents the intended destination.",
+      "quality_audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "The refined text incorrectly states the speaker's intended destination as 'Zhenzhou' (Zhengzhou) and 'Tiananmen Square', but the final intended meaning in the input transcript is clearly 'Xining' (Xining), with the speaker correcting themselves from 'Suzhou' to 'Zhengzhou' and then ultimately confirming 'Xining' as the final destination. The refined text omits the final correction and misrepresents the intended destination."
+      }
+    },
+    {
+      "serial": 124,
+      "id": "original_explanation_0124",
+      "scene": "explanation",
+      "reason": "The refined transcript incorrectly preserves the speaker's initial confusion and contradictory statements, failing to resolve to the final intended meaning. The speaker ultimately clarifies that '中国移动' (China Mobile) is the correct full name, with '中移动' as its proper abbreviation. However, the refined version retains the speaker's back-and-forth contradiction and confusion, including the erroneous claim that '移动' should not be written as '移动' (which is a nonsensical distinction), and fails to converge on the clear final assertion that the correct term is '中国移动'. The final intended meaning—'中国移动' is the correct and full name, with '中移动' as its valid abbreviation—is not cleanly captured, as the refinement preserves ambiguity and repetition instead of resolving to the speaker's final, coherent conclusion.",
+      "quality_audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "The refined transcript incorrectly preserves the speaker's initial confusion and contradictory statements, failing to resolve to the final intended meaning. The speaker ultimately clarifies that '中国移动' (China Mobile) is the correct full name, with '中移动' as its proper abbreviation. However, the refined version retains the speaker's back-and-forth contradiction and confusion, including the erroneous claim that '移动' should not be written as '移动' (which is a nonsensical distinction), and fails to converge on the clear final assertion that the correct term is '中国移动'. The final intended meaning—'中国移动' is the correct and full name, with '中移动' as its valid abbreviation—is not cleanly captured, as the refinement preserves ambiguity and repetition instead of resolving to the speaker's final, coherent conclusion."
+      }
+    }
+  ],
+  "filterfix_comparison": {
+    "filterfix_retained": 151,
+    "qc_replay_pass_overlap": 151,
+    "new_qc_pass_vs_filterfix": 33,
+    "lost_filterfix_passes": 0
+  },
+  "retained_after_export_dedup": 184,
+  "retained_rate": 0.92,
+  "retention_outcomes": {
+    "retained": 184,
+    "qc_reject": 2
+  },
+  "full_structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 184,
+      "records": 184,
+      "reservoir_candidates": 184,
+      "minimum_required": 184
+    },
+    "input_sha256": "32a22b040f0aa206d5ca018ccda2df014d15bd6a9e2c09ef73a1e54a3c50c578"
+  }
+}

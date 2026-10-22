@@ -1,0 +1,85 @@
+{
+  "cohort": {
+    "samples": 8,
+    "rows": 16,
+    "ids": [
+      "chall_aishell_BAC009S0002W0388",
+      "chall_speechio_ef09a2fef63150031563",
+      "chall_speechio_fcd15884da8cefb22086",
+      "chall_speechio_84b1d2d8d0076f7b4305",
+      "chall_speechio_39b264b294c64c7cc6a8",
+      "chall_speechio_7a31155e90196959ef3a",
+      "chall_speechio_d06e0e8ff679f8e9b1e8",
+      "chall_speechio_fa309350cbc874ac2bfa"
+    ],
+    "selection": "8 lowest SHA256('entity-combo-paced-v1:'+id) among 230 old short-finish/test IDs; selection used input IDs only"
+  },
+  "verification": {
+    "exact_id_arm_coverage": true,
+    "paired_pcm_hashes_match": true,
+    "actual_primary_text_matches_between_arms": true,
+    "all_splits_test": true,
+    "pacing_tolerance_ms": 2,
+    "pacing_packets_checked": 666,
+    "every_packet_met_audio_clock_plus_audio_position": true
+  },
+  "arms": {
+    "off": {
+      "samples": 8,
+      "first_nonempty_samples": 8,
+      "first_nonempty_text_wall_median_seconds": 2.2404609615914524,
+      "finish_tail_median_seconds": 0.41157680144533515,
+      "finish_tail_max_seconds": 0.6614101422019303,
+      "audio_review_checks": 8,
+      "ctc_streaming_review_skips": 0,
+      "ctc_committed": 0,
+      "ctc_errors": 0
+    },
+    "on": {
+      "samples": 8,
+      "first_nonempty_samples": 8,
+      "first_nonempty_text_wall_median_seconds": 2.23831630544737,
+      "finish_tail_median_seconds": 0.4586771975737065,
+      "finish_tail_max_seconds": 0.7036648499779403,
+      "audio_review_checks": 7,
+      "ctc_streaming_review_skips": 2,
+      "ctc_committed": 2,
+      "ctc_errors": 0
+    }
+  },
+  "paired_on_minus_off_finish_tail": {
+    "samples": 8,
+    "median_seconds": 0.022559370612725616,
+    "per_id_seconds": {
+      "chall_aishell_BAC009S0002W0388": -0.03311975114047527,
+      "chall_speechio_ef09a2fef63150031563": 0.021262424997985363,
+      "chall_speechio_fcd15884da8cefb22086": 0.042254707776010036,
+      "chall_speechio_84b1d2d8d0076f7b4305": 0.07293836725875735,
+      "chall_speechio_39b264b294c64c7cc6a8": 0.001323031261563301,
+      "chall_speechio_7a31155e90196959ef3a": 0.023856316227465868,
+      "chall_speechio_d06e0e8ff679f8e9b1e8": -0.004068492911756039,
+      "chall_speechio_fa309350cbc874ac2bfa": 0.04749450460076332
+    }
+  },
+  "posthoc_quality_diagnostic": {
+    "off": {
+      "samples": 8,
+      "entity_hits": 9,
+      "entity_mentions": 11,
+      "entity_recall": 0.8181818181818182,
+      "cer_errors": 10,
+      "reference_chars": 244,
+      "cer": 0.040983606557377046
+    },
+    "on": {
+      "samples": 8,
+      "entity_hits": 11,
+      "entity_mentions": 11,
+      "entity_recall": 1.0,
+      "cer_errors": 8,
+      "reference_chars": 244,
+      "cer": 0.03278688524590164
+    }
+  },
+  "interpretation": "Eight paired recordings are a small diagnostic sample, not a service p95 estimate. Quality metrics are post-hoc diagnostics on these eight references only and do not establish generalization."
+}

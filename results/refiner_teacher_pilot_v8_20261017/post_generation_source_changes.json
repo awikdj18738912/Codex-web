@@ -1,0 +1,10 @@
+{
+  "changes": [
+    "Full/partial dedup indexes separated; same audited records re-finalized without label edits",
+    "Natural fragment boundaries exclude numeric commas and unclosed brackets; retained fragment checked with final code"
+  ],
+  "source_sha256": {
+    "pipeline/src/pipeline/dedup.py": "724b4dd21454fb7082b278371882d91867fbbae1d7d56732337e356df29e0cfd",
+    "pipeline/src/generators/asr_simulator.py": "7592419b8118198091bc2e03ddfa505eb20979519d92cb5e07fac91deec3066a"
+  }
+}

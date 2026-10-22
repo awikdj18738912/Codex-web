@@ -1,0 +1,46 @@
+{
+  "status": "complete",
+  "verified_utc": "2026-10-15T12:09:37.582299+00:00",
+  "validation": {
+    "unique_four_arm_coverage": true,
+    "pcm_and_library_hash_match": true,
+    "pacing_packets_checked": 3000,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "inference_source_hashes_match": true,
+  "qwen_health_after": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "production_code_changed_for_this_test": false,
+  "existing_web_restarted": false,
+  "result_sha256": {
+    "manifest.json": "564f115192cf2ec9ab9274608f416d155b95747609251bbab01995e06c79b9fb",
+    "experiment_protocol.json": "0e6edbdf4822d793f758699787a3396e404b1ea5328dc50cfaa3ef15a97a2c40",
+    "REPORT.md": "5786f8bb047c17fd699cdd7469a8a887567df319db0bb2d707e1d16286be3f48",
+    "timing_audit.json": "d483c3807990b2f86499d3a49c27dd4696ed11880d7bba4f0ada461369d316fb",
+    "run/results.jsonl": "670d057a329ccfcd8c6ff05289c29d2fc33515d4a5eda8b3b81266fc8a1d50e6",
+    "run/events.jsonl": "af7f59378b193799def1f9b5b551ee90e3b73134aa7320ceb863f1b2117f81e7",
+    "run/run_metadata.jsonl": "fd377bf76480288d97e91d28bc3728270f419ca93ed99be205abdfcaea40129b"
+  },
+  "report_source_sha256": "65e79cf1b9b1d7c0d4b9f33f0fe66293f763d96b01570b7ab65f6a7f4e700e8b"
+}

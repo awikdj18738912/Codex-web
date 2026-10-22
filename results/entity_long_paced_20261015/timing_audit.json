@@ -1,0 +1,438 @@
+{
+  "validation": {
+    "unique_four_arm_coverage": true,
+    "pcm_and_library_hash_match": true,
+    "pacing_packets_checked": 3000,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "arms_medians": {
+    "raw": {
+      "first_external_text_wall_seconds": 2.9071631168480963,
+      "total_wall_seconds": 120.19659326132387,
+      "finish_tail_from_last_packet_submit_seconds": 0.11178125976584852,
+      "finish_tail_from_finish_call_seconds": 0.1057904027402401,
+      "max_cumulative_schedule_lateness_seconds": 0.12206300557591021,
+      "chunk_request_total_seconds": 10.916024416219443
+    },
+    "entity": {
+      "first_external_text_wall_seconds": 2.854070659959689,
+      "total_wall_seconds": 120.23876171000302,
+      "finish_tail_from_last_packet_submit_seconds": 0.1723098331131041,
+      "finish_tail_from_finish_call_seconds": 0.16404989291913807,
+      "max_cumulative_schedule_lateness_seconds": 0.4593536900356412,
+      "chunk_request_total_seconds": 12.417182532371953
+    }
+  },
+  "per_round_deltas_entity_minus_raw": [
+    {
+      "round": 0,
+      "first_external_text_wall_seconds": -0.10608040075749159,
+      "total_wall_seconds": -0.021391717717051506,
+      "finish_tail_from_last_packet_submit_seconds": 0.015497482381761074,
+      "finish_tail_from_finish_call_seconds": 0.013872107956558466,
+      "max_cumulative_schedule_lateness_seconds": 0.5284552001394331,
+      "chunk_request_total_seconds": 1.0499291610904038,
+      "actual_primary_text_identical": false
+    },
+    {
+      "round": 1,
+      "first_external_text_wall_seconds": -0.000104513019323349,
+      "total_wall_seconds": 0.10572861507534981,
+      "finish_tail_from_last_packet_submit_seconds": 0.1055596643127501,
+      "finish_tail_from_finish_call_seconds": 0.10264687240123749,
+      "max_cumulative_schedule_lateness_seconds": 0.14612616878002882,
+      "chunk_request_total_seconds": 1.9523870712146163,
+      "actual_primary_text_identical": true
+    }
+  ],
+  "paired_delta_medians": {
+    "first_external_text_wall_seconds": -0.05309245688840747,
+    "total_wall_seconds": 0.04216844867914915,
+    "finish_tail_from_last_packet_submit_seconds": 0.06052857334725559,
+    "finish_tail_from_finish_call_seconds": 0.05825949017889798,
+    "max_cumulative_schedule_lateness_seconds": 0.337290684459731,
+    "chunk_request_total_seconds": 1.50115811615251
+  },
+  "target_spelling_observations": [
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 67.60339047387242,
+      "first_published_wall_seconds": 67.60348252300173,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 82.52532488992438,
+      "first_published_wall_seconds": 82.52537855878472,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 82.52532488992438,
+      "first_published_wall_seconds": 82.52537855878472,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 84.55519339581951,
+      "first_published_wall_seconds": 84.55530196381733,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 84.55519339581951,
+      "first_published_wall_seconds": 84.55530196381733,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 88.56330454302952,
+      "first_published_wall_seconds": 88.56337115168571,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 88.56330454302952,
+      "first_published_wall_seconds": 88.56337115168571,
+      "present_in_final": false
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "二滩",
+      "first_primary_wall_seconds": 90.48217110801488,
+      "first_published_wall_seconds": 90.48228550609201,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 90.48217110801488,
+      "first_published_wall_seconds": 90.48228550609201,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 32.397095065098256,
+      "first_published_wall_seconds": 32.3971655536443,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 67.54788318090141,
+      "first_published_wall_seconds": 67.56694114906713,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 82.46392808528617,
+      "first_published_wall_seconds": 82.48168401513249,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 82.46392808528617,
+      "first_published_wall_seconds": 82.48168401513249,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 84.48428932391107,
+      "first_published_wall_seconds": 84.49636373622343,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 84.48428932391107,
+      "first_published_wall_seconds": 84.49636373622343,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 88.48813714506105,
+      "first_published_wall_seconds": 88.50477931508794,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 88.48813714506105,
+      "first_published_wall_seconds": 88.50477931508794,
+      "present_in_final": false
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "二滩",
+      "first_primary_wall_seconds": 90.40738453902304,
+      "first_published_wall_seconds": 90.41702704504132,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 90.40738453902304,
+      "first_published_wall_seconds": 90.41702704504132,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 32.31828407291323,
+      "first_published_wall_seconds": 32.332221986260265,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 67.54558061994612,
+      "first_published_wall_seconds": 67.55581359006464,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 82.46408942900598,
+      "first_published_wall_seconds": 82.48391482187435,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 82.46408942900598,
+      "first_published_wall_seconds": 82.48391482187435,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 84.48251163121313,
+      "first_published_wall_seconds": 84.49772033514455,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 84.48251163121313,
+      "first_published_wall_seconds": 84.49772033514455,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 88.48833995591849,
+      "first_published_wall_seconds": 88.49781190417707,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 88.48833995591849,
+      "first_published_wall_seconds": 88.49781190417707,
+      "present_in_final": false
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "二滩",
+      "first_primary_wall_seconds": 90.40819129813462,
+      "first_published_wall_seconds": 90.41463216999546,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 90.40819129813462,
+      "first_published_wall_seconds": 90.41463216999546,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 32.3149123522453,
+      "first_published_wall_seconds": 32.3263467871584,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "三峡水库",
+      "first_primary_wall_seconds": 67.54339237231761,
+      "first_published_wall_seconds": 67.54349973937497,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "向家坝",
+      "first_primary_wall_seconds": 82.46645672619343,
+      "first_published_wall_seconds": 82.46653995011002,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "溪洛渡",
+      "first_primary_wall_seconds": 82.46645672619343,
+      "first_published_wall_seconds": 82.46653995011002,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "白鹤滩",
+      "first_primary_wall_seconds": 84.48172581708059,
+      "first_published_wall_seconds": 84.48179333237931,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "乌东德",
+      "first_primary_wall_seconds": 84.48172581708059,
+      "first_published_wall_seconds": 84.48179333237931,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "亭子口",
+      "first_primary_wall_seconds": 88.48591179214418,
+      "first_published_wall_seconds": 88.4859730862081,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "构皮滩",
+      "first_primary_wall_seconds": 88.48591179214418,
+      "first_published_wall_seconds": 88.4859730862081,
+      "present_in_final": false
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "二滩",
+      "first_primary_wall_seconds": 90.4039155934006,
+      "first_published_wall_seconds": 90.40398730617017,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "锦屏",
+      "first_primary_wall_seconds": 90.4039155934006,
+      "first_published_wall_seconds": 90.40398730617017,
+      "present_in_final": true
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "term": "荆江大堤",
+      "first_primary_wall_seconds": 32.31515989033505,
+      "first_published_wall_seconds": 32.31526996707544,
+      "present_in_final": true
+    }
+  ],
+  "final_entity_changes": [],
+  "goupitan_spelling_transitions": [
+    {
+      "round": 0,
+      "arm": "raw",
+      "wall_seconds": 88.56337115168571,
+      "spelling": "构皮滩"
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "wall_seconds": 90.48228550609201,
+      "spelling": "构壁滩"
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "wall_seconds": 88.50477931508794,
+      "spelling": "构皮滩"
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "wall_seconds": 90.41702704504132,
+      "spelling": "构壁滩"
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "wall_seconds": 88.49781190417707,
+      "spelling": "构皮滩"
+    },
+    {
+      "round": 1,
+      "arm": "entity",
+      "wall_seconds": 90.41463216999546,
+      "spelling": "构壁滩"
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "wall_seconds": 88.4859730862081,
+      "spelling": "构皮滩"
+    },
+    {
+      "round": 1,
+      "arm": "raw",
+      "wall_seconds": 90.40398730617017,
+      "spelling": "构壁滩"
+    }
+  ],
+  "limitations": [
+    "One natural continuous excerpt, two counterbalanced repetitions per arm; not service p95.",
+    "No human reference, no CER or entity precision/recall claim.",
+    "40-term known-scene water glossary prepared using historical content; not unknown-domain evaluation.",
+    "Timing excludes model/library preparation and downstream Web refinement.",
+    "Returned text/patch observation times are not audio entity-end timestamps.",
+    "Real-time pacing measures user-visible streaming latency, not offline file throughput."
+  ]
+}

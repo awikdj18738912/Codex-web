@@ -1,0 +1,21 @@
+{
+  "rule": "bounded_incremental_entity_v1",
+  "candidate_score": 0.63,
+  "candidate_margin": 0.04,
+  "window_seconds": 32,
+  "cache_seconds": 96,
+  "finish_wait": 0.8,
+  "maximum_queue": 4,
+  "replay_ratio": 0.5,
+  "request_timeout": 3,
+  "whole_audio_fallback": false,
+  "finish_starts_review": false,
+  "source_hashes": {
+    "candidate.py": "2366d40f7dbe931b8275d7733472ef4a5f8d2ffbcdce7c2edbfe1b35f776ad08",
+    "live_core.py": "a7693e38ebde9c84f5f040cb7e137af5835d60b377398b06550fe7f63beeb7d6",
+    "experiment_worker.py": "647965ba70cf8cf112d5fc15f78490473c31b97c3be9b4b6f741bf233af4ab9e",
+    "collect_long.py": "22b3c2764dbb6f770a55a315e6549183817b8ba7d6fe71491c56c7a8824e6c04",
+    "collect_independent.py": "7fe96aa6c39bfc80ea2051b0d53874473b9c8bf165d0e0eb9deee95512b7b9d0",
+    "collect_known_dense.py": "3c1c6b12ebd8c6a842e6523306d9c0e3012f97064727dc0c729ce6df6f1a0bd8"
+  }
+}

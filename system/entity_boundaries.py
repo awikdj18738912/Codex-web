@@ -52,6 +52,16 @@ def _tokens(text: str):
         return tuple(tokenizer.tokenize(text, HMM=False))
 
 
+@lru_cache(maxsize=128)
+def inferred_tokens(text: str):
+    """Independent unknown-name boundaries; never insert glossary words."""
+    tokenizer = _tokenizer()
+    if tokenizer is None:
+        return ()
+    with _LOCK:
+        return tuple(tokenizer.tokenize(text, HMM=True))
+
+
 def candidate_boundary_issue(text: str, start: int, end: int) -> str | None:
     if not latin_boundaries_valid(text, start, end):
         return "latin_word_boundary_conflict"

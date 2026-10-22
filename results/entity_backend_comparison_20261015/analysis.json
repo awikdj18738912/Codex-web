@@ -1,0 +1,286 @@
+{
+  "dataset": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015",
+  "status": "complete",
+  "allow_partial": false,
+  "test_samples": 1829,
+  "required_test_samples": 1829,
+  "dev_selection": {
+    "native_hotword_score": 2.0,
+    "hybrid_minimum_gap": -2.0,
+    "hybrid_minimum_margin": 0.1
+  },
+  "normalization": "Reuses report_entity_backend_comparison.norm/score: ITN, OpenCC t2s, NFKC, casefold and removal of Unicode P/Z/C; entity counts clipped by gold mentions.",
+  "pairwise_test": {
+    "nativehotword_vs_qwen": {
+      "candidate_arm": "nativehotword",
+      "baseline_arm": "qwen",
+      "paired_samples": 1829,
+      "entity_recovered_hits": 488,
+      "entity_lost_hits": 142,
+      "entity_net_hits": 346,
+      "cer_improved_samples": 534,
+      "cer_degraded_samples": 616,
+      "cer_equal_samples": 679,
+      "candidate_entity_recall": 0.636400486420754,
+      "baseline_entity_recall": 0.496149169031212,
+      "entity_recall_difference": 0.14025131738954194,
+      "candidate_cer": 0.08540575916230367,
+      "baseline_cer": 0.06759536275243082,
+      "cer_net_difference": 0.01781039640987285,
+      "cer_net_error_count": 762,
+      "gold_mentions_denominator": 2467,
+      "reference_chars_denominator": 42784,
+      "cluster_bootstrap": {
+        "clusters": 582,
+        "replicates": 1000,
+        "entity_recall_difference_95ci": [
+          0.10959600786742636,
+          0.16945892703410229
+        ],
+        "cer_difference_95ci": [
+          0.011212059876081601,
+          0.024326289396775065
+        ]
+      }
+    },
+    "hybrid_vs_qwen": {
+      "candidate_arm": "hybrid",
+      "baseline_arm": "qwen",
+      "paired_samples": 1829,
+      "entity_recovered_hits": 451,
+      "entity_lost_hits": 0,
+      "entity_net_hits": 451,
+      "cer_improved_samples": 433,
+      "cer_degraded_samples": 7,
+      "cer_equal_samples": 1389,
+      "candidate_entity_recall": 0.6789623023915687,
+      "baseline_entity_recall": 0.496149169031212,
+      "entity_recall_difference": 0.1828131333603567,
+      "candidate_cer": 0.05427262528047869,
+      "baseline_cer": 0.06759536275243082,
+      "cer_net_difference": -0.013322737471952131,
+      "cer_net_error_count": -570,
+      "gold_mentions_denominator": 2467,
+      "reference_chars_denominator": 42784,
+      "cluster_bootstrap": {
+        "clusters": 582,
+        "replicates": 1000,
+        "entity_recall_difference_95ci": [
+          0.16020569620253164,
+          0.2044586635223399
+        ],
+        "cer_difference_95ci": [
+          -0.01563604671014065,
+          -0.01101150407244971
+        ]
+      }
+    },
+    "nativehotword_vs_nativebeam": {
+      "candidate_arm": "nativehotword",
+      "baseline_arm": "nativebeam",
+      "paired_samples": 1829,
+      "entity_recovered_hits": 182,
+      "entity_lost_hits": 18,
+      "entity_net_hits": 164,
+      "cer_improved_samples": 190,
+      "cer_degraded_samples": 44,
+      "cer_equal_samples": 1595,
+      "candidate_entity_recall": 0.636400486420754,
+      "baseline_entity_recall": 0.5699229833806242,
+      "entity_recall_difference": 0.06647750304012971,
+      "candidate_cer": 0.08540575916230367,
+      "baseline_cer": 0.08989341810022439,
+      "cer_net_difference": -0.004487658937920718,
+      "cer_net_error_count": -192,
+      "gold_mentions_denominator": 2467,
+      "reference_chars_denominator": 42784,
+      "cluster_bootstrap": {
+        "clusters": 582,
+        "replicates": 1000,
+        "entity_recall_difference_95ci": [
+          0.05381349745968448,
+          0.0789076101027596
+        ],
+        "cer_difference_95ci": [
+          -0.005661977209582348,
+          -0.0032775091945994863
+        ]
+      }
+    },
+    "hybrid_vs_nativehotword": {
+      "candidate_arm": "hybrid",
+      "baseline_arm": "nativehotword",
+      "paired_samples": 1829,
+      "entity_recovered_hits": 342,
+      "entity_lost_hits": 237,
+      "entity_net_hits": 105,
+      "cer_improved_samples": 772,
+      "cer_degraded_samples": 284,
+      "cer_equal_samples": 773,
+      "candidate_entity_recall": 0.6789623023915687,
+      "baseline_entity_recall": 0.636400486420754,
+      "entity_recall_difference": 0.04256181597081476,
+      "candidate_cer": 0.05427262528047869,
+      "baseline_cer": 0.08540575916230367,
+      "cer_net_difference": -0.03113313388182498,
+      "cer_net_error_count": -1332,
+      "gold_mentions_denominator": 2467,
+      "reference_chars_denominator": 42784,
+      "cluster_bootstrap": {
+        "clusters": 582,
+        "replicates": 1000,
+        "entity_recall_difference_95ci": [
+          0.020620229315448532,
+          0.06599694913706425
+        ],
+        "cer_difference_95ci": [
+          -0.03658662621401586,
+          -0.025816291508559627
+        ]
+      }
+    }
+  },
+  "native_barechar_coverage": {
+    "tokens_path": "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/tokens.txt",
+    "definition": "An entity is injectable only when its original gold canonical (or surface fallback) is present verbatim in that sample's enabled library and every original non-whitespace character has a standalone token, matching native cjkchar encoding. Otherwise it is unsupported (in library but unencodable) or not_in_library. Hit counting remains normalized and mention-clipped.",
+    "by_gold_entity_support": {
+      "supported": {
+        "gold_mentions": 1295,
+        "arms": {
+          "qwen": {
+            "scored_gold_mentions": 1295,
+            "entity_hits": 817,
+            "entity_recall": 0.6308880308880309
+          },
+          "nativehotword": {
+            "scored_gold_mentions": 1295,
+            "entity_hits": 1052,
+            "entity_recall": 0.8123552123552124
+          },
+          "hybrid": {
+            "scored_gold_mentions": 1295,
+            "entity_hits": 980,
+            "entity_recall": 0.7567567567567568
+          }
+        }
+      },
+      "unsupported": {
+        "gold_mentions": 1172,
+        "arms": {
+          "qwen": {
+            "scored_gold_mentions": 1172,
+            "entity_hits": 407,
+            "entity_recall": 0.34726962457337884
+          },
+          "nativehotword": {
+            "scored_gold_mentions": 1172,
+            "entity_hits": 518,
+            "entity_recall": 0.44197952218430037
+          },
+          "hybrid": {
+            "scored_gold_mentions": 1172,
+            "entity_hits": 695,
+            "entity_recall": 0.5930034129692833
+          }
+        }
+      },
+      "not_in_library": {
+        "gold_mentions": 0,
+        "arms": {
+          "qwen": {
+            "scored_gold_mentions": 0,
+            "entity_hits": 0,
+            "entity_recall": null
+          },
+          "nativehotword": {
+            "scored_gold_mentions": 0,
+            "entity_hits": 0,
+            "entity_recall": null
+          },
+          "hybrid": {
+            "scored_gold_mentions": 0,
+            "entity_hits": 0,
+            "entity_recall": null
+          }
+        }
+      }
+    },
+    "analyzed_test_gold_mentions": 2467,
+    "summary_test_gold_mentions": 2467,
+    "normalized_entity_class_ambiguities": {}
+  },
+  "control": {
+    "qwen_raw": {
+      "baseline_for_audit": "qwen_raw",
+      "samples": 100,
+      "cer_errors": 15,
+      "reference_chars": 1396,
+      "cer": 0.010744985673352435,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    },
+    "ctc_greedy": {
+      "baseline_for_audit": "qwen_raw",
+      "samples": 100,
+      "cer_errors": 31,
+      "reference_chars": 1396,
+      "cer": 0.022206303724928367,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    },
+    "native_greedy": {
+      "baseline_for_audit": "qwen_raw",
+      "samples": 100,
+      "cer_errors": 36,
+      "reference_chars": 1396,
+      "cer": 0.025787965616045846,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    },
+    "native_beam": {
+      "baseline_for_audit": "qwen_raw",
+      "samples": 100,
+      "cer_errors": 29,
+      "reference_chars": 1396,
+      "cer": 0.020773638968481375,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    },
+    "native_hotword": {
+      "baseline_for_audit": "native_beam",
+      "samples": 100,
+      "cer_errors": 29,
+      "reference_chars": 1396,
+      "cer": 0.020773638968481375,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    },
+    "hybrid": {
+      "baseline_for_audit": "qwen_raw",
+      "samples": 100,
+      "cer_errors": 15,
+      "reference_chars": 1396,
+      "cer": 0.010744985673352435,
+      "new_library_entity_audit_candidate_count": 0,
+      "new_library_entity_audit_candidate_mentions": 0,
+      "audit_note": "Automatic lexical candidates only; not human-reviewed precision."
+    }
+  },
+  "bootstrap": {
+    "unit": "source_group cluster",
+    "seed": 20261015,
+    "replicates": 1000,
+    "method": "Resample source_group clusters with replacement; recompute pooled recall and CER differences using summed gold mentions/reference characters in every replicate.",
+    "difference_direction": "candidate minus baseline; negative CER difference is better."
+  },
+  "limitations": [
+    "Control audit counts are automatically generated lexical candidates and must not be interpreted as human-reviewed precision.",
+    "Bare-character support is a token representability measure, not evidence that the recognizer will decode the entity correctly.",
+    "All results depend on the final paired sample table and the explicitly dev-selected settings in summary.json."
+  ]
+}

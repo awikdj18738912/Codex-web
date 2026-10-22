@@ -36,6 +36,13 @@ class ChunkManagerTest(unittest.TestCase):
 
         self.assertEqual([chunk.text for chunk in chunks], [source])
 
+    def test_oh_no_clock_correction_stays_with_its_antecedent(self):
+        from system.chunking import merge_self_correction_chunks
+        manager = ChunkManager(80, one_punctuation_window=True)
+        source = "会议在一点，哦不，一点十分开始。"
+        chunks = merge_self_correction_chunks(manager.update(source, vad_boundary=True), 80)
+        self.assertEqual([chunk.text for chunk in chunks], [source])
+
     def test_long_self_corrections_use_soft_clause_boundaries(self):
         source = (
             "你好，我有一个苹果，不对，我有一个梨，我有一箱苹果，不对，我有一箱梨，"

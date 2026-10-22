@@ -1,0 +1,15 @@
+{
+  "status": "PARTIAL_BACKEND_UNRESPONSIVE",
+  "completed_samples": 315,
+  "expected_samples": 2000,
+  "failed_attempt_ids": [
+    "chall_speechio_f36823634617720e4cb0"
+  ],
+  "incomplete_http_trace_events": 15,
+  "failed_trace_archive": "failed_asr_trace_20261015.jsonl",
+  "collector_exit": 1,
+  "error": "httpx.ReadTimeout during backend session cleanup after /stream/finish stopped responding",
+  "new_controller_full_cohort_not_completed": true,
+  "original_protocol_not_modified": true,
+  "formal_web_services_restarted": false
+}

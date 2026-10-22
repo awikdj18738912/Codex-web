@@ -11,6 +11,9 @@ AgenticASR 将自动语音识别（ASR）的原始转写进一步整理成可读
 - **适配不同 ASR 前端**：批处理和浏览器服务可接入 Qwen3-ASR 或 Whisper；本地流式示例还支持 sherpa-onnx。
 - **支持离线与流式使用**：批量精修已有转写、对音频文件端到端处理，或通过浏览器麦克风和分块上传音频。
 - **保护重要内容**：Web 默认使用原有的模型数字精修与数字校验流程；可选启用 zh-itn，在 Refiner 前规范化数字。术语、缩写、URL、标识符及固定数字成语仍受保护。
+- **实体声学辅助**：可选将增量 CTC 候选与原音复核结合，按录音会话选择关闭、仅观察或参与局部修复；默认关闭。配置和失败回退见 [系统说明](system/README.md)，1,829 条已知场景全量对照与延迟见 [组合测试报告](results/entity_ctc_live_integration_20261016/IMPLEMENTATION_REPORT.md)。
+- **词库拼写归一化**：开启实体修复时，完整同音实体可直接统一为用户词库拼写；保护长词内部和跨词边界，近音候选使用更窄的独立规则。修改记录区分直接拼写、CTC 与原音复核来源，见 [系统说明](system/README.md)。
+  [10 分钟连续原音测试](results/entity_ten_minute_paced_20261015/FINDINGS.md)观察到后段发送落后和 CTC 错误回退；长录音稳定性尚未通过验证。
 - **支持研究复现**：包含训练数据生成、SFT 导出、AASR-Bench Judge、CER/WER/MER 指标和置信度校准脚本。
 
 AASR-Bench 公开版本包含 917 条样本和 6,637 项原子评分标准，覆盖 Content、Format、Filter、Rephrase。
@@ -157,9 +160,11 @@ pytest -q
 
 本项目目前是**研究型可运行原型**。已有批处理、音频推理、浏览器模式、术语保护、安全校验和回退能力；方向 A 研究方案中的完整系统尚未实现。
 
-当前精修路由支持 off / conservative / tri_state，以及可选的学习窗口门控。Web 的各门控模式共用 `fixed_k3_v1` 分窗、缓存和重试策略：按 ASR/VAD 已完成片段构造标点块，以 K=3 固定分组；不足 K 的尾部等待补齐或终态，等待不计入门控跳过。关闭门控时会精修每个完整窗口，分组策略保持一致。流式阶段复用原文未变的结果；终态是否重跑被拒绝窗口由独立的 `--final-refinement-mode` 决定。Refiner 支持受校验的局部补丁与回退。学习门控开关和验证范围见 [LEARNED_WINDOW_GATE_SWITCH.md](LEARNED_WINDOW_GATE_SWITCH.md)。当前仍未完成双参考数据和完整独立流式评测；近期检测器计划见 [EDIT_DETECTION_NEXT_STEPS_20261013.md](EDIT_DETECTION_NEXT_STEPS_20261013.md)。
+当前精修路由支持 off / conservative / tri_state，以及可选的学习窗口门控。Web 的各门控模式共用 `fixed_k3_context_v2` 分窗、缓存和重试策略：按 ASR/VAD 已完成片段构造标点块，以 K=3 固定分组，每窗读取前后各一块只读上下文，输出只属于当前窗口；流式阶段多等后一块完成，终态处理剩余尾部，等待不计入门控跳过。关闭门控时会精修每个就绪窗口，分组策略保持一致。流式阶段复用当前原文和相邻上下文均未变的结果；终态是否重跑被拒绝窗口由独立的 `--final-refinement-mode` 决定。Refiner 支持受校验的局部补丁与回退。学习门控开关和验证范围见 [LEARNED_WINDOW_GATE_SWITCH.md](LEARNED_WINDOW_GATE_SWITCH.md)。当前仍未完成双参考数据和完整独立流式评测；近期检测器计划见 [EDIT_DETECTION_NEXT_STEPS_20261013.md](EDIT_DETECTION_NEXT_STEPS_20261013.md)。
 
 叠词保护已扩展为独立量词安全词表（`system/quantifiers.py`）和结构模式兜底：`一朵朵`、`一层层`、`一本本`、`一艘艘`、`一群群` 等“数词/限定词 + 量词重叠”不会被去重；即使遇到词表之外的地域量词，只要符合该结构也会保留。Refiner 删除重叠量词时会被语义校验拦截并回退。
+
+可选的[置信度补充门控](CONFIDENCE_SUPPLEMENT_GATE.md)保留原规则送审，并用与原文对齐的低分片段或缺失证据增加送审；默认关闭，不使用高分取消原规则动作。测试音频5的整段新 ASR 与逐窗核验材料见 [核验清单](results/audio5_confidence_review_20261014_v1/REVIEW.md)。当前仍有高分重复/断句候选被跳过，以及模型改动改变否定含义的案例，不能据此承诺无漏检。
 
 当前样本中确认的字幕错断、固定搭配和重复字错误由 `system/transcript_repairs.py` 执行精确短语修复；规则不对普通句号做全局删除，未审核的句子仍由 Refiner 和安全校验处理。
 

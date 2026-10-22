@@ -1,0 +1,32 @@
+{
+  "audio": "测试音频5.mp3",
+  "source_audio_sha256": "7ca9fbdb0174731b88aee56c5b824394b0dc5669a2343b9e1094d5492cd0e9ba",
+  "frozen_ASR_sha256": "f6e28b0203761510d47995f44f6fef84b707b66a604361e6cf38147035a1ae9a",
+  "policies": [
+    "all_refine",
+    "native",
+    "supplement",
+    "deployed_learned"
+  ],
+  "low_threshold": 0.8,
+  "threshold_frozen_before_refiner": true,
+  "missing_evidence": "review",
+  "high_score_veto": false,
+  "calibrated": false,
+  "learned_veto_disabled_in_supplement": true,
+  "numeric_backend": "zh-itn",
+  "entity_db": "/home/aim0/桌面/tan/ASR/Codex-web/results/audio5_current_review_20261014_v2/entities_snapshot.db",
+  "refiner_model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "device": "cuda:0",
+  "final_refinement_mode": "off",
+  "window_pipeline": "reported_by_current_app_health",
+  "source_chunks": "fresh ASR VAD-completed segments",
+  "independent_acceptance": false,
+  "scope": "fresh_complete_ASR_then_frozen_current_refinement_chain",
+  "upstream_entity_audio_repair": false,
+  "primary_policy": "deployed_learned",
+  "human_labels": 0,
+  "references_passed_to_model": false,
+  "production_services_restarted": false,
+  "actual_refiner_dtype": "torch.float32"
+}

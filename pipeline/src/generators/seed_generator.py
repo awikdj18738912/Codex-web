@@ -3,6 +3,7 @@
 import asyncio
 import json
 import logging
+import random
 from pathlib import Path
 from typing import Any
 
@@ -16,6 +17,7 @@ from configs.settings import (
     SEEDS_DIR,
     TEMPERATURE_SEED,
 )
+from configs.scenes import get_enabled_scenes
 from src.services.llm_client import AsyncLLMClient, LLMClient
 from src.utils.io_utils import read_json, write_json
 from src.utils.prompt_loader import PromptLoader
@@ -80,12 +82,14 @@ class SeedGenerator:
     ) -> dict[str, Any]:
         """Generate one round while excluding a summary of retained seeds."""
         existing = self.load_seeds(scene)
-        exclusion_hint = self._build_exclusion_hint(existing)
+        exclusion_hint = self._build_exclusion_hint(existing, round_index=round_index)
 
         prompt = self.loader.get_seed_prompt(scene)
         user_prompt = prompt["user"]
         if exclusion_hint:
             user_prompt += f"\n\nDo not repeat these retained seeds:\n{exclusion_hint}"
+        user_prompt += (f"\nGeneration round {round_index + 1}: diversify the seed pool with less common, "
+                        "specific entries. Keep the requested category arrays; avoid near-identical variants.")
 
         logger.info("Generating seeds for '%s' (round %d)...", scene, round_index)
 
@@ -98,6 +102,10 @@ class SeedGenerator:
         )
 
         new_seeds = dedupe_seed_dict(LLMClient._parse_json(raw_output))
+        if not isinstance(new_seeds, dict) or not new_seeds or not any(
+            isinstance(values, list) and values for values in new_seeds.values()
+        ):
+            raise ValueError("Seed response must contain a nonempty category-to-array object")
         self.merge_seeds(scene, new_seeds)
         logger.info("Seeds for '%s' round %d merged.", scene, round_index)
         return new_seeds
@@ -116,7 +124,8 @@ class SeedGenerator:
 
     async def generate_all(self, force: bool = False) -> dict[str, dict]:
         """Generate all configured scene pools concurrently."""
-        scenes = self.loader.list_scenes("seed")
+        enabled = set(get_enabled_scenes())
+        scenes = [scene for scene in self.loader.list_scenes("seed") if scene in enabled]
 
         async def _gen_one(scene: str):
             return await self.generate_scene_seeds(scene, force=force)
@@ -137,7 +146,15 @@ class SeedGenerator:
         """Load an existing seed pool or return an empty mapping."""
         seed_path = self.seeds_dir / f"{scene}.json"
         if seed_path.exists():
-            seeds = dedupe_seed_dict(read_json(seed_path))
+            seeds = read_json(seed_path)
+            # Historical parsers can recover a flat seed array from a longer
+            # response. Preserve its entries in an explicit legacy category so
+            # exclusion hints and future category merges remain well-defined.
+            if isinstance(seeds, list):
+                seeds = {"legacy_seeds": seeds}
+            if not isinstance(seeds, dict):
+                raise ValueError("Stored seed pool must be a category object or legacy array")
+            seeds = dedupe_seed_dict(seeds)
             write_json(seeds, seed_path)
             return seeds
         return {}
@@ -165,21 +182,32 @@ class SeedGenerator:
         write_json(existing, self.seeds_dir / f"{scene}.json")
         logger.info("Merged seeds for '%s'", scene)
 
-    def _build_exclusion_hint(self, seeds: dict[str, Any], max_items: int = 30) -> str:
+    def _build_exclusion_hint(self, seeds: dict[str, Any], max_items: int = 30,
+                              round_index: int = 0) -> str:
         """Build a compact exclusion summary from retained seeds."""
         if not seeds:
             return ""
         hints = []
-        for category, items in seeds.items():
+        characters = 0
+        for index, (category, items) in enumerate(seeds.items()):
             if isinstance(items, list) and items:
-                sample = items[:min(5, len(items))]
+                candidates = list(items)
+                random.Random(round_index * 1009 + index * 71).shuffle(candidates)
+                sample = candidates[:min(10, len(candidates))]
                 names = []
                 for s in sample:
                     if isinstance(s, dict):
                         names.append(s.get("name", s.get("artist", str(s)[:20])))
                     else:
                         names.append(str(s)[:20])
-                hints.append(f"{category}: {', '.join(names)}...")
+                line = f"{category}: {', '.join(names)}..."
+                if characters + len(line) > 600:
+                    line = line[:max(0, 600 - characters)]
+                if line:
+                    hints.append(line)
+                    characters += len(line)
+                if characters >= 600:
+                    break
             if len(hints) >= max_items:
                 break
         return "\n".join(hints)

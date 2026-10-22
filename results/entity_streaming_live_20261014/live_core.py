@@ -44,22 +44,26 @@ class LiveEntityMixin:
         self._live_pcm=bytearray();self._live_pcm_start=0
         self._live_reserved_bytes=0
         self._live_queue=[];self._live_worker=None;self._cleanup_tasks=set()
+        self._live_deferred={};self._live_active_job=None;self._live_medium_sent=0
         self._live_active_sessions=set();self._live_results=deque(maxlen=16)
         self._live_patches=[];self._live_published=()
         self._live_examined=set();self._live_scanned=''
         self._live_previous_decoded='';self._live_stable_prefix=''
         self._live_finishing=False;self._live_closed=False
-        self._live_stats=dict(rule='bounded_incremental_entity_v1',detections=0,
+        self._live_stats=dict(rule='bounded_incremental_entity_v2',detections=0,
             candidates=0,admitted=0,low_score_rejected=0,ambiguous_rejected=0,
             completed_windows=0,stream_revisions=0,echo_rejected=0,
             oversized_rejected=0,budget_rejected=0,queue_rejected=0,
             cache_reused=0,unmapped=0,errors=0,late_candidates_kept=0,
-            detection_seconds=0.,review_wall_seconds=0.,full_audio_fallbacks=0)
+            detection_seconds=0.,review_wall_seconds=0.,full_audio_fallbacks=0,
+            deferred_retried=0,medium_budget_rejected=0)
 
     def _live_snapshot(self):
         pending=bool(self._live_worker and not self._live_worker.done())
         return dict(self._live_stats,pending=pending,queued_windows=len(self._live_queue),
             source_scope='stable_segments_and_stable_partial_prefix',
+            pending_candidates=len(self._live_deferred),
+            medium_replay_seconds=self._live_medium_sent/64000,
             whole_audio_replay_enabled=False,finish_starts_review=False,
             candidate_score=self._live_score,candidate_margin=self._live_margin,
             window_limit_seconds=self._live_window_bytes/64000,
@@ -74,6 +78,9 @@ class LiveEntityMixin:
         finally:self._live_primary_waiters-=1
 
     def _live_cleanup_late(self,task,endpoint,sid):
+        # Transfer cancellation ownership to the late-response janitor.
+        # A remote decode must settle before its session can be cancelled.
+        if endpoint!='/stream/start':self._live_active_sessions.discard(sid)
         async def cleanup():
             try:
                 result=await task
@@ -137,7 +144,7 @@ class LiveEntityMixin:
         if endpoint!='/stream/finish':
             return await self._live_primary(endpoint,self._sid or session_id,data,params)
         self._live_finishing=True
-        self._live_stats['late_candidates_kept']+=sum(len(j['candidates']) for j in self._live_queue)
+        self._live_stats['late_candidates_kept']+=sum(len(j['candidates']) for j in self._live_queue)+len(self._live_deferred)
         self._live_reserved_bytes-=sum(len(j['pcm']) for j in self._live_queue)
         self._live_queue.clear()
         try:
@@ -177,17 +184,25 @@ class LiveEntityMixin:
         source=self._live_source(payload)
         if source is None:self._live_stats['unmapped']+=1;return
         text,completed,stable=source
-        if stable==self._live_scanned:return
+        if stable==self._live_scanned and not self._live_deferred:return
         from system.entity_audio_repair import normalized,_short_expansion_supported
         start=max(0,_common_prefix(stable,self._live_scanned)-34)
         began=time.monotonic()
-        candidates,_=await asyncio.to_thread(lambda:_selector(self.definitions).select(stable[start:]))
+        candidates=[]
+        if stable!=self._live_scanned:
+            candidates,_=await asyncio.to_thread(lambda:_selector(self.definitions).select(stable[start:]))
         self._live_stats['detection_seconds']+=time.monotonic()-began
         self._live_stats['detections']+=1;self._live_scanned=stable
         candidates=[dict(c,start=c['start']+start,end=c['end']+start) for c in candidates]
         self.candidate_count=len(candidates)
         self.max_candidate_score=max((c['retrieval_score'] for c in candidates),default=0.)
         self._live_stats['candidates']+=len(candidates)
+        current={(c['start'],c['end'],c['observed'],c['canonical']):c for c in candidates}
+        for key,c in self._live_deferred.items():
+            if stable[c['start']:c['end']]==c['observed'] and key not in current:
+                current[key]=c;self._live_stats['deferred_retried']+=1
+        self._live_deferred={}
+        candidates=sorted(current.values(),key=lambda c:c['retrieval_score'],reverse=True)
         chosen=[]
         for c in candidates:
             if c['retrieval_score']<self._live_score or not _short_expansion_supported(c):
@@ -210,9 +225,10 @@ class LiveEntityMixin:
         for c in chosen:
             window=self._live_window(text,stable,c)
             if window is None:continue
-            self._live_examined.add((c['start'],c['end'],c['observed'],c['canonical']))
+            key=(c['start'],c['end'],c['observed'],c['canonical'])
             left,right=window
-            if self._live_cached(text,c,left,right):continue
+            if self._live_cached(text,c,left,right):
+                self._live_examined.add(key);continue
             # Combine overlapping unsent candidate windows into one replay.
             merged=False
             for index,job in enumerate(self._live_queue):
@@ -225,21 +241,44 @@ class LiveEntityMixin:
                 extra=len(pcm)-len(job['pcm'])
                 budget=min(self._live_max_replay,max(self._live_window_bytes,int(self._audio_size*self._live_ratio)))
                 if self.replay_audio_bytes+self._live_reserved_bytes+extra>budget:continue
-                self._live_queue[index]=dict(start=a,end=b,pcm=pcm,text=stable,candidates=local)
+                proposal=dict(start=a,end=b,pcm=pcm,text=stable,candidates=local)
+                medium_delta=(len(pcm) if self._live_medium(proposal) else 0)-(len(job['pcm']) if self._live_medium(job) else 0)
+                if self._live_medium_load()+medium_delta>budget*.5:continue
+                self._live_queue[index]=proposal
                 self._live_reserved_bytes+=extra
                 merged=True;break
-            if merged:continue
+            if merged:self._live_examined.add(key);continue
             if len(self._live_queue)>=self._live_max_queue:
-                self._live_stats['queue_rejected']+=1;continue
+                self._live_stats['queue_rejected']+=1;self._live_defer(c);continue
             budget=min(self._live_max_replay,max(self._live_window_bytes,int(self._audio_size*self._live_ratio)))
             if self.replay_audio_bytes+self._live_reserved_bytes+right-left>budget:
-                self._live_stats['budget_rejected']+=1;continue
+                self._live_stats['budget_rejected']+=1;self._live_defer(c);continue
             pcm=self._live_read(left,right)
             if pcm is None:self._live_stats['unmapped']+=1;continue
-            self._live_queue.append(dict(start=left,end=right,pcm=pcm,text=stable,candidates=[c]))
+            job=dict(start=left,end=right,pcm=pcm,text=stable,candidates=[c])
+            if self._live_medium(job) and self._live_medium_load()+len(pcm)>budget*.5:
+                self._live_stats['medium_budget_rejected']+=1;self._live_defer(c);continue
+            self._live_queue.append(job);self._live_examined.add(key)
+            self._live_queue.sort(key=lambda j:max(c['retrieval_score'] for c in j['candidates']),reverse=True)
             self._live_reserved_bytes+=len(pcm)
         if self._live_queue and (self._live_worker is None or self._live_worker.done()):
             self._live_worker=asyncio.create_task(self._live_review_loop())
+
+    @staticmethod
+    def _live_medium(job):
+        return max(c['retrieval_score'] for c in job['candidates'])<.85
+
+    def _live_medium_load(self):
+        remaining=sum(len(j['pcm']) for j in self._live_queue if self._live_medium(j))
+        active=self._live_active_job
+        if active and self._live_medium(active):remaining+=len(active['pcm'])-active.get('_sent',0)
+        return self._live_medium_sent+remaining
+
+    def _live_defer(self,c):
+        key=(c['start'],c['end'],c['observed'],c['canonical'])
+        self._live_deferred[key]=c
+        ordered=sorted(self._live_deferred.items(),key=lambda item:item[1]['retrieval_score'],reverse=True)
+        self._live_deferred=dict(ordered[:16])
 
     def _live_window(self,text,stable,c):
         from system.entity_audio_repair import normalized
@@ -278,7 +317,7 @@ class LiveEntityMixin:
 
     async def _live_review_loop(self):
         while self._live_queue and not self._live_closed and not self._live_finishing:
-            job=self._live_queue.pop(0)
+            job=self._live_queue.pop(0);self._live_active_job=job
             try:
                 changes=await self._live_review(job)
                 for c in changes:
@@ -286,6 +325,7 @@ class LiveEntityMixin:
                         self._live_patches.append(c)
             except asyncio.CancelledError:raise
             except Exception:self._live_stats['errors']+=1
+            finally:self._live_active_job=None
             if self._live_finishing:break
 
     async def _live_review(self,job):
@@ -304,7 +344,8 @@ class LiveEntityMixin:
             self.replay_windows.append(dict(start_seconds=job['start']/64000,end_seconds=job['end']/64000))
             for offset in range(0,len(job['pcm']),self.replay_chunk_bytes):
                 part=job['pcm'][offset:offset+self.replay_chunk_bytes]
-                self.replay_audio_bytes+=len(part);sent+=len(part)
+                self.replay_audio_bytes+=len(part);sent+=len(part);job['_sent']=sent
+                if self._live_medium(job):self._live_medium_sent+=len(part)
                 self._live_reserved_bytes-=len(part)
                 payload=await self._live_background('/stream/chunk',sid,part)
                 if any(s and s in compact(str(payload.get('text',''))) for s in signatures):
@@ -395,4 +436,5 @@ class LiveEntityMixin:
     def _close_live(self):
         self._live_closed=True
         if self._live_worker and not self._live_worker.done():self._live_worker.cancel()
-        self._live_queue.clear();self._live_pcm.clear()
+        self._live_reserved_bytes-=sum(len(j['pcm']) for j in self._live_queue)
+        self._live_queue.clear();self._live_deferred.clear();self._live_pcm.clear()

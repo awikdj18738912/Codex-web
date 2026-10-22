@@ -1,0 +1,77 @@
+ M README.md
+ M results/entity_streaming_live_20261014/collect_independent.py
+ M results/entity_streaming_live_20261014/collect_known_dense.py
+ M results/entity_streaming_live_20261014/collect_long.py
+ M results/entity_streaming_live_20261014/experiment_worker.py
+ M results/entity_streaming_live_20261014/live_core.py
+ M results/entity_streaming_live_20261014/score_groups.py
+ M results/entity_streaming_live_20261014/score_long.py
+ M scripts/start_qwen_asr.sh
+ M scripts/start_web.sh
+ M system/README.md
+ M system/asr_window_confidence.py
+ M system/chunking.py
+ M system/entity_audio_repair.py
+ M system/entity_pipeline.py
+ M system/live_qwen_refiner.py
+ M system/qwen_asr_stream_server.py
+ M system/refinement_gate.py
+ M system/refinement_guard.py
+ M system/refinement_protocol.py
+ M system/web/refinement_log.html
+ M system/web_app.py
+ M system/window_refinement.py
+ M tests/test_asr_window_confidence.py
+ M tests/test_chunking.py
+ M tests/test_entity_audio_repair.py
+ M tests/test_entity_local_replay.py
+ M tests/test_entity_streaming_replay.py
+ M tests/test_gate_pipeline_alignment.py
+ M tests/test_learned_window_gate.py
+ M tests/test_refinement_gate.py
+ M tests/test_refinement_guard.py
+ M tests/test_web_app_finish.py
+ M tests/test_window_refinement.py
+?? CONFIDENCE_SUPPLEMENT_GATE.md
+?? experiments/fixtures/audio5_gate_review.html
+?? experiments/scripts/benchmark_numeric_backends.py
+?? experiments/scripts/benchmark_numeric_retry_policy.py
+?? experiments/scripts/collect_audio5_gate_review.py
+?? experiments/scripts/evaluate_current_entity_challenge.py
+?? experiments/scripts/prepare_audio5_gate_review.py
+?? experiments/scripts/rebuild_entity_challenge_scene_libraries.py
+?? experiments/scripts/score_current_entity_challenge.py
+?? experiments/scripts/verify_audio5_gate_review_ui.py
+?? results/audio5_confidence_review_20261014_v1/
+?? results/entity_challenge_20261014_scene_v2/
+?? results/entity_challenge_current_20261014_v1/
+?? results/entity_challenge_scene_eval_20261014_v2/
+?? results/entity_streaming_live_20261014/REPORT.md
+?? results/entity_streaming_live_20261014/bulk_smoke.json
+?? results/entity_streaming_live_20261014/collect_bulk_smoke.py
+?? results/entity_streaming_live_20261014/final_verification.json
+?? results/entity_streaming_live_20261014/frozen_parameters.json
+?? results/entity_streaming_live_20261014/live_web_full_smoke.json
+?? results/entity_streaming_live_20261014/live_web_smoke.json
+?? results/entity_streaming_live_20261014/live_web_smoke.py
+?? results/entity_streaming_live_20261014/long_protocol.json
+?? results/entity_streaming_live_20261014/long_score.json
+?? results/entity_streaming_live_20261014/progress.json
+?? results/entity_streaming_live_20261014/protected_before_promotion.json
+?? results/entity_streaming_live_20261014/restart_web.py
+?? results/entity_streaming_live_20261014/test_live.py
+?? results/entity_streaming_live_20261014/versions/
+?? results/entity_streaming_live_20261014/web_rollout.json
+?? results/entity_streaming_live_20261014/worker.json
+?? results/numeric_backend_optimized_20261014/
+?? results/numeric_backend_optimized_final_20261014/
+?? results/numeric_backend_speed_20261014/
+?? results/numeric_retry_speed_20261014/
+?? system/confidence_supplement.py
+?? system/entity_streaming_live.py
+?? tests/test_confidence_supplement.py
+?? tests/test_entity_streaming_live.py
+?? tests/test_leading_connective_guard.py
+?? tests/test_refiner_window_context.py
+?? tests/test_web_window_context.py
+?? tests/test_window_adjacent_context.py

@@ -6,7 +6,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from system.entity_audio_repair import EntityAudioRepair, GenericEntitySelector, verify_entity_audio_changes
+from system.entity_audio_repair import _LegacyEntityAudioRepair as EntityAudioRepair
+from system.entity_audio_repair import GenericEntitySelector, verify_entity_audio_changes
 from system.entity_store import EntityDefinition, EntityStore
 
 
@@ -206,10 +207,24 @@ def test_web_session_runs_generic_replay_and_exposes_entity_correction(tmp_path,
 
     monkeypatch.setattr(web, "TransformersRefiner", lambda *a, **k: Refiner())
     monkeypatch.setattr(web, "RepetitionPlausibility", lambda *a, **k: SimpleNamespace())
-    backend = Backend()
+    original = "嘉宾是罗建。谢谢大家今天的分享。"
+    corrected = "嘉宾是罗剑。谢谢大家今天的分享。"
+    backend = Backend(original=original, replay=corrected)
+    primary_chunk_count = 0
 
     async def request(url, endpoint, session_id=None, data=b"", params=None, **kwargs):
-        return await backend(endpoint, session_id, data, params)
+        nonlocal primary_chunk_count
+        is_replay = backend.sessions.get(session_id, {}).get("context", False)
+        result = await backend(endpoint, session_id, data, params)
+        if endpoint == "/stream/chunk" and is_replay:
+            # Force the review to consume both seconds and confirm at finish.
+            result["completed_segments"] = []
+        elif endpoint == "/stream/chunk":
+            primary_chunk_count += 1
+            result["completed_segments"] = []
+            if primary_chunk_count >= 2:
+                result["asr_timing"] = {"model_ms": 5.}
+        return result
 
     monkeypatch.setattr(web, "_stream_request_async", request)
     db = tmp_path / "entities.db"
@@ -222,7 +237,8 @@ def test_web_session_runs_generic_replay_and_exposes_entity_correction(tmp_path,
             ready = socket.receive_json()
             assert ready["entity_audio_repair"]["enabled"]
             assert not ready["entity_asr_context_applied"]
-            socket.send_bytes(b"12345678")
+            pcm = b"12345678" * 16000
+            socket.send_bytes(pcm)
             while socket.receive_json().get("event") != "chunk_ack":
                 pass
             socket.send_json(dict(event="finish"))
@@ -233,11 +249,20 @@ def test_web_session_runs_generic_replay_and_exposes_entity_correction(tmp_path,
                 assert event.get("event") != "error", event
                 if event.get("event") == "final":
                     break
-            assert event["raw_text"] == "嘉宾是罗剑。"
-            assert event["clean_text"] == "嘉宾是罗剑。"
+            assert event["raw_text"] == corrected
+            assert event["clean_text"] == corrected
             assert event["entity_audio_repair"]["change_count"] == 1
             assert any(c.get("stage") == "asr_audio_repair" for c in event["entity_normalizations"])
             assert any(e.get("stage") == "entity_audio_repair" for e in events)
         with client.websocket_connect("/ws/stream?entity_audio_repair=1&entity_asr_context=1") as socket:
             assert socket.receive_json()["event"] == "error"
-    assert backend.replay_pcm == b"12345678" and not backend.sessions
+    assert backend.replay_pcm == pcm and not backend.sessions
+
+
+@pytest.fixture(autouse=True)
+def isolate_audio_review_from_direct_spelling(monkeypatch):
+    """These cases exercise acoustic review; direct spelling has its own suite."""
+    from system.entity_streaming_live import LiveEntityMixin
+    async def no_direct_spelling(self, raw_text, *, final=False):
+        return None
+    monkeypatch.setattr(LiveEntityMixin, "_live_apply_glossary", no_direct_spelling)

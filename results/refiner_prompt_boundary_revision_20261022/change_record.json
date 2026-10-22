@@ -1,0 +1,13 @@
+{
+  "file": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/configs/prompts_clean.json",
+  "before_sha256": "434a499c349547b755d93d6c52a196748aa9794b3a98730af5c09d19a23eedf3",
+  "after_sha256": "d054886def94bac2b7fe225667e59b05abc4d90d51a3235ae427c6f84b9873cb",
+  "checks": [
+    "JSON parse",
+    "Chinese template interpolation with literal braces in input",
+    "English entries preserved",
+    "git diff --check",
+    "Independent prompt review"
+  ],
+  "teacher_evaluation_run": false
+}

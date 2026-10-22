@@ -1,0 +1,120 @@
+{
+  "endpoint": "http://127.0.0.1:8010/v1/chat/completions",
+  "model": "refiner-teacher",
+  "prompt_versions": {
+    "v1": "你是中文口语转写文本的源文本质量审核器。只判断输入 source 本身，不看 target，不评判事实真假，不改写、不删除文本。面向真实口语：允许说话人自然解释术语、补充说明、停顿词、重复和改口；不能因为中英混用、数字、括号、代码符号本身而拒绝。\n\n仅当 source 明确含有不属于说话内容的编者/转写者插入内容时 pass=false，例如用括号插入给读者看的词义翻译/术语对照，或用括号标注舞台动作、停顿指令。普通口语中的解释（如“也就是……”）属于说话内容；代码、引号或括号若是说话人讨论/朗读的字面内容，也属于说话内容。遇到不确定时 pass=true。\n\n返回严格 JSON，且只含 pass（布尔值）和 reasonstr（字符串），reasonstr 简短说明判定依据。",
+    "v2": "你是中文口语转写文本的源文本质量审核器。只审核 source，不参考 target；不改写、不删数据。判断标准是内容是否像说话人实际说出的内容，而不是书面编辑替读者补上的说明。真实口语中的解释、术语释义、插入语、停顿词、重复和改口都可以通过。不能仅凭英文、数字、括号、引号或代码格式判拒；如果这些符号包着的是说话人实际说出的字面内容，也通过。\n\n审核对照（仅用于理解边界，不是输出模板）：\n- “用困惑度（Perplexity）评估模型” → pass=false：括号像编辑加上的中英词条对照。\n- “明天下午开会（停顿两秒），大家记得来” → pass=false：括号是给表演/转写者的动作指令。\n- “嗯我们用困惑度，也就是Perplexity评估模型” → pass=true：说话人自然口头解释。\n- “把代码改成print(\\\"hello\\\")，其他地方别动” → pass=true：括号属于被谈论的字面代码。\n- “明天下午开会，大家记得来” → pass=true：正常口语。\n- “这个模型，呃不是，这个方法效果更好” → pass=true：说话人自然改口。\n\n仅对明确的编者注释或非口语舞台指令判 pass=false；边界不清时 pass=true。返回严格 JSON，且只含 pass（布尔值）和 reasonstr（字符串）。"
+  },
+  "samples": [
+    [
+      "editor_gloss",
+      "用困惑度（Perplexity）评估模型"
+    ],
+    [
+      "stage_direction",
+      "明天下午开会（停顿两秒），大家记得来"
+    ],
+    [
+      "spoken_explanation",
+      "嗯我们用困惑度，也就是Perplexity评估模型"
+    ],
+    [
+      "literal_code",
+      "把代码改成print(\"hello\")，其他地方别动"
+    ],
+    [
+      "clean_short",
+      "明天下午开会，大家记得来"
+    ],
+    [
+      "spoken_repair",
+      "这个模型，呃不是，这个方法效果更好"
+    ]
+  ],
+  "results": [
+    {
+      "version": "v1",
+      "sample_id": "editor_gloss",
+      "source": "用困惑度（Perplexity）评估模型",
+      "http_status": 200,
+      "raw_response": "{\"pass\": true, \"reasonstr\": \"\"}"
+    },
+    {
+      "version": "v1",
+      "sample_id": "stage_direction",
+      "source": "明天下午开会（停顿两秒），大家记得来",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"括号内为说话人自然停顿的提示，属于口语中的语气停顿标记，非编者插入内容\"\n}"
+    },
+    {
+      "version": "v1",
+      "sample_id": "spoken_explanation",
+      "source": "嗯我们用困惑度，也就是Perplexity评估模型",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"\"\n}"
+    },
+    {
+      "version": "v1",
+      "sample_id": "literal_code",
+      "source": "把代码改成print(\"hello\")，其他地方别动",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"\"\n}"
+    },
+    {
+      "version": "v1",
+      "sample_id": "clean_short",
+      "source": "明天下午开会，大家记得来",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"\"\n}"
+    },
+    {
+      "version": "v1",
+      "sample_id": "spoken_repair",
+      "source": "这个模型，呃不是，这个方法效果更好",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"口语中的停顿词'呃'和改口'不是'属于自然说话行为，不涉及编者插入内容\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "editor_gloss",
+      "source": "用困惑度（Perplexity）评估模型",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": false,\n  \"reasonstr\": \"括号内的'Perplexity'像是编辑添加的英文术语对照，非说话人自然口头表达的内容，不符合真实口语中对术语的解释方式。\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "stage_direction",
+      "source": "明天下午开会（停顿两秒），大家记得来",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": false,\n  \"reasonstr\": \"括号内内容为转写者添加的舞台指令，非说话人实际说出的内容，属于非口语的表演提示\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "spoken_explanation",
+      "source": "嗯我们用困惑度，也就是Perplexity评估模型",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"说话人自然口头解释术语，'也就是'连接口语化释义，符合真实口语中的术语说明方式。\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "literal_code",
+      "source": "把代码改成print(\"hello\")，其他地方别动",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"括号内内容为代码中实际出现的字面字符，属于说话人描述的代码片段，符合真实口语中对代码的直接引用。\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "clean_short",
+      "source": "明天下午开会，大家记得来",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"符合自然口语表达，无非口语元素或编者注释。\"\n}"
+    },
+    {
+      "version": "v2",
+      "sample_id": "spoken_repair",
+      "source": "这个模型，呃不是，这个方法效果更好",
+      "http_status": 200,
+      "raw_response": "{\n  \"pass\": true,\n  \"reasonstr\": \"说话人自然改口，符合口语中的修正表达，无非口语舞台指令或编者注释。\"\n}"
+    }
+  ]
+}

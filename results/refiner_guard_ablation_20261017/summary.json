@@ -1,0 +1,139 @@
+{
+  "experimenter": "Luna delegated analysis",
+  "teacher": "Qwen refiner-teacher (Qwen3-30B-A3B-Instruct-2507 AWQ 4bit)",
+  "endpoint": "http://127.0.0.1:8010/v1",
+  "input_attempts": 300,
+  "valid_oral": 280,
+  "oral_rejected": 20,
+  "same_batch_groups": {
+    "both_on": {
+      "status_counts": {
+        "accepted": 257,
+        "oral_rejected": 20,
+        "audit_rejected": 11,
+        "assembly_rejected": 6,
+        "asr_rejected": 6
+      },
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "retained_rate": 0.85,
+      "valid_oral_denominator": 280,
+      "retained_rate_valid_oral": 0.9107142857142857
+    },
+    "numeric_off": {
+      "status_counts": {
+        "accepted": 260,
+        "oral_rejected": 20,
+        "audit_rejected": 11,
+        "assembly_rejected": 6,
+        "asr_rejected": 3
+      },
+      "accepted_before_dedup": 260,
+      "unique_retained": 258,
+      "retained_rate": 0.86,
+      "valid_oral_denominator": 280,
+      "retained_rate_valid_oral": 0.9214285714285714
+    },
+    "english_off": {
+      "status_counts": {
+        "accepted": 259,
+        "oral_rejected": 20,
+        "audit_rejected": 11,
+        "assembly_rejected": 6,
+        "asr_rejected": 4
+      },
+      "accepted_before_dedup": 259,
+      "unique_retained": 257,
+      "retained_rate": 0.8566666666666667,
+      "valid_oral_denominator": 280,
+      "retained_rate_valid_oral": 0.9178571428571428
+    },
+    "both_off": {
+      "status_counts": {
+        "accepted": 262,
+        "oral_rejected": 20,
+        "audit_rejected": 12,
+        "assembly_rejected": 6
+      },
+      "accepted_before_dedup": 262,
+      "unique_retained": 260,
+      "retained_rate": 0.8666666666666667,
+      "valid_oral_denominator": 280,
+      "retained_rate_valid_oral": 0.9285714285714286
+    },
+    "prompt_removed_both_off": {
+      "status_counts": {
+        "accepted": 260,
+        "oral_rejected": 20,
+        "audit_rejected": 14,
+        "assembly_rejected": 6
+      },
+      "accepted_before_dedup": 260,
+      "unique_retained": 258,
+      "retained_rate": 0.86,
+      "valid_oral_denominator": 280,
+      "retained_rate_valid_oral": 0.9214285714285714
+    }
+  },
+  "guard_boundary_diagnostics": {
+    "full_clean_construction_pairs_tested": 280,
+    "expected_clean_exact_proof_passed": 280,
+    "lexical_guard_categories": {
+      "numeric_fail_english_pass": 37,
+      "numeric_pass_english_fail": 27,
+      "both_fail": 16,
+      "both_pass": 200
+    },
+    "construction_proof_short_circuits_lexical_guards": true,
+    "six_saved_asr_rejected_candidates": {
+      "both_on_entered_partial_pair_gate": 0,
+      "numeric_off_entered_gate": 3,
+      "english_off_entered_gate": 2,
+      "both_off_entered_gate": 6,
+      "all_six_passed_fixed_target_and_valid_partial_pair": true,
+      "normal_prompt_semantic_pass": 5,
+      "normal_prompt_exact_target_reject": 1
+    }
+  },
+  "prompt_ablation": {
+    "removed_exact_sentence": "数字格式由外部规则负责。英文名称和型号沿用原文。",
+    "old_audit_candidates": 268,
+    "new_asr_partial_candidates": 6,
+    "total_audited": 274,
+    "accepted_before_dedup": 260,
+    "unique_retained": 258,
+    "prompt_only_retained_ids": [],
+    "both_off_only_retained_ids": [
+      "scale_meeting_0031",
+      "scale_vibe_coding_0205"
+    ],
+    "note": "Outputs are Qwen semantic judgments with fixed inputs/responses and can vary. This observed set difference is not a causal estimate of one sentence."
+  },
+  "major_other_losses_baseline": {
+    "oral_rejected": 20,
+    "assembly_rejected_short": 6,
+    "audit_rejected": 11,
+    "audit_rejected_reason_counts": {
+      "audit_target_not_clean_or_not_exact": 10,
+      "source_valid_false": 1
+    },
+    "dedup_removed": 2
+  },
+  "historical_1000_diagnostic": {
+    "retained_404_of_1000": 0.404,
+    "accepted_before_dedup": 414,
+    "n_saved_source_target_pairs": 636,
+    "lexical_guard_pass": 636,
+    "lexical_guard_failure": 0,
+    "observed_statuses": {
+      "oral_rejected": 347,
+      "clean_rejected": 17,
+      "asr_rejected": 80,
+      "audit_rejected": 132,
+      "assembly_rejected": 10,
+      "accepted": 414
+    },
+    "caveat": "Legacy numeric_policy snapshot imported with current system.refinement_guard dependency; historical full environment not reproduced."
+  },
+  "comparison": "Earlier 480/500=96% and current 255/280=91.1% use distinct batches. Both guards off yielded 260/280=92.9% (+1.8pp vs current baseline), leaving a non-causal ~3.1pp difference to earlier batch."
+}

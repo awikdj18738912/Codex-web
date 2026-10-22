@@ -1,0 +1,610 @@
+{
+  "target_denominator": 200,
+  "candidate_count": 200,
+  "unique_serial_count": 200,
+  "serial_range": [
+    0,
+    199
+  ],
+  "serials_missing": [],
+  "duplicate_serials": [],
+  "preserved_interrupted_attempts": 72,
+  "newly_generated_missing_jobs": 128,
+  "quality_pass_before_dedup": 39,
+  "retained": 39,
+  "raw_retained_rate": 0.195,
+  "candidate_stage_counts": {
+    "quality_pass": 39,
+    "clean_rejected": 77,
+    "audit_rejected": 68,
+    "oral_rejected": 16
+  },
+  "final_retention_outcomes": {
+    "retained": 39,
+    "clean_rejected": 77,
+    "audit_rejected": 68,
+    "oral_rejected": 16
+  },
+  "retained_by_scene": {
+    "meeting": 2,
+    "daily_chat": 9,
+    "customer_service": 7,
+    "dictation_memo": 4,
+    "voice_search": 3,
+    "explanation": 8,
+    "navigation": 2,
+    "vibe_coding": 4
+  },
+  "candidate_by_scene": {
+    "meeting": 21,
+    "vibe_coding": 42,
+    "daily_chat": 24,
+    "explanation": 41,
+    "voice_search": 10,
+    "customer_service": 21,
+    "dictation_memo": 17,
+    "navigation": 10,
+    "academic": 14
+  },
+  "scene_quotas": {
+    "daily_chat": 24,
+    "vibe_coding": 42,
+    "explanation": 41,
+    "meeting": 21,
+    "customer_service": 21,
+    "academic": 14,
+    "navigation": 10,
+    "dictation_memo": 17,
+    "voice_search": 10
+  },
+  "candidate_outcomes_by_scene": {
+    "meeting": {
+      "quality_pass": 2,
+      "audit_rejected": 11,
+      "clean_rejected": 5,
+      "oral_rejected": 3
+    },
+    "vibe_coding": {
+      "clean_rejected": 19,
+      "audit_rejected": 18,
+      "quality_pass": 4,
+      "oral_rejected": 1
+    },
+    "daily_chat": {
+      "quality_pass": 9,
+      "clean_rejected": 11,
+      "oral_rejected": 2,
+      "audit_rejected": 2
+    },
+    "explanation": {
+      "audit_rejected": 15,
+      "clean_rejected": 13,
+      "oral_rejected": 5,
+      "quality_pass": 8
+    },
+    "voice_search": {
+      "audit_rejected": 1,
+      "clean_rejected": 5,
+      "quality_pass": 3,
+      "oral_rejected": 1
+    },
+    "customer_service": {
+      "quality_pass": 7,
+      "audit_rejected": 4,
+      "oral_rejected": 3,
+      "clean_rejected": 7
+    },
+    "dictation_memo": {
+      "clean_rejected": 6,
+      "quality_pass": 4,
+      "audit_rejected": 6,
+      "oral_rejected": 1
+    },
+    "navigation": {
+      "audit_rejected": 8,
+      "quality_pass": 2
+    },
+    "academic": {
+      "clean_rejected": 11,
+      "audit_rejected": 3
+    }
+  },
+  "final_retention_by_scene": {
+    "meeting": {
+      "retained": 2,
+      "audit_rejected": 11,
+      "clean_rejected": 5,
+      "oral_rejected": 3
+    },
+    "vibe_coding": {
+      "clean_rejected": 19,
+      "audit_rejected": 18,
+      "retained": 4,
+      "oral_rejected": 1
+    },
+    "daily_chat": {
+      "retained": 9,
+      "clean_rejected": 11,
+      "oral_rejected": 2,
+      "audit_rejected": 2
+    },
+    "explanation": {
+      "audit_rejected": 15,
+      "clean_rejected": 13,
+      "oral_rejected": 5,
+      "retained": 8
+    },
+    "voice_search": {
+      "audit_rejected": 1,
+      "clean_rejected": 5,
+      "retained": 3,
+      "oral_rejected": 1
+    },
+    "customer_service": {
+      "retained": 7,
+      "audit_rejected": 4,
+      "oral_rejected": 3,
+      "clean_rejected": 7
+    },
+    "dictation_memo": {
+      "clean_rejected": 6,
+      "retained": 4,
+      "audit_rejected": 6,
+      "oral_rejected": 1
+    },
+    "navigation": {
+      "audit_rejected": 8,
+      "retained": 2
+    },
+    "academic": {
+      "clean_rejected": 11,
+      "audit_rejected": 3
+    }
+  },
+  "candidate_categories_by_final_status": {
+    "hesitation": {
+      "quality_pass": 5,
+      "audit_rejected": 23,
+      "clean_rejected": 34
+    },
+    "repetition": {
+      "quality_pass": 4,
+      "audit_rejected": 27,
+      "clean_rejected": 36
+    },
+    "repetition of '我需要'": {
+      "clean_rejected": 1
+    },
+    "explicit correction from 'Twitter API v2' to 'limit'": {
+      "clean_rejected": 1
+    },
+    "轻微重复": {
+      "quality_pass": 7,
+      "audit_rejected": 2
+    },
+    "语义调整": {
+      "quality_pass": 1
+    },
+    "最终语义聚焦": {
+      "quality_pass": 1
+    },
+    "filler": {
+      "audit_rejected": 46,
+      "clean_rejected": 60,
+      "quality_pass": 4
+    },
+    "false start": {
+      "audit_rejected": 8,
+      "clean_rejected": 13,
+      "quality_pass": 1
+    },
+    "stuttering": {
+      "audit_rejected": 18,
+      "clean_rejected": 24,
+      "quality_pass": 1
+    },
+    "content-word repetition": {
+      "audit_rejected": 8,
+      "clean_rejected": 20,
+      "quality_pass": 4
+    },
+    "contrastive explanation": {
+      "audit_rejected": 9,
+      "clean_rejected": 6,
+      "quality_pass": 4
+    },
+    "false_start": {
+      "clean_rejected": 19,
+      "audit_rejected": 15
+    },
+    "content_word_repetition": {
+      "clean_rejected": 7,
+      "audit_rejected": 10
+    },
+    "rollback_correction": {
+      "clean_rejected": 10,
+      "audit_rejected": 3
+    },
+    "repetition of '系统'": {
+      "audit_rejected": 1
+    },
+    "filler in '其实'": {
+      "audit_rejected": 1
+    },
+    "corrected reference from '企业级合规风险预警与审计追踪系统' to '零工经济平台薪酬结算与合规系统'": {
+      "audit_rejected": 1
+    },
+    "clean": {
+      "quality_pass": 17,
+      "audit_rejected": 1
+    },
+    "explicit rollback correction": {
+      "clean_rejected": 1
+    },
+    "self_correction": {
+      "quality_pass": 1,
+      "clean_rejected": 3
+    },
+    "rollback correction": {
+      "clean_rejected": 11,
+      "audit_rejected": 3,
+      "quality_pass": 1
+    },
+    "misplaced punctuation": {
+      "audit_rejected": 1
+    },
+    "boundary_punctuation": {
+      "audit_rejected": 4,
+      "clean_rejected": 3,
+      "quality_pass": 2
+    },
+    "intentional punctuation insertion": {
+      "audit_rejected": 1
+    },
+    "slight repetition of '用'": {
+      "audit_rejected": 1
+    },
+    "natural pause after '支付'": {
+      "audit_rejected": 1
+    },
+    "intended_revision": {
+      "audit_rejected": 1
+    },
+    "reformulation": {
+      "quality_pass": 1,
+      "audit_rejected": 1
+    },
+    "spelling cue": {
+      "clean_rejected": 1
+    },
+    "spelling clarification": {
+      "clean_rejected": 2,
+      "quality_pass": 2,
+      "audit_rejected": 1
+    },
+    "homophonic contrast": {
+      "clean_rejected": 1
+    },
+    "repetition of correct form": {
+      "clean_rejected": 1
+    },
+    "语义修正": {
+      "quality_pass": 2,
+      "audit_rejected": 1
+    },
+    "revision": {
+      "clean_rejected": 7,
+      "audit_rejected": 7
+    },
+    "repetition of content words": {
+      "audit_rejected": 2,
+      "clean_rejected": 2
+    },
+    "spelling/contrastive explanation": {
+      "audit_rejected": 1
+    },
+    "intentional_punctuation_error_in_middle_of_phrase": {
+      "clean_rejected": 1
+    },
+    "spelling explanation": {
+      "clean_rejected": 1
+    },
+    "explicit_correction": {
+      "clean_rejected": 5,
+      "audit_rejected": 5,
+      "quality_pass": 2
+    },
+    "initial statement": {
+      "audit_rejected": 1
+    },
+    "final confirmation": {
+      "audit_rejected": 1
+    },
+    "explicit correction from '中石油' (homophonic but different meaning) to '中石油' (correct entity)": {
+      "audit_rejected": 1
+    },
+    "spoken spelling of '石油' with contrastive explanation": {
+      "audit_rejected": 1
+    },
+    "mild repetition of '不能搞混' for emphasis": {
+      "audit_rejected": 1
+    },
+    "hesitations": {
+      "audit_rejected": 3
+    },
+    "repetitions": {
+      "audit_rejected": 2
+    },
+    "fillers": {
+      "audit_rejected": 3
+    },
+    "spelling/word-composition explanation": {
+      "audit_rejected": 1
+    },
+    "contrastive clarification": {
+      "audit_rejected": 1
+    },
+    "filler_words": {
+      "clean_rejected": 1
+    },
+    "repetition_of_content_words": {
+      "clean_rejected": 1
+    },
+    "spoken spelling": {
+      "quality_pass": 2,
+      "audit_rejected": 4,
+      "clean_rejected": 2
+    },
+    "explicit correction": {
+      "quality_pass": 1
+    },
+    "inserted_chinese_punctuation_in_middle_of_clause": {
+      "audit_rejected": 1
+    },
+    "minimal repetition": {
+      "clean_rejected": 1,
+      "quality_pass": 2,
+      "audit_rejected": 1
+    },
+    "natural pause": {
+      "clean_rejected": 1,
+      "audit_rejected": 1
+    },
+    "inserted punctuation within continuous clause": {
+      "audit_rejected": 1
+    },
+    "explicit correction from A to B": {
+      "audit_rejected": 1
+    },
+    "natural conversational tone": {
+      "audit_rejected": 1
+    },
+    "语义短语内误插标点（句号）": {
+      "quality_pass": 1
+    },
+    "多阶段修正（A→B→C）": {
+      "quality_pass": 1
+    },
+    "A→B: '10倍速'改为'10倍速播放'以明确操作对象": {
+      "quality_pass": 1
+    },
+    "B→C: '播放'被补全为'调成10倍速播放'以修正语义完整性": {
+      "quality_pass": 1
+    },
+    "repetition of '与'": {
+      "audit_rejected": 1
+    },
+    "explicit correction from '客户成功与客户运营部' to '智慧城市建设协调部'": {
+      "audit_rejected": 1
+    },
+    "A": {
+      "clean_rejected": 1
+    },
+    "B": {
+      "clean_rejected": 1
+    },
+    "C": {
+      "clean_rejected": 1
+    },
+    "homophones": {
+      "audit_rejected": 1
+    },
+    "spelling_contrast": {
+      "audit_rejected": 1
+    },
+    "content-word repetitions": {
+      "audit_rejected": 1
+    },
+    "concise spoken spelling": {
+      "audit_rejected": 1
+    },
+    "self-clarification": {
+      "clean_rejected": 1
+    },
+    "deliberate punctuation insertion": {
+      "clean_rejected": 1
+    },
+    "spoken_spelling": {
+      "quality_pass": 1
+    },
+    "contrastive_explanation": {
+      "quality_pass": 1,
+      "clean_rejected": 2
+    },
+    "uncertainty": {
+      "clean_rejected": 2
+    },
+    "repetition of '音量' for emphasis": {
+      "quality_pass": 1
+    },
+    "filler words": {
+      "clean_rejected": 1
+    },
+    "false starts": {
+      "clean_rejected": 1
+    },
+    "self-correction across multiple stages": {
+      "clean_rejected": 1
+    },
+    "colloquial phrasing": {
+      "clean_rejected": 1
+    },
+    "repetition of 'order' implied in 'sort'": {
+      "clean_rejected": 1
+    },
+    "natural pause after 'sort'": {
+      "clean_rejected": 1
+    },
+    "emphasis on 'kubectl get pods -w'": {
+      "clean_rejected": 1
+    },
+    "self-correction": {
+      "audit_rejected": 2,
+      "clean_rejected": 2,
+      "quality_pass": 1
+    },
+    "语义连贯": {
+      "quality_pass": 3
+    },
+    "自然停顿": {
+      "quality_pass": 3,
+      "audit_rejected": 1
+    },
+    "clear final intent": {
+      "audit_rejected": 1
+    },
+    "correction": {
+      "quality_pass": 1,
+      "audit_rejected": 1
+    },
+    "insertion": {
+      "quality_pass": 1,
+      "audit_rejected": 1
+    },
+    "pausing": {
+      "quality_pass": 1
+    },
+    "A: 初始陈述": {
+      "audit_rejected": 1
+    },
+    "B: 修正语序与重点": {
+      "audit_rejected": 1
+    },
+    "C: 明确时间节点与问题关联": {
+      "audit_rejected": 1
+    },
+    "repetition of '才' to mark revision": {
+      "clean_rejected": 1
+    },
+    "restructuring to reflect multi-stage correction from initial baseline to final solution": {
+      "clean_rejected": 1
+    },
+    "repair": {
+      "clean_rejected": 1
+    },
+    "clear phonetic contrast": {
+      "quality_pass": 1
+    },
+    "语速平稳": {
+      "audit_rejected": 1
+    },
+    "spelling_correction": {
+      "clean_rejected": 1
+    },
+    "语序调整": {
+      "quality_pass": 1
+    },
+    "finalization": {
+      "audit_rejected": 1
+    }
+  },
+  "boundary_punctuation_candidates": {
+    "count": 9,
+    "stage_outcomes": {
+      "audit_rejected": 4,
+      "clean_rejected": 3,
+      "quality_pass": 2
+    },
+    "by_scene": {
+      "meeting": {
+        "audit_rejected": 1,
+        "clean_rejected": 1
+      },
+      "navigation": {
+        "audit_rejected": 1
+      },
+      "vibe_coding": {
+        "clean_rejected": 1
+      },
+      "academic": {
+        "audit_rejected": 2,
+        "clean_rejected": 1
+      },
+      "daily_chat": {
+        "quality_pass": 1
+      },
+      "explanation": {
+        "quality_pass": 1
+      }
+    },
+    "quality_pass": 2,
+    "retained": 2
+  },
+  "seed": 2026101720,
+  "seed_source": "/home/aim0/data/datasets/ASR/refiner_readiness_500_20261017/seeds",
+  "seed_aggregate_sha256": "3408ed43967aee68cde3b36f096610e324a53e679746f6b65351725bc0a79e28",
+  "teacher_identity": {
+    "id": "refiner-teacher",
+    "root": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit"
+  },
+  "api_call_count_cumulative": 497,
+  "api_calls_by_stage": {
+    "oral": 204,
+    "clean": 245,
+    "audit": 48
+  },
+  "api_call_errors_by_stage": {},
+  "retained_input_vs_output": {
+    "same": 24,
+    "different": 15
+  },
+  "target_origin_counts": {
+    "teacher-reconstruction": 22,
+    "passthrough": 17
+  },
+  "source_manifest_aggregate_sha256": "a5bdd60828d87c7448654b1460c5ab1a8e0aff87f4a4cdb5500a507417a65bfe",
+  "full_structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 39,
+      "records": 39,
+      "reservoir_candidates": 39,
+      "minimum_required": 39
+    },
+    "input_sha256": "4a4e10b2a79f29d47394b91f1489c6aba067e2d7a64751f1baa5d7e8e321fcdd"
+  },
+  "review_sample_records": 39,
+  "training_performed": false,
+  "interruption_diagnostics": {
+    "scope": "parent-provided 72-candidate diagnosis before recovery; descriptive only",
+    "oral_rejected": 3,
+    "clean_rejected": {
+      "numeric_guard": 13,
+      "english_guard": 8,
+      "both_numeric_and_english_guards": 7,
+      "surface_issue": 2,
+      "other": 1
+    },
+    "audit_rejected": {
+      "unsupported_content_edits": 23,
+      "model_semantic_rejects": 3
+    }
+  },
+  "postprocess_fix": "Rows are dicts; recovery finalizer iterates rows and resolves quality-passed records from quality_item_by_serial. No new teacher requests were made during finalization.",
+  "completed_utc": "2026-10-17T16:21:53.749900+00:00"
+}

@@ -1,0 +1,51 @@
+{
+  "reviewer": "Primary-agent adjudication after checking the source, target and initial secondary review",
+  "counts": {
+    "pass": 2,
+    "fail": 5,
+    "uncertain": 1
+  },
+  "note": "Qualitative development review, not an independent benchmark. These decisions concern complete training-pair quality, including source coherence. Secondary review retained separately.",
+  "items": [
+    {
+      "id": "auto_daily_chat_01",
+      "decision": "pass",
+      "reason": "One coherent art-wall topic; target changes punctuation without losing final information."
+    },
+    {
+      "id": "auto_daily_chat_02",
+      "decision": "fail",
+      "reason": "Source joins a milk-tea queue and coffee-bean suggestion; target adds an explicit purchase action 买 that is not clearly supported."
+    },
+    {
+      "id": "auto_daily_chat_03",
+      "decision": "uncertain",
+      "reason": "Target copies the entire 六点→七点 repair; temporal wording blurs historical narration and immediate correction. The source control requested rollback. QC falsely claims 六点 was removed, so its rationale cannot justify acceptance."
+    },
+    {
+      "id": "auto_daily_chat_07",
+      "decision": "pass",
+      "reason": "Removes repeated photo-taking/waiting clauses while retaining dates, negation and final plan."
+    },
+    {
+      "id": "auto_explanation_02",
+      "decision": "fail",
+      "reason": "Retains character-identification cue 小加米 and irrelevant contrast candidates; cleanup is incomplete."
+    },
+    {
+      "id": "auto_explanation_04",
+      "decision": "fail",
+      "reason": "Promotes source spelling G-D-W to an unsupported assertion 简称G-D-W and retains the identification-only spelling cue."
+    },
+    {
+      "id": "auto_explanation_07",
+      "decision": "fail",
+      "reason": "Retains contradictory pronunciation/spelling cues and unwanted alternatives; QC falsely says 张晓峰/华为/星巴克 were removed."
+    },
+    {
+      "id": "auto_explanation_08",
+      "decision": "fail",
+      "reason": "Retains pronunciation and 南/难 identification-only spelling cues, despite the explicit cleanup requirement."
+    }
+  ]
+}

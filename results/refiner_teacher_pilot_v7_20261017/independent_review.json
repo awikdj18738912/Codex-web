@@ -1,0 +1,180 @@
+{
+  "review_type": "independent_manual_text_review",
+  "source_file": "final/train.jsonl",
+  "summary_file": "summary.json",
+  "scope": "逐条查看实际 oral_text、refined_text 和 meta.generation_plan.expected_clean/correction_values/spelling_parts；不依赖自动 QC 判断。",
+  "overall": "pass",
+  "counts": {
+    "pass": 18,
+    "fail": 0,
+    "uncertain": 0,
+    "total": 18
+  },
+  "coverage": {
+    "unique_records": 18,
+    "expected_scenes": 9,
+    "records_per_scene": 2,
+    "all_nine_scenes_have_two": true,
+    "scene_counts": {
+      "academic": 2,
+      "vibe_coding": 2,
+      "customer_service": 2,
+      "dictation_memo": 2,
+      "daily_chat": 2,
+      "navigation": 2,
+      "meeting": 2,
+      "explanation": 2,
+      "voice_search": 2
+    }
+  },
+  "control_coverage": {
+    "summary_controls": {
+      "clean": 5,
+      "correction:single": 4,
+      "correction:none": 8,
+      "boundary_punctuation": 6,
+      "correction:rollback": 1,
+      "explanation": 1
+    },
+    "correction_structures_present": [
+      "none",
+      "single",
+      "rollback"
+    ],
+    "correction_structures_absent": [
+      "multiple"
+    ],
+    "note": "Accepted sample includes no multiple-correction case. All four single traces and the rollback trace are present in the source in declared order and the target retains the final expected value. The four high-oral examples visibly include three fillers plus a stutter as requested. All final/train meta.is_fragment flags are false, matching the complete source text; summary actual_asr_fragments=0."
+  },
+  "expected_clean_check": "All 18 target strings were visually compared with their meta.generation_plan.expected_clean; they match exactly.",
+  "spelling_cleanup": "The accepted explanation_03 source contains the redundant character cue “小米的小，小米的米”; the target removes it while retaining “解释一下小米的定位”. No unrelated entity loss was found.",
+  "reviews": [
+    {
+      "id": "academic_01",
+      "status": "pass",
+      "source_evidence": "量子纠缠态制备在量子信息处理中具有关键作用。",
+      "target_evidence": "量子纠缠态制备在量子信息处理中具有关键作用。",
+      "reason": "源/目标逐字相同；陈述语气保留。"
+    },
+    {
+      "id": "vibe_coding_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，请用Flask，不对，Django实现用户登录接口。",
+      "target_evidence": "请用Django实现用户登录接口。",
+      "reason": "source trace=[Flask, Django] 按序出现；同为实现接口的技术选择，目标保留最终Django与登录接口意图。"
+    },
+    {
+      "id": "customer_service_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，请。寄到苏州。",
+      "target_evidence": "请寄到苏州。",
+      "reason": "目标修复“请。寄到”的边界，保留寄送请求和地点。"
+    },
+    {
+      "id": "dictation_memo_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，预算定在12000元，不对，30000元。",
+      "target_evidence": "预算定在30000元。",
+      "reason": "金额轨迹12000元→30000元按序；目标只保留改口最终金额30000元及预算关系。"
+    },
+    {
+      "id": "customer_service_02",
+      "status": "pass",
+      "source_evidence": "请寄到苏州。",
+      "target_evidence": "请寄到苏州。",
+      "reason": "passthrough 源/目标一致，地点保留。"
+    },
+    {
+      "id": "daily_chat_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，地，地铁13号线新增了无障碍通道，不对，地铁14号线新增了无障碍通道，出行更方便了。",
+      "target_evidence": "地铁14号线新增了无障碍通道，出行更方便了。",
+      "reason": "纠正trace为13号线→14号线；目标保留最终线路、无障碍通道和结果，去除起始口癖及口吃。"
+    },
+    {
+      "id": "navigation_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，请，请走高速，预计1小时15分钟，不对，2小时30分钟到。",
+      "target_evidence": "请走高速，预计2小时30分钟到。",
+      "reason": "时长trace为1小时15分钟→2小时30分钟；目标保留最终时长和走高速，去除错误时长。"
+    },
+    {
+      "id": "academic_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，蒙，蒙特卡洛采样在不确定性传播中表现稳定。",
+      "target_evidence": "蒙特卡洛采样在不确定性传播中表现稳定。",
+      "reason": "三个口癖和“蒙，蒙”口吃均实际存在；目标清理后保留蒙特卡洛采样、领域及肯定陈述。"
+    },
+    {
+      "id": "meeting_03",
+      "status": "pass",
+      "source_evidence": "研发中心-视觉组的项目进度需要尽快同步。",
+      "target_evidence": "研发中心-视觉组的项目进度需要尽快同步。",
+      "reason": "源/目标逐字相同；组织名称中的连字符保留。"
+    },
+    {
+      "id": "daily_chat_03",
+      "status": "pass",
+      "source_evidence": "嗯，我最近特别喜欢喝喜茶的芝士葡萄冰茶，不对，奈雪的茶的芝士葡萄冰茶，最后改成，喜茶的芝士葡萄冰茶。",
+      "target_evidence": "我最近特别喜欢喝喜茶的芝士葡萄冰茶。",
+      "reason": "trace为喜茶葡萄冰茶→奈雪葡萄冰茶→喜茶葡萄冰茶，顺序为A-B-A；目标保留最终品牌/口味和“喜欢喝”事实。"
+    },
+    {
+      "id": "explanation_03",
+      "status": "pass",
+      "source_evidence": "嗯，请。解释一下小米的定位，小米的小，小米的米。",
+      "target_evidence": "请解释一下小米的定位。",
+      "reason": "目标去除“小米的小，小米的米”拼字提示，保留原请求“解释一下小米的定位”，并修复标点边界。"
+    },
+    {
+      "id": "voice_search_03",
+      "status": "pass",
+      "source_evidence": "嗯，请。设置提醒为2025年。",
+      "target_evidence": "请设置提醒为2025年。",
+      "reason": "保留设置提醒的命令及2025年；只去口癖、修复边界。"
+    },
+    {
+      "id": "explanation_04",
+      "status": "pass",
+      "source_evidence": "请确认张子安的出生地是哪里。",
+      "target_evidence": "请确认张子安的出生地是哪里。",
+      "reason": "源/目标一致，出生地疑问完整保留。"
+    },
+    {
+      "id": "voice_search_04",
+      "status": "pass",
+      "source_evidence": "请找最近的加油站。",
+      "target_evidence": "请找最近的加油站。",
+      "reason": "passthrough 源/目标一致，最近地点限定和请求保留。"
+    },
+    {
+      "id": "vibe_coding_04",
+      "status": "pass",
+      "source_evidence": "呃，那个，请。设置format=json。",
+      "target_evidence": "请设置format=json。",
+      "reason": "目标保留代码配置字符串format=json，清理口癖并合并边界。"
+    },
+    {
+      "id": "meeting_04",
+      "status": "pass",
+      "source_evidence": "呃，那个，预算总额是2,400,000元。",
+      "target_evidence": "预算总额是2,400,000元。",
+      "reason": "保留金额2,400,000元及预算总额关系，逗号分组格式未漂移。"
+    },
+    {
+      "id": "dictation_memo_04",
+      "status": "pass",
+      "source_evidence": "呃，那个，请。更新文档。",
+      "target_evidence": "请更新文档。",
+      "reason": "保留更新文档的请求，修复边界并去口癖。"
+    },
+    {
+      "id": "navigation_05",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，请，请。寄到苏州。",
+      "target_evidence": "请寄到苏州。",
+      "reason": "三个口癖、重复“请”和边界中断均实际出现；目标清理后保留唯一请求和苏州地点。"
+    }
+  ],
+  "limitations": "Text-level review only; it does not validate audio fidelity."
+}

@@ -1,0 +1,24 @@
+{
+  "test_samples": 64,
+  "normalized_identical": 64,
+  "quality": {
+    "saved": {
+      "entity_hits": 48,
+      "entity_mentions": 95,
+      "cer_errors": 116,
+      "reference_chars": 1530,
+      "entity_recall": 0.5052631578947369,
+      "CER": 0.07581699346405228
+    },
+    "fresh": {
+      "entity_hits": 48,
+      "entity_mentions": 95,
+      "cer_errors": 116,
+      "reference_chars": 1530,
+      "entity_recall": 0.5052631578947369,
+      "CER": 0.07581699346405228
+    }
+  },
+  "changed_transcripts": [],
+  "scope": "Fresh64 actual Qwen no-context accelerated HTTP runs vs fixed saved primary; not a new parameter sweep, not paced/concurrent latency."
+}

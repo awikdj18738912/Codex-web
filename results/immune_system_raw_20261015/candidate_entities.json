@@ -1,0 +1,667 @@
+{
+  "status": "candidate_glossary_for_user_review_not_evaluation_gold",
+  "unique_concept_candidates": 31,
+  "counting": "Aliases/Chinese-English forms grouped; true biological subtypes separate; repeated mentions not separate entries. Parent/child terms may overlap and must not be double-counted in future mention scoring.",
+  "audio_duration_seconds": 1005.4826875,
+  "raw_transcript_file": "raw_transcript.txt",
+  "repair_performed": false,
+  "references": [
+    {
+      "title": "免疫系统的细胞成分，MSD专业版（2026年4月更新）",
+      "url": "https://www.msdmanuals.cn/professional/immunology-allergic-disorders/biology-of-the-immune-system/cellular-components-of-the-immune-system"
+    },
+    {
+      "title": "医学免疫学教材：白细胞分化抗原和黏附分子",
+      "url": "https://www.sinobook.com.cn/bookext/1051664.pdf"
+    },
+    {
+      "title": "NCBI FAS/APO-1/CD95 同义名称",
+      "url": "https://www.ncbi.nlm.nih.gov/protein/CAA61473.1"
+    },
+    {
+      "title": "免疫受体酪氨酸激活/抑制基序，大学医学期刊",
+      "url": "https://journal.dmu.edu.cn/en/article/doi/10.11724/jdmu.2026.03.10"
+    },
+    {
+      "title": "膜攻击复合物研究，天津医科大学作者论文",
+      "url": "https://highlights.paper.edu.cn/index/paper_detail/6873"
+    }
+  ],
+  "entities": [
+    {
+      "id": 3,
+      "canonical_candidate": "嗜酸性粒细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "是酸性粒细胞"
+      ],
+      "note": "疑似同音错字，待听审",
+      "occurrence_examples": [
+        {
+          "raw_surface": "是酸性粒细胞",
+          "first_raw_character_offset": 469,
+          "first_asr_observed_audio_seconds": 112.0
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "canonical_candidate": "嗜碱性粒细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "是碱性粒细胞"
+      ],
+      "note": "疑似同音错字，待听审",
+      "occurrence_examples": [
+        {
+          "raw_surface": "是碱性粒细胞",
+          "first_raw_character_offset": 476,
+          "first_asr_observed_audio_seconds": 114.0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "canonical_candidate": "嗜中性粒细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "是中性粒细胞",
+        "嗜中性粒细胞",
+        "中心粒细胞"
+      ],
+      "note": "嗜中性/中性均可接受；是中性/中心需听审",
+      "occurrence_examples": [
+        {
+          "raw_surface": "是中性粒细胞",
+          "first_raw_character_offset": 483,
+          "first_asr_observed_audio_seconds": 116.0
+        },
+        {
+          "raw_surface": "嗜中性粒细胞",
+          "first_raw_character_offset": 493,
+          "first_asr_observed_audio_seconds": 118.0
+        },
+        {
+          "raw_surface": "中心粒细胞",
+          "first_raw_character_offset": 554,
+          "first_asr_observed_audio_seconds": 132.0
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "canonical_candidate": "自然杀伤细胞（NK细胞）",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "自然杀伤细胞",
+        "NK细胞"
+      ],
+      "note": "中文正确；英文Nature Killer Cell需听审",
+      "occurrence_examples": [
+        {
+          "raw_surface": "自然杀伤细胞",
+          "first_raw_character_offset": 724,
+          "first_asr_observed_audio_seconds": 171.0
+        },
+        {
+          "raw_surface": "NK细胞",
+          "first_raw_character_offset": 731,
+          "first_asr_observed_audio_seconds": 173.0
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "canonical_candidate": "固有淋巴样细胞（ILC）",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "固有淋巴样细胞",
+        "ILC"
+      ],
+      "note": "原文拼写基本一致",
+      "occurrence_examples": [
+        {
+          "raw_surface": "固有淋巴样细胞",
+          "first_raw_character_offset": 817,
+          "first_asr_observed_audio_seconds": 193.0
+        },
+        {
+          "raw_surface": "ILC",
+          "first_raw_character_offset": 880,
+          "first_asr_observed_audio_seconds": 206.0
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "canonical_candidate": "ILC1",
+      "group": "细胞亚群",
+      "raw_surface_examples": [
+        "LC一"
+      ],
+      "note": "疑似缩写缺I；与后两项分开计不同亚群",
+      "occurrence_examples": [
+        {
+          "raw_surface": "LC一",
+          "first_raw_character_offset": 909,
+          "first_asr_observed_audio_seconds": 212.0
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "canonical_candidate": "ILC2",
+      "group": "细胞亚群",
+      "raw_surface_examples": [
+        "LC二"
+      ],
+      "note": "疑似缩写缺I",
+      "occurrence_examples": [
+        {
+          "raw_surface": "LC二",
+          "first_raw_character_offset": 913,
+          "first_asr_observed_audio_seconds": 214.0
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "canonical_candidate": "ILC3",
+      "group": "细胞亚群",
+      "raw_surface_examples": [
+        "LC三"
+      ],
+      "note": "疑似缩写缺I",
+      "occurrence_examples": [
+        {
+          "raw_surface": "LC三",
+          "first_raw_character_offset": 917,
+          "first_asr_observed_audio_seconds": 214.0
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "canonical_candidate": "固有样淋巴细胞（ILL）",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "固有样淋巴细胞",
+        "I L L细胞"
+      ],
+      "note": "与固有淋巴样细胞不是同一项，不能互换",
+      "occurrence_examples": [
+        {
+          "raw_surface": "固有样淋巴细胞",
+          "first_raw_character_offset": 830,
+          "first_asr_observed_audio_seconds": 195.0
+        },
+        {
+          "raw_surface": "I L L细胞",
+          "first_raw_character_offset": 1342,
+          "first_asr_observed_audio_seconds": 311.0
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "canonical_candidate": "γδ T细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "伽马、德尔塔T细胞",
+        "伽马delta T细胞"
+      ],
+      "note": "字母写法归一，不直接算识别错误",
+      "occurrence_examples": [
+        {
+          "raw_surface": "伽马、德尔塔T细胞",
+          "first_raw_character_offset": 1003,
+          "first_asr_observed_audio_seconds": 235.0
+        },
+        {
+          "raw_surface": "伽马delta T细胞",
+          "first_raw_character_offset": 1180,
+          "first_asr_observed_audio_seconds": 278.0
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "canonical_candidate": "B1细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "B一细胞"
+      ],
+      "note": "数字写法归一",
+      "occurrence_examples": [
+        {
+          "raw_surface": "B一细胞",
+          "first_raw_character_offset": 1013,
+          "first_asr_observed_audio_seconds": 237.0
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "canonical_candidate": "αβ T细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "阿尔法贝塔T细胞"
+      ],
+      "note": "字母写法归一",
+      "occurrence_examples": [
+        {
+          "raw_surface": "阿尔法贝塔T细胞",
+          "first_raw_character_offset": 1419,
+          "first_asr_observed_audio_seconds": 329.0
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "canonical_candidate": "B2细胞",
+      "group": "细胞",
+      "raw_surface_examples": [
+        "B二细胞"
+      ],
+      "note": "数字写法归一",
+      "occurrence_examples": [
+        {
+          "raw_surface": "B二细胞",
+          "first_raw_character_offset": 1428,
+          "first_asr_observed_audio_seconds": 329.0
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "canonical_candidate": "T细胞受体（TCR）",
+      "group": "分子",
+      "raw_surface_examples": [
+        "T C R受体"
+      ],
+      "note": "缩写/中文全称同一项",
+      "occurrence_examples": [
+        {
+          "raw_surface": "T C R受体",
+          "first_raw_character_offset": 1472,
+          "first_asr_observed_audio_seconds": 337.0
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "canonical_candidate": "B细胞受体（BCR）",
+      "group": "分子",
+      "raw_surface_examples": [
+        "B C R受体"
+      ],
+      "note": "缩写/中文全称同一项",
+      "occurrence_examples": [
+        {
+          "raw_surface": "B C R受体",
+          "first_raw_character_offset": 1485,
+          "first_asr_observed_audio_seconds": 339.0
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "canonical_candidate": "人白细胞分化抗原（HLDA）",
+      "group": "分子概念",
+      "raw_surface_examples": [
+        "人白细胞分化抗原",
+        "HLDA"
+      ],
+      "note": "与HLA严格区分",
+      "occurrence_examples": [
+        {
+          "raw_surface": "人白细胞分化抗原",
+          "first_raw_character_offset": 2055,
+          "first_asr_observed_audio_seconds": 459.0
+        },
+        {
+          "raw_surface": "HLDA",
+          "first_raw_character_offset": 2064,
+          "first_asr_observed_audio_seconds": 461.0
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "canonical_candidate": "祖B细胞（pro-B）",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "祖B细胞",
+        "pro B"
+      ],
+      "note": "接受祖B，保留讲者用词",
+      "occurrence_examples": [
+        {
+          "raw_surface": "祖B细胞",
+          "first_raw_character_offset": 2189,
+          "first_asr_observed_audio_seconds": 488.0
+        },
+        {
+          "raw_surface": "pro B",
+          "first_raw_character_offset": 2196,
+          "first_asr_observed_audio_seconds": 490.0
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "canonical_candidate": "初始B细胞（naive B）",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "哪一比较初始B细胞"
+      ],
+      "note": "疑似英文naive误识别；须听审确认实际发音",
+      "occurrence_examples": [
+        {
+          "raw_surface": "哪一比较初始B细胞",
+          "first_raw_character_offset": 2252,
+          "first_asr_observed_audio_seconds": 502.0
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "canonical_candidate": "活化B细胞（activated B）",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "activated活化B细胞"
+      ],
+      "note": "原文拼写基本一致",
+      "occurrence_examples": [
+        {
+          "raw_surface": "activated活化B细胞",
+          "first_raw_character_offset": 2265,
+          "first_asr_observed_audio_seconds": 506.0
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "canonical_candidate": "生发中心B细胞（GCB）",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "生发中心当中快速增殖的B细胞",
+        "GCB"
+      ],
+      "note": "不能把缩写在别处出现当成本处逐提及正确",
+      "occurrence_examples": [
+        {
+          "raw_surface": "生发中心当中快速增殖的B细胞",
+          "first_raw_character_offset": 2284,
+          "first_asr_observed_audio_seconds": 510.0
+        },
+        {
+          "raw_surface": "GCB",
+          "first_raw_character_offset": 2300,
+          "first_asr_observed_audio_seconds": 512.0
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "canonical_candidate": "记忆性B细胞",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "记忆性B细胞"
+      ],
+      "note": "接受讲者用词",
+      "occurrence_examples": [
+        {
+          "raw_surface": "记忆性B细胞",
+          "first_raw_character_offset": 2315,
+          "first_asr_observed_audio_seconds": 516.0
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "canonical_candidate": "浆细胞样细胞",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "浆细胞样细胞"
+      ],
+      "note": "不推定为浆细胞样树突状细胞",
+      "occurrence_examples": [
+        {
+          "raw_surface": "浆细胞样细胞",
+          "first_raw_character_offset": 2322,
+          "first_asr_observed_audio_seconds": 517.0
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "canonical_candidate": "浆细胞",
+      "group": "发育阶段",
+      "raw_surface_examples": [
+        "浆细胞"
+      ],
+      "note": "含与浆细胞样细胞嵌套，后续评分按跨度避免重复计数",
+      "occurrence_examples": [
+        {
+          "raw_surface": "浆细胞",
+          "first_raw_character_offset": 2322,
+          "first_asr_observed_audio_seconds": 516.0
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "canonical_candidate": "分化群（CD）",
+      "group": "命名概念",
+      "raw_surface_examples": [
+        "分化群",
+        "CD",
+        "C D编号"
+      ],
+      "note": "分化群/分化簇均接受",
+      "occurrence_examples": [
+        {
+          "raw_surface": "分化群",
+          "first_raw_character_offset": 2480,
+          "first_asr_observed_audio_seconds": 553.0
+        },
+        {
+          "raw_surface": "CD",
+          "first_raw_character_offset": 2535,
+          "first_asr_observed_audio_seconds": 566.0
+        },
+        {
+          "raw_surface": "C D编号",
+          "first_raw_character_offset": 2819,
+          "first_asr_observed_audio_seconds": 625.0
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "canonical_candidate": "FAS／CD95",
+      "group": "分子",
+      "raw_surface_examples": [
+        "FAST",
+        "APT1",
+        "ALPS1A",
+        "APO-1",
+        "fas",
+        "C D九十五",
+        "肿瘤坏死因子受体超家族成员六"
+      ],
+      "note": "这些名称归同一项，FAST疑似FAS错写；别名不充当多个不同实体",
+      "occurrence_examples": [
+        {
+          "raw_surface": "FAST",
+          "first_raw_character_offset": 2715,
+          "first_asr_observed_audio_seconds": 603.0
+        },
+        {
+          "raw_surface": "APT1",
+          "first_raw_character_offset": 2722,
+          "first_asr_observed_audio_seconds": 605.0
+        },
+        {
+          "raw_surface": "ALPS1A",
+          "first_raw_character_offset": 2729,
+          "first_asr_observed_audio_seconds": 608.0
+        },
+        {
+          "raw_surface": "APO-1",
+          "first_raw_character_offset": 2739,
+          "first_asr_observed_audio_seconds": 608.0
+        },
+        {
+          "raw_surface": "fas",
+          "first_raw_character_offset": 2828,
+          "first_asr_observed_audio_seconds": 625.0
+        },
+        {
+          "raw_surface": "C D九十五",
+          "first_raw_character_offset": 2835,
+          "first_asr_observed_audio_seconds": 630.0
+        },
+        {
+          "raw_surface": "肿瘤坏死因子受体超家族成员六",
+          "first_raw_character_offset": 2748,
+          "first_asr_observed_audio_seconds": 612.0
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "canonical_candidate": "人类白细胞抗原（HLA）",
+      "group": "分子",
+      "raw_surface_examples": [
+        "人类白细胞抗原HLA",
+        "HLA"
+      ],
+      "note": "不可把本处HLA和会议语境疑似HLDA混合纠正",
+      "occurrence_examples": [
+        {
+          "raw_surface": "人类白细胞抗原HLA",
+          "first_raw_character_offset": 3702,
+          "first_asr_observed_audio_seconds": 821.0
+        },
+        {
+          "raw_surface": "HLA",
+          "first_raw_character_offset": 3059,
+          "first_asr_observed_audio_seconds": 671.0
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "canonical_candidate": "免疫受体酪氨酸活化基序（ITAM）",
+      "group": "信号基序",
+      "raw_surface_examples": [
+        "免疫受体酪氨酸活化积蓄",
+        "ITAM"
+      ],
+      "note": "积蓄疑似基序；后文ATM需根据语境听审",
+      "occurrence_examples": [
+        {
+          "raw_surface": "免疫受体酪氨酸活化积蓄",
+          "first_raw_character_offset": 3286,
+          "first_asr_observed_audio_seconds": 725.0
+        },
+        {
+          "raw_surface": "ITAM",
+          "first_raw_character_offset": 3298,
+          "first_asr_observed_audio_seconds": 725.0
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "canonical_candidate": "免疫受体酪氨酸抑制基序（ITIM）",
+      "group": "信号基序",
+      "raw_surface_examples": [
+        "免疫受体酪氨酸抑制积蓄",
+        "ITIM"
+      ],
+      "note": "积蓄疑似基序；不能把所有ATM无差别映射",
+      "occurrence_examples": [
+        {
+          "raw_surface": "免疫受体酪氨酸抑制积蓄",
+          "first_raw_character_offset": 3314,
+          "first_asr_observed_audio_seconds": 728.0
+        },
+        {
+          "raw_surface": "ITIM",
+          "first_raw_character_offset": 3326,
+          "first_asr_observed_audio_seconds": 731.0
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "canonical_candidate": "黏附分子",
+      "group": "分子",
+      "raw_surface_examples": [
+        "粘附分子"
+      ],
+      "note": "黏/粘字形习惯，单列归一不计确定错误",
+      "occurrence_examples": [
+        {
+          "raw_surface": "粘附分子",
+          "first_raw_character_offset": 3431,
+          "first_asr_observed_audio_seconds": 756.0
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "canonical_candidate": "抗原提呈细胞",
+      "group": "细胞功能类群",
+      "raw_surface_examples": [
+        "抗原提呈细胞"
+      ],
+      "note": "呈递/提呈/递呈为常见异体术语，不强行计错误",
+      "occurrence_examples": [
+        {
+          "raw_surface": "抗原提呈细胞",
+          "first_raw_character_offset": 3947,
+          "first_asr_observed_audio_seconds": 876.0
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "canonical_candidate": "攻膜复合物（MAC）",
+      "group": "分子复合物",
+      "raw_surface_examples": [
+        "MAC",
+        "攻膜复合物"
+      ],
+      "note": "攻膜复合物是可接受名称，亦称膜攻击复合物，不计错",
+      "occurrence_examples": [
+        {
+          "raw_surface": "MAC",
+          "first_raw_character_offset": 4185,
+          "first_asr_observed_audio_seconds": 936.0
+        },
+        {
+          "raw_surface": "攻膜复合物",
+          "first_raw_character_offset": 4189,
+          "first_asr_observed_audio_seconds": 938.0
+        }
+      ]
+    }
+  ],
+  "filter_policy": "Literal original label filter only: exclude entries whose original note is exactly 原文拼写一致; retain everything else, including 基本一致, abbreviations, digits, Greek letters, accepted synonyms and uncertain cases.",
+  "excluded_original_ids": [
+    1,
+    2,
+    20,
+    21,
+    30,
+    35,
+    37,
+    38,
+    40,
+    41
+  ]
+}

@@ -1,0 +1,417 @@
+{
+  "splits": {
+    "dev": {
+      "qwen_raw": {
+        "samples": 171,
+        "entity_hits": 118,
+        "entity_mentions": 191,
+        "entity_recall": 0.6178010471204188,
+        "cer_errors": 224,
+        "reference_chars": 4240,
+        "cer": 0.052830188679245285
+      },
+      "ctc_greedy": {
+        "samples": 171,
+        "entity_hits": 108,
+        "entity_mentions": 191,
+        "entity_recall": 0.5654450261780105,
+        "cer_errors": 366,
+        "reference_chars": 4240,
+        "cer": 0.08632075471698113
+      },
+      "native_greedy": {
+        "samples": 171,
+        "entity_hits": 109,
+        "entity_mentions": 191,
+        "entity_recall": 0.5706806282722513,
+        "cer_errors": 372,
+        "reference_chars": 4240,
+        "cer": 0.08773584905660377
+      },
+      "native_beam": {
+        "samples": 171,
+        "entity_hits": 112,
+        "entity_mentions": 191,
+        "entity_recall": 0.5863874345549738,
+        "cer_errors": 348,
+        "reference_chars": 4240,
+        "cer": 0.0820754716981132
+      },
+      "native_hotword": {
+        "samples": 171,
+        "entity_hits": 129,
+        "entity_mentions": 191,
+        "entity_recall": 0.675392670157068,
+        "cer_errors": 322,
+        "reference_chars": 4240,
+        "cer": 0.07594339622641509
+      },
+      "qwen_ctc_sidecar": {
+        "samples": 171,
+        "entity_hits": 140,
+        "entity_mentions": 191,
+        "entity_recall": 0.7329842931937173,
+        "cer_errors": 201,
+        "reference_chars": 4240,
+        "cer": 0.047405660377358494
+      }
+    },
+    "test": {
+      "qwen_raw": {
+        "samples": 1829,
+        "entity_hits": 1224,
+        "entity_mentions": 2467,
+        "entity_recall": 0.496149169031212,
+        "cer_errors": 2892,
+        "reference_chars": 42784,
+        "cer": 0.06759536275243082
+      },
+      "ctc_greedy": {
+        "samples": 1829,
+        "entity_hits": 1323,
+        "entity_mentions": 2467,
+        "entity_recall": 0.5362788812322659,
+        "cer_errors": 3986,
+        "reference_chars": 42784,
+        "cer": 0.09316566940912491
+      },
+      "native_greedy": {
+        "samples": 1829,
+        "entity_hits": 1349,
+        "entity_mentions": 2467,
+        "entity_recall": 0.5468179975678963,
+        "cer_errors": 4294,
+        "reference_chars": 42784,
+        "cer": 0.10036462228870606
+      },
+      "native_beam": {
+        "samples": 1829,
+        "entity_hits": 1406,
+        "entity_mentions": 2467,
+        "entity_recall": 0.5699229833806242,
+        "cer_errors": 3846,
+        "reference_chars": 42784,
+        "cer": 0.08989341810022439
+      },
+      "native_hotword": {
+        "samples": 1829,
+        "entity_hits": 1570,
+        "entity_mentions": 2467,
+        "entity_recall": 0.636400486420754,
+        "cer_errors": 3654,
+        "reference_chars": 42784,
+        "cer": 0.08540575916230367
+      },
+      "qwen_ctc_sidecar": {
+        "samples": 1829,
+        "entity_hits": 1675,
+        "entity_mentions": 2467,
+        "entity_recall": 0.6789623023915687,
+        "cer_errors": 2322,
+        "reference_chars": 42784,
+        "cer": 0.05427262528047869
+      }
+    },
+    "control": {
+      "qwen_raw": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 15,
+        "reference_chars": 1396,
+        "cer": 0.010744985673352435
+      },
+      "ctc_greedy": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 31,
+        "reference_chars": 1396,
+        "cer": 0.022206303724928367
+      },
+      "native_greedy": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 36,
+        "reference_chars": 1396,
+        "cer": 0.025787965616045846
+      },
+      "native_beam": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 29,
+        "reference_chars": 1396,
+        "cer": 0.020773638968481375
+      },
+      "native_hotword": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 29,
+        "reference_chars": 1396,
+        "cer": 0.020773638968481375
+      },
+      "qwen_ctc_sidecar": {
+        "samples": 100,
+        "entity_hits": 0,
+        "entity_mentions": 0,
+        "entity_recall": 0.0,
+        "cer_errors": 15,
+        "reference_chars": 1396,
+        "cer": 0.010744985673352435
+      }
+    }
+  },
+  "performance": {
+    "dev": {
+      "qwen_raw": {
+        "samples_with_compute": 0,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": null,
+        "sum_audio_seconds_for_compute": null,
+        "compute_rtf": null,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      },
+      "ctc_greedy": {
+        "samples_with_compute": 171,
+        "samples_with_finish_wall": 171,
+        "sum_compute_seconds": 191.60459233727306,
+        "sum_audio_seconds_for_compute": 1039.2980625,
+        "compute_rtf": 0.1843596166015878,
+        "finish_wall_p50_seconds": 0.11115942383185029,
+        "finish_wall_p95_seconds": 0.15881439298391342
+      },
+      "native_greedy": {
+        "samples_with_compute": 171,
+        "samples_with_finish_wall": 171,
+        "sum_compute_seconds": 181.86218363512307,
+        "sum_audio_seconds_for_compute": 1039.2980625,
+        "compute_rtf": 0.1749855890211698,
+        "finish_wall_p50_seconds": 0.10654995171353221,
+        "finish_wall_p95_seconds": 0.15175128588452935
+      },
+      "native_beam": {
+        "samples_with_compute": 171,
+        "samples_with_finish_wall": 171,
+        "sum_compute_seconds": 189.66657418198884,
+        "sum_audio_seconds_for_compute": 1039.2980625,
+        "compute_rtf": 0.1824948790203184,
+        "finish_wall_p50_seconds": 0.11088617891073227,
+        "finish_wall_p95_seconds": 0.15875010192394257
+      },
+      "native_hotword": {
+        "samples_with_compute": 171,
+        "samples_with_finish_wall": 171,
+        "sum_compute_seconds": 193.40600908221677,
+        "sum_audio_seconds_for_compute": 1039.2980625,
+        "compute_rtf": 0.18609291796136374,
+        "finish_wall_p50_seconds": 0.11356413271278143,
+        "finish_wall_p95_seconds": 0.16208615945652127
+      },
+      "qwen_ctc_sidecar": {
+        "samples_with_compute": 171,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": 249.05346951354295,
+        "sum_audio_seconds_for_compute": 1039.2980625,
+        "compute_rtf": 0.23963622997088282,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      }
+    },
+    "test": {
+      "qwen_raw": {
+        "samples_with_compute": 0,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": null,
+        "sum_audio_seconds_for_compute": null,
+        "compute_rtf": null,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      },
+      "ctc_greedy": {
+        "samples_with_compute": 1829,
+        "samples_with_finish_wall": 1829,
+        "sum_compute_seconds": 2116.7918577236123,
+        "sum_audio_seconds_for_compute": 10626.2868125,
+        "compute_rtf": 0.19920334309380494,
+        "finish_wall_p50_seconds": 0.11502629471942782,
+        "finish_wall_p95_seconds": 0.16299804206937551
+      },
+      "native_greedy": {
+        "samples_with_compute": 1829,
+        "samples_with_finish_wall": 1829,
+        "sum_compute_seconds": 1960.2737409709953,
+        "sum_audio_seconds_for_compute": 10626.2868125,
+        "compute_rtf": 0.18447401011847997,
+        "finish_wall_p50_seconds": 0.11073198216035962,
+        "finish_wall_p95_seconds": 0.15530685195699334
+      },
+      "native_beam": {
+        "samples_with_compute": 1829,
+        "samples_with_finish_wall": 1829,
+        "sum_compute_seconds": 2060.4349572621286,
+        "sum_audio_seconds_for_compute": 10626.2868125,
+        "compute_rtf": 0.19389980654751204,
+        "finish_wall_p50_seconds": 0.11685548583045602,
+        "finish_wall_p95_seconds": 0.1662832871079445
+      },
+      "native_hotword": {
+        "samples_with_compute": 1829,
+        "samples_with_finish_wall": 1829,
+        "sum_compute_seconds": 2054.8334682867862,
+        "sum_audio_seconds_for_compute": 10626.2868125,
+        "compute_rtf": 0.19337267142739153,
+        "finish_wall_p50_seconds": 0.11663243686780334,
+        "finish_wall_p95_seconds": 0.16598996985703707
+      },
+      "qwen_ctc_sidecar": {
+        "samples_with_compute": 1829,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": 2695.1602579057217,
+        "sum_audio_seconds_for_compute": 10626.2868635,
+        "compute_rtf": 0.2536314229538889,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      }
+    },
+    "control": {
+      "qwen_raw": {
+        "samples_with_compute": 0,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": null,
+        "sum_audio_seconds_for_compute": null,
+        "compute_rtf": null,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      },
+      "ctc_greedy": {
+        "samples_with_compute": 100,
+        "samples_with_finish_wall": 100,
+        "sum_compute_seconds": 88.35299410903826,
+        "sum_audio_seconds_for_compute": 469.63325,
+        "compute_rtf": 0.18813189677059336,
+        "finish_wall_p50_seconds": 0.10981348692439497,
+        "finish_wall_p95_seconds": 0.15734600787982345
+      },
+      "native_greedy": {
+        "samples_with_compute": 100,
+        "samples_with_finish_wall": 100,
+        "sum_compute_seconds": 92.37852851115167,
+        "sum_audio_seconds_for_compute": 469.63325,
+        "compute_rtf": 0.19670355221047844,
+        "finish_wall_p50_seconds": 0.1169682745821774,
+        "finish_wall_p95_seconds": 0.1667101443745196
+      },
+      "native_beam": {
+        "samples_with_compute": 100,
+        "samples_with_finish_wall": 100,
+        "sum_compute_seconds": 96.80762800341472,
+        "sum_audio_seconds_for_compute": 469.63325,
+        "compute_rtf": 0.20613452732193627,
+        "finish_wall_p50_seconds": 0.12317113461904228,
+        "finish_wall_p95_seconds": 0.17815314000472426
+      },
+      "native_hotword": {
+        "samples_with_compute": 100,
+        "samples_with_finish_wall": 100,
+        "sum_compute_seconds": 95.45725926896557,
+        "sum_audio_seconds_for_compute": 469.63325,
+        "compute_rtf": 0.20325915864978805,
+        "finish_wall_p50_seconds": 0.12332717259414494,
+        "finish_wall_p95_seconds": 0.17189693404361606
+      },
+      "qwen_ctc_sidecar": {
+        "samples_with_compute": 100,
+        "samples_with_finish_wall": 0,
+        "sum_compute_seconds": 125.14858581544831,
+        "sum_audio_seconds_for_compute": 469.633278,
+        "compute_rtf": 0.26648151159221795,
+        "finish_wall_p50_seconds": null,
+        "finish_wall_p95_seconds": null
+      }
+    }
+  },
+  "native_dictionary_coverage": {
+    "dev": {
+      "native_greedy": {
+        "samples": 171,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_beam": {
+        "samples": 171,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_hotword": {
+        "samples": 171,
+        "canonical_requested_sum": 35832,
+        "canonical_encoded_sum": 17784,
+        "canonical_encoded_fraction": 0.49631614199598123
+      }
+    },
+    "test": {
+      "native_greedy": {
+        "samples": 1829,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_beam": {
+        "samples": 1829,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_hotword": {
+        "samples": 1829,
+        "canonical_requested_sum": 2112399,
+        "canonical_encoded_sum": 1023650,
+        "canonical_encoded_fraction": 0.4845912159587275
+      }
+    },
+    "control": {
+      "native_greedy": {
+        "samples": 100,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_beam": {
+        "samples": 100,
+        "canonical_requested_sum": 0,
+        "canonical_encoded_sum": 0,
+        "canonical_encoded_fraction": null
+      },
+      "native_hotword": {
+        "samples": 100,
+        "canonical_requested_sum": 21649,
+        "canonical_encoded_sum": 11011,
+        "canonical_encoded_fraction": 0.5086147166150862
+      }
+    }
+  },
+  "selection": {
+    "native_hotword_score": 2.0,
+    "hybrid_minimum_gap": -2.0,
+    "hybrid_minimum_margin": 0.1
+  },
+  "samples_with_unsupported_library_additions": 23,
+  "limitations": [
+    "Dataset is source-group separated dev/test; reports are specific to these model backends and this corpus.",
+    "Native CJK character-only dictionary encoding can cover only part of the all-canonical library; encoded and requested coverage are reported from native outputs.",
+    "Non-reference library canonical occurrences and incremental additions are lexical audit candidates only, not human-reviewed precision.",
+    "First match means the canonical appears in two consecutive available partials; the field records the first partial audio-available position. There is no gold acoustic entity-end time, so this is not entity-speech-end-to-caption latency.",
+    "Hybrid sequential compute is a compute estimate from CTC plus fusion plus saved Qwen primary HTTP wall where available; it is not measured concurrent end-to-end latency and is not comparable to native CPU wall time."
+  ]
+}

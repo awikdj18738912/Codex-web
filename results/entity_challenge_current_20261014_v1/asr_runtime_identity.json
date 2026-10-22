@@ -1,0 +1,20 @@
+{
+  "running_processes": [
+    {
+      "pid": 1455505,
+      "args": "/home/aim0/data/conda/envs/qwen3-asr/bin/python -m system.qwen_asr_stream_server --model /home/aim0/data/models/ASR/Qwen3-ASR-1.7B --gpu-memory-utilization 0.55 --max-model-len 32768 --confidence-logprobs 5 --segmentation-mode vad_finalize --asr-send-chunk-seconds 0.5 --vad silero --vad-model /home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx --vad-energy-threshold 0.02 --vad-min-silence 0.7 --vad-min-speech 0.25 --vad-preroll 0.7 --vad-tail-pad 1.0 --silence-rms-threshold 0.002 --port 8766 ",
+      "cwd": "/home/aim0/桌面/tan/ASR/Codex-web"
+    }
+  ],
+  "model_metadata_matches_saved_baseline": {
+    "configuration.json": true,
+    "tokenizer_config.json": true,
+    "generation_config.json": true,
+    "chat_template.json": true,
+    "preprocessor_config.json": true,
+    "config.json": true,
+    "vocab.json": true,
+    "model.safetensors.index.json": true
+  },
+  "all_metadata_match": true
+}

@@ -1,0 +1,105 @@
+{
+  "total": 8,
+  "verdict_correct": 7,
+  "known_bad_rejected": 3,
+  "correct_accepted": 4,
+  "note": "Diagnostic controls call semantic QC directly; numeric/entity admission is evaluated separately.",
+  "items": [
+    {
+      "id": "fixed_numeric_correction_known_bad_v1",
+      "case": "fixed_numeric_correction",
+      "label_kind": "known_bad_v1",
+      "source": "预算是300元，不对，预算改成500元。",
+      "target": "预算是300元，不对，预算改成500元。",
+      "expected_pass": false,
+      "actual_pass": false,
+      "verdict_correct": true,
+      "reason": "保留了被否定的300元，应仅保留最终确定的500元",
+      "elapsed_seconds": 4.27
+    },
+    {
+      "id": "fixed_numeric_correction_correct",
+      "case": "fixed_numeric_correction",
+      "label_kind": "correct",
+      "source": "预算是300元，不对，预算改成500元。",
+      "target": "预算改成500元。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "verdict_correct": true,
+      "reason": "Final intent preserved; retracted 300元 removed",
+      "elapsed_seconds": 1.156
+    },
+    {
+      "id": "fixed_rollback_known_bad_v1",
+      "case": "fixed_rollback",
+      "label_kind": "known_bad_v1",
+      "source": "我想用红色，改成蓝色，还是用红色吧。",
+      "target": "我想用红色，改成蓝色，还是用红色吧。",
+      "expected_pass": false,
+      "actual_pass": true,
+      "verdict_correct": false,
+      "reason": "保留了最终意图‘用红色’，并移除了被否定的‘蓝色’选项，无冗余或识别性提示",
+      "elapsed_seconds": 2.894
+    },
+    {
+      "id": "fixed_rollback_correct",
+      "case": "fixed_rollback",
+      "label_kind": "correct",
+      "source": "我想用红色，改成蓝色，还是用红色吧。",
+      "target": "我想用红色吧。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "verdict_correct": true,
+      "reason": "Final intent '红色' preserved; '蓝色' retracted and removed; no spelling aids present.",
+      "elapsed_seconds": 2.942
+    },
+    {
+      "id": "fixed_multiple_known_bad_v1",
+      "case": "fixed_multiple",
+      "label_kind": "known_bad_v1",
+      "source": "周一开会，不对周二，最后定周三开会。",
+      "target": "周一开会，不对，周二，最后定周三开会。",
+      "expected_pass": false,
+      "actual_pass": false,
+      "verdict_correct": true,
+      "reason": "Retracted alternative '周二' was not removed, violating cleanup completeness",
+      "elapsed_seconds": 4.039
+    },
+    {
+      "id": "fixed_multiple_correct",
+      "case": "fixed_multiple",
+      "label_kind": "correct",
+      "source": "周一开会，不对周二，最后定周三开会。",
+      "target": "最后定周三开会。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "verdict_correct": true,
+      "reason": "Retracted alternative '周一' and '周二' are correctly removed; final intent '周三开会' is preserved without added content.",
+      "elapsed_seconds": 4.68
+    },
+    {
+      "id": "fixed_spelling_cue_known_bad_v1",
+      "case": "fixed_spelling_cue",
+      "label_kind": "known_bad_v1",
+      "source": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "target": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "expected_pass": false,
+      "actual_pass": false,
+      "verdict_correct": true,
+      "reason": "spelling aid '钟表的钟，宁静的宁' retained; should be removed as identification-only cue",
+      "elapsed_seconds": 5.587
+    },
+    {
+      "id": "fixed_spelling_cue_correct",
+      "case": "fixed_spelling_cue",
+      "label_kind": "correct",
+      "source": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "target": "收件人是钟宁。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "verdict_correct": true,
+      "reason": "Spelling explanation '钟表的钟，宁静的宁' removed as recognition-only aid; final intent '钟宁' preserved.",
+      "elapsed_seconds": 6.46
+    }
+  ]
+}

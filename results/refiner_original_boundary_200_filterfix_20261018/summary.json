@@ -1,0 +1,215 @@
+{
+  "target_denominator": 200,
+  "candidate_count": 200,
+  "quality_pass_before_retention": 151,
+  "retained": 151,
+  "raw_retained_rate": 0.755,
+  "reject_reasons": {
+    "oral_rejected": 14,
+    "retained": 151,
+    "audit_rejected": 35
+  },
+  "candidate_stage_counts": {
+    "oral_rejected": 14,
+    "quality_pass": 151,
+    "audit_rejected": 35
+  },
+  "retained_by_scene": {
+    "daily_chat": 19,
+    "customer_service": 18,
+    "explanation": 19,
+    "meeting": 17,
+    "navigation": 9,
+    "vibe_coding": 37,
+    "dictation_memo": 13,
+    "voice_search": 7,
+    "academic": 12
+  },
+  "candidate_by_scene": {
+    "explanation": 41,
+    "daily_chat": 24,
+    "customer_service": 21,
+    "meeting": 21,
+    "navigation": 10,
+    "vibe_coding": 42,
+    "dictation_memo": 17,
+    "voice_search": 10,
+    "academic": 14
+  },
+  "scene_quotas": {
+    "daily_chat": 24,
+    "vibe_coding": 42,
+    "explanation": 41,
+    "meeting": 21,
+    "customer_service": 21,
+    "academic": 14,
+    "navigation": 10,
+    "dictation_memo": 17,
+    "voice_search": 10
+  },
+  "seed": 2026101817,
+  "seed_source": "/home/aim0/data/datasets/ASR/refiner_original_boundary_200_20261017/seeds",
+  "seed_aggregate_sha256": "3408ed43967aee68cde3b36f096610e324a53e679746f6b65351725bc0a79e28",
+  "teacher_model": {
+    "id": "refiner-teacher",
+    "object": "model",
+    "created": 1792255839,
+    "owned_by": "vllm",
+    "root": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+    "parent": null,
+    "max_model_len": 8192,
+    "permission": [
+      {
+        "id": "modelperm-8ed51cfbc6e682c4",
+        "object": "model_permission",
+        "created": 1792255839,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+      }
+    ]
+  },
+  "teacher_endpoint": "http://127.0.0.1:8010/v1",
+  "api_calls_total": 558,
+  "api_calls_by_stage": {
+    "oral": 200,
+    "clean": 172,
+    "audit": 186
+  },
+  "api_call_errors": 0,
+  "retained_input_vs_output": {
+    "same": 20,
+    "different": 131
+  },
+  "target_origin_counts": {
+    "teacher-reconstruction": 138,
+    "passthrough": 13
+  },
+  "source_manifest_aggregate_sha256": "a52719c1e9aac265a518b4340fc883fdd9710d44a8114a993af8c49871e15a62",
+  "full_structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 151,
+      "records": 151,
+      "reservoir_candidates": 151,
+      "minimum_required": 151
+    },
+    "input_sha256": "d5870c60bb46c8670781b0b37d176d4fa4a1d96f59519c4e89fe34c2291f94e5"
+  },
+  "review_sample_records": 151,
+  "training_performed": false,
+  "completed_utc": "2026-10-17T17:13:39.777744+00:00",
+  "serial_integrity": {
+    "candidate_count": 200,
+    "unique_serials": 200,
+    "serial_range": [
+      0,
+      199
+    ],
+    "missing_serials": [],
+    "duplicate_serials": []
+  },
+  "clean_rejected": 0,
+  "other_stage_rejections": {
+    "keyword_rejected": 0,
+    "asr_rejected": 0,
+    "assembly_rejected": 0,
+    "export_rejected": 0
+  },
+  "audit_rejected_reason_categories": {
+    "cleanup_complete": 30,
+    "source_valid": 4,
+    "audit_target_not_clean_or_not_exact": 1
+  },
+  "unsupported_content_edits_occurrences": 0,
+  "candidate_by_scene_and_status": {
+    "customer_service": {
+      "quality_pass": 18,
+      "audit_rejected": 1,
+      "oral_rejected": 2
+    },
+    "explanation": {
+      "audit_rejected": 20,
+      "quality_pass": 19,
+      "oral_rejected": 2
+    },
+    "daily_chat": {
+      "quality_pass": 19,
+      "oral_rejected": 3,
+      "audit_rejected": 2
+    },
+    "meeting": {
+      "quality_pass": 17,
+      "oral_rejected": 4
+    },
+    "navigation": {
+      "quality_pass": 9,
+      "audit_rejected": 1
+    },
+    "vibe_coding": {
+      "quality_pass": 37,
+      "audit_rejected": 4,
+      "oral_rejected": 1
+    },
+    "dictation_memo": {
+      "quality_pass": 13,
+      "audit_rejected": 3,
+      "oral_rejected": 1
+    },
+    "voice_search": {
+      "audit_rejected": 3,
+      "quality_pass": 7
+    },
+    "academic": {
+      "audit_rejected": 1,
+      "quality_pass": 12,
+      "oral_rejected": 1
+    }
+  },
+  "boundary_punctuation_summary": {
+    "candidate_count": 13,
+    "status_counts": {
+      "quality_pass": 12,
+      "audit_rejected": 1
+    },
+    "by_scene": {
+      "meeting": {
+        "quality_pass": 3
+      },
+      "daily_chat": {
+        "quality_pass": 3,
+        "audit_rejected": 1
+      },
+      "vibe_coding": {
+        "quality_pass": 2
+      },
+      "customer_service": {
+        "quality_pass": 4
+      }
+    },
+    "quality_pass": 12,
+    "retained": 12
+  },
+  "posthoc_report": "posthoc_report.json",
+  "comparison_to_previous_original_boundary_round": {
+    "previous_retained": 39,
+    "previous_denominator": 200,
+    "previous_rate": 0.195,
+    "current_retained": 151,
+    "current_denominator": 200,
+    "current_rate": 0.755,
+    "retained_delta": 112,
+    "rate_delta_percentage_points": 56.00000000000001
+  }
+}

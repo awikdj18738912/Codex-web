@@ -1,0 +1,131 @@
+{
+  "method": "Identical 300 candidate IDs, seed pools, model and control RNG; stochastic teacher outputs may differ. Each subset is re-deduplicated independently in ID order.",
+  "baseline": {
+    "attempted": 300,
+    "accepted": 126,
+    "retained": 125,
+    "retained_rate": 0.4166666666666667,
+    "acceptance_rate": 0.42,
+    "statuses": {
+      "accepted": 126,
+      "oral_rejected": 98,
+      "asr_rejected": 28,
+      "audit_rejected": 37,
+      "clean_rejected": 8,
+      "assembly_rejected": 3
+    },
+    "by_structure": {
+      "multiple": {
+        "attempted": 67,
+        "oral_rejected": 44,
+        "audit_rejected": 9,
+        "assembly_rejected": 1,
+        "accepted": 8,
+        "asr_rejected": 4,
+        "clean_rejected": 1
+      },
+      "none_or_passthrough": {
+        "attempted": 95,
+        "accepted": 74,
+        "clean_rejected": 4,
+        "audit_rejected": 7,
+        "asr_rejected": 7,
+        "assembly_rejected": 1,
+        "oral_rejected": 2
+      },
+      "rollback": {
+        "attempted": 62,
+        "asr_rejected": 6,
+        "oral_rejected": 37,
+        "accepted": 8,
+        "audit_rejected": 11
+      },
+      "single": {
+        "attempted": 76,
+        "oral_rejected": 15,
+        "asr_rejected": 11,
+        "accepted": 36,
+        "clean_rejected": 3,
+        "audit_rejected": 10,
+        "assembly_rejected": 1
+      }
+    },
+    "unique_targets": 121,
+    "real_fragments": 8,
+    "asr_no_boundary_full_fallbacks": 0,
+    "asr_no_boundary_retained": 0
+  },
+  "current": {
+    "attempted": 300,
+    "accepted": 198,
+    "retained": 197,
+    "retained_rate": 0.6566666666666666,
+    "acceptance_rate": 0.66,
+    "statuses": {
+      "accepted": 198,
+      "oral_rejected": 20,
+      "clean_rejected": 33,
+      "audit_rejected": 38,
+      "asr_rejected": 6,
+      "assembly_rejected": 5
+    },
+    "by_structure": {
+      "multiple": {
+        "attempted": 67,
+        "accepted": 26,
+        "oral_rejected": 9,
+        "clean_rejected": 15,
+        "audit_rejected": 13,
+        "asr_rejected": 3,
+        "assembly_rejected": 1
+      },
+      "none_or_passthrough": {
+        "attempted": 95,
+        "accepted": 85,
+        "clean_rejected": 7,
+        "assembly_rejected": 2,
+        "oral_rejected": 1
+      },
+      "rollback": {
+        "attempted": 62,
+        "accepted": 30,
+        "audit_rejected": 16,
+        "oral_rejected": 6,
+        "clean_rejected": 9,
+        "asr_rejected": 1
+      },
+      "single": {
+        "attempted": 76,
+        "oral_rejected": 4,
+        "accepted": 57,
+        "audit_rejected": 9,
+        "assembly_rejected": 2,
+        "asr_rejected": 2,
+        "clean_rejected": 2
+      }
+    },
+    "unique_targets": 189,
+    "real_fragments": 10,
+    "asr_no_boundary_full_fallbacks": 38,
+    "asr_no_boundary_retained": 26
+  },
+  "same_control_assignment": true,
+  "seed_files_identical": {
+    "voice_search.json": true,
+    "customer_service.json": true,
+    "vibe_coding.json": true,
+    "explanation.json": true,
+    "navigation.json": true,
+    "meeting.json": true,
+    "daily_chat.json": true,
+    "academic.json": true,
+    "dictation_memo.json": true
+  },
+  "retained_percentage_point_gain": 23.999999999999993,
+  "transitions": {
+    "both_accept": 116,
+    "old_only": 10,
+    "new_only": 82,
+    "both_reject": 92
+  }
+}

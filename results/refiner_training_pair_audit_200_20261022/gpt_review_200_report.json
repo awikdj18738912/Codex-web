@@ -1,0 +1,154 @@
+{
+  "audit": "GPT-first manual semantic audit of stratified training-pair sample",
+  "sample_count": 200,
+  "sampling_design": "Risk-stratified diagnostic sample; counts must not be treated as prevalence estimates for the full corpus.",
+  "source_decision_counts": {
+    "review_pass": 140,
+    "repair_accepted": 60
+  },
+  "sample_strata_counts": {
+    "scene_balanced_random": 40,
+    "multi_correction": 42,
+    "numeric_surface": 28,
+    "english_entity": 42,
+    "clean_or_minimal": 24,
+    "long_text": 24
+  },
+  "verdict_counts_after_lead_adjudication": {
+    "MINOR": 10,
+    "PASS": 174,
+    "FAIL": 10,
+    "REVIEW": 6
+  },
+  "verdict_percent_after_lead_adjudication": {
+    "MINOR": 5.0,
+    "PASS": 87.0,
+    "FAIL": 5.0,
+    "REVIEW": 3.0
+  },
+  "by_scene": {
+    "academic": {
+      "PASS": 25,
+      "FAIL": 3,
+      "REVIEW": 1,
+      "MINOR": 1
+    },
+    "customer_service": {
+      "PASS": 10,
+      "FAIL": 2
+    },
+    "daily_chat": {
+      "MINOR": 2,
+      "PASS": 22,
+      "FAIL": 1
+    },
+    "dictation_memo": {
+      "PASS": 14
+    },
+    "explanation": {
+      "PASS": 43,
+      "MINOR": 3,
+      "FAIL": 1,
+      "REVIEW": 3
+    },
+    "meeting": {
+      "PASS": 15,
+      "REVIEW": 1
+    },
+    "navigation": {
+      "PASS": 6,
+      "REVIEW": 1,
+      "MINOR": 2
+    },
+    "vibe_coding": {
+      "PASS": 31,
+      "FAIL": 3,
+      "MINOR": 2
+    },
+    "voice_search": {
+      "PASS": 8
+    }
+  },
+  "by_sample_strata": {
+    "clean_or_minimal": {
+      "PASS": 24
+    },
+    "english_entity": {
+      "PASS": 33,
+      "FAIL": 4,
+      "MINOR": 4,
+      "REVIEW": 1
+    },
+    "long_text": {
+      "PASS": 20,
+      "FAIL": 2,
+      "REVIEW": 1,
+      "MINOR": 1
+    },
+    "multi_correction": {
+      "PASS": 37,
+      "FAIL": 3,
+      "MINOR": 1,
+      "REVIEW": 1
+    },
+    "numeric_surface": {
+      "PASS": 26,
+      "MINOR": 1,
+      "REVIEW": 1
+    },
+    "scene_balanced_random": {
+      "MINOR": 3,
+      "PASS": 34,
+      "REVIEW": 2,
+      "FAIL": 1
+    }
+  },
+  "by_source_decision": {
+    "repair_accepted": {
+      "PASS": 49,
+      "MINOR": 3,
+      "REVIEW": 5,
+      "FAIL": 3
+    },
+    "review_pass": {
+      "MINOR": 7,
+      "PASS": 125,
+      "FAIL": 7,
+      "REVIEW": 1
+    }
+  },
+  "fail_ids": [
+    "vibe_coding_11874",
+    "academic_2032",
+    "vibe_coding_9001",
+    "daily_chat_12543",
+    "explanation_5535",
+    "academic_7312",
+    "academic_5936",
+    "customer_service_7192",
+    "vibe_coding_5776",
+    "customer_service_3463"
+  ],
+  "review_ids": [
+    "academic_6626",
+    "navigation_852",
+    "explanation_9427",
+    "explanation_11864",
+    "explanation_22791",
+    "meeting_10408"
+  ],
+  "lead_adjudications": {
+    "academic_7036": {
+      "reviewer_verdict": "FAIL",
+      "final_verdict": "MINOR",
+      "note": "原审查将标题大小写变动判为明确错误；词项完整且语义未变，按英文名称格式一致性记为轻微问题，不计入语义 FAIL。"
+    },
+    "vibe_coding_13556": {
+      "reviewer_verdict": "FAIL",
+      "final_verdict": "MINOR",
+      "note": "原审查将普通技术词 case 的省略判为明确错误；目标仍表达“大小写问题”，未改变代码标识或句意，按术语保留不足记为轻微问题。"
+    }
+  },
+  "sample_jsonl_sha256": "552af8fd4a80448ffa8dc9741d0f18812b3c061bebf14f5ea207ee815ecac8b6",
+  "merged_audit_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_training_pair_audit_200_20261022/gpt_review_200.jsonl"
+}

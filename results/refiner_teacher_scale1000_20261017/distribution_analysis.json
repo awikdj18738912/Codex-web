@@ -1,0 +1,45 @@
+{
+  "control_attempt_outcomes": {
+    "none_or_passthrough": {
+      "attempted": 313,
+      "accepted": 258,
+      "clean_rejected": 7,
+      "audit_rejected": 11,
+      "asr_rejected": 27,
+      "assembly_rejected": 4,
+      "oral_rejected": 6
+    },
+    "multiple": {
+      "attempted": 238,
+      "oral_rejected": 150,
+      "audit_rejected": 43,
+      "assembly_rejected": 2,
+      "accepted": 24,
+      "asr_rejected": 16,
+      "clean_rejected": 3
+    },
+    "single": {
+      "attempted": 220,
+      "oral_rejected": 53,
+      "asr_rejected": 19,
+      "accepted": 109,
+      "clean_rejected": 5,
+      "audit_rejected": 32,
+      "assembly_rejected": 2
+    },
+    "rollback": {
+      "attempted": 229,
+      "asr_rejected": 18,
+      "oral_rejected": 138,
+      "accepted": 23,
+      "audit_rejected": 46,
+      "clean_rejected": 2,
+      "assembly_rejected": 2
+    }
+  },
+  "asr_selected_without_natural_boundary": 79,
+  "unique_targets": 381,
+  "extra_pairs_sharing_a_target": 23,
+  "max_pairs_same_target": 4,
+  "controls_are_not_final_retained_quotas": true
+}

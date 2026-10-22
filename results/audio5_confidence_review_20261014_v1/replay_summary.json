@@ -1,0 +1,134 @@
+[
+  {
+    "policy": "all_refine",
+    "calls": 305,
+    "seconds": 124.75405538734049,
+    "windows": 159,
+    "stats": {
+      "schema_version": 1,
+      "call_count": 305,
+      "initial_call_count": 216,
+      "retry_call_count": 89,
+      "intermediate_call_count": 282,
+      "final_call_count": 23,
+      "completed_call_count": 305,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 113999.089,
+      "gate_skipped_segment_count": 0,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 216,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    }
+  },
+  {
+    "policy": "native",
+    "calls": 163,
+    "seconds": 58.61050701607019,
+    "windows": 159,
+    "stats": {
+      "schema_version": 1,
+      "call_count": 163,
+      "initial_call_count": 120,
+      "retry_call_count": 43,
+      "intermediate_call_count": 137,
+      "final_call_count": 26,
+      "completed_call_count": 163,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 47408.383,
+      "gate_skipped_segment_count": 98,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 218,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    }
+  },
+  {
+    "policy": "supplement",
+    "calls": 178,
+    "seconds": 72.52921685995534,
+    "windows": 159,
+    "stats": {
+      "schema_version": 1,
+      "call_count": 178,
+      "initial_call_count": 130,
+      "retry_call_count": 48,
+      "intermediate_call_count": 153,
+      "final_call_count": 25,
+      "completed_call_count": 178,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 55645.854,
+      "gate_skipped_segment_count": 88,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 218,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    }
+  },
+  {
+    "policy": "deployed_learned",
+    "calls": 148,
+    "seconds": 56.0591871580109,
+    "windows": 159,
+    "stats": {
+      "schema_version": 1,
+      "call_count": 148,
+      "initial_call_count": 110,
+      "retry_call_count": 38,
+      "intermediate_call_count": 121,
+      "final_call_count": 27,
+      "completed_call_count": 148,
+      "failed_call_count": 0,
+      "inflight_call_count": 0,
+      "completed_wall_latency_ms": 44772.292,
+      "gate_skipped_segment_count": 106,
+      "busy_segment_count": 0,
+      "closed_call_rejection_count": 0,
+      "observed_initial_opportunity_count": 216,
+      "accepting_new_calls": false,
+      "stats_complete": true
+    },
+    "window_pipeline": {
+      "version": "fixed_k3_v1",
+      "window_size": 3,
+      "one_punctuation_window": true,
+      "fixed_groups": true,
+      "stream_reprocess_rejected": false,
+      "final_reprocess_rejected": false,
+      "group_numeric_self_corrections": true
+    }
+  }
+]

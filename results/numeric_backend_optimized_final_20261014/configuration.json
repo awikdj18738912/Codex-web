@@ -1,0 +1,47 @@
+{
+  "scope": "warmed_sequential_matched_text_windows_no_audio_no_ASR",
+  "device": "cuda:0",
+  "repetitions": 3,
+  "cases": 24,
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "max_new_tokens": 256,
+  "do_sample": false,
+  "rule_pack": "zh-itn-strict-conservative-v90",
+  "library": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+  "library_sha256": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+  "cpu_threads": 2,
+  "native_gate": "tri_state",
+  "learned_gate": "off",
+  "entity_db": null,
+  "window": "each sample is one completed editable window; identical single_window=True",
+  "shared_model": true,
+  "caches": "no output reuse across observations",
+  "policies": [
+    "refiner_only",
+    "zh_itn_web_chain"
+  ],
+  "baseline_definitions": {
+    "refiner_only": "direct refine on raw text, no application guards or numeric fallback",
+    "model_web_chain": "Web core with zh-itn disabled; includes existing Python numeric fallback",
+    "zh_itn_web_chain": "same Web core with zh-itn enabled, numeric routing and surface guard",
+    "zh_itn_only": "CPU rule normalization only; no language cleanup"
+  },
+  "code_sha256": {
+    "experiments/scripts/benchmark_numeric_backends.py": "a700644bd3d03116078adb9435155c8fde9e4790dcf3db03d5fe68f63844895e",
+    "system/web_app.py": "7cc20085cd9cf6388f61b05670f9869d183466e822fd62a5aa5a75f97a6a84b0",
+    "system/refinement_gate.py": "17a68fa107fdd18d2e95b4b0d3409a5ec85e577351cfc4e9b85042afa28d4848",
+    "system/refinement_guard.py": "5f1be6ab4abe51354aff032238ef48b85290690fd0913382b0b2edd556fe3499",
+    "system/live_qwen_refiner.py": "de5bdb3f1ad629145ba84f3260701cf283ca93de76c10e3a954e112b76245adf",
+    "system/entity_pipeline.py": "39f4f3cbe5eb66a1a9fba70557d1a55c35cfc18fa39481a1001abef08500b23d",
+    "system/chunking.py": "1d844257506090540e77368a002de8022f088b81f125d151c77ea86310d08717",
+    "system/window_refinement.py": "5d6e719129b4b1e13249c4867b62a6304eb6b48d4fa8bec8c086e33db3c3fec5"
+  },
+  "gpu_before": "0, NVIDIA GeForce RTX 3090, 16429 MiB, 0 %\n1, NVIDIA GeForce RTX 3090, 4407 MiB, 0 %",
+  "gpu_after": "0, NVIDIA GeForce RTX 3090, 21378 MiB, 47 %\n1, NVIDIA GeForce RTX 3090, 4407 MiB, 0 %",
+  "code_unchanged_during_benchmark": true,
+  "regression_tests": {
+    "count": 225,
+    "result": "passed",
+    "command": "python -m unittest tests.test_refinement_guard tests.test_refinement_gate tests.test_chunking tests.test_window_refinement tests.test_web_app_finish tests.test_gate_pipeline_alignment tests.test_web_window_context -q"
+  }
+}

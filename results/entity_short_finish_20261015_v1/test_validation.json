@@ -1,0 +1,15 @@
+{
+  "command": "PYTHONPATH=.:.runtime/functional_test_deps /home/aim0/data/conda/envs/agentic-asr/bin/python -m pytest -q tests/test_entity_short_finish.py tests/test_entity_streaming_live.py tests/test_entity_audio_repair.py tests/test_entity_streaming_replay.py tests/test_web_app_finish.py",
+  "initial_suite_passed": 115,
+  "subtests_passed": 17,
+  "added_web_finish_only_test_passed": true,
+  "unit_files": [
+    "tests/test_entity_short_finish.py",
+    "tests/test_entity_streaming_live.py"
+  ],
+  "implementation_sha256": {
+    "entity_streaming_live.py": "a270d20fdfd800abc0aee847063e50b59e3bf13d3bb4a24ae4998bd924d40784",
+    "entity_audio_repair.py": "15466ad3387dc5f715a738050ab5d5369e83a05d14bb88092a247b66d61abb22"
+  },
+  "source_equals_frozen_runtime": true
+}

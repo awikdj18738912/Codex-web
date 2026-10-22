@@ -1,0 +1,4126 @@
+{
+  "sentence_removed": "数字格式由外部规则负责。英文名称和型号沿用原文。",
+  "old_audit_pairs_rejudged": 268,
+  "new_asr_candidates_rejudged": 6,
+  "total_prompt_removed_audits": 274,
+  "passed": 260,
+  "rejected": 14,
+  "results": [
+    {
+      "id": "scale_customer_service_0041",
+      "request_hash": "5bbd7f5d6581078582c6c9c3d0b43d409a03d3dfd512fc13afdde9b87b14f0e1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想要购买价格为119.90，不对，299.00，最后改成，259.00的商品。",
+      "target": "我想要购买价格为259.00的商品。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要购买价格为259.00的商品。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0100",
+      "request_hash": "07cbe46679a41aa37201867d509306e9474e29678fa13d3ecdaf5836765df729",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "用React实现一个可复用的按钮组件，支持自定义颜色和悬停效果。",
+      "target": "用React实现一个可复用的按钮组件，支持自定义颜色和悬停效果。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用React实现一个可复用的按钮组件，支持自定义颜色和悬停效果。"
+      }
+    },
+    {
+      "id": "scale_academic_0029",
+      "request_hash": "fc140b6880bc41d06ef669f7014cd01a016a14525c544b8dcd9799df6909535f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，YOLOv5，不对，GPT-3，最后改成，ResNet-50在图像分类任务中表现出色，尤其在深层网络中保持了稳定的梯度传播。",
+      "target": "ResNet-50在图像分类任务中表现出色，尤其在深层网络中保持了稳定的梯度传播。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "ResNet-50在图像分类任务中表现出色，尤其在深层网络中保持了稳定的梯度传播。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0037",
+      "request_hash": "2c10a13bbb92958c71f4601c72d1504909c26d57a5e0035225b87ab0acef2718",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我。的订单号是20231113456789，不对，20231101234567，最后改成，20231105678901，麻烦查一下发货状态。",
+      "target": "我的订单号是20231105678901，麻烦查一下发货状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单号是20231105678901，麻烦查一下发货状态。"
+      }
+    },
+    {
+      "id": "scale_explanation_0145",
+      "request_hash": "d3df2325d998833f16656929fca9fba45edeb761485bd754d2a74328f19348b2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，唯品会是专注于品牌特卖的电商平台，唯品的唯，品会的品。",
+      "target": "唯品会是专注于品牌特卖的电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "唯品会是专注于品牌特卖的电商平台。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0041",
+      "request_hash": "2cdef56b82bf790766b94dafbaf384132bea83d3a9953d3e1b4a212c882b71a4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，附，附近咖啡馆，不对，银行营业厅，最后改成，附近咖啡馆的营业时间是多少？",
+      "target": "附近咖啡馆的营业时间是多少？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "附近咖啡馆的营业时间是多少？"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0130",
+      "request_hash": "b28a0f3a21794893300effad7c2ea29cfd4529b65d050d4635d78aee94242dab",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，使，使用Google OAuth登录Firebase Auth，不对，配置Firebase Auth以支持邮箱密码登录。",
+      "target": "配置Firebase Auth以支持邮箱密码登录。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "配置Firebase Auth以支持邮箱密码登录。"
+      }
+    },
+    {
+      "id": "scale_academic_0045",
+      "request_hash": "62b9938dd0794d2e428b99ff9b986af6c731e949614b48103db465c8a0744e91",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，∂u/∂t = D∇²u，不对，∂c/∂t = D∇²c，最后改成，∂u/∂t = D∇²u 描述了扩散过程中的浓度随时间变化。",
+      "target": "∂u/∂t = D∇²u 描述了扩散过程中的浓度随时间变化。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "∂u/∂t = D∇²u 描述了扩散过程中的浓度随时间变化。"
+      }
+    },
+    {
+      "id": "scale_explanation_0139",
+      "request_hash": "fb4d383750573b173414c91b5d175cc434224a179955e4bd2fba51032d6d0e21",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "蔡徐坤是著名的歌手和舞者。",
+      "target": "蔡徐坤是著名的歌手和舞者。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "蔡徐坤是著名的歌手和舞者。"
+      }
+    },
+    {
+      "id": "scale_meeting_0068",
+      "request_hash": "b3d0ddd394aa0fa4ea1af975cadb008996ad5c414f76edd678bd6b184a948771",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "人均产出增长15.7%说明我们效率提升明显。",
+      "target": "人均产出增长15.7%说明我们效率提升明显。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "人均产出增长15.7%说明我们效率提升明显。"
+      }
+    },
+    {
+      "id": "scale_meeting_0033",
+      "request_hash": "ec67ec7304cdd8c18e5bdb1a0b8e381aadab16f86315584862e719535d85c40e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，权限配置错误，不对，测试覆盖率不足，最后改成，API调用超时导致服务响应延迟，需要立即排查。",
+      "target": "API调用超时导致服务响应延迟，需要立即排查。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "API调用超时导致服务响应延迟，需要立即排查。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0021",
+      "request_hash": "062cf69c37201c035b11c1f4b52690441d6e84d01e12533ea47431c00e15aa2e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "记得买新出的Nikon Z8，拍照和视频都得用上。",
+      "target": "记得买新出的Nikon Z8，拍照和视频都得用上。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得买新出的Nikon Z8，拍照和视频都得用上。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0133",
+      "request_hash": "34089e8eff925190920935839f8d5cdf9728ca70917ff81da9051073c2d5ad1a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我需要一个使用WebSocket实现的实时聊天功能。",
+      "target": "我需要一个使用WebSocket实现的实时聊天功能。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要一个使用WebSocket实现的实时聊天功能。"
+      }
+    },
+    {
+      "id": "scale_meeting_0036",
+      "request_hash": "c23bc3d1e295e0d1410657ca605e434a8cc0f8803fee0275a6ffdceb8b66dbd3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，项，项目交付准时率89%，不对，项目交付准时率91%，最后改成，项目交付准时率94%表明我们当前的进度管理非常有效。",
+      "target": "项目交付准时率94%表明我们当前的进度管理非常有效。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "项目交付准时率94%表明我们当前的进度管理非常有效。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0195",
+      "request_hash": "fea9d3cf2d1e746f6fe41d9272f053b839dd99c08fbbffc6bf0a59ea9bb7e00b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，处理404 Not Found，不对，Segmentation fault，最后改成，429 Too Many Requests错误时，应该添加请求频率限制。",
+      "target": "处理429 Too Many Requests错误时，应该添加请求频率限制。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "处理429 Too Many Requests错误时，应该添加请求频率限制。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0015",
+      "request_hash": "eb2247f1f7d50f956a7485e714b513cca0da463ebd164d78653dc6cd85f20f9e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "2024年过得真快，转眼就到年底了。",
+      "target": "2024年过得真快，转眼就到年底了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2024年过得真快，转眼就到年底了。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0099",
+      "request_hash": "fe26bd608578fa7a32244682c38b848d36a04994977e0786d8442318ef44a2b4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，用Rust，不对，Go，最后改成，Rust实现一个异步的HTTP客户端，支持超时和重试机制。",
+      "target": "用Rust实现一个异步的HTTP客户端，支持超时和重试机制。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Rust实现一个异步的HTTP客户端，支持超时和重试机制。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0075",
+      "request_hash": "8ea45087a62c3268ee0c33b2b21967de992fcaaee7429a2b1434034a97d4f9f5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，2024年过得真快，转眼就到年底了。",
+      "target": "2024年过得真快，转眼就到年底了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2024年过得真快，转眼就到年底了。"
+      }
+    },
+    {
+      "id": "scale_academic_0031",
+      "request_hash": "f80eff8fd3517fad385123c44e6878df07efe240ff822a62df1424091c5fdfc7",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，ResNet-50，不对，Diffusion Transformer，最后改成，Swin Transformer在视觉任务中表现出色，尤其在图像分类和目标检测方面。",
+      "target": "Swin Transformer在视觉任务中表现出色，尤其在图像分类和目标检测方面。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "Swin Transformer在视觉任务中表现出色，尤其在图像分类和目标检测方面。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0053",
+      "request_hash": "ea1b21bb5e836c2e219541d36d402e05724b6a33abb0510c58a2f2acc3436369",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我需要查询南京市鼓楼区中山路100号，不对，福州市鼓楼区五四路100号，最后改成，上海市浦东新区世纪大道1001号的配送情况。",
+      "target": "我需要查询上海市浦东新区世纪大道1001号的配送情况。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要查询上海市浦东新区世纪大道1001号的配送情况。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0024",
+      "request_hash": "242e89b48fdcdc0dc37da9865984dc66474d72d9a16a333ba0fe9e8c1f68d6b9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，提，提醒我下午3点和徐涛开会讨论项目进度。",
+      "target": "提醒我下午3点和徐涛开会讨论项目进度。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "提醒我下午3点和徐涛开会讨论项目进度。"
+      }
+    },
+    {
+      "id": "scale_meeting_0022",
+      "request_hash": "e751505aee1672e1728d56ce92d82264d7fdb62b358f8a9d61732a8ae4acd544",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，2025-12-03的项目节点需要提前确认资源分配。",
+      "target": "2025-12-03的项目节点需要提前确认资源分配。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-12-03的项目节点需要提前确认资源分配。"
+      }
+    },
+    {
+      "id": "scale_explanation_0048",
+      "request_hash": "d6718b97bf1ab333ca9c3d9c018e01a1e739c15bb49045508c6771a4833411b1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，北京大学是中国著名的高等学府，位于北京海淀区，北京大学的北，北京大学的京。",
+      "target": "北京大学是中国著名的高等学府，位于北京海淀区。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "北京大学是中国著名的高等学府，位于北京海淀区。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0028",
+      "request_hash": "2c30f9233edd748e86ddbfa59b7dcf25d31aff6635dff4a330b93fad4f3fc32c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，记得在2025-03-08提交项目报告。",
+      "target": "记得在2025-03-08提交项目报告。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得在2025-03-08提交项目报告。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0202",
+      "request_hash": "3856b1264ec105774a4504b3fee7e7b7c949c9693f58dfbd98ea345025458e13",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "请用async关键字定义一个异步函数。",
+      "target": "请用async关键字定义一个异步函数。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用async关键字定义一个异步函数。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0047",
+      "request_hash": "08f0f75106acfbc2b43d6990b7e8813286d25ccace1352413e5871aa600de6f7",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，需，需。要协调资源，不对，跟踪进度以确保项目按时完成。",
+      "target": "需要跟踪进度以确保项目按时完成。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "需要跟踪进度以确保项目按时完成。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0060",
+      "request_hash": "97197eeea944d1020be6d541cbb70d1e060bd7a322e26d2fc7530c8b8b921e4c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，记得在2025-03-08，不对，2024-08-30，最后改成，2025-07-04那天提交项目报告。",
+      "target": "记得在2025-07-04那天提交项目报告。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得在2025-07-04那天提交项目报告。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0201",
+      "request_hash": "10c9ed49c3be8ff3075f267bafc79ac3555a74c2200ee3ce6ab827cca32c464e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，请用 const，不对，function，最后改成，const 定义一个常量。",
+      "target": "请用 const 定义一个常量。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用 const 定义一个常量。"
+      }
+    },
+    {
+      "id": "scale_explanation_0204",
+      "request_hash": "53f11e9677b4c2f3954fc730075a18f4ed72bd297add2e2b58771fc7d1f55fc3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，西湖断桥，不对，黄山云海的壮丽景象令人难忘，黄山的黄，云海的海。",
+      "target": "黄山云海的壮丽景象令人难忘。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "黄山云海的壮丽景象令人难忘。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0049",
+      "request_hash": "97a759a8a13e694c65137a0b78d7e01601f89a4cd959331492864fc451119ecd",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，这双耐克Air Max 97的配色真好看",
+      "target": "这双耐克Air Max 97的配色真好看，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这双耐克Air Max 97的配色真好看"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0008",
+      "request_hash": "579baec2bce498b837ce0292f07b475337f991cdbe7e6501c20cd82c5c555cbc",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，小区垃圾分类新规，不对，社区环保新措施，最后改成，小区垃圾分类新规执行后，居民投放准确率明显提高了。",
+      "target": "小区垃圾分类新规执行后，居民投放准确率明显提高了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "小区垃圾分类新规执行后，居民投放准确率明显提高了。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0075",
+      "request_hash": "9bf2348e44e064c92040b090591f46ce1ef5aac669e07447e99b408b6b1bbaa0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，何，何芳，不对，孙磊，最后改成，高雪，记得把项目报告的初稿发给我。",
+      "target": "高雪，记得把项目报告的初稿发给我。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "高雪，记得把项目报告的初稿发给我。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0022",
+      "request_hash": "d70b1a557b789446dacd3323d5f76b6526ee74b7a73c8ecf123903ed6d057cb7",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，李小雨，不对，周小姐，最后改成，李小雨说她最近在画一组校园生活的插画。",
+      "target": "李小雨说她最近在画一组校园生活的插画。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "李小雨说她最近在画一组校园生活的插画。"
+      }
+    },
+    {
+      "id": "scale_academic_0047",
+      "request_hash": "ee3900f16cc4eb106d0565157eeba782cc590d23e047c2987206bf08a798b035",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，在图像质量评估中，SSIM，不对，F1-score，最后改成，SSIM比PSNR更能反映人眼感知差异。",
+      "target": "在图像质量评估中，SSIM比PSNR更能反映人眼感知差异。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "在图像质量评估中，SSIM比PSNR更能反映人眼感知差异。"
+      }
+    },
+    {
+      "id": "scale_academic_0042",
+      "request_hash": "ee039cd1b4979600bd9d87abfe0ad4606b353154e5c0e1845c01dc5da361e0db",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，BERT-base，不对，DINOv2在自监督视觉表征学习中表现出色。",
+      "target": "DINOv2在自监督视觉表征学习中表现出色。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "DINOv2在自监督视觉表征学习中表现出色。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0134",
+      "request_hash": "f1a39bf5ebfee6149ef4b495d6d1a9848bdcb382019ed02f386549bdd1070a36",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用Python实现一个快速排序函数。",
+      "target": "用Python实现一个快速排序函数。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Python实现一个快速排序函数。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0206",
+      "request_hash": "446d8f2b3eb7c3d524793966e9f12c485b64eed65420426cb9b5b555da587a21",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，用Vue.js实。现一个响应式表格组件，支持动态列和排序功能。",
+      "target": "用Vue.js实现一个响应式表格组件，支持动态列和排序功能。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Vue.js实现一个响应式表格组件，支持动态列和排序功能。"
+      }
+    },
+    {
+      "id": "scale_academic_0013",
+      "request_hash": "2907fae324aaaf75a3e7e7792295a3eef5c39b72b3a2272af3e8ffee10df60cc",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，HuggingFace GLUE，不对，COCO，最后改成，HuggingFace GLUE数据集在自然语言理解任务中表现优异。",
+      "target": "HuggingFace GLUE数据集在自然语言理解任务中表现优异。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "HuggingFace GLUE数据集在自然语言理解任务中表现优异。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0020",
+      "request_hash": "bad22668439a36cdcdca4d18bdde4a29164a770eb021798d7acfcc9ad1acc2d0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，记得把Nikon Z8，不对，AirPods Pro，最后改成，Nikon Z8的固件升级到最新版本。",
+      "target": "记得把Nikon Z8的固件升级到最新版本。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得把Nikon Z8的固件升级到最新版本。"
+      }
+    },
+    {
+      "id": "scale_explanation_0052",
+      "request_hash": "5503ae34cf292a187337a5b529b16df93b1360b94fefc92b5afe64a588e4c8b6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，中国铁建是一家主要从事基础设施建设的大型国有企业，中国的国，铁建的建。",
+      "target": "中国铁建是一家主要从事基础设施建设的大型国有企业。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "中国铁建是一家主要从事基础设施建设的大型国有企业。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0067",
+      "request_hash": "07369e8206f550a4fce735b6f2201ba91f2dcc8bfb13f6e4e9154883d2f5399c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想用REST API，不对，JSON-RPC，最后改成，GraphQL查询用户数据，返回字段包括name和email。",
+      "target": "我想用GraphQL查询用户数据，返回字段包括name和email。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用GraphQL查询用户数据，返回字段包括name和email。"
+      }
+    },
+    {
+      "id": "scale_meeting_0024",
+      "request_hash": "0cab9894770d77c43b74daabbebb6a7fdc26f59fb925d35cd27b0f541307dd8d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，服，服务器宕机导致服务中断，需要立即排查。",
+      "target": "服务器宕机导致服务中断，需要立即排查。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "服务器宕机导致服务中断，需要立即排查。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0051",
+      "request_hash": "4770db91a3d6c415c3f03708a2eb5ea1604a18b60de62532adcb922dac747fde",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，广州珠江新城保利中心，不对，重庆洪崖洞夜景真漂亮，晚上灯火通明特别有感觉。",
+      "target": "重庆洪崖洞夜景真漂亮，晚上灯火通明特别有感觉。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "重庆洪崖洞夜景真漂亮，晚上灯火通明特别有感觉。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0069",
+      "request_hash": "3be50d94ba4fd5501cce6711b42d4138e47b0f8911fa8332ba0f5d86b5532955",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想要购买一个电动牙刷替换刷头，不对，便携式空气净化器",
+      "target": "我想要购买一个便携式空气净化器，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要购买一个便携式空气净化器，"
+      }
+    },
+    {
+      "id": "scale_explanation_0086",
+      "request_hash": "eb889a5e7b811fea6b4951fef2ffd8d5c8c96d7e00f4cff0c43a5583147dcb05",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，农夫山泉，不对，喜茶饮品，最后改成，农夫山泉的水源地在浙江千岛湖",
+      "target": "农夫山泉的水源地在浙江千岛湖，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "农夫山泉的水源地在浙江千岛湖"
+      }
+    },
+    {
+      "id": "scale_customer_service_0005",
+      "request_hash": "4d64763bf53091d7af29a8cf6035067759e3ee8f0c40d3617658155a698319a1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我想要购买价格为399.00，不对，129.00，最后改成，329.00的商品。",
+      "target": "我想要购买价格为329.00的商品。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要购买价格为329.00的商品。"
+      }
+    },
+    {
+      "id": "scale_navigation_0031",
+      "request_hash": "5ad829a6b9be056bdfc01e3e9f234561f6edeeba13d3c14373883c1cb47f69b3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我要从京港澳高速，不对，武广高速，最后改成，沈海高速出发去广州。",
+      "target": "我要从沈海高速出发去广州。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我要从沈海高速出发去广州。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0032",
+      "request_hash": "e5a0d28bae0f68316be92462748a5f5f2eb284fb501c525eb229f764f1613647",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，播放李荣浩，不对，林俊杰，最后改成，刀郎的歌曲。",
+      "target": "播放刀郎的歌曲。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放刀郎的歌曲。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0203",
+      "request_hash": "aaaa4fc6d526950b2482498a8ceb2f1a850bc38181049e14c5ee49143c5d60ef",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，使。用 npm install，不对，pnpm add 安装依赖包。",
+      "target": "使用 pnpm add 安装依赖包。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用 pnpm add 安装依赖包。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0149",
+      "request_hash": "7976673c7c2f4aa843f6713d5dde3ad91e20f67270e233a5f8be69aba69976f4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，处，处理403 Forbidden，不对，401 Unauthorized错误时，需。要检查认证头是否正确设置。",
+      "target": "处理401 Unauthorized错误时，需要检查认证头是否正确设置。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "处理401 Unauthorized错误时，需要检查认证头是否正确设置。"
+      }
+    },
+    {
+      "id": "scale_explanation_0164",
+      "request_hash": "2e655e0a78e6ce3ce34d2c2a69774105da4d88579946cccc17326ac3f19b7633",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，敦煌莫高窟是古代丝绸之路上的重要佛教艺术遗址，敦煌的敦，莫高窟的窟。",
+      "target": "敦煌莫高窟是古代丝绸之路上的重要佛教艺术遗址。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "敦煌莫高窟是古代丝绸之路上的重要佛教艺术遗址。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0025",
+      "request_hash": "d46a5beaa8ca3e3c3aa38bc3f15bcc0ccdcbc6c06033f11988402f09e96f0029",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我想要查询2023-11-25的订单状态。",
+      "target": "我想要查询2023-11-25的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要查询2023-11-25的订单状态。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0092",
+      "request_hash": "f8e8c30d948dd6ab6f0ac096e42042f8869bb38d9243d9dedf36bd995ba948b9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用 npm install，不对，yarn add，最后改成，pnpm add 安装依赖。",
+      "target": "用 pnpm add 安装依赖。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用 pnpm add 安装依赖。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0028",
+      "request_hash": "db0519e54cafd182e376080676022e66392283f241a0dc2d1d4a46b0336a427b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想要购买一个电动牙刷替换刷头，不对，LED护眼台灯，最后改成，电动牙刷替换刷头。",
+      "target": "我想要购买一个电动牙刷替换刷头。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要购买一个电动牙刷替换刷头。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0077",
+      "request_hash": "5b83ec46b5e50e70a87a0423a1dca73f6687e39a6748146db1400f3bead89814",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，这，这辆乐高城市系列巡逻车，不对，乐高城市系列消防车，最后改成，乐高城市系列警车的细节做得真精细。",
+      "target": "这辆乐高城市系列警车的细节做得真精细。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这辆乐高城市系列警车的细节做得真精细。"
+      }
+    },
+    {
+      "id": "scale_explanation_0186",
+      "request_hash": "c3744f4d0c653d6ff5b3db37995a377b276f869d6bd547384b5042ed5c2eeae5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，徐静怡，不对，林婉清是这次活动的主讲人，林的林，婉清的婉。",
+      "target": "林婉清是这次活动的主讲人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林婉清是这次活动的主讲人。"
+      }
+    },
+    {
+      "id": "scale_meeting_0031",
+      "request_hash": "ab0c710a65ab1a7b6c8a9217b1bef280cba2a6d83ed3d26b043dfe444f10265c",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，这次项目的预算定在890,000元",
+      "target": "这次项目的预算定在890,000元，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这次项目的预算定在890,000元"
+      }
+    },
+    {
+      "id": "scale_customer_service_0070",
+      "request_hash": "a855c943b356feb2a56e3f808d3510a031664cf53f6a5d79ace752e694757307",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我需。要查询西安市雁塔区高新路188号，不对，上海市浦东新区世纪大道1001号的业务办理时间。",
+      "target": "我需要查询上海市浦东新区世纪大道1001号的业务办理时间。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要查询上海市浦东新区世纪大道1001号的业务办理时间。"
+      }
+    },
+    {
+      "id": "scale_explanation_0201",
+      "request_hash": "1aea821fc018c0358c990b2a81abdfe306c783befdc8f35cdeaba2d07a04bd94",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，拼，拼多多，不对，唯品会是专注于品牌特卖的电商平台，唯品会的唯，唯品会的品。",
+      "target": "唯品会是专注于品牌特卖的电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "唯品会是专注于品牌特卖的电商平台。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0039",
+      "request_hash": "ee6e07cd0322a94a88b6e77680bfc5acff29d6771845d6a4025b065d6480a274",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，这个夏天的温度快到30度，不对，32度了，得注意防暑。",
+      "target": "这个夏天的温度快到32度了，得注意防暑。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这个夏天的温度快到32度了，得注意防暑。"
+      }
+    },
+    {
+      "id": "scale_explanation_0138",
+      "request_hash": "a9a7cb407615edaec6ace94b7b89ec67cfe5e96f387f0e858f250402f5738ac6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，李连杰，不对，李小龙是著名的武术家和演员，以功夫片闻名于世，李的李，小龙的龙。",
+      "target": "李小龙是著名的武术家和演员，以功夫片闻名于世。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "李小龙是著名的武术家和演员，以功夫片闻名于世。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0056",
+      "request_hash": "8bafe6c182b9ef11a7b6be75f88e98abe8abacc3ea1305b9ed8882f798ccf0ef",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我的订单赠品还没收到，请问能补发吗？",
+      "target": "我的订单赠品还没收到，请问能补发吗？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单赠品还没收到，请问能补发吗？"
+      }
+    },
+    {
+      "id": "scale_explanation_0198",
+      "request_hash": "1d8f425de7fb41df794b02496053f30fb4832227318b34e5e8e338054e8f1ec3",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，那个，就是说，杨，杨颖，不对，张艺兴，最后改成，吴亦凡的艺名是Kris Wu",
+      "target": "吴亦凡的艺名是Kris Wu，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "吴亦凡的艺名是Kris Wu"
+      }
+    },
+    {
+      "id": "scale_explanation_0165",
+      "request_hash": "3c99c4870e95101e52ea2881bfbf6c324c6282d23c000a6de11f62d838eade82",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，九寨沟五花海，不对，九寨沟诺日朗瀑布，最后改成，九寨沟彩池的水为什么呈现如此多的色彩，彩池的池？",
+      "target": "九寨沟彩池的水为什么呈现如此多的色彩？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "九寨沟彩池的水为什么呈现如此多的色彩？"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0068",
+      "request_hash": "e838a3d6baa2c25a1d635c358d2a46a295cc2ca58f68fe2fe1c6ee2b09fb3b0e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，请，请用Haskell，不对，Dart，最后改成，Python实现一个快速排序函数。",
+      "target": "请用Python实现一个快速排序函数。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用Python实现一个快速排序函数。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0161",
+      "request_hash": "9c1669b9ed6a8866c2fa7466c6d4572ef2ce56847cfbb7061f40694302589252",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，用Fastify搭建一个轻量级的API服务。",
+      "target": "用Fastify搭建一个轻量级的API服务。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Fastify搭建一个轻量级的API服务。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0183",
+      "request_hash": "6fbeb5ab0475776ea484a4f190f08f080116b9ab9f981395072fa5d2acf18b0c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，使用await，不对，let，最后改成，await等待异步操作完成。",
+      "target": "使用await等待异步操作完成。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用await等待异步操作完成。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0170",
+      "request_hash": "f799bfbbdc50e608ca0e155a580ae65ed588e8204776f714f955555f9705b7e2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，用Vue.js实现一个动态路由的用户页面组件，不对，Next.js实现一个动态路由的用户页面组件。",
+      "target": "用Next.js实现一个动态路由的用户页面组件。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Next.js实现一个动态路由的用户页面组件。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0106",
+      "request_hash": "a4fc99ac832b500612cf9d0875ff2999a51810061a47bfc29032211297430145",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，请，请用async和await处理异步请求。",
+      "target": "请用async和await处理异步请求。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用async和await处理异步请求。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0035",
+      "request_hash": "a4f147db5f89171b4393e737b98803d7c5aa3654ad610b0aa7e80881e7733dad",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，预算总额定为22000元，不对，4300元，最后改成，22000元。",
+      "target": "预算总额定为22000元。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "预算总额定为22000元。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0022",
+      "request_hash": "5650c2d8655e5ee42a7c0e377e862baf0e96cdbac0f6e6a6487e6eb99675b3bc",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，这个项目的预算定在8900元，不对，22000元。",
+      "target": "这个项目的预算定在22000元。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这个项目的预算定在22000元。"
+      }
+    },
+    {
+      "id": "scale_meeting_0016",
+      "request_hash": "25e2b7fc0cc2ff1d3de1fd0ff627cb816899a5e5f82c33d99f13296110f2a743",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，手，手动记录会议内容，不对，AI会议纪要生成能显著提升会议效率。",
+      "target": "AI会议纪要生成能显著提升会议效率。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "AI会议纪要生成能显著提升会议效率。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0160",
+      "request_hash": "08e4c15d17d2ea550a4f2a610492e7f275d1f98d2e0ee5e8e4f460c082b12203",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "服务器返回404 Not Found，检查一下请求的路径是否正确。",
+      "target": "服务器返回404 Not Found，检查一下请求的路径是否正确。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "服务器返回404 Not Found，检查一下请求的路径是否正确。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0105",
+      "request_hash": "c3fde0597189075c73fd80ada4c5ada75db22426e93cdc9818c414828ab34a56",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，用gRPC，不对，Azure Functions，最后改成，gRPC实现服务间的高效通信。",
+      "target": "用gRPC实现服务间的高效通信。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用gRPC实现服务间的高效通信。"
+      }
+    },
+    {
+      "id": "scale_explanation_0065",
+      "request_hash": "54a6d965d75beb1a31f44974262895b426ebf27a43b0a26bc10e3e589fb37948",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，中，中国航天指的是中国的航天事业和相关机构，航天的航，航天的天。",
+      "target": "中国航天指的是中国的航天事业和相关机构。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "中国航天指的是中国的航天事业和相关机构。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0002",
+      "request_hash": "7c708da5aa5d539fb9caf2095b6a2c480e741e2566e728d865498434d13118b4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，协调资源，不对，整理数据，最后改成，安排会议时请确认所有参与者的可用时间。",
+      "target": "安排会议时请确认所有参与者的可用时间。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "安排会议时请确认所有参与者的可用时间。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0103",
+      "request_hash": "25d7931882481678eaaf0580a715efab289d86453b32cc698c8292e953f04dc6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我的订单售后响应慢，不对，物流延迟，能否尽快更新配送进度？",
+      "target": "我的订单物流延迟，能否尽快更新配送进度？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单物流延迟，能否尽快更新配送进度？"
+      }
+    },
+    {
+      "id": "scale_customer_service_0029",
+      "request_hash": "30ecb04855727b16611fa7ced18a79cdf5980de726dbd04ae6accfda2951fd4f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想咨询一下拼多多百亿补贴的商品价格是否真实优惠。",
+      "target": "我想咨询一下拼多多百亿补贴的商品价格是否真实优惠。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想咨询一下拼多多百亿补贴的商品价格是否真实优惠。"
+      }
+    },
+    {
+      "id": "scale_meeting_0042",
+      "request_hash": "0e6b601e1544c0b3ed111ab86c98cf0f06e41085444ed503edb218d996d4b807",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，建，建议在未启用双因素验证的远程访问，不对，员工在家办公时的设备合规性检查，最后改成，混合办公安全协议中加入多因素认证机制。",
+      "target": "建议在混合办公安全协议中加入多因素认证机制。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议在混合办公安全协议中加入多因素认证机制。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0102",
+      "request_hash": "3989eb7175825f4e54ee4247f54030e91dc0bacacc301e6d582a04ded50549c1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，张妹妹，不对，林妹妹的舞蹈视频又火了，动作太有感染力了。",
+      "target": "林妹妹的舞蹈视频又火了，动作太有感染力了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林妹妹的舞蹈视频又火了，动作太有感染力了。"
+      }
+    },
+    {
+      "id": "scale_academic_0028",
+      "request_hash": "222eb5355c5e647080194f63349614a77dd326861c9dabb21d23421ad9d585ca",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，实验结果表明，模型在学习率4.5，不对，1.4e-5下收敛最快。",
+      "target": "实验结果表明，模型在学习率1.4e-5下收敛最快。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "实验结果表明，模型在学习率1.4e-5下收敛最快。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0021",
+      "request_hash": "c1745b005d9f2498daf1421c8da76fbd37315ce6ec148f374a8f788516bd596e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我买的折叠电动滑板车，不对，便携式空气净化器，最后改成，折叠电动滑板车最近充电不稳，想问问怎么处理。",
+      "target": "我买的折叠电动滑板车最近充电不稳，想问问怎么处理。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我买的折叠电动滑板车最近充电不稳，想问问怎么处理。"
+      }
+    },
+    {
+      "id": "scale_explanation_0191",
+      "request_hash": "51233913790857fb43dcae41147b02dca31c8790f6e241d922e7332e4199c333",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，耐克运动鞋，不对，唯品会是专注于品牌特卖的电商平台，唯品会的唯，唯品会的会。",
+      "target": "唯品会是专注于品牌特卖的电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "唯品会是专注于品牌特卖的电商平台。"
+      }
+    },
+    {
+      "id": "scale_academic_0051",
+      "request_hash": "9ffebb871124a2e60a135adfa9e1a14977894ae325b13dd44c33f8198977f785",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，知识蒸馏，不对，梯度裁剪，最后改成，知识蒸馏在模型压缩中能有效传递教师模型的隐含知识。",
+      "target": "知识蒸馏在模型压缩中能有效传递教师模型的隐含知识。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "知识蒸馏在模型压缩中能有效传递教师模型的隐含知识。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0009",
+      "request_hash": "9c1b3e814e23ce58709d77fbb91faecacf7381cfef7355693d7604b63b78f889",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，安，安排会议，不对，制定计划，最后改成，安排会议时记得确认所有参会人的日程。",
+      "target": "安排会议时记得确认所有参会人的日程。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "安排会议时记得确认所有参会人的日程。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0010",
+      "request_hash": "2954bd56158e91579c45e368c0a6b1002de950183843ad6ed9772e0b9fb4c346",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，后天，不对，下周五，最后改成，明天的天气怎么样？",
+      "target": "明天的天气怎么样？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "明天的天气怎么样？"
+      }
+    },
+    {
+      "id": "scale_explanation_0132",
+      "request_hash": "5c8676206185668e65ae272321ce3dfa0f1aaec74dda5105a8e7f510ef39a75c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，华为技术，不对，中国航天指的是中国的航天事业和相关机构，航天的航，航天的天。",
+      "target": "中国航天指的是中国的航天事业和相关机构。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "中国航天指的是中国的航天事业和相关机构。"
+      }
+    },
+    {
+      "id": "scale_academic_0064",
+      "request_hash": "c419199163e7d94b36db0233a6cc60efa69fc5c9372df86cc9c54f548fa2daca",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "实验结果表明，该方法的准确率达到了67.3。",
+      "target": "实验结果表明，该方法的准确率达到了67.3。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "实验结果表明，该方法的准确率达到了67.3。"
+      }
+    },
+    {
+      "id": "scale_meeting_0053",
+      "request_hash": "36ecd0f1939eeb4f088da424a44e515bbef8fba501146b1f0a38f2eb9d8d585a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，建，建。议先部署安全补丁，不对，收集反馈数据，最后改成，清理过期日志，释放存储空间。",
+      "target": "建议先清理过期日志，释放存储空间。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议先清理过期日志，释放存储空间。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0032",
+      "request_hash": "46ddb22357a7dd46de311a73be80fd61b3425b0c701049fa2025c6de3c070b97",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用iPhone 15拍。完视频后直接导出到三星S24，不对，Surface Pro 9，最后改成，MacBook Air M3上剪辑。",
+      "target": "用iPhone 15拍完视频后直接导出到MacBook Air M3上剪辑。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用iPhone 15拍完视频后直接导出到MacBook Air M3上剪辑。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0068",
+      "request_hash": "54f35757accb55f3abe989f338de941c5e91c9c1a3abe6716067a3860396e596",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，记得买三星S24，不对，小米14，新机性能强，拍照也很好。",
+      "target": "记得买小米14，新机性能强，拍照也很好。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得买小米14，新机性能强，拍照也很好。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0099",
+      "request_hash": "eca432f8240f1e4ed6c57b683710aa603a3da2196f9e5a58e744fd1d917862e6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我。的订单号是20231105678901，不对，20231114567890，最后改成，20231109012345，麻烦查一下发货状态。",
+      "target": "我的订单号是20231109012345，麻烦查一下发货状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单号是20231109012345，麻烦查一下发货状态。"
+      }
+    },
+    {
+      "id": "scale_explanation_0117",
+      "request_hash": "22fd0db1bc7558e5a96cea68fd4eee989ce56f8a3796a45667cc63026addb5ea",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，华，华东理工大学，不对，华南理工大学，最后改成，华中科技大学位于武汉，是一所著名的综合性大学，华中的华，科技大学的科。",
+      "target": "华中科技大学位于武汉，是一所著名的综合性大学。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "华中科技大学位于武汉，是一所著名的综合性大学。"
+      }
+    },
+    {
+      "id": "scale_academic_0059",
+      "request_hash": "2eb782dd655b36f07227daafc7ca61f8822294ffbe8811af9ecc52fbdf5fe3b9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，GPT-3，不对，T5-small在文本生成任务中表现出色，尤其适合低资源场景。",
+      "target": "T5-small在文本生成任务中表现出色，尤其适合低资源场景。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "T5-small在文本生成任务中表现出色，尤其适合低资源场景。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0108",
+      "request_hash": "c6dea03109c13d212f2e6e02e58b7438ca9a9d9e84f54b0c9c717c80a8442391",
+      "passed": false,
+      "reason": "audit_failed:source_valid:[{\"kind\": \"source\", \"quote\": \"嗯，我最近在用网易云音乐黑胶会员，不对，三顿半云南手冲咖啡\"}]",
+      "source": "嗯，我最近在用网易云音乐黑胶会员，不对，三顿半云南手冲咖啡",
+      "target": "我最近在用三顿半云南手冲咖啡，",
+      "audit": {
+        "source_valid": false,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [
+          {
+            "kind": "source",
+            "quote": "嗯，我最近在用网易云音乐黑胶会员，不对，三顿半云南手冲咖啡"
+          }
+        ],
+        "cleaned_target": "我最近在用三顿半云南手冲咖啡，"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0191",
+      "request_hash": "df187d5e13e1a750e27fee76ec2d7653ecbc1b32104a7dec9bbbebf0c9a92ae5",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，docker build -t myapp .。",
+      "target": "docker build -t myapp .。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "docker build -t myapp ."
+      }
+    },
+    {
+      "id": "scale_daily_chat_0005",
+      "request_hash": "4acc5ecdab4ec43630fa9eda798f2d2b36853143242c5a80027673d0775431fe",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今天气温32度，出门得带伞。",
+      "target": "今天气温32度，出门得带伞。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天气温32度，出门得带伞。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0029",
+      "request_hash": "511b32c6ca8009d235cae1c74712ca3280fc33d8e713737abb00e89afe71cf4d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，确认需求时需核对所有功能点是否完整。",
+      "target": "确认需求时需核对所有功能点是否完整。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "确认需求时需核对所有功能点是否完整。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0089",
+      "request_hash": "9168079b38bf3f883bd9cb5d662193c2d3853bde2c28a8083e54a14d69a2b3c3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今天走了12000步，感觉身体轻松多了。",
+      "target": "今天走了12000步，感觉身体轻松多了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天走了12000步，感觉身体轻松多了。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0012",
+      "request_hash": "800ceb939aa5cdb0d942718cf10e965cfb541d944d63b88ac76bb1a52df6e936",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我。想用Express，不对，Django，最后改成，NestJS实现一个RESTful API。",
+      "target": "我想用NestJS实现一个RESTful API。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用NestJS实现一个RESTful API。"
+      }
+    },
+    {
+      "id": "scale_explanation_0035",
+      "request_hash": "10530e3be5e8f5ee623cdae6adb99b28f88ba0abd2750580bd5bb16897d32afb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，小红书App，不对，小红书社区，最后改成，小红书是一个以分享生活方式为主的社交平台，小红书的书。",
+      "target": "小红书是一个以分享生活方式为主的社交平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "小红书是一个以分享生活方式为主的社交平台。"
+      }
+    },
+    {
+      "id": "scale_meeting_0030",
+      "request_hash": "6119abe93d25a8806a9cae93fba47f282364b969aebbb5c26e4ec53a4021406b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，测试覆盖率不足，不对，系统兼容性问题，最后改成，测试覆盖率不足导致了最近的回归问题。",
+      "target": "测试覆盖率不足导致了最近的回归问题。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "测试覆盖率不足导致了最近的回归问题。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0100",
+      "request_hash": "16afaed84c679927fc1d343ca2df20b02d9de74433b41b09b5bce3e03b3d909a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，徐，徐姐，你那碗牛肉面的汤底是用牛骨熬的吗？",
+      "target": "徐姐，你那碗牛肉面的汤底是用牛骨熬的吗？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "徐姐，你那碗牛肉面的汤底是用牛骨熬的吗？"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0155",
+      "request_hash": "fd302b8e3d06e1eff2af4a6a3f30caab0db6e028e0d070caf27324e9da0334c0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用React，不对，Next.js实现一个动态路由的用户页面组件。",
+      "target": "用Next.js实现一个动态路由的用户页面组件。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Next.js实现一个动态路由的用户页面组件。"
+      }
+    },
+    {
+      "id": "scale_explanation_0121",
+      "request_hash": "f725022608ff0ef2369cd457dff400495d4133601abc1b5cfca73a74756bc121",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，华为技术是一家总部位于深圳的全球领先通信技术公司，华为的华，技术的技。",
+      "target": "华为技术是一家总部位于深圳的全球领先通信技术公司。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "华为技术是一家总部位于深圳的全球领先通信技术公司。"
+      }
+    },
+    {
+      "id": "scale_meeting_0101",
+      "request_hash": "cac69b600e909d1e4e9b603085f1ed256bda83a1bda666ece3789eb3b6fe04fe",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，2025-12-03，不对，2024-03-15，最后改成，2025-12-03的项目进度需要重新评估。",
+      "target": "2025-12-03的项目进度需要重新评估。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-12-03的项目进度需要重新评估。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0062",
+      "request_hash": "6cce868f8a353da1722418a59957217c3bf10ad17cbe06b7193da3a5ed018d33",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我。想查询一下京东全球购，不对，天猫旗舰店，最后改成，拼多多百亿补贴的商品发货时间。",
+      "target": "我想查询一下拼多多百亿补贴的商品发货时间。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想查询一下拼多多百亿补贴的商品发货时间。"
+      }
+    },
+    {
+      "id": "scale_meeting_0060",
+      "request_hash": "c52f5503fd29e99826b943015eb99f8dbcc3c3f62d4a75e403c8f6cca2c64d22",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，建议优先推进数字化员工手册，不对，绿色办公园区改造，以降低长期运营成本。",
+      "target": "建议优先推进绿色办公园区改造，以降低长期运营成本。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议优先推进绿色办公园区改造，以降低长期运营成本。"
+      }
+    },
+    {
+      "id": "scale_meeting_0103",
+      "request_hash": "ba8c14743c4e79b8d1b7dd77f513ba8ce33ae55ec4ea0ba2b1f1c99d1cc3726b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，这，这。个项目的预算定在56,800元，不对，98,000元，最后改成，56,800元比较合理。",
+      "target": "这个项目的预算定在56,800元比较合理。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这个项目的预算定在56,800元比较合理。"
+      }
+    },
+    {
+      "id": "scale_explanation_0093",
+      "request_hash": "5cfdb8375e11cc6089f7e99d4e224614102859e2808c7789eb5b3e8cb7acc586",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，清华大学，不对，复旦大学是位于上海的一所著名高等学府，复旦的复，大学的大。",
+      "target": "复旦大学是位于上海的一所著名高等学府。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "复旦大学是位于上海的一所著名高等学府。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0112",
+      "request_hash": "8ff019a62b0f59b812aa55e588f3ad7b049cabef9397aa3270d44ab9e657639c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，请运行 docker build 来构建镜像。",
+      "target": "请运行 docker build 来构建镜像。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请运行 docker build 来构建镜像。"
+      }
+    },
+    {
+      "id": "scale_academic_0033",
+      "request_hash": "35325ec25b9b683f3305f88090a2a59c2db1fd1f21c5dff163f82920ead352ab",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，多智能体博弈，不对，光子晶体在集成光学器件中的应用展现出优异的波长选择性。",
+      "target": "光子晶体在集成光学器件中的应用展现出优异的波长选择性。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "光子晶体在集成光学器件中的应用展现出优异的波长选择性。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0081",
+      "request_hash": "fa8c7ae662e445b5e4eef3ab9f9c9ef55a9b997e408b8f0733d13bf6ace4faa2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，2024-06-18，不对，2024-10-15，最后改成，2025-03-08 的会议需要确认参会名单。",
+      "target": "2025-03-08 的会议需要确认参会名单。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-03-08 的会议需要确认参会名单。"
+      }
+    },
+    {
+      "id": "scale_meeting_0008",
+      "request_hash": "7ebfbd83c97c2009167808f59b68a65f2c7b59fc52b509c71bec7c84cdccaf72",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，人均产出增长15.7%，不对，工时效率+18.5%，最后改成，人均产出增长15.7%是本次优化的核心成果。",
+      "target": "人均产出增长15.7%是本次优化的核心成果。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "人均产出增长15.7%是本次优化的核心成果。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0033",
+      "request_hash": "4895923ccbc143775c5fb18c8ac6f73f688000d30ed2c0dbf826af7bd519d8de",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，配置AWS Lambda，不对，OpenID Connect，最后改成，AWS Lambda函数以通过gRPC处理来自Twilio的请求。",
+      "target": "配置AWS Lambda函数以通过gRPC处理来自Twilio的请求。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "配置AWS Lambda函数以通过gRPC处理来自Twilio的请求。"
+      }
+    },
+    {
+      "id": "scale_explanation_0106",
+      "request_hash": "41683d3ff441e669ade24a42a85edd4b8bbf9d02023b7922c44ffbf5838aaa9f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，小红书是一个以分享生活方式为主的社交平台，小红书的书。",
+      "target": "小红书是一个以分享生活方式为主的社交平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "小红书是一个以分享生活方式为主的社交平台。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0012",
+      "request_hash": "0ca00d32e922ad3b1b0512500eeee8cfd8afd939c6c7748946974ac79fd70b0a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "播放刀郎的歌曲。",
+      "target": "播放刀郎的歌曲。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放刀郎的歌曲。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0074",
+      "request_hash": "b7ef58dab8cf1c3c12fd8fe165e1940a6c6255c3d930f51e25c67e56495713d5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我买的蓝牙耳机连接问题，不对，无线蓝牙耳机连接不上手机，能帮我看看吗？",
+      "target": "我买的无线蓝牙耳机连接不上手机，能帮我看看吗？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我买的无线蓝牙耳机连接不上手机，能帮我看看吗？"
+      }
+    },
+    {
+      "id": "scale_meeting_0073",
+      "request_hash": "3e4ce10794e0d5230108bbc228011d02150f8ed886f75e4f00f3db33022eb892",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，建议先部署安全补丁",
+      "target": "建议先部署安全补丁，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议先部署安全补丁"
+      }
+    },
+    {
+      "id": "scale_explanation_0159",
+      "request_hash": "9b27c13419652272a233647889bdde0a460f6fcf4c40d2461c50be1765bf2d5f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，高宇航，不对，林婉清是负责项目协调的成员，婉清的婉，婉清的清。",
+      "target": "林婉清是负责项目协调的成员。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林婉清是负责项目协调的成员。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0047",
+      "request_hash": "3385654fa2a54b33af8582e99bd08b45a6d8837819cb12f6ee9fc39299d2866d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想了解一下这款恒温水壶的加热速度和保温时长。",
+      "target": "我想了解一下这款恒温水壶的加热速度和保温时长。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想了解一下这款恒温水壶的加热速度和保温时长。"
+      }
+    },
+    {
+      "id": "scale_explanation_0090",
+      "request_hash": "ef865286a067f98e1e6c692d3a4b94323aa0c0ea0221dae7063fc09b5576f4aa",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，四川大学，不对，中山大学位于中国广东省广州市，中山的中，大学的大。",
+      "target": "中山大学位于中国广东省广州市。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "中山大学位于中国广东省广州市。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0079",
+      "request_hash": "08630297bbf922ad4d40a050219c29c52b0f616e47b2ba5ac3139063d92a0887",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，部署服务，不对，提交申请，最后改成，部署服务后检查日志。",
+      "target": "部署服务后检查日志。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "部署服务后检查日志。"
+      }
+    },
+    {
+      "id": "scale_meeting_0097",
+      "request_hash": "7dbc7a86608163d564a597e6fa3e4c0b93f5e47f53e8e150f9e1e3db034318f1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "建议优先实施绿色办公园区改造，以降低运营碳排放。",
+      "target": "建议优先实施绿色办公园区改造，以降低运营碳排放。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议优先实施绿色办公园区改造，以降低运营碳排放。"
+      }
+    },
+    {
+      "id": "scale_meeting_0071",
+      "request_hash": "6a12b319c4b5ec70e3050fc56cca15221dd050ac9a9be14026f03654e46a8e2d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，这次项目的预算定在98,000元，不对，720,000元，最后改成，1,350,000元，可以覆盖全部开发和测试成本。",
+      "target": "这次项目的预算定在1,350,000元，可以覆盖全部开发和测试成本。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这次项目的预算定在1,350,000元，可以覆盖全部开发和测试成本。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0166",
+      "request_hash": "2ff18b9fb342510af5d5bc56e46570b2634563f7448193858ce43c80714fe1f8",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "请用const声明一个常量，值为undefined。",
+      "target": "请用const声明一个常量，值为undefined。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用const声明一个常量，值为undefined。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0017",
+      "request_hash": "ed354f5b42706ce7bceb1b4c8b7529380a35c0f26c56695ee2b73861e0ff5ead",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，打，打开高德地图，导航到最近的加油站。",
+      "target": "打开高德地图，导航到最近的加油站。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "打开高德地图，导航到最近的加油站。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0035",
+      "request_hash": "1a796184a51ddede5395a1570002284ccb28528ae0987a1754ea2cd6ae22b4f2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，帮我找附近的电影院，不对，最近的加油站。",
+      "target": "帮我找最近的加油站。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "帮我找最近的加油站。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0084",
+      "request_hash": "d41bb45470796fd4fde90a525618351f81c5ce5b137f474cac9222e46542e91f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我需要查询厦门市湖里区仙岳路333号的配送情况。",
+      "target": "我需要查询厦门市湖里区仙岳路333号的配送情况。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要查询厦门市湖里区仙岳路333号的配送情况。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0064",
+      "request_hash": "b0a6e097898ec3f5fa6e615a4759183e9ec580b74df19d731eaee237bec76aef",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，这，这个404 Not Found，不对，NullReferenceException，最后改成，404 Not Found错误怎么解决？",
+      "target": "这个404 Not Found错误怎么解决？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这个404 Not Found错误怎么解决？"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0144",
+      "request_hash": "4afb9b4f7b22413ca685b15f881538d78a1a22f37808f6c3327c174907d82387",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，用TypeScript，不对，JavaScript，最后改成，TypeScript实现一个简单的事件监听器。",
+      "target": "用TypeScript实现一个简单的事件监听器。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用TypeScript实现一个简单的事件监听器。"
+      }
+    },
+    {
+      "id": "scale_explanation_0109",
+      "request_hash": "e6eb4efdccdacbb4ae73bcb649ddca04e44d4e2615bf44ebdf15832f4b5e5172",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "张艺兴是著名的中国男歌手、舞者和演员。",
+      "target": "张艺兴是著名的中国男歌手、舞者和演员。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "张艺兴是著名的中国男歌手、舞者和演员。"
+      }
+    },
+    {
+      "id": "scale_meeting_0038",
+      "request_hash": "a0d9bdd0638270eab4a4a73b729cfe987f500bb8c816b0934769a1614c0aeb42",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，完，完成压力测试，不对，提交合规申报，最后改成，启动灰度发布前需。要确认各模块的兼容性。",
+      "target": "启动灰度发布前需要确认各模块的兼容性。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "启动灰度发布前需要确认各模块的兼容性。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0013",
+      "request_hash": "cc27e2122f4f8c71ad9f90b7d0a49df2a60836c39269deb3796ed5154e6ea9e3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，播，播放林俊杰的江南，不对，突然好想你，最后改成，江南。",
+      "target": "播放林俊杰的江南。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放林俊杰的江南。"
+      }
+    },
+    {
+      "id": "scale_meeting_0086",
+      "request_hash": "14cffd3722f4ddf67d2cadf254b06769d5b165914e0d3ad7850584befb6890f5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，系统可用性99.99%，不对，响应时长<1.2s，最后改成，系统可用性99.99%已经达成，稳定性表现良好。",
+      "target": "系统可用性99.99%已经达成，稳定性表现良好。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "系统可用性99.99%已经达成，稳定性表现良好。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0048",
+      "request_hash": "9e883b0a1e29c6fdaef02b5c8a83bb9198d5b3c682f80645eaa42dccc4ff845c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，打开投影仪，切换到VGA输入源，不对，切换到HDMI输入源。",
+      "target": "打开投影仪，切换到HDMI输入源。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "打开投影仪，切换到HDMI输入源。"
+      }
+    },
+    {
+      "id": "scale_explanation_0171",
+      "request_hash": "ca7ab311d12508586581ecc399654143a800d2026aa3ddc47fd962555d2b6ce0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，成都宽窄巷子是成都保存最完整的清朝古街道之一，宽窄的窄，巷子的巷。",
+      "target": "成都宽窄巷子是成都保存最完整的清朝古街道之一。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "成都宽窄巷子是成都保存最完整的清朝古街道之一。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0010",
+      "request_hash": "112f406c11a7b3ca2c369bdaa60fa7bdf93241689cb780121cc23a6bd702d684",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我在京东全球购，不对，得物App上买的商品有问题",
+      "target": "我在得物App上买的商品有问题，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我在得物App上买的商品有问题，"
+      }
+    },
+    {
+      "id": "scale_academic_0003",
+      "request_hash": "44637cbc57219126aa55f5fb30f6d0b6d8b70d1786d896ce491f615b87317185",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，MNIST，不对，COCO，最后改成，SQuAD数据集在自然语言理解任务中被广泛用于评估模型的阅读理解能力。",
+      "target": "SQuAD数据集在自然语言理解任务中被广泛用于评估模型的阅读理解能力。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "SQuAD数据集在自然语言理解任务中被广泛用于评估模型的阅读理解能力。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0043",
+      "request_hash": "d63f3b78d6d9f833b706f2d14e542dc70d9d1e7712156fa527f1832035657b86",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今天走了10000步，不对，11000步，最后改成，12000步，感觉身体轻松多了。",
+      "target": "今天走了12000步，感觉身体轻松多了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天走了12000步，感觉身体轻松多了。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0008",
+      "request_hash": "fc4021c18a9531b58d60f9b5d59b208e789bcce6367873f1888df7d0e9fecc49",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，去，去年，不对，明天情人节，提醒我买花。",
+      "target": "明天情人节，提醒我买花。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "明天情人节，提醒我买花。"
+      }
+    },
+    {
+      "id": "scale_explanation_0025",
+      "request_hash": "cb7d14311396b8693f0ce897f3c82b1c9da7605b79175ee8946efc3ecd1e6692",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，张雅婷是这次活动的主持人，雅婷的婷。",
+      "target": "张雅婷是这次活动的主持人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "张雅婷是这次活动的主持人。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0024",
+      "request_hash": "98d9470bb5536ebeb4a3ca8122c59b18d943d0df4ae769eecae521d7b06ad99e",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，最近在用飞利浦电动牙刷HX6730",
+      "target": "最近在用飞利浦电动牙刷HX6730，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "最近在用飞利浦电动牙刷HX6730"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0031",
+      "request_hash": "c473b16d3cd9bee761ae417fa878630cd0847f32c4633d787bd3bbf21f7b7d56",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想用gRPC，不对，Stripe API实现订阅支付功能。",
+      "target": "我想用Stripe API实现订阅支付功能。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用Stripe API实现订阅支付功能。"
+      }
+    },
+    {
+      "id": "scale_explanation_0046",
+      "request_hash": "0684544640839f86c861019bbe1bfc66a23e5f7ab014902556e933299d0886a4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，阿里巴巴，不对，中国航天，最后改成，阿里巴巴是总部位于杭州的全球知名电子商务公司，阿里的阿，阿里巴巴的巴。",
+      "target": "阿里巴巴是总部位于杭州的全球知名电子商务公司。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "阿里巴巴是总部位于杭州的全球知名电子商务公司。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0038",
+      "request_hash": "8faa8bb303d99401aea6c4c1a9b2b9beeb2a7920e3148b87d9a76fcbed329b52",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，重，重。启设备以解决当前连接问题。",
+      "target": "重启设备以解决当前连接问题。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "重启设备以解决当前连接问题。"
+      }
+    },
+    {
+      "id": "scale_explanation_0187",
+      "request_hash": "42d2f5b433f303d57578083e04f08ea1ed307d860cad41c8dd322a3f2b3bf1db",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，张，张雅婷是这次活动的主持人，雅婷的婷。",
+      "target": "张雅婷是这次活动的主持人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "张雅婷是这次活动的主持人。"
+      }
+    },
+    {
+      "id": "scale_explanation_0199",
+      "request_hash": "8fbf5c57f0a0b1613ca35221dfa0ee6e5e45ba259e8d67b0762de8c925755261",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，陈，陈奕迅，不对，邓丽君是华语乐坛的传奇歌手，丽君的丽，丽君的君。",
+      "target": "邓丽君是华语乐坛的传奇歌手。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "邓丽君是华语乐坛的传奇歌手。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0023",
+      "request_hash": "56e0334dd9ad0f38c30a661b1f2ae5bab57e367037d20809b71923ad837784f8",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "李小雨说她最近在画校园的四季风景，特别喜欢秋天的银杏叶。",
+      "target": "李小雨说她最近在画校园的四季风景，特别喜欢秋天的银杏叶。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "李小雨说她最近在画校园的四季风景，特别喜欢秋天的银杏叶。"
+      }
+    },
+    {
+      "id": "scale_explanation_0175",
+      "request_hash": "f6363cbec065b1400b9f4acd1a9247baa038125cf98524336adfddef0da9fef0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，张伟杰，不对，刘志远，最后改成，吴明轩是这次项目的主要负责人，明轩的明，明轩的轩。",
+      "target": "吴明轩是这次项目的主要负责人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "吴明轩是这次项目的主要负责人。"
+      }
+    },
+    {
+      "id": "scale_academic_0044",
+      "request_hash": "0184c58c725d026f05c5767199a647c801249e6470bc81156f1642c34bc747ee",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，主，主成分分析，不对，梯度下降，最后改成，主成分分析能有效降低数据维度并保留主要特征。",
+      "target": "主成分分析能有效降低数据维度并保留主要特征。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "主成分分析能有效降低数据维度并保留主要特征。"
+      }
+    },
+    {
+      "id": "scale_explanation_0149",
+      "request_hash": "a8dba365f8516860274454b8124e13c186745cb7c747b23a1e6f9af78ad2d690",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，vivo X系列，不对，苹果iPhone，最后改成，vivo X系列手机的摄像头配置很出色，vivo的v，X系列的X。",
+      "target": "vivo X系列手机的摄像头配置很出色。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "vivo X系列手机的摄像头配置很出色。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0037",
+      "request_hash": "aa9664804d0dc2de1102297c92863a3f57ef27cfc29de70ffa585ebc9fe30618",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "请用async函数处理异步请求。",
+      "target": "请用async函数处理异步请求。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用async函数处理异步请求。"
+      }
+    },
+    {
+      "id": "scale_explanation_0114",
+      "request_hash": "e26348e79fb72c4a1cf8a9c39631beddaee677de49180dd5b4dd3a7876ab7686",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，何，何建锋，不对，李文博，最后改成，林婉清是本次项目的主要负责人，林的林，婉清的婉，婉清的清。",
+      "target": "林婉清是本次项目的主要负责人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林婉清是本次项目的主要负责人。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0077",
+      "request_hash": "d633535e1188a32b6913553827b7c64e77e9a4313eccf4de70417fab223ee42c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我需要确认2023-11-17，不对，2023-11-30，最后改成，2023-11-29的订单状态。",
+      "target": "我需要确认2023-11-29的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要确认2023-11-29的订单状态。"
+      }
+    },
+    {
+      "id": "scale_meeting_0079",
+      "request_hash": "9017641ac72f93cdfeb8fb7b0dc088560870a8b3d6757a8d98ece4f8766857c8",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，2024-05-22，不对，2025-01-18，最后改成，2025-04-04的会议安排需要确认。",
+      "target": "2025-04-04的会议安排需要确认。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-04-04的会议安排需要确认。"
+      }
+    },
+    {
+      "id": "scale_explanation_0098",
+      "request_hash": "fd5a2d427609a668b7681d2a8b29e0058338eb0c1222c298138b9fb8fbc983fe",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，易，易烊千玺，不对，蔡徐坤是哪个组合的成员，蔡的蔡，坤的坤？",
+      "target": "蔡徐坤是哪个组合的成员？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "蔡徐坤是哪个组合的成员？"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0067",
+      "request_hash": "338ef987da16cf6271d0744b71b2c08a84d743ab5b4d2ca8c0781505a2288468",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，这杯水正好500ml，喝完刚好解渴。",
+      "target": "这杯水正好500ml，喝完刚好解渴。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这杯水正好500ml，喝完刚好解渴。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0085",
+      "request_hash": "b488a00ee2a0e287e2947f224e4970b5f45608132e3270e04c81abf2a11b8cbf",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今。天要跟进中国移动，不对，腾讯科技的AI项目进展。",
+      "target": "今天要跟进腾讯科技的AI项目进展。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天要跟进腾讯科技的AI项目进展。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0043",
+      "request_hash": "14af307b8a7fe8848845543d90dd3f232f0cf8fc24caf0dcf806673f4ab707e4",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，播放周杰伦，不对，蔡依林的《日不落》。",
+      "target": "播放蔡依林的《日不落》。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放蔡依林的《日不落》。"
+      }
+    },
+    {
+      "id": "scale_meeting_0090",
+      "request_hash": "4e1ea53cf02a1adbf9ab9a3c832832d0189a1ec623e1713976d1fac343658b57",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，乌鲁木齐技术部的项目进度需要尽快同步。",
+      "target": "乌鲁木齐技术部的项目进度需要尽快同步。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "乌鲁木齐技术部的项目进度需要尽快同步。"
+      }
+    },
+    {
+      "id": "scale_navigation_0009",
+      "request_hash": "88f775e4f19bba7c9306a11df631341c3d3303129a83c722c86078e1e30928ed",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，去。武汉，不对，厦门，最后改成，青岛旅游，推荐景点和路线。",
+      "target": "去青岛旅游，推荐景点和路线。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "去青岛旅游，推荐景点和路线。"
+      }
+    },
+    {
+      "id": "scale_explanation_0061",
+      "request_hash": "1ce9c9aea69ec605ee1a83073a3d3ab576778c805509727c2bd5b792e4cf3e2c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，张艺兴，不对，鹿晗，最后改成，邓丽君是华语乐坛的经典歌手，以温柔的嗓音著称，丽君的君，邓丽君的邓。",
+      "target": "邓丽君是华语乐坛的经典歌手，以温柔的嗓音著称。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "邓丽君是华语乐坛的经典歌手，以温柔的嗓音著称。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0073",
+      "request_hash": "fc19bca54c6ac78c3952f1dcca0eb338f7ba7051bd620ce4c463260a1a6e1f76",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想要购买价格为299.00的商品。",
+      "target": "我想要购买价格为299.00的商品。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要购买价格为299.00的商品。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0059",
+      "request_hash": "d7485797e5908928c0c749940ad1d3744bf2af936d4cb36ed3f202afa2c47579",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我的订单号是20231104567890，不对，20231107890123，麻烦查一下发货状态。",
+      "target": "我的订单号是20231107890123，麻烦查一下发货状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单号是20231107890123，麻烦查一下发货状态。"
+      }
+    },
+    {
+      "id": "scale_academic_0022",
+      "request_hash": "2a30b4aa27d7423f2f3ccda0f1d7aa979b699875bde585f80401220f51af1187",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，S = k ln W，不对，S = k log W 描述了熵与微观状态数的关系。",
+      "target": "S = k log W 描述了熵与微观状态数的关系。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "S = k log W 描述了熵与微观状态数的关系。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0062",
+      "request_hash": "c8cdf3a05fb31c8f539caa736aa5856f95ec23b66ac98416463ac98bad956b65",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "更新状态以确保任务进度同步。",
+      "target": "更新状态以确保任务进度同步。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "更新状态以确保任务进度同步。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0038",
+      "request_hash": "d197da476ab47b5af59749e0555968183484d8059c044a998dde5a69ed478b52",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，使用async，不对，await来等待异步操作完成。",
+      "target": "使用await来等待异步操作完成。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用await来等待异步操作完成。"
+      }
+    },
+    {
+      "id": "scale_meeting_0049",
+      "request_hash": "97a291d96237e8abf84d278d0d7d682738bda9ec8ce81ec05dd140f778b1e6eb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，建议在绿色办公园区改造中加入智能照明系统以降低能耗。",
+      "target": "建议在绿色办公园区改造中加入智能照明系统以降低能耗。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议在绿色办公园区改造中加入智能照明系统以降低能耗。"
+      }
+    },
+    {
+      "id": "scale_meeting_0077",
+      "request_hash": "4d8e26a7db6a29776cd2ca7f3418f83ee2e8cc8b138d8f2ea88117fb898249eb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，客户满意度4.5/5，不对，客户满意度4.6/5，说明我们服务体验已达到较高水平。",
+      "target": "客户满意度4.6/5，说明我们服务体验已达到较高水平。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "客户满意度4.6/5，说明我们服务体验已达到较高水平。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0026",
+      "request_hash": "21867a1b4a7310495c3f2e6945257e56eebf2debc773b4a6c894c39b106d34f1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，请设置 region=us-west-2 以匹配目标区域。",
+      "target": "请设置 region=us-west-2 以匹配目标区域。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请设置 region=us-west-2 以匹配目标区域。"
+      }
+    },
+    {
+      "id": "scale_explanation_0017",
+      "request_hash": "7411e935c8d2418a38afa0c86af12ef208ee1f3e91b0ddfdac5b4b73a4ff6940",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，京东商城是知名的综合性电商平台，京东的东，商城的商。",
+      "target": "京东商城是知名的综合性电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "京东商城是知名的综合性电商平台。"
+      }
+    },
+    {
+      "id": "scale_navigation_0038",
+      "request_hash": "325ef082591475ab1f266877ac02d9a4b3af60c82d402458a96fdab8d807889f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我要去南京南站。",
+      "target": "我要去南京南站。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我要去南京南站。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0070",
+      "request_hash": "77e6bf55e0d0d97b342e5459f6002a2c7d98c7fc38c9f9f4f733e5b9e6dbf2f6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，提醒我下午3点和林峰开会讨论新项目进度。",
+      "target": "提醒我下午3点和林峰开会讨论新项目进度。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "提醒我下午3点和林峰开会讨论新项目进度。"
+      }
+    },
+    {
+      "id": "scale_academic_0043",
+      "request_hash": "ba2bd381482e75f62c65485a798e95ef8cd2ee7832630617f6663e423171a50f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，在多智能体博弈中，纳什均衡的稳定性分析，不对，帕累托最优的动态演化，最后改成，纳什均衡的稳定性分析对策略收敛至关重要。",
+      "target": "在多智能体博弈中，纳什均衡的稳定性分析对策略收敛至关重要。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "在多智能体博弈中，纳什均衡的稳定性分析对策略收敛至关重要。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0068",
+      "request_hash": "020acedf002ddac92b27e90d0725b49be07f7c8c39699108d341f8896521d98d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，网红餐厅排队技巧其实关键在于错峰和提前预约，不对，避开高峰时段，最后改成，错峰和提前预约。",
+      "target": "网红餐厅排队技巧其实关键在于错峰和提前预约。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "网红餐厅排队技巧其实关键在于错峰和提前预约。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0066",
+      "request_hash": "315f0d264629e81364ac329c6136720e71e522c7008f279232f1badd7eefbee3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，预，预。算定在18900元，不对，26700元",
+      "target": "预算定在26700元，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "预算定在26700元，"
+      }
+    },
+    {
+      "id": "scale_customer_service_0015",
+      "request_hash": "5882d30fecd81059deee3ca6f5ba8651ad8ca0bc4b7eae24d02d7f6e60170f24",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想咨询一下盒马鲜生，不对，京东全球购的退换货政策。",
+      "target": "我想咨询一下京东全球购的退换货政策。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想咨询一下京东全球购的退换货政策。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0006",
+      "request_hash": "fdcb6ce8e588279d00b96ab555237c649684e116c4a0b16061798a88fee00149",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我需要确认2023-11-07的订单状态。",
+      "target": "我需要确认2023-11-07的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要确认2023-11-07的订单状态。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0050",
+      "request_hash": "768d32bc1679bfa6ea6769178c8cfbcc09494e7cb3f23f32ef88a54e245524fa",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，周，周。末去打卡那家新开的咖啡馆，听说他们的手冲很特别。",
+      "target": "周末去打卡那家新开的咖啡馆，听说他们的手冲很特别。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "周末去打卡那家新开的咖啡馆，听说他们的手冲很特别。"
+      }
+    },
+    {
+      "id": "scale_academic_0025",
+      "request_hash": "ee7b432036bd9d3ae5b611dc2b008e2ba04262dd92782415a27715d33293789d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，多，多。智能体博弈中的策略收敛性分析是当前强化学习研究的关键问题。",
+      "target": "多智能体博弈中的策略收敛性分析是当前强化学习研究的关键问题。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "多智能体博弈中的策略收敛性分析是当前强化学习研究的关键问题。"
+      }
+    },
+    {
+      "id": "scale_explanation_0019",
+      "request_hash": "088802359884541bac13b05059ba4f7aa3d255b6c70d953034c73d2d30e6bb11",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，喜茶饮品，不对，元气森林气泡水的配方不含蔗糖",
+      "target": "元气森林气泡水的配方不含蔗糖，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "元气森林气泡水的配方不含蔗糖"
+      }
+    },
+    {
+      "id": "scale_academic_0038",
+      "request_hash": "32907c95d320e400cd095a4648dffc57ca18c31f2b2d05c3df28f8ad4120761c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，在MNIST，不对，Kaggle Titanic数据集上",
+      "target": "在Kaggle Titanic数据集上，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "在Kaggle Titanic数据集上，"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0032",
+      "request_hash": "654f58d5c04a49e4c3b52537c29efbe0e3f522232d37d912af9803391659546c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用Python，不对，JavaScript，最后改成，Python写一个函数，计算斐波那契数列的第n项。",
+      "target": "用Python写一个函数，计算斐波那契数列的第n项。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Python写一个函数，计算斐波那契数列的第n项。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0012",
+      "request_hash": "8982e8a6bb63f925407246bf1b16d3b2d394f11cfbb1992660ba94a8e14f8fe6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，现，现在年轻人谈恋爱越来越看重精神契合了。",
+      "target": "现在年轻人谈恋爱越来越看重精神契合了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "现在年轻人谈恋爱越来越看重精神契合了。"
+      }
+    },
+    {
+      "id": "scale_explanation_0078",
+      "request_hash": "16b9bd4149f0287658e2b0d448f62b388f3ceb9789ae5c98cd1c11e88df79389",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，国家电网是中国最大的电力公司之一，国家的国，电网的电。",
+      "target": "国家电网是中国最大的电力公司之一。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "国家电网是中国最大的电力公司之一。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0049",
+      "request_hash": "6697f68c8158142c68b9c7e30fa0b087cbded3da3e4f9b6bc8bc3cbd998b0e5f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今天要跟进华为，不对，招商银行的账户安全更新。",
+      "target": "今天要跟进招商银行的账户安全更新。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天要跟进招商银行的账户安全更新。"
+      }
+    },
+    {
+      "id": "scale_explanation_0184",
+      "request_hash": "d444f901f674135c0f9cd405f1c66e443c5d0043533704a2e91d3e513fadc9fe",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "邓丽君是华语乐坛的传奇歌手，以其温柔的嗓音和经典歌曲闻名。",
+      "target": "邓丽君是华语乐坛的传奇歌手，以其温柔的嗓音和经典歌曲闻名。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "邓丽君是华语乐坛的传奇歌手，以其温柔的嗓音和经典歌曲闻名。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0037",
+      "request_hash": "c265e4198e6b7ec9212a27174e35aaa4de56504277829b5a0e694542abf539f6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，播放周杰伦的青花瓷在网易云音乐，不对，周杰伦的青花瓷在酷狗音乐，最后改成，周杰伦的青花瓷在QQ音乐。",
+      "target": "播放周杰伦的青花瓷在QQ音乐。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放周杰伦的青花瓷在QQ音乐。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0031",
+      "request_hash": "d41bb45470796fd4fde90a525618351f81c5ce5b137f474cac9222e46542e91f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我需要查询厦门市湖里区仙岳路333号的配送情况。",
+      "target": "我需要查询厦门市湖里区仙岳路333号的配送情况。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要查询厦门市湖里区仙岳路333号的配送情况。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0049",
+      "request_hash": "e14db980922430e4584680181f7112e123cf85e4fb8a731710e9c05487168651",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，播，播放蔡依林的《日不落》。",
+      "target": "播放蔡依林的《日不落》。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "播放蔡依林的《日不落》。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0029",
+      "request_hash": "e2a46b788c1663ae949e04d5a1f0038d393a5c355c67fcac229cc50df778a8c6",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "这台戴森V15 Detect吸尘器的灰尘检测功能真的很准。",
+      "target": "这台戴森V15 Detect吸尘器的灰尘检测功能真的很准。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这台戴森V15 Detect吸尘器的灰尘检测功能真的很准。"
+      }
+    },
+    {
+      "id": "scale_explanation_0119",
+      "request_hash": "ed3b42ac5b267687607f3b568f67f4917e278e7a8783200ce0e3543d8418440e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，张雅婷，不对，高宇航，最后改成，张雅婷是这次活动的主持人，张的张，婷的婷。",
+      "target": "张雅婷是这次活动的主持人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "张雅婷是这次活动的主持人。"
+      }
+    },
+    {
+      "id": "scale_explanation_0173",
+      "request_hash": "bc5ac1e5b66ae2c62a77ac612483f2ce3393f3537fd3d1d34b363929d8b32e31",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，唯品会是一家专注于品牌特卖的电商平台，唯品会的唯，唯品会的品。",
+      "target": "唯品会是一家专注于品牌特卖的电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "唯品会是一家专注于品牌特卖的电商平台。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0176",
+      "request_hash": "c9953e7294497843227d37e09f4c95ff7f942707b2d9f928c470d9049ddfa20b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "设置 encoding=utf-8 以确保文本正确解析。",
+      "target": "设置 encoding=utf-8 以确保文本正确解析。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "设置 encoding=utf-8 以确保文本正确解析。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0047",
+      "request_hash": "b0dd1307fc93bb048df92d90cfc306c539e0d6d1a6203d2bd5d6b0b823f1fc67",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，使用 kubectl apply -f --dry-run，不对，kubectl apply -f --validate，最后改成，kubectl apply -f 部署配置文件。",
+      "target": "使用 kubectl apply -f 部署配置文件。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用 kubectl apply -f 部署配置文件。"
+      }
+    },
+    {
+      "id": "scale_explanation_0174",
+      "request_hash": "4b2ef63ff0c767da149c72d956829c1930132d3631852687cabfb81ecbfce1c2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "何建锋是本次项目的负责人。",
+      "target": "何建锋是本次项目的负责人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "何建锋是本次项目的负责人。"
+      }
+    },
+    {
+      "id": "scale_explanation_0032",
+      "request_hash": "9625f70ca0466517983a654733a7838dc11959c5a6ef7376ab31065ae3f2f8a2",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，陈志豪是这次活动的负责人，志豪的豪。",
+      "target": "陈志豪是这次活动的负责人。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "陈志豪是这次活动的负责人。"
+      }
+    },
+    {
+      "id": "scale_academic_0046",
+      "request_hash": "ebde9d98ada61ecb4c273be141b977e6329f06c8c16caa54b19680c5a07835bb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，边缘AI推理在资源受限设备上的实时性能表现值得关注。",
+      "target": "边缘AI推理在资源受限设备上的实时性能表现值得关注。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "边缘AI推理在资源受限设备上的实时性能表现值得关注。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0009",
+      "request_hash": "b5d6e4920e6c10f8fb946d96c4d78b8d11f964912bf65f4cb66b4f4e9651f06e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，今，今天去上海静安嘉里中心，不对，重庆洪崖洞夜景拍照，灯光太漂亮了。",
+      "target": "今天去重庆洪崖洞夜景拍照，灯光太漂亮了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天去重庆洪崖洞夜景拍照，灯光太漂亮了。"
+      }
+    },
+    {
+      "id": "scale_academic_0010",
+      "request_hash": "56efc1150259934d7d00a848cdcb440680d3e28488fbc1523746441336c665ae",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，层归一化，不对，注意力机制在Transformer模型中的作用是动态加权输入序列的不同部分。",
+      "target": "注意力机制在Transformer模型中的作用是动态加权输入序列的不同部分。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "注意力机制在Transformer模型中的作用是动态加权输入序列的不同部分。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0147",
+      "request_hash": "348befd4574e57dcc36fe167634366e1a23b4287eef472c7feae3c1daaf48b38",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，用Next.js，不对，React，最后改成，Next.js搭建一个支持SSR的博客页面。",
+      "target": "用Next.js搭建一个支持SSR的博客页面。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Next.js搭建一个支持SSR的博客页面。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0033",
+      "request_hash": "44b58c1878b53cbe27bb1bc56f954ae722492e49a121ecab22ed2db5c2547c74",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，2025-01-01，不对，2024-09-07，最后改成，2025-01-01的会议记得提醒我。",
+      "target": "2025-01-01的会议记得提醒我。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-01-01的会议记得提醒我。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0008",
+      "request_hash": "d9b01bad1c8da3f73255be5444915b59432ec64f429abc6c9e8a74ef78633f8a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想要确认2023-11-25的订单状态。",
+      "target": "我想要确认2023-11-25的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要确认2023-11-25的订单状态。"
+      }
+    },
+    {
+      "id": "scale_explanation_0028",
+      "request_hash": "67adca44e065e447004768cd9d3b8266b7b0c2c90fddac91dd6bcc4b5321992f",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，拼，拼多多，不对，唯品会是专注于品牌特卖的电商平台，唯品会的唯，唯品会的会。",
+      "target": "唯品会是专注于品牌特卖的电商平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "唯品会是专注于品牌特卖的电商平台。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0114",
+      "request_hash": "7eaa0051b9801002d0fdb935c12078eb5ff11bf4170a8b7ba1a5995bf42a5566",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，华为FreeBuds Pro 3，不对，华为FreeBuds Pro 2的降噪效果真的很棒。",
+      "target": "华为FreeBuds Pro 2的降噪效果真的很棒。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "华为FreeBuds Pro 2的降噪效果真的很棒。"
+      }
+    },
+    {
+      "id": "scale_academic_0004",
+      "request_hash": "e15c91281f929d7db918e676f41c4cad753104a03539956be8e1ca61ad514cf5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，ResNet-34，不。对，ResNet-50在图像分类任务中表现出色，尤其在深度网络中的梯度传播方面有显著优势。",
+      "target": "ResNet-50在图像分类任务中表现出色，尤其在深度网络中的梯度传播方面有显著优势。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "ResNet-50在图像分类任务中表现出色，尤其在深度网络中的梯度传播方面有显著优势。"
+      }
+    },
+    {
+      "id": "scale_explanation_0102",
+      "request_hash": "4a5aeaab64a4fff07df8903dcd80e796df2626fb900bd321615b4b3461786ed9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，中国铁建，不对，中国银行，最后改成，中国铁建是一家主要从事基础设施建设的大型国有企业，铁建的建。",
+      "target": "中国铁建是一家主要从事基础设施建设的大型国有企业。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "中国铁建是一家主要从事基础设施建设的大型国有企业。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0025",
+      "request_hash": "4aee689826b6fa7f617ee42f99ee9615df7922769e53294149ab18ab439ab707",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，清理缓存以释放存储空间。",
+      "target": "清理缓存以释放存储空间。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "清理缓存以释放存储空间。"
+      }
+    },
+    {
+      "id": "scale_meeting_0081",
+      "request_hash": "608d5ccb221f41bf9a34c7369f3faee486c362992b244798608c0912ebfd3c10",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "这次项目预算调整，最终确定为720,000元。",
+      "target": "这次项目预算调整，最终确定为720,000元。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这次项目预算调整，最终确定为720,000元。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0080",
+      "request_hash": "126fe1a63a1f082299eed59675d3a55809d6067714a62349475f8d77738a4f13",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我的订单未收到，不对，订单重复了，需要取消其中一个。",
+      "target": "我的订单重复了，需要取消其中一个。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单重复了，需要取消其中一个。"
+      }
+    },
+    {
+      "id": "scale_voice_search_0006",
+      "request_hash": "660162cac20e85a6a19ac86f331a2746e6a62f17d9dc8b246c2a96778186dd9a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，后天，不对，2024年元旦，最后改成，后天我需要提醒我开会。",
+      "target": "后天我需要提醒我开会。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "后天我需要提醒我开会。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0007",
+      "request_hash": "2adbf5d9e7c1e387fa407fb67b825bea27fd9e5192c70a73b24883a406294266",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想要确认2023-11-03，不对，2023-11-17的订单状态。",
+      "target": "我想要确认2023-11-17的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要确认2023-11-17的订单状态。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0063",
+      "request_hash": "95e0004e38fb7f32f25606137e2d1ea973456d2d84c203835ce9eee642b33168",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，三顿半云南手冲咖啡的香气真的很特别，喝一口就停不下来。",
+      "target": "三顿半云南手冲咖啡的香气真的很特别，喝一口就停不下来。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "三顿半云南手冲咖啡的香气真的很特别，喝一口就停不下来。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0036",
+      "request_hash": "d2c0afe4a155af6667513f6d71f1e1041e8beb86b287a926b3a18191d090b1ed",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我需要确认2023-11-07，不对，2023-11-11，最后改成，2023-11-17的订单状态。",
+      "target": "我需要确认2023-11-17的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我需要确认2023-11-17的订单状态。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0032",
+      "request_hash": "8f56aa48b3ad6a6b887d51be3cd72076a25a12ea73f3d3a2d6a50f1b27b6a6f1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，周，周。末去新开了那家咖啡馆打卡",
+      "target": "周末去新开了那家咖啡馆打卡，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "周末去新开了那家咖啡馆打卡，"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0039",
+      "request_hash": "74e9a6a57a6db156c9a690c7f788e65072d54e95822a0f38ac5f923ff462121c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，使，使用npm install react，不对，npx create-react-app创建新项目。",
+      "target": "使用npx create-react-app创建新项目。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用npx create-react-app创建新项目。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0148",
+      "request_hash": "c9797a8898c5c4382293af7809a0533905b5e285b91dacab65cba0e940da8b92",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，请，请用const声明一个不可变的变量。",
+      "target": "请用const声明一个不可变的变量。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用const声明一个不可变的变量。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0013",
+      "request_hash": "b476e1f416ef81a4e8239b850141a9111a614330eaecba7c093421bd6ee909d7",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，周小姐的插画风格真独特，每次看都像在读一个新故事。",
+      "target": "周小姐的插画风格真独特，每次看都像在读一个新故事。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "周小姐的插画风格真独特，每次看都像在读一个新故事。"
+      }
+    },
+    {
+      "id": "scale_explanation_0131",
+      "request_hash": "401575fa851165641369f78cd16345adbfed48b2942232a286030fa99e156c5c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，许，许梦瑶，不对，林婉清这个名字听起来很温柔，像是小说里的女主角，婉清的婉，婉清的清。",
+      "target": "林婉清这个名字听起来很温柔，像是小说里的女主角。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林婉清这个名字听起来很温柔，像是小说里的女主角。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0004",
+      "request_hash": "cda13182f77af0f674dcd0869e516d172ea18e2965ec5b289f084a8e23c47d73",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我想用Google Cloud Functions，不对，Firebase Auth实现用户登录功能。",
+      "target": "我想用Firebase Auth实现用户登录功能。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用Firebase Auth实现用户登录功能。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0146",
+      "request_hash": "0f1f87a1f2f1982a52300d454f81cc73268187f11061e4740d05d5cf9068c469",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，用Fastify实现一个REST API，支持JSON验证和错误处理。",
+      "target": "用Fastify实现一个REST API，支持JSON验证和错误处理。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Fastify实现一个REST API，支持JSON验证和错误处理。"
+      }
+    },
+    {
+      "id": "scale_meeting_0066",
+      "request_hash": "2598b0f54c99bf1dec285e87bef3759d8a266bc2a24e61d29d7c8846c55501d5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，2025-04-04的会议安。排需要确认。",
+      "target": "2025-04-04的会议安排需要确认。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-04-04的会议安排需要确认。"
+      }
+    },
+    {
+      "id": "scale_explanation_0189",
+      "request_hash": "5bb9ccdd810729a0f72f54377a5da5102f777cb5aaa10ae877745d524be5d9bb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，周晓彤，不对，刘雨欣，最后改成，许梦瑶是那个在纪录片里讲述乡村教育故事的志愿者，梦的梦，瑶的瑶。",
+      "target": "许梦瑶是那个在纪录片里讲述乡村教育故事的志愿者。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "许梦瑶是那个在纪录片里讲述乡村教育故事的志愿者。"
+      }
+    },
+    {
+      "id": "scale_explanation_0005",
+      "request_hash": "98d9ac9e8fe320bce142ef4cc8e92ad88b3c5ffee6e8654937d303cdcabb7c1a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，黄，黄俊杰，不对，郑欣怡，最后改成，黄俊杰是那位在国际数学竞赛中获得金牌的年轻学者，黄的黄，俊杰的俊。",
+      "target": "黄俊杰是那位在国际数学竞赛中获得金牌的年轻学者。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "黄俊杰是那位在国际数学竞赛中获得金牌的年轻学者。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0078",
+      "request_hash": "c63807488b0e4011566d1c2b58746627e7597450c5585511f1ec0e89c05b1613",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，周末去新开了的咖啡馆打卡，环境很适合拍照。",
+      "target": "周末去新开了的咖啡馆打卡，环境很适合拍照。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "周末去新开了的咖啡馆打卡，环境很适合拍照。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0054",
+      "request_hash": "bec7a6637660fa1e88a6a74b6303441687d7fbfc10b9caf1b99daf1fbecd38e3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，2024-09-07，不对，2024-12-25，最后改成，2024-09-07 的会议记得提醒我。",
+      "target": "2024-09-07 的会议记得提醒我。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2024-09-07 的会议记得提醒我。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0027",
+      "request_hash": "56d616329a86bcf474754da5279f90010f3b0608a033609748942c5dfd65ce2b",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，使，使用await，不对，promise，最后改成，async函数处理异步操作。",
+      "target": "使用async函数处理异步操作。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "使用async函数处理异步操作。"
+      }
+    },
+    {
+      "id": "scale_meeting_0082",
+      "request_hash": "1f1656bf7691b44c152f78920d4300e4c530a421bf071606d13246af9611c0c9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，2025-08-27的会议安排需要确认。",
+      "target": "2025-08-27的会议安排需要确认。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2025-08-27的会议安排需要确认。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0085",
+      "request_hash": "bff23c633efe39d0e99cf8da6e9d2caa54ab326aec2dfcdd59b8d896ebbe0044",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想用REST API，不对，gRPC实现服务间的高效通信。",
+      "target": "我想用gRPC实现服务间的高效通信。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用gRPC实现服务间的高效通信。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0086",
+      "request_hash": "bc3df1c593f4c98a844c6d2d2a6b8067297cf2305fa904efcf73d5cdaf50b810",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，今天气温32度，挺热的。",
+      "target": "今天气温32度，挺热的。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天气温32度，挺热的。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0069",
+      "request_hash": "1de355b66e00a022cf774233975665345c2e30d3fc900abe8d1b9ee8337e7426",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想用gRPC，不对，REST，最后改成，gRPC实现服务间的高效通信。",
+      "target": "我想用gRPC实现服务间的高效通信。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用gRPC实现服务间的高效通信。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0116",
+      "request_hash": "68e153530f8c2d93e6aaa4480cb596341f03c039d78ee925bad6f894f9e2627c",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，最近用戴森V15 Detect，不对，OPPO Find X6，最后改成，戴森V15 Detect吸尘，灰尘颗粒看得一清二楚，清洁效率真高。",
+      "target": "最近用戴森V15 Detect吸尘，灰尘颗粒看得一清二楚，清洁效率真高。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "最近用戴森V15 Detect吸尘，灰尘颗粒看得一清二楚，清洁效率真高。"
+      }
+    },
+    {
+      "id": "scale_academic_0063",
+      "request_hash": "c9b08db82d709caaf9e2445807810d2abc3fc8312d3e57b839659c3a932cea78",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，这个扩散方程P(A|B) = P(B|A)P(A)/P(B)，不对，∂u/∂t = D∇²u在生物模式形成中很关键。",
+      "target": "这个扩散方程∂u/∂t = D∇²u在生物模式形成中很关键。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "这个扩散方程∂u/∂t = D∇²u在生物模式形成中很关键。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0200",
+      "request_hash": "5e0eebb1fd43b4072eaa2b32d519d87fb7a26992fa7f4ca8b9bab1318cf4376a",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，用Supabase，不对，Stripe API，最后改成，Supabase实现用户登录状态的实时同步。",
+      "target": "用Supabase实现用户登录状态的实时同步。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Supabase实现用户登录状态的实时同步。"
+      }
+    },
+    {
+      "id": "scale_academic_0041",
+      "request_hash": "75fb4db0c57258fda5ae9ca44d86aacf3ffe5cf98c96b6200abb324f991ad37e",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，实，实验结果的准确率达到了91.2%，不对，3.21，最后改成，91.2%。",
+      "target": "实验结果的准确率达到了91.2%。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "实验结果的准确率达到了91.2%。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0091",
+      "request_hash": "49f56b122ca21f7e55a90e761a4808a79a6bb7f5beedcb85d6d22e7c7137f409",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，git commit -m 'feat: add new feature'，不对，git commit -m 'docs: update readme'，最后改成，git commit -m 'fix: update config'。",
+      "target": "git commit -m 'fix: update config'。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "git commit -m 'fix: update config'"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0004",
+      "request_hash": "54f64c4bc75e011bf35e085b433bbd781e31c72db546d3424c5fad66e23132df",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，确，确认收货，不对，检查接口，最后改成，确认收货后系统会自动更新订单状态。",
+      "target": "确认收货后系统会自动更新订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "确认收货后系统会自动更新订单状态。"
+      }
+    },
+    {
+      "id": "scale_meeting_0019",
+      "request_hash": "90cff4f398a1af62363d4f9602b0c85069bf90ade046765b4861794c93f13f48",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，上海研发中心，不对，青岛供应链部的物流优化方案需要尽快推进。",
+      "target": "青岛供应链部的物流优化方案需要尽快推进。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "青岛供应链部的物流优化方案需要尽快推进。"
+      }
+    },
+    {
+      "id": "scale_meeting_0091",
+      "request_hash": "57c5896f8241d61cdd428941f193e8e7fae403d17a21a249c95da549a006a8b1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，审批流程阻塞，不对，法规变更风险，最后改成，审批流程阻塞导致项目延期，建议立即排查。",
+      "target": "审批流程阻塞导致项目延期，建议立即排查。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "审批流程阻塞导致项目延期，建议立即排查。"
+      }
+    },
+    {
+      "id": "scale_explanation_0153",
+      "request_hash": "68b401a49e7fd8b81a7645448a9f0de3b5653fa60077346c5da3bfd3e031495d",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，吴明轩，不对，周晓彤，最后改成，林婉清这个名字的来源是古代诗词中的意象，婉清的婉，婉清的清。",
+      "target": "林婉清这个名字的来源是古代诗词中的意象。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "林婉清这个名字的来源是古代诗词中的意象。"
+      }
+    },
+    {
+      "id": "scale_academic_0061",
+      "request_hash": "3ca2901a9e5644efd25ad9ad48e75bb24be517f0fa5f9bcf91efe8c62a0555b1",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，实验结果表明，学习率设置为1.4e-5，不对，42.5%，最后改成，1.4e-5时模型收敛效果最佳。",
+      "target": "实验结果表明，学习率设置为1.4e-5时模型收敛效果最佳。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "实验结果表明，学习率设置为1.4e-5时模型收敛效果最佳。"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0057",
+      "request_hash": "05ae7df3b528440ba10191d17699ef5751618a58c371e5fb9e0dc85420282368",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，今天要跟进华为，不对，阿里巴巴的云服务升级进度。",
+      "target": "今天要跟进阿里巴巴的云服务升级进度。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今天要跟进阿里巴巴的云服务升级进度。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0060",
+      "request_hash": "437c545c6a972cdbf954415b0bdd035a18a340c01542a311d20c8b5df8a98a61",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，今晚去重庆洪崖洞夜景拍，",
+      "target": "今晚去重庆洪崖洞夜景拍照，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "今晚去重庆洪崖洞夜景拍照，"
+      }
+    },
+    {
+      "id": "scale_academic_0030",
+      "request_hash": "8e26e9a6e162ddf8901dccfcba9ab2b7808e5bd04c4bf77a23fdf5b0d51c1993",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，DINOv2，不对，T5-small，最后改成，DINOv2在自监督视觉表征学习中表现出色。",
+      "target": "DINOv2在自监督视觉表征学习中表现出色。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "DINOv2在自监督视觉表征学习中表现出色。"
+      }
+    },
+    {
+      "id": "scale_explanation_0152",
+      "request_hash": "18224c6c16a4a31d965054b3ef096955addc6d135c28b13304f138cd9ec1c802",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，抖音，不对，快手，最后改成，B站的全称是哔哩哔哩，一个以视频内容为主的社区平台，哔哩的哔，哔哩的哩。",
+      "target": "B站的全称是哔哩哔哩，一个以视频内容为主的社区平台。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "B站的全称是哔哩哔哩，一个以视频内容为主的社区平台。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0006",
+      "request_hash": "5b48add7b04a7be91670bf3bf25fbb90a803a6213d5141c6e3ccd0016d23add5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，最近国风汉服穿搭越来越受欢迎，你觉得哪些元素最能体现传统美感？",
+      "target": "最近国风汉服穿搭越来越受欢迎，你觉得哪些元素最能体现传统美感？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "最近国风汉服穿搭越来越受欢迎，你觉得哪些元素最能体现传统美感？"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0023",
+      "request_hash": "8bfa20b65e9df393b5162fbb606d196656966560a38fe38188e153d1f5f795f9",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，记得用GoPro Hero12录下明天的户外活动。",
+      "target": "记得用GoPro Hero12录下明天的户外活动。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "记得用GoPro Hero12录下明天的户外活动。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0189",
+      "request_hash": "4f1b3874b98a5cf49391c86f035e8633356a577433ea53670b8765e62e588e83",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，处理SyntaxError: Unexpected token, missing semicolon，不对，SyntaxError: Unexpected token时，检查括号是否匹配。",
+      "target": "处理SyntaxError: Unexpected token时，检查括号是否匹配。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "处理SyntaxError: Unexpected token时，检查括号是否匹配。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0089",
+      "request_hash": "14971455dc69d46f3145e3b7c3d113ee93331fe3a9b43564667b6b0e4bd36f60",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，我。想要确认2023-11-01，不对，2023-11-29的订单状态。",
+      "target": "我想要确认2023-11-29的订单状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要确认2023-11-29的订单状态。"
+      }
+    },
+    {
+      "id": "scale_academic_0055",
+      "request_hash": "96d9fc359325a35822b2dd8037b233535a1f6da5d98f9e5bd76589bf43c381eb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，在，在对抗训练，不对，蒙特卡洛采样，最后改成，对抗训练中，通过引入对抗样本可以提升模型的鲁棒性。",
+      "target": "在对抗训练中，通过引入对抗样本可以提升模型的鲁棒性。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "在对抗训练中，通过引入对抗样本可以提升模型的鲁棒性。"
+      }
+    },
+    {
+      "id": "scale_meeting_0048",
+      "request_hash": "5026c63fb7b8f48fddd5a3367b75cdbffb32ad3659f937b4de93ec7237b024dd",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，预算使用率92.1%，不对，转化率提升12.3%，最后改成，人均产出增长15.7%说明我们效率提升明显。",
+      "target": "人均产出增长15.7%说明我们效率提升明显。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "人均产出增长15.7%说明我们效率提升明显。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0014",
+      "request_hash": "6ff670df714c6f4ccc49ced60b0c02e905cb7f231636fa07623fc90b7a5596de",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，国风汉服穿搭分享里，我觉得配色和材质，不对，款式和剪裁，最后改成，配色和材质特别重要。",
+      "target": "国风汉服穿搭分享里，我觉得配色和材质特别重要。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "国风汉服穿搭分享里，我觉得配色和材质特别重要。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0177",
+      "request_hash": "93ab4e27c873defd9ed78caaa61f48e85a14a76aaab6bf5d6ba1c978dc734ae3",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我想用React，不对，Svelte构建一个响应式组件，支持实时数据更新。",
+      "target": "我想用Svelte构建一个响应式组件，支持实时数据更新。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用Svelte构建一个响应式组件，支持实时数据更新。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0082",
+      "request_hash": "358a604e749fab8f565c7ec14485f874a053fd305ee88662e09a7a8110385448",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，Module not found，不对，ECONNREFUSED，最后改成，Module not found: unable to locate the required package in the node_modules directory.。",
+      "target": "Module not found: unable to locate the required package in the node_modules directory.。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "Module not found: unable to locate the required package in the node_modules directory."
+      }
+    },
+    {
+      "id": "scale_customer_service_0004",
+      "request_hash": "d918843f9ba512a4821c24eed689026c40fada6ea7337f7222cc51521f1e3360",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我的支付失败，不对，商品破损，最后改成，订单重复了，请核实并处理。",
+      "target": "我的订单重复了，请核实并处理。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单重复了，请核实并处理。"
+      }
+    },
+    {
+      "id": "scale_explanation_0079",
+      "request_hash": "80805ed2fae9e44e88317c0c13689d2d463b9e4ce0caba78b5b84396b7cf5602",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，阿里巴巴，不对，百度公司，最后改成，腾讯控股是一家总部位于中国的互联网科技公司，腾讯的腾，控股的控。",
+      "target": "腾讯控股是一家总部位于中国的互联网科技公司。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "腾讯控股是一家总部位于中国的互联网科技公司。"
+      }
+    },
+    {
+      "id": "scale_academic_0036",
+      "request_hash": "6d6cecf8522c7cc8ce6145e8da667bf9f63aedc1ca5987d5d83af11c825904f0",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，神，神经形态计算，不对，自修复材料，最后改成，神经形态计算在类脑芯片中的应用正成为研究热点。",
+      "target": "神经形态计算在类脑芯片中的应用正成为研究热点。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "神经形态计算在类脑芯片中的应用正成为研究热点。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0052",
+      "request_hash": "1797e037a24ed1e72e5be63a85eed6eb83cd2d59a98f2dfcf8d084ef05af3770",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我的订单显示赠品未发，不对，无法登录，最后改成，赠品未发，但实际没有收到。",
+      "target": "我的订单显示赠品未发，但实际没有收到。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我的订单显示赠品未发，但实际没有收到。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0066",
+      "request_hash": "c149bf7423f8d4a67a0b8aa08169da9f8af8e7b2a8604275075c8b68cb414807",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想要一个智手环",
+      "target": "我想要一个智能手环，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想要一个智能手环，"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0046",
+      "request_hash": "9a60367027f43f06faa7d979c88da5746d1ca66fca49e24ba922730bc671f054",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，请用 class 定义一个组件，包含 export 和 return 语句。",
+      "target": "请用 class 定义一个组件，包含 export 和 return 语句。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "请用 class 定义一个组件，包含 export 和 return 语句。"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0106",
+      "request_hash": "c1421158a29dc2d488d3b4db4ec3858c31525eb03e49c2957dc6b5dcaf9de701",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，现在年轻人谈恋爱越来越注重个人空间了。",
+      "target": "现在年轻人谈恋爱越来越注重个人空间了。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "现在年轻人谈恋爱越来越注重个人空间了。"
+      }
+    },
+    {
+      "id": "scale_customer_service_0027",
+      "request_hash": "f114c9088f7cfe353f39a586785d38d8d2c3296e9cba1640f358c9ab966e0203",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "我买的迷你吸尘器吸力变弱了，能帮忙看看吗？",
+      "target": "我买的迷你吸尘器吸力变弱了，能帮忙看看吗？",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我买的迷你吸尘器吸力变弱了，能帮忙看看吗？"
+      }
+    },
+    {
+      "id": "scale_meeting_0009",
+      "request_hash": "6c8bbdff4b99043d08b2ebc211f12cd007fee83c9381531b99e39baad2fbdbcb",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，建。议在跨部门知识图谱中引入静态更新机制，不对，手动同步流程，最后改成，动态更新机制以提升信息同步效率。",
+      "target": "建议在跨部门知识图谱中引入动态更新机制以提升信息同步效率。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "建议在跨部门知识图谱中引入动态更新机制以提升信息同步效率。"
+      }
+    },
+    {
+      "id": "scale_explanation_0068",
+      "request_hash": "1d99be044ae13f9ee1ca4069b9709c4831b10653b06cf977e2109d13dbbe85ea",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，国家电网公司，不对，国家电力公司，最后改成，国家电网是中华人民共和国的国有独资公司",
+      "target": "国家电网是中华人民共和国的国有独资公司，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "国家电网是中华人民共和国的国有独资公司"
+      }
+    },
+    {
+      "id": "scale_customer_service_0011",
+      "request_hash": "d34b6690e1afe889a831eff0fdd7fc9a565349eb24e9369b6d3a9a9f53998c75",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "呃，那个，我在拼多多新品牌，不对，盒马鲜生下单后没收到货，想查。询一下物流状态。",
+      "target": "我在盒马鲜生下单后没收到货，想查询一下物流状态。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我在盒马鲜生下单后没收到货，想查询一下物流状态。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0090",
+      "request_hash": "8ffa35b838e0dc17233ab0e4e58e9b1be3537135430323cec0bb67a762ae3eca",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，运，运行 kubectl apply -f deployment.yaml。",
+      "target": "运行 kubectl apply -f deployment.yaml。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "运行 kubectl apply -f deployment.yaml。"
+      }
+    },
+    {
+      "id": "scale_academic_0065",
+      "request_hash": "f807c3b88e910303d608d669845631f5209f9f4efb68831a1a50508532c6b503",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，在。自然语言处理研究中，WikiText-103，不对，MS-COCO，最后改成，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "target": "在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0135",
+      "request_hash": "05043557150d93c1110a5270d1e6b6468c089a53f3fab7d379b24e6dbdc8e8ec",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，我，我想用Vue.js，不对，Remix，最后改成，Nuxt.js搭建一个静态网站",
+      "target": "我想用Nuxt.js搭建一个静态网站，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用Nuxt.js搭建一个静态网站，"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0205",
+      "request_hash": "c4e8f4eed4c8aba6196a9bdcdf9f95b450161136a143facb090894b35c7f3191",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "呃，那个，用REST API，不对，GraphQL，最后改成，WebSocket实现实时消息推送",
+      "target": "用WebSocket实现实时消息推送，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用WebSocket实现实时消息推送"
+      }
+    },
+    {
+      "id": "scale_meeting_0084",
+      "request_hash": "c1f373692e3e96c3e51e704f167579607e4bf707d802453db75f5ab973ff5e17",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，预，预算总额定为348,700元，不对，410,000元",
+      "target": "预算总额定为410,000元，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "预算总额定为410,000元，"
+      }
+    },
+    {
+      "id": "scale_daily_chat_0090",
+      "request_hash": "fcddfd825824c0782cec31191769b6ab8c1d495838c1df5324b37d4ece10da53",
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "source": "嗯，2024年，不对，120Hz刷新率，最后改成，2024年好像快到了",
+      "target": "2024年好像快到了，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2024年好像快到了"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0078",
+      "request_hash": "6f579ebad5f425d0369983faddb8737e5970261e805bb161bddd5ad26de80db5",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用小米14，不对，Surface Pro 9，最后改成，Nikon Z8拍一组夜景照片",
+      "target": "用Nikon Z8拍一组夜景照片，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Nikon Z8拍一组夜景照片，"
+      }
+    },
+    {
+      "id": "scale_dictation_memo_0069",
+      "request_hash": "f85cd04b2928b1553846d1ccba1c2b0f507cd3defbbfc53c58a7642642909366",
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "source": "嗯，那个，就是说，用，用华为Mate 60，不对，MacBook Air M3处理文档和视频剪辑",
+      "target": "用MacBook Air M3处理文档和视频剪辑，",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用MacBook Air M3处理文档和视频剪辑，"
+      }
+    }
+  ],
+  "limitation": "Prompt-removal acceptance requires exact target/output reconstruction and dedup against all formerly accepted candidates; see id+input+target fields. No Clean regeneration performed."
+}

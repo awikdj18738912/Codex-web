@@ -1,0 +1,51 @@
+{
+  "selected": 1,
+  "records": [
+    {
+      "id": "chall_aishell_BAC009S0002W0388",
+      "mode": "shadow",
+      "raw": "浙江省体育局经济处主任王正章说。",
+      "expected": "浙江省体育局经济处主任王正璋说。",
+      "output": "浙江省体育局经济处主任王正章说。",
+      "equals_archived_hybrid": false,
+      "equals_original": true,
+      "ctc": {
+        "mode": "shadow",
+        "submitted_audio_seconds": 6.3110625,
+        "acoustic_events": 21,
+        "proposals": 1,
+        "committed": 0,
+        "shadow_proposals": 1,
+        "streaming_review_skips": 0,
+        "errors": 0,
+        "finish_timed_out": 0,
+        "compute_seconds": 2.7700255983509123
+      },
+      "replay_sessions": 1,
+      "final_revision": 0
+    },
+    {
+      "id": "chall_aishell_BAC009S0002W0388",
+      "mode": "on",
+      "raw": "浙江省体育局经济处主任王正章说。",
+      "expected": "浙江省体育局经济处主任王正璋说。",
+      "output": "浙江省体育局经济处主任王正璋说。",
+      "equals_archived_hybrid": true,
+      "equals_original": false,
+      "ctc": {
+        "mode": "on",
+        "submitted_audio_seconds": 6.3110625,
+        "acoustic_events": 21,
+        "proposals": 1,
+        "committed": 1,
+        "shadow_proposals": 0,
+        "streaming_review_skips": 0,
+        "errors": 0,
+        "finish_timed_out": 0,
+        "compute_seconds": 1.5026805642992258
+      },
+      "replay_sessions": 1,
+      "final_revision": 1
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "case": "editorial_alias",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid as spoken transcription, containing natural speech with no editor's gloss or stage directions. The refined transcript preserves the complete intended meaning, including all key details about perplexity, model performance, relative position encoding, and Brier Score, with only minor redundant wording ('（Perplexity）') removed. No meaning is lost or altered.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid as spoken transcription, containing natural speech with no editor's gloss or stage directions. The refined transcript preserves the complete intended meaning, including all key details about perplexity, model performance, relative position encoding, and Brier Score, with only minor redundant wording ('（Perplexity）') removed. No meaning is lost or altered.\"}"
+    }
+  },
+  {
+    "case": "spoken_alias",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid as spoken transcription, containing natural speech with a non-English term in parentheses that is typical of spoken language. The refined transcript preserves the complete intended meaning, removes only the non-essential parenthetical formatting, and maintains accurate content and structure.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid as spoken transcription, containing natural speech with a non-English term in parentheses that is typical of spoken language. The refined transcript preserves the complete intended meaning, removes only the non-essential parenthetical formatting, and maintains accurate content and structure.\"}"
+    }
+  },
+  {
+    "case": "literal_code",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid as spoken transcription, and the refined transcript faithfully preserves the complete intended meaning without alteration or omission.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid as spoken transcription, and the refined transcript faithfully preserves the complete intended meaning without alteration or omission.\"}"
+    }
+  },
+  {
+    "case": "filler",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid spoken language with natural hesitation markers ('嗯，那个') that are typical in casual speech. The refined transcript removes filler words while preserving the complete intended meaning of the original statement.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid spoken language with natural hesitation markers ('嗯，那个') that are typical in casual speech. The refined transcript removes filler words while preserving the complete intended meaning of the original statement.\"}"
+    }
+  },
+  {
+    "case": "correction",
+    "expected": true,
+    "passed": true,
+    "matches_expected": true,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid as spoken speech, containing natural correction and self-correction typical of fluent speech. The refined transcript accurately preserves the final intended meaning, correcting the day from Tuesday to Wednesday.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid as spoken speech, containing natural correction and self-correction typical of fluent speech. The refined transcript accurately preserves the final intended meaning, correcting the day from Tuesday to Wednesday.\"}"
+    }
+  },
+  {
+    "case": "stage_direction",
+    "expected": false,
+    "passed": true,
+    "matches_expected": false,
+    "audit": {
+      "mode": "upstream-semantic-v1",
+      "consistent": true,
+      "reason": "The input source is valid as spoken transcription with natural pause annotation in parentheses, which is acceptable for training material. The refined transcript correctly removes the parenthetical pause note while preserving the complete intended meaning.",
+      "parser_version": "strict-json-bool-v2",
+      "prompt_version": "upstream-semantic-spoken-v2",
+      "verdict_valid": true,
+      "raw_response": "{\"pass\":true,\"reason\":\"The input source is valid as spoken transcription with natural pause annotation in parentheses, which is acceptable for training material. The refined transcript correctly removes the parenthetical pause note while preserving the complete intended meaning.\"}"
+    }
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "id": "immune_code_context_20261016",
+  "pcm_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/immune_system_raw_20261015/immune_system.f32le",
+  "pcm_sha256": "35cee09ee4436836d022ad7641d89842fb5147344c9922fcc0105db2f5be1e93",
+  "duration_seconds": 1005.4826875,
+  "library_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/immune_code_repair_20261016/immune_entities.db",
+  "library_sha256": "ba7e41b8352bcf62e13e373c4e7df5136dddf02d589d6ca9273ceed783f14dc8",
+  "source_audio_path": "/home/aim0/桌面/tan/ASR/Codex-web/免疫系统.mp3",
+  "source_sha256": "4a4674208b8f7dca6aa15a1f89d3056efab179b35e0b4a8517d926f923125228",
+  "library_count": 31,
+  "reference": null,
+  "selection": "User-supplied full immune_system.mp3, approved filtered31 candidate list; no audio selection based on repair outcomes",
+  "ctc_mode": "off (current default)",
+  "reference_policy": "Candidate spellings and raw surfaces are not human-adjudicated reference; do not report all31 as errors or use mere word-type presence as mention accuracy",
+  "aliases_added": {
+    "嗜中性粒细胞": [
+      "中性粒细胞"
+    ],
+    "T细胞受体": [
+      "TCR受体"
+    ],
+    "B细胞受体": [
+      "BCR受体"
+    ]
+  },
+  "comparison_baseline": "/home/aim0/桌面/tan/ASR/Codex-web/results/immune_system_repair_20261015/quality/off.json",
+  "dictionary_change_policy": "Same31 canonical entries, only3 legitimate equivalent aliases added; no 中心粒细胞/LC一/FAST typo aliases."
+}

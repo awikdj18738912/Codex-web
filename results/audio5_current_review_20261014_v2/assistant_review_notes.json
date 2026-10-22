@@ -1,0 +1,159 @@
+{
+  "W065": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议优先核对“你这你→你”。全量当前模型实际能产生这一删除；是否为口吃或强调请听音判断，只接受这一局部改动也可以。",
+    "assistant_target": "这又是有争议的。你存不存在那个东西，也是有争议。"
+  },
+  "W120": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议优先核对“让让渡→让渡”。全量当前模型实际能产生这一删除；是否为口吃或强调请听音判断，只接受这一局部改动也可以。",
+    "assistant_target": "坐下来聊一聊，我们让渡一部分的利益，对，"
+  },
+  "W141": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议优先核对“谁是谁是→谁是”。全量当前模型实际能产生这一删除；是否为口吃或强调请听音判断，只接受这一局部改动也可以。",
+    "assistant_target": "谁是老大。所以法家一直认为儒家太虚伪，对，"
+  },
+  "W159": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "建议优先核对“谢谢谢谢老师→谢谢老师”。全量当前模型实际能产生这一删除；是否为口吃或强调请听音判断，只接受这一局部改动也可以。",
+    "assistant_target": "谢谢老师，谢谢叶老师啊。"
+  },
+  "W133": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前跳过且终态仍保留“机制。机制”。全量模型合并了重复，可只接受这个合并而保留末逗号；需要确认是否为另一位说话人的接话。",
+    "assistant_target": "人类可以有合作共赢的机制，但是如果我们的立足点是在于利益为起点，"
+  },
+  "W068": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前跳过；全量模型删除“取决于。你的相信”中间的句号。可只接受这一断句修复。",
+    "assistant_target": "这其实取决于你的相信。你取决于什么？"
+  },
+  "W118": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前被学习门控否决，终态局部审核删了“呃”；本次全量模型也只删填充词并保留“不太好”，没有旧实验的否定翻转。是否需要额外窗口调用请据当前终态判断。",
+    "assistant_target": "人类彼此为敌，这个不太好，"
+  },
+  "W003": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "你曾确认删除句首“而”可以接受。本次全量真实模型这样删除且验收接受；当前门控跳过、保留原句。可接受风格清理不等于必须调用，请分别填写必要性与对照接受程度。",
+    "assistant_target": "在中国的春秋时期，也有过这样的讨论，关于义和利的讨论。"
+  },
+  "W020": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "全量模型把“父父子”整个删掉，连“父子”信息也消失，不建议直接接受。当前窗口虽跳过，终态已由局部审核改成“父子”；请评估是否仍需窗口精修。",
+    "assistant_target": "认为真小人远比伪君子要好得多。他是。这个毛中纲父子的批语呢，",
+    "unsafe_model_edit": true
+  },
+  "W013": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "全量模型删除了“仁义就是”，输出“商鞅就认为搞笑”，使讨论对象消失。当前保留原文；这处对照改动不应直接当作收益。",
+    "unsafe_model_edit": true
+  },
+  "W104": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前与全量都未修“引引入”，反而将回应“嗯哼”改为“哼”。请重点确认；可只核对删一个“引”，保留“嗯哼”。",
+    "assistant_target": "那引入一个什么概念呢？治。嗯哼。",
+    "unsafe_model_edit": true
+  },
+  "W143": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前模型生成“我是要法太残忍…”，丢掉“法家”的“家”且未修“太太”。这不是完整正确修复；可只考虑“我我→我、法法家→法家、太太→太”，目标仍须听音确认。",
+    "assistant_target": "我要法家太残忍或者太堕落。对对，所以在某种意义上，",
+    "unsafe_model_edit": true
+  },
+  "W144": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "全量模型将“整个历史就是在他”改成“把整个历史给他”，改变关系且仍不自然。当前终态只连接断句，建议对照音频判定，不直接接受整段改写。",
+    "unsafe_model_edit": true
+  },
+  "W095": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "全量模型删除了“他是为了利的”这一完整分句；是否重复同一人还是逐个列举不同人，需要上下文/听音判断。",
+    "unsafe_model_edit": true
+  },
+  "W070": {
+    "assistant_recommendation": "keep",
+    "assistant_reason": "全量模型将“认为”改成“觉得”并删引号，这种风格替换没有证明必要，还可能破坏引用。当前原文保持。",
+    "unsafe_model_edit": true
+  },
+  "W106": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "全量模型添加了“儿”并删除“也”；原文疑似识别问题仍在，不能把词尾改写当作正确修复。",
+    "unsafe_model_edit": true
+  },
+  "W152": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前和全量把整个“甚甚至”删去；你可以仅接受“甚甚至→甚至”，保留原有范围/递进语气。",
+    "assistant_target": "甚至我们人类为什么要发明一个叫哲学的东西？啊，对，"
+  },
+  "W028": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前模型仍留着“孟孟子争争论”，只改连接词。即使送审/接受，也不能称这两处口吃已经修好。可核对只改“孟孟子→孟子、争争论→争论”。",
+    "assistant_target": "那孟子就讨论人性是善还是恶，对，而和跟孟子争论的人呢，"
+  },
+  "W114": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前仅删语气“啊”，主问题“首首先”仍保留；可只要求“首首先→首先”，其余由你决定。",
+    "assistant_target": "首先从防范角度讲啊，我们是不是该建立一个法律啊？对，"
+  },
+  "W048": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前模型清理“春秋晚年晚期→春秋晚期”，并删“呃”和接话“对”；可接受改口修复而保留接话，请听音区分。",
+    "assistant_target": "呃春秋晚期嘛，所以礼坏乐崩嘛，对，"
+  },
+  "W093": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前模型删除了三处口吃，同时删“嗯哼”“就”等回应或连接词。可以只接受来来/推推演/我们我们三处清理，不必接受全部删除。",
+    "assistant_target": "那我们现在来做一个推演啊。嗯哼，我们就假设所有人都是。"
+  },
+  "W156": {
+    "assistant_recommendation": "partial",
+    "assistant_reason": "当前与全量模型已能连接“能够。帮能够帮助”的断句/改口，保留了“磨磨刀子”的正常动词用法。请核对是否符合原话。",
+    "assistant_target": "我今天跟罗老师的这个对话能够帮助大家磨磨刀子吧。"
+  },
+  "W006": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W024": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W026": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W034": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W062": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W073": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W082": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W086": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W100": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W131": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  },
+  "W142": {
+    "assistant_recommendation": "uncertain",
+    "assistant_reason": "这处包含限定词、接话、强调、引用或完整分句删除；建议听音后决定哪些删除可接受。全量模型输出不能直接作为目标文本。"
+  }
+}

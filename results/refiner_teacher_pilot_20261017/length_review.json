@@ -1,0 +1,291 @@
+{
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_teacher_pilot_20261017/final/pilot_sft.json",
+  "tokenizer": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit/tokenizer.json",
+  "tokenizer_type": "Teacher tokenizer. Each raw system/human/gpt value encoded separately with add_special_tokens=false; no chat template applied, so counts are a lower bound relative to actual rendered prompt length.",
+  "interpretation_limit": "These are teacher-tokenizer raw-text counts, not student-tokenizer or actual template-rendered lengths. No performance inference.",
+  "summary": {
+    "count": 11,
+    "all_three_token_sum": {
+      "min": 402,
+      "max": 1174,
+      "median": 573,
+      "greater_than_1024_count": 1
+    },
+    "input_token_sum": {
+      "min": 341,
+      "max": 734,
+      "median": 431
+    },
+    "target_token_sum": {
+      "min": 61,
+      "max": 440,
+      "median": 147
+    }
+  },
+  "rows": [
+    {
+      "index": 0,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 270,
+        "tokens": 187
+      },
+      "gpt": {
+        "characters": 266,
+        "tokens": 183
+      },
+      "input": {
+        "characters": 662,
+        "tokens": 455
+      },
+      "target": {
+        "characters": 266,
+        "tokens": 183
+      },
+      "all_three_tokens": 638
+    },
+    {
+      "index": 1,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 260,
+        "tokens": 201
+      },
+      "gpt": {
+        "characters": 231,
+        "tokens": 177
+      },
+      "input": {
+        "characters": 652,
+        "tokens": 469
+      },
+      "target": {
+        "characters": 231,
+        "tokens": 177
+      },
+      "all_three_tokens": 646
+    },
+    {
+      "index": 2,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 647,
+        "tokens": 466
+      },
+      "gpt": {
+        "characters": 609,
+        "tokens": 440
+      },
+      "input": {
+        "characters": 1039,
+        "tokens": 734
+      },
+      "target": {
+        "characters": 609,
+        "tokens": 440
+      },
+      "all_three_tokens": 1174
+    },
+    {
+      "index": 3,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 269,
+        "tokens": 158
+      },
+      "gpt": {
+        "characters": 251,
+        "tokens": 147
+      },
+      "input": {
+        "characters": 661,
+        "tokens": 426
+      },
+      "target": {
+        "characters": 251,
+        "tokens": 147
+      },
+      "all_three_tokens": 573
+    },
+    {
+      "index": 4,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 129,
+        "tokens": 73
+      },
+      "gpt": {
+        "characters": 117,
+        "tokens": 61
+      },
+      "input": {
+        "characters": 521,
+        "tokens": 341
+      },
+      "target": {
+        "characters": 117,
+        "tokens": 61
+      },
+      "all_three_tokens": 402
+    },
+    {
+      "index": 5,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 224,
+        "tokens": 132
+      },
+      "gpt": {
+        "characters": 184,
+        "tokens": 102
+      },
+      "input": {
+        "characters": 616,
+        "tokens": 400
+      },
+      "target": {
+        "characters": 184,
+        "tokens": 102
+      },
+      "all_three_tokens": 502
+    },
+    {
+      "index": 6,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 323,
+        "tokens": 233
+      },
+      "gpt": {
+        "characters": 270,
+        "tokens": 199
+      },
+      "input": {
+        "characters": 715,
+        "tokens": 501
+      },
+      "target": {
+        "characters": 270,
+        "tokens": 199
+      },
+      "all_three_tokens": 700
+    },
+    {
+      "index": 7,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 299,
+        "tokens": 240
+      },
+      "gpt": {
+        "characters": 295,
+        "tokens": 238
+      },
+      "input": {
+        "characters": 691,
+        "tokens": 508
+      },
+      "target": {
+        "characters": 295,
+        "tokens": 238
+      },
+      "all_three_tokens": 746
+    },
+    {
+      "index": 8,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 229,
+        "tokens": 163
+      },
+      "gpt": {
+        "characters": 127,
+        "tokens": 88
+      },
+      "input": {
+        "characters": 621,
+        "tokens": 431
+      },
+      "target": {
+        "characters": 127,
+        "tokens": 88
+      },
+      "all_three_tokens": 519
+    },
+    {
+      "index": 9,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 218,
+        "tokens": 136
+      },
+      "gpt": {
+        "characters": 146,
+        "tokens": 89
+      },
+      "input": {
+        "characters": 610,
+        "tokens": 404
+      },
+      "target": {
+        "characters": 146,
+        "tokens": 89
+      },
+      "all_three_tokens": 493
+    },
+    {
+      "index": 10,
+      "system": {
+        "characters": 392,
+        "tokens": 268
+      },
+      "human": {
+        "characters": 199,
+        "tokens": 134
+      },
+      "gpt": {
+        "characters": 137,
+        "tokens": 87
+      },
+      "input": {
+        "characters": 591,
+        "tokens": 402
+      },
+      "target": {
+        "characters": 137,
+        "tokens": 87
+      },
+      "all_three_tokens": 489
+    }
+  ]
+}

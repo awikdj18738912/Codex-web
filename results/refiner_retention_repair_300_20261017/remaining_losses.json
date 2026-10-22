@@ -1,0 +1,124 @@
+{
+  "scope": {
+    "results_dir": "results/refiner_retention_repair_300_20261017",
+    "statuses_analyzed": [
+      "clean_rejected",
+      "audit_rejected"
+    ],
+    "records": 71,
+    "review_method": "Counts and expected-target equality computed across all 71 clean/audit rejections. The listed semantic examples are spot checks, not a full independent adjudication of all 71; unlisted cases remain unconfirmed."
+  },
+  "counts": {
+    "rejected_total": 71,
+    "clean_rejected": 33,
+    "audit_rejected": 38,
+    "audit_targets_equal_expected_clean": 38,
+    "audit_meaning_preserved_true": 38,
+    "audit_cleanup_complete_true": 31,
+    "audit_gate_patterns": [
+      {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "count": 3
+      },
+      {
+        "source_valid": false,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "count": 28
+      },
+      {
+        "source_valid": false,
+        "meaning_preserved": true,
+        "cleanup_complete": false,
+        "count": 4
+      },
+      {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": false,
+        "count": 3
+      }
+    ]
+  },
+  "interpretation": {
+    "audit_review": "38个审查拒收目标均等于expected_clean，且meaning_preserved均为true。32个source_valid为false，7个cleanup_complete为false（允许重叠）；另有目标重写或issues门槛。示例仅提示可能误拒，尚未逐条确认，不能将38条全部重新放行。",
+    "clean_review": "All 33 clean rejections have teacher responses in api_calls.jsonl and none is a transport failure. Several clearly retain abandoned correction content, emit the spoken repair marker in the target, or omit/alter final content. Other observed discrepancies are formatting/paraphrase-level and are not counted as confirmed semantic errors without adjudication.",
+    "construction_alignment": "主代理核对scale_daily_chat_0068：完整原意已保留在回退链的起始位置，不能据此认定构造与目标不对齐。教师将“其实关键在于”改成“的关键在于”，属于轻微改写与精确目标不一致的例子；并非已确认的意义错误，也不作为构造bug。"
+  },
+  "examples": {
+    "confirmed_teacher_recovery_errors": [
+      {
+        "id": "scale_meeting_0042",
+        "stage": "clean",
+        "oral": "建议在未启用双因素验证的远程访问，不对，员工在家办公时的设备合规性检查，最后改成，混合办公安全协议中加入多因素认证机制。",
+        "expected_clean": "建议在混合办公安全协议中加入多因素认证机制。",
+        "teacher_output": "建议在混合办公安全协议中加入多因素认证机制，以确保员工在家办公时的设备合规性，特别是未启用双因素验证的远程访问场景。",
+        "why": "把两个被纠正的旧内容重新加入目标。"
+      },
+      {
+        "id": "scale_dictation_memo_0032",
+        "stage": "clean",
+        "oral": "用iPhone 15拍。完视频后直接导出到三星S24，不对，Surface Pro 9，最后改成，MacBook Air M3上剪辑。",
+        "expected_clean": "用iPhone 15拍完视频后直接导出到MacBook Air M3上剪辑。",
+        "teacher_output": "用iPhone 15拍完视频后，直接导出到Surface Pro 9，最后在MacBook Air M3上剪辑。",
+        "why": "保留已被更正的 Surface Pro 9，并泄漏“最后改成”口语标记。"
+      },
+      {
+        "id": "scale_voice_search_0013",
+        "stage": "clean",
+        "oral": "播放林俊杰的江南，不对，突然好想你，最后改成，江南。",
+        "expected_clean": "播放林俊杰的江南。",
+        "teacher_output": "播放林俊杰的《江南》，突然好想你，最后改成《江南》。",
+        "why": "把被否定歌曲和修正标记留在结果中。"
+      },
+      {
+        "id": "scale_meeting_0086",
+        "stage": "clean",
+        "oral": "系统可用性99.99%，不对，响应时长<1.2s，最后改成，系统可用性99.99%已经达成，稳定性表现良好。",
+        "expected_clean": "系统可用性99.99%已经达成，稳定性表现良好。",
+        "teacher_output": "系统可用性99.99%已经达成，稳定性表现良好，响应时长<1.2s。",
+        "why": "将被否定的响应时长重新带入目标。"
+      }
+    ],
+    "audit_false_reject_suspects": [
+      {
+        "id": "scale_daily_chat_0022",
+        "audit_reason": "source_valid",
+        "source": "李小雨，不对，周小姐，最后改成，李小雨说她最近在画一组校园生活的插画。",
+        "target": "李小雨说她最近在画一组校园生活的插画。",
+        "expected_clean_matches": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true
+      },
+      {
+        "id": "scale_vibe_coding_0170",
+        "audit_reason": "source_valid",
+        "source": "用Vue.js实现一个动态路由的用户页面组件，不对，Next.js实现一个动态路由的用户页面组件。",
+        "target": "用Next.js实现一个动态路由的用户页面组件。",
+        "expected_clean_matches": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true
+      },
+      {
+        "id": "scale_explanation_0114",
+        "audit_reason": "source_valid+cleanup_complete",
+        "source": "何建锋，不对，李文博，最后改成，林婉清是本次项目的主要负责人，林的林，婉清的婉，婉清的清。",
+        "target": "林婉清是本次项目的主要负责人。",
+        "expected_clean_matches": true,
+        "meaning_preserved": true,
+        "cleanup_complete": false
+      }
+    ],
+    "paraphrase_exactness_candidate": {
+      "id": "scale_daily_chat_0068",
+      "expected_clean": "网红餐厅排队技巧其实关键在于错峰和提前预约。",
+      "oral": "网红餐厅排队技巧其实关键在于错峰和提前预约，不对，避开高峰时段，最后改成，错峰和提前预约。",
+      "teacher_output": "网红餐厅排队技巧的关键在于错峰和提前预约。",
+      "why": "主代理修正：原意完整出现在回退链起始位置。教师输出有轻微改写，因此不满足逐字目标一致；尚不能据此认定语义错误或构造不对齐。"
+    }
+  },
+  "recommended_follow_up": "先对38条audit_rejected做有原始 oral_text、expected_clean、audit issues 的小批盲审，重点核对 source_valid 的32条；针对clean_rejected，分开计量确凿更正错误与 target/口语不对齐、格式/轻微改写，不宜直接通过改审查逻辑整体放行。",
+  "root_review_note": "已核对示例原始记录并修正构造不对齐推断；其余语义结论仍为少量抽查。原代理输出单独保存。"
+}

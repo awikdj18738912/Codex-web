@@ -41,7 +41,7 @@ class _SourceASR:
             "entity_asr_context_guard_revision": revision,
             "completed_segments": [
                 {"segment_id": index + 1, "text": text, "vad_boundary": True}
-                for index, text in enumerate(sources)
+                for index, text in enumerate((*sources, TAIL) if self.index >= 3 else sources)
             ],
         }
 
@@ -84,11 +84,13 @@ class GatePipelineAlignmentTest(unittest.TestCase):
                     with TestClient(app) as client, client.websocket_connect("/ws/stream?mode=streaming") as ws:
                         ready = self.receive(ws, "ready")
                         self.assertEqual(ready["window_pipeline"], {
-                            "version": "fixed_k3_v1", "window_size": 3,
+                            "version": "fixed_k3_context_v2", "window_size": 3,
                             "one_punctuation_window": True, "fixed_groups": True,
                             "stream_reprocess_rejected": False,
                             "final_reprocess_rejected": False,
                             "group_numeric_self_corrections": False,
+                            "adjacent_context": True, "context_lookahead_chunks": 1,
+                            "context_protocol": "v1-read-only-adjacent-context",
                         })
                         for index in range(5):
                             ws.send_bytes(b"pcm")
@@ -148,6 +150,9 @@ class GatePipelineAlignmentTest(unittest.TestCase):
                 result = super().__call__(url, endpoint, *args, **kwargs)
                 if endpoint == "/stream/chunk":
                     result["text"] = result["text"].removesuffix(TAIL)
+                    result["completed_segments"] = [
+                        event for event in result["completed_segments"] if event["text"] != TAIL
+                    ]
                 return result
 
         for native in ("off", "tri_state"):

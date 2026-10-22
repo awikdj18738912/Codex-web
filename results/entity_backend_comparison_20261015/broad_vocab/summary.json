@@ -1,0 +1,391 @@
+{
+  "run_dir": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015",
+  "input_counts": {
+    "dev": 171,
+    "test": 1829,
+    "control": 100
+  },
+  "selected_hotword_score": 3.0,
+  "selection_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/broad_vocab/selection.json",
+  "selection_method": "dev only",
+  "native_2025_selected_hotword_score": 2.0,
+  "normalization_source": "experiments/scripts/score_current_entity_challenge.py via report_entity_backend_comparison.score; ZhITN, OpenCC t2s, NFKC, casefold, remove Unicode P/Z/C; clipped canonical mention counts; normalized-character Levenshtein CER.",
+  "metrics_denominators": "samples are exact scored hypotheses; entity recall denominator is summed gold mentions; CER denominator is summed normalized reference characters.",
+  "comparison": {
+    "main_run_csv_arms": [
+      "qwen_raw",
+      "qwen_ctc_sidecar",
+      "native_beam",
+      "native_hotword"
+    ],
+    "broad_arms": [
+      "broad2023_beam",
+      "broad2023_hotword"
+    ],
+    "splits": {
+      "dev": {
+        "qwen_raw": {
+          "samples": 171,
+          "entity_hits": 118,
+          "entity_mentions": 191,
+          "entity_recall": 0.6178010471204188,
+          "cer_errors": 224,
+          "reference_chars": 4240,
+          "cer": 0.052830188679245285
+        },
+        "qwen_ctc_sidecar": {
+          "samples": 171,
+          "entity_hits": 140,
+          "entity_mentions": 191,
+          "entity_recall": 0.7329842931937173,
+          "cer_errors": 201,
+          "reference_chars": 4240,
+          "cer": 0.047405660377358494
+        },
+        "native_beam": {
+          "samples": 171,
+          "entity_hits": 112,
+          "entity_mentions": 191,
+          "entity_recall": 0.5863874345549738,
+          "cer_errors": 348,
+          "reference_chars": 4240,
+          "cer": 0.0820754716981132
+        },
+        "native_hotword": {
+          "samples": 171,
+          "entity_hits": 129,
+          "entity_mentions": 191,
+          "entity_recall": 0.675392670157068,
+          "cer_errors": 322,
+          "reference_chars": 4240,
+          "cer": 0.07594339622641509
+        },
+        "broad2023_beam_dev_selection_only": {
+          "samples": 171,
+          "entity_hits": 89,
+          "entity_mentions": 191,
+          "entity_recall": 0.46596858638743455,
+          "cer_errors": 500,
+          "reference_chars": 4240,
+          "cer": 0.1179245283018868
+        },
+        "broad2023_hotword_dev_selection_only": {
+          "samples": 171,
+          "entity_hits": 122,
+          "entity_mentions": 191,
+          "entity_recall": 0.6387434554973822,
+          "cer_errors": 459,
+          "reference_chars": 4240,
+          "cer": 0.10825471698113208
+        }
+      },
+      "test": {
+        "qwen_raw": {
+          "samples": 1829,
+          "entity_hits": 1224,
+          "entity_mentions": 2467,
+          "entity_recall": 0.496149169031212,
+          "cer_errors": 2892,
+          "reference_chars": 42784,
+          "cer": 0.06759536275243082
+        },
+        "qwen_ctc_sidecar": {
+          "samples": 1829,
+          "entity_hits": 1675,
+          "entity_mentions": 2467,
+          "entity_recall": 0.6789623023915687,
+          "cer_errors": 2322,
+          "reference_chars": 42784,
+          "cer": 0.05427262528047869
+        },
+        "native_beam": {
+          "samples": 1829,
+          "entity_hits": 1406,
+          "entity_mentions": 2467,
+          "entity_recall": 0.5699229833806242,
+          "cer_errors": 3846,
+          "reference_chars": 42784,
+          "cer": 0.08989341810022439
+        },
+        "native_hotword": {
+          "samples": 1829,
+          "entity_hits": 1570,
+          "entity_mentions": 2467,
+          "entity_recall": 0.636400486420754,
+          "cer_errors": 3654,
+          "reference_chars": 42784,
+          "cer": 0.08540575916230367
+        },
+        "broad2023_beam": {
+          "samples": 1829,
+          "entity_hits": 1079,
+          "entity_mentions": 2467,
+          "entity_recall": 0.4373733279286583,
+          "cer_errors": 6034,
+          "reference_chars": 42784,
+          "cer": 0.14103403141361257
+        },
+        "broad2023_hotword": {
+          "samples": 1829,
+          "entity_hits": 1552,
+          "entity_mentions": 2467,
+          "entity_recall": 0.6291041751114714,
+          "cer_errors": 5374,
+          "reference_chars": 42784,
+          "cer": 0.12560770381451009
+        }
+      },
+      "control": {
+        "qwen_raw": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 15,
+          "reference_chars": 1396,
+          "cer": 0.010744985673352435
+        },
+        "qwen_ctc_sidecar": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 15,
+          "reference_chars": 1396,
+          "cer": 0.010744985673352435
+        },
+        "native_beam": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 29,
+          "reference_chars": 1396,
+          "cer": 0.020773638968481375
+        },
+        "native_hotword": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 29,
+          "reference_chars": 1396,
+          "cer": 0.020773638968481375
+        },
+        "broad2023_beam": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 76,
+          "reference_chars": 1396,
+          "cer": 0.054441260744985676
+        },
+        "broad2023_hotword": {
+          "samples": 100,
+          "entity_hits": 0,
+          "entity_mentions": 0,
+          "entity_recall": 0.0,
+          "cer_errors": 85,
+          "reference_chars": 1396,
+          "cer": 0.06088825214899714
+        }
+      }
+    },
+    "paired_broad_vs_main": {
+      "test": {
+        "broad2023_beam": {
+          "qwen_raw": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 194,
+            "cer_degraded_samples": 1130,
+            "cer_equal_samples": 505,
+            "entity_hit_delta_vs_main_arm": -145,
+            "broad_entity_recovered_mentions": 176,
+            "broad_entity_lost_mentions": 321
+          },
+          "qwen_ctc_sidecar": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 119,
+            "cer_degraded_samples": 1302,
+            "cer_equal_samples": 408,
+            "entity_hit_delta_vs_main_arm": -596,
+            "broad_entity_recovered_mentions": 92,
+            "broad_entity_lost_mentions": 688
+          },
+          "native_beam": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 224,
+            "cer_degraded_samples": 1040,
+            "cer_equal_samples": 565,
+            "entity_hit_delta_vs_main_arm": -327,
+            "broad_entity_recovered_mentions": 103,
+            "broad_entity_lost_mentions": 430
+          },
+          "native_hotword": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 210,
+            "cer_degraded_samples": 1099,
+            "cer_equal_samples": 520,
+            "entity_hit_delta_vs_main_arm": -491,
+            "broad_entity_recovered_mentions": 76,
+            "broad_entity_lost_mentions": 567
+          }
+        },
+        "broad2023_hotword": {
+          "qwen_raw": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 372,
+            "cer_degraded_samples": 1003,
+            "cer_equal_samples": 454,
+            "entity_hit_delta_vs_main_arm": 328,
+            "broad_entity_recovered_mentions": 480,
+            "broad_entity_lost_mentions": 152
+          },
+          "qwen_ctc_sidecar": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 203,
+            "cer_degraded_samples": 1133,
+            "cer_equal_samples": 493,
+            "entity_hit_delta_vs_main_arm": -123,
+            "broad_entity_recovered_mentions": 251,
+            "broad_entity_lost_mentions": 374
+          },
+          "native_beam": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 363,
+            "cer_degraded_samples": 872,
+            "cer_equal_samples": 594,
+            "entity_hit_delta_vs_main_arm": 146,
+            "broad_entity_recovered_mentions": 335,
+            "broad_entity_lost_mentions": 189
+          },
+          "native_hotword": {
+            "paired_samples": 1829,
+            "cer_improved_samples": 320,
+            "cer_degraded_samples": 920,
+            "cer_equal_samples": 589,
+            "entity_hit_delta_vs_main_arm": -18,
+            "broad_entity_recovered_mentions": 239,
+            "broad_entity_lost_mentions": 257
+          }
+        }
+      },
+      "control": {
+        "broad2023_beam": {
+          "qwen_raw": {
+            "paired_samples": 100,
+            "cer_improved_samples": 6,
+            "cer_degraded_samples": 30,
+            "cer_equal_samples": 64,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "qwen_ctc_sidecar": {
+            "paired_samples": 100,
+            "cer_improved_samples": 6,
+            "cer_degraded_samples": 30,
+            "cer_equal_samples": 64,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "native_beam": {
+            "paired_samples": 100,
+            "cer_improved_samples": 1,
+            "cer_degraded_samples": 25,
+            "cer_equal_samples": 74,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "native_hotword": {
+            "paired_samples": 100,
+            "cer_improved_samples": 1,
+            "cer_degraded_samples": 25,
+            "cer_equal_samples": 74,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          }
+        },
+        "broad2023_hotword": {
+          "qwen_raw": {
+            "paired_samples": 100,
+            "cer_improved_samples": 5,
+            "cer_degraded_samples": 33,
+            "cer_equal_samples": 62,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "qwen_ctc_sidecar": {
+            "paired_samples": 100,
+            "cer_improved_samples": 5,
+            "cer_degraded_samples": 33,
+            "cer_equal_samples": 62,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "native_beam": {
+            "paired_samples": 100,
+            "cer_improved_samples": 1,
+            "cer_degraded_samples": 28,
+            "cer_equal_samples": 71,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          },
+          "native_hotword": {
+            "paired_samples": 100,
+            "cer_improved_samples": 1,
+            "cer_degraded_samples": 28,
+            "cer_equal_samples": 71,
+            "entity_hit_delta_vs_main_arm": 0,
+            "broad_entity_recovered_mentions": 0,
+            "broad_entity_lost_mentions": 0
+          }
+        }
+      }
+    }
+  },
+  "broad_vocabulary_coverage": {
+    "test": {
+      "broad2023_hotword": {
+        "samples": 1829,
+        "requested_words_sum": 2112399,
+        "encoded_words_sum": 2107471
+      }
+    },
+    "control": {
+      "broad2023_hotword": {
+        "samples": 100,
+        "requested_words_sum": 21649,
+        "encoded_words_sum": 21584
+      }
+    }
+  },
+  "source_csvs": [
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/domain_metrics.csv",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/sample_comparison.csv"
+  ],
+  "broad_result_sources": [
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/broad_vocab/native_results.jsonl",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/native_broad_vocab_development.jsonl"
+  ],
+  "integrity": {
+    "test_exact_unique_ids": true,
+    "test_expected": 1829,
+    "control_exact_unique_ids": true,
+    "control_expected": 100,
+    "dev_test_controls_scored_separately": true,
+    "test_parameters_from_dev": true
+  },
+  "limitations": [
+    "Results describe this specific broad-vocabulary 2023 bilingual model and current 2025 native/Qwen/CTC backends; they do not generalize to all native ASR models.",
+    "Hotword selection uses only dev; test/control are evaluated once at the selected score.",
+    "Main-model metrics are read from the completed main-run CSVs; broad-vocabulary metrics are rescored offline against frozen references."
+  ]
+}

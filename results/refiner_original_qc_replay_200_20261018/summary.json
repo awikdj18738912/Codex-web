@@ -1,0 +1,145 @@
+{
+  "denominator": 200,
+  "source_candidate_count": 200,
+  "validated_oral": 186,
+  "assembled_pairs": 186,
+  "source_serial_count": 200,
+  "source_serial_min": 0,
+  "source_serial_max": 199,
+  "source_serial_missing": [],
+  "source_serial_duplicates": [],
+  "binary_qc_pass": 184,
+  "binary_qc_reject": 2,
+  "precheck_reject": 0,
+  "qc_errors": 0,
+  "export_rejected": 0,
+  "retained": 184,
+  "retained_rate_fixed_denominator": 0.92,
+  "retention_outcomes": {
+    "retained": 184,
+    "qc_reject": 2
+  },
+  "retained_by_scene": {
+    "daily_chat": 21,
+    "customer_service": 19,
+    "explanation": 38,
+    "meeting": 17,
+    "navigation": 9,
+    "vibe_coding": 41,
+    "dictation_memo": 16,
+    "voice_search": 10,
+    "academic": 13
+  },
+  "qc_status_by_scene": {
+    "academic": {
+      "qc_pass": 13
+    },
+    "customer_service": {
+      "qc_pass": 19
+    },
+    "daily_chat": {
+      "qc_pass": 21
+    },
+    "dictation_memo": {
+      "qc_pass": 16
+    },
+    "explanation": {
+      "qc_pass": 38,
+      "qc_reject": 1
+    },
+    "meeting": {
+      "qc_pass": 17
+    },
+    "navigation": {
+      "qc_pass": 9,
+      "qc_reject": 1
+    },
+    "vibe_coding": {
+      "qc_pass": 41
+    },
+    "voice_search": {
+      "qc_pass": 10
+    }
+  },
+  "api_call_count": 186,
+  "api_calls_by_stage": {
+    "qc_replay": 186
+  },
+  "api_call_errors": 0,
+  "same_filterfix_accepted_count": 151,
+  "qc_pass_overlap_with_filterfix": 151,
+  "qc_pass_new_vs_filterfix": 33,
+  "qc_pass_lost_vs_filterfix": 0,
+  "retained_overlap_with_filterfix": 151,
+  "retained_only_filterfix": 0,
+  "retained_only_qc_replay": 33,
+  "source_manifest_aggregate_sha256": "b35c694b1b56d98ff51fd06bec6f60efa20b3f26febb13d92fc941192d1de6a9",
+  "teacher_model": {
+    "id": "refiner-teacher",
+    "object": "model",
+    "created": 1792257515,
+    "owned_by": "vllm",
+    "root": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+    "parent": null,
+    "max_model_len": 8192,
+    "permission": [
+      {
+        "id": "modelperm-94ab5c15baad0e34",
+        "object": "model_permission",
+        "created": 1792257515,
+        "allow_create_engine": false,
+        "allow_sampling": true,
+        "allow_logprobs": true,
+        "allow_search_indices": false,
+        "allow_view": true,
+        "allow_fine_tuning": false,
+        "organization": "*",
+        "group": null,
+        "is_blocking": false
+      }
+    ]
+  },
+  "teacher_endpoint": "http://127.0.0.1:8010/v1",
+  "full_structural_audit": {
+    "passed": true,
+    "errors": {
+      "total": 0,
+      "by_type": {},
+      "examples_first_50": []
+    },
+    "counts": {
+      "lines": 184,
+      "records": 184,
+      "reservoir_candidates": 184,
+      "minimum_required": 184
+    },
+    "input_sha256": "32a22b040f0aa206d5ca018ccda2df014d15bd6a9e2c09ef73a1e54a3c50c578"
+  },
+  "training_performed": false,
+  "completed_utc": "2026-10-17T17:21:02.837173+00:00",
+  "qc_reject_details": [
+    {
+      "serial": 51,
+      "id": "original_navigation_0051",
+      "scene": "navigation",
+      "reason": "The refined text incorrectly states the speaker's intended destination as 'Zhenzhou' (Zhengzhou) and 'Tiananmen Square', but the final intended meaning in the input transcript is clearly 'Xining' (Xining), with the speaker correcting themselves from 'Suzhou' to 'Zhengzhou' and then ultimately confirming 'Xining' as the final destination. The refined text omits the final correction and misrepresents the intended destination.",
+      "quality_audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "The refined text incorrectly states the speaker's intended destination as 'Zhenzhou' (Zhengzhou) and 'Tiananmen Square', but the final intended meaning in the input transcript is clearly 'Xining' (Xining), with the speaker correcting themselves from 'Suzhou' to 'Zhengzhou' and then ultimately confirming 'Xining' as the final destination. The refined text omits the final correction and misrepresents the intended destination."
+      }
+    },
+    {
+      "serial": 124,
+      "id": "original_explanation_0124",
+      "scene": "explanation",
+      "reason": "The refined transcript incorrectly preserves the speaker's initial confusion and contradictory statements, failing to resolve to the final intended meaning. The speaker ultimately clarifies that '中国移动' (China Mobile) is the correct full name, with '中移动' as its proper abbreviation. However, the refined version retains the speaker's back-and-forth contradiction and confusion, including the erroneous claim that '移动' should not be written as '移动' (which is a nonsensical distinction), and fails to converge on the clear final assertion that the correct term is '中国移动'. The final intended meaning—'中国移动' is the correct and full name, with '中移动' as its valid abbreviation—is not cleanly captured, as the refinement preserves ambiguity and repetition instead of resolving to the speaker's final, coherent conclusion.",
+      "quality_audit": {
+        "mode": "upstream-semantic-v1",
+        "consistent": false,
+        "reason": "The refined transcript incorrectly preserves the speaker's initial confusion and contradictory statements, failing to resolve to the final intended meaning. The speaker ultimately clarifies that '中国移动' (China Mobile) is the correct full name, with '中移动' as its proper abbreviation. However, the refined version retains the speaker's back-and-forth contradiction and confusion, including the erroneous claim that '移动' should not be written as '移动' (which is a nonsensical distinction), and fails to converge on the clear final assertion that the correct term is '中国移动'. The final intended meaning—'中国移动' is the correct and full name, with '中移动' as its valid abbreviation—is not cleanly captured, as the refinement preserves ambiguity and repetition instead of resolving to the speaker's final, coherent conclusion."
+      }
+    }
+  ],
+  "false_reason_report": "replay_false_reasons.json"
+}

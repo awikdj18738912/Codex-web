@@ -1,0 +1,301 @@
+{
+  "groups": {
+    "both_on": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "numeric_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_meeting_0084",
+        "scale_dictation_memo_0078",
+        "scale_dictation_memo_0069"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "english_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_vibe_coding_0135",
+        "scale_vibe_coding_0205"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "both_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_vibe_coding_0135",
+        "scale_vibe_coding_0205",
+        "scale_meeting_0084",
+        "scale_daily_chat_0090",
+        "scale_dictation_memo_0078",
+        "scale_dictation_memo_0069"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {
+        "scale_daily_chat_0090": "audit_target_not_clean_or_not_exact"
+      }
+    }
+  },
+  "new_asr_candidate_diagnostics": [
+    {
+      "id": "scale_vibe_coding_0135",
+      "scene": "vibe_coding",
+      "source": "嗯，那个，就是说，我，我想用Vue.js，不对，Remix，最后改成，Nuxt.js搭建一个静态网站，需要配置路由和页面组件。",
+      "expected": "我想用Nuxt.js搭建一个静态网站，需要配置路由和页面组件。",
+      "input": "嗯，那个，就是说，我，我想用Vue.js，不对，Remix，最后改成，Nuxt.js搭建一个静态网站",
+      "target": "我想用Nuxt.js搭建一个静态网站，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "我想用Nuxt.js搭建一个静态网站，需要配置路由和页面组件。",
+        "construction_phenomena": [
+          "correction:multiple",
+          "oral:high"
+        ],
+        "expected_clean": "我想用Nuxt.js搭建一个静态网站，需要配置路由和页面组件。",
+        "correction_values": [
+          "Vue.js",
+          "Remix",
+          "Nuxt.js"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": false,
+      "english_fail": true,
+      "surface_issues": [],
+      "unsupported_edits": []
+    },
+    {
+      "id": "scale_vibe_coding_0205",
+      "scene": "vibe_coding",
+      "source": "呃，那个，用REST API，不对，GraphQL，最后改成，WebSocket实现实时消息推送，确保低延迟和高并发。",
+      "expected": "用WebSocket实现实时消息推送，确保低延迟和高并发。",
+      "input": "呃，那个，用REST API，不对，GraphQL，最后改成，WebSocket实现实时消息推送",
+      "target": "用WebSocket实现实时消息推送，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "用WebSocket实现实时消息推送，确保低延迟和高并发。",
+        "construction_phenomena": [
+          "correction:multiple",
+          "oral:moderate"
+        ],
+        "expected_clean": "用WebSocket实现实时消息推送，确保低延迟和高并发。",
+        "correction_values": [
+          "REST API",
+          "GraphQL",
+          "WebSocket"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": false,
+      "english_fail": true,
+      "surface_issues": [],
+      "unsupported_edits": []
+    },
+    {
+      "id": "scale_meeting_0084",
+      "scene": "meeting",
+      "source": "嗯，那个，就是说，预，预算总额定为348,700元，不对，410,000元，符合当前项目需求。",
+      "expected": "预算总额定为410,000元，符合当前项目需求。",
+      "input": "嗯，那个，就是说，预，预算总额定为348,700元，不对，410,000元",
+      "target": "预算总额定为410,000元，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "预算总额定为410,000元，符合当前项目需求。",
+        "construction_phenomena": [
+          "correction:single",
+          "oral:high"
+        ],
+        "expected_clean": "预算总额定为410,000元，符合当前项目需求。",
+        "correction_values": [
+          "348,700元",
+          "410,000元"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": true,
+      "english_fail": false,
+      "surface_issues": [],
+      "unsupported_edits": []
+    },
+    {
+      "id": "scale_daily_chat_0090",
+      "scene": "daily_chat",
+      "source": "嗯，2024年，不对，120Hz刷新率，最后改成，2024年好像快到了，感觉时间过得真快。",
+      "expected": "2024年好像快到了，感觉时间过得真快。",
+      "input": "嗯，2024年，不对，120Hz刷新率，最后改成，2024年好像快到了",
+      "target": "2024年好像快到了，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "2024年好像快到了，感觉时间过得真快。",
+        "construction_phenomena": [
+          "correction:rollback",
+          "oral:low"
+        ],
+        "expected_clean": "2024年好像快到了，感觉时间过得真快。",
+        "correction_values": [
+          "2024年",
+          "120Hz刷新率",
+          "2024年"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": true,
+      "english_fail": true,
+      "surface_issues": [],
+      "unsupported_edits": []
+    },
+    {
+      "id": "scale_dictation_memo_0078",
+      "scene": "dictation_memo",
+      "source": "嗯，那个，就是说，用，用小米14，不对，Surface Pro 9，最后改成，Nikon Z8拍一组夜景照片，注意高感光度下的噪点控制。",
+      "expected": "用Nikon Z8拍一组夜景照片，注意高感光度下的噪点控制。",
+      "input": "嗯，那个，就是说，用，用小米14，不对，Surface Pro 9，最后改成，Nikon Z8拍一组夜景照片",
+      "target": "用Nikon Z8拍一组夜景照片，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "用Nikon Z8拍一组夜景照片，注意高感光度下的噪点控制。",
+        "construction_phenomena": [
+          "correction:multiple",
+          "oral:high"
+        ],
+        "expected_clean": "用Nikon Z8拍一组夜景照片，注意高感光度下的噪点控制。",
+        "correction_values": [
+          "小米14",
+          "Surface Pro 9",
+          "Nikon Z8"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": true,
+      "english_fail": false,
+      "surface_issues": [],
+      "unsupported_edits": []
+    },
+    {
+      "id": "scale_dictation_memo_0069",
+      "scene": "dictation_memo",
+      "source": "嗯，那个，就是说，用，用华为Mate 60，不对，MacBook Air M3处理文档和视频剪辑，性能很流畅。",
+      "expected": "用MacBook Air M3处理文档和视频剪辑，性能很流畅。",
+      "input": "嗯，那个，就是说，用，用华为Mate 60，不对，MacBook Air M3处理文档和视频剪辑",
+      "target": "用MacBook Air M3处理文档和视频剪辑，",
+      "plan": {
+        "construction_version": "synthetic-oral-v1",
+        "raw_intent": "用MacBook Air M3处理文档和视频剪辑，性能很流畅。",
+        "construction_phenomena": [
+          "correction:single",
+          "oral:high"
+        ],
+        "expected_clean": "用MacBook Air M3处理文档和视频剪辑，性能很流畅。",
+        "correction_values": [
+          "华为Mate 60",
+          "MacBook Air M3"
+        ],
+        "spelling_parts": []
+      },
+      "numeric_fail": true,
+      "english_fail": false,
+      "surface_issues": [],
+      "unsupported_edits": []
+    }
+  ],
+  "normal_prompt_judges": {
+    "scale_vibe_coding_0135": {
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "我想用Nuxt.js搭建一个静态网站，"
+      }
+    },
+    "scale_vibe_coding_0205": {
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用WebSocket实现实时消息推送，"
+      }
+    },
+    "scale_meeting_0084": {
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "预算总额定为410,000元，"
+      }
+    },
+    "scale_daily_chat_0090": {
+      "passed": false,
+      "reason": "audit_target_not_clean_or_not_exact",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "2024年好像快到了"
+      }
+    },
+    "scale_dictation_memo_0078": {
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用Nikon Z8拍一组夜景照片，"
+      }
+    },
+    "scale_dictation_memo_0069": {
+      "passed": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "用MacBook Air M3处理文档和视频剪辑，"
+      }
+    }
+  },
+  "api_requests_made": 279,
+  "api_response_cache_size": 279,
+  "judge_call_policy": "One normal-system audit per unique ASR candidate; shared across four ablations."
+}

@@ -1,0 +1,184 @@
+{
+  "upstream_commit": "b0b80c53133237e682bf01b62edf013c4ddf5eaf",
+  "oral_generation_attempts": 557,
+  "valid_oral": 500,
+  "after_clean_and_keyword_qc": 500,
+  "after_asr": 500,
+  "after_assembly": 500,
+  "qc_checked": 500,
+  "qc_pass": 480,
+  "qc_rejected": 20,
+  "near_duplicates_removed": 0,
+  "final_retained": 480,
+  "retained_per_valid_oral": 0.96,
+  "retained_per_generation_attempt": 0.8617594254937163,
+  "per_scene": {
+    "daily_chat": {
+      "oral": 35,
+      "clean": 35,
+      "asr": 35,
+      "assembled": 35,
+      "qc_pass": 34,
+      "final": 34
+    },
+    "english_daily": {
+      "oral": 40,
+      "clean": 40,
+      "asr": 40,
+      "assembled": 40,
+      "qc_pass": 38,
+      "final": 38
+    },
+    "vibe_coding": {
+      "oral": 60,
+      "clean": 60,
+      "asr": 60,
+      "assembled": 60,
+      "qc_pass": 59,
+      "final": 59
+    },
+    "explanation": {
+      "oral": 60,
+      "clean": 60,
+      "asr": 60,
+      "assembled": 60,
+      "qc_pass": 59,
+      "final": 59
+    },
+    "meeting": {
+      "oral": 30,
+      "clean": 30,
+      "asr": 30,
+      "assembled": 30,
+      "qc_pass": 30,
+      "final": 30
+    },
+    "english_meeting": {
+      "oral": 25,
+      "clean": 25,
+      "asr": 25,
+      "assembled": 25,
+      "qc_pass": 23,
+      "final": 23
+    },
+    "customer_service": {
+      "oral": 30,
+      "clean": 30,
+      "asr": 30,
+      "assembled": 30,
+      "qc_pass": 29,
+      "final": 29
+    },
+    "english_customer_service": {
+      "oral": 25,
+      "clean": 25,
+      "asr": 25,
+      "assembled": 25,
+      "qc_pass": 25,
+      "final": 25
+    },
+    "academic": {
+      "oral": 20,
+      "clean": 20,
+      "asr": 20,
+      "assembled": 20,
+      "qc_pass": 20,
+      "final": 20
+    },
+    "english_academic": {
+      "oral": 25,
+      "clean": 25,
+      "asr": 25,
+      "assembled": 25,
+      "qc_pass": 23,
+      "final": 23
+    },
+    "navigation": {
+      "oral": 15,
+      "clean": 15,
+      "asr": 15,
+      "assembled": 15,
+      "qc_pass": 12,
+      "final": 12
+    },
+    "dictation_memo": {
+      "oral": 25,
+      "clean": 25,
+      "asr": 25,
+      "assembled": 25,
+      "qc_pass": 23,
+      "final": 23
+    },
+    "english_dictation": {
+      "oral": 25,
+      "clean": 25,
+      "asr": 25,
+      "assembled": 25,
+      "qc_pass": 25,
+      "final": 25
+    },
+    "voice_search": {
+      "oral": 15,
+      "clean": 15,
+      "asr": 15,
+      "assembled": 15,
+      "qc_pass": 13,
+      "final": 13
+    },
+    "english_voice_search": {
+      "oral": 20,
+      "clean": 20,
+      "asr": 20,
+      "assembled": 20,
+      "qc_pass": 19,
+      "final": 19
+    },
+    "english_tech": {
+      "oral": 50,
+      "clean": 50,
+      "asr": 50,
+      "assembled": 50,
+      "qc_pass": 48,
+      "final": 48
+    }
+  },
+  "api_calls": {
+    "seed": 26,
+    "oral": 944,
+    "clean": 454,
+    "asr": 102,
+    "qc": 500
+  },
+  "source_files_changed": [],
+  "upstream_git_status": "",
+  "elapsed_seconds": 2397.91,
+  "rejection_reasons": {
+    "Target omits details about using DJI Mini 4 Pro to shoot videos, its obstacle avoidance function, and 4K HDR quality, which were part of the speaker's complete intended meaning.": 1,
+    "The target omits the speaker's final reflection on Ada Limón and the thematic connection between nature's scale and human struggles, including the mention of 22.5 million displaced people in 2022. These elements are integral to the speaker's intended meaning and are not preserved.": 1,
+    "The target includes multiple unsupported details and retains content beyond the final semantic boundary, such as the lake, Forbidden City, and smoking statistics, which the speaker explicitly rejected as off-track. The final intended meaning is solely the Japanese tea ceremony in Kyoto, and the target fails to discard all prior corrections and distractions, thus hallucinating content not aligned with the speaker's final clarification.": 1,
+    "The target incorrectly retains the mention of switching to Grails, which the speaker explicitly corrected as a mistake. The final intended meaning is that the speaker wants to use Flask's filter, not Grails, and the target fails to fully reflect this correction by including the erroneous Grails reference.": 1,
+    "The target omits the speaker's repeated clarification that '字节跳动' is a single compound word, not two separate words, and fails to preserve the speaker's emphasis on correcting mishearings like '清化大学' and '中国铁剑'. The original transcript repeatedly corrects misidentifications and emphasizes the correct spelling and meaning of '字节跳动' and '中国铁建', which the target summarizes and loses. Additionally, the target incorrectly implies '中国铁建' is being corrected from '中国铁剑', but the original speaker explicitly states '不是中国铁剑' and '不是铁剑', which is not fully preserved in the target's phrasing.": 1,
+    "The target incorrectly states that the Conversion Rate is performing well, while the input indicates concern about it being a problem where leads are being lost. The intended meaning is that the Conversion Rate needs improvement, not that it is already performing well.": 1,
+    "The target omits the speaker's final emphasis on the urgent need to fix the single supplier issue, talent shortage, and cloud migration 'now'—which is a core part of the intended meaning. It also fails to include the speaker's assertion that there is no qualified talent in emerging tech fields, a key supporting detail. The target summarizes rather than preserves the complete final intent.": 1,
+    "Target incorrectly attributes the issue to 'vivo communication technology company' which was not mentioned in the input; the speaker did not specify the company responsible, and this addition constitutes a hallucinated detail.": 1,
+    "Target omits key elements: flickr30k for image captioning, federated learning for privacy-preserving clinical decision support, and the integrated, holistic intent of combining all components. These omissions alter the final intended meaning.": 1,
+    "The target omits the speaker's correction and final intended meaning, which was that the correct route is not the He-Ning line but rather the Er-Guang Expressway. The final intended meaning is misrepresented by the target.": 1,
+    "The target omits the speaker's final intended point about AUC = ∫₀¹ TPR(θ) d, which was the concluding statement in the input. The speaker was in the process of completing a definition or explanation related to AUC, and the target cuts off before this final intended content, thus failing to preserve the complete final intended meaning.": 1,
+    "The target omits the speaker's repeated confirmation and hesitation markers ('呃', '那个', '对吧', '啊', '对', '就是', '对，对，就是') that are part of the original intent and flow. It also fails to preserve the speaker's self-correction process and the final emphasis on '苏州' as the intended destination, reducing the nuance of the speaker's uncertainty and eventual clarification. The final intended meaning includes the speaker's verbal hesitation and iterative confirmation, which are essential to the complete meaning.": 1,
+    "The target incorrectly reverses the route sequence and adds 'back to Jingkai Expressway' which was not mentioned in the final intended meaning. The speaker's final intended route is solely from Chengyu Expressway to Lanzhou, not involving Jingkai Expressway at the end.": 1,
+    "The target introduces unsupported details (e.g., 'confirming if Apple Watch Series 9 is to be provided to a finance department colleague') not present in the input. The input never confirms or discusses assigning watches to anyone. The final intended meaning is solely about prioritizing the approval of Wang Fang's leave application, with the watch mention being a distraction the speaker explicitly rejects ('not this, don't worry about the watch'). The target also misrepresents the speaker's intent by framing the watch as a pending decision, which contradicts the speaker's clear directive to 'not worry about it' and focus only on the leave. The target thus hallucinates a decision point not in the input.": 1,
+    "target omits the speaker's correction intent and misrepresents the sequence of actions; original transcript indicates the speaker intended to correct 'update progress table' to 'develop marketing plan first', but target incorrectly frames 'develop marketing plan' as the initial step, contradicting the speaker's final intended sequence": 1,
+    "The target omits the repeated '等等' and '还是暂停播放' which are part of the speaker's final intended meaning, indicating hesitation and correction. The original transcript's structure and repetition are essential to capturing the speaker's intent and flow.": 1,
+    "Target omits the final intent to share the photo and fails to capture the complete sequence of corrected intentions, including the final clarification about the photo. The final intended meaning includes sharing a photo, which is not reflected in the target.": 1,
+    "The target includes 'the one that’s in three months,' which is a nonsensical and hallucinated detail not present in the original. The speaker was not referring to a future time period for the artist but was confused in their description. The final intended meaning was to request increasing the volume, not to reference a future artist. This introduces a hallucinated detail beyond the semantic boundary.": 1,
+    "The target incorrectly retains the mention of AWS KMS and AWS IAM, which were explicitly rejected in the input as incorrect. The final intended meaning specifies using Azure's key management and Azure's identity and access management, not AWS. The target fails to fully reflect the correction and rollback to Azure-only tools, thus hallucinating AWS-related details.": 1,
+    "The target omits critical parts of the final intended meaning, including the suggestion to tail -f /var/log/nginx/access.log on the host to diagnose the issue, the consideration of Azure Active Directory as a potential cause, and the repeated emphasis on 'just tail it, man, just tail it' as a debugging step. These omissions alter the full diagnostic intent and sequence of troubleshooting steps.": 1
+  },
+  "wall_seconds_including_restarts": 10084.61,
+  "caveats": [
+    "Qwen4bit teacher instead of paper Gemma",
+    "Original bilingual settings, unlike previous Chinese-focused local runs",
+    "Automatic retention measures acceptance, not independently measured label accuracy",
+    "Seed pools are one unmodified round per scene, not full3000pool"
+  ]
+}

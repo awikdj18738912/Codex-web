@@ -1,0 +1,63 @@
+{
+  "finite_float32_pcm": true,
+  "primary_text_exactly_identical": true,
+  "entity_final_equals_own_primary": true,
+  "final_target_spelling_counts": {
+    "raw": 38,
+    "entity": 38
+  },
+  "target_spelling_count": 38,
+  "ctc_final": {
+    "mode": "on",
+    "submitted_audio_seconds": 590.08,
+    "acoustic_events": 0,
+    "proposals": 0,
+    "committed": 0,
+    "shadow_proposals": 0,
+    "streaming_review_skips": 0,
+    "errors": 1,
+    "finish_timed_out": 0,
+    "compute_seconds": 0.0,
+    "fallback_reason": "ctc_audio_rejected_or_backlogged"
+  },
+  "ctc_events_and_compute_zero_are_missing_preclose_statistics": true,
+  "root_cause": "Not isolated: no underlying CTC exception text or CPU/GIL/IO tracing; timing does not prove cause.",
+  "raw": {
+    "packets_over_5_seconds_late": 0,
+    "intervals_over_5_seconds_late": [],
+    "gaps_between_response_and_next_submit_over_1_second": [],
+    "longest_chunk_request_seconds": 0.8384464369155467
+  },
+  "entity": {
+    "packets_over_5_seconds_late": 249,
+    "intervals_over_5_seconds_late": [
+      {
+        "start_audio_seconds": 472.16,
+        "end_audio_seconds": 478.72,
+        "packets": 42
+      },
+      {
+        "start_audio_seconds": 538.08,
+        "end_audio_seconds": 538.72,
+        "packets": 5
+      },
+      {
+        "start_audio_seconds": 548.8000000000001,
+        "end_audio_seconds": 549.44,
+        "packets": 5
+      },
+      {
+        "start_audio_seconds": 568.0,
+        "end_audio_seconds": 599.36,
+        "packets": 197
+      }
+    ],
+    "gaps_between_response_and_next_submit_over_1_second": [
+      {
+        "next_audio_seconds": 472.16,
+        "seconds": 9.620068869087845
+      }
+    ],
+    "longest_chunk_request_seconds": 10.385109063703567
+  }
+}

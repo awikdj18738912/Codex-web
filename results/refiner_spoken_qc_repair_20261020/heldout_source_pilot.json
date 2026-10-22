@@ -1,0 +1,68 @@
+{
+  "prompt": "你审核纯口语ASR文本训练数据的源文本，只看source，不考虑它能否被精修。不改写文本。\n源文本应只包含说话人实际说出的词语，以及普通ASR标点。编者给读者加的括号术语对照、旁白和舞台动作标注不符合这个数据用途，即使很容易删除，也应判源文本不合格。\n允许真实口头解释、流畅短句、自然改口和中英混用。不能只看到括号符号就拒绝：说话人明确谈论/口述的代码、字符串和公式等字面内容可以含括号。\n边界示例（只用于说明审核原则，不要求说话人采用固定说法）：\n不合格：我们要做文本分类（Text classification）。——括号是书面术语对照。\n不合格：今天发布新产品（音效：掌声）。——括号是制作说明。\n合格：把那行函数改为printf(\"hi\")。——代码是讨论的字面内容。\n合格：那个指标英文名我记得叫AUC，先用它算一下。——解释实际说出口了。\n逐字检查当前source，不能凭空给它添加示例里才有的内容。仅返回严格JSON，pass为布尔值，reason必须是非空字符串。",
+  "fewshot_cases_are_distinct_from_evaluation": true,
+  "results": [
+    {
+      "case": "real_academic_1",
+      "source": "在评估语言模型时，我们发现测试集上的困惑度（Perplexity）为0.890，这个数值表明模型对未见数据的预测能力很强，尤其是在结合了带相对位置编码的自注意力机制后，性能进一步提升，而Brier Score也验证了模型概率输出的可靠性。",
+      "expected": false,
+      "passed": false,
+      "valid": true,
+      "reason": "源文本中包含括号内的术语对照（Perplexity），属于编者添加的书面术语解释，不符合纯口语ASR训练数据的要求。",
+      "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"源文本中包含括号内的术语对照（Perplexity），属于编者添加的书面术语解释，不符合纯口语ASR训练数据的要求。\"\n}",
+      "matches_expected": true
+    },
+    {
+      "case": "narrator",
+      "source": "我明天下午去取快递（旁白：此时手机响起）。",
+      "expected": false,
+      "passed": false,
+      "valid": true,
+      "reason": "括号内为制作说明，非说话人实际说出的内容",
+      "raw_response": "{\n  \"pass\": false,\n  \"reason\": \"括号内为制作说明，非说话人实际说出的内容\"\n}",
+      "matches_expected": true
+    },
+    {
+      "case": "spoken_term",
+      "source": "把这个指标叫CER，中文就是字错率，先看这一个。",
+      "expected": true,
+      "passed": false,
+      "valid": false,
+      "reason": "qc_response_missing_or_invalid_reason",
+      "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"\"\n}",
+      "matches_expected": false
+    },
+    {
+      "case": "code",
+      "source": "把代码改成sum(x)，其他地方别动。",
+      "expected": true,
+      "passed": false,
+      "valid": false,
+      "reason": "qc_response_missing_or_invalid_reason",
+      "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"\"\n}",
+      "matches_expected": false
+    },
+    {
+      "case": "clean_question",
+      "source": "你明天下午几点到上海？",
+      "expected": true,
+      "passed": false,
+      "valid": false,
+      "reason": "qc_response_missing_or_invalid_reason",
+      "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"\"\n}",
+      "matches_expected": false
+    },
+    {
+      "case": "correction",
+      "source": "学习率用0.7，不对，用0.9。",
+      "expected": true,
+      "passed": true,
+      "valid": true,
+      "reason": "源文本为说话人实际说出的自然口语，包含改口和数值调整，符合真实口头表达，无括号术语对照或制作说明。",
+      "raw_response": "{\n  \"pass\": true,\n  \"reason\": \"源文本为说话人实际说出的自然口语，包含改口和数值调整，符合真实口头表达，无括号术语对照或制作说明。\"\n}",
+      "matches_expected": true
+    }
+  ],
+  "matches": 3,
+  "total": 6
+}

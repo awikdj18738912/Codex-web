@@ -42,7 +42,10 @@ TIMING_FIELDS = ("total_seconds", "settled_total_seconds", "post_return_cleanup_
 COUNTER_FIELDS = ("detections", "admitted", "rejected", "windows", "completed_windows",
                   "stream_revisions", "budget_exhausted", "unmapped", "oversized_windows",
                   "errors", "legacy_final_fallbacks", "cache_confirmed_candidates",
-                  "weak_unresolved_kept", "preflight_rejections")
+                  "weak_unresolved_kept", "preflight_rejections", "candidates",
+                  "low_score_rejected", "ambiguous_rejected", "echo_rejected",
+                  "oversized_rejected", "budget_rejected", "queue_rejected",
+                  "cache_reused", "late_candidates_kept", "full_audio_fallbacks")
 BACKEND_NUMERIC_FIELDS = ("primary_pcm_seconds", "replay_pcm_seconds", "primary_http_calls",
                           "replay_http_calls", "primary_wall_seconds", "replay_wall_seconds",
                           "primary_reported_model_ms", "replay_reported_model_ms",
@@ -273,6 +276,7 @@ def verify_protocol(split_name, paths):
     protocol = json.loads(protocol_path.read_text())
     candidate = OUT / "candidate.py"
     experiment_worker = OUT / "experiment_worker.py"
+    live_core = OUT / "live_core.py"
     expected_candidate = protocol.get("candidate_sha256")
     if not expected_candidate or sha256_file(candidate) != expected_candidate:
         raise ValueError("protocol candidate_sha256 does not match candidate.py")
@@ -281,13 +285,19 @@ def verify_protocol(split_name, paths):
         raise ValueError("protocol is missing experiment_worker_sha256")
     if sha256_file(experiment_worker) != worker_hash:
         raise ValueError("protocol experiment_worker_sha256 does not match experiment_worker.py")
+    expected_live_core = protocol.get("live_core_sha256")
+    if not expected_live_core:
+        raise ValueError("protocol is missing live_core_sha256")
+    if sha256_file(live_core) != expected_live_core:
+        raise ValueError("protocol live_core_sha256 does not match live_core.py")
     worker_path = OUT / "worker.json"
-    if worker_path.exists():
-        worker = json.loads(worker_path.read_text())
-        worker_sources = worker.get("source_hashes")
-        protocol_sources = protocol.get("source_hashes")
-        if worker_sources is not None and protocol_sources != worker_sources:
-            raise ValueError("protocol source_hashes do not match worker.json")
+    if not worker_path.is_file():
+        raise FileNotFoundError(f"missing worker snapshot: {worker_path}")
+    worker = json.loads(worker_path.read_text())
+    worker_sources = worker.get("source_hashes")
+    protocol_sources = protocol.get("source_hashes")
+    if not worker_sources or protocol_sources != worker_sources:
+        raise ValueError("protocol source_hashes do not match worker.json")
     source_hashes = protocol.get("source_hashes") or {}
     if not source_hashes:
         raise ValueError("protocol contains no source_hashes")
@@ -300,6 +310,7 @@ def verify_protocol(split_name, paths):
         "sha256": sha256_file(protocol_path),
         "candidate_sha256": expected_candidate,
         "experiment_worker_sha256": worker_hash,
+        "live_core_sha256": expected_live_core,
         "source_hash_count": len(source_hashes),
         "source_hashes": source_hashes,
     }

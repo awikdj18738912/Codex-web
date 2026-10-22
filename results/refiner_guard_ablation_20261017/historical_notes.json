@@ -1,0 +1,160 @@
+{
+  "purpose": "Explain historical 40.4%, current 85%, and upstream 96% using archived run artifacts; no model run performed.",
+  "historical_teacher_1000": {
+    "denominator": "1000 candidate attempts completed",
+    "outcomes": {
+      "accepted_before_dedup": 414,
+      "oral_rejected": 347,
+      "asr_rejected": 80,
+      "audit_rejected": 132,
+      "clean_rejected": 17,
+      "assembly_rejected": 10,
+      "unique_retained": 404,
+      "near_duplicates_removed": 10
+    },
+    "rates": {
+      "accepted_before_dedup_per_candidate": 0.414,
+      "unique_retained_per_candidate": 0.404,
+      "unique_retained_per_effective_oral": 0.6186830015313936
+    },
+    "oral_warning_counts_are_events_not_candidate_counts": {
+      "Intended target cannot be grounded in the spoken input": 686,
+      "Final correction value is missing from the clean intent": 251,
+      "The clean intent does not use the selected seed": 20,
+      "Correction trace does not match the requested structure": 42,
+      "Invalid intent construction plan": 20,
+      "Multiple correction must follow A to B to C": 30,
+      "Single correction must change the value": 19,
+      "Correction values must appear in the claimed order": 23,
+      "Spelling cue must be supported by its word and intended entity": 19,
+      "Oral generator response must be a JSON object": 5,
+      "Clean fragment cannot be aligned to the observed oral text": 1
+    },
+    "warning_total": 1223,
+    "grounding_error_semantics": "The snapshot oral_text_generator.py raises the same message for a combined condition: unsupported_edits OR surface_issues OR lock_training_target(...) is None (lines 358-361). numeric_policy.py lock_training_target returns None for numeric lock failure OR English entity preservation failure (lines 146-151). Therefore 686 is a warning event count for a mixed guard, not 686 numerical false rejections; a candidate may generate multiple warning events/retries.",
+    "other_warning_counts": {
+      "Clean target has no eligible natural fragment boundary": 79,
+      "The clean intent retains an abandoned value or misses the final value": 27,
+      "No Chinese phrase is available for a boundary error": 1
+    },
+    "status_interpretation": "Oral rejection 347 is unique final candidate status count; 686 grounding warnings include retries and are not additive to status counts.",
+    "effective_oral_candidates": 653,
+    "denominator_note": "40.4% is retained per 1000 candidate attempts; among 653 candidates with valid Oral output, retention is 404/653 = 61.9%."
+  },
+  "repair_matched_300": {
+    "baseline": {
+      "attempted": 300,
+      "accepted": 126,
+      "retained": 125,
+      "retained_rate": 0.4167,
+      "statuses": {
+        "oral_rejected": 98,
+        "asr_rejected": 28,
+        "audit_rejected": 37,
+        "clean_rejected": 8,
+        "assembly_rejected": 3
+      },
+      "effective_oral_candidates": 202,
+      "retained_per_effective_oral": 0.6188118811881188
+    },
+    "current_repair_snapshot": {
+      "attempted": 300,
+      "accepted": 198,
+      "retained": 197,
+      "retained_rate": 0.6567,
+      "statuses": {
+        "oral_rejected": 20,
+        "clean_rejected": 33,
+        "audit_rejected": 38,
+        "asr_rejected": 6,
+        "assembly_rejected": 5
+      },
+      "effective_oral_candidates": 280,
+      "retained_per_effective_oral": 0.7035714285714286
+    },
+    "comparison": "Same 300 candidate IDs/seed pools/model/control RNG; stochastic teacher responses can differ. Effective-Oral denominators are arm-specific: baseline 202 candidates (300−98 oral rejects), current repair 280 (300−20); retention is 125/202=61.9% versus 197/280=70.4%. This is distinct from the fixed-Oral 85% replay."
+  },
+  "current_auto_acceptance_300": {
+    "denominator": "300 fixed Oral candidates replayed through acceptance stages",
+    "accepted_before_dedup": 257,
+    "unique_retained": 255,
+    "retained_rate": 0.85,
+    "statuses": {
+      "oral_rejected": 20,
+      "audit_rejected": 11,
+      "assembly_rejected": 6,
+      "asr_rejected": 6
+    },
+    "comparison_caveat": "Replay of fixed Oral candidates, not fresh end-to-end generation throughput; semantic/ASR calls stochastic.",
+    "effective_oral_candidates": 280,
+    "retained_per_effective_oral": 0.9107142857142857,
+    "denominator_note": "85.0% is 255 unique retained per all 300 replay candidates. Excluding 20 oral rejects, effective-Oral retention is 255/280 = 91.1%."
+  },
+  "upstream_500": {
+    "generation_attempts": 557,
+    "valid_oral": 500,
+    "after_clean_and_keyword_qc": 500,
+    "after_asr": 500,
+    "after_assembly": 500,
+    "qc_pass": 480,
+    "qc_rejected": 20,
+    "final_retained": 480,
+    "retained_per_valid_oral": 0.96,
+    "retained_per_generation_attempt": null,
+    "explanation": "96% denominator is 500 valid upstream oral examples, with 480 retained after QC; this is a valid-Oral retention rate, not a full end-to-end rate. The 557 checkpoint attempts are incomplete as a total-request denominator.",
+    "generation_attempts_note": "The 557 count is attempts recorded at the submitted original-batch checkpoint. Some attempts were aborted or queued during the switch; it is not a complete total-request denominator."
+  },
+  "historical_vs_fixed_problem": {
+    "historical_issue": "Broad oral grounding guard over-combined unsupported semantic edits, surface checks, numeric surface lock, and English entity preservation behind one error label. The 1000-run warning count cannot identify which subguard failed.",
+    "subsequent_repair_evidence": "Repair snapshot adds an explicit synthetic construction proof (generation_plan) and accepts only exact source/target construction matches through _construction_plan_matches; fallback still enforces numeric and English constraints. This addresses false rejection of correctly constructed rollback/multiple examples that the old generic comparison could not prove.",
+    "remaining_loss_evidence": "In the matched 300 current run, oral rejections fall 98 to 20 while clean rejections rise 8 to 33; audit remains 37 to 38. Losses moved to downstream stages and are not all resolved by historical guard repair."
+  },
+  "sources": [
+    "results/refiner_teacher_scale1000_20261017/summary.json",
+    "results/refiner_teacher_scale1000_20261017/retention_diagnosis.json",
+    "results/refiner_teacher_scale1000_20261017/distribution_analysis.json",
+    "results/refiner_teacher_scale1000_20261017/run.log",
+    "results/refiner_teacher_scale1000_20261017/source_snapshot/pipeline/src/generators/oral_text_generator.py",
+    "results/refiner_teacher_scale1000_20261017/source_snapshot/pipeline/src/utils/numeric_policy.py",
+    "results/refiner_retention_repair_300_20261017/matched_comparison.json",
+    "results/refiner_auto_acceptance_300_20261017/summary.json",
+    "results/refiner_upstream_500_20261017/summary.json"
+  ],
+  "status_denominator_consistency": [
+    {
+      "group": "historical_teacher_1000",
+      "attempted": 1000,
+      "status_total": 1000,
+      "consistent": true,
+      "effective_oral_from_status": 653
+    },
+    {
+      "group": "repair_matched_baseline",
+      "attempted": 300,
+      "status_total": 300,
+      "consistent": true,
+      "effective_oral_from_status": 202
+    },
+    {
+      "group": "repair_matched_current",
+      "attempted": 300,
+      "status_total": 300,
+      "consistent": true,
+      "effective_oral_from_status": 280
+    },
+    {
+      "group": "fixed_oral_auto_acceptance",
+      "attempted": 300,
+      "status_total": 300,
+      "consistent": true,
+      "effective_oral_from_status": 280
+    },
+    {
+      "group": "upstream_valid_oral_pipeline",
+      "attempted": 500,
+      "status_total": 500,
+      "consistent": true,
+      "effective_oral_from_status": 500
+    }
+  ]
+}

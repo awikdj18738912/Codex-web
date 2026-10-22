@@ -1,0 +1,55 @@
+{
+  "status": "complete_with_runtime_fallback",
+  "verified_utc": "2026-10-15T12:39:26.035727+00:00",
+  "validation": {
+    "complete_round_arm_coverage": true,
+    "round_count": 1,
+    "pcm_and_library_hash_match": true,
+    "expected_packets_per_run": 3750,
+    "pacing_packets_checked": 7500,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "frozen_inference_source_hashes_match": true,
+  "qwen_health_after": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "runtime_result": "Entity arm finished after CTC failure/fallback; this is not a healthy full-duration CTC latency measurement.",
+  "production_code_changed_for_this_test": false,
+  "failure_audit": "failure_audit.json",
+  "source_sha256": {
+    "experiments/scripts/report_entity_long_paced.py": "1feb6811ae4e09ca3194c67b278876012ef3140735b2edc09feb0a609d72e00e",
+    "experiments/scripts/plot_entity_long_timing.py": "66e9fd5e9ef5ad2e4416098eca4d5b00f04c854adf39b21bcda0473449799aea"
+  },
+  "result_sha256": {
+    "manifest.json": "6b5124707f1504296e9250333311bbd6188f63fae0554ec513b0b237bc4f92b3",
+    "experiment_protocol.json": "f016065450934efbdd752ea3c35bea3feb59834376b9fca18b06bb23145177da",
+    "FINDINGS.md": "90f7b9abf357c7c4370db0f4f4726b40aff1f0bf495e8a7c6c724c6b0051cc28",
+    "REPORT.md": "68dfe70b2f78c690596d40947f31d75703039a17bca1bf0d1d7f35531ef596aa",
+    "timing_audit.json": "02ba65b08c13ceae8a588894d8016486ac354f7da64896aa499ab9cdd9c130de",
+    "failure_audit.json": "61ab267980377e29bd02a2365e7785fcb90e2fa567889a5fcc82be5579de35eb",
+    "latency_over_time.png": "ddc881bbe759720cecba31c3576885fe2ac7356ec69f72f379678ecb8a32159a",
+    "run/results.jsonl": "a67b9687088e6c165fc059af7694f6de05cf7b96375ceaf8c686452890c0287d",
+    "run/events.jsonl": "28d97b715e1a37525a5b5ad9f5b6da706990333995586a84fb43408980711d61",
+    "run/run_metadata.jsonl": "7ceeedbc36cc9f0ab0fa833f0e57ef438b399ac4423d3f0cc4e35b953e3056db"
+  }
+}

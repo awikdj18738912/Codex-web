@@ -13,9 +13,20 @@ VAD_MODEL="${VAD_MODEL:-${PROJECT_ROOT}/models/silero_vad.onnx}"
 QWEN_VAD_BACKEND="${QWEN_VAD_BACKEND:-silero}"
 QWEN_GPU="${QWEN_GPU:-0}"
 QWEN_PORT="${QWEN_PORT:-8766}"
+QWEN_CONFIDENCE_WINDOW_SCORES="${QWEN_CONFIDENCE_WINDOW_SCORES:-0}"
+WINDOW_SCORE_ARGS=()
+case "${QWEN_CONFIDENCE_WINDOW_SCORES,,}" in
+  1|true|yes|on) WINDOW_SCORE_ARGS=(--confidence-window-scores) ;;
+  0|false|no|off) ;;
+  *) echo "QWEN_CONFIDENCE_WINDOW_SCORES must be a boolean value" >&2; exit 1 ;;
+esac
 
 if curl --silent --show-error --fail --max-time 3 \
   "http://127.0.0.1:${QWEN_PORT}/health" >/dev/null 2>&1; then
+  if [[ ${#WINDOW_SCORE_ARGS[@]} -gt 0 ]]; then
+    curl --silent --show-error --fail --max-time 3 "http://127.0.0.1:${QWEN_PORT}/health" |
+      python -c 'import json,sys; sys.exit(0 if json.load(sys.stdin).get("confidence_window_scores") is True else "ASR lacks source-aligned window scores; use a separate port or explicitly restart.")'
+  fi
   echo "Qwen ASR is already healthy on port ${QWEN_PORT}; reusing it."
   exit 0
 fi
@@ -37,6 +48,7 @@ exec env CUDA_VISIBLE_DEVICES="${QWEN_GPU}" "${CONDA_EXE}" run --no-capture-outp
   --gpu-memory-utilization "${QWEN_GPU_MEMORY_UTILIZATION:-0.55}" \
   --max-model-len "${QWEN_MAX_MODEL_LEN:-32768}" \
   --confidence-logprobs "${QWEN_CONFIDENCE_LOGPROBS:-5}" \
+  "${WINDOW_SCORE_ARGS[@]}" \
   --segmentation-mode "${ASR_SEGMENTATION_MODE:-vad_finalize}" \
   --asr-send-chunk-seconds "${ASR_SEND_CHUNK_SECONDS:-0.5}" \
   --vad "${QWEN_VAD_BACKEND}" \

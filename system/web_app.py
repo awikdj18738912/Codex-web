@@ -48,6 +48,7 @@ from .refinement_gate import (
     RefinementGateDecision,
     RefinementGateMode,
 )
+from .confidence_supplement import ConfidenceSupplement, MODES as CONFIDENCE_SUPPLEMENT_MODES
 from .refinement_guard import (
     RepetitionReviewCandidate,
     apply_repetition_review_decisions,
@@ -75,6 +76,8 @@ from .refinement_protocol import (
     STRICT_LOCAL_PROTOCOL_VERSION,
     WINDOW_EDIT_POLICIES,
     apply_structured_patch,
+    apply_window_context_patch,
+    WINDOW_CONTEXT_PROTOCOL_VERSION,
     parse_window_edit_policy,
 )
 from .repetition_plausibility import RepetitionPlausibility
@@ -260,6 +263,7 @@ def _confidence_metadata(payload: dict[str, object]) -> dict[str, object]:
     token_count = payload.get("confidence_token_count")
     min_probability = payload.get("confidence_min_probability")
     return {
+        "projection": payload.get("confidence_projection") if isinstance(payload.get("confidence_projection"), dict) else None,
         "calibrated": payload.get("confidence_calibrated") is True,
         "covers_full_text": payload.get("confidence_covers_full_text") is True,
         "scope": (
@@ -700,7 +704,7 @@ def _render_refinement_log_report(
                 else "固定大小"
             )
             if window_kind == "pending_tail":
-                input_label = f"未满 {window_label} 窗口的待处理尾部："
+                input_label = f"等待凑满 {window_label} 或右侧上下文的待处理尾部："
             elif window_kind == "complete_k3_window":
                 input_label = (
                     f"完整 {window_label} 窗口的 Refiner 输入："
@@ -725,6 +729,14 @@ def _render_refinement_log_report(
                 code_block(source),
                 "",
             ]
+            context = segment.get("window_context")
+            if isinstance(context, dict):
+                body.extend([
+                    "只读前文（不参与当前窗口输出）：", "",
+                    code_block(context.get("left_context") or "（无）"), "",
+                    "只读后文（不参与当前窗口输出）：", "",
+                    code_block(context.get("right_context") or "（无，终态尾部）"), "",
+                ])
             gate = segment.get("gate")
             if isinstance(gate, dict):
                 gate_reasons = gate.get("reasons") or []
@@ -1022,7 +1034,28 @@ def create_app(
     experimental_gate_tasks: tuple[str, ...] = ("window_refine",),
     learned_window_gate_mode: str = "off",
     learned_window_gate_model_dir: Path = DEFAULT_MODEL_DIR,
+    confidence_supplement_mode: str = "off",
+    confidence_supplement_threshold: float = .8,
+    entity_ctc_mode: str = "off",
+    entity_ctc_model_dir: Path | None = None,
 ) -> FastAPI:
+    confidence_supplement = ConfidenceSupplement(confidence_supplement_mode,
+                                               low_threshold=confidence_supplement_threshold)
+    if entity_ctc_mode not in {"off", "shadow", "on"}:
+        raise ValueError("entity_ctc_mode must be off, shadow, or on")
+    if entity_ctc_mode != "off" and entity_ctc_model_dir is None:
+        raise ValueError("entity_ctc_model_dir is required when CTC is enabled")
+    if entity_ctc_mode != "off" and entity_db is None:
+        raise ValueError("entity_db is required when CTC is enabled")
+    if entity_ctc_mode != "off":
+        from .entity_ctc_sidecar import EntityCtcRuntime
+        entity_ctc_runtime = EntityCtcRuntime(entity_ctc_model_dir)
+    else:
+        entity_ctc_runtime = None
+    if confidence_supplement.mode != "off" and RefinementGateMode.parse(refinement_gate_mode) is not RefinementGateMode.TRI_STATE:
+        raise ValueError("Confidence supplement requires refinement_gate_mode=tri_state")
+    if confidence_supplement.mode == "on" and (learned_window_gate_mode == "on" or experimental_gate_router is not None):
+        raise ValueError("Confidence supplement on cannot be combined with a review-vetoing router")
     if not set(experimental_gate_tasks).issubset({"window_refine", "local_edit_review"}):
         raise ValueError("Unknown experimental gate task")
     if learned_window_gate_mode != "off" and experimental_gate_router is not None:
@@ -1557,13 +1590,16 @@ def create_app(
     # the routing gate is switched. Use the established fixed K=3 pipeline
     # for every gate mode, including the full-Refiner (off) baseline.
     window_pipeline_config = {
-        "version": "fixed_k3_v1",
+        "version": "fixed_k3_context_v2",
         "window_size": 3,
         "one_punctuation_window": True,
         "fixed_groups": True,
         "stream_reprocess_rejected": False,
         "final_reprocess_rejected": final_refinement_mode == "on",
         "group_numeric_self_corrections": zh_itn is not None,
+        "adjacent_context": True,
+        "context_lookahead_chunks": 1,
+        "context_protocol": WINDOW_CONTEXT_PROTOCOL_VERSION,
     }
     numeric_normalizer = ContextualNumericNormalizer()
     selected_asr_api_style = ASRApiStyle.parse(asr_api_style)
@@ -1604,6 +1640,7 @@ def create_app(
         call_stats: _RefinerSessionStats | None = None,
         trace_segments: list[dict[str, object]] | None = None,
         pending_only: bool = False,
+        window_context: dict[str, str] | None = None,
     ) -> dict[str, object]:
         confidence_metadata = dict(confidence_metadata or {})
         trace_segment: dict[str, object] | None = None
@@ -1636,6 +1673,8 @@ def create_app(
                 refine_kwargs = dict(entity_hints=hints,strict_placeholders=strict_placeholders)
                 if getattr(refiner,"supports_entity_candidates",False):
                     refine_kwargs["entity_candidates"] = prepared.refiner_candidates
+                if window_context is not None and getattr(refiner, "supports_window_context", False):
+                    refine_kwargs["window_context"] = window_context
                 result = refine_method(text,**refine_kwargs)
             except BaseException as error:
                 if trace_segment is not None:
@@ -1657,7 +1696,7 @@ def create_app(
                      "numeric_policy": (
                          "zh-itn-surface-locked" if zh_itn is not None
                          else "model-driven"
-                     )}
+                     ), "window_context": window_context}
                 )
             if call_stats is not None:
                 call_stats.finish_call(started_at, failed=False)
@@ -1778,6 +1817,10 @@ def create_app(
                 ),
                 numeric_rule_mode=zh_itn is not None,
                 numeric_rule_text=baseline_text if zh_result is not None else None,
+                numeric_rule_spans=(
+                    tuple((change.start, change.end) for change in zh_result.changes)
+                    if zh_result is not None else ()
+                ),
             )
             if pending_only:
                 gate_decision = RefinementGateDecision(
@@ -1791,6 +1834,9 @@ def create_app(
                     covers_segment=gate_decision.covers_segment,
                     action="defer",
                 )
+            gate_decision, confidence_supplement_audit = confidence_supplement.decide(
+                gate_decision, segment, confidence_metadata.get("projection")
+            )
             if (experimental_gate_router is not None and "window_refine" in experimental_gate_tasks
                     and gate_decision.action == "refine"):
                 routed = experimental_gate_router(dict(
@@ -1819,16 +1865,21 @@ def create_app(
                     gate_decision = replace(gate_decision, should_refine=False, action="keep",
                                             reasons=("learned_window_gate_veto",))
             gate_record = {"segment_index": segment_index + 1, **gate_decision.public_dict()}
+            if confidence_supplement.mode != "off":
+                gate_record["confidence_supplement"] = confidence_supplement_audit
             if learned_decision is not None:
                 gate_record["learned_window_gate"] = learned_decision
             refinement_gate_decisions.append(gate_record)
             trace_segment = (
                 {"segment_index": segment_index + 1, "source": segment,
                  "baseline": baseline_text, "masked_input": masked_text,
-                 "gate": gate_decision.public_dict(), "model_calls": []}
+                 "gate": gate_decision.public_dict(), "model_calls": [],
+                 "window_context": window_context}
                 if trace_segments is not None else None
             )
             if trace_segment is not None:
+                if confidence_supplement.mode != "off":
+                    trace_segment["confidence_supplement"] = confidence_supplement_audit
                 if zh_result is not None:
                     trace_segment["numeric_rule"] = {
                         "rule_pack": zh_itn.rule_pack,
@@ -1941,7 +1992,12 @@ def create_app(
                     )
                     total_latency_ms += latency_ms
                     refiner_masked_outputs.append(refined_candidate)
-                    structured_candidate, patch_payload, structured_issue = apply_structured_patch(
+                    patch_parser = (
+                        apply_window_context_patch
+                        if window_context is not None and getattr(refiner, "supports_window_context", False)
+                        else apply_structured_patch
+                    )
+                    structured_candidate, patch_payload, structured_issue = patch_parser(
                         masked_text, refined_candidate, policy=window_edit_policy
                     )
                     structured_patch_audits.append(
@@ -1961,8 +2017,11 @@ def create_app(
                             preserve_terminal_only=preserve_numeric_boundary,
                             numeric_rule_mode=zh_itn is not None,
                             entity_patch=patch_payload,
+                            window_context=window_context,
                         )
-                    if has_retryable_integrity_failure(finalized.reject_reasons):
+                    if has_retryable_integrity_failure(
+                        finalized.reject_reasons, numeric_rule_mode=zh_itn is not None
+                    ):
                         initial_reasons = finalized.reject_reasons
                         retry_candidate, retry_latency_ms = invoke_refiner(
                             masked_text,
@@ -1979,7 +2038,7 @@ def create_app(
                         total_latency_ms += retry_latency_ms
                         refiner_masked_outputs.append(retry_candidate)
                         candidate_for_numeric_salvage = retry_candidate
-                        structured_retry, retry_payload, structured_retry_issue = apply_structured_patch(
+                        structured_retry, retry_payload, structured_retry_issue = patch_parser(
                             masked_text, retry_candidate, policy=window_edit_policy
                         )
                         structured_patch_audits.append(
@@ -1999,6 +2058,7 @@ def create_app(
                                 preserve_terminal_only=preserve_numeric_boundary,
                                 numeric_rule_mode=zh_itn is not None,
                                 entity_patch=retry_payload,
+                                window_context=window_context,
                             )
                 finally:
                     refiner_lock.release()
@@ -2458,6 +2518,18 @@ def create_app(
             ),
         }
 
+    def new_text_refinement_session(domain: str = "general"):
+        """Create an offline text session without invoking an ASR backend."""
+        from .offline_text_refinement import OfflineTextRefinementSession
+        definitions = entity_store.list_entities(domain=domain) if entity_store is not None else ()
+        return OfflineTextRefinementSession(refine_update, definitions, domain=domain,
+            fuzzy_mode=fuzzy_mode, rule_protection=rule_protection,
+            group_numeric_self_corrections=zh_itn is not None,
+            final_reprocess_rejected=final_refinement_mode == "on")
+
+    # Python integration hook only: existing HTTP/WebSocket contracts stay intact.
+    app.state.new_text_refinement_session = new_text_refinement_session
+
     @app.get("/")
     def index() -> FileResponse:
         return FileResponse(
@@ -2515,11 +2587,14 @@ def create_app(
             "entity_db": entity_store is not None,
             "entity_asr_context_enabled": entity_asr_context,
             "entity_audio_repair_enabled": entity_audio_repair and entity_store is not None,
+            "entity_ctc_mode": entity_ctc_mode,
+            "entity_ctc_model_dir": str(entity_ctc_runtime.model_dir) if entity_ctc_runtime is not None else None,
             "refinement_gate_mode": refinement_gate.mode.value,
             "asr_api_style": selected_asr_api_style.value,
             "window_pipeline": dict(window_pipeline_config),
             "final_refinement_mode": final_refinement_mode,
             "learned_window_gate": learned_window_gate.status(),
+            "confidence_supplement": confidence_supplement.config_dict(),
             "numeric_normalization_enabled": numeric_normalization or zh_itn is not None,
             "numeric_backend": "zh-itn" if zh_itn is not None else "python",
             "zh_itn_enabled": zh_itn is not None,
@@ -2647,6 +2722,23 @@ def create_app(
             return
         # Explicit legacy prompting remains compatible with older clients.
         repair_enabled = repair_option == "1" if repair_option is not None else entity_audio_repair and not context_enabled
+        ctc_option = websocket.query_params.get("entity_ctc")
+        if ctc_option is not None and ctc_option not in {"off", "shadow", "on"}:
+            await send_json({"event": "error", "detail": "entity_ctc must be off, shadow, or on"})
+            await websocket.close()
+            return
+        session_ctc_mode = ctc_option if ctc_option is not None else entity_ctc_mode
+        if session_ctc_mode != "off" and entity_ctc_runtime is None:
+            await send_json({"event": "error", "detail": "The server has no CTC model configured"})
+            await websocket.close()
+            return
+        if session_ctc_mode != "off" and not repair_enabled:
+            if ctc_option is None:
+                session_ctc_mode = "off"
+            else:
+                await send_json({"event": "error", "detail": "entity_ctc requires entity_audio_repair=1"})
+                await websocket.close()
+                return
         if repair_enabled and context_enabled:
             await send_json({"event": "error", "detail": "Choose entity audio repair or initial glossary prompting, not both"})
             await websocket.close()
@@ -2745,6 +2837,7 @@ def create_app(
             result["entity_asr_context_requested"] = context_enabled
             result["entity_asr_context_applied"] = asr_entity_context_applied
             result["entity_audio_repair_requested"] = repair_enabled
+            result["entity_ctc_mode"] = session_ctc_mode
             if entity_audio_guard is not None:
                 result["entity_audio_repair"] = entity_audio_guard.snapshot()
                 if result.get("event") == "final" and entity_audio_guard.changes:
@@ -2827,7 +2920,14 @@ def create_app(
                                         "entity_audio_repair": snapshot,
                                         "elapsed_seconds": snapshot["elapsed_seconds"]})
 
-            entity_audio_guard = EntityAudioRepair(request_asr, definitions, on_status=audio_repair_status)
+            ctc_session = None
+            if session_ctc_mode != "off":
+                ctc_session = await asyncio.to_thread(entity_ctc_runtime.create_session, definitions)
+                if ctc_session is None:
+                    session_ctc_mode = "off"
+            entity_audio_guard = EntityAudioRepair(request_asr, definitions,
+                on_status=audio_repair_status, ctc_session=ctc_session,
+                ctc_mode=session_ctc_mode)
         if entity_asr_echo_guard and session_asr_context is not None and session_asr_context.text:
             from .entity_asr_echo_guard import EntityASREchoGuard
             entity_context_guard = EntityASREchoGuard(request_asr,session_asr_context)
@@ -2877,6 +2977,7 @@ def create_app(
             fixed_groups=True,
             prepare_pending=session_prepare_pending,
             group_numeric_self_corrections=zh_itn is not None,
+            adjacent_context=True,
         )
         refinement_display = StreamingRefinementDisplay()
         streaming_repetition_cache: dict[
@@ -3383,12 +3484,10 @@ def create_app(
                 # An incomplete K-window still needs a lightweight pass so
                 # pending-text normalization can reach the live display. It
                 # does not invoke the Refiner; rerun it only when that pending
-                # source text changes. Once a complete group exists, its
-                # exact signature alone controls model-window scheduling.
-                queue_signature = (
-                    group_signature,
-                    pending_signature if not group_signature else "",
-                )
+                # source text changes, including while a complete group waits
+                # for its following block. Exact cache keys still suppress
+                # repeated model calls for unchanged contextual windows.
+                queue_signature = (group_signature, pending_signature)
                 if not group_signature and not pending_signature:
                     record_trace(
                         "pass_skipped",
@@ -3579,6 +3678,7 @@ def create_app(
             )
             await send_json({
                 "event": "ready", "trace_id": trace_id,
+                "confidence_supplement": confidence_supplement.config_dict(),
                 "window_pipeline": dict(window_pipeline_config),
                 "asr_chunk_seconds": start.get("chunk_seconds"),
                 "entity_asr_context_requested": context_enabled,
@@ -3586,6 +3686,7 @@ def create_app(
                 "entity_asr_context_term_count": len(session_asr_context.terms) if session_asr_context else 0,
                 "entity_asr_context_digest": start.get("context_digest"),
                 "entity_audio_repair_requested": repair_enabled,
+                "entity_ctc_mode": session_ctc_mode,
                 "entity_audio_repair": entity_audio_guard.snapshot() if entity_audio_guard is not None else None,
             })
             while True:
@@ -4139,6 +4240,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
                         help="default new sessions to bounded canonical ASR context; browser can opt out")
     parser.add_argument("--enable-entity-audio-repair", action="store_true",
                         help="default sessions to type-independent glossary candidate verification against the same audio")
+    parser.add_argument("--entity-ctc-mode", choices=("off", "shadow", "on"), default="off",
+                        help="optional CPU CTC evidence for entity repair; shadow only observes")
+    parser.add_argument("--entity-ctc-model-dir", type=Path,
+                        help="local model.int8.onnx and tokens.txt for the incremental CTC sidecar")
     parser.add_argument(
         "--refinement-gate-mode",
         choices=[mode.value for mode in RefinementGateMode],
@@ -4156,6 +4261,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--learned-window-gate-mode", choices=GATE_MODES, default="off",
                         help="off disables; shadow records window scores; on permits window-only vetoes")
+    parser.add_argument("--confidence-supplement-mode", choices=CONFIDENCE_SUPPLEMENT_MODES, default="off",
+                        help="off/shadow/on; only adds review for low or unknown source-aligned scores")
+    parser.add_argument("--confidence-supplement-threshold", type=float, default=.8,
+                        help="uncalibrated low-fragment risk threshold; high scores never veto native review")
     parser.add_argument("--learned-window-gate-model-dir", type=Path, default=DEFAULT_MODEL_DIR,
                         help="local linear_training directory containing frozen selection.json and model")
     parser.add_argument(
@@ -4185,6 +4294,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     args = parser.parse_args(argv)
     if not args.refiner_model.exists():
         parser.error(f"Refiner model not found: {args.refiner_model}")
+    if args.entity_ctc_mode != "off" and (args.entity_ctc_model_dir is None or
+            not (args.entity_ctc_model_dir / "model.int8.onnx").is_file() or
+            not (args.entity_ctc_model_dir / "tokens.txt").is_file()):
+        parser.error("--entity-ctc-mode requires --entity-ctc-model-dir with model.int8.onnx and tokens.txt")
     if args.max_new_tokens < 1 or not 1 <= args.port <= 65535:
         parser.error("--max-new-tokens must be positive and --port must be valid")
     if (
@@ -4218,6 +4331,10 @@ def main(argv: list[str] | None = None) -> int:
         entity_audio_repair=args.enable_entity_audio_repair,
         learned_window_gate_mode=args.learned_window_gate_mode,
         learned_window_gate_model_dir=args.learned_window_gate_model_dir,
+        confidence_supplement_mode=args.confidence_supplement_mode,
+        confidence_supplement_threshold=args.confidence_supplement_threshold,
+        entity_ctc_mode=args.entity_ctc_mode,
+        entity_ctc_model_dir=args.entity_ctc_model_dir,
     )
     # Float32 audio gains little from deflate, while compressing each PCM
     # frame adds CPU work to the file-streaming critical path.

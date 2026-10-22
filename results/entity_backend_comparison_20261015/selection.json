@@ -1,0 +1,192 @@
+{
+  "dev_samples": 171,
+  "selection_uses_test_labels": false,
+  "rule": "Maximize dev target hits with no dev character-error increase over corresponding unbiased baseline; then fewer char errors, more conservative hyperparameter. Fallback lowest CER if none qualifies.",
+  "qwen_dev": {
+    "samples": 171,
+    "hits": 118,
+    "mentions": 191,
+    "errors": 224,
+    "chars": 4240,
+    "recall": 0.6178010471204188,
+    "CER": 0.052830188679245285,
+    "complete": true
+  },
+  "native_dev": {
+    "('greedy', None)": {
+      "samples": 171,
+      "hits": 109,
+      "mentions": 191,
+      "errors": 372,
+      "chars": 4240,
+      "recall": 0.5706806282722513,
+      "CER": 0.08773584905660377,
+      "complete": true
+    },
+    "('beam', None)": {
+      "samples": 171,
+      "hits": 112,
+      "mentions": 191,
+      "errors": 348,
+      "chars": 4240,
+      "recall": 0.5863874345549738,
+      "CER": 0.0820754716981132,
+      "complete": true
+    },
+    "('hotword', 0.5)": {
+      "samples": 171,
+      "hits": 119,
+      "mentions": 191,
+      "errors": 334,
+      "chars": 4240,
+      "recall": 0.6230366492146597,
+      "CER": 0.07877358490566037,
+      "complete": true
+    },
+    "('hotword', 1.0)": {
+      "samples": 171,
+      "hits": 124,
+      "mentions": 191,
+      "errors": 327,
+      "chars": 4240,
+      "recall": 0.6492146596858639,
+      "CER": 0.07712264150943396,
+      "complete": true
+    },
+    "('hotword', 1.5)": {
+      "samples": 171,
+      "hits": 127,
+      "mentions": 191,
+      "errors": 327,
+      "chars": 4240,
+      "recall": 0.6649214659685864,
+      "CER": 0.07712264150943396,
+      "complete": true
+    },
+    "('hotword', 2.0)": {
+      "samples": 171,
+      "hits": 129,
+      "mentions": 191,
+      "errors": 322,
+      "chars": 4240,
+      "recall": 0.675392670157068,
+      "CER": 0.07594339622641509,
+      "complete": true
+    },
+    "('hotword', 3.0)": {
+      "samples": 171,
+      "hits": 129,
+      "mentions": 191,
+      "errors": 322,
+      "chars": 4240,
+      "recall": 0.675392670157068,
+      "CER": 0.07594339622641509,
+      "complete": true
+    }
+  },
+  "hybrid_dev": {
+    "(-0.25, 0.04)": {
+      "samples": 171,
+      "hits": 127,
+      "mentions": 191,
+      "errors": 214,
+      "chars": 4240,
+      "recall": 0.6649214659685864,
+      "CER": 0.05047169811320755,
+      "complete": true
+    },
+    "(-0.25, 0.1)": {
+      "samples": 171,
+      "hits": 127,
+      "mentions": 191,
+      "errors": 214,
+      "chars": 4240,
+      "recall": 0.6649214659685864,
+      "CER": 0.05047169811320755,
+      "complete": true
+    },
+    "(-0.5, 0.04)": {
+      "samples": 171,
+      "hits": 127,
+      "mentions": 191,
+      "errors": 214,
+      "chars": 4240,
+      "recall": 0.6649214659685864,
+      "CER": 0.05047169811320755,
+      "complete": true
+    },
+    "(-0.5, 0.1)": {
+      "samples": 171,
+      "hits": 127,
+      "mentions": 191,
+      "errors": 214,
+      "chars": 4240,
+      "recall": 0.6649214659685864,
+      "CER": 0.05047169811320755,
+      "complete": true
+    },
+    "(-1.0, 0.04)": {
+      "samples": 171,
+      "hits": 133,
+      "mentions": 191,
+      "errors": 208,
+      "chars": 4240,
+      "recall": 0.6963350785340314,
+      "CER": 0.04905660377358491,
+      "complete": true
+    },
+    "(-1.0, 0.1)": {
+      "samples": 171,
+      "hits": 133,
+      "mentions": 191,
+      "errors": 208,
+      "chars": 4240,
+      "recall": 0.6963350785340314,
+      "CER": 0.04905660377358491,
+      "complete": true
+    },
+    "(-2.0, 0.04)": {
+      "samples": 171,
+      "hits": 140,
+      "mentions": 191,
+      "errors": 201,
+      "chars": 4240,
+      "recall": 0.7329842931937173,
+      "CER": 0.047405660377358494,
+      "complete": true
+    },
+    "(-2.0, 0.1)": {
+      "samples": 171,
+      "hits": 140,
+      "mentions": 191,
+      "errors": 201,
+      "chars": 4240,
+      "recall": 0.7329842931937173,
+      "CER": 0.047405660377358494,
+      "complete": true
+    }
+  },
+  "native_hotword_score": 2.0,
+  "hybrid_minimum_gap": -2.0,
+  "hybrid_minimum_margin": 0.1,
+  "native_selected": {
+    "samples": 171,
+    "hits": 129,
+    "mentions": 191,
+    "errors": 322,
+    "chars": 4240,
+    "recall": 0.675392670157068,
+    "CER": 0.07594339622641509,
+    "complete": true
+  },
+  "hybrid_selected": {
+    "samples": 171,
+    "hits": 140,
+    "mentions": 191,
+    "errors": 201,
+    "chars": 4240,
+    "recall": 0.7329842931937173,
+    "CER": 0.047405660377358494,
+    "complete": true
+  }
+}

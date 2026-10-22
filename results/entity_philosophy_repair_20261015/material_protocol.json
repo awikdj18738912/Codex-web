@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-10-15T13:06:19.558251+00:00",
+  "purpose": "Find material with actual primary entity spelling failures, then evaluate frozen module; not a latency or population-quality benchmark.",
+  "selection_basis": "Unprompted current Qwen raw_screen completed before repair run. Whole first600seconds retained, no audio corruption, no synthetic concatenation.",
+  "core_policy": "Core spelling cases and already-correct controls counted; 3 name-order/spoken variants excluded from core scoring. All labels remain subject to independent human listening adjudication.",
+  "reference_policy": "Only entity spellings corrected with publisher/university/historical references. Rest copied from raw screen, so no CER. Exact source programme attribution not verified beyond matching repost metadata.",
+  "glossary_policy": "53 known-topic names/terms with plausible absent distractors, no error aliases, current default thresholds unchanged.",
+  "quality_delivery": "Accelerated 1s PCM packets; CTC real-audio worker awaited after each packet to avoid synthetic queue overrun; same runtime and module, no downstream Web refiner.",
+  "fixed_assets_sha256": {
+    "manifest.json": "36b2f2df775919194f35b57976135f8a8ee1fad3081c0d669d36fb0bf49a2e01",
+    "entity_annotations.json": "7afd19ccc83c3f7867e62f21f68e86f4d1d2cbe00e91078c69d52a6a53eb4f56",
+    "entity_reference.txt": "7c4fefe74cf69d942d39945513ce6eb728d59c9710f1b8cc16cca56981a29eb5",
+    "raw_screen.json": "c52cd842610cca65396c429919b618b10532c91cea1e1892ca602a3582ef6101",
+    "philosophy_0_600.f32le": "d3a7fce2a67aac952afda555b09373a162ed46c79e7d5eacaea04912e2022885",
+    "philosophy_entities.db": "b0a69cad8bd97faf6a2b1d7b64eb39efb2344e117f6ab1548789a4fe5e86a9ea"
+  },
+  "label_files_loaded_by_inference": false
+}

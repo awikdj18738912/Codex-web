@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AgenticASR</title>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
   <style>
     :root { color-scheme: light; font-family: Inter, "Noto Sans SC", sans-serif; }
     * { box-sizing: border-box; }
@@ -105,7 +105,27 @@
     .checkbox-field { display: flex; align-items: center; gap: 8px; color: #17201f; }
     .field-help { margin: 0; color: #53615f; font-size: 12px; line-height: 1.45; }
     #file-timing[hidden], #download-file-timing[hidden] { display: none; }
+    .translation-panel { margin-top: 28px; padding: 22px; border: 1px solid #c9d1cf; border-radius: 8px; background: #fff; }
+    .translation-panel h2 { margin: 0 0 8px; font-size: 18px; }
+    .translation-tabs { display: flex; gap: 8px; margin: 16px 0; border-bottom: 1px solid #d5dcda; }
+    .translation-tabs button { min-width: auto; height: 36px; padding: 0 12px; border: 0; border-radius: 6px 6px 0 0; background: transparent; color: #53615f; }
+    .translation-tabs button[aria-selected="true"] { background: #e7f1ee; color: #155c51; }
+    .translation-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 14px 0; }
+    .translation-controls label { display: grid; gap: 6px; color: #53615f; font-size: 13px; }
+    .translation-controls select { min-width: 150px; }
+    .translation-panel textarea { width: 100%; min-height: 120px; line-height: 1.6; }
+    .translation-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+    .translation-status { min-height: 20px; color: #53615f; font-size: 13px; }
+    .translation-status.error { color: #a62927; }
+    .translation-metrics { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 14px 0; color: #40504c; font-size: 13px; }
+    .translation-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .translation-columns section { min-width: 0; padding: 12px; border: 1px solid #d5dcda; border-radius: 7px; background: #fafcfb; }
+    .translation-columns h3 { margin: 0 0 8px; color: #53615f; font-size: 13px; }
+    .translation-columns p { min-height: 90px; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; }
+    .translation-log { max-height: 240px; overflow: auto; margin-top: 14px; padding: 12px; border-radius: 6px; background: #f3f6f5; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.55 ui-monospace, monospace; }
+    .translation-audio-help { margin: 0; color: #66736f; font-size: 12px; }
     @media (max-width: 620px) { main { padding-top: 32px; } .header-row, .control, .panel-header { align-items: flex-start; flex-direction: column; } .session-metrics, .refiner-status, .results, .form-grid { grid-template-columns: 1fr; gap: 12px; } .results { gap: 22px; } .form-field.full { grid-column: auto; } button:not(.secondary):not(.small-button) { width: 100%; } }
+    @media (max-width: 620px) { .translation-columns { grid-template-columns: 1fr; } .translation-controls { align-items: stretch; flex-direction: column; } .translation-controls label, .translation-controls select { width: 100%; } }
   </style>
 </head>
 <body>
@@ -114,6 +134,7 @@
       <div class="header-row">
         <h1>AgenticASR</h1>
         <div class="header-actions">
+          <a class="log-link" href="#translation-panel">多语翻译</a>
           <a class="log-link" href="/refinement-log" target="_blank" rel="noopener">精修日志</a>
           <button id="manage-entities" class="secondary" type="button">术语库管理</button>
         </div>
@@ -132,6 +153,13 @@
       </label>
       <label class="mode"><input id="entity-asr-context" type="checkbox">词库辅助识别 <small id="entity-context-status"></small></label>
       <label class="mode"><input id="entity-audio-repair" type="checkbox">实体原音复核 <small id="entity-audio-status"></small></label>
+      <label class="mode" for="entity-ctc-mode">实体声学辅助
+        <select id="entity-ctc-mode" disabled>
+          <option value="off">关闭</option>
+          <option value="shadow">仅观察</option>
+          <option value="on">参与修复</option>
+        </select>
+      </label>
       <label class="mode" for="transcription-domain">术语领域
         <select id="transcription-domain">
           <option value="general">通用</option><option value="medical">医疗</option><option value="legal">法律</option><option value="education">教育</option><option value="finance">金融</option><option value="technology">科技</option>
@@ -175,6 +203,47 @@
       </div>
       <p id="history-empty" class="history-empty">开始一次转写后，这里只会显示实际发生的文本修改、实体规范化和质量回退；未修改的累计转写不会重复展示。</p>
       <div id="refinement-list" class="refinement-list"></div>
+    </section>
+    <section id="translation-panel" class="translation-panel" aria-labelledby="translation-title">
+      <h2 id="translation-title">多语翻译 → 中文精修</h2>
+      <p class="field-help">上传外语录音或回放文本，持续查看原文、中文译文和精修结果。</p>
+      <div class="translation-tabs" role="tablist" aria-label="翻译输入方式">
+        <button id="translation-text-tab" type="button" role="tab" aria-selected="true" aria-controls="translation-text-view">文本回放</button>
+        <button id="translation-audio-tab" type="button" role="tab" aria-selected="false" aria-controls="translation-audio-view">音频文件</button>
+      </div>
+      <div id="translation-text-view" role="tabpanel" aria-labelledby="translation-text-tab">
+        <div class="translation-controls">
+          <label>源语言<select id="translation-language"><option value="en">英语</option><option value="ja">日语</option><option value="ko">韩语</option><option value="fr">法语</option><option value="de">德语</option><option value="es">西班牙语</option><option value="ru">俄语</option><option value="pt">葡萄牙语</option></select></label>
+          <label>领域<select id="translation-domain"><option value="trade">外贸</option></select></label>
+        </div>
+        <textarea id="translation-input" aria-label="待翻译文本" placeholder="输入待翻译文本">Could you send us your best quotation for 500 units? Please include the lead time, payment terms, and shipping cost to Shanghai.</textarea>
+      </div>
+      <div id="translation-audio-view" role="tabpanel" aria-labelledby="translation-audio-tab" hidden>
+        <div class="translation-controls">
+          <label>源语言<select id="translation-audio-language"><option value="en">英语</option><option value="ja">日语</option><option value="ko">韩语</option><option value="fr">法语</option><option value="de">德语</option><option value="es">西班牙语</option><option value="ru">俄语</option><option value="pt">葡萄牙语</option></select></label>
+          <label>领域<select id="translation-audio-domain"><option value="trade">外贸</option></select></label>
+          <label>音频文件<input id="translation-audio-file" type="file" accept="audio/*,.wav,.mp3,.m4a,.flac,.ogg"></label>
+        </div>
+        <p id="translation-audio-help" class="translation-audio-help">正在检查音频翻译服务。</p>
+      </div>
+      <div class="translation-actions">
+        <button id="translation-start" type="button" disabled>开始翻译</button>
+        <button id="translation-stop" class="secondary" type="button" disabled>取消</button>
+        <button id="translation-download" class="secondary" type="button" disabled>下载 JSON 日志</button>
+        <span id="translation-status" class="translation-status" role="status">正在检查翻译服务。</span>
+      </div>
+      <div class="translation-metrics" aria-live="polite">
+        <span>模型调用：<strong id="translation-calls">0 / 0</strong></span>
+        <span>守卫状态：<strong id="translation-guard">等待运行</strong></span>
+        <span>翻译耗时：<strong id="translation-time">—</strong></span>
+        <span>精修耗时：<strong id="refinement-time">—</strong></span>
+      </div>
+      <div class="translation-columns">
+        <section><h3>原始外语</h3><p id="translation-source"></p></section>
+        <section><h3>中文译文</h3><p id="translation-original"></p></section>
+        <section class="refined"><h3>中文精修</h3><p id="translation-clean"></p></section>
+      </div>
+      <pre id="translation-log" class="translation-log" aria-label="逐次翻译与精修日志">暂无运行记录。</pre>
     </section>
     <section id="entity-panel" class="entity-panel" hidden>
       <div class="panel-header">
@@ -221,15 +290,25 @@
     const transcriptionDomain = document.querySelector('#transcription-domain');
     const entityAsrContext = document.querySelector('#entity-asr-context');
     const entityAudioRepair = document.querySelector('#entity-audio-repair');
+    const entityCtcMode = document.querySelector('#entity-ctc-mode');
+    let serverCtcMode = 'off';
+    let entityCtcTouched = false;
+    entityCtcMode.addEventListener('change', () => { entityCtcTouched = true; });
+    function updateCtcAvailability() {
+      entityCtcMode.disabled = serverCtcMode === 'off' || !entityAudioRepair.checked;
+      if (entityCtcMode.disabled) entityCtcMode.value = 'off';
+    }
     let entityContextTouched = false;
     let entityAudioTouched = false;
     entityAsrContext.addEventListener('change', () => {
       entityContextTouched = true;
       if (entityAsrContext.checked) { entityAudioRepair.checked = false; entityAudioTouched = true; }
+      updateCtcAvailability();
     });
     entityAudioRepair.addEventListener('change', () => {
       entityAudioTouched = true;
       if (entityAudioRepair.checked) { entityAsrContext.checked = false; entityContextTouched = true; }
+      updateCtcAvailability();
     });
     fetch('/health').then(response => response.json()).then(data => {
       if (!entityContextTouched && !running && !finishing) {
@@ -238,6 +317,9 @@
       if (!entityAudioTouched && !running && !finishing) {
         entityAudioRepair.checked = data.entity_audio_repair_enabled === true && !entityAsrContext.checked;
       }
+      serverCtcMode = data.entity_ctc_mode || 'off';
+      if (!entityCtcTouched && !running && !finishing) entityCtcMode.value = serverCtcMode;
+      updateCtcAvailability();
     }).catch(() => {});
     const status = document.querySelector('#status');
     const timer = document.querySelector('#timer');
@@ -425,7 +507,7 @@
       recordButton.innerHTML = isRecording
         ? '<i data-lucide="square"></i><span>停止转写</span>'
         : `<i data-lucide="mic"></i><span>${startLabel}</span>`;
-      lucide.createIcons();
+      if (window.lucide) window.lucide.createIcons();
     }
 
     function resetRefinerStatus() {
@@ -730,7 +812,7 @@
     function websocketUrl(asrChunkSeconds) {
       const scheme = location.protocol === 'https:' ? 'wss' : 'ws';
       const decodeInterval = asrChunkSeconds === undefined ? '' : '&asr_chunk_seconds=' + encodeURIComponent(asrChunkSeconds);
-      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + '&entity_asr_context=' + (entityAsrContext.checked ? '1' : '0') + '&entity_audio_repair=' + (entityAudioRepair.checked ? '1' : '0') + decodeInterval;
+      return scheme + '://' + location.host + '/ws/stream?language=Chinese&mode=' + encodeURIComponent(selectedMode) + '&domain=' + encodeURIComponent(transcriptionDomain.value) + '&entity_asr_context=' + (entityAsrContext.checked ? '1' : '0') + '&entity_audio_repair=' + (entityAudioRepair.checked ? '1' : '0') + '&entity_ctc=' + encodeURIComponent(entityAudioRepair.checked ? entityCtcMode.value : 'off') + decodeInterval;
     }
 
     function connectSocket(asrChunkSeconds) {
@@ -803,6 +885,11 @@
                 || (repair.phase === 'skipped' ? '本次未复核，已保留初稿' : '未确认可替换实体');
             }
             document.querySelector('#entity-audio-status').textContent = message;
+            const ctc = repair.incremental?.ctc;
+            if (ctc?.mode && ctc.mode !== 'off') {
+              document.querySelector('#entity-audio-status').textContent +=
+                ` · 声学候选 ${ctc.proposals || 0}，当前修复 ${ctc.committed || 0}`;
+            }
           } else if (data.event === 'ready') {
             document.querySelector('#entity-audio-status').textContent = '';
           }
@@ -1183,7 +1270,8 @@
       if (file) startFile(file);
     });
     recordButton.addEventListener('click', () => running ? stop() : start());
-    lucide.createIcons();
+    if (window.lucide) window.lucide.createIcons();
   </script>
+  <script src="/translation.js"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+{
+  "model": "Qwen3-TTS-12Hz-0.6B-CustomVoice",
+  "speaker": "Vivian",
+  "device": "cuda:1",
+  "seed_base": 20261016,
+  "max_new_tokens": 2048,
+  "source_sha256": "5e52569ae5a6d775ae84a449e364c27c3707cc4c8cd0ba734e86178de01c58c0",
+  "pronunciations": {
+    "γδ T细胞": "伽马德尔塔T细胞",
+    "αβ T细胞": "阿尔法贝塔T细胞",
+    "ILC1": "I L C 一",
+    "ILC2": "I L C 二",
+    "ILC3": "I L C 三",
+    "B1细胞": "B一细胞",
+    "B2细胞": "B二细胞",
+    "FAS": "F A S",
+    "ITAM": "I T A M",
+    "ITIM": "I T I M",
+    "HLDA": "H L D A",
+    "HLA": "H L A",
+    "CD95": "C D 九十五",
+    "MAC": "M A C"
+  },
+  "paragraph_count": 21,
+  "gap_seconds": 0.5,
+  "batch_size": 4,
+  "generation_note": "First completed paragraphs from single generation retained; remaining paragraphs use batched sampling with fixed batch seed."
+}

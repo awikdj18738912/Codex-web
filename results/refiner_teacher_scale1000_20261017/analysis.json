@@ -1,0 +1,292 @@
+{
+  "summary": {
+    "candidate_target": 1000,
+    "candidates_completed": 1000,
+    "statuses": {
+      "accepted": 414,
+      "oral_rejected": 347,
+      "asr_rejected": 80,
+      "audit_rejected": 132,
+      "clean_rejected": 17,
+      "assembly_rejected": 10
+    },
+    "accepted_before_dedup": 414,
+    "unique_retained": 404,
+    "near_duplicates_removed": 10,
+    "acceptance_rate": 0.414,
+    "retained_rate": 0.404,
+    "scene_quotas": {
+      "daily_chat": 121,
+      "vibe_coding": 207,
+      "explanation": 207,
+      "meeting": 103,
+      "customer_service": 103,
+      "academic": 69,
+      "navigation": 52,
+      "dictation_memo": 86,
+      "voice_search": 52
+    },
+    "accepted_by_scene": {
+      "academic": 22,
+      "customer_service": 47,
+      "daily_chat": 73,
+      "dictation_memo": 39,
+      "explanation": 76,
+      "meeting": 39,
+      "navigation": 16,
+      "vibe_coding": 82,
+      "voice_search": 20
+    },
+    "unique_by_scene": {
+      "academic": 22,
+      "customer_service": 45,
+      "daily_chat": 72,
+      "dictation_memo": 39,
+      "explanation": 72,
+      "meeting": 37,
+      "navigation": 16,
+      "vibe_coding": 81,
+      "voice_search": 20
+    },
+    "controls": {
+      "correction:none": 170,
+      "oral:moderate": 105,
+      "correction:single": 108,
+      "oral:low": 100,
+      "oral:high": 120,
+      "correction:multiple": 24,
+      "clean": 79,
+      "boundary_punctuation": 25,
+      "correction:rollback": 23,
+      "explanation": 59
+    },
+    "real_fragments": 23,
+    "asr_selected": 115,
+    "fragment_eligible": 232,
+    "elapsed_seconds": 1090.36,
+    "api_calls": {
+      "seed": 9,
+      "oral": 1796,
+      "audit": 492,
+      "clean": 611,
+      "asr": 35
+    },
+    "source_files_changed": [],
+    "independent_review_status": "complete",
+    "limitations": [
+      "Synthetic text only; no audio-ASR or student training evaluation",
+      "Teacher also judges semantics",
+      "Blind review is stratified toward scene/rare-branch coverage, not a uniform random error-rate estimate"
+    ],
+    "reviewed": 200,
+    "initial_review_counts": {
+      "pass": 199,
+      "fail": 1
+    },
+    "adjudicated_review_counts": {
+      "pass": 200
+    },
+    "adjudicated_cases": [
+      "scale_meeting_0050"
+    ],
+    "structural_revalidation_errors": 0,
+    "input_target_conflicts": 0
+  },
+  "structural_errors": [],
+  "exact_input_target_conflicts": [],
+  "review_evidence_errors": [],
+  "initial_review_counts": {
+    "pass": 199,
+    "fail": 1
+  },
+  "adjudications": [
+    {
+      "id": "scale_meeting_0050",
+      "original_decision": "fail",
+      "decision": "pass",
+      "source_quote": "嗯，确认审批流程的初稿已提交，不对，确认审批流程的修订版已通过测试，最后改成，确认审批流程的最新版本已同步到所有相关部门。",
+      "target_quote": "确认审批流程的最新版本已同步到所有相关部门。",
+      "reason": "不对与最后改成明确撤回前两种当前状态表述；没有先后历史叙述标记。原审阅者重审及另一盲审者均独立判为即时改口。",
+      "evidence_files": [
+        "adjudication_second_opinion.json",
+        "adjudication_review2_reconsideration.json"
+      ]
+    }
+  ],
+  "review_counts": {
+    "pass": 200
+  },
+  "reviewed": 200,
+  "flagged_reviews": [],
+  "source_quality_notes": [
+    {
+      "id": "scale_dictation_memo_0066",
+      "decision": "pass",
+      "source_quote": "嗯，那个，就是说，预，预。算定在18900元，不对，26700元",
+      "target_quote": "预算定在26700元，",
+      "reason": "按片段核对，目标是完整目标中的已观察前缀；未带入片段之后的内容。",
+      "source_issue": "源句“预，预。算”含有异常句号，源文自身书写不自然；目标已正确清理。",
+      "reviewer": 2
+    },
+    {
+      "id": "scale_navigation_0018",
+      "decision": "pass",
+      "source_quote": "嗯，那个，就是说，从，从。哈尔滨去长春",
+      "target_quote": "从哈尔滨去长春，",
+      "reason": "按片段核对，目标是完整目标中的已观察前缀；未带入片段之后的内容。",
+      "source_issue": "源句“从，从。哈尔滨”在重复起音后有异常句号，源文自身书写不自然；目标已正确清理。",
+      "reviewer": 2
+    }
+  ],
+  "audit_rejection_categories": {
+    "target_disagrees_with_generation_intent": 54,
+    "audit_target_not_clean_or_not_exact": 9,
+    "audit_failed": 69
+  },
+  "per_scene": [
+    {
+      "scene": "daily_chat",
+      "attempted": 121,
+      "status_counts": {
+        "oral_rejected": 32,
+        "accepted": 73,
+        "audit_rejected": 13,
+        "asr_rejected": 3
+      },
+      "accepted": 73,
+      "unique": 72,
+      "review_counts": {
+        "pass": 24
+      }
+    },
+    {
+      "scene": "vibe_coding",
+      "attempted": 207,
+      "status_counts": {
+        "accepted": 82,
+        "asr_rejected": 11,
+        "oral_rejected": 105,
+        "clean_rejected": 3,
+        "audit_rejected": 6
+      },
+      "accepted": 82,
+      "unique": 81,
+      "review_counts": {
+        "pass": 26
+      }
+    },
+    {
+      "scene": "explanation",
+      "attempted": 207,
+      "status_counts": {
+        "accepted": 76,
+        "clean_rejected": 5,
+        "asr_rejected": 30,
+        "oral_rejected": 46,
+        "audit_rejected": 50
+      },
+      "accepted": 76,
+      "unique": 72,
+      "review_counts": {
+        "pass": 31
+      }
+    },
+    {
+      "scene": "meeting",
+      "attempted": 103,
+      "status_counts": {
+        "accepted": 39,
+        "audit_rejected": 21,
+        "clean_rejected": 4,
+        "oral_rejected": 32,
+        "asr_rejected": 7
+      },
+      "accepted": 39,
+      "unique": 37,
+      "review_counts": {
+        "pass": 20
+      }
+    },
+    {
+      "scene": "customer_service",
+      "attempted": 103,
+      "status_counts": {
+        "oral_rejected": 39,
+        "audit_rejected": 11,
+        "accepted": 47,
+        "asr_rejected": 6
+      },
+      "accepted": 47,
+      "unique": 45,
+      "review_counts": {
+        "pass": 22
+      }
+    },
+    {
+      "scene": "academic",
+      "attempted": 69,
+      "status_counts": {
+        "oral_rejected": 37,
+        "audit_rejected": 7,
+        "accepted": 22,
+        "asr_rejected": 2,
+        "clean_rejected": 1
+      },
+      "accepted": 22,
+      "unique": 22,
+      "review_counts": {
+        "pass": 20
+      }
+    },
+    {
+      "scene": "navigation",
+      "attempted": 52,
+      "status_counts": {
+        "oral_rejected": 25,
+        "assembly_rejected": 6,
+        "audit_rejected": 4,
+        "accepted": 16,
+        "clean_rejected": 1
+      },
+      "accepted": 16,
+      "unique": 16,
+      "review_counts": {
+        "pass": 16
+      }
+    },
+    {
+      "scene": "dictation_memo",
+      "attempted": 86,
+      "status_counts": {
+        "accepted": 39,
+        "clean_rejected": 2,
+        "audit_rejected": 14,
+        "oral_rejected": 19,
+        "asr_rejected": 12
+      },
+      "accepted": 39,
+      "unique": 39,
+      "review_counts": {
+        "pass": 21
+      }
+    },
+    {
+      "scene": "voice_search",
+      "attempted": 52,
+      "status_counts": {
+        "asr_rejected": 9,
+        "accepted": 20,
+        "assembly_rejected": 4,
+        "oral_rejected": 12,
+        "audit_rejected": 6,
+        "clean_rejected": 1
+      },
+      "accepted": 20,
+      "unique": 20,
+      "review_counts": {
+        "pass": 20
+      }
+    }
+  ],
+  "scope": "The 200-case review is deliberately scene/branch balanced, not a uniform estimate of population error rate."
+}

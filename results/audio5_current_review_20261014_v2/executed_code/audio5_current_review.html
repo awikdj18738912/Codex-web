@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>测试音频5 · 当前链路逐窗核验</title>
+  <style>
+    :root { color-scheme:light; --ink:#17212b; --muted:#5c6975; --line:#d7e0e7; --paper:#fff; --wash:#f2f5f7; --blue:#175b91; --amber:#8a4b00; --red:#a51d22; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--wash); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { padding:22px max(20px,calc((100vw - 1200px)/2)); color:white; background:#18384d; }
+    header h1 { margin:0 0 6px; font-size:23px; }
+    header p { max-width:1020px; margin:0; color:#d6e5ee; }
+    main { max-width:1200px; margin:18px auto 60px; padding:0 18px; }
+    .toolbar,.card,.panel { border:1px solid var(--line); border-radius:9px; background:var(--paper); }
+    .toolbar { position:sticky; top:0; z-index:4; display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:10px; box-shadow:0 3px 12px #17212b12; }
+    button,select,input,textarea { font:inherit; }
+    button,select,input[type=text] { min-height:36px; padding:5px 9px; border:1px solid #b8c5cf; border-radius:6px; color:var(--ink); background:white; }
+    button { cursor:pointer; }
+    button.primary { color:white; border-color:var(--blue); background:var(--blue); }
+    button:disabled { opacity:.45; cursor:not-allowed; }
+    .toolbar label { display:flex; align-items:center; gap:6px; }
+    #position { min-width:85px; color:var(--muted); text-align:center; }
+    #loadStatus { width:100%; color:var(--muted); }
+    .card { margin-top:14px; padding:17px; }
+    .titleline { display:flex; align-items:baseline; flex-wrap:wrap; gap:9px; }
+    h2 { margin:0; font-size:19px; }
+    h3 { margin:0 0 7px; font-size:15px; }
+    .muted { color:var(--muted); }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#e8f0f5; color:#25465b; font-size:13px; }
+    .recommendation,.warning,.outcome,.contextnote { margin:12px 0; padding:10px 12px; border-left:4px solid #d18a2b; background:#fff7e9; }
+    .warning { border:2px solid var(--red); border-radius:7px; color:#741419; background:#fff0f0; font-weight:700; }
+    .outcome { border-color:#55798e; background:#edf4f7; }
+    .contextnote { border-color:#39734c; background:#edf7ef; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .panel { min-width:0; padding:11px; }
+    pre { margin:0; white-space:pre-wrap; overflow-wrap:anywhere; font:14px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .context { margin-top:10px; }
+    details { margin-top:11px; border:1px solid var(--line); border-radius:8px; padding:10px 12px; background:#fbfcfd; }
+    details summary { cursor:pointer; font-weight:650; }
+    details .grid { margin-top:10px; }
+    audio { display:block; width:100%; margin:8px 0; }
+    .audio-note { color:var(--amber); font-size:13px; }
+    .review-form { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; align-items:start; }
+    .field { display:flex; flex-direction:column; gap:5px; }
+    .field.full { grid-column:1/-1; }
+    textarea { width:100%; min-height:76px; resize:vertical; padding:8px; border:1px solid #b8c5cf; border-radius:6px; font:inherit; }
+    .heard { display:flex; gap:8px; align-items:center; min-height:38px; }
+    .form-actions { grid-column:1/-1; display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
+    #reviewStatus { color:var(--muted); }
+    .empty { margin:30px 0; color:var(--muted); text-align:center; }
+    @media (max-width:760px) { .grid,.review-form { grid-template-columns:1fr; } .field.full,.form-actions { grid-column:auto; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>测试音频5 · 当前链路逐窗核验</h1>
+    <p>核验当前运行链路的窗口决定、窗口结果与最终文本，再独立判断全量精修对照。模型输出只是候选文本，可能有误，与正确答案不同；冻结对照也不是金标。所有意见都需要人工听音核验。</p>
+  </header>
+  <main>
+    <section class="toolbar" aria-label="筛选与导航">
+      <label>筛选
+        <select id="filter">
+          <option value="all">所有窗口</option>
+          <option value="current_skip">当前跳过</option>
+          <option value="current_rejected">当前拒绝</option>
+          <option value="current_changed">当前改动</option>
+          <option value="skip_vs_all_changed">当前跳过但全量对照有改动</option>
+          <option value="unreviewed">未审核</option>
+        </select>
+      </label>
+      <button id="previous" type="button">上一窗</button>
+      <span id="position">0 / 0</span>
+      <button id="next" type="button">下一窗</button>
+      <label>编号跳转
+        <input id="jumpInput" type="text" list="windowIds" placeholder="W003 或 3" autocomplete="off">
+        <datalist id="windowIds"></datalist>
+      </label>
+      <button id="jumpButton" type="button">跳转</button>
+      <button id="exportLabels" type="button">导出人工核验 JSONL</button>
+      <button id="downloadQueue" type="button">下载完整队列</button>
+      <span id="loadStatus" role="status">正在读取 review_queue.jsonl…</span>
+    </section>
+    <div id="content" aria-live="polite"></div>
+  </main>
+  <script>
+    (() => {
+      "use strict";
+      const content = document.getElementById("content");
+      const status = document.getElementById("loadStatus");
+      const filter = document.getElementById("filter");
+      const position = document.getElementById("position");
+      const previous = document.getElementById("previous");
+      const next = document.getElementById("next");
+      const jumpInput = document.getElementById("jumpInput");
+      const jumpButton = document.getElementById("jumpButton");
+      let rows = [];
+      let visible = [];
+      let cursor = 0;
+      let queueText = "";
+      let storageKey = "";
+      let labels = {};
+
+      function make(tag, text, className) {
+        const element = document.createElement(tag);
+        if (text !== undefined && text !== null) element.textContent = String(text);
+        if (className) element.className = className;
+        return element;
+      }
+      function panel(title, value) {
+        const box = make("section", null, "panel");
+        box.append(make("h3", title));
+        box.append(make("pre", value === undefined || value === null || value === "" ? "（空）" : value));
+        return box;
+      }
+      function safeArray(value) { return Array.isArray(value) ? value : []; }
+      function idOf(row) { return String(row.id ?? row.window_index ?? ""); }
+      function sourceChanged(row) { return row.current_source_match === false; }
+      function actionOf(row) { return String(row.current_action || "").toLowerCase(); }
+      function actionLabel(value) {
+        const labels = { refine:"精修", keep:"跳过", skip:"跳过", defer:"暂缓", unknown:"未知" };
+        const key = String(value || "unknown").toLowerCase();
+        return labels[key] || String(value || "未知");
+      }
+      function outcomeLabel(value) {
+        const labels = { accepted:"通过保护", rejected:"被保护拒绝", skipped:"未调用模型", unchanged:"无改动", error:"调用错误", complete:"已完成", pending:"待处理" };
+        const key = String(value || "unknown").toLowerCase();
+        return labels[key] || String(value || "未知");
+      }
+      function recommendationLabel(value) {
+        const labels = { whole:"建议整窗精修", refine:"建议整窗精修", partial:"建议部分精修", keep:"建议跳过", uncertain:"建议待定" };
+        const key = String(value || "").toLowerCase();
+        return labels[key] || String(value || "未提供");
+      }
+      function scoreStatusLabel(value) {
+        const labels = { complete:"证据完整", unknown:"证据未知", unsupported:"不支持", mapped:"已映射", missing:"缺失" };
+        const key = String(value || "").toLowerCase();
+        return labels[key] || String(value || "未知");
+      }
+      function reasonLabel(value) {
+        const labels = {
+          high_confidence_clean_segment:"完整高置信干净段",
+          confidence_unverified_safe_keep:"置信度未验证，按安全策略保留",
+          stable_clean_segment:"稳定干净段",
+          cleanup_signal_present:"检测到清理信号",
+          entity_hint_present:"存在实体提示",
+          numeric_handled_by_rule_pack:"数字由规则包处理",
+          confidence_below_refine_threshold:"置信度低于精修阈值",
+          confidence_unavailable:"无置信度",
+          confidence_uncalibrated:"置信度未校准",
+          confidence_coverage_incomplete:"置信度未覆盖整窗",
+          final_uncertain:"最终结果不确定",
+          incomplete_fixed_group:"固定分组未完成",
+          semantic_substitution:"语义替换风险",
+          unsupported_insertion:"无依据新增内容",
+          severe_content_loss:"严重内容缺失",
+          repetition_intent_loss:"可能损失叠词语义",
+          numeric_value_mismatch:"数值或单位不一致",
+          source_punctuation_lost:"源标点丢失",
+          window_context_copied:"复制了只读上下文",
+          window_boundary_subject_loss:"可能丢失窗口边界主语",
+        };
+        const key = String(value || "");
+        return labels[key] ? labels[key] + "（" + key + "）" : key;
+      }
+      function currentOutputChanged(row) {
+        return typeof row.current_window_output === "string" &&
+          row.current_window_output !== (row.baseline_text || row.raw_text || "");
+      }
+      function allRefineChanged(row) {
+        return typeof row.output_all_refine === "string" &&
+          row.output_all_refine !== (row.baseline_text || row.raw_text || "");
+      }
+      function hasSavedLabel(row) {
+        const saved = labels[idOf(row)];
+        return !!saved && Boolean(saved.decision || saved.effect_current || saved.effect_all_refine);
+      }
+      function matches(row, mode) {
+        const action = actionOf(row);
+        if (mode === "all") return true;
+        if (mode === "unreviewed") return !hasSavedLabel(row);
+        if (mode === "current_skip") return ["keep", "skip", "defer"].includes(action) || row.current_action === "skip";
+        if (mode === "current_rejected") return String(row.current_outcome || "").toLowerCase() === "rejected";
+        if (mode === "current_changed") return currentOutputChanged(row);
+        if (mode === "skip_vs_all_changed") return ["keep", "skip", "defer"].includes(action) && allRefineChanged(row);
+        return true;
+      }
+      function updateVisible(reset) {
+        visible = rows.map((row, index) => ({ row, index })).filter(item => matches(item.row, filter.value));
+        if (reset || cursor >= visible.length) cursor = 0;
+        render();
+      }
+      function selection(label, values, current) {
+        const field = make("label", null, "field");
+        field.append(make("span", label));
+        const select = document.createElement("select");
+        select.required = true;
+        select.append(new Option("请选择…", ""));
+        for (const [value, text] of values) select.append(new Option(text, value));
+        select.value = current || "";
+        field.append(select);
+        return { field, select };
+      }
+      function addModelCalls(parent, calls) {
+        if (!Array.isArray(calls) || calls.length === 0) {
+          parent.append(make("p", "没有记录模型调用。", "muted"));
+          return;
+        }
+        calls.forEach((call, i) => {
+          const block = make("section", null, "panel context");
+          block.append(make("h3", "第 " + (i + 1) + " 次候选调用"));
+          block.append(panel("输入窗", call && call.input));
+          block.append(panel("模型候选输出（不代表通过保护或正确）", call && call.output));
+          if (call && call.error) block.append(make("p", "调用错误：" + call.error, "warning"));
+          parent.append(block);
+        });
+      }
+      function render() {
+        content.replaceChildren();
+        previous.disabled = cursor <= 0 || visible.length === 0;
+        next.disabled = cursor >= visible.length - 1 || visible.length === 0;
+        position.textContent = visible.length ? (cursor + 1) + " / " + visible.length : "0 / 0";
+        if (!visible.length) {
+          content.append(make("p", rows.length ? "当前筛选下没有窗口。" : "队列为空或尚未加载。", "empty"));
+          return;
+        }
+        const row = visible[cursor].row;
+        const saved = labels[idOf(row)] || {};
+        const card = make("article", null, "card");
+        const title = make("div", null, "titleline");
+        title.append(make("h2", "窗口 " + String(row.window_index ?? "—")));
+        title.append(make("span", "ID " + idOf(row), "badge"));
+        const primaryLabel = row.primary_policy === "current_live" || !row.primary_policy
+          ? "当前实际文件流式链路（原生三态门控 + 学习门控开启 + 置信补充关闭）"
+          : String(row.primary_policy);
+        title.append(make("span", "主策略 " + primaryLabel + " · 当前动作 " + actionLabel(row.current_action) + " · 结果 " + outcomeLabel(row.current_outcome), "muted"));
+        card.append(title);
+        if (sourceChanged(row)) {
+          card.append(make("div", "当前实际链路的源文本与冻结对照不完全相同（current_source_match=false），此窗的跨策略比较不能视为严格同源对照。", "warning"));
+        }
+        card.append(make("div", "当前原因：" + (safeArray(row.current_reasons).length ? safeArray(row.current_reasons).map(reasonLabel).join("、") : "无 / 未记录") + "；尝试次数：" + String(row.current_attempt_count ?? "未记录"), "outcome"));
+        if (safeArray(row.current_reject_reasons).length) card.append(make("div", "当前窗口拒绝原因：" + row.current_reject_reasons.map(reasonLabel).join("、"), "warning"));
+        if (row.unsafe_model_edit === true) card.append(make("div", "注意：模型改动被标记为可能改变含义或破坏回复，请重点听音核验。", "warning"));
+
+        const mainGrid = make("div", null, "grid");
+        mainGrid.append(panel("原始 ASR", row.raw_text));
+        mainGrid.append(panel("规则准备结果", row.baseline_text));
+        mainGrid.append(panel("当前实际窗口输出", row.current_window_output));
+        mainGrid.append(panel("当前最终输出（含后级审核，按全文位置显示）", row.current_terminal_output));
+        mainGrid.append(panel("冻结全量精修对照输出（不是金标）", row.output_all_refine));
+        card.append(mainGrid);
+        if (row.terminal_alignment_ambiguous) card.append(make("div", "当前最终输出在窗口边界处有显示对齐歧义，请结合完整转录核对；窗口实际输出仍单独展示。", "warning"));
+
+        card.append(make("div", "说明：下方是当前窗口可用的左右只读参考；送审时模型只能修改当前窗。跳过窗口未调用窗口精修模型，后级局部审核仍可能改动文本。", "contextnote"));
+        const context = make("div", null, "grid context");
+        const actualContext = row.current_window_context || row.window_context || {};
+        context.append(panel("当前只读左上下文", row.current_readonly_left ?? row.readonly_left ?? row.readonly_left_context ?? actualContext.left_context ?? row.left_context));
+        context.append(panel("当前只读右上下文", row.current_readonly_right ?? row.readonly_right ?? row.readonly_right_context ?? actualContext.right_context ?? row.right_context));
+        card.append(context);
+
+        const audioBox = make("section", null, "panel context");
+        audioBox.append(make("h3", "音频核验"));
+        const start = Number(row.audio_start) || 0;
+        const end = Number(row.audio_end) || 0;
+        audioBox.append(make("div", "VAD 请求边界：" + start.toFixed(2) + "–" + end.toFixed(2) + " 秒。该时间不是词级定位。"));
+        const audio = document.createElement("audio");
+        audio.controls = true;
+        audio.preload = "metadata";
+        if (row.audio_url === "audio_16k.wav") audio.src = "./audio_16k.wav";
+        audioBox.append(audio);
+        const replay = make("button", "重放本段");
+        replay.type = "button";
+        replay.addEventListener("click", () => {
+          if (!audio.src) return;
+          const begin = () => { audio.currentTime = Math.max(0, start - 2); audio.play().catch(() => {}); };
+          if (audio.readyState < 1) audio.addEventListener("loadedmetadata", begin, { once:true });
+          else begin();
+        });
+        audio.addEventListener("timeupdate", () => { if (end > start && audio.currentTime >= end) audio.pause(); });
+        audioBox.append(replay);
+        audioBox.append(make("p", "播放器从片段开始前约 2 秒播放至 VAD 片段终点。", "audio-note"));
+        card.append(audioBox);
+
+        const comparisons = document.createElement("details");
+        comparisons.append(make("summary", "展开其它策略对照与证据"));
+        const compareGrid = make("div", null, "grid");
+        compareGrid.append(panel("原生门控输出", row.output_native));
+        compareGrid.append(panel("置信补充输出", row.output_supplement));
+        compareGrid.append(panel("学习门控输出", row.output_learned));
+        compareGrid.append(panel("助手建议（待核验）", recommendationLabel(row.assistant_recommendation) + "：" + String(row.assistant_reason || "未提供理由")));
+        compareGrid.append(panel("助手建议目标（仅参考）", row.assistant_target));
+        compareGrid.append(panel("全量精修保护结果", outcomeLabel(row.full_refine_outcome) + "；拒绝原因：" + (safeArray(row.full_refine_reject_reasons).map(reasonLabel).join("、") || "无 / 未记录")));
+        compareGrid.append(panel("分数状态", "最低片段分数：" + String(row.score_min_fragment ?? "未知") + "；证据状态：" + scoreStatusLabel(row.score_status)));
+        comparisons.append(compareGrid);
+        card.append(comparisons);
+
+        const proposals = document.createElement("details");
+        proposals.append(make("summary", "展开模型原始提议（默认折叠；不代表最终输出）"));
+        addModelCalls(proposals, row.current_model_calls);
+        card.append(proposals);
+
+        const form = make("form", null, "panel context review-form");
+        form.addEventListener("submit", event => event.preventDefault());
+        const decisionValues = [["whole","整窗需要精修"],["partial","仅部分需要精修"],["keep","可以跳过"],["uncertain","暂不确定"]];
+        const effectValues = [["acceptable","可接受"],["partial","部分可接受"],["harmful","有损害"],["unchanged","无实质变化"],["uncertain","暂不确定"]];
+        const decision = selection("窗口是否需要精修", decisionValues, saved.decision || "");
+        const effectCurrent = selection("当前结果是否合理", effectValues, saved.effect_current || "");
+        const effectAll = selection("全量对照改动是否可接受", effectValues, saved.effect_all_refine || "");
+        form.append(decision.field, effectCurrent.field, effectAll.field);
+
+        const targetField = make("label", null, "field full");
+        targetField.append(make("span", "可接受目标文字（默认空，不会自动填入助手建议）"));
+        const target = document.createElement("textarea");
+        target.value = saved.target || "";
+        targetField.append(target);
+        form.append(targetField);
+
+        const heardField = make("label", null, "heard");
+        const heard = document.createElement("input");
+        heard.type = "checkbox";
+        heard.checked = saved.heard === true;
+        heardField.append(heard, document.createTextNode("我已听过并核验音频"));
+        form.append(heardField);
+
+        const noteField = make("label", null, "field full");
+        noteField.append(make("span", "备注（默认空）"));
+        const note = document.createElement("textarea");
+        note.value = saved.note || "";
+        noteField.append(note);
+        form.append(noteField);
+
+        const actions = make("div", null, "form-actions");
+        const save = make("button", "保存本窗核验", "primary");
+        save.type = "button";
+        const reviewStatus = make("span", saved.reviewed_at ? "已有本地人工记录。" : "尚未保存。", "muted");
+        reviewStatus.id = "reviewStatus";
+        save.addEventListener("click", () => {
+          if (!decision.select.value || !effectCurrent.select.value || !effectAll.select.value) {
+            reviewStatus.textContent = "请分别完成三项判断；尚未保存。";
+            return;
+          }
+          labels[idOf(row)] = {
+            id: row.id,
+            decision: decision.select.value,
+            target: target.value,
+            effect_current: effectCurrent.select.value,
+            effect_all_refine: effectAll.select.value,
+            heard: heard.checked,
+            note: note.value,
+            reviewed_at: new Date().toISOString(),
+            window_basis: row.window_basis ?? null,
+          };
+          localStorage.setItem(storageKey, JSON.stringify(labels));
+          reviewStatus.textContent = "已保存到此队列版本对应的浏览器 localStorage。";
+          updateVisible(false);
+        });
+        actions.append(save, reviewStatus);
+        form.append(actions);
+        card.append(form);
+        content.append(card);
+      }
+      function exportLabels() {
+        const lines = Object.values(labels).map(label => JSON.stringify(label));
+        const blob = new Blob([lines.length ? lines.join("\n") + "\n" : ""], { type:"application/x-ndjson;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = "audio5_current_review_labels.jsonl";
+        anchor.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+      function downloadQueue() {
+        if (!queueText) return;
+        const blob = new Blob([queueText], { type:"application/x-ndjson;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = "review_queue.jsonl";
+        anchor.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+      function jump() {
+        const query = jumpInput.value.trim().toLowerCase();
+        if (!query) return;
+        let index = visible.findIndex(item => idOf(item.row).toLowerCase() === query);
+        if (index < 0 && /^\d+$/.test(query)) {
+          const number = Number(query);
+          index = visible.findIndex(item => Number(item.row.window_index) === number);
+        }
+        if (index < 0) {
+          const globalIndex = rows.findIndex(row => idOf(row).toLowerCase() === query ||
+            (/^\d+$/.test(query) && Number(row.window_index) === Number(query)));
+          if (globalIndex < 0) { status.textContent = "未找到该窗口编号。"; return; }
+          filter.value = "all";
+          visible = rows.map((row, index) => ({row,index}));
+          index = globalIndex;
+          status.textContent = "已切换全部窗口并跳转。";
+        }
+        cursor = index;
+        render();
+      }
+      previous.addEventListener("click", () => { if (cursor > 0) { cursor--; render(); } });
+      next.addEventListener("click", () => { if (cursor < visible.length - 1) { cursor++; render(); } });
+      filter.addEventListener("change", () => updateVisible(true));
+      jumpButton.addEventListener("click", jump);
+      jumpInput.addEventListener("keydown", event => { if (event.key === "Enter") { event.preventDefault(); jump(); } });
+      document.getElementById("exportLabels").addEventListener("click", exportLabels);
+      document.getElementById("downloadQueue").addEventListener("click", downloadQueue);
+
+      async function start() {
+        try {
+          const response = await fetch("./review_queue.jsonl");
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          queueText = await response.text();
+          rows = queueText.split(/\r?\n/).filter(line => line.trim()).map((line, index) => {
+            try { return JSON.parse(line); }
+            catch (error) { throw new Error("第 " + (index + 1) + " 行 JSON 无效：" + error.message); }
+          });
+          const firstBasis = rows.length ? String(rows[0].window_basis || "missing-window-basis") : "empty";
+          storageKey = "audio5_current_review_v1:" + firstBasis;
+          try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+            if (saved && typeof saved === "object" && !Array.isArray(saved)) labels = saved;
+          } catch (_) { labels = {}; }
+          const datalist = document.getElementById("windowIds");
+          rows.forEach(row => {
+            const option = document.createElement("option");
+            option.value = idOf(row);
+            datalist.append(option);
+          });
+          const sourceMismatchCount = rows.filter(sourceChanged).length;
+          status.textContent = "已载入 " + rows.length + " 个窗口；primary_policy=current_live；源文本不匹配 " + sourceMismatchCount + " 条。人工标签仅在手动保存后写入。";
+          updateVisible(true);
+        } catch (error) {
+          status.textContent = "读取失败：" + error.message + "。请通过本地静态服务器打开页面。";
+          content.append(make("p", "无法载入 review_queue.jsonl。", "empty"));
+        }
+      }
+      start();
+    })();
+  </script>
+</body>
+</html>

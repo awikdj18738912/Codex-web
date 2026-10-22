@@ -20,6 +20,7 @@ from configs.settings import (
     ASR_TTS_PROVIDER,
     RAW_DIR,
 )
+from configs.scenes import get_enabled_scenes, validate_enabled_scene
 from src.generators.asr_simulator import ASRSimulator
 from src.services.llm_client import AsyncLLMClient
 from src.utils.io_utils import setup_logging
@@ -27,6 +28,12 @@ from src.utils.io_utils import setup_logging
 
 async def run(args):
     logger = logging.getLogger(__name__)
+    if args.scene:
+        try:
+            validate_enabled_scene(args.scene)
+        except ValueError as exc:
+            logger.error("%s", exc)
+            sys.exit(2)
 
     llm = None
     if args.asr_mode == "llm_sim":
@@ -50,9 +57,10 @@ async def run(args):
 
     raw_dir = Path(RAW_DIR)
     source_file = "clean.jsonl" if args.input_source == "clean" else "oral.jsonl"
+    enabled = set(get_enabled_scenes())
     available_scenes = sorted([
         d.name for d in raw_dir.iterdir()
-        if d.is_dir() and (d / source_file).exists()
+        if d.is_dir() and d.name in enabled and (d / source_file).exists()
     ]) if raw_dir.exists() else []
 
     if args.scene:

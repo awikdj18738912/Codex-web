@@ -1,0 +1,51 @@
+[
+  {
+    "case": "numeric_correction",
+    "source": "预算是三百元，不对，预算改成五百元。",
+    "normalized_source": "预算是300元，不对，预算改成500元。",
+    "desired_target": "预算改成500元。",
+    "accepted": true,
+    "restored": "预算改成500元。",
+    "reject_reasons": [],
+    "allowed_numeric_drop_spans": [
+      [
+        3,
+        6
+      ]
+    ]
+  },
+  {
+    "case": "rollback",
+    "source": "我想用红色，改成蓝色，还是用红色吧。",
+    "normalized_source": "我想用红色，改成蓝色，还是用红色吧。",
+    "desired_target": "我想用红色吧。",
+    "accepted": true,
+    "restored": "我想用红色吧。",
+    "reject_reasons": [
+      "severe_content_loss"
+    ],
+    "allowed_numeric_drop_spans": []
+  },
+  {
+    "case": "multiple_weekday",
+    "source": "周一开会，不对周二，最后定周三开会。",
+    "normalized_source": "周一开会，不对周二，最后定周三开会。",
+    "desired_target": "最后定周三开会。",
+    "accepted": false,
+    "restored": "最后定周三开会。",
+    "reject_reasons": [],
+    "allowed_numeric_drop_spans": []
+  },
+  {
+    "case": "spelling_cue",
+    "source": "收件人是钟宁，钟表的钟，宁静的宁。",
+    "normalized_source": "收件人是钟宁，钟表的钟，宁静的宁。",
+    "desired_target": "收件人是钟宁。",
+    "accepted": true,
+    "restored": "收件人是钟宁。",
+    "reject_reasons": [
+      "severe_content_loss"
+    ],
+    "allowed_numeric_drop_spans": []
+  }
+]

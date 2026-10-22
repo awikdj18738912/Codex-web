@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "scope": "Structural and stored audit evidence checks; no new semantic judgment or student model evaluation.",
+  "input": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_retention_repair_300_20261017/final/train.jsonl",
+  "input_sha256": "e3f218685bbfae91d68c80f420de727c64f162bb5625787ff045765349416d6e",
+  "counts": {
+    "lines": 197,
+    "records": 197,
+    "reservoir_candidates": 197
+  },
+  "errors": {
+    "total": 0,
+    "by_type": {},
+    "examples_first_50": []
+  },
+  "warnings": {
+    "exact_input_repeat_occurrences": 0,
+    "inputs_with_different_targets": 0
+  },
+  "statistics": {
+    "scene": {
+      "academic": 19,
+      "customer_service": 31,
+      "daily_chat": 26,
+      "dictation_memo": 19,
+      "explanation": 31,
+      "meeting": 19,
+      "navigation": 2,
+      "vibe_coding": 41,
+      "voice_search": 9
+    },
+    "speech_phenomena": {
+      "boundary_punctuation": 20,
+      "clean": 26,
+      "correction:multiple": 26,
+      "correction:none": 58,
+      "correction:rollback": 30,
+      "correction:single": 57,
+      "explanation": 27,
+      "oral:high": 58,
+      "oral:low": 54,
+      "oral:moderate": 59
+    },
+    "fragment": {
+      "false": 187,
+      "true": 10
+    },
+    "target_origin": {}
+  },
+  "sampling": {
+    "method": "fixed-seed reservoir sampling over parseable JSON object records; then union with first representative per scene and per rare speech_phenomena label (frequency <= max(1, floor(1% of parseable records)))",
+    "seed": 20261017,
+    "requested_reservoir_size": 30,
+    "reservoir_size": 30,
+    "representative_scene_count": 9,
+    "rare_control_threshold": 1,
+    "rare_control_labels": [],
+    "output_records_including_representatives": 38
+  }
+}

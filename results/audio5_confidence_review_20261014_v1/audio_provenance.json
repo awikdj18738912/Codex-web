@@ -1,0 +1,35 @@
+{
+  "source_audio": "/home/aim0/桌面/tan/ASR/Codex-web/测试音频5.mp3",
+  "source_audio_sha256": "7ca9fbdb0174731b88aee56c5b824394b0dc5669a2343b9e1094d5492cd0e9ba",
+  "decoded_samples": 13492094,
+  "sample_rate": 16000,
+  "decoded_float32_sha256": "f35d86abd5e8e2d5e3cfef4fe2a501aea50b711c30e80c585ba23bfa5817a8d9",
+  "seconds": 843.255875,
+  "full_audio": true,
+  "ASR_health": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "confidence_window_scores": true,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "context": "",
+  "original_ASR_without_refiner": true,
+  "segment_times": "request-end audio bounds, not word-level forced alignment"
+}

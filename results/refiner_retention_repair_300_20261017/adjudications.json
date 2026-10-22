@@ -1,0 +1,13 @@
+{
+  "adjudications": [
+    {
+      "id": "scale_daily_chat_0060",
+      "decision": "pass",
+      "reason": "“照”已出现在ASR请求明确标注的Observed oral prefix中，也出现在attempts.jsonl记录的原口语oral_text里。ASR返回的input把该已观察字符漏掉，target恢复它属于对观察内容的漏字修复；它不是利用截断点之后的“听说灯光特别漂亮”等未观察后文补写。",
+      "independent_evidence": [
+        "adjudication_review_1.json",
+        "adjudication_review_2.json"
+      ]
+    }
+  ]
+}

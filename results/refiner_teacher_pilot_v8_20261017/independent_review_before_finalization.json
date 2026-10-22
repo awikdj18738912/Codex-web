@@ -1,0 +1,223 @@
+{
+  "review_type": "independent_manual_text_review",
+  "source_files": [
+    "final/train.jsonl",
+    "supplement_attempts.jsonl"
+  ],
+  "summary_file": "summary.json",
+  "scope": "直接逐条比较实际源、目标、expected_clean、correction_values、spelling_parts及补充fragment；不依赖自动QC作为判定。",
+  "overall": "pass_with_supplement_dedup_note",
+  "counts": {
+    "final_train_pass": 18,
+    "final_train_fail": 0,
+    "final_train_uncertain": 0,
+    "supplemental_rows_reviewed": 1,
+    "supplemental_valid_partial_pass": 1,
+    "total_distinct_reviews": 19
+  },
+  "coverage": {
+    "final_train_unique_rows": 18,
+    "scene_counts_in_final_train": {
+      "academic": 2,
+      "explanation": 2,
+      "meeting": 2,
+      "navigation": 2,
+      "customer_service": 2,
+      "vibe_coding": 2,
+      "voice_search": 2,
+      "dictation_memo": 2,
+      "daily_chat": 2
+    },
+    "all_nine_scenes_have_two": true,
+    "summary_pre_dedup_scene_counts": {
+      "academic": 2,
+      "explanation": 2,
+      "meeting": 3,
+      "navigation": 2,
+      "customer_service": 2,
+      "vibe_coding": 2,
+      "voice_search": 2,
+      "dictation_memo": 2,
+      "daily_chat": 2
+    }
+  },
+  "control_coverage": {
+    "summary_controls": {
+      "clean": 4,
+      "correction:rollback": 3,
+      "explanation": 2,
+      "correction:multiple": 3,
+      "correction:none": 5,
+      "boundary_punctuation": 3,
+      "correction:single": 3
+    },
+    "correction_types_present": [
+      "none",
+      "single",
+      "rollback",
+      "multiple"
+    ],
+    "correction_types_absent": [],
+    "multiple_trace_check": "All 3 accepted multiple traces have three mutually distinct values appearing in source in order; each target retains final C: meeting_01 (API timeout), voice_search_02 (高德地图), dictation_memo_03 (安排出差).",
+    "high_oral_check": "All three oral:high records (navigation_02, dictation_memo_02, voice_search_02) visibly contain three fillers “嗯，那个，就是说” and one stutter (“导，导航” / “提，提醒” / “打，打开”).",
+    "spelling_check": "Both explanation rows with spelling cues are reviewed: explanation_01 removes “华为的华，华为的为”; explanation_03 removes “京东的京，商城的商”, preserving each main statement/entity.",
+    "fragment_check": {
+      "id": "fragment_meeting_01",
+      "status": "pass_supplement_not_in_final_train",
+      "full_oral_source": "呃，那个，核心员工离职引发知识断层，不对，供应链延迟导致交付延期，最后改成，第三方API接口频繁超时影响了服务稳定性，建议立即排查。",
+      "observed_partial_input": "呃，那个，核心员工离职引发知识断层，不对，供应链延迟导致交付延期，最后改成，第三方API接口频繁超时影响了服务稳定性",
+      "fragment_reference_clean": "第三方API接口频繁超时影响了服务稳定性，建议立即排查。",
+      "partial_target": "第三方API接口频繁超时影响了服务稳定性，",
+      "evidence": "实际partial_input在完整口语源的“建议立即排查”之前结束；partial_target去掉标点空白后是fragment_reference_clean的真前缀，且更短，不包含“建议立即排查”或其他未观察后文。source_snapshot 的 valid_partial_pair 条件也要求输入/目标实际截短且目标对齐前缀。",
+      "placement": "supplement_attempts.jsonl 中 audit passed=True；该行未进入 final/train.jsonl。summary 中 accepted=19、unique=18、actual_asr_fragments=0；去重后的 final/train 仅有18行。"
+    }
+  },
+  "expected_clean_check": "All 18 final/train refined_text strings visually match their generation_plan.expected_clean.",
+  "reviews": [
+    {
+      "id": "academic_01",
+      "status": "pass",
+      "source_evidence": "量子纠缠态制备在量子通信中的应用研究进展如何？",
+      "target_evidence": "量子纠缠态制备在量子通信中的应用研究进展如何？",
+      "expected_clean": "量子纠缠态制备在量子通信中的应用研究进展如何？",
+      "reason": "疑问句源/目标逐字相同，疑问语气和问号保留。"
+    },
+    {
+      "id": "explanation_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，华为，不对，小米，最后改成，华为的手机以自研麒麟芯片著称，华为的华，华为的为。",
+      "target_evidence": "华为的手机以自研麒麟芯片著称。",
+      "expected_clean": "华为的手机以自研麒麟芯片著称。",
+      "reason": "trace 华为→小米→华为按序出现，三值互异且目标回到最终华为。去掉“华为的华，华为的为”拼字提示，保留“华为手机以自研麒麟芯片著称”的陈述。"
+    },
+    {
+      "id": "meeting_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，核心员工离职引发知识断层，不对，供应链延迟导致交付延期，最后改成，第三方API接口频繁超时影响了服务稳定性，建议立即排查。",
+      "target_evidence": "第三方API接口频繁超时影响了服务稳定性，建议立即排查。",
+      "expected_clean": "第三方API接口频繁超时影响了服务稳定性，建议立即排查。",
+      "reason": "multiple trace 三项依次为员工离职/知识断层、供应链延期、第三方API超时，互异且最终C完整保留；API事实与立即排查建议都在源中。"
+    },
+    {
+      "id": "navigation_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，去苏州旅游，推荐景点和路线。",
+      "target_evidence": "去苏州旅游，推荐景点和路线。",
+      "expected_clean": "去苏州旅游，推荐景点和路线。",
+      "reason": "只去口癖；地点、旅游目的和推荐路线请求保留。"
+    },
+    {
+      "id": "customer_service_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，我需。要咨询一下上海市浦东新区张江路123号的业务办理时间。",
+      "target_evidence": "我需要咨询一下上海市浦东新区张江路123号的业务办理时间。",
+      "expected_clean": "我需要咨询一下上海市浦东新区张江路123号的业务办理时间。",
+      "reason": "合并“需。要”后请求完整；浦东新区张江路123号和咨询办理时间均保留。"
+    },
+    {
+      "id": "vibe_coding_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，用gRPC，不对，fetch()请求REST API获取数据。",
+      "target_evidence": "用fetch()请求REST API获取数据。",
+      "expected_clean": "用fetch()请求REST API获取数据。",
+      "reason": "single trace gRPC→fetch()按序出现；保留源中最终 fetch()、REST API 及获取数据意图。"
+    },
+    {
+      "id": "voice_search_01",
+      "status": "pass",
+      "source_evidence": "呃，那个，播放音乐，不对，查询天气，最后改成，播放音乐，来点轻音乐。",
+      "target_evidence": "播放音乐，来点轻音乐。",
+      "expected_clean": "播放音乐，来点轻音乐。",
+      "reason": "rollback trace 播放音乐→查询天气→播放音乐按序；目标保留最终播放音乐及轻音乐限定。"
+    },
+    {
+      "id": "customer_service_02",
+      "status": "pass",
+      "source_evidence": "我需要确认2024-01-05的订单状态。",
+      "target_evidence": "我需要确认2024-01-05的订单状态。",
+      "expected_clean": "我需要确认2024-01-05的订单状态。",
+      "reason": "源/目标一致，日期格式和确认订单状态的疑问性请求保留。"
+    },
+    {
+      "id": "navigation_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，导，导航到180公里，不对，350公里外的目的地。",
+      "target_evidence": "导航到350公里外的目的地。",
+      "expected_clean": "导航到350公里外的目的地。",
+      "reason": "三个填充词及“导，导航”口吃实际存在；单次距离纠正180→350公里按序，目标仅保留最终距离。"
+    },
+    {
+      "id": "dictation_memo_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，提，提醒我下午3点和王强，不对，李娜，最后改成，王强开会。",
+      "target_evidence": "提醒我下午3点和王强开会。",
+      "expected_clean": "提醒我下午3点和王强开会。",
+      "reason": "王强→李娜→王强按序回到最终人名；目标保留下午3点提醒和王强开会，不带入被撤回的李娜。"
+    },
+    {
+      "id": "voice_search_02",
+      "status": "pass",
+      "source_evidence": "嗯，那个，就是说，打，打开抖音，不对，微信，最后改成，高德地图，导航到最近的加油站。",
+      "target_evidence": "打开高德地图，导航到最近的加油站。",
+      "expected_clean": "打开高德地图，导航到最近的加油站。",
+      "reason": "multiple 三值抖音、微信、高德地图互异且按序出现；目标保留最终高德地图及最近加油站目的地。"
+    },
+    {
+      "id": "meeting_03",
+      "status": "pass",
+      "source_evidence": "第三方API接口频繁超时影响了服务稳定性，需要尽快排查。",
+      "target_evidence": "第三方API接口频繁超时影响了服务稳定性，需要尽快排查。",
+      "expected_clean": "第三方API接口频繁超时影响了服务稳定性，需要尽快排查。",
+      "reason": "源/目标一致，API超时和尽快排查均保留。"
+    },
+    {
+      "id": "explanation_03",
+      "status": "pass",
+      "source_evidence": "嗯，京。东商城是主要的综合性电商平台之一，京东的京，商城的商。",
+      "target_evidence": "京东商城是主要的综合性电商平台之一。",
+      "expected_clean": "京东商城是主要的综合性电商平台之一。",
+      "reason": "清理“京东的京，商城的商”提示并合并“京。东”，保留京东商城及原陈述。"
+    },
+    {
+      "id": "dictation_memo_03",
+      "status": "pass",
+      "source_evidence": "嗯，安排会议，不对，更新日程，最后改成，安排出差，确认行程和预订。",
+      "target_evidence": "安排出差，确认行程和预订。",
+      "expected_clean": "安排出差，确认行程和预订。",
+      "reason": "multiple 三项“安排会议/更新日程/安排出差”互异且按序；目标保留最终出差、确认行程和预订。"
+    },
+    {
+      "id": "academic_03",
+      "status": "pass",
+      "source_evidence": "嗯，这个研究中用到了圆周率0.942，不对，3.14159来计算曲率。",
+      "target_evidence": "这个研究中用到了圆周率3.14159来计算曲率。",
+      "expected_clean": "这个研究中用到了圆周率3.14159来计算曲率。",
+      "reason": "单次数值改口0.942→3.14159；目标只保留最终圆周率值及曲率用途。"
+    },
+    {
+      "id": "vibe_coding_04",
+      "status": "pass",
+      "source_evidence": "呃，那个，运。行 npm install 来安装项目依赖。",
+      "target_evidence": "运行 npm install 来安装项目依赖。",
+      "expected_clean": "运行 npm install 来安装项目依赖。",
+      "reason": "修复“运。行”边界，命令 npm install 原样保留，安装依赖意图不变。"
+    },
+    {
+      "id": "daily_chat_06",
+      "status": "pass",
+      "source_evidence": "南锣鼓巷的胡同小院民宿真有味道，适合慢慢逛。",
+      "target_evidence": "南锣鼓巷的胡同小院民宿真有味道，适合慢慢逛。",
+      "expected_clean": "南锣鼓巷的胡同小院民宿真有味道，适合慢慢逛。",
+      "reason": "源/目标一致，评价和适合慢逛的建议保留。"
+    },
+    {
+      "id": "daily_chat_07",
+      "status": "pass",
+      "source_evidence": "呃，那个，李小满今天又迟到了，真是让人头疼。",
+      "target_evidence": "李小满今天又迟到了，真是让人头疼。",
+      "expected_clean": "李小满今天又迟到了，真是让人头疼。",
+      "reason": "只去口癖；人名、今天迟到及说话人不满均保留。"
+    }
+  ],
+  "limitations": "Text-level review only; it does not validate audio fidelity. The accepted supplemental partial record passed the real truncation check but was removed from final/train during deduplication; thus the final dataset contains no fragment despite one valid reviewed supplement."
+}

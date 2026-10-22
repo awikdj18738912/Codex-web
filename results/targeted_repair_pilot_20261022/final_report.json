@@ -1,0 +1,61 @@
+{
+  "screened_train_records": 84875,
+  "heuristic_risk_records": 13412,
+  "pilot_records": 100,
+  "teacher_request_errors_or_schema_conflicts": 3,
+  "teacher_valid_decisions": {
+    "KEEP": 85,
+    "REPAIR": 12
+  },
+  "independently_compared": 97,
+  "old_verdicts": {
+    "PASS": 67,
+    "FAIL": 9,
+    "AMBIGUOUS": 3,
+    "MINOR": 18
+  },
+  "proposal_verdicts": {
+    "PASS": 72,
+    "FAIL": 7,
+    "AMBIGUOUS": 3,
+    "MINOR": 15
+  },
+  "paired_winners": {
+    "TIE": 83,
+    "UNRESOLVED": 3,
+    "proposal": 9,
+    "old": 2
+  },
+  "controls": {
+    "records": 20,
+    "changed_targets": 0
+  },
+  "confirmed_defect_followup": {
+    "records": 8,
+    "old_verdicts": {
+      "MINOR": 3,
+      "AMBIGUOUS": 1,
+      "FAIL": 4
+    },
+    "repair_verdicts": {
+      "PASS": 3,
+      "AMBIGUOUS": 1,
+      "MINOR": 4
+    },
+    "paired_winners": {
+      "repair": 5,
+      "UNRESOLVED": 1,
+      "old": 1,
+      "TIE": 1
+    }
+  },
+  "verified_improvements": 8,
+  "production_dataset_modified": false,
+  "limitations": [
+    "Risk-enriched diagnostic pilot, not an estimate of dataset error prevalence.",
+    "Independent reviewers disagree on some artificial correction histories; source ambiguity is quarantined.",
+    "Verified improvements are isolated candidates, not a newly qualified full training corpus.",
+    "One first-stage JSON failure did not retain raw response; later requests preserve raw on parse errors.",
+    "No student retraining or final unseen-test claim in this experiment."
+  ]
+}

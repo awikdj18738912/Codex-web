@@ -1,0 +1,189 @@
+{
+  "count": 16,
+  "raw_task_review_pass": 16,
+  "pair_guard_accepted": 15,
+  "raw_improvements_on_v1_failures": [
+    "fixed_numeric_correction",
+    "fixed_rollback",
+    "fixed_multiple",
+    "fixed_spelling_cue"
+  ],
+  "items": [
+    {
+      "id": "fixed_boundary_filler",
+      "source": "嗯真。让我感到惊讶。",
+      "normalized_source": "嗯真。让我感到惊讶。",
+      "v1_target": "真让我感到惊讶。",
+      "v2_raw_target": "真让我感到惊讶。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_boundary_short",
+      "source": "真。让我感到惊讶。",
+      "normalized_source": "真。让我感到惊讶。",
+      "v1_target": "真让我感到惊讶。",
+      "v2_raw_target": "真让我感到惊讶。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_normal_short_sentences",
+      "source": "真好。让我看看。",
+      "normalized_source": "真好。让我看看。",
+      "v1_target": "真好。让我看看。",
+      "v2_raw_target": "真好。让我看看。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_normal_sentences",
+      "source": "我到了。你在哪里？",
+      "normalized_source": "我到了。你在哪里？",
+      "v1_target": "我到了。你在哪里？",
+      "v2_raw_target": "我到了。你在哪里？",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_english_fastapi",
+      "source": "这个FastAPI接口，接口有点慢。",
+      "normalized_source": "这个FastAPI接口，接口有点慢。",
+      "v1_target": "这个FastAPI接口有点慢。",
+      "v2_raw_target": "这个FastAPI接口有点慢。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_english_pytorch",
+      "source": "嗯，我想用那个PyTorch来训练。",
+      "normalized_source": "嗯，我想用那个PyTorch来训练。",
+      "v1_target": "我想用PyTorch来训练。",
+      "v2_raw_target": "我想用PyTorch来训练。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_english_identifier",
+      "source": "那个，把user_id这个字段，字段保留下来。",
+      "normalized_source": "那个，把user_id这个字段，字段保留下来。",
+      "v1_target": "把user_id这个字段保留下来。",
+      "v2_raw_target": "把user_id字段保留下来。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_english_models",
+      "source": "嗯，用RTX 3090跑GPT-4o的客户端测试，测试一下。",
+      "normalized_source": "嗯，用RTX 3090跑GPT-4o的客户端测试，测试一下。",
+      "v1_target": "用RTX 3090跑GPT-4o的客户端测试，测试一下。",
+      "v2_raw_target": "用RTX 3090跑GPT-4o的客户端测试，测试一下。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_numeric_rules",
+      "source": "嗯，预算是三百元，那个，明天下午三点开会。",
+      "normalized_source": "嗯，预算是300元，那个，明天下午3点开会。",
+      "v1_target": "预算是300元，明天下午3点开会。",
+      "v2_raw_target": "预算是300元，明天下午3点开会。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_numeric_correction",
+      "source": "预算是三百元，不对，预算改成五百元。",
+      "normalized_source": "预算是300元，不对，预算改成500元。",
+      "v1_target": "预算是300元，不对，预算改成500元。",
+      "v2_raw_target": "预算改成500元。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_single",
+      "source": "明天去北京，不对，明天去上海。",
+      "normalized_source": "明天去北京，不对，明天去上海。",
+      "v1_target": "明天去上海。",
+      "v2_raw_target": "明天去上海。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_rollback",
+      "source": "我想用红色，改成蓝色，还是用红色吧。",
+      "normalized_source": "我想用红色，改成蓝色，还是用红色吧。",
+      "v1_target": "我想用红色，改成蓝色，还是用红色吧。",
+      "v2_raw_target": "我想用红色吧。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_multiple",
+      "source": "周一开会，不对周二，最后定周三开会。",
+      "normalized_source": "周一开会，不对周二，最后定周三开会。",
+      "v1_target": "周一开会，不对，周二，最后定周三开会。",
+      "v2_raw_target": "最后定周三开会。",
+      "v2_guard_accepted": false,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": "Teacher now resolves to 周三 correctly, but unchanged numeric literal check rejects the pair."
+    },
+    {
+      "id": "fixed_spelling_cue",
+      "source": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "normalized_source": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "v1_target": "收件人是钟宁，钟表的钟，宁静的宁。",
+      "v2_raw_target": "收件人是钟宁。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_negation_condition",
+      "source": "嗯，如果明天下雨，就不要取消室内会议。",
+      "normalized_source": "嗯，如果明天下雨，就不要取消室内会议。",
+      "v1_target": "如果明天下雨，就不要取消室内会议。",
+      "v2_raw_target": "如果明天下雨，就不要取消室内会议。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    },
+    {
+      "id": "fixed_meaningful_repeat",
+      "source": "这件事很重要，真的很重要。",
+      "normalized_source": "这件事很重要，真的很重要。",
+      "v1_target": "这件事很重要，真的很重要。",
+      "v2_raw_target": "这件事很重要，真的很重要。",
+      "v2_guard_accepted": true,
+      "raw_task_review": "pass",
+      "review_basis": "Direct comparison with the 16 specified diagnostic requirements; these are development cases, not held-out examples.",
+      "note": ""
+    }
+  ]
+}

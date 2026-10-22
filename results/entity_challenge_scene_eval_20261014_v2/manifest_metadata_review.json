@@ -1,0 +1,19 @@
+{
+  "status": "DATA_VERIFIED_WITH_MANIFEST_METADATA_CHANGE",
+  "original_protocol_unchanged": true,
+  "expected_manifest_sha256": "dd2288e330d0f2c032d632f3317dd6bda3e67b33aa7534b98bb98946aba557fe",
+  "observed_manifest_sha256": "34d0d945fe7206488aca526593daf8ffff74c6541c4d6c94a34fcea99d57f783",
+  "affected_metadata_files": [
+    "manifest.json",
+    "source_snapshot/rebuild_entity_challenge_scene_libraries.py"
+  ],
+  "explanation": "The dataset builder finalized its copied preparation-source hash after evaluation preparation had read the earlier manifest. No old manifest backup was retained; the original manifest hash has not been recovered. The original evaluation protocol is preserved without rewriting its recorded hash.",
+  "independent_checks": {
+    "all_current_dataset_manifest_file_hashes_match": true,
+    "actual_dataset_inputs_match_original_recorded_hash": true,
+    "all2000_routes_pcm_and_libraries_match_frozen_evaluation_copies": true,
+    "references_and_baseline_byte_identical_to_original_v1_dataset": true,
+    "frozen_entity_module_sources_and_frozen_libraries_verified_by_protocol": true
+  },
+  "metadata_note": "Changed preparation-source snapshot is not an imported runtime entity module. Evaluation uses its own source_snapshot/system frozen from v1."
+}

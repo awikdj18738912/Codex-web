@@ -1,0 +1,11 @@
+{
+  "pid": 2081914,
+  "status": "failed_before_interrupt",
+  "script": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/scripts/resume_qwen25_refiner_eval_batch4.py",
+  "log": "/home/aim0/桌面/tan/ASR/Codex-web/logs/qwen25_05b_refiner_reviewed_v5/resume_supervisor.log",
+  "started_at": "2026-10-21T14:21:22.947862+08:00",
+  "action_after_checkpoint": "stop old run at verified epoch-one checkpoint and resume with eval batch size 4",
+  "error": "Initial watcher observed checkpoint directory before trainer_state.json had been finalized; it did not send a signal to the trainer.",
+  "finished_at": "2026-10-21T15:52:15.790470+08:00",
+  "training_process_untouched": true
+}

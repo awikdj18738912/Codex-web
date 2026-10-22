@@ -1,0 +1,32 @@
+{
+  "language_subsets": {
+    "中文及中英混合": {
+      "oral": 290,
+      "retained": 279,
+      "retained_rate": 0.9620689655172414
+    },
+    "英文": {
+      "oral": 210,
+      "retained": 201,
+      "retained_rate": 0.9571428571428572
+    }
+  },
+  "qc_response_schema": {
+    "explicit_bool_pass": 480,
+    "explicit_bool_fail": 20
+  },
+  "completed_api_records": {
+    "seed": 23,
+    "oral": 603,
+    "clean": 454,
+    "asr": 102,
+    "qc": 500
+  },
+  "cancelled_or_queued_api_records": {
+    "seed": 3,
+    "oral": 341
+  },
+  "generation_attempt_denominator_note": "summary oral_generation_attempts comes from committed upstream batch checkpoints. Calls abandoned during scheduling restart are not in this denominator; raw API records without response/error can include queued calls never submitted. Primary retention denominator is exactly500 valid Oral records.",
+  "counts_consistent": true,
+  "accuracy_not_measured": "Original acceptance only; no independent semantic relabeling or student/audio evaluation."
+}

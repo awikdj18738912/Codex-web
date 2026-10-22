@@ -1,0 +1,19 @@
+{
+  "scope": "experimental_numeric_retry_policy_matched_warm_text_windows",
+  "production_change": false,
+  "numeric_checks": "unchanged; only numeric-failure retry admission differs",
+  "fallback": "existing validated source fallback, including existing safe salvage",
+  "cases": 12,
+  "repetitions": 3,
+  "device": "cuda:0",
+  "rule_pack": "zh-itn-strict-conservative-v90",
+  "learned_gate": "off",
+  "entity_db": null,
+  "code_sha256": {
+    "experiments/scripts/benchmark_numeric_retry_policy.py": "e47d6638a92d7c70cc3276c1a70219259bdb643390db90c68daed2f825c2ec1a",
+    "system/web_app.py": "5e5012dd987067d92d23462993b02c40b09cd573ed841ad88f42ef21f252c69d",
+    "system/refinement_guard.py": "6adbd5ad563dfc3504ea58fa77833480317b231d5bc2e8c0758c207369f514dc",
+    "system/entity_pipeline.py": "1d7ec549914c3d5305d491ea2d80d57a0605e694231cbacbcec22e12427cea01"
+  },
+  "code_changed_during_benchmark": {}
+}

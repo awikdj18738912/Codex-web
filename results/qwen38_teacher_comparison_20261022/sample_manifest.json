@@ -1,0 +1,38 @@
+{
+  "sample_count": 200,
+  "selection": "First 200 records in sample_1000.jsonl, matched to baseline by id.",
+  "source_sample_file": "teacher_model_comparison_1000_20261022/sample_1000.jsonl",
+  "source_sample_sha256": "c2a64191ff18ab29c13bf79411b232e3cd1bd0678b1f3d41c1ab12c537d7af23",
+  "baseline_predictions_file": "teacher_model_comparison_1000_20261022/predictions_qwen3_30b.jsonl",
+  "baseline_predictions_sha256": "0de85eb18590af80024eb19c32ab68c6ed9e71c7de839dcc8beda03785b39ede",
+  "generation_provenance_file": "teacher_model_comparison_1000_20261022/generation_provenance.json",
+  "generation_provenance_sha256": "3f3f1bca1e0060b43d5877e2d7fe0845fde7fd8d8873c9460befd1ef86807dc2",
+  "sample_file": "qwen38_teacher_comparison_20261022/sample_200.jsonl",
+  "sample_sha256": "03d19f352bb0276c8cb476c6cb38d47eff3fecd6c931fecf21a6b1d61473a58d",
+  "baseline_model": "Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "baseline_prediction_model_alias": "qwen3_30b",
+  "baseline_target_field": "clean_text",
+  "category_distribution": {
+    "scene": {
+      "academic": 20,
+      "customer_service": 16,
+      "daily_chat": 22,
+      "dictation_memo": 21,
+      "explanation": 20,
+      "meeting": 27,
+      "navigation": 22,
+      "vibe_coding": 21,
+      "voice_search": 31
+    },
+    "stratum": {
+      "boundary_punctuation": 17,
+      "clean_or_passthrough": 18,
+      "english_entity_or_code": 38,
+      "multi_correction": 33,
+      "numeric_surface": 31,
+      "other_cleanup": 43,
+      "single_correction": 20
+    }
+  },
+  "evaluation_scope": "These 200 cases are diagnostic samples drawn from the training set, not an independent final test set; results must not be used to estimate overall accuracy."
+}

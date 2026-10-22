@@ -1,0 +1,175 @@
+{
+  "policy_adjusted_records": 26,
+  "human_validated": false,
+  "actual_system_prompt_sha256": "de7f0c0291d33286413d107bcadfea8f27ef37ea3aea51b3552606c6d960f455",
+  "records": 256,
+  "source_status": {
+    "CLEAR": 232,
+    "AMBIGUOUS": 24
+  },
+  "reference_verdict": {
+    "PASS": 138,
+    "UNJUDGEABLE": 17,
+    "FAIL": 40,
+    "MINOR": 61
+  },
+  "curated_development_records": 232,
+  "revised_reference_records": 95,
+  "quarantined_records": 24,
+  "comparison_all": {
+    "base": {
+      "denominator": 256,
+      "overall": {
+        "PASS": 58,
+        "FAIL": 121,
+        "MINOR": 66,
+        "UNJUDGEABLE": 11
+      },
+      "meaning": {
+        "PASS": 230,
+        "FAIL": 3,
+        "UNJUDGEABLE": 21,
+        "MINOR": 2
+      },
+      "cleanup": {
+        "PASS": 66,
+        "FAIL": 117,
+        "MINOR": 72,
+        "NA": 1
+      },
+      "fidelity": {
+        "PASS": 240,
+        "FAIL": 5,
+        "NA": 10,
+        "MINOR": 1
+      },
+      "any_meaning_or_fidelity_FAIL": 5,
+      "PASS_or_MINOR": 124
+    },
+    "epoch2": {
+      "denominator": 256,
+      "overall": {
+        "FAIL": 61,
+        "PASS": 107,
+        "MINOR": 74,
+        "UNJUDGEABLE": 14
+      },
+      "meaning": {
+        "PASS": 195,
+        "UNJUDGEABLE": 20,
+        "MINOR": 20,
+        "FAIL": 21
+      },
+      "cleanup": {
+        "PASS": 165,
+        "MINOR": 63,
+        "FAIL": 27,
+        "NA": 1
+      },
+      "fidelity": {
+        "FAIL": 27,
+        "PASS": 203,
+        "MINOR": 17,
+        "NA": 9
+      },
+      "any_meaning_or_fidelity_FAIL": 37,
+      "PASS_or_MINOR": 181
+    }
+  },
+  "comparison_clear_source_only": {
+    "base": {
+      "denominator": 232,
+      "overall": {
+        "PASS": 58,
+        "FAIL": 108,
+        "MINOR": 66
+      },
+      "meaning": {
+        "PASS": 227,
+        "FAIL": 3,
+        "MINOR": 2
+      },
+      "cleanup": {
+        "PASS": 63,
+        "FAIL": 105,
+        "MINOR": 64
+      },
+      "fidelity": {
+        "PASS": 227,
+        "FAIL": 4,
+        "MINOR": 1
+      },
+      "any_meaning_or_fidelity_FAIL": 4,
+      "PASS_or_MINOR": 124
+    },
+    "epoch2": {
+      "denominator": 232,
+      "overall": {
+        "FAIL": 52,
+        "PASS": 106,
+        "MINOR": 74
+      },
+      "meaning": {
+        "PASS": 193,
+        "MINOR": 20,
+        "FAIL": 19
+      },
+      "cleanup": {
+        "PASS": 155,
+        "MINOR": 55,
+        "FAIL": 22
+      },
+      "fidelity": {
+        "FAIL": 24,
+        "PASS": 191,
+        "MINOR": 17
+      },
+      "any_meaning_or_fidelity_FAIL": 32,
+      "PASS_or_MINOR": 180
+    }
+  },
+  "preference_all": {
+    "base": 38,
+    "epoch2": 103,
+    "TIE": 104,
+    "UNJUDGEABLE": 11
+  },
+  "preference_clear_source_only": {
+    "base": 34,
+    "epoch2": 99,
+    "TIE": 99
+  },
+  "verified_original_identity_controls": {
+    "records": 17,
+    "base": {
+      "text_changed": 0,
+      "meaning_or_fidelity_FAIL": 0
+    },
+    "epoch2": {
+      "text_changed": 5,
+      "meaning_or_fidelity_FAIL": 1
+    }
+  },
+  "limitations": [
+    "GPT judgments and proposed references are not independently human-validated gold labels.",
+    "The 256 examples are scene-balanced synthetic validation samples, not a prevalence sample of production traffic.",
+    "This validation split was already used for checkpoint selection; it is a development audit, not an unseen final test.",
+    "All 256 inputs equal their linked generated oral_text. This audit does not establish robustness to real ASR errors.",
+    "Punctuation, numeric formatting and reasonable paraphrases are not semantic errors; altered values and identifiers are errors.",
+    "CLEAR-only statistics exclude ambiguous sources. FAIL may mean cleanup failure, factual/meaning error, or identifier loss; dimension counts must be read separately.",
+    "Teacher-model differences and 4bit quantization effects have not been isolated in a controlled comparison."
+  ],
+  "files": {
+    "audit": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_validation_blind_audit_256_20261022/audit_256.jsonl",
+    "curated_dev": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_validation_blind_audit_256_20261022/curated_development_256_subset.jsonl",
+    "queue": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_validation_blind_audit_256_20261022/manual_review_queue.jsonl",
+    "changes": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_validation_blind_audit_256_20261022/reference_changes.jsonl"
+  },
+  "policy_adjustments_sha256": "74211d6d28b00d2108d1a2309a7129392d91d64d8e642d0275e2df1014a914bf",
+  "review_sha256": {
+    "adjudicated_001_064.jsonl": "0a67cb68abc45fcb37f60a531b4c903fa91121131e1ce1cb8df0d4a37c52b4d0",
+    "adjudicated_065_128.jsonl": "81f2b617dc77c62d0555422c4ad087dccac5ee1bc6d49a94212f1dfa06a5277a",
+    "adjudicated_129_192.jsonl": "2ea9ad842ac6a581f26b886ed1ba58df81fcfc4ddee933a126a7b1353a31debf",
+    "adjudicated_193_256.jsonl": "d94f46128eb7eb48e4cea810a6ca1f6ade61b57dfb64b3fecc850203c8e78eca"
+  }
+}

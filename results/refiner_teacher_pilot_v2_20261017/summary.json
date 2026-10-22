@@ -1,0 +1,103 @@
+{
+  "teacher_model_path": "/home/aim0/data/models/ASR/Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+  "service_model": "refiner-teacher",
+  "base_url": "http://127.0.0.1:8010/v1",
+  "gpu": 0,
+  "max_model_len": 8192,
+  "request_timeout_seconds": 600,
+  "seed_pools_reused_from_v1": true,
+  "elapsed_seconds_scope": "this process, including fresh fixed diagnostics; seed pools reused from v1",
+  "comparison_baseline": "results/refiner_teacher_pilot_20261017",
+  "default_sampling": {
+    "passthrough": 0.08,
+    "boundary_given_non_passthrough": 0.1,
+    "asr_simulation": 0.2
+  },
+  "scenes_tested": [
+    "daily_chat",
+    "vibe_coding",
+    "explanation"
+  ],
+  "scenes_not_tested": [
+    "meeting",
+    "customer_service",
+    "academic",
+    "navigation",
+    "dictation_memo",
+    "voice_search"
+  ],
+  "generated_oral": 23,
+  "generated_clean_accepted_before_keyword_qc": 8,
+  "generated_clean_after_keyword_qc": 8,
+  "generated_asr_accepted": 8,
+  "generated_assembled": 8,
+  "generated_semantic_qc_pass": 8,
+  "generated_unique_final": 8,
+  "generated_sft_exported": 8,
+  "generated_phenomena": {
+    "A→B→C": 1,
+    "correction:multiple": 8,
+    "oral:low": 6,
+    "filler": 16,
+    "hesitation": 8,
+    "repetition": 19,
+    "repair": 5,
+    "oral:moderate": 8,
+    "correction:rollback": 7,
+    "explicit_repair": 1,
+    "correction:none": 8,
+    "boundary_punctuation": 1,
+    "false_start": 9,
+    "repair_marker": 1,
+    "oral:high": 9,
+    "rollback_correction": 2,
+    "correction": 3,
+    "repair: A → B → C": 1,
+    "explanation": 8,
+    "contrastive_explanation": 1,
+    "spelling_correction": 1,
+    "spelling_explanation": 2
+  },
+  "generated_fragments": 0,
+  "assembly_stats": {
+    "daily_chat": {
+      "skipped_empty": 0,
+      "skipped_short": 0,
+      "skipped_numeric_drift": 0
+    },
+    "explanation": {
+      "skipped_empty": 0,
+      "skipped_short": 0,
+      "skipped_numeric_drift": 0
+    }
+  },
+  "fixed_diagnostics": 16,
+  "fixed_clean_accepted": 15,
+  "fixed_with_exact_reference": 10,
+  "fixed_exact_reference_matches": 10,
+  "fixed_semantic_qc_pass": 9,
+  "raw_teacher_clean_responses": 39,
+  "raw_teacher_rejected_by_numeric_entity_policy": 16,
+  "raw_teacher_repaired_by_numeric_policy": 0,
+  "api_call_count": 80,
+  "elapsed_seconds": 260.02,
+  "limitations": [
+    "Small pilot, not a student-model benchmark",
+    "Same teacher generates labels and judges semantics; manual review still required",
+    "Fixed diagnostic inputs excluded from generated training pairs",
+    "No training/validation split on this small pilot"
+  ],
+  "task_review": {
+    "fixed_raw_targets_meeting_requirements": 16,
+    "fixed_pair_guard_accepted": 15,
+    "known_bad_qc_controls_rejected": 3,
+    "known_bad_qc_controls_total": 4,
+    "candidate_adjudication_counts": {
+      "pass": 2,
+      "fail": 5,
+      "uncertain": 1
+    },
+    "quality_status": "not_ready_for_full_generation",
+    "report": "README.md"
+  }
+}

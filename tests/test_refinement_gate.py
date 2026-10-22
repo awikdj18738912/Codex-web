@@ -101,6 +101,17 @@ class RefinementGateTest(unittest.TestCase):
         self.assertTrue(decision.should_refine)
         self.assertIn("repeated_character", decision.cleanup_signals)
 
+    def test_oh_no_self_correction_is_refined(self) -> None:
+        decision = RefinementGate("conservative").decide(
+            "会议在一点，哦不，一点十分开始。",
+            asr_confidence=0.99,
+            calibrated=True,
+            covers_segment=True,
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertIn("self_correction", decision.cleanup_signals)
+
     def test_short_disfluency_is_refined_instead_of_skipped(self) -> None:
         decision = RefinementGate("conservative").decide("啊。")
 
@@ -366,6 +377,58 @@ class RefinementGateTest(unittest.TestCase):
 
         self.assertTrue(decision.should_refine)
         self.assertIn("numeric_clause_repetition", decision.cleanup_signals)
+
+    def test_zh_itn_ignores_repetition_inside_converted_phone_span(self) -> None:
+        text = "电话零零零。"
+        start = text.index("零")
+        decision = RefinementGate(
+            "tri_state", refine_on_unverified_confidence=False
+        ).decide(
+            text,
+            is_final=True,
+            numeric_rule_mode=True,
+            numeric_rule_spans=((start, start + 3),),
+        )
+
+        self.assertFalse(decision.should_refine)
+        self.assertNotIn("repeated_character", decision.cleanup_signals)
+
+    def test_zh_itn_keeps_external_stutter_and_repeated_phone_clause_signals(self) -> None:
+        gate = RefinementGate("tri_state", refine_on_unverified_confidence=False)
+        stutter = "我我我，电话零零零。"
+        phone_start = stutter.index("零")
+        decision = gate.decide(
+            stutter,
+            is_final=True,
+            numeric_rule_mode=True,
+            numeric_rule_spans=((phone_start, phone_start + 3),),
+        )
+        self.assertTrue(decision.should_refine)
+        self.assertIn("repeated_character", decision.cleanup_signals)
+
+        repeated = "电话零零零，电话零零零。"
+        first = repeated.index("零")
+        second = repeated.index("零", first + 3)
+        decision = gate.decide(
+            repeated,
+            is_final=True,
+            numeric_rule_mode=True,
+            numeric_rule_spans=((first, first + 3), (second, second + 3)),
+        )
+        self.assertTrue(decision.should_refine)
+        self.assertIn("repeated_phrase", decision.cleanup_signals)
+
+    def test_phone_repetition_remains_when_numeric_rule_was_not_applied(self) -> None:
+        text = "电话零零零。"
+        decision = RefinementGate("conservative").decide(
+            text,
+            asr_confidence=0.99,
+            calibrated=True,
+            covers_segment=True,
+        )
+
+        self.assertTrue(decision.should_refine)
+        self.assertIn("repeated_character", decision.cleanup_signals)
 
     def test_rule_mode_does_not_change_default_model_numeric_routing(self) -> None:
         decision = RefinementGate(

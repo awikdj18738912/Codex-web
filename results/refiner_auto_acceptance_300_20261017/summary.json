@@ -1,0 +1,23 @@
+{
+  "candidates": 300,
+  "accepted_before_dedup": 257,
+  "unique_retained": 255,
+  "retained_rate": 0.85,
+  "statuses": {
+    "oral_rejected": 20,
+    "accepted": 257,
+    "audit_rejected": 11,
+    "assembly_rejected": 6,
+    "asr_rejected": 6
+  },
+  "api_calls": {
+    "audit": 268,
+    "asr": 22
+  },
+  "real_fragments": 8,
+  "elapsed_seconds": 140.91,
+  "source_files_changed": [
+    "pipeline/scripts/audit_dataset.py"
+  ],
+  "comparison_caveat": "Replay of fixed Oral candidates; not a fresh end-to-end generation throughput measurement. New semantic/ASR calls remain stochastic."
+}

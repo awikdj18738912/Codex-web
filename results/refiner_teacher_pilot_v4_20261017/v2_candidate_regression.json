@@ -1,0 +1,109 @@
+{
+  "items": [
+    {
+      "id": "auto_daily_chat_01",
+      "previous_manual_decision": "pass",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "之前说武汉地铁站的艺术墙挺有意思，后来查了才知道背后是本地非遗传承人的手作故事，现在想想，这设计灵感还真得从城市记忆里找。不过最打动我的还是那句‘墙里墙外都是家’，这说法才最贴切。"
+      }
+    },
+    {
+      "id": "auto_daily_chat_02",
+      "previous_manual_decision": "fail",
+      "accepted": false,
+      "reason": "unsupported_content_edits",
+      "audit": {
+        "unsupported_content_edits": [
+          "很",
+          "发现",
+          "但",
+          "我",
+          "买"
+        ]
+      }
+    },
+    {
+      "id": "auto_daily_chat_03",
+      "previous_manual_decision": "uncertain",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "贵阳青岩古镇的古城墙遗址公园晚上7点有灯光秀，之前说六点开始，现在改回七点，还是七点开始吧。"
+      }
+    },
+    {
+      "id": "auto_daily_chat_07",
+      "previous_manual_decision": "pass",
+      "accepted": true,
+      "reason": "typed_audit_passed",
+      "audit": {
+        "source_valid": true,
+        "meaning_preserved": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "cleaned_target": "青岛栈桥的海鸥迁徙高峰期通常出现在11月中旬至次年3月上旬，不过最近几天游客太多，海鸥都躲到远处去了，本来想拍几张照片，结果还是得等天气好点再去。"
+      }
+    },
+    {
+      "id": "auto_explanation_02",
+      "previous_manual_decision": "fail",
+      "accepted": false,
+      "reason": "identification_cue_residue",
+      "audit": {
+        "surface_issues": [
+          "identification_cue_residue"
+        ]
+      }
+    },
+    {
+      "id": "auto_explanation_04",
+      "previous_manual_decision": "fail",
+      "accepted": false,
+      "reason": "unsupported_content_edits",
+      "audit": {
+        "unsupported_content_edits": [
+          "搞电力的负责",
+          "电",
+          "电和",
+          "简称"
+        ]
+      }
+    },
+    {
+      "id": "auto_explanation_07",
+      "previous_manual_decision": "fail",
+      "accepted": false,
+      "reason": "identification_cue_residue",
+      "audit": {
+        "surface_issues": [
+          "identification_cue_residue"
+        ]
+      }
+    },
+    {
+      "id": "auto_explanation_08",
+      "previous_manual_decision": "fail",
+      "accepted": false,
+      "reason": "identification_cue_residue",
+      "audit": {
+        "surface_issues": [
+          "identification_cue_residue"
+        ]
+      }
+    }
+  ],
+  "known_bad_total": 5,
+  "known_bad_rejected": 5,
+  "previous_good_total": 2,
+  "previous_good_accepted": 2
+}

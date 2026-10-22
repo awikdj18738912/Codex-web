@@ -1,0 +1,262 @@
+{
+  "records": 256,
+  "source_status": {
+    "CLEAR": 231,
+    "AMBIGUOUS": 25
+  },
+  "reference_verdicts_all": {
+    "PASS": 151,
+    "UNJUDGEABLE": 18,
+    "FAIL": 39,
+    "MINOR": 48
+  },
+  "source_clear_records": 231,
+  "pairwise_all": {
+    "base": 36,
+    "epoch2": 105,
+    "TIE": 103,
+    "UNJUDGEABLE": 12
+  },
+  "pairwise_source_clear": {
+    "base": 32,
+    "epoch2": 101,
+    "TIE": 98
+  },
+  "models_all": {
+    "base": {
+      "records": 256,
+      "overall": {
+        "PASS": 67,
+        "FAIL": 121,
+        "MINOR": 56,
+        "UNJUDGEABLE": 12
+      },
+      "meaning": {
+        "PASS": 229,
+        "FAIL": 3,
+        "UNJUDGEABLE": 22,
+        "MINOR": 2
+      },
+      "cleanup": {
+        "PASS": 76,
+        "FAIL": 116,
+        "MINOR": 62,
+        "NA": 2
+      },
+      "fidelity": {
+        "PASS": 236,
+        "FAIL": 6,
+        "NA": 13,
+        "MINOR": 1
+      },
+      "definite_semantic_or_identifier_failures": 6,
+      "semantic_judgeable_records": 234,
+      "overall_pass_or_minor": 123
+    },
+    "epoch2": {
+      "records": 256,
+      "overall": {
+        "FAIL": 59,
+        "PASS": 117,
+        "MINOR": 65,
+        "UNJUDGEABLE": 15
+      },
+      "meaning": {
+        "PASS": 193,
+        "UNJUDGEABLE": 21,
+        "MINOR": 22,
+        "FAIL": 20
+      },
+      "cleanup": {
+        "PASS": 176,
+        "MINOR": 52,
+        "FAIL": 26,
+        "NA": 2
+      },
+      "fidelity": {
+        "FAIL": 27,
+        "PASS": 201,
+        "MINOR": 17,
+        "NA": 11
+      },
+      "definite_semantic_or_identifier_failures": 36,
+      "semantic_judgeable_records": 235,
+      "overall_pass_or_minor": 182
+    }
+  },
+  "models_source_clear": {
+    "base": {
+      "records": 231,
+      "overall": {
+        "PASS": 67,
+        "FAIL": 108,
+        "MINOR": 56
+      },
+      "meaning": {
+        "PASS": 226,
+        "FAIL": 3,
+        "MINOR": 2
+      },
+      "cleanup": {
+        "PASS": 72,
+        "FAIL": 104,
+        "MINOR": 55
+      },
+      "fidelity": {
+        "PASS": 225,
+        "FAIL": 5,
+        "MINOR": 1
+      },
+      "definite_semantic_or_identifier_failures": 5,
+      "semantic_judgeable_records": 231,
+      "overall_pass_or_minor": 123,
+      "issue_tags": {
+        "disfluency_retained": 16,
+        "degeneration": 1,
+        "retracted_candidates": 5,
+        "correction_residue": 9,
+        "repetition_residue": 5,
+        "filler_residue": 4,
+        "request_verb_omitted": 1,
+        "unfinished_residue": 2,
+        "addressee_omitted": 1,
+        "cleanup": 75,
+        "fidelity": 4,
+        "meaning": 2,
+        "精修/保真": 23,
+        "语义保真/精修": 11
+      }
+    },
+    "epoch2": {
+      "records": 231,
+      "overall": {
+        "FAIL": 50,
+        "PASS": 116,
+        "MINOR": 65
+      },
+      "meaning": {
+        "PASS": 191,
+        "MINOR": 22,
+        "FAIL": 18
+      },
+      "cleanup": {
+        "PASS": 166,
+        "MINOR": 44,
+        "FAIL": 21
+      },
+      "fidelity": {
+        "FAIL": 23,
+        "PASS": 191,
+        "MINOR": 17
+      },
+      "definite_semantic_or_identifier_failures": 31,
+      "semantic_judgeable_records": 231,
+      "overall_pass_or_minor": 181,
+      "issue_tags": {
+        "english_name_translated": 1,
+        "filler_residue": 1,
+        "retracted_candidates": 3,
+        "correction_residue": 6,
+        "certainty_strengthened": 7,
+        "repetition_residue": 7,
+        "retracted_cause_asserted": 1,
+        "provided_full_name_omitted": 1,
+        "unsupported_completion": 1,
+        "technical_term_imprecise": 1,
+        "instruction_scope_changed": 1,
+        "modality_weakened": 1,
+        "parameter_omitted": 1,
+        "retracted_date_relation": 1,
+        "claim_strengthened": 1,
+        "cleanup": 27,
+        "fidelity": 21,
+        "meaning": 12,
+        "精修/保真": 21,
+        "语义保真/精修": 2
+      }
+    }
+  },
+  "epoch2_critical_errors_by_original_reference_verdict": {
+    "PASS": 15,
+    "FAIL": 10,
+    "MINOR": 6
+  },
+  "reviewed_reference_set": {
+    "records": 231,
+    "unchanged_accepted": 150,
+    "revised": 81,
+    "quarantined": 25,
+    "human_verified": false
+  },
+  "trusted_clean_controls": {
+    "definition": "input equals original reference, source CLEAR, reference judged PASS",
+    "records": 17,
+    "models": {
+      "base": {
+        "outputs_changed": 0,
+        "overall": {
+          "PASS": 17
+        },
+        "definite_semantic_or_identifier_failures": 0
+      },
+      "epoch2": {
+        "outputs_changed": 5,
+        "overall": {
+          "FAIL": 1,
+          "PASS": 16
+        },
+        "definite_semantic_or_identifier_failures": 1
+      }
+    }
+  },
+  "training_audit_200_id_overlap": 0,
+  "method": {
+    "identity": "A/B randomized independently per case; mapping revealed only after per-case judgments",
+    "review": "initial GPT review, cross review and main-model adjudication for 65–256; main review plus independent boundary review for 1–64; lead overrides recorded separately",
+    "scope": "existing predictions only; no teacher generation, weight changes or training run",
+    "reference": "not assumed correct; source-first assessment; digit formatting ignored but numeric values preserved"
+  },
+  "limitations": [
+    "LLM judgments and GPT-revised references are not human gold annotations.",
+    "The lead reviewer had previously seen some original model comparisons; anonymized bundles reduce identity cues but do not constitute a fully double-blind study.",
+    "These synthetic validation samples were previously used for checkpoint selection; this is a development audit, not an unseen real-speech test.",
+    "One randomized A/B presentation per case; no full A/B order-swap consistency study was performed.",
+    "Proportions describe this scene-balanced sample, not full-corpus prevalence or production performance.",
+    "Source-ambiguous cases are quarantined instead of guessed; model stats on CLEAR cases use the same paired denominator."
+  ],
+  "input_hashes": {
+    "blinded_cases_256.jsonl": "2ee5cc3e61eb15002850ab6c498e1c3c8a67bc28ca30336fe93632e53f6e71cc",
+    "model_identity_key.jsonl": "0e06db9ce247132e12e6aaae67d16264619e77989c1859b56e886b8af013e104",
+    "lead_overrides.jsonl": "ed92bd7ba2fe05a79e886a89f5a81ce2b8cd53e1aecaf9ba74334d23d8fbc5fd",
+    "approved_review_manifest.json": "30fcc65f733833fbbf173f310c58fcad33a6e5da946efc2973017e9eb3285f74",
+    "review_001_064.jsonl": "cccb990e35d8f25bebcc0bf0f118b70ec42fb03bed0f5a3c9fbbdc18e9837d96",
+    "final_approved_065_128_81f2b617.jsonl": "81f2b617dc77c62d0555422c4ad087dccac5ee1bc6d49a94212f1dfa06a5277a",
+    "final_approved_129_192_2ea9ad84.jsonl": "2ea9ad842ac6a581f26b886ed1ba58df81fcfc4ddee933a126a7b1353a31debf",
+    "final_approved_193_256_d94f4612.jsonl": "d94f46128eb7eb48e4cea810a6ca1f6ade61b57dfb64b3fecc850203c8e78eca"
+  },
+  "approved_review_manifest": {
+    "review_parts": [
+      {
+        "path": "review_001_064.jsonl",
+        "sha256": "cccb990e35d8f25bebcc0bf0f118b70ec42fb03bed0f5a3c9fbbdc18e9837d96"
+      },
+      {
+        "path": "final_approved_065_128_81f2b617.jsonl",
+        "sha256": "81f2b617dc77c62d0555422c4ad087dccac5ee1bc6d49a94212f1dfa06a5277a"
+      },
+      {
+        "path": "final_approved_129_192_2ea9ad84.jsonl",
+        "sha256": "2ea9ad842ac6a581f26b886ed1ba58df81fcfc4ddee933a126a7b1353a31debf"
+      },
+      {
+        "path": "final_approved_193_256_d94f4612.jsonl",
+        "sha256": "d94f46128eb7eb48e4cea810a6ca1f6ade61b57dfb64b3fecc850203c8e78eca"
+      }
+    ],
+    "lead_overrides_sha256": "ed92bd7ba2fe05a79e886a89f5a81ce2b8cd53e1aecaf9ba74334d23d8fbc5fd"
+  },
+  "sources": {
+    "official_evaluation": "https://github.com/AnXMuy/AgenticASR/blob/main/experiments/README.md",
+    "judge_limitations": "https://arxiv.org/abs/2306.05685"
+  }
+}

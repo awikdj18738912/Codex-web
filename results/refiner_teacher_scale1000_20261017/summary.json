@@ -1,0 +1,93 @@
+{
+  "candidate_target": 1000,
+  "candidates_completed": 1000,
+  "statuses": {
+    "accepted": 414,
+    "oral_rejected": 347,
+    "asr_rejected": 80,
+    "audit_rejected": 132,
+    "clean_rejected": 17,
+    "assembly_rejected": 10
+  },
+  "accepted_before_dedup": 414,
+  "unique_retained": 404,
+  "near_duplicates_removed": 10,
+  "acceptance_rate": 0.414,
+  "retained_rate": 0.404,
+  "scene_quotas": {
+    "daily_chat": 121,
+    "vibe_coding": 207,
+    "explanation": 207,
+    "meeting": 103,
+    "customer_service": 103,
+    "academic": 69,
+    "navigation": 52,
+    "dictation_memo": 86,
+    "voice_search": 52
+  },
+  "accepted_by_scene": {
+    "academic": 22,
+    "customer_service": 47,
+    "daily_chat": 73,
+    "dictation_memo": 39,
+    "explanation": 76,
+    "meeting": 39,
+    "navigation": 16,
+    "vibe_coding": 82,
+    "voice_search": 20
+  },
+  "unique_by_scene": {
+    "academic": 22,
+    "customer_service": 45,
+    "daily_chat": 72,
+    "dictation_memo": 39,
+    "explanation": 72,
+    "meeting": 37,
+    "navigation": 16,
+    "vibe_coding": 81,
+    "voice_search": 20
+  },
+  "controls": {
+    "correction:none": 170,
+    "oral:moderate": 105,
+    "correction:single": 108,
+    "oral:low": 100,
+    "oral:high": 120,
+    "correction:multiple": 24,
+    "clean": 79,
+    "boundary_punctuation": 25,
+    "correction:rollback": 23,
+    "explanation": 59
+  },
+  "real_fragments": 23,
+  "asr_selected": 115,
+  "fragment_eligible": 232,
+  "elapsed_seconds": 1090.36,
+  "api_calls": {
+    "seed": 9,
+    "oral": 1796,
+    "audit": 492,
+    "clean": 611,
+    "asr": 35
+  },
+  "source_files_changed": [],
+  "independent_review_status": "complete",
+  "limitations": [
+    "Synthetic text only; no audio-ASR or student training evaluation",
+    "Teacher also judges semantics",
+    "Blind review is stratified toward scene/rare-branch coverage, not a uniform random error-rate estimate"
+  ],
+  "reviewed": 200,
+  "initial_review_counts": {
+    "pass": 199,
+    "fail": 1
+  },
+  "adjudicated_review_counts": {
+    "pass": 200
+  },
+  "adjudicated_cases": [
+    "scale_meeting_0050"
+  ],
+  "structural_revalidation_errors": 0,
+  "input_target_conflicts": 0
+}

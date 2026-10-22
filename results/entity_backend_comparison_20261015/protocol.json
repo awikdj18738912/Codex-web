@@ -1,0 +1,89 @@
+{
+  "seed": "backend-comparison-20261015-fixed-v1",
+  "created_utc": "2026-10-15T05:23:33.887242+00:00",
+  "dataset": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_challenge_20261014_scene_v2/dataset",
+  "sample_counts": {
+    "control": 100,
+    "dev": 171,
+    "test": 1829
+  },
+  "selection": "All original2000 entity challenge samples; dev by source-group hash minimum per domain, test remaining. No outcomes used. Controls first100 prior no-source-NER benchmark negatives by hash.",
+  "context": "Known scene labels from prior offline reference-derived preparation; not blind topic routing.",
+  "dev_test_source_groups_disjoint": true,
+  "pcm_unchanged": true,
+  "baseline_qwen": "Saved original actual primary stream traces (quality); current service measured separately for runtime comparisons",
+  "native": "Chinese Zipformer transducer20250630 int8 greedy/beam/native-hotword; hotword weight chosen dev only",
+  "ctc": "Chinese streaming Zipformer CTC20250630 int8 cache-aware ORT; incremental stateful CTC keyword evidence, no Qwen replay",
+  "frozen_sha256": {
+    "inputs.jsonl": "216fdf033540704fa9cc251f87740464bf29dc127cbe1bf43e51bc628143498e",
+    "references.json": "1ad8979e4e9a22f6a88a29a83e8ae6fa4905f418b0e1eb3fa37f8e309f5b98dd",
+    "libraries/30_医疗健康.db": "a4c9751fa51d70dc7934e88bb4561f6279384d61843b82d2eb663e77e647dfcf",
+    "libraries/22_科学教育.db": "ceeff220000719d5a2077516ca216ac0caf91a6cfca74a10872be265b75b754e",
+    "libraries/09_悬疑文学.db": "03c80de4ba6a2903e312b7975d4bb7fc86ff359139ef8e0de817b579151bd755",
+    "libraries/23_篮球.db": "199551df82b745908889d3317aeb101aa2b87d5dc349775d58c0038167d3731d",
+    "libraries/13_曲艺相声.db": "7f8e70f0a8c1c7ce4bb2d8ccc9346ec0c5541652a38275781ee930318e5887df",
+    "libraries/28_交通建设.db": "1b6e035334119fe55d9876d01cfe46584088597bc8e1944d8f81217a20e88d38",
+    "libraries/32_政务公共事务.db": "f1dcac49f3b34a744f59971454971e8f82715bccd2c564d312b0552c459247f4",
+    "libraries/03_人物访谈.db": "af1c12e94e21566c7131c138f4e0823f82e28db385355ce84a68abf1ec88c5ce",
+    "libraries/34_文娱影视.db": "33d0d7f4c9918afd2271d7d9590c243cc133b404ec5a9e05d9c97d068511fa33",
+    "libraries/19_烹饪美食.db": "515a8e0acf5c7c4bceeb623355471430f411b91e4d8dbccd8c4f1f25784011c8",
+    "libraries/21_电商美妆.db": "1f960f0badab0f11ce5e6cad8329a7799a0cf2eaca811fedb4bdcf8ad952567d",
+    "libraries/25_足球.db": "278a2806d9c1bec9538d8383b894602d877ca7ffe84608637942d128e1c26587",
+    "libraries/12_新闻时政.db": "35c157de7f355fbf83cf94b316bd399a24d7e7af863cdda18af5cd312be5da56",
+    "libraries/20_生活纪实.db": "e7a88304d49cdf0eb0159a89618d556ec411acdd14495ba2ba609ab77a5bb8a8",
+    "libraries/06_历史哲学.db": "4bc498da883067c0a97c05d1c8b6fdd907b4660c157b511db81cad3c0462b7ad",
+    "libraries/31_商业企业.db": "b6d2b38f53463bdff5815982429db7d94f054e8ce22dc0ee326a9aa65a46bf42",
+    "libraries/26_金融经济.db": "5cd055921cca64129728e4eb7e4042facefe1012f8a8f6350db4ce172ac769ae",
+    "libraries/29_体育赛事.db": "9eebc98ebf4cb87bcea77bd6058b1a60cf55a732e1acbacb9b0e19283a9d2cb0",
+    "libraries/35_新闻采编.db": "ecf956c9c8d1a298611fd2efd5fbd823301c344c60a009ba628f7771d61fab8a",
+    "libraries/07_商业管理.db": "d63ab5c5d92a2f740ed36f4fcb880614c7012b37de2ef5753fd9ea2cfc0b60f5",
+    "libraries/33_教育科研.db": "40c54a405f9fa64176c6d02d247be80c8fa3f2911e155681c0de8b5285b55d1e",
+    "libraries/04_儿童动画.db": "0e0e20a073b0c403f74531847af08f8604e3453840e7bd833eaa85ded597f7df",
+    "libraries/38_金融证券.db": "02fd60e54de3f5bbf6860f5753d0cbfe5e744b163448e974b1f7207c72abb3e6",
+    "libraries/11_数码电子.db": "a0b985d5cff2a1a5317daecc847978f63e4e0eaa5af5f10f9c4dcf64b2aaebfb",
+    "libraries/18_演讲培训.db": "60bb9ca7aa39bf3b9e4273a3e8ff54cfcec6b92cdd0fe32251781b72b611c689",
+    "libraries/15_汽车交通.db": "1f4c39900af98944ae49980da37a384646d53e6dbada6352cb16f20a5e51c4b3",
+    "libraries/17_游戏电竞.db": "5f0b55d0bb2d766e07438088e41e33c8aebfdb6cd30fecd17c2e1acddaf1b2bd",
+    "libraries/14_武侠文学.db": "b2c7e38ba003524d945bb8ba1accc3ccc44bf7e7b8881ddf443ba6803e898de7",
+    "libraries/24_综艺喜剧.db": "0b86f89a6ed2a894fdeac4b232bd34466ca18a72a3e28843ed0bf6a1cb771364",
+    "libraries/10_房地产建筑.db": "ca17c5e6de293ff6802da445c0f4f803fd7e8fa8ebce82f1e2d906e5f53e9dfd",
+    "libraries/36_法律治安.db": "145f74ce4df529322c87c123c013fa9fb27ec3e3cc3ff1ccae9a8ec4f8e275f7",
+    "libraries/27_高等教育.db": "1bfc6dc6ef0daf25836eb28c83a01af1b3ba0173eed7d85ad0bd9637f4885e20",
+    "libraries/08_影视电影.db": "97f6515f071d49d8eb7d78bd19a6605b00215629b3f8cfacea73ee00c3eabf6a",
+    "libraries/05_创业投资.db": "1e7aa7c82d1d8679f86d759c3996a8467d52845c91ec235e6576cf64da61cf51",
+    "libraries/16_法律司法.db": "fbb52d4c5f80cde2556a5e524ae58791f139718ed12fae777874d6c420144666",
+    "libraries/37_综合新闻_场景未定.db": "65c3025981bbe773eec1fc42354501eeb10ac58c08b9b76ebcec716b9bc784da",
+    "libraries/01_临床医疗.db": "81b8a5b2730053ec8b110daccaa201dab0eb12c1d45c2abdbe91a3b8bdf76b72"
+  },
+  "model_sha256": {
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/model.int8.onnx": "24ffdc19ba9aaed5a6a9beaede1e087745217d82425cf4041bca0c696661801e",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/README.md": "24a953594138ebd61a4e60637febcff1cecd4f79ed05632109a937b74f9ebcd7",
+    "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/models/sherpa-onnx-streaming-zipformer-ctc-zh-int8-2025-06-30/tokens.txt": "6193c7ea1c96d0d9a1e9652789b40d13a8a913b434a5451e93158f5a09fd6652",
+    "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/joiner.int8.onnx": "b34584dc6f561089e1d747fedebb3765f2caa72c927ef54d7ca55e5ae40a814b",
+    "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/decoder.onnx": "06522ad63cec0fdf6809f4e1db9bb4f7d710c34582e3b35db62ac60eccafac7e",
+    "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/tokens.txt": "6193c7ea1c96d0d9a1e9652789b40d13a8a913b434a5451e93158f5a09fd6652",
+    "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/encoder.int8.onnx": "5ac51e27981bb4dab01bb9be4958453ba50c3b61c063ddda0eab23fd3671aa4f",
+    "/home/aim0/data/models/ASR/sherpa-onnx-streaming-zipformer-zh-int8-2025-06-30/README.md": "24a953594138ebd61a4e60637febcff1cecd4f79ed05632109a937b74f9ebcd7"
+  },
+  "development_grid": {
+    "native_hotword_score": [
+      0.5,
+      1,
+      1.5,
+      2,
+      3
+    ],
+    "hybrid_minimum_gap": [
+      -0.25,
+      -0.5,
+      -1.0,
+      -2.0
+    ],
+    "hybrid_minimum_margin": [
+      0.04,
+      0.1
+    ],
+    "selection": "Maximize dev target hits subject to no CER increase over corresponding unbiased recognizer; ties fewer errors then conservative values; fallback minimum CER if none feasible"
+  },
+  "parallel_quality_collection": "4 independent native sample shards on CPU, 2threads per runtime; latency profiles collected separately to avoid confusing throughput with interactive delay"
+}

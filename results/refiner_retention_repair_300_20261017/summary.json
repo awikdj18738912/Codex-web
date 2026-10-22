@@ -1,0 +1,97 @@
+{
+  "candidate_target": 300,
+  "candidates_completed": 300,
+  "statuses": {
+    "accepted": 198,
+    "oral_rejected": 20,
+    "clean_rejected": 33,
+    "audit_rejected": 38,
+    "asr_rejected": 6,
+    "assembly_rejected": 5
+  },
+  "accepted_before_dedup": 198,
+  "unique_retained": 197,
+  "near_duplicates_removed": 1,
+  "acceptance_rate": 0.66,
+  "retained_rate": 0.6566666666666666,
+  "scene_quotas": {
+    "vibe_coding": 56,
+    "academic": 27,
+    "customer_service": 35,
+    "daily_chat": 36,
+    "explanation": 58,
+    "voice_search": 15,
+    "meeting": 33,
+    "dictation_memo": 31,
+    "navigation": 9
+  },
+  "accepted_by_scene": {
+    "academic": 19,
+    "customer_service": 32,
+    "daily_chat": 26,
+    "dictation_memo": 19,
+    "explanation": 31,
+    "meeting": 19,
+    "navigation": 2,
+    "vibe_coding": 41,
+    "voice_search": 9
+  },
+  "unique_by_scene": {
+    "academic": 19,
+    "customer_service": 31,
+    "daily_chat": 26,
+    "dictation_memo": 19,
+    "explanation": 31,
+    "meeting": 19,
+    "navigation": 2,
+    "vibe_coding": 41,
+    "voice_search": 9
+  },
+  "controls": {
+    "correction:single": 57,
+    "oral:moderate": 59,
+    "boundary_punctuation": 20,
+    "oral:low": 54,
+    "correction:rollback": 30,
+    "oral:high": 58,
+    "correction:multiple": 26,
+    "correction:none": 58,
+    "clean": 26,
+    "explanation": 27
+  },
+  "real_fragments": 10,
+  "asr_selected": 58,
+  "fragment_eligible": 85,
+  "elapsed_seconds": 425.2,
+  "api_calls": {
+    "oral": 381,
+    "audit": 236,
+    "clean": 306,
+    "asr": 20
+  },
+  "source_files_changed": [],
+  "independent_review_status": "complete",
+  "limitations": [
+    "Synthetic text only; no audio-ASR or student training evaluation",
+    "Teacher also judges semantics",
+    "Blind review is stratified toward scene/rare-branch coverage, not a uniform random error-rate estimate"
+  ],
+  "independent_review": {
+    "reviewed": 197,
+    "initial_counts": {
+      "pass": 196,
+      "fail": 1
+    },
+    "adjudicated_counts": {
+      "pass": 197
+    },
+    "adjudications": 1,
+    "structural_errors": 0,
+    "evidence_errors": 0,
+    "coverage": "All retained pairs, each assigned to one of two independent agents; disputed pair re-reviewed by both."
+  },
+  "regression_tests": {
+    "passed": 76,
+    "warnings": 8
+  }
+}

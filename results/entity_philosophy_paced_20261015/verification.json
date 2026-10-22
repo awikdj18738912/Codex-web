@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "verified_utc": "2026-10-15T13:48:29.674782+00:00",
+  "timing_validation": {
+    "complete_round_arm_coverage": true,
+    "round_count": 1,
+    "pcm_and_library_hash_match": true,
+    "expected_packets_per_run": 3750,
+    "pacing_packets_checked": 7500,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "input_glossary_source_hashes_match": true,
+  "same_run_entity_transition": {
+    "core_errors_before": 5,
+    "errors_recovered": 0,
+    "errors_unrecovered": 5,
+    "previously_correct_lost": 0,
+    "before_unprojectable": 0,
+    "after_unprojectable": 0
+  },
+  "interrupted_run_archived": "run/interrupted_entity_events.jsonl",
+  "interrupted_events_excluded_from_report": true,
+  "primary_drift": "Only punctuation: one period/comma difference between arms",
+  "ctc_errors": 0,
+  "human_listening_reference_complete": false,
+  "existing_web_services_restarted": false,
+  "service_health_after": "8081,8051,8766 ok",
+  "result_sha256": {
+    "manifest.json": "36b2f2df775919194f35b57976135f8a8ee1fad3081c0d669d36fb0bf49a2e01",
+    "entity_annotations.json": "7afd19ccc83c3f7867e62f21f68e86f4d1d2cbe00e91078c69d52a6a53eb4f56",
+    "ENTITY_REPORT.md": "5855202ad45c270d9528e251e637d65e5c57fa3b3ce6908315090f6cd67de2d4",
+    "entity_paced_report.json": "5fe1f28eb6ab41f0eb23465f892285f12edff896aaca6f55df7c9da189ac3464",
+    "REPORT.md": "53be03e73d2cdec266b06acad56defa929b2bc00f6f75cb78edab1d7dcd8d7bd",
+    "timing_audit.json": "8c39b1bf8ddbc7f459b4ad2d3b873359d0d3c32f9e1748b001b768b07ef8f071",
+    "run/results.jsonl": "c365a9c020f4062fb80d0d90bd5dd12e66c8d550118d1dfecf7fb0ff2c13ada9",
+    "run/events.jsonl": "d5670fdb6ac409567ff71b2e0a6caf2c415a9441da4ce1badbf0d57a3e4f6d35"
+  }
+}

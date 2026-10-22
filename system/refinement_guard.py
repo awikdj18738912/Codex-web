@@ -104,6 +104,7 @@ _PROTECTED_REDUPLICATION_PAIRS = LEXICAL_REDUPLICATIONS - frozenset(
 _NEGATION_CHARS = frozenset("不没无未别莫勿")
 _CORRECTION_MARKERS = (
     "不对",
+    "哦不",
     "我说错了",
     "说错了",
     "应该是",
@@ -484,15 +485,17 @@ def apply_repetition_review_decisions(
             candidate_repaired,
             numeric_rule_mode=numeric_rule_mode,
         )
-        repeated_source = (
+        # An explicit local review can resolve a lexical reduplication that
+        # is actually an in-word stutter (for example 人人性). Source-owned
+        # emphasis, negation and cross-clause reuse must still survive.
+        reviewed_repetition = (
             bool(candidate.target)
             and len(candidate.source) % len(candidate.target) == 0
-            and candidate.source
-            == candidate.target * (len(candidate.source) // len(candidate.target))
+            and candidate.source == candidate.target * (len(candidate.source) // len(candidate.target))
+            and set(reasons) == {"repetition_intent_loss"}
+            and not repetition_preservation_violations(repaired, candidate_repaired)
         )
-        if reasons and not (
-            repeated_source and set(reasons) <= {"semantic_content_loss"}
-        ):
+        if reasons and not reviewed_repetition:
             rejected_spans.add((start, end))
             continue
         repaired = candidate_repaired
@@ -961,9 +964,12 @@ def reject_reasons(
     # compare numeric mentions before accepting the candidate.  This also
     # permits safe Chinese-to-Arabic forms such as ``百分之五`` -> ``5%`` and
     # ``二零一五年五月五日`` -> ``2015年5月5日``.
-    if (
-        _numeric_values(raw) != _numeric_values(refined)
-        and not _retains_correction_tail(raw, refined)
+    source_values, target_values = _numeric_values(raw), _numeric_values(refined)
+    if source_values != target_values and (
+        not _retains_correction_tail(raw, refined)
+        # Keeping the real correction at the end cannot justify inventing
+        # an unrelated value/unit elsewhere in the same output.
+        or any(value not in source_values for value in target_values)
     ):
         reasons.append("numeric_value_mismatch")
 
@@ -973,12 +979,9 @@ def reject_reasons(
     if _partially_converted_numeric_range(raw, refined):
         reasons.append("partial_numeric_range_conversion")
 
-    # Length and global similarity are useful for catching a collapsed window,
-    # but they miss small deletions that change who did what (``他给``), or a
-    # one-character substitution that turns a meaningful word into a particle
-    # (``傻`` -> ``的``).  Inspect the aligned edits locally as a second line of
-    # defense.  Numeric-only surface changes are handled by the numeric guard
-    # above and are deliberately excluded here.
+    # Inspect substitutions, insertions and protected reduplications locally.
+    # Ordinary deletions and shortening replacements have no generic content
+    # loss veto. Numeric and severe whole-window loss checks remain separate.
     if not equivalent_numbered_list:
         reasons.extend(_semantic_edit_reasons(raw, refined))
 
@@ -1117,13 +1120,47 @@ def _equivalent_numbered_choice_rewrite(raw: str, refined: str) -> bool:
     return False
 
 
-def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
-    """Reject local edits that can remove or invent sentence meaning.
+def window_context_reject_reasons(
+    source: str, candidate: str, *, left_context: str = "", right_context: str = "",
+) -> tuple[str, ...]:
+    """Protect source ownership and short subjects split from their predicates."""
 
-    The Refiner is allowed to remove disfluencies, repeated runs, and the
-    false start before a self-correction.  Other deleted CJK spans are treated
-    conservatively: a short deletion can be semantically riskier than a large
-    rewrite because the surrounding text still looks very similar.
+    def lexical(text):
+        return re.sub(r"[\W_]+", "", text)
+    raw, clean = lexical(source), lexical(candidate)
+    reasons = []
+    for context in (left_context, right_context):
+        value = lexical(context)
+        if len(value) >= 4 and value not in raw and value in clean:
+            reasons.append("window_context_copied")
+    # ASR can close a punctuation block immediately after a short subject.
+    # If the following block starts with a predicate, deleting that final
+    # clause loses the subject even when the same word occurred earlier.
+    clauses = [part.strip() for part in re.split(r"[,，。!?！？;；:：]", source) if part.strip()]
+    if (
+        len(clauses) >= 2
+        and re.match(r"^(?:是|有|在|由|被|属于|来自|意味着|代表)", right_context.lstrip())
+    ):
+        tail = lexical(clauses[-1])
+        if (
+            2 <= len(tail) <= 12
+            and re.fullmatch(r"[\u3400-\u9fff]+", tail)
+            and tail not in {"那个", "这个", "嗯嗯", "呃呃", "就是说", "所以", "然后"}
+            and not _CORRECTION_MARKER_RE.search(clauses[-1])
+            and not clean.endswith(tail)
+            and any(
+                tag == "delete" and start <= len(raw) - len(tail) and end == len(raw)
+                for tag, start, end, _, _ in SequenceMatcher(None, raw, clean, autojunk=False).get_opcodes()
+            )
+        ):
+            reasons.append("window_boundary_subject_loss")
+    return tuple(dict.fromkeys(reasons))
+
+
+def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
+    """Check specific substitutions, insertions and protected repetitions.
+
+    There is no generic Chinese-deletion or shortening-replacement veto.
     """
 
     if _numeric_surface_only(raw, refined):
@@ -1137,10 +1174,10 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
         source = raw[source_start:source_end]
         target = refined[target_start:target_end]
         if tag == "delete":
-            if _allowed_deletion(raw, refined, source_start, source_end, source):
-                continue
-            if _meaningful_edit_text(source):
-                reasons.append("semantic_content_loss")
+            if _is_protected_reduplication_deletion(
+                raw, source_start, source_end, _strip_edit_punctuation(source)
+            ):
+                reasons.append("repetition_intent_loss")
         elif tag == "replace":
             # Compare the text surrounding an equivalent numeric core as
             # well as the value itself.  This accepts open-ended approximate
@@ -1188,16 +1225,7 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
             ):
                 reasons.append("unsupported_insertion")
                 continue
-            if (
-                len(_strip_edit_punctuation(source)) >= 2
-                and len(_strip_edit_punctuation(target)) == 1
-                and _meaningful_edit_text(source)
-            ):
-                reasons.append("semantic_content_loss")
-                continue
-            if _meaningful_edit_text(source) and len(source) - len(target) >= 2:
-                reasons.append("semantic_content_loss")
-            elif _is_protected_semantic_substitution(
+            if _is_protected_semantic_substitution(
                 raw, source_start, source, target
             ) or _suspicious_function_substitution(
                 refined, target_start, target_end, source, target
@@ -1206,31 +1234,6 @@ def _semantic_edit_reasons(raw: str, refined: str) -> tuple[str, ...]:
         elif tag == "insert" and _suspicious_insertion(refined, target_start, target_end, target):
             reasons.append("unsupported_insertion")
     return tuple(dict.fromkeys(reasons))
-
-
-def _allowed_deletion(
-    raw: str, refined: str, start: int, end: int, source: str
-) -> bool:
-    if not _meaningful_edit_text(source):
-        return True
-    if _retains_correction_tail(raw, refined) and _deletion_touches_correction(raw, start, end):
-        return True
-    compact = _strip_edit_punctuation(source)
-    if not compact:
-        return True
-    if all(char in _LOW_RISK_DELETION_CHARS for char in compact):
-        return True
-    if _is_protected_reduplication_deletion(raw, start, end, compact):
-        return False
-    if _is_repeated_deletion(raw, start, end, compact):
-        return True
-    if len(compact) == 1 and _is_boundary_echo_deletion(raw, start, end, compact):
-        return True
-    # A single deleted character can change the assertion just as much as a
-    # long omission (for example 只不过 -> 不过).  Numeric formatting is
-    # checked separately; unsupported character deletion is never inferred
-    # safe merely from its length.
-    return False
 
 
 def _allowed_replacement(
@@ -1417,20 +1420,6 @@ def _is_unicode_punctuation(value: str) -> bool:
     """Return whether a single character belongs to Unicode punctuation."""
 
     return len(value) == 1 and unicodedata.category(value).startswith("P")
-
-
-def _is_boundary_echo_deletion(raw: str, start: int, end: int, echo: str) -> bool:
-    """Allow removing one exact echoed glyph together with its boundary."""
-
-    source = raw[start:end]
-    boundary = "。！？!?；;"
-    return (
-        len(source) == 2
-        and (
-            (source[0] == echo and source[1] in boundary and raw[end:end + 1] == echo)
-            or (source[1] == echo and source[0] in boundary and raw[start - 1:start] == echo)
-        )
-    )
 
 
 def _is_adjacent_repetition_deletion(
@@ -2035,12 +2024,31 @@ def _correction_numeric_drop_spans(
             continue
         tail_counts = Counter(mention[4] for mention in tail_mentions)
         antecedent_counts = Counter(mention[4] for mention in antecedent_mentions)
+        # A whole-hour false start has one numeric component; its corrected
+        # clock can add minutes. Permit dropping only that hour, with an
+        # explicit clock context and a valid retained hour/minute expression.
+        clock_tail = _RULE_CLOCK_POINT_RE.search(tail)
+        corrected_whole_hour = (
+            len(antecedent_mentions) == 1
+            and antecedent_mentions[0][4] == ""
+            and 0 <= antecedent_mentions[0][3] < 24
+            and raw[antecedent_mentions[0][1]:].startswith("点")
+            and clock_tail is not None
+            and clock_tail.group("second") is None
+            and len(tail_mentions) == 2
+            and 0 <= tail_mentions[0][3] < 24
+            and 0 <= tail_mentions[1][3] < 60
+            and any(anchor in raw[antecedent_spans[0][0]:tail_end]
+                    for anchor in ("会议", "开会", "闹钟", "提醒", "时刻", "时间"))
+        )
         for unit, count in tail_counts.items():
             # When an antecedent clause contains several quantities with the
             # same unit but the replacement mentions only one, their roles
             # cannot be mapped safely from text alignment alone. Keep those
             # numbers instead of granting the whole clause an exemption.
-            if antecedent_counts[unit] != count:
+            if antecedent_counts[unit] != count and not (
+                unit == "" and corrected_whole_hour
+            ):
                 continue
             dropped.extend(
                 (mention[0], mention[1])
@@ -2143,6 +2151,66 @@ def _numeric_mention_alignment(
     return align(0, 0)
 
 
+_CLOCK_POINT_TOKEN = r"(?:\d{1,2}|[零〇一二两三四五六七八九十]+)"
+_RULE_CLOCK_POINT_RE = re.compile(
+    rf"(?<![\d.点])(?P<hour>{_CLOCK_POINT_TOKEN})点"
+    rf"(?P<minute>{_CLOCK_POINT_TOKEN})分(?!钟)"
+    rf"(?:(?P<second>{_CLOCK_POINT_TOKEN})秒)?"
+)
+_RULE_CLOCK_COLON_RE = re.compile(
+    r"(?<![\d.:：])(?P<hour>\d{1,2})[:：](?P<minute>\d{1,2})"
+    r"(?:[:：](?P<second>\d{1,2}))?(?![\d.:：])"
+    r"(?:分(?!钟)|秒)?"
+)
+
+
+def _restore_equivalent_rule_clock_surfaces(raw: str, refined: str) -> str:
+    """Restore colon times only to an unambiguous, equal source clock.
+
+    Final numeric alignment and integrity checks still decide acceptance.
+    Versions, bare colon ratios and unmatched clock values get no exemption.
+    """
+
+    if ":" not in refined and "：" not in refined:
+        return refined
+    source_forms: dict[tuple[int, int, int | None], set[str]] = {}
+    for match in _RULE_CLOCK_POINT_RE.finditer(raw):
+        parts = []
+        for name in ("hour", "minute", "second"):
+            token = match.group(name)
+            value = (
+                Decimal(token) if token and token.isdigit()
+                else _parse_chinese_number(token) if token else None
+            )
+            parts.append(int(value) if value is not None else None)
+        hour, minute, second = parts
+        if hour is None or minute is None or not (0 <= hour < 24 and 0 <= minute < 60):
+            continue
+        if second is not None and not 0 <= second < 60:
+            continue
+        source_forms.setdefault((hour, minute, second), set()).add(match.group())
+    if not source_forms:
+        return refined
+
+    edits = []
+    for match in _RULE_CLOCK_COLON_RE.finditer(refined):
+        # A colon string extended with a duration unit is not a clock form.
+        if refined[match.end():].startswith(("钟", "小时", "分钟")):
+            continue
+        second = match.group("second")
+        key = (int(match.group("hour")), int(match.group("minute")),
+               int(second) if second is not None else None)
+        suffix = match.group()[-1]
+        if (suffix == "秒" and second is None) or (suffix == "分" and second is not None):
+            continue
+        forms = source_forms.get(key, set())
+        if len(forms) == 1:
+            edits.append((match.start(), match.end(), next(iter(forms))))
+    for start, end, replacement in reversed(edits):
+        refined = refined[:start] + replacement + refined[end:]
+    return refined
+
+
 def restore_rule_numeric_surfaces(raw: str, refined: str) -> str | None:
     """Put rule-owned number spellings back while retaining validated edits.
 
@@ -2152,6 +2220,7 @@ def restore_rule_numeric_surfaces(raw: str, refined: str) -> str | None:
     no alignment and are left for the integrity guard to reject.
     """
 
+    refined = _restore_equivalent_rule_clock_surfaces(raw, refined)
     allowed = _numeric_rule_allowed_drop_spans(raw, refined)
     alignment = _numeric_mention_alignment(
         raw, refined, allowed, require_surface=True

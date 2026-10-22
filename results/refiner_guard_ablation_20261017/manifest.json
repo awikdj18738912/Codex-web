@@ -1,0 +1,80 @@
+{
+  "experiment": "refiner numeric/English lexical guard ablation",
+  "created_local": "2026-10-17",
+  "runner": "/home/aim0/data/conda/envs/vllm/bin/python results/refiner_guard_ablation_20261017/run_pipeline_replay.py",
+  "experimenter": "Luna delegated analysis",
+  "teacher_model": "refiner-teacher (Qwen3-30B-A3B-Instruct-2507 AWQ 4bit)",
+  "endpoint": "http://127.0.0.1:8010/v1",
+  "scope": "Experiment artifacts written only under results/refiner_guard_ablation_20261017; no production source or historical result file was edited.",
+  "runtime_modules": {
+    "numeric_policy": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/utils/numeric_policy.py",
+    "english_entity_policy": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/utils/english_entity_policy.py",
+    "training_quality": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/pipeline/training_quality.py",
+    "synthetic_oral": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/utils/synthetic_oral.py",
+    "asr_simulator": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/generators/asr_simulator.py",
+    "assembly": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/scripts/04_assemble.py",
+    "finalize": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/scripts/05_finalize.py",
+    "export": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/scripts/export_sft.py",
+    "dedup": "/home/aim0/桌面/tan/ASR/Codex-web/pipeline/src/pipeline/dedup.py",
+    "system_refinement_guard": "/home/aim0/桌面/tan/ASR/Codex-web/system/refinement_guard.py",
+    "system_zh_itn_bridge": "/home/aim0/桌面/tan/ASR/Codex-web/system/zh_itn_bridge.py"
+  },
+  "source_sha256": {
+    "pipeline/src/utils/numeric_policy.py": "e504734a121b34896a5a2ecc2a73d42f03a017ea348f687fcaeddde1ae643af4",
+    "pipeline/src/utils/english_entity_policy.py": "949321c224567a2fe302f1ede3231bcf8e577457ada50e7fe58cb31cda04d977",
+    "pipeline/src/pipeline/training_quality.py": "2bfbdc689daeceac2b1747fd646c5233791d5fadb5691cbde66476fc60a10c1a",
+    "pipeline/src/utils/synthetic_oral.py": "55c887bb615cf7c591f9aaeed50190ead6eed7b1d37412d6ca8030ff782f01d5",
+    "pipeline/src/generators/asr_simulator.py": "31d56898ddce4a62930ae84575a06d0f7e4e93786d0d231b5dc3f7beb48b0013",
+    "pipeline/src/pipeline/dedup.py": "724b4dd21454fb7082b278371882d91867fbbae1d7d56732337e356df29e0cfd",
+    "pipeline/scripts/04_assemble.py": "90da4176d29abb4bf6a7fb4df4ec96ba6b6cd3aa2aa9b98b4499a2b3181118c9",
+    "pipeline/scripts/05_finalize.py": "2a607f04f0d5aac779c5ca3489977a6da56d0d6e21951bd14b4720b6373ee183",
+    "pipeline/scripts/export_sft.py": "05b2049b621dff16a39cda54680b63efadfd76413742cd00bc35d6475681b6fd",
+    "pipeline/configs/settings.py": "b4d0a07e59ecf773bd3c862bca00d7139a2c3dd22d73c1f790dd4afb5337e74d",
+    "pipeline/configs/prompts_clean.json": "5f850051f79b02fee8a0bef73c9d2c48499b027414600dbfa2df4ec34618acc2",
+    "system/refinement_guard.py": "5f1be6ab4abe51354aff032238ef48b85290690fd0913382b0b2edd556fe3499",
+    "system/zh_itn_bridge.py": "8099dbd8119bc05c052552b0a876197cc732209c1712dbb0fe387d8b28a42dfd"
+  },
+  "input_sha256": {
+    "results/refiner_auto_acceptance_300_20261017/attempts.jsonl": "4e1951f5553e67857b76233e8d9dadd43e8a07e10fd7e8d3729e4babd9e8d37f",
+    "results/refiner_auto_acceptance_300_20261017/api_calls.jsonl": "5e63f48cb4c79dcb358ce58865d5b5487116df7452759c7534b2f3dbb56b0a77",
+    "results/refiner_auto_acceptance_300_20261017/accepted_candidates.jsonl": "a667b94935b6e0a7d1f2811bfd09bb0813949974865164a639c4749144d191d9",
+    "results/refiner_teacher_scale1000_20261017/attempts.jsonl": "0e3248db92d4aae99f84941afc1c31757346d2e445c835f0c5ae882552377718",
+    "results/refiner_teacher_scale1000_20261017/api_calls.jsonl": "2003879245aeed539f658374335c79fc80fc592ab0e166cae2632ed1ba025eaf"
+  },
+  "historical_snapshot": {
+    "numeric_policy_path": "results/refiner_teacher_scale1000_20261017/source_snapshot/pipeline/src/utils/numeric_policy.py",
+    "numeric_policy_sha256": "73e1ed0215d68395976ac6ac9e33040a106c243e5ef3eb4233768b7ba6636ad0",
+    "used_system_refinement_guard_sha256": "5f1be6ab4abe51354aff032238ef48b85290690fd0913382b0b2edd556fe3499",
+    "environment_note": "Legacy system dependency hash from this run; complete historical environment was not snapshotted."
+  },
+  "patch_protocol": {
+    "numeric_off": "Runtime monkeypatch in imported numeric_policy module: lock_numeric_target(source,target) -> target. normalize_source remains active. restore_rule_numeric_surfaces/restore_numeric_surfaces not patched.",
+    "english_off": "Runtime monkeypatch in imported numeric_policy module: english_entities_preserved(source,target) -> True.",
+    "construction": "_construction_plan_matches unchanged; exact rebuilt source and expected_clean == target proof required.",
+    "other_gates": "Production ASRSimulator fixed target; valid_partial_pair; assembly; surface_issues; unsupported_edits policy; typed semantic booleans and cleaned_target exactness; export; threshold 0.75 dedup all remain active."
+  },
+  "prompt_ablation": "Only AUDIT_SYSTEM sentence “数字格式由外部规则负责。英文名称和型号沿用原文。” removed. No Oral or Clean regeneration. Separate prompts_clean instruction “数字格式由外部规则库负责；英文名称和型号沿用原文。” remained unchanged; saved Clean targets reused.",
+  "api_accounting": {
+    "logs": [
+      "judge_api_calls.jsonl",
+      "live_api_calls.jsonl"
+    ],
+    "http_400_failed_requests": 279,
+    "failed_excluded_from_decisions": true,
+    "successful_rows_probe_log": 303,
+    "successful_rows_pipeline_log": 150,
+    "unique_successful_exact_request_hashes": 285,
+    "duplicate_successful_rows": 168,
+    "conflicting_responses_for_same_exact_request": 0,
+    "cache_policy": "First successful response per exact request kwargs hash; shared across ablation groups. Six normalized fragment audit requests executed against Qwen as missing exact cache entries."
+  },
+  "outputs": {
+    "summary": "summary.json",
+    "full_replay": "pipeline_replay_summary.json",
+    "per_group_attempts": "*_attempts.json",
+    "per_group_retained_ids": "*_retained_ids.json",
+    "offline diagnostics": "offline_300.json",
+    "legacy diagnostic": "historical_1000.json"
+  },
+  "working_tree_note": "The workspace had existing dirty/untracked production files during this task. This experiment wrote only under the results directory; source hashes identify imported production code."
+}

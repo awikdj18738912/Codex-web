@@ -1,0 +1,68 @@
+{
+  "requested_cases": 60,
+  "generation_records": 60,
+  "generation_errors": 0,
+  "valid_blind_comparisons": 60,
+  "same_model": true,
+  "model": "Qwen3.8-27B-AWQ-INT4",
+  "comparison": "Same model and source; old_prompt and new_prompt identify prompt variants only.",
+  "rating_distributions": {
+    "old_prompt": {
+      "FAIL": 2,
+      "MINOR": 3,
+      "PASS": 55
+    },
+    "new_prompt": {
+      "MINOR": 7,
+      "PASS": 53
+    }
+  },
+  "paired_wins": {
+    "TIE": 53,
+    "old_prompt": 4,
+    "new_prompt": 3
+  },
+  "candidate_text_identity": {
+    "different": 22,
+    "identical": 38
+  },
+  "new_prompt_output_changes": {
+    "changed": 22,
+    "same": 38
+  },
+  "control_cases": {
+    "manifest_count": 12,
+    "valid_reviewed": 12,
+    "new_prompt_changed": 2,
+    "new_prompt_unchanged": 10,
+    "new_prompt_not_pass": 0,
+    "old_prompt_not_pass": 0,
+    "old_prompt_changed_from_input": 1,
+    "new_prompt_changed_from_input": 2
+  },
+  "known_failure_cases_92_162_final_ratings": {
+    "92": {
+      "old_prompt": "FAIL",
+      "new_prompt": "MINOR"
+    },
+    "162": {
+      "old_prompt": "FAIL",
+      "new_prompt": "PASS"
+    }
+  },
+  "lead_adjudications": 7,
+  "limitations": [
+    "这是提示词开发诊断子集，不是独立测试集；结果不能解释为总体准确率或总体改进率。",
+    "old_prompt 与 new_prompt 是同一 Qwen3.8-27B-AWQ-INT4 模型的提示词版本标签，不代表不同教师或不同模型。",
+    "盲审评级用于该固定样本的诊断；选择机制包含预设诊断案例和控制案例。",
+    "审查模型曾误将允许删除的拼音和名称辅助解释判为漏信息；原判保留，7条主代理裁定记录更正。",
+    "两边仅更换中文system/user提示词，模型和采样不变；旧输出来自此前运行，未做重复采样稳定性试验。"
+  ],
+  "timing": {
+    "generation_wall_seconds": 413.2,
+    "cpu_offload_gb": 3,
+    "same_runtime_and_sampling_as_baseline": true
+  },
+  "decision": "Known semantic omissions improved, but cleanup completeness regressed: 3 wins vs 4 losses, 53 ties. This 60-case development experiment does not establish overall improvement. Do not use it to start full-scale relabeling.",
+  "production_prompt_sha256": "c8cecd28916642c4d7b229882559103a9560bc42690b9b36ab9117fcaf5532d4"
+}

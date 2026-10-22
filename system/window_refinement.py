@@ -1,9 +1,9 @@
 """Sentence-bounded refinement for revisable cumulative ASR hypotheses.
 
 Committed source chunks and their outputs have explicit ownership. The
-legacy rolling window keeps a bounded active tail; fixed-group mode waits
-for three punctuation chunks before calling the Refiner, and flushes a short
-tail on finalization.
+legacy rolling window keeps a bounded active tail; fixed-group mode optionally
+waits for one following block and provides read-only adjacent context while
+retaining exclusive ownership of three punctuation chunks.
 """
 import re
 from threading import Lock
@@ -21,7 +21,7 @@ from .refinement_guard import has_numeric_value_mention, join_refined_segments
 
 
 _SELF_CORRECTION = re.compile(
-    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|而是)"
+    r"(?:不对|哦不|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|而是)"
 )
 
 
@@ -58,13 +58,17 @@ class StreamingRefinementDisplay:
             state = span.get("state")
             if not isinstance(source_text, str) or not isinstance(clean_text, str):
                 continue
-            validated_spans.append(
-                {
-                    "source_text": source_text,
-                    "clean_text": clean_text,
-                    "state": "committed" if state == "committed" else "active",
-                }
-            )
+            validated = {
+                "source_text": source_text,
+                "clean_text": clean_text,
+                "state": "committed" if state == "committed" else "active",
+            }
+            context = span.get("window_context")
+            if isinstance(context, dict) and all(
+                isinstance(context.get(key), str) for key in ("left_context", "right_context")
+            ):
+                validated["window_context"] = dict(context)
+            validated_spans.append(validated)
         self._revision = revision
         self._raw_text = str(result.get("raw_text", ""))
         self._clean_text = str(result.get("clean_text", ""))
@@ -104,6 +108,13 @@ class StreamingRefinementDisplay:
             source = span["source_text"]
             if not source or not current_raw.startswith(source, cursor):
                 break
+            context = span.get("window_context")
+            if context is not None:
+                left, right = context["left_context"], context["right_context"]
+                if (left and not current_raw[:cursor].rstrip().endswith(left)) or (
+                    right and not current_raw[cursor + len(source):].lstrip().startswith(right)
+                ):
+                    break
             cursor += len(source)
             matched.append(span)
 
@@ -178,6 +189,7 @@ class CumulativeWindowRefinement:
         fixed_groups: bool = False,
         prepare_pending=None,
         group_numeric_self_corrections: bool = False,
+        adjacent_context: bool = False,
     ):
         if window_size < 1:
             raise ValueError("window_size must be at least 1")
@@ -190,6 +202,7 @@ class CumulativeWindowRefinement:
         self.fixed_groups = fixed_groups
         self.prepare_pending = prepare_pending
         self.group_numeric_self_corrections = group_numeric_self_corrections
+        self.adjacent_context = adjacent_context
         self.committed = []
         self.active = None
         self.group_cache = []
@@ -432,15 +445,37 @@ class CumulativeWindowRefinement:
             final=False,
             preserve_cached_partition=False,
         )
-        complete_count = len(chunks) // self.window_size * self.window_size
+        complete_count = self._complete_fixed_count(chunks, final=False)
         groups = tuple(
-            tuple(chunks[index:index + self.window_size])
+            self._stream_group_key(chunks, index)
             for index in range(0, complete_count, self.window_size)
         )
         pending_text = join_refined_segments(
             (*chunks[complete_count:], _pending)
         )
         return groups, pending_text
+
+    def _complete_fixed_count(self, chunks, *, final):
+        if final:
+            return len(chunks)
+        # A completed following block is read-only context for the preceding
+        # group. Do not commit ABC until D is available; D still belongs to DEF.
+        available = max(0, len(chunks) - int(self.adjacent_context))
+        return available // self.window_size * self.window_size
+
+    def _group_context(self, chunks, start, end):
+        return {
+            "left_context": chunks[start - 1][-self.window_max_chars:] if start else "",
+            "right_context": chunks[end][:self.window_max_chars] if end < len(chunks) else "",
+        }
+
+    def _stream_group_key(self, chunks, start):
+        end = start + self.window_size
+        group = tuple(chunks[start:end])
+        if not self.adjacent_context:
+            return group
+        context = self._group_context(chunks, start, end)
+        return (context["left_context"], *group, context["right_context"])
 
     def remember_reviewed_source_spans(self, source_spans):
         """Carry accepted review edits into exact matching fixed-group cache entries."""
@@ -538,9 +573,7 @@ class CumulativeWindowRefinement:
             preserve_cached_partition=preserve_cached_partition,
         )
 
-        complete_count = len(chunks) // self.window_size * self.window_size
-        if final:
-            complete_count = len(chunks)
+        complete_count = self._complete_fixed_count(chunks, final=final)
         group_chunks = [
             tuple(chunks[index:index + self.window_size])
             for index in range(0, complete_count, self.window_size)
@@ -554,6 +587,11 @@ class CumulativeWindowRefinement:
         reprocess_reasons: dict[str, int] = {}
         for index, group in enumerate(group_chunks):
             source = join_refined_segments(group)
+            start = index * self.window_size
+            context = (
+                self._group_context(chunks, start, start + len(group))
+                if self.adjacent_context else None
+            )
             # Final ASR punctuation/VAD boundaries can regroup the same source
             # text.  Matching only by position turns an already accepted
             # streaming result into a new model request.  Prefer the old
@@ -588,6 +626,8 @@ class CumulativeWindowRefinement:
             reprocess_reason = None
             if cached is None:
                 reprocess_reason = "no_exact_source_group_match"
+            elif context is not None and cached.get("refinement_window_context") != context:
+                reprocess_reason = "window_context_changed"
             elif reprocess_rejected and not cached.get("refiner_accepted", True):
                 reprocess_reason = "previous_result_rejected"
             if reprocess_reason is not None:
@@ -601,7 +641,10 @@ class CumulativeWindowRefinement:
                     confidence_metadata=confidence_metadata,
                     _trace_window_chunks=len(group),
                     _trace_required_chunks=self.window_size,
+                    **({"window_context": context} if context is not None else {}),
                 )
+                if context is not None:
+                    cached = {**cached, "refinement_window_context": context}
             else:
                 reused_group_count += 1
                 if not cached.get("refiner_executed", True):
@@ -637,7 +680,9 @@ class CumulativeWindowRefinement:
         )
         result["refinement_batch_size"] = self.window_size
         result["refinement_state"] = (
-            "waiting_for_group"
+            ("waiting_for_context" if self.adjacent_context
+             and result["pending_refinement_chunks"] >= self.window_size
+             else "waiting_for_group")
             if result["pending_refinement_chunks"]
             else "window_refined"
         )
@@ -836,6 +881,8 @@ class CumulativeWindowRefinement:
                     "source_text": text[starts[index]:end],
                     "clean_text": parts[index]["clean_text"],
                     "state": "committed",
+                    **({"window_context": parts[index]["refinement_window_context"]}
+                       if "refinement_window_context" in parts[index] else {}),
                 }
             )
         if active_start < len(chunks):

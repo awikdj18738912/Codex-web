@@ -1,0 +1,38 @@
+{
+  "reviews": [
+    {
+      "id": "scale_customer_service_0069",
+      "decision": "pass",
+      "source_quote": "不对，便携式空气净化器",
+      "target_quote": "我想要购买一个便携式空气净化器，",
+      "reason": "保留明确改口后的购买对象和原有购买意图。该条标记为片段，逗号可作为流式未完结标点，不能仅因输入未出现逗号判为实质错误。"
+    },
+    {
+      "id": "scale_customer_service_0066",
+      "decision": "pass",
+      "source_quote": "我，我想要一个智手环",
+      "target_quote": "我想要一个智能手环，",
+      "reason": "去除重复口吃并按片段语境补全“智能手环”可接受；目标保留购买请求，片段末尾逗号是可接受的未完结标点。"
+    },
+    {
+      "id": "scale_dictation_memo_0066",
+      "decision": "pass",
+      "source_quote": "不对，26700元",
+      "target_quote": "预算定在26700元，",
+      "reason": "保留明确改口后的金额，并修复“预，预。算”的漏字和误断句。片段末尾逗号可表示未完句，不构成实质标签错误。"
+    },
+    {
+      "id": "scale_meeting_0053",
+      "decision": "pass",
+      "source_quote": "建，建。议先部署安全补丁，不对，收集反馈数据，最后改成，清理过期日志，释放存储空间。",
+      "target_quote": "建议先清理过期日志，释放存储空间。",
+      "reason": "最终改口替换了具体动作内容；“建议先”是可与最终动作共用的建议框架和顺序副词，输入没有明确撤回这部分。目标保留框架并采用最后指定的清理日志与释放空间动作，未发现实质忠实性问题。"
+    }
+  ],
+  "counts": {
+    "pass": 4,
+    "fail": 0,
+    "uncertain": 0,
+    "total": 4
+  }
+}

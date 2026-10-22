@@ -1,0 +1,72 @@
+{
+  "review_scope": "All 8 rows in final/train.jsonl, checked against their input/oral_text and corresponding generated records in clean_attempts.jsonl and oral_generated.jsonl.",
+  "summary": {
+    "pass": 5,
+    "fail": 3,
+    "uncertain": 0,
+    "main_findings": [
+      "The clean output still joins the milk-tea topic to a distinct coffee-bean suggestion without a clear semantic bridge.",
+      "Two explanation outputs retain spelling/letter prompts and irrelevant contrast entities instead of reducing the utterance to its intended content.",
+      "Rollback corrections for time and entity/context are handled correctly in the reviewed rows; no clear loss of a current correction or negation condition was found otherwise."
+    ],
+    "limitations": "This is a small, manually reviewed generated pilot; judgments concern only these 8 exported candidates."
+  },
+  "candidates": [
+    {
+      "id": "auto_daily_chat_01",
+      "decision": "pass",
+      "reasons": ["Removes oral punctuation at the clause boundary while preserving the full topic and the contrastive preference."],
+      "evidence": ["Input and output both retain the Wuhan station art wall, heritage craft story, city memory, and ‘墙里墙外都是家’."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_daily_chat_02",
+      "decision": "fail",
+      "reasons": ["A separate Three and a Half coffee-bean recommendation is appended to the milk-tea queue discussion with only ‘啊，对了’ as a pivot; the resulting pair reads as a stitched topic sample rather than one coherent cleaned utterance.", "The output says ‘直接在三顿半买’, while the source only says ‘三顿半那个…咖啡豆，手冲一下’, adding an explicit purchase action."],
+      "evidence": ["Source sequence: Chengdu milk-tea shop/芋圆波波 and avoiding the queue, then ‘啊，对了，三顿半那个‘春日限定’的咖啡豆’. Output retains both topics and adds ‘买’."],
+      "checks": {"topic_splice": true, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": true, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_daily_chat_03",
+      "decision": "pass",
+      "reasons": ["Preserves the correction history and the final current time: the speaker had said six, changed back to seven, and settles on seven."],
+      "evidence": ["Input: ‘之前说六点开始，现在改回七点，还是七点开始吧’; output keeps these details verbatim."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_daily_chat_07",
+      "decision": "pass",
+      "reasons": ["Collapses duplicated photo-taking and waiting clauses without changing the plan or seasonal dates."],
+      "evidence": ["Repeated ‘本来想拍几张照片的…等天气好点再去’ becomes one clause; ‘11月中旬至次年3月上旬’ remains unchanged."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_explanation_02",
+      "decision": "fail",
+      "reasons": ["Retains an explicit character-spelling prompt (‘小’加‘米’) and a string of irrelevant negative entity comparisons. This is still a spelling/keyword prompting artifact rather than a concise explanation of 小米 as a grain."],
+      "evidence": ["Output keeps ‘不是李娜，也不是九寨沟，更不是格力，也不是耐克’ although none is needed to convey the source's final identification ‘谷物，小米’."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": true, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_explanation_04",
+      "decision": "pass",
+      "reasons": ["Removes filler and repetition while retaining the intended State Grid identification and the stated electricity work. ‘G-D-W’ is odd but explicitly present in the source."],
+      "evidence": ["Source: ‘国家电网…搞电力的…发、输、配电…G-D-W’; output preserves the entity, work description, and acronym."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_explanation_07",
+      "decision": "fail",
+      "reasons": ["Retains a phonetic/spelling correction fragment (‘bǎo zhàng fú’ / ‘宝章福’ / ‘保障福’) that conflicts with the resolved target 支付宝 and is not a meaningful explanation of it.", "Also retains unrelated contrast entities 华为 and 星巴克; the output remains internally confusing despite resolving 张伟 versus 张晓峰."],
+      "evidence": ["Source repeatedly settles on ‘张伟用的支付宝’, but the pronunciation segment spells/repairs ‘保障福’; the output keeps the entire unresolved segment and unrelated brands."],
+      "checks": {"topic_splice": false, "correction_convergence": false, "spelling_prompt_residue": true, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    },
+    {
+      "id": "auto_explanation_08",
+      "decision": "pass",
+      "reasons": ["Preserves the exact company name, pronunciation, service region, and the correction distinguishing 南 from 难. The mild paraphrase ‘管…供电’ to ‘负责…供电’ is equivalent in context."],
+      "evidence": ["Input and output both retain ‘中国南方电网有限责任公司’, ‘nán fāng diàn wǎng’, Guangdong/Guangxi power supply, and the negative correction ‘不是…难’."],
+      "checks": {"topic_splice": false, "correction_convergence": true, "spelling_prompt_residue": false, "negation_loss": false, "entity_rewrite": false, "sentence_boundary": false}
+    }
+  ]
+}

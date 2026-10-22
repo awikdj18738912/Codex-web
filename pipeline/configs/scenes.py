@@ -99,3 +99,30 @@ SCENE_REGISTRY = {
         "seed_categories": ["dictation_contexts", "contact_names", "time_expressions"],
     },
 }
+
+
+def get_enabled_scenes() -> list[str]:
+    """Return registry scenes with a positive default training weight, in registry order.
+
+    This is the shared default allowlist for pipeline stages and downstream exports.
+    """
+    try:
+        from .settings import SCENE_DISTRIBUTION
+    except ImportError:
+        from configs.settings import SCENE_DISTRIBUTION
+
+    return [scene for scene in SCENE_REGISTRY if SCENE_DISTRIBUTION.get(scene, 0) > 0]
+
+
+def validate_enabled_scene(scene: str) -> str:
+    """Return a scene key or raise a clear error when it is outside the default allowlist."""
+    enabled = get_enabled_scenes()
+    if scene not in enabled:
+        if scene in SCENE_REGISTRY:
+            reason = "registered but disabled by the default scene distribution"
+        else:
+            reason = "not present in the scene registry"
+        raise ValueError(
+            f"Scene '{scene}' is {reason}. Enabled scenes: {', '.join(enabled)}"
+        )
+    return scene

@@ -1,0 +1,19 @@
+{
+  "experiment": "real-time paired entity repair test on frozen error-bearing philosophy material",
+  "duration_seconds": 600,
+  "rounds": 1,
+  "order": [
+    "raw",
+    "entity"
+  ],
+  "expected_sessions": 2,
+  "packets_per_session": 3750,
+  "packet_seconds": 0.16,
+  "glossary_terms": 53,
+  "parameters": "unchanged current defaults; no ASR primary context; CTC on only in entity arm",
+  "timing_scope": "ASR plus entity module; library/model setup and downstream Web refinement excluded",
+  "label_scope": "31 core entity mentions, including5 error examples from screen; 3 spoken-order variants separate; labels pending independent human listening review",
+  "manifest_sha256": "36b2f2df775919194f35b57976135f8a8ee1fad3081c0d669d36fb0bf49a2e01",
+  "prior_accelerated_quality_report": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_philosophy_repair_20261015/REPORT.md",
+  "prior_results_not_mixed": true
+}

@@ -1,0 +1,29 @@
+{
+  "status": "complete_diagnostic_material_with_unrecovered_errors",
+  "verified_utc": "2026-10-15T13:10:01.046586+00:00",
+  "frozen_assets_match": true,
+  "raw_and_repair_input_equal": true,
+  "repair_primary_equals_screen_primary": true,
+  "human_audio_adjudication_complete": false,
+  "scope": "Error-enriched development material; labels pending independent listening review; no CER or real-time latency claim.",
+  "core_mentions": 31,
+  "core_spelling_failures_before": 5,
+  "core_recovered": 0,
+  "correct_control_lost": 0,
+  "uncertain_name_variants": 3,
+  "source_sha256": {
+    "experiments/scripts/evaluate_entity_repair_material.py": "3e72338c56376542ac2af0a1ce495351b7ea55d43a10a312c5909c967ae892f6",
+    "system/entity_audio_repair.py": "f786be2813121230c4f9eea380a166fea8c5fbc67c676fc08ed28144fafb1566",
+    "system/entity_streaming_live.py": "d42fbe84ddbcd0f8e768ef7e1679999bc5447045bba7a725b3d39f2b86d8c963",
+    "system/entity_ctc_sidecar.py": "ddb73806974b781e77d07f4c13438b517ca466dea4b0e4a362f0d6054168ff3d"
+  },
+  "result_sha256": {
+    "MATERIAL.md": "1bbbd856d30a4176148ae0c891ac54ea54c00c8859b42940c9de53caa1005425",
+    "manifest.json": "36b2f2df775919194f35b57976135f8a8ee1fad3081c0d669d36fb0bf49a2e01",
+    "entity_annotations.json": "7afd19ccc83c3f7867e62f21f68e86f4d1d2cbe00e91078c69d52a6a53eb4f56",
+    "REPORT.md": "a62ad882b738813b2a6d832a181505aa48913d6e5b55f5508bc9559541fbe6e2",
+    "entity_repair_report.json": "799443b51797bd7998ce47a69b749a314ea2208e649a8559b5aaa47290dfb9d5",
+    "quality/on.json": "d1acf8abe53d43f10aa42bc4174116ecece3235c307e2a418a983c34b95a569a",
+    "review.html": "d5f4b68761ca2c89c3085743116443ce0ac47df7c747400a0566fa01c3a4defc"
+  }
+}

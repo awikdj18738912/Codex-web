@@ -1,0 +1,35 @@
+{
+  "scope": "warmed_sequential_matched_text_windows_no_audio_no_ASR",
+  "device": "cuda:0",
+  "repetitions": 3,
+  "cases": 36,
+  "model": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "max_new_tokens": 256,
+  "do_sample": false,
+  "rule_pack": "zh-itn-strict-conservative-v90",
+  "library": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+  "library_sha256": "1364197d50a53a95a4c65a3eb569e850b72a18cd7423bbd96114d89660323fd1",
+  "cpu_threads": 2,
+  "native_gate": "tri_state",
+  "learned_gate": "off",
+  "entity_db": null,
+  "window": "each sample is one completed editable window; identical single_window=True",
+  "shared_model": true,
+  "caches": "no output reuse across observations",
+  "baseline_definitions": {
+    "refiner_only": "direct refine on raw text, no application guards or numeric fallback",
+    "model_web_chain": "Web core with zh-itn disabled; includes existing Python numeric fallback",
+    "zh_itn_web_chain": "same Web core with zh-itn enabled, numeric routing and surface guard",
+    "zh_itn_only": "CPU rule normalization only; no language cleanup"
+  },
+  "code_sha256": {
+    "experiments/scripts/benchmark_numeric_backends.py": "994c1c4759593b8dc86ae4285afa9cddedaa5b0ebfcc0fe78b040f6a73771838",
+    "system/web_app.py": "5e5012dd987067d92d23462993b02c40b09cd573ed841ad88f42ef21f252c69d",
+    "system/refinement_gate.py": "04a03be369bff4277e844d79357f7ce6269d128c8524413a5e219910d49042ca",
+    "system/refinement_guard.py": "6adbd5ad563dfc3504ea58fa77833480317b231d5bc2e8c0758c207369f514dc",
+    "system/live_qwen_refiner.py": "de5bdb3f1ad629145ba84f3260701cf283ca93de76c10e3a954e112b76245adf"
+  },
+  "gpu_before": "0, NVIDIA GeForce RTX 3090, 16429 MiB, 0 %\n1, NVIDIA GeForce RTX 3090, 4407 MiB, 0 %",
+  "gpu_after": "0, NVIDIA GeForce RTX 3090, 21656 MiB, 34 %\n1, NVIDIA GeForce RTX 3090, 4407 MiB, 0 %",
+  "code_changed_during_benchmark": {}
+}

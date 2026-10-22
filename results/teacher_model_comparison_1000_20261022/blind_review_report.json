@@ -1,0 +1,27 @@
+{
+  "records": 200,
+  "strata": {
+    "multi_correction": 40,
+    "clean_or_passthrough": 20,
+    "numeric_surface": 20,
+    "english_entity_or_code": 30,
+    "boundary_punctuation": 20,
+    "other_cleanup": 40,
+    "single_correction": 30
+  },
+  "scenes": {
+    "academic": 15,
+    "dictation_memo": 27,
+    "vibe_coding": 20,
+    "explanation": 25,
+    "meeting": 28,
+    "navigation": 25,
+    "voice_search": 24,
+    "daily_chat": 20,
+    "customer_service": 16
+  },
+  "blind": true,
+  "candidate_outputs": "old target and regenerated Qwen3-30B target randomized per sample",
+  "case_sha256": "99b7044b31f86800015e69d97951638b8b44cb98affd2850ac0470f402ab9449",
+  "identity_key_sha256": "a15340d5f86ffd23f55b3cb065e2e32945d5cd0f60d896a02487a11bee57ab9c"
+}

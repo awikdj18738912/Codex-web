@@ -1,0 +1,134 @@
+{
+  "count": 15,
+  "cause_counts_overlapping": {
+    "numeric_policy_rejection": 7,
+    "english_policy_rejection": 12
+  },
+  "items": [
+    {
+      "id": "auto_daily_chat_04",
+      "causes": [
+        "numeric_policy_rejection"
+      ],
+      "source": "成都宽窄巷子那个非遗文化体验馆啊，一开始说要预约，后来改了，现在直接进去就行，反正我昨天去也没排队，挺方便的。",
+      "raw_target": "成都宽窄巷子的非遗文化体验馆最初需要预约，后来调整为无需预约，直接进入即可。我昨天前往时未排队，非常方便。"
+    },
+    {
+      "id": "auto_daily_chat_05",
+      "causes": [
+        "numeric_policy_rejection"
+      ],
+      "source": "那个喜茶×敦煌联名款的九色鹿主题盲盒啊……我前2天在店里看见了，好可爱，不过……哎，买的时候差点忘了，它不是说限量发售吗，结果一问店员，说……嗯……好像还剩2个，我心想要不要冲一下，结果一摸口袋，哎，钱没带够，就……就……就……哎，真可惜，本来想带回家的……",
+      "raw_target": "那个喜茶×敦煌联名款的九色鹿主题盲盒，我前两天在店里看见了，好可爱。不过它说是限量发售，一问店员，说好像还剩两个。我心想要不要冲一下，结果一摸口袋，钱没带够，就没能买成。真可惜，本来想带回家的。"
+    },
+    {
+      "id": "auto_vibe_coding_01",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "啊那个就是……先跑个 echo 'Hello World' 吧，就……嗯，先试试这个，对，echo 'Hello World'，结果呢，怎么老是 Connection refused，不对不对，是 auth 问题，等等，不对不对，应该是 body 传得不对，哎等等，还是先回退到 echo 'Hello World'，对，就这个，先跑 echo 'Hello World'，行不行？",
+      "raw_target": "先跑个 echo 'Hello World'，结果总是 Connection refused，应该是 auth 问题，也可能是 body 传得不对，先回退到 echo 'Hello World'，就这个，先跑 echo 'Hello World'，行不行？"
+    },
+    {
+      "id": "auto_vibe_coding_02",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "把模型导出成Keras格式，先试试export，如果不行再改回用React，最后还是用Keras export",
+      "raw_target": "把模型导出成Keras格式，先试试Keras export，如果不行再改回用React，最后还是用Keras export。"
+    },
+    {
+      "id": "auto_daily_chat_08",
+      "causes": [
+        "numeric_policy_rejection",
+        "english_policy_rejection"
+      ],
+      "source": "哎你说那个厦门曾厝垵的‘拾光里’咖啡馆吧，我前2天去，本来想拍几张照片发朋友圈，结果啊，哎，那AI摄影模式，OPPO Find X7 Ultra一开，咔嚓一下，哎哟，照片直接就……嗯，对，就是那种文艺青年的感觉，哎，我本来还觉得拍得有点糊，结果一开AI，哇，清清楚楚，连咖啡杯上的花纹都……哎，不对，等等，我记错了，不是那个，是……不是咖啡馆，是那个书店，哎，我说的是北京三里屯那个地下一层的小众书店，对，就是那个，哎，我刚想说咖啡馆，结果……哎，不对，我搞混了，是书店，是书店，不是咖啡馆，对，是书店，是书店，是……是那个，哎，我真糊涂了，就是那个网红书店，哎，我刚想去拍照，结果一开AI，照片直接就……哎，对，是那个，是书店，是那个，哎，对，是书店，不是咖啡馆，是书店，是书店……",
+      "raw_target": "你说的那个厦门曾厝垵的‘拾光里’咖啡馆吧，我前两天去，本来想拍几张照片发朋友圈，结果一开OPPO Find X7 Ultra的AI摄影模式，咔嚓一下，照片直接就呈现出那种文艺青年的感觉。我本来还觉得拍得有点糊，结果一开AI，哇，清清楚楚，连咖啡杯上的花纹都看得一清二楚。不过等等，我记错了，不是咖啡馆，是书店，是北京三里屯地下一层的小众书店，就是那个网红书店。我刚想去拍照，结果一开AI，照片直接就变得特别清晰。"
+    },
+    {
+      "id": "auto_vibe_coding_03",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "呃……那个，我之前想用……pip install……PyTorch，但好像……!==……这个符号在Python里不行，哎不对，应该是……pip install pytorch……然后……用Julia？不不不，等等，还是用Python……对，就是pip install pytorch……对吧？",
+      "raw_target": "我之前想用pip install PyTorch，但好像!==这个符号在Python里不行，哎不对，应该是pip install pytorch，然后用Julia？不不不，等等，还是用Python，对，就是pip install pytorch，对吧？"
+    },
+    {
+      "id": "auto_vibe_coding_04",
+      "causes": [
+        "numeric_policy_rejection",
+        "english_policy_rejection"
+      ],
+      "source": "呃……那个，我这个Kotlin的函数啊，本来想用this来指代当前实例的，结果一跑就崩了，报个segmentation fault，哎不是，不对，Kotlin哪来的segmentation fault啊，应该是return那里写错了，我重新改一下……啊对，应该是return null才对，现在好了，没问题了。",
+      "raw_target": "我这个Kotlin的函数本来想用this来指代当前实例，结果运行时报错，应该是return那里写错了，改为return null后正常了。"
+    },
+    {
+      "id": "auto_vibe_coding_06",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "呃那个……我之前想用Trello API那边存个cache，结果写成!=了，不对不对，应该是enum啊，对，就是enum，就用enum那个，别用!=，嗯，就是enum，对，对，就是enum！",
+      "raw_target": "我之前想用Trello API存个cache，结果写成!=，应该是enum，就用enum，别用!=。"
+    },
+    {
+      "id": "auto_vibe_coding_05",
+      "causes": [
+        "numeric_policy_rejection"
+      ],
+      "source": "啊这个……那个，我我我刚想用NestJS写个接口，然后那个while循环里头，status状态得判断一下是不是=== true，不然Twilio API那边发不了短信，哎对，就是这个逻辑……",
+      "raw_target": "我刚想用NestJS写个接口，while循环里需要判断status状态是否严格等于true，否则Twilio API无法发送短信。"
+    },
+    {
+      "id": "auto_vibe_coding_08",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "我之前写了个Spring Boot的接口，结果返回null pointer exception，后来发现是name没传对，改了之后又提示Invalid API key，现在确认key没问题了，应该是代码里哪里漏了初始化，要不你帮我看看？",
+      "raw_target": "我之前写了个Spring Boot的接口，结果返回NullPointerException，后来发现是name没传对，改了之后又提示Invalid API key，现在确认key没问题，应该是代码里哪里漏了初始化，要不你帮我看看？"
+    },
+    {
+      "id": "auto_vibe_coding_07",
+      "causes": [
+        "numeric_policy_rejection",
+        "english_policy_rejection"
+      ],
+      "source": "那个……就是说，我先用mv file.txt /backup/把文件移过去，然后……嗯……rm -rf temp/删掉临时文件，再……就是那个，if判断一下状态，要是对了就用Puppeteer API抓一下网页数据，最后type输入点东西……",
+      "raw_target": "我先用mv file.txt /backup/把文件移过去，然后rm -rf temp/删掉临时文件。如果判断状态正确，就用Puppeteer API抓取网页数据，最后输入一些内容。"
+    },
+    {
+      "id": "auto_explanation_01",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "那个腾冲啊，就是云南那个腾冲，T-e-n-g-c-h-o-n-g，腾冲，不是什么别的地方，就是腾冲，你懂吧？",
+      "raw_target": "那个腾冲，就是云南的腾冲，不是别的地方，就是腾冲，你懂吧。"
+    },
+    {
+      "id": "auto_explanation_03",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "那个……额尔古纳，就是那个……E’erguna，对，就是内蒙古那个……嗯……河流名字，不是什么公司也不是牌子，就是……额尔古纳，对，就是那个……",
+      "raw_target": "额尔古纳，就是内蒙古的河流名字，不是公司也不是品牌。"
+    },
+    {
+      "id": "auto_explanation_05",
+      "causes": [
+        "numeric_policy_rejection",
+        "english_policy_rejection"
+      ],
+      "source": "那个……敦煌，就是D-O-N-G-H-U-A-N，不是D-O-N-G-H-U-A-N，是那个在甘肃，有莫高窟的地方，就是……那个，很出名的，古代丝绸之路的……嗯……停顿一下，就是……敦煌，对，就是那个地方。",
+      "raw_target": "敦煌，就是位于甘肃、有莫高窟的地方，很出名，是古代丝绸之路的重要地点。"
+    },
+    {
+      "id": "auto_explanation_06",
+      "causes": [
+        "english_policy_rejection"
+      ],
+      "source": "那个……就是那个，叫抖音的，不是那个……叫‘抖’加‘音’，对，就是‘dǒu yīn’，不是‘dǒu yīn’？啊，就是那个，你刷短视频用的那个，就是抖音，对吧？",
+      "raw_target": "就是那个叫抖音的，‘dǒu yīn’，你刷短视频用的那个，就是抖音，对吧？"
+    }
+  ],
+  "note": "Policy rejection is not proof of a wrong label; inspect source and raw target."
+}

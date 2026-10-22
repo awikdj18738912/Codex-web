@@ -1,0 +1,110 @@
+{
+  "passed": true,
+  "scope": "Structural and stored audit evidence checks; no new semantic judgment or student model evaluation.",
+  "input": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_original_boundary_200_20261017/retained.jsonl",
+  "input_sha256": "4a4e10b2a79f29d47394b91f1489c6aba067e2d7a64751f1baa5d7e8e321fcdd",
+  "counts": {
+    "lines": 39,
+    "records": 39,
+    "reservoir_candidates": 39,
+    "minimum_required": 39
+  },
+  "errors": {
+    "total": 0,
+    "by_type": {},
+    "examples_first_50": []
+  },
+  "warnings": {
+    "exact_input_repeat_occurrences": 0,
+    "inputs_with_different_targets": 0
+  },
+  "statistics": {
+    "scene": {
+      "customer_service": 7,
+      "daily_chat": 9,
+      "dictation_memo": 4,
+      "explanation": 8,
+      "meeting": 2,
+      "navigation": 2,
+      "vibe_coding": 4,
+      "voice_search": 3
+    },
+    "speech_phenomena": {
+      "A→B: '10倍速'改为'10倍速播放'以明确操作对象": 1,
+      "B→C: '播放'被补全为'调成10倍速播放'以修正语义完整性": 1,
+      "boundary_punctuation": 2,
+      "clean": 17,
+      "clear phonetic contrast": 1,
+      "content-word repetition": 4,
+      "contrastive explanation": 4,
+      "contrastive_explanation": 1,
+      "correction": 1,
+      "explicit correction": 1,
+      "explicit_correction": 2,
+      "false start": 1,
+      "filler": 4,
+      "hesitation": 5,
+      "insertion": 1,
+      "minimal repetition": 2,
+      "pausing": 1,
+      "reformulation": 1,
+      "repetition": 4,
+      "repetition of '音量' for emphasis": 1,
+      "rollback correction": 1,
+      "self-correction": 1,
+      "self_correction": 1,
+      "spelling clarification": 2,
+      "spoken spelling": 2,
+      "spoken_spelling": 1,
+      "stuttering": 1,
+      "多阶段修正（A→B→C）": 1,
+      "最终语义聚焦": 1,
+      "自然停顿": 3,
+      "语义修正": 2,
+      "语义短语内误插标点（句号）": 1,
+      "语义调整": 1,
+      "语义连贯": 3,
+      "语序调整": 1,
+      "轻微重复": 7
+    },
+    "fragment": {
+      "false": 39
+    },
+    "target_origin": {
+      "passthrough": 17,
+      "teacher-reconstruction": 22
+    }
+  },
+  "sampling": {
+    "method": "fixed-seed reservoir sampling over parseable JSON object records; then union with first representative per scene and per rare speech_phenomena label (frequency <= max(1, floor(1% of parseable records)))",
+    "seed": 2026101720,
+    "requested_reservoir_size": 39,
+    "reservoir_size": 39,
+    "representative_scene_count": 8,
+    "rare_control_threshold": 1,
+    "rare_control_labels": [
+      "A→B: '10倍速'改为'10倍速播放'以明确操作对象",
+      "B→C: '播放'被补全为'调成10倍速播放'以修正语义完整性",
+      "clear phonetic contrast",
+      "contrastive_explanation",
+      "correction",
+      "explicit correction",
+      "false start",
+      "insertion",
+      "pausing",
+      "reformulation",
+      "repetition of '音量' for emphasis",
+      "rollback correction",
+      "self-correction",
+      "self_correction",
+      "spoken_spelling",
+      "stuttering",
+      "多阶段修正（A→B→C）",
+      "最终语义聚焦",
+      "语义短语内误插标点（句号）",
+      "语义调整",
+      "语序调整"
+    ],
+    "output_records_including_representatives": 39
+  }
+}

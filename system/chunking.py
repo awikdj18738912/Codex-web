@@ -21,6 +21,7 @@ _STREAM_WINDOW_PUNCTUATION = re.compile(
 )
 STRONG_CORRECTION_MARKERS = (
     "不对",
+    "哦不",
     "我说错了",
     "说错了",
     "应该是",
@@ -31,10 +32,10 @@ STRONG_CORRECTION_MARKERS = (
 )
 WEAK_CORRECTION_MARKERS = ("不是", "不，是")
 _SELF_CORRECTION = re.compile(
-    r"(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
+    r"(?:不对|哦不|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
 )
 _SELF_CORRECTION_PREFIX = re.compile(
-    r"^(?:不对|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
+    r"^(?:不对|哦不|我说错了|说错了|应该是|应该说|准确地说|我是说|改成|不是|不，是|而是)"
 )
 # A corrected clause may end with either a soft clause punctuation or a
 # sentence terminator.  Only searching soft punctuation lets a break jump

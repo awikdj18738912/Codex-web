@@ -1,0 +1,464 @@
+{
+  "validation": {
+    "complete_round_arm_coverage": true,
+    "round_count": 1,
+    "pcm_and_library_hash_match": true,
+    "expected_packets_per_run": 3750,
+    "pacing_packets_checked": 7500,
+    "packets_never_submitted_before_available_within_2ms": true,
+    "raw_bypasses_entity_module": true
+  },
+  "arms_medians": {
+    "raw": {
+      "first_external_text_wall_seconds": 2.2500900020822883,
+      "total_wall_seconds": 600.3007912631147,
+      "finish_tail_from_last_packet_submit_seconds": 0.2374903978779912,
+      "finish_tail_from_finish_call_seconds": 0.2326508518308401,
+      "max_cumulative_schedule_lateness_seconds": 0.37530673015862703,
+      "chunk_request_total_seconds": 58.7679665456526
+    },
+    "entity": {
+      "first_external_text_wall_seconds": 2.242080867756158,
+      "total_wall_seconds": 600.6931589189917,
+      "finish_tail_from_last_packet_submit_seconds": 0.6319008958525956,
+      "finish_tail_from_finish_call_seconds": 0.621817234903574,
+      "max_cumulative_schedule_lateness_seconds": 0.7484064497984946,
+      "chunk_request_total_seconds": 78.67257864074782
+    }
+  },
+  "arm_max_and_median_send_lateness": {
+    "raw": {
+      "max_seconds": 0.37530673015862703,
+      "median_seconds": 0.37530673015862703
+    },
+    "entity": {
+      "max_seconds": 0.7484064497984946,
+      "median_seconds": 0.7484064497984946
+    }
+  },
+  "per_minute_packet_request_latency": {
+    "raw:minute_1": {
+      "audio_start_seconds": 0,
+      "audio_end_seconds": 60,
+      "sample_count": 375,
+      "p50_seconds": 0.004870802164077759,
+      "p95_seconds": 0.11597967469133438,
+      "max_seconds": 0.2139798393473029
+    },
+    "entity:minute_1": {
+      "audio_start_seconds": 0,
+      "audio_end_seconds": 60,
+      "sample_count": 375,
+      "p50_seconds": 0.006351782940328121,
+      "p95_seconds": 0.11409394666552544,
+      "max_seconds": 0.9073568568564951
+    },
+    "raw:minute_2": {
+      "audio_start_seconds": 60,
+      "audio_end_seconds": 120,
+      "sample_count": 375,
+      "p50_seconds": 0.004965253174304962,
+      "p95_seconds": 0.11073264349251986,
+      "max_seconds": 0.22057039104402065
+    },
+    "entity:minute_2": {
+      "audio_start_seconds": 60,
+      "audio_end_seconds": 120,
+      "sample_count": 375,
+      "p50_seconds": 0.007348162122070789,
+      "p95_seconds": 0.10290302284993232,
+      "max_seconds": 0.21778556518256664
+    },
+    "raw:minute_3": {
+      "audio_start_seconds": 120,
+      "audio_end_seconds": 180,
+      "sample_count": 375,
+      "p50_seconds": 0.005097527988255024,
+      "p95_seconds": 0.12341565205715599,
+      "max_seconds": 0.2221382837742567
+    },
+    "entity:minute_3": {
+      "audio_start_seconds": 120,
+      "audio_end_seconds": 180,
+      "sample_count": 375,
+      "p50_seconds": 0.008122865110635757,
+      "p95_seconds": 0.10887329597026116,
+      "max_seconds": 0.22596986591815948
+    },
+    "raw:minute_4": {
+      "audio_start_seconds": 180,
+      "audio_end_seconds": 240,
+      "sample_count": 375,
+      "p50_seconds": 0.004735779948532581,
+      "p95_seconds": 0.10627606064081195,
+      "max_seconds": 0.29071996407583356
+    },
+    "entity:minute_4": {
+      "audio_start_seconds": 180,
+      "audio_end_seconds": 240,
+      "sample_count": 375,
+      "p50_seconds": 0.007724612019956112,
+      "p95_seconds": 0.09916799534112217,
+      "max_seconds": 0.272376645822078
+    },
+    "raw:minute_5": {
+      "audio_start_seconds": 240,
+      "audio_end_seconds": 300,
+      "sample_count": 375,
+      "p50_seconds": 0.004775990266352892,
+      "p95_seconds": 0.11312254839576785,
+      "max_seconds": 0.27284600492566824
+    },
+    "entity:minute_5": {
+      "audio_start_seconds": 240,
+      "audio_end_seconds": 300,
+      "sample_count": 375,
+      "p50_seconds": 0.007504967041313648,
+      "p95_seconds": 0.12319906582124536,
+      "max_seconds": 0.2514342968352139
+    },
+    "raw:minute_6": {
+      "audio_start_seconds": 300,
+      "audio_end_seconds": 360,
+      "sample_count": 375,
+      "p50_seconds": 0.0050277686677873135,
+      "p95_seconds": 0.1110746451187879,
+      "max_seconds": 0.18437588028609753
+    },
+    "entity:minute_6": {
+      "audio_start_seconds": 300,
+      "audio_end_seconds": 360,
+      "sample_count": 375,
+      "p50_seconds": 0.008728590793907642,
+      "p95_seconds": 0.13292087018489843,
+      "max_seconds": 0.22705406975001097
+    },
+    "raw:minute_7": {
+      "audio_start_seconds": 360,
+      "audio_end_seconds": 420,
+      "sample_count": 375,
+      "p50_seconds": 0.005498819053173065,
+      "p95_seconds": 0.1058869072701782,
+      "max_seconds": 0.21536830672994256
+    },
+    "entity:minute_7": {
+      "audio_start_seconds": 360,
+      "audio_end_seconds": 420,
+      "sample_count": 375,
+      "p50_seconds": 0.009511963929980993,
+      "p95_seconds": 0.134935546386987,
+      "max_seconds": 0.2499831048771739
+    },
+    "raw:minute_8": {
+      "audio_start_seconds": 420,
+      "audio_end_seconds": 480,
+      "sample_count": 375,
+      "p50_seconds": 0.0052098361775279045,
+      "p95_seconds": 0.11837938567623502,
+      "max_seconds": 0.2140405159443617
+    },
+    "entity:minute_8": {
+      "audio_start_seconds": 420,
+      "audio_end_seconds": 480,
+      "sample_count": 375,
+      "p50_seconds": 0.011085961014032364,
+      "p95_seconds": 0.1486989645753056,
+      "max_seconds": 0.241548178717494
+    },
+    "raw:minute_9": {
+      "audio_start_seconds": 480,
+      "audio_end_seconds": 540,
+      "sample_count": 375,
+      "p50_seconds": 0.004872098099440336,
+      "p95_seconds": 0.1171185123268515,
+      "max_seconds": 0.32326636370271444
+    },
+    "entity:minute_9": {
+      "audio_start_seconds": 480,
+      "audio_end_seconds": 540,
+      "sample_count": 375,
+      "p50_seconds": 0.009837227873504162,
+      "p95_seconds": 0.1385825532022864,
+      "max_seconds": 0.3545426782220602
+    },
+    "raw:minute_10": {
+      "audio_start_seconds": 540,
+      "audio_end_seconds": 600,
+      "sample_count": 375,
+      "p50_seconds": 0.005034386180341244,
+      "p95_seconds": 0.13318364759907128,
+      "max_seconds": 0.5341735370457172
+    },
+    "entity:minute_10": {
+      "audio_start_seconds": 540,
+      "audio_end_seconds": 600,
+      "sample_count": 375,
+      "p50_seconds": 0.00990754459053278,
+      "p95_seconds": 0.14243405433371664,
+      "max_seconds": 0.23479405511170626
+    }
+  },
+  "per_round_deltas_entity_minus_raw": [
+    {
+      "round": 0,
+      "first_external_text_wall_seconds": -0.008009134326130152,
+      "total_wall_seconds": 0.39236765587702394,
+      "finish_tail_from_last_packet_submit_seconds": 0.39441049797460437,
+      "finish_tail_from_finish_call_seconds": 0.3891663830727339,
+      "max_cumulative_schedule_lateness_seconds": 0.37309971963986754,
+      "chunk_request_total_seconds": 19.904612095095217,
+      "actual_primary_text_identical": false
+    }
+  ],
+  "paired_delta_medians": {
+    "first_external_text_wall_seconds": -0.008009134326130152,
+    "total_wall_seconds": 0.39236765587702394,
+    "finish_tail_from_last_packet_submit_seconds": 0.39441049797460437,
+    "finish_tail_from_finish_call_seconds": 0.3891663830727339,
+    "max_cumulative_schedule_lateness_seconds": 0.37309971963986754,
+    "chunk_request_total_seconds": 19.904612095095217
+  },
+  "target_spelling_observations": [
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "色拉叙马霍斯",
+      "first_primary_wall_seconds": 39.90656512090936,
+      "first_published_wall_seconds": 39.90665807528421,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "苏格拉底",
+      "first_primary_wall_seconds": 55.52257952513173,
+      "first_published_wall_seconds": 55.52263009734452,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "柏拉图",
+      "first_primary_wall_seconds": 16.216267676092684,
+      "first_published_wall_seconds": 16.216364569962025,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "理想国",
+      "first_primary_wall_seconds": 16.216267676092684,
+      "first_published_wall_seconds": 16.216364569962025,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "商鞅",
+      "first_primary_wall_seconds": 90.58878561295569,
+      "first_published_wall_seconds": 90.58884766604751,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "罗翔",
+      "first_primary_wall_seconds": 111.07607153989375,
+      "first_published_wall_seconds": 111.07613107329234,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "孟子",
+      "first_primary_wall_seconds": 172.39126792829484,
+      "first_published_wall_seconds": 172.39140306506306,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "荀子",
+      "first_primary_wall_seconds": 215.02598745701835,
+      "first_published_wall_seconds": 215.02604753011838,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "韩非子",
+      "first_primary_wall_seconds": 244.84279929613695,
+      "first_published_wall_seconds": 244.84286209894344,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "韩非",
+      "first_primary_wall_seconds": 244.84279929613695,
+      "first_published_wall_seconds": 244.84286209894344,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "孔子",
+      "first_primary_wall_seconds": 261.3069553929381,
+      "first_published_wall_seconds": 261.3070797980763,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "康德",
+      "first_primary_wall_seconds": 339.3915279041976,
+      "first_published_wall_seconds": 339.39164667995647,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "raw",
+      "term": "毛宗岗",
+      "first_primary_wall_seconds": null,
+      "first_published_wall_seconds": null,
+      "present_in_final": false
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "色拉叙马霍斯",
+      "first_primary_wall_seconds": 39.90052767796442,
+      "first_published_wall_seconds": 39.9209932629019,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "苏格拉底",
+      "first_primary_wall_seconds": 55.517514439765364,
+      "first_published_wall_seconds": 55.518690121825784,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "柏拉图",
+      "first_primary_wall_seconds": 16.178177776746452,
+      "first_published_wall_seconds": 16.189629358705133,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "理想国",
+      "first_primary_wall_seconds": 16.178177776746452,
+      "first_published_wall_seconds": 16.189629358705133,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "商鞅",
+      "first_primary_wall_seconds": 90.5623126779683,
+      "first_published_wall_seconds": 90.57777128182352,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "罗翔",
+      "first_primary_wall_seconds": 111.04921930003911,
+      "first_published_wall_seconds": 111.07352210674435,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "孟子",
+      "first_primary_wall_seconds": 172.3684800020419,
+      "first_published_wall_seconds": 172.37937223678455,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "荀子",
+      "first_primary_wall_seconds": 215.01207475410774,
+      "first_published_wall_seconds": 215.01344858994707,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "韩非子",
+      "first_primary_wall_seconds": 244.8234604219906,
+      "first_published_wall_seconds": 244.8335754238069,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "韩非",
+      "first_primary_wall_seconds": 244.8234604219906,
+      "first_published_wall_seconds": 244.8335754238069,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "孔子",
+      "first_primary_wall_seconds": 261.2979252957739,
+      "first_published_wall_seconds": 261.31907932274044,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "康德",
+      "first_primary_wall_seconds": 339.38519938569516,
+      "first_published_wall_seconds": 339.4068252877332,
+      "present_in_final": true
+    },
+    {
+      "round": 0,
+      "arm": "entity",
+      "term": "毛宗岗",
+      "first_primary_wall_seconds": null,
+      "first_published_wall_seconds": null,
+      "present_in_final": false
+    }
+  ],
+  "final_entity_changes": [
+    {
+      "round": 0,
+      "start": 1766,
+      "end": 1772,
+      "observed": "色拉霍马叙斯",
+      "canonical": "色拉叙马霍斯",
+      "entity_id": 41,
+      "phonetic_score": 0.761111,
+      "character_score": 0.666667,
+      "length_score": 1.0,
+      "retrieval_score": 0.775556,
+      "boundary_issue": null,
+      "evidence_surface": "色拉叙马霍斯",
+      "source_left": "么你的相信苏格拉底跟",
+      "source_right": "他们的一个著名的讨论那",
+      "evidence_source": "audio_replay",
+      "entity_type": "PERSON",
+      "match_type": "AUDIO_REPLAY_CONFIRMED",
+      "first_confirmation_wall_seconds": 409.8575338018127,
+      "first_external_lexical_observation_after_confirmation_wall_seconds": 409.8577255248092,
+      "lexical_observation_before_finish_call": true
+    }
+  ],
+  "goupitan_spelling_transitions": [],
+  "limitations": [
+    "Single manifest input; repetition count and coverage are derived from complete rounds.",
+    "No human reference, no CER or entity precision/recall claim.",
+    "Target-term publication times are lexical observations, not causal evidence of an entity edit.",
+    "Timing excludes model/library preparation and downstream Web refinement.",
+    "Returned text/patch observation times are not audio entity-end timestamps.",
+    "Real-time pacing measures user-visible streaming latency, not offline file throughput."
+  ]
+}

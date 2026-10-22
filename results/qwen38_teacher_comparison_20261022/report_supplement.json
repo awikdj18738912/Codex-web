@@ -1,0 +1,26 @@
+{
+  "controls": {
+    "definition": "Original sample stratum clean_or_passthrough; not human gold no-edit labels",
+    "records": 18,
+    "qwen30_changed_from_input": 5,
+    "qwen38_changed_from_input": 2,
+    "qwen30_nonpass": 0,
+    "qwen38_nonpass": 0
+  },
+  "timing": {
+    "smoke_10_wall_seconds": 137.2,
+    "remaining_190_wall_seconds": 1218.1,
+    "total_generation_wall_seconds": 1355.3,
+    "records_per_minute": 8.85,
+    "total_completion_tokens": 23226,
+    "cpu_offload_gb": 3,
+    "includes_initial_kernel_compilation": true,
+    "fair_speed_comparison_to_old_teacher": false
+  },
+  "decision": "Candidate improves cleanup on this diagnostic sample (16 wins vs 3), but has 2 semantic failures vs baseline 1. Do not automatically replace all labels or use it as sole reviewer; run fixed difficult-case and realistic Chinese ASR validation before adoption.",
+  "additional_limitations": [
+    "The 200 diagnostic cases were previously inspected during prompt development; this is a development comparison, not an unseen evaluation.",
+    "Reported ratings include 26 explicit lead adjudications after model-assisted blind reviews; reviewer errors and subjective cleanup judgments are recorded.",
+    "Only the AWQ build and non-thinking generation mode were tested; no conclusion about BF16 quality or independent judging capability."
+  ]
+}

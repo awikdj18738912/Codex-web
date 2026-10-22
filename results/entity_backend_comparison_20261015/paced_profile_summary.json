@@ -1,0 +1,307 @@
+{
+  "status": "complete",
+  "profile_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/entity_backend_comparison_20261015/paced_profile.jsonl",
+  "profile_mode": "realtime_160ms_wallclock_paced",
+  "required_ids": 8,
+  "required_arms": [
+    "qwen_raw",
+    "qwen_ctc_sidecar",
+    "native_hotword",
+    "native_broad_hotword"
+  ],
+  "record_count": 32,
+  "unique_ids_present": 8,
+  "complete_id_arm_cells": 32,
+  "missing_id_arm_cells": [],
+  "fixed_eight_inputs": [
+    {
+      "id": "chall_speechio_eb7c482362381798b65f",
+      "pcm_sha256": "87891f2231152c7a415821c707256494630206e3b22d60cad0d8c5793c02aab0",
+      "split": "test",
+      "domain": "烹饪美食",
+      "duration_seconds": 2.45725
+    },
+    {
+      "id": "chall_speechio_f456c4f77dbc55dd36e8",
+      "pcm_sha256": "371c6f04cf0e8a9815c79e9a02cc5d1cb4eda8c1617620c93b92850db57ecb6b",
+      "split": "test",
+      "domain": "武侠文学",
+      "duration_seconds": 9.444
+    },
+    {
+      "id": "chall_speechio_ca9f7b14421ea6baeffc",
+      "pcm_sha256": "abf86377c572247c32c6c7c3740873a104b36c76c9a0e9177a22acb1a274f816",
+      "split": "test",
+      "domain": "足球",
+      "duration_seconds": 3.98
+    },
+    {
+      "id": "chall_aishell_BAC009S0064W0442",
+      "pcm_sha256": "7a75e2c22c3c7be41f05d76b4992ef0556ba57a97b5114f3c4763996c86b0845",
+      "split": "test",
+      "domain": "综合新闻_场景未定",
+      "duration_seconds": 10.8718125
+    },
+    {
+      "id": "chall_aishell_BAC009S0355W0200",
+      "pcm_sha256": "def11e168f3754fc114354e88fb63d62b4720ffcce50de5f15c3294a93d6b137",
+      "split": "test",
+      "domain": "新闻采编",
+      "duration_seconds": 5.1169375
+    },
+    {
+      "id": "chall_speechio_9c30f1599cdbddfcf41a",
+      "pcm_sha256": "bbeec654ba8cae9de15c32ea56ee193ff821f31d2cb78ecd66856d594cfe9e75",
+      "split": "test",
+      "domain": "篮球",
+      "duration_seconds": 6.9
+    },
+    {
+      "id": "leb1_5f7c49fb3a54a6a3d751",
+      "pcm_sha256": "153827c93612e7623a4a62a6c2a39ec90f8abba9178c53080760145ac9e889d2",
+      "split": "test",
+      "domain": "商业企业",
+      "duration_seconds": 8.046063
+    },
+    {
+      "id": "chall_speechio_95e6008f2278975fde82",
+      "pcm_sha256": "ec9f8c77e39cf76d59528e98375ada0f4b8335044b01c3d3d100bf87f4e233db",
+      "split": "test",
+      "domain": "电商美妆",
+      "duration_seconds": 6.0400625
+    }
+  ],
+  "selection_hashes": {
+    "main_selection_sha256": "9e0b43f7735a8910c6574be6b2b74067e451885677341ec1fe40b37905818df4",
+    "broad_selection_sha256": "ae5399a981b9c7455b0ae67c7ae47729ef855c588e2d5efcf418c7e531873fc5"
+  },
+  "validation": {
+    "all_pcm_hashes_match_fixed_manifest": true,
+    "all_selection_hashes_match": true,
+    "all_records_realtime_paced": true,
+    "all_chunks_submitted_after_audio_available_within_2ms": true,
+    "qwen_context_not_applied": true,
+    "hybrid_total_and_finish_tail_include_final_fusion": true
+  },
+  "latency_by_arm": {
+    "qwen_raw": {
+      "samples": 8,
+      "first_text_wall_seconds": {
+        "n": 8,
+        "median_seconds": 2.1855824422091246
+      },
+      "tail_after_last_audio_submit_seconds": {
+        "n": 8,
+        "median_seconds": 0.15409408742561936,
+        "max_seconds": 0.3706518691033125
+      },
+      "total_wall_minus_audio_seconds": {
+        "n": 8,
+        "median_seconds": 0.15422502255253434,
+        "max_seconds": 0.3707847610823807
+      },
+      "qwen_http_seconds": {
+        "n": 8,
+        "median_seconds": 0.7373160198330879,
+        "max_seconds": 0.9365183473564684
+      }
+    },
+    "qwen_ctc_sidecar": {
+      "samples": 8,
+      "first_text_wall_seconds": {
+        "n": 8,
+        "median_seconds": 2.2186768129467964
+      },
+      "tail_after_last_audio_submit_seconds": {
+        "n": 8,
+        "median_seconds": 0.1784227634780109,
+        "max_seconds": 0.4601875669322908
+      },
+      "total_wall_minus_audio_seconds": {
+        "n": 8,
+        "median_seconds": 0.17854744950868207,
+        "max_seconds": 0.46028564607351985
+      },
+      "ctc_compute_seconds": {
+        "n": 8,
+        "median_seconds": 1.244428625330329,
+        "max_seconds": 2.419153561349958
+      },
+      "final_fusion_compute_seconds": {
+        "n": 8,
+        "median_seconds": 0.0012678042985498905,
+        "max_seconds": 0.16823470126837492
+      },
+      "incremental_event_fusion_compute_seconds_sum": {
+        "n": 8,
+        "median_seconds": 0.011740028858184814,
+        "max_seconds": 0.9235990107990801
+      },
+      "qwen_http_seconds": {
+        "n": 8,
+        "median_seconds": 0.6996804035734385,
+        "max_seconds": 0.966739499475807
+      }
+    },
+    "native_hotword": {
+      "samples": 8,
+      "first_text_wall_seconds": {
+        "n": 8,
+        "median_seconds": 0.8540172739885747
+      },
+      "tail_after_last_audio_submit_seconds": {
+        "n": 8,
+        "median_seconds": 0.11708425148390234,
+        "max_seconds": 0.16512058302760124
+      },
+      "total_wall_minus_audio_seconds": {
+        "n": 8,
+        "median_seconds": 0.11886288505978859,
+        "max_seconds": 0.16520479599013926
+      },
+      "native_compute_wall_seconds": {
+        "n": 8,
+        "median_seconds": 1.2243185634724796,
+        "max_seconds": 2.019155476242304
+      },
+      "flush_compute_seconds": {
+        "n": 8,
+        "median_seconds": 0.11485359515063465,
+        "max_seconds": 0.16149213770404458
+      }
+    },
+    "native_broad_hotword": {
+      "samples": 8,
+      "first_text_wall_seconds": {
+        "n": 8,
+        "median_seconds": 0.9821711734402925
+      },
+      "tail_after_last_audio_submit_seconds": {
+        "n": 8,
+        "median_seconds": 0.041634158696979284,
+        "max_seconds": 0.06508705019950867
+      },
+      "total_wall_minus_audio_seconds": {
+        "n": 8,
+        "median_seconds": 0.04382773487083558,
+        "max_seconds": 0.06521492170169951
+      },
+      "native_compute_wall_seconds": {
+        "n": 8,
+        "median_seconds": 0.46608000760897994,
+        "max_seconds": 0.7504080282524228
+      },
+      "flush_compute_seconds": {
+        "n": 8,
+        "median_seconds": 0.04143901471979916,
+        "max_seconds": 0.04513596510514617
+      }
+    }
+  },
+  "paired_hybrid_vs_raw_tail": {
+    "paired_samples": 8,
+    "hybrid_minus_raw_tail_seconds": {
+      "n": 8,
+      "median_seconds": 0.02711513452231884,
+      "max_seconds": 0.1818694770336151
+    },
+    "per_sample": [
+      {
+        "id": "chall_speechio_eb7c482362381798b65f",
+        "qwen_raw_tail_seconds": 0.09398493822664022,
+        "hybrid_tail_seconds": 0.27585441526025534,
+        "hybrid_minus_raw_tail_seconds": 0.1818694770336151
+      },
+      {
+        "id": "chall_speechio_f456c4f77dbc55dd36e8",
+        "qwen_raw_tail_seconds": 0.12966269487515092,
+        "hybrid_tail_seconds": 0.2004689578898251,
+        "hybrid_minus_raw_tail_seconds": 0.07080626301467419
+      },
+      {
+        "id": "chall_speechio_ca9f7b14421ea6baeffc",
+        "qwen_raw_tail_seconds": 0.2591606331989169,
+        "hybrid_tail_seconds": 0.18016322702169418,
+        "hybrid_minus_raw_tail_seconds": -0.07899740617722273
+      },
+      {
+        "id": "chall_aishell_BAC009S0064W0442",
+        "qwen_raw_tail_seconds": 0.11150701995939016,
+        "hybrid_tail_seconds": 0.14148584613576531,
+        "hybrid_minus_raw_tail_seconds": 0.02997882617637515
+      },
+      {
+        "id": "chall_aishell_BAC009S0355W0200",
+        "qwen_raw_tail_seconds": 0.10048920195549726,
+        "hybrid_tail_seconds": 0.1247406448237598,
+        "hybrid_minus_raw_tail_seconds": 0.02425144286826253
+      },
+      {
+        "id": "chall_speechio_9c30f1599cdbddfcf41a",
+        "qwen_raw_tail_seconds": 0.1785254799760878,
+        "hybrid_tail_seconds": 0.16138012101873755,
+        "hybrid_minus_raw_tail_seconds": -0.017145358957350254
+      },
+      {
+        "id": "leb1_5f7c49fb3a54a6a3d751",
+        "qwen_raw_tail_seconds": 0.20855568815022707,
+        "hybrid_tail_seconds": 0.1766822999343276,
+        "hybrid_minus_raw_tail_seconds": -0.03187338821589947
+      },
+      {
+        "id": "chall_speechio_95e6008f2278975fde82",
+        "qwen_raw_tail_seconds": 0.3706518691033125,
+        "hybrid_tail_seconds": 0.4601875669322908,
+        "hybrid_minus_raw_tail_seconds": 0.0895356978289783
+      }
+    ]
+  },
+  "quality_diagnostics_small_n": {
+    "scope": "Eight fixed samples only; exploratory diagnostics, not a broad quality conclusion.",
+    "arms": {
+      "qwen_raw": {
+        "samples": 8,
+        "entity_hits": 7,
+        "gold_mentions": 12,
+        "entity_recall": 0.5833333333333334,
+        "cer_errors": 9,
+        "reference_chars": 201,
+        "cer": 0.04477611940298507
+      },
+      "qwen_ctc_sidecar": {
+        "samples": 8,
+        "entity_hits": 9,
+        "gold_mentions": 12,
+        "entity_recall": 0.75,
+        "cer_errors": 7,
+        "reference_chars": 201,
+        "cer": 0.03482587064676617
+      },
+      "native_hotword": {
+        "samples": 8,
+        "entity_hits": 10,
+        "gold_mentions": 12,
+        "entity_recall": 0.8333333333333334,
+        "cer_errors": 8,
+        "reference_chars": 201,
+        "cer": 0.03980099502487562
+      },
+      "native_broad_hotword": {
+        "samples": 8,
+        "entity_hits": 9,
+        "gold_mentions": 12,
+        "entity_recall": 0.75,
+        "cer_errors": 27,
+        "reference_chars": 201,
+        "cer": 0.13432835820895522
+      }
+    }
+  },
+  "interpretation": [
+    "These are eight paced samples and descriptive medians/maxima; they do not establish a service guarantee or p95 latency.",
+    "Hybrid finish tail and total wall include final fusion completion. CTC and fusion compute are separately recorded and are not interchangeable with wall latency.",
+    "The pacing schedule attempts to submit chunks only when their audio is available; small timing deviations up to 2 ms are accepted.",
+    "Qwen start context was not applied in either Qwen-backed profile arm.",
+    "Quality metrics, when references are available, are diagnostics for this fixed eight only."
+  ]
+}

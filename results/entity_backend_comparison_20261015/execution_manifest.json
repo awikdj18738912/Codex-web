@@ -1,0 +1,42 @@
+{
+  "selection_sha256": "33592c8c5cb7a129dd2e7d4f157c5c75e5946f13c403e527f32bf03edafd4606",
+  "inference_sources": {
+    "entity_ctc_frontend.py": "40546f10adc5ad91cf89b5edd52420e3ba660552b3cbd5968aec57b1eef94b44",
+    "entity_ctc_word_spotter.py": "655eaa31dd6fd6e1d0774d30b693a38e5bd66d8ba6696d429f9f925e4713177f",
+    "benchmark_ctc_entity_sidecar.py": "7ced72ef29e89d46ab3a165a3aabc811daf6b5601a1eba803cd645b42e143983",
+    "benchmark_native_entity_streaming.py": "6bc2dca26d4bec894cf6d1a7044fdc87a027024709de2291b7cd7be4c049ea96",
+    "evaluate_entity_ctc_fusion.py": "2131d100c8f42b3e464a617c9d78f2e3a9bd3dbae9264bb490f6fd7bbb9ce052"
+  },
+  "python": "3.12.13",
+  "packages": {
+    "sherpa-onnx": "1.13.8+cuda13.cudnn9.onnxruntime1.28.2",
+    "onnxruntime": "1.22.0",
+    "kaldi-native-fbank": "1.22.3",
+    "numpy": "2.3.5"
+  },
+  "qwen_health": {
+    "api_styles": [
+      "current",
+      "legacy_v1"
+    ],
+    "asr_send_chunk_seconds": 0.5,
+    "confidence_calibrated": false,
+    "confidence_logprobs": 5,
+    "context_supported": true,
+    "max_context_chars": 2048,
+    "mode": "streaming",
+    "ok": true,
+    "segmentation_mode": "vad_finalize",
+    "silence_rms_threshold": 0.002,
+    "vad": "silero",
+    "vad_min_silence": 0.7,
+    "vad_min_speech": 0.25,
+    "vad_model": "/home/aim0/桌面/tan/ASR/Codex-web/models/silero_vad.onnx",
+    "vad_preroll": 0.7,
+    "vad_tail_pad": 1.0,
+    "vad_threshold": 0.5
+  },
+  "hardware": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  36\nOn-line CPU(s) list:                     0-35\nVendor ID:                               AuthenticAMD\nModel name:                              AMD EPYC 7H12 64-Core Processor\nCPU family:                              23\nModel:                                   49\nThread(s) per core:                      1\nCore(s) per socket:                      36\nSocket(s):                               1\nStepping:                                0\nBogoMIPS:                                5199.99\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl xtopology cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 clzero xsaveerptr wbnoinvd arat npt lbrv nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload vgif umip rdpid arch_capabilities\nVirtualization:                          AMD-V\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               2.3 MiB (36 instances)\nL1i cache:                               2.3 MiB (36 instances)\nL2 cache:                                18 MiB (36 instances)\nL3 cache:                                576 MiB (36 instances)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-35\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Mitigation; untrained return thunk; SMT disabled\nVulnerability Spec rstack overflow:      Mitigation; SMT disabled\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected\n",
+  "gpu": "NVIDIA GeForce RTX 3090, 24576 MiB, 580.159.04\nNVIDIA GeForce RTX 3090, 24576 MiB, 580.159.04\n",
+  "note": "Inference code and dev selection frozen before held-out scoring; reporting/profile sources may be added separately."
+}

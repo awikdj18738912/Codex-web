@@ -1,0 +1,801 @@
+{
+  "counts": {
+    "pass": 99,
+    "fail": 0,
+    "uncertain": 0
+  },
+  "reviews": [
+    {
+      "id": "scale_explanation_0086",
+      "source_quote": "呃，那个，农夫山泉，不对，喜茶饮品，最后改成，农夫山泉的水源地在浙江千岛湖",
+      "target_quote": "农夫山泉的水源地在浙江千岛湖，",
+      "reason": "保留可观察输入中最后确定的片段；未补入片段之后的内容。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0013",
+      "source_quote": "嗯，HuggingFace GLUE，不对，COCO，最后改成，HuggingFace GLUE数据集在自然语言理解任务中表现优异。",
+      "target_quote": "HuggingFace GLUE数据集在自然语言理解任务中表现优异。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0004",
+      "source_quote": "嗯，我想用Google Cloud Functions，不对，Firebase Auth实现用户登录功能。",
+      "target_quote": "我想用Firebase Auth实现用户登录功能。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0029",
+      "source_quote": "这台戴森V15 Detect吸尘器的灰尘检测功能真的很准。",
+      "target_quote": "这台戴森V15 Detect吸尘器的灰尘检测功能真的很准。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0019",
+      "source_quote": "嗯，上海研发中心，不对，青岛供应链部的物流优化方案需要尽快推进。",
+      "target_quote": "青岛供应链部的物流优化方案需要尽快推进。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0145",
+      "source_quote": "嗯，唯品会是专注于品牌特卖的电商平台，唯品的唯，品会的品。",
+      "target_quote": "唯品会是专注于品牌特卖的电商平台。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0121",
+      "source_quote": "呃，那个，华为技术是一家总部位于深圳的全球领先通信技术公司，华为的华，技术的技。",
+      "target_quote": "华为技术是一家总部位于深圳的全球领先通信技术公司。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0045",
+      "source_quote": "嗯，那个，就是说，∂u/∂t = D∇²u，不对，∂c/∂t = D∇²c，最后改成，∂u/∂t = D∇²u 描述了扩散过程中的浓度随时间变化。",
+      "target_quote": "∂u/∂t = D∇²u 描述了扩散过程中的浓度随时间变化。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0012",
+      "source_quote": "呃，那个，我。想用Express，不对，Django，最后改成，NestJS实现一个RESTful API。",
+      "target_quote": "我想用NestJS实现一个RESTful API。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0204",
+      "source_quote": "嗯，西湖断桥，不对，黄山云海的壮丽景象令人难忘，黄山的黄，云海的海。",
+      "target_quote": "黄山云海的壮丽景象令人难忘。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0155",
+      "source_quote": "嗯，那个，就是说，用，用React，不对，Next.js实现一个动态路由的用户页面组件。",
+      "target_quote": "用Next.js实现一个动态路由的用户页面组件。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0067",
+      "source_quote": "嗯，我想用REST API，不对，JSON-RPC，最后改成，GraphQL查询用户数据，返回字段包括name和email。",
+      "target_quote": "我想用GraphQL查询用户数据，返回字段包括name和email。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0099",
+      "source_quote": "呃，那个，用Rust，不对，Go，最后改成，Rust实现一个异步的HTTP客户端，支持超时和重试机制。",
+      "target_quote": "用Rust实现一个异步的HTTP客户端，支持超时和重试机制。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0006",
+      "source_quote": "嗯，那个，就是说，我，我需要确认2023-11-07的订单状态。",
+      "target_quote": "我需要确认2023-11-07的订单状态。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0161",
+      "source_quote": "嗯，用Fastify搭建一个轻量级的API服务。",
+      "target_quote": "用Fastify搭建一个轻量级的API服务。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_navigation_0038",
+      "source_quote": "我要去南京南站。",
+      "target_quote": "我要去南京南站。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0065",
+      "source_quote": "嗯，在。自然语言处理研究中，WikiText-103，不对，MS-COCO，最后改成，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "target_quote": "在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0044",
+      "source_quote": "嗯，那个，就是说，主，主成分分析，不对，梯度下降，最后改成，主成分分析能有效降低数据维度并保留主要特征。",
+      "target_quote": "主成分分析能有效降低数据维度并保留主要特征。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0039",
+      "source_quote": "嗯，那个，就是说，使，使用npm install react，不对，npx create-react-app创建新项目。",
+      "target_quote": "使用npx create-react-app创建新项目。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0086",
+      "source_quote": "呃，那个，今天气温32度，挺热的。",
+      "target_quote": "今天气温32度，挺热的。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0043",
+      "source_quote": "嗯，那个，就是说，今，今天走了10000步，不对，11000步，最后改成，12000步，感觉身体轻松多了。",
+      "target_quote": "今天走了12000步，感觉身体轻松多了。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0183",
+      "source_quote": "嗯，使用await，不对，let，最后改成，await等待异步操作完成。",
+      "target_quote": "使用await等待异步操作完成。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0189",
+      "source_quote": "呃，那个，处理SyntaxError: Unexpected token, missing semicolon，不对，SyntaxError: Unexpected token时，检查括号是否匹配。",
+      "target_quote": "处理SyntaxError: Unexpected token时，检查括号是否匹配。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0080",
+      "source_quote": "嗯，我的订单未收到，不对，订单重复了，需要取消其中一个。",
+      "target_quote": "我的订单重复了，需要取消其中一个。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0065",
+      "source_quote": "嗯，那个，就是说，中，中国航天指的是中国的航天事业和相关机构，航天的航，航天的天。",
+      "target_quote": "中国航天指的是中国的航天事业和相关机构。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0132",
+      "source_quote": "嗯，华为技术，不对，中国航天指的是中国的航天事业和相关机构，航天的航，航天的天。",
+      "target_quote": "中国航天指的是中国的航天事业和相关机构。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0148",
+      "source_quote": "嗯，那个，就是说，请，请用const声明一个不可变的变量。",
+      "target_quote": "请用const声明一个不可变的变量。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0099",
+      "source_quote": "嗯，那个，就是说，我，我。的订单号是20231105678901，不对，20231114567890，最后改成，20231109012345，麻烦查一下发货状态。",
+      "target_quote": "我的订单号是20231109012345，麻烦查一下发货状态。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0202",
+      "source_quote": "请用async关键字定义一个异步函数。",
+      "target_quote": "请用async关键字定义一个异步函数。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0033",
+      "source_quote": "嗯，那个，就是说，2025-01-01，不对，2024-09-07，最后改成，2025-01-01的会议记得提醒我。",
+      "target_quote": "2025-01-01的会议记得提醒我。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0033",
+      "source_quote": "嗯，多智能体博弈，不对，光子晶体在集成光学器件中的应用展现出优异的波长选择性。",
+      "target_quote": "光子晶体在集成光学器件中的应用展现出优异的波长选择性。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0091",
+      "source_quote": "嗯，审批流程阻塞，不对，法规变更风险，最后改成，审批流程阻塞导致项目延期，建议立即排查。",
+      "target_quote": "审批流程阻塞导致项目延期，建议立即排查。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0100",
+      "source_quote": "嗯，那个，就是说，徐，徐姐，你那碗牛肉面的汤底是用牛骨熬的吗？",
+      "target_quote": "徐姐，你那碗牛肉面的汤底是用牛骨熬的吗？",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_voice_search_0035",
+      "source_quote": "嗯，帮我找附近的电影院，不对，最近的加油站。",
+      "target_quote": "帮我找最近的加油站。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0165",
+      "source_quote": "嗯，九寨沟五花海，不对，九寨沟诺日朗瀑布，最后改成，九寨沟彩池的水为什么呈现如此多的色彩，彩池的池？",
+      "target_quote": "九寨沟彩池的水为什么呈现如此多的色彩？",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0023",
+      "source_quote": "李小雨说她最近在画校园的四季风景，特别喜欢秋天的银杏叶。",
+      "target_quote": "李小雨说她最近在画校园的四季风景，特别喜欢秋天的银杏叶。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0106",
+      "source_quote": "嗯，那个，就是说，请，请用async和await处理异步请求。",
+      "target_quote": "请用async和await处理异步请求。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0028",
+      "source_quote": "呃，那个，记得在2025-03-08提交项目报告。",
+      "target_quote": "记得在2025-03-08提交项目报告。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0030",
+      "source_quote": "嗯，测试覆盖率不足，不对，系统兼容性问题，最后改成，测试覆盖率不足导致了最近的回归问题。",
+      "target_quote": "测试覆盖率不足导致了最近的回归问题。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0030",
+      "source_quote": "嗯，DINOv2，不对，T5-small，最后改成，DINOv2在自监督视觉表征学习中表现出色。",
+      "target_quote": "DINOv2在自监督视觉表征学习中表现出色。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0009",
+      "source_quote": "呃，那个，建。议在跨部门知识图谱中引入静态更新机制，不对，手动同步流程，最后改成，动态更新机制以提升信息同步效率。",
+      "target_quote": "建议在跨部门知识图谱中引入动态更新机制以提升信息同步效率。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0060",
+      "source_quote": "呃，那个，记得在2025-03-08，不对，2024-08-30，最后改成，2025-07-04那天提交项目报告。",
+      "target_quote": "记得在2025-07-04那天提交项目报告。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0056",
+      "source_quote": "我的订单赠品还没收到，请问能补发吗？",
+      "target_quote": "我的订单赠品还没收到，请问能补发吗？",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0062",
+      "source_quote": "呃，那个，我。想查询一下京东全球购，不对，天猫旗舰店，最后改成，拼多多百亿补贴的商品发货时间。",
+      "target_quote": "我想查询一下拼多多百亿补贴的商品发货时间。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0010",
+      "source_quote": "嗯，层归一化，不对，注意力机制在Transformer模型中的作用是动态加权输入序列的不同部分。",
+      "target_quote": "注意力机制在Transformer模型中的作用是动态加权输入序列的不同部分。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0060",
+      "source_quote": "呃，那个，建议优先推进数字化员工手册，不对，绿色办公园区改造，以降低长期运营成本。",
+      "target_quote": "建议优先推进绿色办公园区改造，以降低长期运营成本。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0052",
+      "source_quote": "嗯，中国铁建是一家主要从事基础设施建设的大型国有企业，中国的国，铁建的建。",
+      "target_quote": "中国铁建是一家主要从事基础设施建设的大型国有企业。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_voice_search_0048",
+      "source_quote": "嗯，打开投影仪，切换到VGA输入源，不对，切换到HDMI输入源。",
+      "target_quote": "打开投影仪，切换到HDMI输入源。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0008",
+      "source_quote": "嗯，小区垃圾分类新规，不对，社区环保新措施，最后改成，小区垃圾分类新规执行后，居民投放准确率明显提高了。",
+      "target_quote": "小区垃圾分类新规执行后，居民投放准确率明显提高了。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0038",
+      "source_quote": "呃，那个，在MNIST，不对，Kaggle Titanic数据集上",
+      "target_quote": "在Kaggle Titanic数据集上，",
+      "reason": "保留可观察输入中最后确定的片段；未补入片段之后的内容。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0038",
+      "source_quote": "嗯，那个，就是说，重，重。启设备以解决当前连接问题。",
+      "target_quote": "重启设备以解决当前连接问题。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "输入有局部断句/识别噪声；不影响目标所保留的意图。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0139",
+      "source_quote": "蔡徐坤是著名的歌手和舞者。",
+      "target_quote": "蔡徐坤是著名的歌手和舞者。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0138",
+      "source_quote": "呃，那个，李连杰，不对，李小龙是著名的武术家和演员，以功夫片闻名于世，李的李，小龙的龙。",
+      "target_quote": "李小龙是著名的武术家和演员，以功夫片闻名于世。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0027",
+      "source_quote": "我买的迷你吸尘器吸力变弱了，能帮忙看看吗？",
+      "target_quote": "我买的迷你吸尘器吸力变弱了，能帮忙看看吗？",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0102",
+      "source_quote": "嗯，张妹妹，不对，林妹妹的舞蹈视频又火了，动作太有感染力了。",
+      "target_quote": "林妹妹的舞蹈视频又火了，动作太有感染力了。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0199",
+      "source_quote": "嗯，那个，就是说，陈，陈奕迅，不对，邓丽君是华语乐坛的传奇歌手，丽君的丽，丽君的君。",
+      "target_quote": "邓丽君是华语乐坛的传奇歌手。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0077",
+      "source_quote": "嗯，那个，就是说，我，我需要确认2023-11-17，不对，2023-11-30，最后改成，2023-11-29的订单状态。",
+      "target_quote": "我需要确认2023-11-29的订单状态。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0093",
+      "source_quote": "呃，那个，清华大学，不对，复旦大学是位于上海的一所著名高等学府，复旦的复，大学的大。",
+      "target_quote": "复旦大学是位于上海的一所著名高等学府。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0059",
+      "source_quote": "呃，那个，GPT-3，不对，T5-small在文本生成任务中表现出色，尤其适合低资源场景。",
+      "target_quote": "T5-small在文本生成任务中表现出色，尤其适合低资源场景。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0186",
+      "source_quote": "嗯，徐静怡，不对，林婉清是这次活动的主讲人，林的林，婉清的婉。",
+      "target_quote": "林婉清是这次活动的主讲人。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0016",
+      "source_quote": "嗯，那个，就是说，手，手动记录会议内容，不对，AI会议纪要生成能显著提升会议效率。",
+      "target_quote": "AI会议纪要生成能显著提升会议效率。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0184",
+      "source_quote": "邓丽君是华语乐坛的传奇歌手，以其温柔的嗓音和经典歌曲闻名。",
+      "target_quote": "邓丽君是华语乐坛的传奇歌手，以其温柔的嗓音和经典歌曲闻名。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_voice_search_0008",
+      "source_quote": "嗯，那个，就是说，去，去年，不对，明天情人节，提醒我买花。",
+      "target_quote": "明天情人节，提醒我买花。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0046",
+      "source_quote": "嗯，边缘AI推理在资源受限设备上的实时性能表现值得关注。",
+      "target_quote": "边缘AI推理在资源受限设备上的实时性能表现值得关注。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0025",
+      "source_quote": "嗯，张雅婷是这次活动的主持人，雅婷的婷。",
+      "target_quote": "张雅婷是这次活动的主持人。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0067",
+      "source_quote": "呃，那个，这杯水正好500ml，喝完刚好解渴。",
+      "target_quote": "这杯水正好500ml，喝完刚好解渴。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0009",
+      "source_quote": "嗯，那个，就是说，安，安排会议，不对，制定计划，最后改成，安排会议时记得确认所有参会人的日程。",
+      "target_quote": "安排会议时记得确认所有参会人的日程。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0203",
+      "source_quote": "呃，那个，使。用 npm install，不对，pnpm add 安装依赖包。",
+      "target_quote": "使用 pnpm add 安装依赖包。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0014",
+      "source_quote": "呃，那个，国风汉服穿搭分享里，我觉得配色和材质，不对，款式和剪裁，最后改成，配色和材质特别重要。",
+      "target_quote": "国风汉服穿搭分享里，我觉得配色和材质特别重要。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0023",
+      "source_quote": "嗯，记得用GoPro Hero12录下明天的户外活动。",
+      "target_quote": "记得用GoPro Hero12录下明天的户外活动。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0069",
+      "source_quote": "嗯，那个，就是说，我，我想用gRPC，不对，REST，最后改成，gRPC实现服务间的高效通信。",
+      "target_quote": "我想用gRPC实现服务间的高效通信。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0063",
+      "source_quote": "呃，那个，三顿半云南手冲咖啡的香气真的很特别，喝一口就停不下来。",
+      "target_quote": "三顿半云南手冲咖啡的香气真的很特别，喝一口就停不下来。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0017",
+      "source_quote": "呃，那个，京东商城是知名的综合性电商平台，京东的东，商城的商。",
+      "target_quote": "京东商城是知名的综合性电商平台。",
+      "reason": "保留正文意图并删除仅用于识别的拼字提示。",
+      "source_issue": "输入含拼字提示，按纯识别辅助语处理。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0062",
+      "source_quote": "更新状态以确保任务进度同步。",
+      "target_quote": "更新状态以确保任务进度同步。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_voice_search_0012",
+      "source_quote": "播放刀郎的歌曲。",
+      "target_quote": "播放刀郎的歌曲。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0021",
+      "source_quote": "嗯，我买的折叠电动滑板车，不对，便携式空气净化器，最后改成，折叠电动滑板车最近充电不稳，想问问怎么处理。",
+      "target_quote": "我买的折叠电动滑板车最近充电不稳，想问问怎么处理。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0007",
+      "source_quote": "嗯，那个，就是说，我，我想要确认2023-11-03，不对，2023-11-17的订单状态。",
+      "target_quote": "我想要确认2023-11-17的订单状态。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0036",
+      "source_quote": "嗯，我需要确认2023-11-07，不对，2023-11-11，最后改成，2023-11-17的订单状态。",
+      "target_quote": "我需要确认2023-11-17的订单状态。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0149",
+      "source_quote": "嗯，那个，就是说，处，处理403 Forbidden，不对，401 Unauthorized错误时，需。要检查认证头是否正确设置。",
+      "target_quote": "处理401 Unauthorized错误时，需要检查认证头是否正确设置。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_customer_service_0070",
+      "source_quote": "呃，那个，我需。要查询西安市雁塔区高新路188号，不对，上海市浦东新区世纪大道1001号的业务办理时间。",
+      "target_quote": "我需要查询上海市浦东新区世纪大道1001号的业务办理时间。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0028",
+      "source_quote": "呃，那个，实验结果表明，模型在学习率4.5，不对，1.4e-5下收敛最快。",
+      "target_quote": "实验结果表明，模型在学习率1.4e-5下收敛最快。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_meeting_0090",
+      "source_quote": "呃，那个，乌鲁木齐技术部的项目进度需要尽快同步。",
+      "target_quote": "乌鲁木齐技术部的项目进度需要尽快同步。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0031",
+      "source_quote": "嗯，那个，就是说，我，我想用gRPC，不对，Stripe API实现订阅支付功能。",
+      "target_quote": "我想用Stripe API实现订阅支付功能。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0031",
+      "source_quote": "嗯，那个，就是说，ResNet-50，不对，Diffusion Transformer，最后改成，Swin Transformer在视觉任务中表现出色，尤其在图像分类和目标检测方面。",
+      "target_quote": "Swin Transformer在视觉任务中表现出色，尤其在图像分类和目标检测方面。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0144",
+      "source_quote": "嗯，用TypeScript，不对，JavaScript，最后改成，TypeScript实现一个简单的事件监听器。",
+      "target_quote": "用TypeScript实现一个简单的事件监听器。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_voice_search_0017",
+      "source_quote": "嗯，那个，就是说，打，打开高德地图，导航到最近的加油站。",
+      "target_quote": "打开高德地图，导航到最近的加油站。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0029",
+      "source_quote": "嗯，那个，就是说，YOLOv5，不对，GPT-3，最后改成，ResNet-50在图像分类任务中表现出色，尤其在深层网络中保持了稳定的梯度传播。",
+      "target_quote": "ResNet-50在图像分类任务中表现出色，尤其在深层网络中保持了稳定的梯度传播。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0029",
+      "source_quote": "呃，那个，确认需求时需核对所有功能点是否完整。",
+      "target_quote": "确认需求时需核对所有功能点是否完整。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0046",
+      "source_quote": "呃，那个，请用 class 定义一个组件，包含 export 和 return 语句。",
+      "target_quote": "请用 class 定义一个组件，包含 export 和 return 语句。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0026",
+      "source_quote": "呃，那个，请设置 region=us-west-2 以匹配目标区域。",
+      "target_quote": "请设置 region=us-west-2 以匹配目标区域。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_daily_chat_0077",
+      "source_quote": "嗯，那个，就是说，这，这辆乐高城市系列巡逻车，不对，乐高城市系列消防车，最后改成，乐高城市系列警车的细节做得真精细。",
+      "target_quote": "这辆乐高城市系列警车的细节做得真精细。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0028",
+      "source_quote": "嗯，那个，就是说，拼，拼多多，不对，唯品会是专注于品牌特卖的电商平台，唯品会的唯，唯品会的会。",
+      "target_quote": "唯品会是专注于品牌特卖的电商平台。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_academic_0064",
+      "source_quote": "实验结果表明，该方法的准确率达到了67.3。",
+      "target_quote": "实验结果表明，该方法的准确率达到了67.3。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0090",
+      "source_quote": "嗯，那个，就是说，运，运行 kubectl apply -f deployment.yaml。",
+      "target_quote": "运行 kubectl apply -f deployment.yaml。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0079",
+      "source_quote": "呃，那个，部署服务，不对，提交申请，最后改成，部署服务后检查日志。",
+      "target_quote": "部署服务后检查日志。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_vibe_coding_0100",
+      "source_quote": "用React实现一个可复用的按钮组件，支持自定义颜色和悬停效果。",
+      "target_quote": "用React实现一个可复用的按钮组件，支持自定义颜色和悬停效果。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_dictation_memo_0024",
+      "source_quote": "嗯，那个，就是说，提，提醒我下午3点和徐涛开会讨论项目进度。",
+      "target_quote": "提醒我下午3点和徐涛开会讨论项目进度。",
+      "reason": "清理口语重复或标点噪声后，目标与输入表达的意图及关键细节一致。",
+      "source_issue": "未见影响本条忠实性判断的来源问题。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_explanation_0159",
+      "source_quote": "呃，那个，高宇航，不对，林婉清是负责项目协调的成员，婉清的婉，婉清的清。",
+      "target_quote": "林婉清是负责项目协调的成员。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    },
+    {
+      "id": "scale_navigation_0031",
+      "source_quote": "呃，那个，我要从京港澳高速，不对，武广高速，最后改成，沈海高速出发去广州。",
+      "target_quote": "我要从沈海高速出发去广州。",
+      "reason": "保留最后表达的内容，舍弃明确被改口撤回的候选；数字、英文术语、条件及语气信息均与最终表达一致。",
+      "source_issue": "输入包含显式改口候选；依据任务约定将被纠正候选视为撤回。",
+      "decision": "pass"
+    }
+  ]
+}

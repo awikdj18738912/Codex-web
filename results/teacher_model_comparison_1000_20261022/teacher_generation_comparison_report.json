@@ -1,0 +1,218 @@
+{
+  "sampled_outputs": 1000,
+  "independent_blind_reviewed": 200,
+  "source_status": {
+    "CLEAR": 200
+  },
+  "reviewed_output_origins": {
+    "same_output": 121,
+    "changed": 79
+  },
+  "blind_winner_source_clear": {
+    "TIE": 174,
+    "regenerated": 12,
+    "old": 14
+  },
+  "source_clear_cases": 200,
+  "old_target_verdicts_all_reviewed": {
+    "PASS": 188,
+    "MINOR": 7,
+    "FAIL": 5
+  },
+  "regenerated_target_verdicts_all_reviewed": {
+    "PASS": 186,
+    "MINOR": 9,
+    "FAIL": 5
+  },
+  "old_target_verdicts_source_clear": {
+    "PASS": 188,
+    "MINOR": 7,
+    "FAIL": 5
+  },
+  "regenerated_target_verdicts_source_clear": {
+    "PASS": 186,
+    "MINOR": 9,
+    "FAIL": 5
+  },
+  "definite_semantic_or_fidelity_failures_source_clear": {
+    "old": 5,
+    "regenerated": 5
+  },
+  "unchanged_input_controls_reviewed": 20,
+  "unchanged_control_outputs_modified_by_teacher": 4,
+  "by_stratum": {
+    "multi_correction": {
+      "old": {
+        "PASS": 36,
+        "FAIL": 2,
+        "MINOR": 2
+      },
+      "new": {
+        "PASS": 35,
+        "FAIL": 3,
+        "MINOR": 2
+      },
+      "pair": {
+        "TIE": 33,
+        "old": 4,
+        "regenerated": 3
+      }
+    },
+    "clean_or_passthrough": {
+      "old": {
+        "PASS": 20
+      },
+      "new": {
+        "PASS": 20
+      },
+      "pair": {
+        "TIE": 19,
+        "regenerated": 1
+      }
+    },
+    "numeric_surface": {
+      "old": {
+        "PASS": 20
+      },
+      "new": {
+        "PASS": 20
+      },
+      "pair": {
+        "TIE": 18,
+        "regenerated": 1,
+        "old": 1
+      }
+    },
+    "english_entity_or_code": {
+      "old": {
+        "PASS": 28,
+        "FAIL": 1,
+        "MINOR": 1
+      },
+      "new": {
+        "PASS": 29,
+        "FAIL": 1
+      },
+      "pair": {
+        "regenerated": 2,
+        "TIE": 25,
+        "old": 3
+      }
+    },
+    "boundary_punctuation": {
+      "old": {
+        "MINOR": 2,
+        "PASS": 16,
+        "FAIL": 2
+      },
+      "new": {
+        "MINOR": 2,
+        "PASS": 17,
+        "FAIL": 1
+      },
+      "pair": {
+        "regenerated": 3,
+        "TIE": 16,
+        "old": 1
+      }
+    },
+    "other_cleanup": {
+      "old": {
+        "PASS": 38,
+        "MINOR": 2
+      },
+      "new": {
+        "MINOR": 3,
+        "PASS": 37
+      },
+      "pair": {
+        "old": 3,
+        "TIE": 35,
+        "regenerated": 2
+      }
+    },
+    "single_correction": {
+      "old": {
+        "PASS": 30
+      },
+      "new": {
+        "PASS": 28,
+        "MINOR": 2
+      },
+      "pair": {
+        "TIE": 28,
+        "old": 2
+      }
+    }
+  },
+  "generation": {
+    "model": "Qwen3-30B-A3B-Instruct-2507-AWQ-4bit",
+    "records": 1000,
+    "generation_errors": 0,
+    "changed_vs_existing_target": 379,
+    "unchanged": 621,
+    "by_stratum": {
+      "boundary_punctuation": {
+        "records": 100,
+        "same_as_old": 32,
+        "changed": 68,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "clean_or_passthrough": {
+        "records": 100,
+        "same_as_old": 70,
+        "changed": 30,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "english_entity_or_code": {
+        "records": 150,
+        "same_as_old": 91,
+        "changed": 59,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "multi_correction": {
+        "records": 200,
+        "same_as_old": 114,
+        "changed": 86,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "numeric_surface": {
+        "records": 100,
+        "same_as_old": 55,
+        "changed": 45,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "other_cleanup": {
+        "records": 200,
+        "same_as_old": 144,
+        "changed": 56,
+        "empty_outputs": 0,
+        "format_errors": 0
+      },
+      "single_correction": {
+        "records": 150,
+        "same_as_old": 115,
+        "changed": 35,
+        "empty_outputs": 0,
+        "format_errors": 0
+      }
+    },
+    "elapsed_wall_seconds": 1333.2,
+    "predictions_sha256": "0de85eb18590af80024eb19c32ab68c6ed9e71c7de839dcc8beda03785b39ede"
+  },
+  "review_method": "Blinded A/B presentation with random output order; 200-row stratified sample, not prevalence sample.",
+  "limitations": [
+    "Both outputs come from the same Qwen3-30B teacher: existing historical targets vs regenerated targets using the current prompt. This evaluates prompt/target regeneration, not an alternative model.",
+    "Independent review is model-assisted semantic review, not full human expert annotation.",
+    "This sample comes from training split and is intended for data repair decisions, not student-model evaluation.",
+    "The regenerated output used the current clean prompt from pipeline/configs/prompts_clean.json; the exact prompt is snapshotted separately."
+  ],
+  "sample_sha256": "c2a64191ff18ab29c13bf79411b232e3cd1bd0678b1f3d41c1ab12c537d7af23",
+  "blind_case_sha256": "99b7044b31f86800015e69d97951638b8b44cb98affd2850ac0470f402ab9449",
+  "predictions_sha256": "0de85eb18590af80024eb19c32ab68c6ed9e71c7de839dcc8beda03785b39ede"
+}

@@ -1,7 +1,7 @@
 """Concurrency and cleanup for the isolated entity replay session."""
 import asyncio
 
-from system.entity_audio_repair import EntityAudioRepair
+from system.entity_audio_repair import _LegacyEntityAudioRepair as EntityAudioRepair
 from system.entity_store import EntityDefinition
 
 SOURCE = "今天我们一起讨论厉飞羽的相关问题。"

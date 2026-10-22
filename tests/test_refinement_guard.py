@@ -81,10 +81,10 @@ class RefinementGuardTest(unittest.TestCase):
             )
         self.assertEqual(parser.call_count, 1)
 
-    def test_rejected_model_edit_exposes_only_standalone_deletion(self) -> None:
+    def test_general_deletion_is_not_blocked_by_content_loss_rule(self) -> None:
         source = "呃，春秋晚年晚期嘛，所以礼坏乐崩嘛，"
         proposed = "春秋晚期嘛，所以礼崩嘛。"
-        self.assertEqual(reject_reasons(source, proposed), ("semantic_content_loss",))
+        self.assertNotIn("semantic_content_loss", reject_reasons(source, proposed))
         candidates = find_model_proposed_deletions(source, proposed)
         self.assertEqual([(item.source, item.target) for item in candidates], [("呃，", "")])
         self.assertEqual(find_model_proposed_deletions("这是一句完整的话。", "这是完整的话。"), ())
@@ -386,7 +386,7 @@ class RefinementGuardTest(unittest.TestCase):
             preserve_safe_numeric_edits("这件事不值一提。", "这件事不值1提。")
         )
 
-    def test_semantic_deletions_are_rejected(self) -> None:
+    def test_general_semantic_deletions_do_not_use_removed_content_loss_rule(self) -> None:
         cases = (
             (
                 "看，掘地三尺，要把他给我找出来！",
@@ -399,7 +399,7 @@ class RefinementGuardTest(unittest.TestCase):
         )
         for raw, refined in cases:
             with self.subTest(raw=raw):
-                self.assertIn("semantic_content_loss", reject_reasons(raw, refined))
+                self.assertNotIn("semantic_content_loss", reject_reasons(raw, refined))
 
     def test_semantic_particle_substitution_is_rejected(self) -> None:
         self.assertIn(
@@ -429,7 +429,7 @@ class RefinementGuardTest(unittest.TestCase):
             (),
         )
         self.assertIn(
-            "semantic_content_loss",
+            "repetition_intent_loss",
             reject_reasons("一首首歌。", "一首歌。"),
         )
 
@@ -460,14 +460,14 @@ class RefinementGuardTest(unittest.TestCase):
             "我们就假设所有人都是为了利的。",
         )
 
-    def test_unsupported_single_character_deletions_are_rejected(self) -> None:
+    def test_single_character_deletions_do_not_use_removed_content_loss_rule(self) -> None:
         for raw, refined in (
             ("所以这可能也是在人类历史上。", "所以这可能也在人类历史上。"),
             ("只不过这个结果很好。", "不过这个结果很好。"),
             ("人没有仁义。", "人有仁义。"),
         ):
             with self.subTest(raw=raw):
-                self.assertIn("semantic_content_loss", reject_reasons(raw, refined))
+                self.assertNotIn("semantic_content_loss", reject_reasons(raw, refined))
 
     def test_repetition_review_candidates_are_structural(self) -> None:
         candidates = find_repetition_review_candidates(
@@ -610,7 +610,7 @@ class RefinementGuardTest(unittest.TestCase):
                 "我让渡我的利益，同时也让渡我的利益。",
             ),
         )
-        self.assertIn(
+        self.assertNotIn(
             "semantic_content_loss",
             reject_reasons("当然，这些问题还有争议。", "哦，这些问题还有争议。"),
         )
@@ -646,7 +646,7 @@ class RefinementGuardTest(unittest.TestCase):
             ),
         )
 
-    def test_reduplication_loss_is_rejected(self) -> None:
+    def test_reduplication_loss_uses_repetition_intent_reason(self) -> None:
         for raw, refined in (
             ("一座座绿洲城市。", "一座绿洲城市。"),
             ("一朵朵云，一层层山。", "一朵云，一层山。"),
@@ -658,7 +658,7 @@ class RefinementGuardTest(unittest.TestCase):
             ("让大网生生不息地运转。", "让大网生不息地运转。"),
         ):
             with self.subTest(raw=raw):
-                self.assertIn("semantic_content_loss", reject_reasons(raw, refined))
+                self.assertIn("repetition_intent_loss", reject_reasons(raw, refined))
 
     def test_negation_pattern_substitution_is_rejected(self) -> None:
         self.assertIn(
@@ -800,22 +800,66 @@ class NumericSelfCorrectionTest(unittest.TestCase):
             (),
         )
 
-    def test_invented_value_inside_a_correction_is_rejected(self) -> None:
+    def test_invented_value_inside_a_correction_is_rejected_numerically(self) -> None:
         reasons = reject_reasons(
             "获得一千二百三十四万五千四百三十一元。不对，应该是一百块。",
             "获得555元。应该是100块。",
         )
-        self.assertIn("semantic_content_loss", reasons)
+        self.assertIn("numeric_value_mismatch", reasons)
 
-    def test_unit_change_inside_a_correction_is_rejected(self) -> None:
+    def test_unit_change_inside_a_correction_is_rejected_numerically(self) -> None:
         reasons = reject_reasons(
             "获得一千二百三十四万五千四百三十一元。不对，应该是一百块。",
             "获得100个。应该是100块。",
         )
-        self.assertIn("semantic_content_loss", reasons)
+        self.assertIn("numeric_value_mismatch", reasons)
 
 
 class NumericRuleModeGuardTest(unittest.TestCase):
+    def test_colon_clock_restores_rule_spelling_and_keeps_cleanup(self) -> None:
+        source = "嗯，会议会议定于2026年10月14日上午9点30分，参加人数是30人。"
+        candidate = "会议定于2026年10月14日上午9:30参加人数是30人。"
+        repaired = restore_rule_numeric_surfaces(source, candidate)
+        self.assertEqual(repaired, "会议定于2026年10月14日上午9点30分参加人数是30人。")
+        self.assertEqual(reject_reasons(source, repaired, numeric_rule_mode=True), ())
+
+    def test_clock_repair_handles_zero_padding_and_seconds(self) -> None:
+        for source, target, expected in (
+            ("系统在09点05分开始。", "系统在9:05开始。", "系统在09点05分开始。"),
+            ("系统在14点05分30秒启动。", "系统在14:05:30启动。", "系统在14点05分30秒启动。"),
+            ("会议在9点30分开始。", "会议在9：30开始。", "会议在9点30分开始。"),
+        ):
+            with self.subTest(source=source):
+                self.assertEqual(restore_rule_numeric_surfaces(source, target), expected)
+
+    def test_clock_repair_cannot_hide_wrong_time_or_other_value(self) -> None:
+        for source, target in (
+            ("会议在1点10分开始。", "会议在11:10开始。"),
+            ("会议在9点30分开始，预算为300元。", "会议在9:30开始，预算为301元。"),
+            ("系统在14点05分30秒启动。", "系统在14:05启动。"),
+            ("会议在9点30分开始。", "会议在9:30分钟开始。"),
+        ):
+            with self.subTest(target=target):
+                self.assertIsNone(restore_rule_numeric_surfaces(source, target))
+
+    def test_colon_ratio_without_source_clock_stays_unmatched(self) -> None:
+        self.assertEqual(guard._restore_equivalent_rule_clock_surfaces(
+            "比例为9比30。", "比例为9:30。"
+        ), "比例为9:30。")
+
+    def test_whole_hour_correction_can_keep_equivalent_colon_time(self) -> None:
+        source = "会议在一点，哦不，1点10分开始，嗯，请提前到会议室。"
+        repaired = restore_rule_numeric_surfaces(source, "会议在1:10分开始，请提前到会议室。")
+        self.assertEqual(repaired, "会议在1点10分开始，请提前到会议室。")
+        self.assertEqual(reject_reasons(source, repaired, numeric_rule_mode=True), ())
+        self.assertIsNone(restore_rule_numeric_surfaces(source, "会议在11:10开始，请提前到会议室。"))
+
+    def test_whole_hour_correction_cannot_drop_an_unrelated_quantity(self) -> None:
+        source = "预算为300元，会议在一点，哦不，1点10分开始。"
+        self.assertIsNone(restore_rule_numeric_surfaces(source, "预算为301元，会议在1:10开始。"))
+        source = "会议预算1元、2元，哦不，1点10分开始。"
+        self.assertIsNone(restore_rule_numeric_surfaces(source, "会议在1:10开始。"))
+
     def test_rule_mode_restores_number_surface_and_keeps_safe_repetition_edit(self) -> None:
         source = "我们我们将六十多万条沟谷送入河。"
         model_text = "我们将60多万条沟谷送入河。"

@@ -1,0 +1,38 @@
+{
+  "status": "complete",
+  "verified_utc": "2026-10-15T14:57:39.033971+00:00",
+  "frozen_pcm_and_glossary_verified": true,
+  "reference_labels_unchanged": true,
+  "regression_passed": 160,
+  "ctc_mode": "off",
+  "direct_glossary_mode": "enabled_with_entity_repair",
+  "actual_qwen_quality": true,
+  "core_recovered": 2,
+  "core_total_errors": 5,
+  "core_hits_before": 26,
+  "core_hits_after": 28,
+  "correct_control_lost": 0,
+  "human_audio_adjudicated": false,
+  "paced_latency_measured": false,
+  "existing_web_restarted": false,
+  "service_health": {
+    "8081": true,
+    "8051": true,
+    "8766": true
+  },
+  "source_sha256": {
+    "system/entity_direct_spelling.py": "1a581e359726a20785eacd0243d1e64d85e2fd131589e1d586ee0139ad241701",
+    "system/entity_boundaries.py": "fa040371f7dcf5e1fce9fc2c0ad059478166049574ec7d9e237713b3022917f7",
+    "system/entity_streaming_live.py": "4d2c028fce2ae205e96d05dba5a8eb3ffb6581ef605995715210f0a7565de5d1",
+    "system/entity_audio_repair.py": "36a2166a511c6d2ee94e7390c7dd82c9791c4ef77370e26ecd288dda26a032cd",
+    "tests/test_entity_direct_spelling.py": "65e84a665d1ad065fec34d99a51d970625d3e32cdda934d934856dc9f0794f64",
+    "experiments/scripts/audit_entity_direct_spelling.py": "df42c95a71cacd6673430ade54ab3034886a9208ea272bcb8cc8075009f1e18d"
+  },
+  "result_sha256": {
+    "REPORT.md": "91e4b91a9b78b7af5d00d24f0538894d012976abcd3a53b810bb1f2ab2b15da2",
+    "quality/off.json": "74e4228cebff495a9a94ff8835e4096bfe3ab20a344bdbe2a32fdfb4b97af799",
+    "quality_scores.json": "f20de2bfbc52650ddb33e384814954343dab48403f9d48c2ebe9c5126f61fa0e",
+    "development_regression.json": "7ed0a849a9efd7b999705bc4fdf81127a57c77387829e7ee972e73701de4624d",
+    "regression.log": "db2cbc5f361c3f550f5c1faff47065b205253cca0189dcc25efbe37374be3073"
+  }
+}

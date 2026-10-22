@@ -1,0 +1,79 @@
+{
+  "teacher": "Qwen refiner-teacher @ 127.0.0.1:8010/v1",
+  "experimenter": "Luna",
+  "fixed_candidate_denominator": 300,
+  "full_clean_construction_pairs": 280,
+  "ordinary_prompt_guard_groups": {
+    "both_on": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "numeric_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_meeting_0084",
+        "scale_dictation_memo_0078",
+        "scale_dictation_memo_0069"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "english_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_vibe_coding_0135",
+        "scale_vibe_coding_0205"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {}
+    },
+    "both_off": {
+      "known_original_accepted_before_dedup": 257,
+      "known_original_unique": 255,
+      "candidate_ids_after_guards": [
+        "scale_vibe_coding_0135",
+        "scale_vibe_coding_0205",
+        "scale_meeting_0084",
+        "scale_daily_chat_0090",
+        "scale_dictation_memo_0078",
+        "scale_dictation_memo_0069"
+      ],
+      "new_semantic_pass_ids": [],
+      "new_unique_retained": 0,
+      "accepted_before_dedup": 257,
+      "unique_retained": 255,
+      "denominator_candidates": 300,
+      "retained_rate": 0.85,
+      "judge_rejections": {
+        "scale_daily_chat_0090": "audit_target_not_clean_or_not_exact"
+      }
+    }
+  },
+  "saved_ASR_rejected_pairs": 6,
+  "prompt_removed_audit_count": 274,
+  "prompt_removed_audit_pass": 260,
+  "prompt_removed_audit_reject": 14,
+  "new_live_api_calls": 279,
+  "elapsed_seconds": 160.04,
+  "strict_limits": "No oral/clean regeneration. Numeric normalization retained. Construction expected_clean proof, valid_partial_pair, surface, unsupported-edit policy, semantic booleans, export, dedup threshold preserved."
+}

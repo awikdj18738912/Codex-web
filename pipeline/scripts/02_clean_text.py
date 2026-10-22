@@ -10,6 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from configs.settings import RAW_DIR
+from configs.scenes import get_enabled_scenes, validate_enabled_scene
 from src.generators.clean_text_generator import CleanTextGenerator
 from src.services.llm_client import AsyncLLMClient
 from src.utils.io_utils import setup_logging
@@ -17,17 +18,24 @@ from src.utils.io_utils import setup_logging
 
 async def run(args):
     logger = logging.getLogger(__name__)
+    if args.scene:
+        try:
+            validate_enabled_scene(args.scene)
+        except ValueError as exc:
+            logger.error("%s", exc)
+            sys.exit(2)
 
     client_kwargs = {}
     if args.base_url:
         client_kwargs["base_url"] = args.base_url
     llm = AsyncLLMClient(**client_kwargs)
-    gen = CleanTextGenerator(async_client=llm)
+    gen = CleanTextGenerator(async_client=llm, target_mode=args.target_mode)
 
     raw_dir = Path(RAW_DIR)
+    enabled = set(get_enabled_scenes())
     available_scenes = sorted([
         d.name for d in raw_dir.iterdir()
-        if d.is_dir() and (d / "oral.jsonl").exists()
+        if d.is_dir() and d.name in enabled and (d / "oral.jsonl").exists()
     ])
 
     if args.scene:
@@ -52,6 +60,8 @@ def main():
     parser.add_argument("--scene", type=str, default=None, help="one internal scene key")
     parser.add_argument("--no-resume", action="store_true", help="restart from the beginning")
     parser.add_argument("--base-url", type=str, default=None, help="vLLM service URL")
+    parser.add_argument("--target-mode", choices=["construction", "teacher"], default=None,
+                        help="known construction target or independent teacher reconstruction")
     parser.add_argument("--verbose", action="store_true", help="enable debug logging")
     args = parser.parse_args()
 

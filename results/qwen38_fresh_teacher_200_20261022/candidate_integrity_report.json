@@ -1,0 +1,28 @@
+{
+  "records": 200,
+  "unique_ids": 200,
+  "input_join_errors": 0,
+  "reference_join_errors": 0,
+  "missing_or_empty_targets": 0,
+  "generation_errors": 0,
+  "reference_targets_sent_to_teacher": false,
+  "reference_target_presence_in_raw_model_output_can_be_coincidental": true,
+  "teacher_model": "Qwen3.8-27B-AWQ-INT4",
+  "quantization_revision": "e3a700906e6a73ba4290b1873dc2ba8198527ab5",
+  "sample_sha256": "860f0f635be4545ac8a68ac0419919bceaf684cb8a4fb9a390c12a4b662f05b6",
+  "prompt_sha256": "c8cecd28916642c4d7b229882559103a9560bc42690b9b36ab9117fcaf5532d4",
+  "candidate_sha256": "7da7bdd2238cfa7560b9f5bc0ca73904e2df24fad33036fe49c259959d0621e2",
+  "changed_vs_reference": 164,
+  "scene_counts": {
+    "meeting": 18,
+    "dictation_memo": 25,
+    "vibe_coding": 35,
+    "customer_service": 26,
+    "navigation": 16,
+    "daily_chat": 17,
+    "explanation": 36,
+    "academic": 17,
+    "voice_search": 10
+  },
+  "note": "Teacher outputs are unreviewed candidates. Existing training targets are included only after inference as audit evidence; no SFT files have been updated."
+}

@@ -1,0 +1,12 @@
+{
+  "decision": "Do not promote candidate: cleanup improved on 3 cases but one existing difficult case regressed to semantic FAIL. Restore prior prompt; fresh200 prepared but not run.",
+  "additional_limitations": [
+    "审查模型出现将拼字辅助判漏、把相同的重复误判仅一边存在等错误；5条主代理裁定保留，未覆盖原始盲审。"
+  ],
+  "promotion_gate": {
+    "criterion": "Known semantic regression blocks expansion even if PASS count increases",
+    "passed": false,
+    "blocking_case_no": 92,
+    "fresh_validation_started": false
+  }
+}

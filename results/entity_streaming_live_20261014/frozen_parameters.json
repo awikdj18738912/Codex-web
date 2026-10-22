@@ -1,0 +1,30 @@
+{
+  "rule": "production_bounded_incremental_entity_v2",
+  "candidate_score": 0.63,
+  "candidate_margin": 0.04,
+  "window_seconds": 32,
+  "cache_seconds": 96,
+  "finish_wait": 0.8,
+  "maximum_queue": 4,
+  "replay_ratio": 0.5,
+  "request_timeout": 3,
+  "whole_audio_fallback": false,
+  "finish_starts_review": false,
+  "source_hashes": {
+    "candidate.py": "2366d40f7dbe931b8275d7733472ef4a5f8d2ffbcdce7c2edbfe1b35f776ad08",
+    "live_core.py": "5ffc664c107a448284b6d71fea1b1b8db6b22f3ec9ed7088837fc71efce1f05b",
+    "experiment_worker.py": "d609250f6819c987c3fb615fa41fb0bfa419e82f8c937ca346274344e1719977",
+    "collect_long.py": "22b3c2764dbb6f770a55a315e6549183817b8ba7d6fe71491c56c7a8824e6c04",
+    "collect_independent.py": "7fe96aa6c39bfc80ea2051b0d53874473b9c8bf165d0e0eb9deee95512b7b9d0",
+    "collect_known_dense.py": "3c1c6b12ebd8c6a842e6523306d9c0e3012f97064727dc0c729ce6df6f1a0bd8"
+  },
+  "strong_score": 0.85,
+  "medium_budget_fraction": 0.5,
+  "maximum_deferred": 16,
+  "bulk_transport_seconds": 1,
+  "controller": "system.entity_audio_repair.EntityAudioRepair",
+  "production_entity_hashes": {
+    "system/entity_audio_repair.py": "5dc551915521478a59ed13b7dd1eb1b38e815033616aa9e99f69567c1df63950",
+    "system/entity_streaming_live.py": "a357dcdf6dd8e87a056ec634addce242f02e9857b050b50bf87fd3c69d52044d"
+  }
+}

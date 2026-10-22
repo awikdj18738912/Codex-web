@@ -1,0 +1,155 @@
+{
+  "run": "refiner_teacher_scale1000_20261017",
+  "source_files": [
+    "api_calls.jsonl",
+    "attempts.jsonl",
+    "run.log"
+  ],
+  "attempt_status_counts": {
+    "accepted": 414,
+    "oral_rejected": 347,
+    "asr_rejected": 80,
+    "audit_rejected": 132,
+    "clean_rejected": 17,
+    "assembly_rejected": 10
+  },
+  "warning_message_counts": {
+    "The clean intent does not use the selected seed": 20,
+    "Intended target cannot be grounded in the spoken input": 686,
+    "Final correction value is missing from the clean intent": 251,
+    "Clean target has no eligible natural fragment boundary": 79,
+    "The clean intent retains an abandoned value or misses the final value": 27,
+    "Multiple correction must follow A to B to C": 30,
+    "Correction trace does not match the requested structure": 42,
+    "Invalid intent construction plan": 20,
+    "Single correction must change the value": 19,
+    "Correction values must appear in the claimed order": 23,
+    "Spelling cue must be supported by its word and intended entity": 19,
+    "No Chinese phrase is available for a boundary error": 1,
+    "Oral generator response must be a JSON object": 5,
+    "Clean fragment cannot be aligned to the observed oral text": 1
+  },
+  "warning_total": 1223,
+  "oral_rejected_rollback_multiple_unique_ids": 288,
+  "sample_method": "seeded stratified random sample: 3 rollback + 2 multiple; seed 917",
+  "sampled_failed_plans": [
+    {
+      "id": "scale_academic_0065",
+      "structure": "multiple",
+      "response_raw": "{\n  \"intent_text\": \"在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。\",\n  \"correction_values\": [\n    \"WikiText-103\",\n    \"MS-COCO\",\n    \"HuggingFace GLUE\"\n  ],\n  \"spelling_parts\": [],\n  \"selected_seeds\": [\n    \"HuggingFace GLUE\"\n  ]\n}",
+      "parse_error": null,
+      "plan": {
+        "intent_text": "在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+        "correction_values": [
+          "WikiText-103",
+          "MS-COCO",
+          "HuggingFace GLUE"
+        ],
+        "spelling_parts": []
+      },
+      "constructed_oral": "嗯，在自然语言处理研究中，WikiText-103，不对，MS-COCO，最后改成，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "normalized_source": "嗯，在自然语言处理研究中，WikiText-103，不对，MS-COCO，最后改成，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "normalized_target": "在自然语言处理研究中，HuggingFace GLUE基准测试被广泛用于评估模型的泛化能力。",
+      "checks": {
+        "build_oral": true,
+        "lock_numeric_target": false,
+        "english_entities_preserved": false
+      },
+      "numeric_reject_reasons": [
+        "numeric_rule_surface_mismatch"
+      ]
+    },
+    {
+      "id": "scale_navigation_0034",
+      "structure": "rollback",
+      "response_raw": "{\n  \"intent_text\": \"预计用时4.8小时到达目的地。\",\n  \"correction_values\": [\"4.8h\", \"2.2h\", \"4.8h\"],\n  \"spelling_parts\": [],\n  \"selected_seeds\": [\"4.8h\"]\n}",
+      "parse_error": null,
+      "plan": {
+        "intent_text": "预计用时4.8小时到达目的地。",
+        "correction_values": [
+          "4.8h",
+          "2.2h",
+          "4.8h"
+        ],
+        "spelling_parts": []
+      },
+      "checks": {
+        "build_oral": false,
+        "build_oral_error": "Final correction value is missing from the clean intent"
+      }
+    },
+    {
+      "id": "scale_vibe_coding_0168",
+      "structure": "rollback",
+      "response_raw": "{\n  \"intent_text\": \"设置最大重试次数为5。\",\n  \"correction_values\": [\"maxRetries=5\", \"debug=true\", \"maxRetries=5\"],\n  \"spelling_parts\": [],\n  \"selected_seeds\": [\"maxRetries=5\"]\n}",
+      "parse_error": null,
+      "plan": {
+        "intent_text": "设置最大重试次数为5。",
+        "correction_values": [
+          "maxRetries=5",
+          "debug=true",
+          "maxRetries=5"
+        ],
+        "spelling_parts": []
+      },
+      "checks": {
+        "build_oral": false,
+        "build_oral_error": "Final correction value is missing from the clean intent"
+      }
+    },
+    {
+      "id": "scale_voice_search_0003",
+      "structure": "rollback",
+      "response_raw": "{\n  \"intent_text\": \"设置闹钟为20分钟\",\n  \"correction_values\": [\"20\", \"2.5\", \"20\"],\n  \"spelling_parts\": [],\n  \"selected_seeds\": [\"20\"]\n}",
+      "parse_error": null,
+      "plan": {
+        "intent_text": "设置闹钟为20分钟",
+        "correction_values": [
+          "20",
+          "2.5",
+          "20"
+        ],
+        "spelling_parts": []
+      },
+      "constructed_oral": "嗯，设置闹钟为20，不对，2.5，最后改成，20分钟。",
+      "normalized_source": "嗯，设置闹钟为20，不对，2.5，最后改成，20分钟。",
+      "normalized_target": "设置闹钟为20分钟",
+      "checks": {
+        "build_oral": true,
+        "lock_numeric_target": false,
+        "english_entities_preserved": true
+      },
+      "numeric_reject_reasons": [
+        "severe_content_loss",
+        "numeric_rule_surface_mismatch"
+      ]
+    },
+    {
+      "id": "scale_meeting_0051",
+      "structure": "multiple",
+      "response_raw": "{\n  \"intent_text\": \"预算总额是1,350,000元，这个数字需要确认。\",\n  \"correction_values\": [\"210,000元\", \"720,000元\", \"1,350,000元\"],\n  \"spelling_parts\": [],\n  \"selected_seeds\": [\"1,350,000元\"]\n}",
+      "parse_error": null,
+      "plan": {
+        "intent_text": "预算总额是1,350,000元，这个数字需要确认。",
+        "correction_values": [
+          "210,000元",
+          "720,000元",
+          "1,350,000元"
+        ],
+        "spelling_parts": []
+      },
+      "constructed_oral": "嗯，预算总额是210,000元，不对，720,000元，最后改成，1,350,000元，这个数字需要确认。",
+      "normalized_source": "嗯，预算总额是210,000元，不对，720,000元，最后改成，1,350,000元，这个数字需要确认。",
+      "normalized_target": "预算总额是1,350,000元，这个数字需要确认。",
+      "checks": {
+        "build_oral": true,
+        "lock_numeric_target": false,
+        "english_entities_preserved": true
+      },
+      "numeric_reject_reasons": [
+        "numeric_rule_surface_mismatch"
+      ]
+    }
+  ],
+  "interpretation_note": "Checks replay only current build_oral and numeric/entity guards against the captured teacher intent plan. Generator rejection counts come from run.log and may also include seed/semantic checks not reproduced by this narrow replay."
+}
