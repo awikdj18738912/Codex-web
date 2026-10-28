@@ -1,0 +1,215 @@
+{
+  "version": 4,
+  "scope": "用于口语转写精修训练对的错误标注与复核。仅依据输入和目标的逐项对应关系判定；不能仅凭固定口语词或领域常识判错。明确撤回的英文、数字或候选值不要求保留；数字格式变化不判错；源不确定不等于已确认错误。",
+  "types": [
+    {
+      "code": "ENTITY_LITERAL_TRANSLATION_OR_CHANGE",
+      "title": "有效英文实体被翻译或改写",
+      "scope": "target",
+      "criterion": "输入中最终有效的英文专名、方法名、产品名或其他需按原字面识别的实体，在目标中被翻译、替换或拼写改变，且输入未明确撤回该实体时，判定为错误。",
+      "exceptions": "实体是明确撤回的候选、目标仅调整大小写或标点且不改变识别，或该项并非需保留字面的英文实体时，不判错；不得要求无意义的数字格式转换。",
+      "example": {
+        "input": "这个方法最后用 LightGBM。",
+        "bad_target": "这个方法最后用轻量梯度提升机。",
+        "expected_behavior": "保留 LightGBM 字面，不翻译成中文名称。"
+      },
+      "provenance": "policy illustration, not observed sample",
+      "confirmation": "policy_defined"
+    },
+    {
+      "code": "COMMAND_OR_ERROR_OMISSION",
+      "title": "有效命令或报错遗漏、改写",
+      "scope": "target",
+      "criterion": "输入最终有效的完整命令、代码、错误码或报错文本，在目标中被遗漏、截断或翻译到无法按原文识别时，判定为错误。",
+      "exceptions": "输入明确撤回的旧命令或报错无需保留；只保留最终确认项即可。仅凭报错看似相互冲突不能自行认定前项已撤回；若撤回范围不清，转为来源关键歧义。",
+      "example": {
+        "input": "最后执行 sudo systemctl restart nginx。",
+        "bad_target": "最后重启了 nginx。",
+        "expected_behavior": "保留完整命令 sudo systemctl restart nginx。"
+      },
+      "provenance": "policy illustration, not observed sample; primary_adjudication.jsonl freshrepair_003确认遗漏最终sudo systemctl restart nginx命令，freshrepair_040确认最终40004: Invalid parameter value仍完整保留而早先报错已删除。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "FACT_OMISSION_OR_ADDITION",
+      "title": "事实遗漏或无依据补写",
+      "scope": "target",
+      "criterion": "目标遗漏输入中最终有效且有意义的事实，或加入输入无法支持的新事实、主体关系、地点或执行结果时，判定为错误。应按输入证据逐项核对，不能用常识补齐。",
+      "exceptions": "明确撤回的候选内容不属于最终事实；为通顺所做且不改变事实的必要语法整理不算补写。输入本身无法恢复关键事实时应标来源不确定，不要把目标猜测直接记作已确认错误。",
+      "example": {
+        "input": "我查询一下订单是不是已发货。",
+        "bad_target": "订单已发货。",
+        "expected_behavior": "保留查询或待确认状态，不把问题改成既成事实。"
+      },
+      "provenance": "policy illustration, not observed sample; report.md记载开放查询被改成事实需恢复；primary_adjudication.jsonl freshrepair_026确认“好像发货”被改成确定发货。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "CERTAINTY_STRENGTH_CHANGE",
+      "title": "确定程度改变",
+      "scope": "target",
+      "criterion": "目标把输入的可能、好像、推测、待核实等不确定陈述改成确定断言，或把输入明确确认的内容降为猜测，造成事实把握程度改变时，判定为错误。",
+      "exceptions": "口头填充删减若不改变确定程度不算错误；若输入的最终立场或修正关系本身无法判明，应标来源不确定，不推断为确认错误。",
+      "example": {
+        "input": "好像是贵阳公司发货。",
+        "bad_target": "贵阳公司发货。",
+        "expected_behavior": "保留“好像”所表达的不确定程度。"
+      },
+      "provenance": "policy illustration, not observed sample; primary_adjudication.jsonl freshrepair_026确认“好像发货”被强化成确定发货。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "NEGATION_CONDITION_OR_STATE_CHANGE",
+      "title": "否定、条件或状态改变",
+      "scope": "target",
+      "criterion": "目标改变输入中有效的否定范围、条件关系、计划与完成状态、执行与未执行状态，或把条件成立改成无条件断言时，判定为错误。",
+      "exceptions": "不得因出现否定词就机械删除；保留有意义的否定、历史状态和方案条件。数字格式差异不属于本类。若否定作用范围在源中确实无法确定，标来源不确定。",
+      "example": {
+        "input": "如果缓存有用，就保留；现在还没确认。",
+        "bad_target": "缓存有用并且已经保留。",
+        "expected_behavior": "保留条件关系及尚未确认的状态。"
+      },
+      "provenance": "policy illustration, not observed sample; repair提示词要求保留有效条件、否定、计划及不确定性；primary_adjudication.jsonl freshrepair_003指出cache=true好像没用被强化成没用。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "INCOMPLETE_CORRECTION_CLEANUP",
+      "title": "改口清理不完整",
+      "scope": "target",
+      "criterion": "目标仍保留冗长的现场试错、改口或废弃候选回绕，即使最终答案正确，且这些过程不是有意义的历史叙述或方案比较时，判定为清理错误。",
+      "exceptions": "保留真正有效的历史事实、对比、澄清和有意义的否定；不得把普通口语风格或所有改口一概删除。明确撤回的英文或数字候选无需保留。",
+      "example": {
+        "input": "先试 ENOENT，不对，是 EHOSTUNREACH，最后确认 40004: Invalid parameter value。",
+        "bad_target": "报错是 ENOENT，不对，是 EHOSTUNREACH，最后是 40004: Invalid parameter value。",
+        "expected_behavior": "删除已撤回候选和纯改口过程，保留最终确认的 40004: Invalid parameter value。"
+      },
+      "provenance": "policy illustration, not observed sample; primary_adjudication.jsonl freshrepair_040确认最终40004报错应保留、ENOENT与EHOSTUNREACH已删除；freshrepair_026确认目标仍残留未完回绕。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "FILLER_REPETITION_OR_UNFINISHED_START",
+      "title": "冗余填充、重复或未完起头残留",
+      "scope": "target",
+      "criterion": "目标保留不承载有效意义的机械重复、冗余填充或未完成起头，影响精修质量时，判定为清理错误。需依据其在具体语境中的功能判断，而非按词语名单触发。",
+      "exceptions": "承担强调、节奏、语气、指代或有意义重复功能的内容可保留；输入本身未完成且意图无法恢复时，不得猜补，应标来源不确定。",
+      "example": {
+        "input": "那个，那个，周五交付。",
+        "bad_target": "那个，那个，周五交付。",
+        "expected_behavior": "删去纯填充重复，保留事实“周五交付”。"
+      },
+      "provenance": "policy illustration, not observed sample",
+      "confirmation": "policy_defined"
+    },
+    {
+      "code": "ACCIDENTAL_SENTENCE_BREAK",
+      "title": "意外断句导致语义破坏",
+      "scope": "target",
+      "criterion": "目标的断句、标点或分段把原本连续的修饰、条件、否定或主体关系拆开，令句意发生改变或无法正确恢复时，判定为格式造成的忠实度错误。",
+      "exceptions": "单纯句子较短、分段风格不同或标点格式变化不改变意义时，不判错；若问题来自输入无法恢复而非目标断句，不用本类判错。",
+      "example": {
+        "input": "没确认之前不要发货。",
+        "bad_target": "没确认。之前不要发货。",
+        "expected_behavior": "保留“没确认之前”作为发货条件，不在否定范围内错误断句。"
+      },
+      "provenance": "policy illustration, not observed sample",
+      "confirmation": "policy_defined"
+    },
+    {
+      "code": "EDITORIAL_PARENTHETICAL_META",
+      "title": "写作式括号元叙述",
+      "scope": "target",
+      "criterion": "目标加入面向读者的编辑说明、写作提示或过程元叙述，且这些内容并非输入中的有效事实、必要限定或说话人原意时，判定为不忠实或清理不当。",
+      "exceptions": "不得删除所有括号内容；括号内若是有效名称、日期、数值、缩写释义、必要限定或输入中明确表达的内容，应保留。判定须看括号内容功能，不以标点形式本身认定错误。",
+      "example": {
+        "input": "版本是 v2（长期支持版）。",
+        "bad_target": "版本是 v2（这里补充版本背景）。",
+        "expected_behavior": "保留有效版本限定“长期支持版”，删除目标擅加的写作说明。"
+      },
+      "provenance": "policy illustration, not observed sample",
+      "confirmation": "policy_defined"
+    },
+    {
+      "code": "SOURCE_KEY_AMBIGUITY",
+      "title": "来源关键歧义",
+      "scope": "source",
+      "criterion": "输入存在未解决的关键歧义，导致最终实体、主体关系、否定范围、候选是否撤回或目标内容无法可靠恢复时，标记来源不确定并暂缓据此确认错误或修复。",
+      "exceptions": "源不确定不等于目标已确认错误；存在口语重复、跨主题、多个城市或领域本身不构成歧义。若输入内证据已明确最终意图，应按该证据判定，不因外部知识或主观怀疑降为不确定。",
+      "example": {
+        "input": "先说 ENOENT，不是这个，我重新说：maxRetries。",
+        "bad_target": "ENOENT。",
+        "expected_behavior": "若无法确定 ENOENT 是否已撤回，标来源不确定并暂缓裁定其是否应保留。"
+      },
+      "provenance": "policy illustration, not observed sample; primary_adjudication.jsonl freshrepair_037指出初始报错是否已撤回不够清楚；freshrepair_027指出未完“顺路也…”无法确定是否新增有效行程。",
+      "confirmation": "primary_confirmed"
+    },
+    {
+      "code": "DISCOVERED_1A81E809B38D",
+      "title": "错别字",
+      "scope": "target",
+      "criterion": "目标文本将“快”误写为“块”，属于明显的拼写错误，改变了原意。",
+      "exceptions": "遵守全局语义边界；歧义待复核。",
+      "example": {
+        "input": "呃，这个，你看啊，就像EfficientFormer-L4那种架构，其实吧，它在视觉任务上表现得特别——嗯，高效，对吧？就是说，你用它来做推理，功耗低，速度也快，而且效果还不差，关键是，它不像那些大模型，动不动就几十亿参数，搞得服务器都扛不住。然后，还有那个，就是Transformer里面加相对位置编码，对长序列特别有用，我之前做文本生成的时候，发现用这个，长文档的上下文理解能力直接就上来了，不像以前用绝对位置，一超过1024就崩了。还有，你要是搞工业质检，Meta-learning那个方法，真的能帮你用极少的样本就快速适应新产线，比如你只给它两三个次品图片，它就能学会识别新缺陷，简直像开了挂。再加上，像Cryo-EM Protein Atlas这种，单颗粒冷冻电镜重建出来的结构，分辨率高得吓人，现在都能看到氨基酸残基的细节了，简直是结构生物学的革命。最后，评价摘要质量的话，ROUGE-L用最长公共子序列，虽然简单，但特别实用，一跑就出结果，而且和人类评分相关性还挺高。所以啊，这几个东西，放一块儿，就是现在AI+科研最狠的组合拳。",
+        "bad_target": "你看EfficientFormer-L4这种架构，在视觉任务上表现特别高效，推理时功耗低、速度块，效果也不差，关键是不像大模型那样动辄几十亿参数，服务器扛不住。Transformer里加相对位置编码，对长序列特别有用，我之前做文本生成时发现，用这个方法，长文档的上下文理解能力直接提升，不像以前用绝对位置编码，一超过1024就崩。如果你搞工业质检，Meta-learning方法真的能用极少样本快速适应新产线，比如只给两三个次品图片，它就能学会识别新缺陷，简直像开了挂。再加上Cryo-EM Protein Atlas这种单颗粒冷冻电镜重建的结构，分辨率高得吓人，现在都能看到氨基酸残基的细节，简直是结构生物学的革命。最后评价摘要质量，ROUGE-L用最长公共子序列，虽然简单，但特别实用，一跑就出结果，和人类评分相关性也高。所以这几个东西放一块儿，就是现在AI+科研最狠的组合拳。",
+        "expected_behavior": "原文为“速度也快”，目标文本误写为“速度块”，需修正为“快”。"
+      },
+      "confirmation": "teacher_second_call_confirmed_not_human_gold",
+      "provenance": {
+        "record_id": "academic_815",
+        "stage": "initial",
+        "confirmation": {
+          "confirmed": true,
+          "reason": "目标文本中“速度块”为错别字，原文为“速度也快”，语义不通且不符合中文习惯，确认为拼写错误。",
+          "input_quote": "速度也快",
+          "target_quote": "速度块"
+        }
+      }
+    },
+    {
+      "code": "DISCOVERED_2F164681C37C",
+      "title": "语言混杂错误",
+      "scope": "target",
+      "criterion": "目标文本中混入了英文单词'still'，破坏了中文句子的连贯性和语言一致性，属于明显的编辑或生成错误。",
+      "exceptions": "遵守全局语义边界；歧义待复核。",
+      "example": {
+        "input": "那个……就是我前几天在……沈阳沈飞集团有限公司那边买的那个设备，本来是说好了是2024年11月5号发货的，结果现在都快到11月10号了，还是没动静……我查了物流信息，好像……好像是南昌京东物流有限公司那边接的单，但系统显示的是2024110577889920这个单号，可我当初下单的时候明明是2024112639012345那个号啊……所以……能不能麻烦你们查一下，是不是搞错了？",
+        "bad_target": "我前几天在沈阳沈飞集团有限公司买的设备，本来约定2024年11月5号发货，结果快到11月10号了 still没有动静。我查了物流信息，显示是由南昌京东物流有限公司接单，系统单号是2024110577889920，但我下单时的单号是2024112639012345，所以能不能麻烦你们查一下，是不是搞错了？",
+        "expected_behavior": "原文为纯中文口语，目标文本中无故插入英文单词'still'，不符合中文表达习惯，应改为'还是'或'仍然'。"
+      },
+      "confirmation": "teacher_second_call_confirmed_not_human_gold",
+      "provenance": {
+        "record_id": "customer_service_3772",
+        "stage": "initial",
+        "confirmation": {
+          "confirmed": true,
+          "reason": "目标文本中确实混入了英文单词'still'，而原文对应位置为中文'还是'，且原文整体为中文语境，该英文插入破坏了语言一致性，属于明显的编辑错误。",
+          "input_quote": "还是没动静",
+          "target_quote": "still没有动静"
+        }
+      }
+    },
+    {
+      "code": "DISCOVERED_3A5C3B190D95",
+      "title": "字符错误：中文代词误转为数字",
+      "scope": "target",
+      "criterion": "目标文本中出现了非原文意图的数字替换，导致语义不通或格式错误。",
+      "exceptions": "遵守全局语义边界；歧义待复核。",
+      "example": {
+        "input": "我是在2024年9月9号通过小米生态链的APP申请退款的，结果被跳转到了网页版，可是在网页版上怎么都提交不了申请，订单号是2024110677889900，我这边一直卡在这儿，特别着急。",
+        "bad_target": "我是在2024年9月9号通过小米生态链的APP申请退款，结果被跳转到了网页版，但在网页版上一直无法提交申请，订单号是2024110677889900，目前卡在这1步，特别着急。",
+        "expected_behavior": "目标文本将口语化的“这儿”错误转换为数字“1”，属于明显的字符/拼写错误，破坏了中文句子的连贯性。"
+      },
+      "confirmation": "teacher_second_call_confirmed_not_human_gold",
+      "provenance": {
+        "record_id": "customer_service_6458",
+        "stage": "initial",
+        "confirmation": {
+          "confirmed": true,
+          "reason": "目标文本将原文中的口语词“这儿”错误替换为数字“1”，导致“卡在这1步”语义不通且不符合中文表达习惯，属于明显的字符/拼写错误。",
+          "input_quote": "卡在这儿",
+          "target_quote": "卡在这1步"
+        }
+      }
+    }
+  ]
+}

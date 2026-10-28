@@ -1,0 +1,29 @@
+{
+  "source": "/home/aim0/data/datasets/ASR/public_refiner_sources_20261025/CS2W/train.jsonl",
+  "source_sha256": "acf249f7e8077337fc8e4029e7c381e117f3bc780fef48c820e4f328e78f563a",
+  "counts": {
+    "train_rows": 5789,
+    "R_type_sentences": 4212,
+    "excluded_exact_literal_repeat": 2477,
+    "excluded_multiple_R_spans": 556,
+    "excluded_cooccurring_other_labels": 292,
+    "excluded_fragment_retained_in_ref": 64,
+    "mechanical_candidate_spans": 823
+  },
+  "alignment_exceptions_R_rows": 8,
+  "alignment_exception_source_ids": [
+    471,
+    1196,
+    1584,
+    1896,
+    3692,
+    4489,
+    5729,
+    5734
+  ],
+  "method": "single R-labeled span, no other active labels, span deleted from reference, no literal exact repetition later in input",
+  "training_admitted": false,
+  "human_reviewed": false,
+  "license": "CS2W CC BY-SA 4.0; respect attribution/share-alike terms for redistribution.",
+  "note": "This mechanical shortlist is not A04 classification. R-type contains repeat/restart/repair; contextual adjudication remains necessary."
+}

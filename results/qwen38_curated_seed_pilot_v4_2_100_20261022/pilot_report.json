@@ -1,0 +1,98 @@
+{
+  "generated": 100,
+  "successful_outputs": 83,
+  "teacher_refusals_or_errors": 17,
+  "blind_reviewed": 83,
+  "source_quality_counts": {
+    "pass": 70,
+    "borderline": 9,
+    "fail": 4
+  },
+  "pair_fidelity_counts": {
+    "pass": 79,
+    "fail": 4
+  },
+  "critical_issues": 6,
+  "posthoc_surface_issues": [],
+  "category_results": {
+    "boundary_punctuation": {
+      "n": 10,
+      "source_pass": 5,
+      "source_borderline": 2,
+      "source_fail": 3,
+      "pair_fail": 3,
+      "critical": 5,
+      "source_equals_target": 0,
+      "signal": 9,
+      "signal_rate": 0.9,
+      "strict_candidates": 4
+    },
+    "clean_passthrough": {
+      "n": 12,
+      "source_pass": 12,
+      "source_borderline": 0,
+      "source_fail": 0,
+      "pair_fail": 0,
+      "critical": 0,
+      "source_equals_target": 12,
+      "signal": 12,
+      "signal_rate": 1.0,
+      "strict_candidates": 12
+    },
+    "fillers": {
+      "n": 20,
+      "source_pass": 19,
+      "source_borderline": 1,
+      "source_fail": 0,
+      "pair_fail": 0,
+      "critical": 0,
+      "source_equals_target": 1,
+      "signal": 15,
+      "signal_rate": 0.75,
+      "strict_candidates": 15
+    },
+    "natural_mixed_code_switch": {
+      "n": 15,
+      "source_pass": 15,
+      "source_borderline": 0,
+      "source_fail": 0,
+      "pair_fail": 0,
+      "critical": 0,
+      "source_equals_target": 14,
+      "signal": 15,
+      "signal_rate": 1.0,
+      "strict_candidates": 15
+    },
+    "repetition_false_start": {
+      "n": 17,
+      "source_pass": 11,
+      "source_borderline": 5,
+      "source_fail": 1,
+      "pair_fail": 1,
+      "critical": 1,
+      "source_equals_target": 1,
+      "signal": 14,
+      "signal_rate": 0.824,
+      "strict_candidates": 8
+    },
+    "self_correction": {
+      "n": 9,
+      "source_pass": 8,
+      "source_borderline": 1,
+      "source_fail": 0,
+      "pair_fail": 0,
+      "critical": 0,
+      "source_equals_target": 0,
+      "signal": 1,
+      "signal_rate": 0.111,
+      "strict_candidates": 0
+    }
+  },
+  "strict_pilot_candidates": 54,
+  "training_set_modified": false,
+  "limitations": [
+    "one independent model reviewer, not human gold",
+    "seed targets are from a previously reviewed synthetic dataset",
+    "small pilot; strict candidates are not production training data"
+  ]
+}

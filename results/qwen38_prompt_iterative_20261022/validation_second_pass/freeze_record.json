@@ -1,0 +1,21 @@
+{
+  "candidate": "second_pass/source_guided_cleanup",
+  "frozen_at": "2026-10-22",
+  "prompt_sha256": "6bc35052f7d6d5968bd1c0e82f1ed4a7ac5f092b14bdc571ec4937c9c778119c",
+  "validation_sample_sha256": "8d9be2c0a6d91430cc371b08be6e9e5b6e2970e4bae5db57be1506ac5c2a3f85",
+  "validation_items": 100,
+  "selection_basis": "40-case fixed development screen: 3 candidate wins, 0 baseline wins, 3 source ambiguities quarantined; candidate output ratings 29 PASS / 8 MINOR / 3 AMBIGUOUS vs baseline 26 PASS / 11 MINOR / 3 AMBIGUOUS; no new FAIL relative to baseline.",
+  "policy": "Run exactly once on sealed validation; do not tune prompt based on these validation items. Production prompt remains unchanged.",
+  "validation_source_only_sha256": "707fc3cc7cab8d9a908f72d22d92dd4b2b1e1b81e3e030f156d689221a4d7ae2",
+  "draft_field": "teacher_target from the frozen first-pass Qwen3.8 production-prompt output",
+  "reference_target_evidence_sent_to_teacher": false,
+  "protocol_note": "A first generation attempt with an empty draft was archived as invalid without review; this is the corrected, frozen run.",
+  "runtime_config": "gpu_memory_utilization=0.92; cpu_offload_gb=0; max_num_seqs=4; max_num_batched_tokens=1024; max_model_len=3072; CUDA Graph enabled by default (no --enforce-eager)",
+  "development_speed_check": {
+    "records": 10,
+    "exact_output_matches": 10,
+    "old_median_request_seconds": 35.33,
+    "optimized_median_request_seconds": 8.1,
+    "configuration_note": "Same model, prompt, input and draft; old outputs from eager+3GiB offload, optimized outputs from no offload + CUDA Graph."
+  }
+}

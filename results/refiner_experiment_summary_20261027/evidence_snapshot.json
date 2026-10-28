@@ -1,0 +1,1133 @@
+{
+  "report_date": "2026-10-27",
+  "scope": "17-to-12-class refiner and gate experiments",
+  "data13": {
+    "split_counts": {
+      "train": 34278,
+      "dev": 1902,
+      "test": 1902
+    },
+    "class_counts": {
+      "train": {
+        "A01": 2637,
+        "A02": 2637,
+        "A03": 2638,
+        "B01": 2638,
+        "B02": 2637,
+        "C01": 2637,
+        "C02": 2636,
+        "D01": 2638,
+        "D02": 2637,
+        "E03": 2637,
+        "E05": 2634,
+        "E06": 2635,
+        "E07": 2637
+      },
+      "dev": {
+        "A01": 147,
+        "A02": 147,
+        "A03": 146,
+        "B01": 146,
+        "B02": 146,
+        "C01": 147,
+        "C02": 145,
+        "D01": 146,
+        "D02": 147,
+        "E03": 146,
+        "E05": 146,
+        "E06": 146,
+        "E07": 147
+      },
+      "test": {
+        "A01": 147,
+        "A02": 147,
+        "A03": 146,
+        "B01": 146,
+        "B02": 146,
+        "C01": 147,
+        "C02": 145,
+        "D01": 146,
+        "D02": 147,
+        "E03": 146,
+        "E05": 146,
+        "E06": 146,
+        "E07": 147
+      }
+    },
+    "source_counts": {
+      "train": {
+        "CS2W": 349,
+        "FCGEC": 3727,
+        "Gemma4": 30202
+      },
+      "dev": {
+        "CS2W": 19,
+        "FCGEC": 207,
+        "Gemma4": 1676
+      },
+      "test": {
+        "CS2W": 19,
+        "FCGEC": 207,
+        "Gemma4": 1676
+      }
+    }
+  },
+  "data12": {
+    "split_counts": {
+      "train": 31642,
+      "dev": 1757,
+      "test": 1757
+    },
+    "class_counts": {
+      "train": {
+        "A01": 2637,
+        "A02": 2637,
+        "A03": 2638,
+        "B01": 2638,
+        "B02": 2637,
+        "C01": 2637,
+        "D01": 2638,
+        "D02": 2637,
+        "E03": 2637,
+        "E05": 2634,
+        "E06": 2635,
+        "E07": 2637
+      },
+      "dev": {
+        "A01": 147,
+        "A02": 147,
+        "A03": 146,
+        "B01": 146,
+        "B02": 146,
+        "C01": 147,
+        "D01": 146,
+        "D02": 147,
+        "E03": 146,
+        "E05": 146,
+        "E06": 146,
+        "E07": 147
+      },
+      "test": {
+        "A01": 147,
+        "A02": 147,
+        "A03": 146,
+        "B01": 146,
+        "B02": 146,
+        "C01": 147,
+        "D01": 146,
+        "D02": 147,
+        "E03": 146,
+        "E05": 146,
+        "E06": 146,
+        "E07": 147
+      }
+    },
+    "source_counts": {
+      "train": {
+        "CS2W": 179,
+        "Gemma4": 28826,
+        "FCGEC": 2637
+      },
+      "dev": {
+        "CS2W": 10,
+        "Gemma4": 1600,
+        "FCGEC": 147
+      },
+      "test": {
+        "CS2W": 10,
+        "Gemma4": 1600,
+        "FCGEC": 147
+      }
+    }
+  },
+  "refiner13_metrics": {
+    "未微调 Qwen2.5-0.5B": {
+      "model": "qwen25_05b_base",
+      "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+      "adapter": null,
+      "test_label_status": "provisional candidate references; not human gold",
+      "sample_count": 1902,
+      "exact_match_rate": 0.18138801261829654,
+      "normalized_char_error_rate": 0.3767570408803432,
+      "input_normalized_char_error_rate": 0.10166675144547875,
+      "macro_13class_normalized_char_error_rate": 0.3978194786834923,
+      "placeholder_mismatch_count": 30,
+      "english_token_mismatch_count": 189,
+      "eos_rate": 0.9989484752891693,
+      "elapsed_seconds": 1028.77,
+      "class_metrics": {
+        "A01": {
+          "n": 147,
+          "exact_match_rate": 0.19727891156462585,
+          "normalized_char_error_rate": 0.1582096696984203,
+          "input_normalized_char_error_rate": 0.05720440402106271,
+          "changed_output_rate": 0.7619047619047619,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 4,
+          "eos_rate": 1.0
+        },
+        "A02": {
+          "n": 147,
+          "exact_match_rate": 0.2857142857142857,
+          "normalized_char_error_rate": 0.5209708324462423,
+          "input_normalized_char_error_rate": 0.03129657228017884,
+          "changed_output_rate": 0.9183673469387755,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 13,
+          "eos_rate": 1.0
+        },
+        "A03": {
+          "n": 146,
+          "exact_match_rate": 0.21232876712328766,
+          "normalized_char_error_rate": 0.33040862371521684,
+          "input_normalized_char_error_rate": 0.11757332664828278,
+          "changed_output_rate": 0.7328767123287672,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 8,
+          "eos_rate": 1.0
+        },
+        "B01": {
+          "n": 146,
+          "exact_match_rate": 0.0410958904109589,
+          "normalized_char_error_rate": 0.5743884892086331,
+          "input_normalized_char_error_rate": 0.3435971223021583,
+          "changed_output_rate": 0.7808219178082192,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 16,
+          "eos_rate": 0.9931506849315068
+        },
+        "B02": {
+          "n": 146,
+          "exact_match_rate": 0.00684931506849315,
+          "normalized_char_error_rate": 0.7851825593761078,
+          "input_normalized_char_error_rate": 0.8823112371499469,
+          "changed_output_rate": 0.726027397260274,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 12,
+          "eos_rate": 1.0
+        },
+        "C01": {
+          "n": 147,
+          "exact_match_rate": 0.047619047619047616,
+          "normalized_char_error_rate": 0.4846927374301676,
+          "input_normalized_char_error_rate": 0.03284916201117318,
+          "changed_output_rate": 0.7551020408163265,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 11,
+          "eos_rate": 0.9931972789115646
+        },
+        "C02": {
+          "n": 145,
+          "exact_match_rate": 0.16551724137931034,
+          "normalized_char_error_rate": 0.36198830409356725,
+          "input_normalized_char_error_rate": 0.08128654970760234,
+          "changed_output_rate": 0.7448275862068966,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 12,
+          "eos_rate": 1.0
+        },
+        "D01": {
+          "n": 146,
+          "exact_match_rate": 0.18493150684931506,
+          "normalized_char_error_rate": 0.3786593707250342,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.8356164383561644,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 17,
+          "eos_rate": 1.0
+        },
+        "D02": {
+          "n": 147,
+          "exact_match_rate": 0.29931972789115646,
+          "normalized_char_error_rate": 0.2599896211728075,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.891156462585034,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 5,
+          "eos_rate": 1.0
+        },
+        "E03": {
+          "n": 146,
+          "exact_match_rate": 0.3150684931506849,
+          "normalized_char_error_rate": 0.6527596697088223,
+          "input_normalized_char_error_rate": 0.02303346371142981,
+          "changed_output_rate": 0.5684931506849316,
+          "identity_case_count": 82,
+          "identity_false_edit_rate": 0.5365853658536586,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 33,
+          "eos_rate": 1.0
+        },
+        "E05": {
+          "n": 146,
+          "exact_match_rate": 0.06164383561643835,
+          "normalized_char_error_rate": 0.16556420233463034,
+          "input_normalized_char_error_rate": 0.0556420233463035,
+          "changed_output_rate": 0.547945205479452,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 11,
+          "eos_rate": 1.0
+        },
+        "E06": {
+          "n": 146,
+          "exact_match_rate": 0.04794520547945205,
+          "normalized_char_error_rate": 0.18619031260735142,
+          "input_normalized_char_error_rate": 0.08622466506355204,
+          "changed_output_rate": 0.6164383561643836,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 30,
+          "english_token_mismatch_count": 31,
+          "eos_rate": 1.0
+        },
+        "E07": {
+          "n": 147,
+          "exact_match_rate": 0.4897959183673469,
+          "normalized_char_error_rate": 0.3126488303683989,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.5102040816326531,
+          "identity_case_count": 147,
+          "identity_false_edit_rate": 0.5102040816326531,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 16,
+          "eos_rate": 1.0
+        }
+      },
+      "prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_lora_20261026/evaluation/qwen25_base.jsonl"
+    },
+    "13类 LoRA 两轮": {
+      "model": "qwen25_05b_lora",
+      "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+      "adapter": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_lora_20261026_retry3/checkpoint-1072",
+      "test_label_status": "provisional candidate references; not human gold",
+      "sample_count": 1902,
+      "exact_match_rate": 0.880651945320715,
+      "normalized_char_error_rate": 0.00781660647371009,
+      "input_normalized_char_error_rate": 0.10166675144547875,
+      "macro_13class_normalized_char_error_rate": 0.008306412473979372,
+      "placeholder_mismatch_count": 0,
+      "english_token_mismatch_count": 0,
+      "eos_rate": 1.0,
+      "elapsed_seconds": 2110.18,
+      "class_metrics": {
+        "A01": {
+          "n": 147,
+          "exact_match_rate": 0.8979591836734694,
+          "normalized_char_error_rate": 0.0011967448539971278,
+          "input_normalized_char_error_rate": 0.05720440402106271,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A02": {
+          "n": 147,
+          "exact_match_rate": 0.9795918367346939,
+          "normalized_char_error_rate": 0.0004258037044922291,
+          "input_normalized_char_error_rate": 0.03129657228017884,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A03": {
+          "n": 146,
+          "exact_match_rate": 0.8904109589041096,
+          "normalized_char_error_rate": 0.0035096515417397845,
+          "input_normalized_char_error_rate": 0.11757332664828278,
+          "changed_output_rate": 0.9863013698630136,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B01": {
+          "n": 146,
+          "exact_match_rate": 0.8767123287671232,
+          "normalized_char_error_rate": 0.014388489208633094,
+          "input_normalized_char_error_rate": 0.3435971223021583,
+          "changed_output_rate": 0.9863013698630136,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B02": {
+          "n": 146,
+          "exact_match_rate": 0.7397260273972602,
+          "normalized_char_error_rate": 0.032612548741581,
+          "input_normalized_char_error_rate": 0.8823112371499469,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C01": {
+          "n": 147,
+          "exact_match_rate": 0.9591836734693877,
+          "normalized_char_error_rate": 0.001787709497206704,
+          "input_normalized_char_error_rate": 0.03284916201117318,
+          "changed_output_rate": 0.9931972789115646,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C02": {
+          "n": 145,
+          "exact_match_rate": 0.5793103448275863,
+          "normalized_char_error_rate": 0.02884990253411306,
+          "input_normalized_char_error_rate": 0.08128654970760234,
+          "changed_output_rate": 0.696551724137931,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D01": {
+          "n": 146,
+          "exact_match_rate": 1.0,
+          "normalized_char_error_rate": 0.0,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D02": {
+          "n": 147,
+          "exact_match_rate": 1.0,
+          "normalized_char_error_rate": 0.0,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E03": {
+          "n": 146,
+          "exact_match_rate": 0.9383561643835616,
+          "normalized_char_error_rate": 0.004128639721860061,
+          "input_normalized_char_error_rate": 0.02303346371142981,
+          "changed_output_rate": 0.3904109589041096,
+          "identity_case_count": 82,
+          "identity_false_edit_rate": 0.012195121951219513,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E05": {
+          "n": 146,
+          "exact_match_rate": 0.8904109589041096,
+          "normalized_char_error_rate": 0.008560311284046693,
+          "input_normalized_char_error_rate": 0.0556420233463035,
+          "changed_output_rate": 0.9863013698630136,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E06": {
+          "n": 146,
+          "exact_match_rate": 0.7808219178082192,
+          "normalized_char_error_rate": 0.00790106492614222,
+          "input_normalized_char_error_rate": 0.08622466506355204,
+          "changed_output_rate": 0.9931506849315068,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E07": {
+          "n": 147,
+          "exact_match_rate": 0.9115646258503401,
+          "normalized_char_error_rate": 0.004622496147919877,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.08843537414965986,
+          "identity_case_count": 147,
+          "identity_false_edit_rate": 0.08843537414965986,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        }
+      },
+      "prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_lora_20261026/evaluation/qwen25_lora.jsonl"
+    },
+    "13类 LoRA 追加一轮": {
+      "model": "qwen25_05b_lora",
+      "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+      "adapter": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_lora_epoch3_20261027",
+      "test_label_status": "provisional candidate references; not human gold",
+      "sample_count": 1902,
+      "exact_match_rate": 0.8774973711882229,
+      "normalized_char_error_rate": 0.008749173406582227,
+      "input_normalized_char_error_rate": 0.10166675144547875,
+      "macro_13class_normalized_char_error_rate": 0.009132986304353994,
+      "placeholder_mismatch_count": 0,
+      "english_token_mismatch_count": 0,
+      "eos_rate": 1.0,
+      "elapsed_seconds": 2103.59,
+      "class_metrics": {
+        "A01": {
+          "n": 147,
+          "exact_match_rate": 0.8707482993197279,
+          "normalized_char_error_rate": 0.00215414073719483,
+          "input_normalized_char_error_rate": 0.05720440402106271,
+          "changed_output_rate": 0.9795918367346939,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A02": {
+          "n": 147,
+          "exact_match_rate": 0.9795918367346939,
+          "normalized_char_error_rate": 0.0004258037044922291,
+          "input_normalized_char_error_rate": 0.03129657228017884,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A03": {
+          "n": 146,
+          "exact_match_rate": 0.8972602739726028,
+          "normalized_char_error_rate": 0.00250689395838556,
+          "input_normalized_char_error_rate": 0.11757332664828278,
+          "changed_output_rate": 0.9931506849315068,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B01": {
+          "n": 146,
+          "exact_match_rate": 0.8904109589041096,
+          "normalized_char_error_rate": 0.01381294964028777,
+          "input_normalized_char_error_rate": 0.3435971223021583,
+          "changed_output_rate": 0.9931506849315068,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B02": {
+          "n": 146,
+          "exact_match_rate": 0.7465753424657534,
+          "normalized_char_error_rate": 0.03686635944700461,
+          "input_normalized_char_error_rate": 0.8823112371499469,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C01": {
+          "n": 147,
+          "exact_match_rate": 0.9591836734693877,
+          "normalized_char_error_rate": 0.001787709497206704,
+          "input_normalized_char_error_rate": 0.03284916201117318,
+          "changed_output_rate": 0.9931972789115646,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C02": {
+          "n": 145,
+          "exact_match_rate": 0.5724137931034483,
+          "normalized_char_error_rate": 0.02982456140350877,
+          "input_normalized_char_error_rate": 0.08128654970760234,
+          "changed_output_rate": 0.7448275862068966,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D01": {
+          "n": 146,
+          "exact_match_rate": 1.0,
+          "normalized_char_error_rate": 0.0,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D02": {
+          "n": 147,
+          "exact_match_rate": 1.0,
+          "normalized_char_error_rate": 0.0,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E03": {
+          "n": 146,
+          "exact_match_rate": 0.9452054794520548,
+          "normalized_char_error_rate": 0.0036940460669274227,
+          "input_normalized_char_error_rate": 0.02303346371142981,
+          "changed_output_rate": 0.3835616438356164,
+          "identity_case_count": 82,
+          "identity_false_edit_rate": 0.0,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E05": {
+          "n": 146,
+          "exact_match_rate": 0.8698630136986302,
+          "normalized_char_error_rate": 0.010116731517509728,
+          "input_normalized_char_error_rate": 0.0556420233463035,
+          "changed_output_rate": 0.9863013698630136,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E06": {
+          "n": 146,
+          "exact_match_rate": 0.7876712328767124,
+          "normalized_char_error_rate": 0.009275163174166953,
+          "input_normalized_char_error_rate": 0.08622466506355204,
+          "changed_output_rate": 0.9931506849315068,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E07": {
+          "n": 147,
+          "exact_match_rate": 0.8843537414965986,
+          "normalized_char_error_rate": 0.008264462809917356,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.11564625850340136,
+          "identity_case_count": 147,
+          "identity_false_edit_rate": 0.11564625850340136,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        }
+      },
+      "prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_lora_epoch3_20261027/evaluation/qwen25_lora.jsonl"
+    },
+    "13类全量两轮": {
+      "model": "qwen25_05b_full",
+      "base_model": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_full_20261027_provisional",
+      "adapter": null,
+      "test_label_status": "provisional candidate references; not human gold",
+      "sample_count": 1902,
+      "exact_match_rate": 0.8848580441640379,
+      "normalized_char_error_rate": 0.00964782881462265,
+      "input_normalized_char_error_rate": 0.10166675144547875,
+      "macro_13class_normalized_char_error_rate": 0.009408836632932318,
+      "placeholder_mismatch_count": 0,
+      "english_token_mismatch_count": 0,
+      "eos_rate": 1.0,
+      "elapsed_seconds": 920.73,
+      "class_metrics": {
+        "A01": {
+          "n": 147,
+          "exact_match_rate": 0.891156462585034,
+          "normalized_char_error_rate": 0.0004786979415988511,
+          "input_normalized_char_error_rate": 0.05720440402106271,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A02": {
+          "n": 147,
+          "exact_match_rate": 0.9795918367346939,
+          "normalized_char_error_rate": 0.00021290185224611454,
+          "input_normalized_char_error_rate": 0.03129657228017884,
+          "changed_output_rate": 0.9931972789115646,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "A03": {
+          "n": 146,
+          "exact_match_rate": 0.8972602739726028,
+          "normalized_char_error_rate": 0.0032589621459012284,
+          "input_normalized_char_error_rate": 0.11757332664828278,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B01": {
+          "n": 146,
+          "exact_match_rate": 0.8493150684931506,
+          "normalized_char_error_rate": 0.013525179856115108,
+          "input_normalized_char_error_rate": 0.3435971223021583,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "B02": {
+          "n": 146,
+          "exact_match_rate": 0.7534246575342466,
+          "normalized_char_error_rate": 0.033676001417936904,
+          "input_normalized_char_error_rate": 0.8823112371499469,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C01": {
+          "n": 147,
+          "exact_match_rate": 0.9659863945578231,
+          "normalized_char_error_rate": 0.0022346368715083797,
+          "input_normalized_char_error_rate": 0.03284916201117318,
+          "changed_output_rate": 0.9931972789115646,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "C02": {
+          "n": 145,
+          "exact_match_rate": 0.6344827586206897,
+          "normalized_char_error_rate": 0.024171539961013646,
+          "input_normalized_char_error_rate": 0.08128654970760234,
+          "changed_output_rate": 0.7517241379310344,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D01": {
+          "n": 146,
+          "exact_match_rate": 0.9863013698630136,
+          "normalized_char_error_rate": 0.0013679890560875513,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "D02": {
+          "n": 147,
+          "exact_match_rate": 1.0,
+          "normalized_char_error_rate": 0.0,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 1.0,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E03": {
+          "n": 146,
+          "exact_match_rate": 0.9726027397260274,
+          "normalized_char_error_rate": 0.001738374619730552,
+          "input_normalized_char_error_rate": 0.02303346371142981,
+          "changed_output_rate": 0.4246575342465753,
+          "identity_case_count": 82,
+          "identity_false_edit_rate": 0.012195121951219513,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E05": {
+          "n": 146,
+          "exact_match_rate": 0.863013698630137,
+          "normalized_char_error_rate": 0.010116731517509728,
+          "input_normalized_char_error_rate": 0.0556420233463035,
+          "changed_output_rate": 0.9726027397260274,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E06": {
+          "n": 146,
+          "exact_match_rate": 0.7602739726027398,
+          "normalized_char_error_rate": 0.00996221229817932,
+          "input_normalized_char_error_rate": 0.08622466506355204,
+          "changed_output_rate": 0.9931506849315068,
+          "identity_case_count": 0,
+          "identity_false_edit_rate": null,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        },
+        "E07": {
+          "n": 147,
+          "exact_match_rate": 0.9455782312925171,
+          "normalized_char_error_rate": 0.02157164869029276,
+          "input_normalized_char_error_rate": 0.0,
+          "changed_output_rate": 0.05442176870748299,
+          "identity_case_count": 147,
+          "identity_false_edit_rate": 0.05442176870748299,
+          "placeholder_mismatch_count": 0,
+          "english_token_mismatch_count": 0,
+          "eos_rate": 1.0
+        }
+      },
+      "prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_full_20261027/evaluation/qwen25_full.jsonl"
+    }
+  },
+  "refiner12_comparison": {
+    "status": "complete",
+    "test_split_n": 1757,
+    "original_full_C02_lora": {
+      "n": 1757,
+      "exact_count": 1591,
+      "exact_rate": 0.9055207740466704,
+      "normalized_char_difference_rate": 0.005812765799394581,
+      "identity_n": 229,
+      "identity_changed_count": 14
+    },
+    "no_C02_lora": {
+      "n": 1757,
+      "exact_count": 1598,
+      "exact_rate": 0.9095048377916903,
+      "normalized_char_difference_rate": 0.005831336936133861,
+      "identity_n": 229,
+      "identity_changed_count": 5
+    },
+    "no_C02_full": {
+      "n": 1757,
+      "exact_count": 1609,
+      "exact_rate": 0.9157655093910074,
+      "normalized_char_difference_rate": 0.005459914201348264,
+      "identity_n": 229,
+      "identity_changed_count": 4
+    },
+    "prior_71_clean_diagnostics": {
+      "n": 71,
+      "old_lora_changed": 71,
+      "no_C02_lora_changed": 38,
+      "no_C02_full_changed": 31
+    },
+    "full_best_checkpoint": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_full_20261027/checkpoint-990",
+    "qualification": "Candidate references, not human gold. Main test split excludes C02. The selected 71 diagnostic items were seen before and are not an unbiased test.",
+    "gate_used": false
+  },
+  "gate13_balanced": {
+    "status": "complete",
+    "threshold": 0.03,
+    "gate": {
+      "n": 3346,
+      "need_refine_count": 1673,
+      "no_change_count": 1673,
+      "need_refine_recall": 0.9928272564255828,
+      "missed_refine_count": 12,
+      "clean_skip_rate": 0.3102211595935445,
+      "clean_sent_to_refiner": 1154,
+      "all_skip_rate": 0.15869695158398087,
+      "per_class_positive_recall": {
+        "A01": 1.0,
+        "A02": 1.0,
+        "A03": 0.9863013698630136,
+        "B01": 1.0,
+        "B02": 1.0,
+        "C01": 1.0,
+        "C02": 0.9862068965517241,
+        "D01": 1.0,
+        "D02": 1.0,
+        "E03": 1.0,
+        "E05": 0.9657534246575342,
+        "E06": 0.9794520547945206
+      }
+    },
+    "lora_only": {
+      "n": 3346,
+      "exact_count": 3062,
+      "exact_rate": 0.9151225343693963,
+      "clean_false_edit_count": 71,
+      "clean_n": 1673,
+      "normalized_char_difference_rate": 0.005682489659247587
+    },
+    "gated_lora": {
+      "n": 3346,
+      "exact_count": 3067,
+      "exact_rate": 0.9166168559473998,
+      "clean_false_edit_count": 59,
+      "clean_n": 1673,
+      "normalized_char_difference_rate": 0.005702186330510144
+    },
+    "refiner_calls": 2815,
+    "saved_calls": 531,
+    "lost_exact": 7,
+    "gained_exact": 12,
+    "added_clean_inference_and_analysis_seconds": 181.51189293095376,
+    "speed_note": "Cached original outputs plus batched added-clean inference; not an end-to-end latency benchmark",
+    "labels": "Weak supervision, not human gold; paired clean references are diagnostic only"
+  },
+  "gate12_full_inference": {
+    "status": "complete",
+    "n": 3056,
+    "label_counts": {
+      "1": 1528,
+      "0": 1528
+    },
+    "gate_threshold": 0.02,
+    "gate_edit_count": 2291,
+    "lora_edit_exact": 1552,
+    "lora_edit_excluding_outer_whitespace": 1550,
+    "lora_edit_excluding_all_whitespace": 1549,
+    "whitespace_only_changes": 3,
+    "matrix_exact": {
+      "gate_edit_lora_edit": 1537,
+      "gate_edit_lora_keep": 754,
+      "gate_keep_lora_edit": 15,
+      "gate_keep_lora_keep": 750
+    },
+    "matrix_excluding_outer_whitespace": {
+      "gate_edit_lora_edit": 1535,
+      "gate_edit_lora_keep": 756,
+      "gate_keep_lora_edit": 15,
+      "gate_keep_lora_keep": 750
+    },
+    "by_weak_label": {
+      "0": {
+        "n": 1528,
+        "gate_edit_count": 776,
+        "lora_edit_count": 40,
+        "matrix": {
+          "gate_edit_lora_edit": 34,
+          "gate_edit_lora_keep": 742,
+          "gate_keep_lora_edit": 6,
+          "gate_keep_lora_keep": 746
+        }
+      },
+      "1": {
+        "n": 1528,
+        "gate_edit_count": 1515,
+        "lora_edit_count": 1512,
+        "matrix": {
+          "gate_edit_lora_edit": 1503,
+          "gate_edit_lora_keep": 12,
+          "gate_keep_lora_edit": 9,
+          "gate_keep_lora_keep": 4
+        }
+      }
+    },
+    "lora_only": {
+      "n": 3056,
+      "exact_count": 2864,
+      "exact_rate": 0.93717277486911,
+      "clean_text_changed": 40,
+      "normalized_char_difference_rate": 0.004283617081881724
+    },
+    "gated_lora": {
+      "n": 3056,
+      "exact_count": 2861,
+      "exact_rate": 0.9361910994764397,
+      "clean_text_changed": 34,
+      "normalized_char_difference_rate": 0.004371261421152961
+    },
+    "lost_exact_from_gate": 9,
+    "gained_exact_from_gate": 6,
+    "eos_count": 3056,
+    "elapsed_seconds": 664.8127519979607,
+    "qualification": "Actual full batched LoRA inference, not cached. Output changes != objective need to refine. References are weak candidates. Concurrent GPU work means this is not an end-to-end timing benchmark.",
+    "serial70_crosscheck": {
+      "n": 70,
+      "different_outputs": 0,
+      "note": "Batch BF16 numerical differences may change greedy output; full-run comparison uses only this run."
+    }
+  },
+  "rbt3_comparison": {
+    "status": "complete",
+    "tiny_gate": {
+      "n": 3056,
+      "refiner_calls": 2291,
+      "gate_send_lora_edit": 1535,
+      "gate_send_lora_keep": 756,
+      "gate_keep_lora_edit": 15,
+      "gate_keep_lora_keep": 750,
+      "weak_positive_missed": 13,
+      "missed_by_category": {
+        "A03": 4,
+        "E05": 6,
+        "E06": 3
+      },
+      "weak_clean_skip_rate": 0.49214659685863876,
+      "final_exact_count": 2861,
+      "lost_exact_vs_all_lora": 9,
+      "gained_exact_vs_all_lora": 6
+    },
+    "rbt3_gate": {
+      "n": 3056,
+      "refiner_calls": 1945,
+      "gate_send_lora_edit": 1542,
+      "gate_send_lora_keep": 403,
+      "gate_keep_lora_edit": 8,
+      "gate_keep_lora_keep": 1103,
+      "weak_positive_missed": 4,
+      "missed_by_category": {
+        "B01": 1,
+        "E03": 1,
+        "E05": 2
+      },
+      "weak_clean_skip_rate": 0.724476439790576,
+      "final_exact_count": 2872,
+      "lost_exact_vs_all_lora": 0,
+      "gained_exact_vs_all_lora": 8
+    },
+    "prior_nine_now_sent": 9,
+    "prior_nine_n": 9,
+    "rbt3_model_metrics": {
+      "status": "complete",
+      "parameter_count": 37887746,
+      "threshold_selected_on_dev": 0.005,
+      "validation": {
+        "n": 3272,
+        "need_refine_count": 1515,
+        "no_change_count": 1757,
+        "need_refine_recall": 0.9986798679867986,
+        "missed_refine_count": 2,
+        "clean_skip_rate": 0.7142857142857143,
+        "clean_sent_to_refiner": 502,
+        "all_skip_rate": 0.3841687041564792,
+        "per_class_positive_recall": {
+          "A01": 1.0,
+          "A02": 1.0,
+          "A03": 0.9863013698630136,
+          "B01": 1.0,
+          "B02": 1.0,
+          "C01": 1.0,
+          "D01": 1.0,
+          "D02": 1.0,
+          "E03": 1.0,
+          "E05": 1.0,
+          "E06": 1.0
+        }
+      },
+      "test_with_derived_clean_challenges": {
+        "n": 3285,
+        "need_refine_count": 1528,
+        "no_change_count": 1757,
+        "need_refine_recall": 0.9973821989528796,
+        "missed_refine_count": 4,
+        "clean_skip_rate": 0.7268070574843484,
+        "clean_sent_to_refiner": 480,
+        "all_skip_rate": 0.38995433789954337,
+        "per_class_positive_recall": {
+          "A01": 1.0,
+          "A02": 1.0,
+          "A03": 1.0,
+          "B01": 0.9931506849315068,
+          "B02": 1.0,
+          "C01": 1.0,
+          "D01": 1.0,
+          "D02": 1.0,
+          "E03": 0.984375,
+          "E05": 0.9863013698630136,
+          "E06": 1.0
+        }
+      },
+      "balanced_50_50_gate_test": {
+        "n": 3056,
+        "need_refine_count": 1528,
+        "no_change_count": 1528,
+        "need_refine_recall": 0.9973821989528796,
+        "missed_refine_count": 4,
+        "clean_skip_rate": 0.724476439790576,
+        "clean_sent_to_refiner": 421,
+        "all_skip_rate": 0.3635471204188482,
+        "per_class_positive_recall": {
+          "A01": 1.0,
+          "A02": 1.0,
+          "A03": 1.0,
+          "B01": 0.9931506849315068,
+          "B02": 1.0,
+          "C01": 1.0,
+          "D01": 1.0,
+          "D02": 1.0,
+          "E03": 0.984375,
+          "E05": 0.9863013698630136,
+          "E06": 1.0
+        }
+      },
+      "balanced_50_50_note": "Detection only. Candidate clean references are weak labels. No combined Refiner quality or end-to-end latency claim for the balanced mix.",
+      "refiner_prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_20261027/evaluation/no_C02_test.jsonl",
+      "train_and_eval_elapsed_seconds": 89.77356837200932,
+      "online_enabled": false,
+      "label_status": "Weak paired-text supervision; not human gold. Existing test already inspected. No inference-speedup claim without latency measurement.",
+      "original_test": {
+        "n": 1757,
+        "refiner_call_rate": 0.8907228229937393,
+        "exact_match_rate": 0.9112122936824132,
+        "E07_changed_count": 1,
+        "E07_n": 147,
+        "need_refine_recall": 0.9973821989528796
+      }
+    },
+    "loRA_outputs_reused": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_gate_20261027/all3056_refiner/predictions.jsonl",
+    "qualification": "Same paired text splits, weak candidate labels, two training epochs and dev threshold rule. Prior nine already inspected and used only for diagnostic reporting, not threshold tuning. Larger backbone does not remedy weak label inconsistency. No latency benchmark."
+  }
+}

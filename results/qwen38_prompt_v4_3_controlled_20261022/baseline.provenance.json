@@ -1,0 +1,22 @@
+{
+  "model": "qwen38-teacher",
+  "variant": "baseline",
+  "endpoints": [
+    "http://127.0.0.1:8012/v1/chat/completions",
+    "http://127.0.0.1:8013/v1/chat/completions"
+  ],
+  "routing": "sha256(case_id) modulo 2; identical paired case uses identical GPU",
+  "server_max_num_seqs_per_gpu": 8,
+  "instructions_sha256": "ba62d00e3ca65e7dab4c80dde1a7d98099ddd5b6ba6bca8aadbbbb5d1fb70fce",
+  "retries": 0,
+  "seed_rule": "sha256(case_id:attempt) first 8 hex digits, identical across variants",
+  "passthrough_policy": "deterministic copy, excluded from generation effectiveness estimates",
+  "sample_sha256": "d72f58018fdcfeb3df61bd09c3d8ff947eb0ee09fb7dde1a634f0a2b9e8ba5dd",
+  "system_prompt_sha256": "87a018758d990f105e1b05786548aa40a43331a3ee21f99277d77378f61df2f9",
+  "validator": "all-digit-surfaces+number-unit-surfaces+ASCII+URLs+assignments+operators+quoted ASCII literals+new brackets",
+  "temperature": 0.65,
+  "top_p": 0.8,
+  "max_tokens": 768,
+  "concurrency": 8,
+  "no_production_data_modified": true
+}

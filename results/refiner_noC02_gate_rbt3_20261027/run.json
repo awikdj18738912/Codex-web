@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "updated_utc": "2026-10-27T09:43:23.007133+00:00",
+  "encoder": "/home/aim0/data/models/ASR/TextGate/hfl-rbt3",
+  "encoder_source": "https://huggingface.co/hfl/rbt3",
+  "parameters": 37887746,
+  "finetuning": "all encoder and classification head parameters",
+  "epochs": 2,
+  "gpu": 0,
+  "source_data": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02",
+  "training_texts": 59137,
+  "same_training_recipe_as_tiny_gate": true,
+  "model_output": "/home/aim0/data/ASR/training/refiner_noC02_gate_rbt3_20261027",
+  "service": "refiner-gate-rbt3-gpu0.service",
+  "test_policy": "Threshold chosen on dev only; same balanced3056 and cached actual no-C02 LoRA outputs; old nine are diagnostic only",
+  "known_weak_label_problem": {
+    "unmodified_label_with_obvious_filler_prefix": 129,
+    "note": "Regex ^(?:那个|呃|嗯)[，,、 ] on original tiny-gate train.jsonl; provisional candidate references, not a complete label audit."
+  },
+  "online_enabled": false,
+  "train_exit_code": 0,
+  "comparison_exit_code": 0,
+  "same_train_dev_test_jsonl_as_tiny": true,
+  "comparison_summary": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_noC02_gate_rbt3_20261027/comparison_summary.json"
+}

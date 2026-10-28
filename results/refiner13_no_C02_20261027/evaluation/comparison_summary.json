@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "original_lora_on_same_1757": {
+    "n": 1757,
+    "exact_count": 1591,
+    "exact_rate": 0.9055207740466704,
+    "normalized_char_difference_rate": 0.005812765799394581,
+    "identity_n": 229,
+    "identity_changed_count": 14
+  },
+  "no_C02_lora_on_1757": {
+    "n": 1757,
+    "exact_count": 1598,
+    "exact_rate": 0.9095048377916903,
+    "normalized_char_difference_rate": 0.005831336936133861,
+    "identity_n": 229,
+    "identity_changed_count": 5
+  },
+  "prior_71_changed_clean_diagnostics": {
+    "n": 71,
+    "previous_changed_count": 71,
+    "new_changed_count": 38,
+    "now_unchanged_count": 33
+  },
+  "best_checkpoint": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_lora_20261027/checkpoint-990",
+  "interpretation": "Candidate references, not human gold. Prior 71 selected on old model failures; diagnostic only, not unbiased new test. One seed and fewer training examples/steps after removing C02.",
+  "gate_used": false
+}

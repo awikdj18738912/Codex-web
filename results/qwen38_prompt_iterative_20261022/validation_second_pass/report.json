@@ -1,0 +1,42 @@
+{
+  "items": 100,
+  "reviews_per_item": 2,
+  "rating_distributions": {
+    "baseline": {
+      "PASS": 91,
+      "AMBIGUOUS": 1,
+      "FAIL": 1,
+      "MINOR": 7
+    },
+    "candidate": {
+      "PASS": 94,
+      "MINOR": 5,
+      "AMBIGUOUS": 1
+    }
+  },
+  "paired_wins": {
+    "TIE": 87,
+    "baseline": 4,
+    "UNRESOLVED": 1,
+    "candidate": 8
+  },
+  "reviewer_agreement": {
+    "same_grades_and_winner": 93,
+    "needs_lead_review": 7
+  },
+  "raw_winners": {
+    "reviewer_1": {
+      "TIE": 92,
+      "baseline": 4,
+      "candidate": 4
+    },
+    "reviewer_2": {
+      "TIE": 87,
+      "candidate": 9,
+      "UNRESOLVED": 1,
+      "baseline": 3
+    }
+  },
+  "lead_adjudications": 8,
+  "limitation": "One-use held-out comparison for this local Qwen3.8 source-guided second-pass variant; model-assisted reviewers; not population accuracy."
+}

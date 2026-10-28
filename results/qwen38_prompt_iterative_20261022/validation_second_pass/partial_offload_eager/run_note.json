@@ -1,0 +1,10 @@
+{
+  "status": "partial_superseded_by_speed_test",
+  "completed": 30,
+  "target": 100,
+  "model": "Qwen3.8-27B-AWQ-INT4",
+  "configuration": "max-num-seqs=4; max-num-batched-tokens=1024; gpu-memory-utilization=0.80; cpu-offload-gb=3; enforce-eager; concurrency=4; max_tokens=768",
+  "used_for_final_validation": false,
+  "reviewed_or_used_for_prompt_selection": false,
+  "note": "First 30 completed rows preserved intact. All partial outputs are excluded so the sealed validation will use a single inference configuration."
+}

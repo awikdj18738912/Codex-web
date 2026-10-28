@@ -1,0 +1,29 @@
+{
+  "status": "pilot_finished_pending_human_review",
+  "requested": 12,
+  "generated": 12,
+  "machine_passed_unique": 10,
+  "rejected": 2,
+  "batch_failures": [],
+  "by_class": {
+    "B02": {
+      "requested": 12,
+      "machine_passed_unique": 10,
+      "rejected": 2
+    }
+  },
+  "rejection_reasons": {
+    "unsupported_content_insertion_or_reorder": 1,
+    "missing_explicit_chain_transition": 1
+  },
+  "teacher_calls": 16,
+  "completion_tokens": 1812,
+  "elapsed_seconds": 145.6,
+  "limitations": [
+    "synthetic inputs",
+    "quantized teacher",
+    "same-model blind QC is not independent human validation",
+    "small pilot, no quality claim or training admission",
+    "no train/dev/test split yet; keep derived groups together"
+  ]
+}

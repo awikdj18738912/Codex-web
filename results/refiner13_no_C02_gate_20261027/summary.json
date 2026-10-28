@@ -1,0 +1,87 @@
+{
+  "status": "complete",
+  "parameter_count": 8700418,
+  "threshold_selected_on_dev": 0.02,
+  "validation": {
+    "n": 3272,
+    "need_refine_count": 1515,
+    "no_change_count": 1757,
+    "need_refine_recall": 0.9966996699669967,
+    "missed_refine_count": 5,
+    "clean_skip_rate": 0.4968696642003415,
+    "clean_sent_to_refiner": 884,
+    "all_skip_rate": 0.26833740831295844,
+    "per_class_positive_recall": {
+      "A01": 0.9931972789115646,
+      "A02": 1.0,
+      "A03": 0.9863013698630136,
+      "B01": 1.0,
+      "B02": 1.0,
+      "C01": 1.0,
+      "D01": 1.0,
+      "D02": 1.0,
+      "E03": 1.0,
+      "E05": 0.9863013698630136,
+      "E06": 1.0
+    }
+  },
+  "test_with_derived_clean_challenges": {
+    "n": 3285,
+    "need_refine_count": 1528,
+    "no_change_count": 1757,
+    "need_refine_recall": 0.9914921465968587,
+    "missed_refine_count": 13,
+    "clean_skip_rate": 0.4860557768924303,
+    "clean_sent_to_refiner": 903,
+    "all_skip_rate": 0.2639269406392694,
+    "per_class_positive_recall": {
+      "A01": 1.0,
+      "A02": 1.0,
+      "A03": 0.9726027397260274,
+      "B01": 1.0,
+      "B02": 1.0,
+      "C01": 1.0,
+      "D01": 1.0,
+      "D02": 1.0,
+      "E03": 1.0,
+      "E05": 0.958904109589041,
+      "E06": 0.9794520547945206
+    }
+  },
+  "balanced_50_50_gate_test": {
+    "n": 3056,
+    "need_refine_count": 1528,
+    "no_change_count": 1528,
+    "need_refine_recall": 0.9914921465968587,
+    "missed_refine_count": 13,
+    "clean_skip_rate": 0.49214659685863876,
+    "clean_sent_to_refiner": 776,
+    "all_skip_rate": 0.25032722513089006,
+    "per_class_positive_recall": {
+      "A01": 1.0,
+      "A02": 1.0,
+      "A03": 0.9726027397260274,
+      "B01": 1.0,
+      "B02": 1.0,
+      "C01": 1.0,
+      "D01": 1.0,
+      "D02": 1.0,
+      "E03": 1.0,
+      "E05": 0.958904109589041,
+      "E06": 0.9794520547945206
+    }
+  },
+  "balanced_50_50_note": "Detection only. Candidate clean references are weak labels. No combined Refiner quality or end-to-end latency claim for the balanced mix.",
+  "refiner_prediction_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_20261027/evaluation/no_C02_test.jsonl",
+  "train_and_eval_elapsed_seconds": 62.169189941952936,
+  "online_enabled": false,
+  "label_status": "Weak paired-text supervision; not human gold. Existing test already inspected. No inference-speedup claim without latency measurement.",
+  "original_test": {
+    "n": 1757,
+    "refiner_call_rate": 0.9095048377916903,
+    "exact_match_rate": 0.9060899260102447,
+    "E07_changed_count": 2,
+    "E07_n": 147,
+    "need_refine_recall": 0.9914921465968587
+  }
+}

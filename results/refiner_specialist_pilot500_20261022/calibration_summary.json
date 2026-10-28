@@ -1,0 +1,21 @@
+{
+  "stage": "20-case diagnostic complete; 500 pilot only, no automatic training admission",
+  "completed": 20,
+  "by_prior_reference": {
+    "PASS": {
+      "accept_candidate": 8,
+      "needs_review": 1,
+      "repair_candidate": 3
+    },
+    "FAIL": {
+      "accept_candidate": 2,
+      "repair_candidate": 3
+    },
+    "REVIEW": {
+      "accept_candidate": 1,
+      "repair_candidate": 1,
+      "quarantine": 1
+    }
+  },
+  "limitations": "Original references are not human gold; source and cleanup interpretation disputes remain. Same teacher across specialized calls. Known missed cases mean formal auto-accept remains disabled."
+}

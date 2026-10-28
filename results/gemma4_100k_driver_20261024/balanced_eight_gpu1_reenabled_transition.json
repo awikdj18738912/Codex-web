@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-10-25T15:34:43.550133+00:00",
+  "reason": "User re-enabled GPU1. Runtime GPU reporting changed from hard-coded [0] to explicit --gpu-ids; rules/audits/quotas/source inputs unchanged.",
+  "old_config_hash": "e633eb0b0cdfe0f651d7128294f4468bb1318c243ed55b6a85c3825485f47eeb",
+  "new_config_hash": "3a11f8a0174c64afe2b7f20213311c9cca387a0933018304265a71733b3a2725",
+  "backup": "/home/aim0/data/datasets/ASR/refiner_balanced_eight_gaps_20261025/backups/reenable_gpu1_20261025T153441Z",
+  "changed_source_file": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/scripts/generate_balanced_refiner_gaps.py",
+  "old_source_sha256": "91774b94578aa1ebf7460c6bcbb6b4b9108b624f3043454dbfe3e12555fa38ac",
+  "new_source_sha256": "c59471230005565c08cf7ad22d3e1f7eb076bf117a12c1ea1fa0e7006b5d560b",
+  "accepted_before_switch": {
+    "A01": 454,
+    "A02": 273,
+    "A03": 252,
+    "A04": 357,
+    "B01": 5882,
+    "B02": 5882,
+    "B03": 5882,
+    "C01": 365,
+    "C02": 1656,
+    "C03": 145,
+    "C04": 1900,
+    "D01": 62,
+    "D02": 5882,
+    "E03": 4080,
+    "E05": 280,
+    "E06": 3068,
+    "E07": 5882
+  },
+  "accepted_total_before_switch": 42302,
+  "active_gpu_ids": [
+    0,
+    1
+  ],
+  "workers_total": 32,
+  "existing_candidate_payload_hashes_preserved": true,
+  "training_started": false
+}

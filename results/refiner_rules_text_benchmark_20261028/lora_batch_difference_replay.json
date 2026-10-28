@@ -1,0 +1,43 @@
+{
+  "id": "A02-002006043-1",
+  "reference": "先帮我看看店里还有没有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。",
+  "observed": [
+    {
+      "repeat": 0,
+      "group": "original_batch8",
+      "batch_size": 8,
+      "output": "先帮我看看店里还有没有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    },
+    {
+      "repeat": 0,
+      "group": "gate_routed_subbatch",
+      "batch_size": 6,
+      "output": "先帮我看看店里还有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    },
+    {
+      "repeat": 0,
+      "group": "single",
+      "batch_size": 1,
+      "output": "先帮我看看店里还有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    },
+    {
+      "repeat": 1,
+      "group": "original_batch8",
+      "batch_size": 8,
+      "output": "先帮我看看店里还有没有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    },
+    {
+      "repeat": 1,
+      "group": "gate_routed_subbatch",
+      "batch_size": 6,
+      "output": "先帮我看看店里还有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    },
+    {
+      "repeat": 1,
+      "group": "single",
+      "batch_size": 1,
+      "output": "先帮我看看店里还有那种亚麻色的粗麻布，如果没货的话就换成米白色的也行。"
+    }
+  ],
+  "note": "Same weights, BF16 SDPA, greedy; tests batch shape, not different gate classification"
+}

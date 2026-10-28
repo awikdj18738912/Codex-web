@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "updated_utc": "2026-10-27T08:23:36.031315+00:00",
+  "source_dataset": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02",
+  "source_classes": 12,
+  "excluded_category": "C02",
+  "model_parameters": 8700418,
+  "training_method": "full tiny BERT encoder and classification head, two epochs",
+  "fresh_encoder_initialization": true,
+  "train_original_pairs": 31642,
+  "train_texts_before_conflict_filter": 59137,
+  "gpu": 0,
+  "service": "refiner-no-c02-gate-gpu0.service",
+  "model_output": "/home/aim0/data/ASR/training/refiner_noC02_pregate_gpu0_20261027",
+  "evaluation": "Recall-first threshold selected on dev; balanced 50/50 detection test; original 1757 cached no-C02 LoRA routing comparison",
+  "balanced_expected_positive": 1528,
+  "balanced_expected_negative": 1528,
+  "label_status": "Weak candidate references, not human reviewed; clean-reference labels may contain residual fillers.",
+  "online_enabled": false,
+  "exit_code": 0,
+  "summary_file": "/home/aim0/data/ASR/training/refiner_noC02_pregate_gpu0_20261027/summary.json"
+}

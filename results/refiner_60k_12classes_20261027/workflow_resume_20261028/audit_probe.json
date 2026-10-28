@@ -1,0 +1,118 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "id": "probe-v4-0",
+      "category": "A02",
+      "input": "请请帮我把这次捐赠的矿泉水和方便面重新清点一遍，把具体数量登记在表上。",
+      "reference": "请帮我把这次捐赠的矿泉水和方便面重新清点一遍，把具体数量登记在表上。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": true,
+        "minimal_edit": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "expected_target": "请帮我把这次捐赠的矿泉水和方便面重新清点一遍，把具体数量登记在表上。"
+      }
+    },
+    {
+      "id": "probe-v4-1",
+      "category": "A02",
+      "input": "我我需要核对这份合同，确认签字日期。",
+      "reference": "我需要核对这份合同，确认签字日期。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": true,
+        "minimal_edit": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "expected_target": "我需要核对这份合同，确认签字日期。"
+      }
+    },
+    {
+      "id": "probe-v4-2",
+      "category": "A02",
+      "input": "先先把送到仓库的这三箱零件清点好。",
+      "reference": "先把送到仓库的这三箱零件清点好。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": true,
+        "minimal_edit": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "expected_target": "先把送到仓库的这三箱零件清点好。"
+      }
+    },
+    {
+      "id": "probe-v4-3",
+      "category": "A02",
+      "input": "我我需要保留领取报酬的权利。",
+      "reference": "我需要保留领取报酬。",
+      "expected_pass": false,
+      "actual_pass": false,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": false,
+        "minimal_edit": false,
+        "cleanup_complete": false,
+        "issues": [
+          "reference删除了有效宾语'的权利'，导致语义丢失"
+        ],
+        "expected_target": "我需要保留领取报酬的权利。"
+      }
+    },
+    {
+      "id": "probe-v4-4",
+      "category": "E03",
+      "input": "这就导致了各种意外的插曲。",
+      "reference": "这就导致了各种意外。",
+      "expected_pass": false,
+      "actual_pass": false,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": false,
+        "minimal_edit": false,
+        "cleanup_complete": true,
+        "issues": [
+          "删除了具有独立意义的名词'插曲'，导致语义丢失，违反meaning_preserved原则"
+        ],
+        "expected_target": "这就导致了各种意外的插曲。"
+      }
+    },
+    {
+      "id": "probe-v4-5",
+      "category": "D02",
+      "input": "这份快递请交给。门口的工作人员。",
+      "reference": "这份快递请交给门口的工作人员。",
+      "expected_pass": true,
+      "actual_pass": true,
+      "probe_matched": true,
+      "judge": {
+        "source_valid": true,
+        "category_valid": true,
+        "meaning_preserved": true,
+        "minimal_edit": true,
+        "cleanup_complete": true,
+        "issues": [],
+        "expected_target": "这份快递请交给门口的工作人员。"
+      }
+    }
+  ],
+  "qualification": "Six regression probes only; not dataset quality certification."
+}

@@ -1,0 +1,35 @@
+{
+  "status": "pilot_finished_pending_human_review",
+  "requested": 24,
+  "generated": 24,
+  "machine_passed_unique": 11,
+  "rejected": 13,
+  "batch_failures": [],
+  "by_class": {
+    "B03": {
+      "requested": 12,
+      "machine_passed_unique": 0,
+      "rejected": 12
+    },
+    "E06": {
+      "requested": 12,
+      "machine_passed_unique": 11,
+      "rejected": 1
+    }
+  },
+  "rejection_reasons": {
+    "spelling_span_contains_other_content": 8,
+    "invalid_spelling_word_character": 4,
+    "invalid_entity_name": 1
+  },
+  "teacher_calls": 23,
+  "completion_tokens": 3471,
+  "elapsed_seconds": 273.0,
+  "limitations": [
+    "synthetic inputs",
+    "quantized teacher",
+    "same-model blind QC is not independent human validation",
+    "small pilot, no quality claim or training admission",
+    "no train/dev/test split yet; keep derived groups together"
+  ]
+}

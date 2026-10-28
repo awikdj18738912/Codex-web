@@ -1,0 +1,26 @@
+{
+  "sample_size": 100,
+  "eligible_seed_count": 107,
+  "exclusions": [
+    "source review not PASS",
+    "pair review not PASS",
+    "critical issue flagged",
+    "editorial parentheses/brackets",
+    "credential-shaped key/token assignments",
+    "target length outside 20-180 chars"
+  ],
+  "phenomena": {
+    "clean_passthrough": 12,
+    "fillers": 20,
+    "repetition_false_start": 20,
+    "self_correction": 15,
+    "boundary_punctuation": 18,
+    "natural_mixed_code_switch": 15
+  },
+  "sampling_seed": 20261022,
+  "source": "300-record stratified blind audit; seed source IDs traced to reviewed train split; validation targets excluded in original pilot sampling",
+  "matched_previous_oral_output": true,
+  "production_data_modified": false,
+  "purpose": "small prompt/validator pilot only; not training data",
+  "seed_pool_sha256": "a71e7f73e2012c78d1571a6a1aa70b9d83c3097c45c306be90de5ec3d4bb8c56"
+}

@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "test_split_n": 1757,
+  "original_full_C02_lora": {
+    "n": 1757,
+    "exact_count": 1591,
+    "exact_rate": 0.9055207740466704,
+    "normalized_char_difference_rate": 0.005812765799394581,
+    "identity_n": 229,
+    "identity_changed_count": 14
+  },
+  "no_C02_lora": {
+    "n": 1757,
+    "exact_count": 1598,
+    "exact_rate": 0.9095048377916903,
+    "normalized_char_difference_rate": 0.005831336936133861,
+    "identity_n": 229,
+    "identity_changed_count": 5
+  },
+  "no_C02_full": {
+    "n": 1757,
+    "exact_count": 1609,
+    "exact_rate": 0.9157655093910074,
+    "normalized_char_difference_rate": 0.005459914201348264,
+    "identity_n": 229,
+    "identity_changed_count": 4
+  },
+  "prior_71_clean_diagnostics": {
+    "n": 71,
+    "old_lora_changed": 71,
+    "no_C02_lora_changed": 38,
+    "no_C02_full_changed": 31
+  },
+  "full_best_checkpoint": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_full_20261027/checkpoint-990",
+  "qualification": "Candidate references, not human gold. Main test split excludes C02. The selected 71 diagnostic items were seen before and are not an unbiased test.",
+  "gate_used": false
+}

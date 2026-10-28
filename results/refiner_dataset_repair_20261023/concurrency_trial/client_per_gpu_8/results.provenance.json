@@ -1,0 +1,15 @@
+{
+  "model": "qwen38-teacher",
+  "prompt_sha256": "67b64bffe729d55ee29ff4b79da8ff506f6c7d7a7396214ca896c4e44c50941f",
+  "script_sha256": "c74655abf010304347a95db7c914988e05e66ffe65d29ae6e76786cc1a46a7b2",
+  "sample_sha256": "8277da004a08276178b2f7719d753b90805802f60d8dd8690a3a1c73f8a065ea",
+  "endpoints": [
+    "http://127.0.0.1:8012",
+    "http://127.0.0.1:8013"
+  ],
+  "per_gpu_concurrency": 8,
+  "temperature": 0,
+  "seed": 20261023,
+  "repair_enabled": false,
+  "scope": "diagnostic specialist pilot; separate calls use the same teacher, not independent models; no formal training export modified"
+}

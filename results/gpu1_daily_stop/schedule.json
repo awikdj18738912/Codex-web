@@ -1,0 +1,10 @@
+{
+  "schedule": "Every day at 09:00 Asia/Shanghai",
+  "cron_entry": "0 9 * * * /usr/bin/flock -n '/home/aim0/桌面/tan/ASR/Codex-web/results/gpu1_daily_stop/daily.lock' /usr/bin/python3 '/home/aim0/桌面/tan/ASR/Codex-web/scripts/stop_gpu1_daily.py' --execute >> '/home/aim0/桌面/tan/ASR/Codex-web/results/gpu1_daily_stop/cron.log' 2>&1 # codex-gpu1-daily-stop-0900",
+  "scheduler": "system cron; host timezone verified Asia/Shanghai",
+  "script": "/home/aim0/桌面/tan/ASR/Codex-web/scripts/stop_gpu1_daily.py",
+  "scope": "All GPU1 compute PIDs that this account can terminate, plus their identified dedicated user service/container; graphics processes excluded",
+  "privilege_limit": "Other-user/root-owned jobs may fail with permission_denied and are logged",
+  "execute_window_guard": "Only 09:00 through 09:09 Asia/Shanghai",
+  "current_jobs_not_stopped_during_setup": true
+}

@@ -1,0 +1,64 @@
+{
+  "request": {
+    "model": "gemma4-31b-teacher",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是中文助手。只输出JSON对象，不解释。"
+      },
+      {
+        "role": "user",
+        "content": "把“我呃想确认一下。”中的无意义填充词去掉，返回{\"text\":\"结果\"}。"
+      }
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "response_format": {
+      "type": "json_object"
+    },
+    "temperature": 0,
+    "max_tokens": 96
+  },
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-be5e989274e5257d",
+    "object": "chat.completion",
+    "created": 1792837717,
+    "model": "gemma4-31b-teacher",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"text\":\"我想确认一下。\"}",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "stop",
+        "stop_reason": null,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.26.0-tp2-ad653c6f",
+    "usage": {
+      "prompt_tokens": 53,
+      "total_tokens": 62,
+      "completion_tokens": 9,
+      "prompt_tokens_details": null
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "seconds": 6.316180719004478
+}

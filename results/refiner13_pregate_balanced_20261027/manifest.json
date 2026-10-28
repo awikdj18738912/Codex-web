@@ -1,0 +1,15 @@
+{
+  "need_edit": 1673,
+  "keep": 1673,
+  "original_keep": 229,
+  "added_reference_keep": 1444,
+  "gate": "/home/aim0/data/ASR/training/refiner13_pregate_tiny_gpu0_20261027",
+  "adapter": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_lora_20261026_retry3/checkpoint-1072",
+  "threshold": 0.03,
+  "threshold_policy": "Frozen from prior dev; no retuning or training",
+  "selection": "Keep all original test inputs; add deterministically hash-sorted test reference texts",
+  "exact_train_dev_text_overlap": 0,
+  "label_status": "Weak candidate references, not human gold",
+  "test_status": "Previously inspected test and paired clean-reference challenge; not new independent ASR data",
+  "gate_sha256": "0b741b76465f2f7eca204a5528e57d30ab8eb29fcd1e42df375d30785001bbfa"
+}

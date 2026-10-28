@@ -1,0 +1,22 @@
+{
+  "model": "qwen38-teacher",
+  "messages": [
+    {
+      "role": "system",
+      "content": "分析中文口语的最终意图与纠正范围。只依据原文，不补背景。只输出JSON，包含final_items、retracted_items、uncertainty、evidence。"
+    },
+    {
+      "role": "user",
+      "content": "呃那个啊，就是说啊，那个农村小学教室空气质量监测点位，本来是想说数据一直断断续续的，我刚查了，原来是电源不稳定，那个，就是说……哎，不对，不是电源不稳定，是之前那个说的，是智能门禁系统活体检测误判率上升，对，是那个，就是说最近那个活体检测老是把人当机器，误判率上去了，那个……啊，对，就是这个，我刚刚搞混了，是误判率上升，不是电源问题，是活体检测的问题，那个，所以得赶紧调整算法，不然……那个，不行，得改。"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 768,
+  "response_format": {
+    "type": "json_object"
+  },
+  "chat_template_kwargs": {
+    "enable_thinking": false,
+    "preserve_thinking": false
+  }
+}

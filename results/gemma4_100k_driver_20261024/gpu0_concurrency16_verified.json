@@ -1,0 +1,43 @@
+{
+  "checked_utc": "2026-10-25T12:42:38.121824+00:00",
+  "health_http": 200,
+  "client_workers": 16,
+  "per_server_limit": 16,
+  "service_max_num_seqs": 16,
+  "active_gpu_ids": [
+    0
+  ],
+  "gpu1_paused": true,
+  "all_prior_accepted_preserved": 40387,
+  "current_total_machine_passed": 40397,
+  "D02_machine_passed": 5176,
+  "D02_absolute_target": 5882,
+  "new_POST_HTTP200_confirmed": true,
+  "runtime": {
+    "started_utc": "2026-10-25T12:40:51.436745+00:00",
+    "dataset_config_hash": "8058304052419415a249aea2b2af19b447f821c506d5ef520c1253d5ae1b5d1e",
+    "logical_api_in_dataset_config": "http://127.0.0.1:8014/v1",
+    "actual_endpoints": [
+      "http://127.0.0.1:8014/v1"
+    ],
+    "workers": 16,
+    "per_server_limit": 16,
+    "batch_size": 4,
+    "request_timeout_seconds": 900,
+    "active_categories": [
+      "D02"
+    ],
+    "scope_maximum": 7000,
+    "phase_stop_after_additional": 716,
+    "scoped_runner_source_sha256": "3ee0a920a03b5ad5843160bba5a933e074e059f98e278ff631987c63b5f5a918",
+    "transport_source_sha256": "294cb300c4fe4594338140fcb0178a86ce9d997e9fcca8ed4c75cc7a5f2e8894",
+    "note": "Transport-only change; original generation/audit rules, quotas and ledger retained. Raw responses identify the actual endpoint. Accepted remains pending human review."
+  },
+  "metrics": [
+    "vllm:num_requests_running{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 7.0",
+    "vllm:num_requests_waiting{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 9.0",
+    "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.9519152404237978",
+    "vllm:num_preemptions_total{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 44.0"
+  ],
+  "note": "16 requests are submitted; active vs waiting varies with the fixed 3GiB KV cache. Observed preemption is recorded, not hidden. Human review remains pending."
+}

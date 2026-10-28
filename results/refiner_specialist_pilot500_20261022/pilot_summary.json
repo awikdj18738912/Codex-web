@@ -1,0 +1,76 @@
+{
+  "completed": 500,
+  "target": 500,
+  "formal_training_approved": false,
+  "arms": {
+    "uniform_random": {
+      "completed": 250,
+      "target": 250,
+      "decisions": {
+        "accept_candidate": 169,
+        "needs_review": 29,
+        "quarantine": 22,
+        "repaired_candidate": 21,
+        "repair_needs_review": 9
+      },
+      "specialists": {
+        "source": {
+          "pass": 224,
+          "fail": 21,
+          "error": 4,
+          "uncertain": 1
+        },
+        "fidelity": {
+          "pass": 211,
+          "error": 24,
+          "fail": 15
+        },
+        "cleanup": {
+          "pass": 220,
+          "fail": 27,
+          "error": 3
+        }
+      },
+      "repaired_candidates": 21,
+      "repair_attempts": 30
+    },
+    "risk_enriched": {
+      "completed": 250,
+      "target": 250,
+      "decisions": {
+        "accept_candidate": 146,
+        "needs_review": 42,
+        "quarantine": 20,
+        "repair_needs_review": 10,
+        "repaired_candidate": 32
+      },
+      "specialists": {
+        "source": {
+          "pass": 224,
+          "error": 6,
+          "fail": 19,
+          "uncertain": 1
+        },
+        "fidelity": {
+          "pass": 201,
+          "fail": 16,
+          "error": 33
+        },
+        "cleanup": {
+          "pass": 194,
+          "fail": 51,
+          "error": 5
+        }
+      },
+      "repaired_candidates": 32,
+      "repair_attempts": 42
+    }
+  },
+  "limitations": "Teacher candidate counts are not independent quality pass rates. All specialist/recheck calls use the same local model. Risk-enriched and uniform-random arms must be reported separately.",
+  "lead_prereview_comparison": {
+    "completed_available": 20,
+    "prereview_total": 20,
+    "accepted_with_lead_fail_or_uncertainty": 10,
+    "scope": "primary-model blind review performed before reading teacher scores, not human gold or guaranteed quality"
+  }
+}

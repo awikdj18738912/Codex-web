@@ -1,0 +1,34 @@
+{
+  "paired_sample": 60,
+  "valid_joint_review_pairs": 55,
+  "joint_review_errors_target_first": 2,
+  "joint_review_errors_original": 3,
+  "same_exact_gold_target": 60,
+  "comparisons": {
+    "source_valid": {
+      "target_first_pass": 47,
+      "original_pipeline_pass": 42,
+      "target_first_only_pass": 8,
+      "original_only_pass": 3,
+      "ties": 44,
+      "paired_denominator": 55
+    },
+    "gold_pass": {
+      "target_first_pass": 46,
+      "original_pipeline_pass": 41,
+      "target_first_only_pass": 8,
+      "original_only_pass": 3,
+      "ties": 44,
+      "paired_denominator": 55
+    },
+    "refiner_pass": {
+      "target_first_pass": 41,
+      "original_pipeline_pass": 32,
+      "target_first_only_pass": 17,
+      "original_only_pass": 8,
+      "ties": 30,
+      "paired_denominator": 55
+    }
+  },
+  "interpretation": "Both sources are paired to the exact same clean target and same scene. Local Qwen3.8 is both generator and judge; diagnostic only, not an independent human evaluation."
+}

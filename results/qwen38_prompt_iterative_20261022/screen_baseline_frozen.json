@@ -1,0 +1,65 @@
+{
+  "frozen_after_round1_before_round2_review": true,
+  "ambiguous_source_case_numbers": [
+    21,
+    84,
+    1092
+  ],
+  "grades": {
+    "16": "MINOR",
+    "21": "AMBIGUOUS",
+    "24": "MINOR",
+    "56": "MINOR",
+    "62": "MINOR",
+    "64": "MINOR",
+    "65": "PASS",
+    "76": "MINOR",
+    "82": "PASS",
+    "84": "AMBIGUOUS",
+    "1002": "PASS",
+    "1007": "MINOR",
+    "1014": "PASS",
+    "1020": "PASS",
+    "1030": "PASS",
+    "1041": "PASS",
+    "1043": "PASS",
+    "1046": "PASS",
+    "1059": "PASS",
+    "1065": "PASS",
+    "1071": "PASS",
+    "1076": "PASS",
+    "1088": "PASS",
+    "1089": "PASS",
+    "1092": "AMBIGUOUS",
+    "1100": "PASS",
+    "1105": "PASS",
+    "1108": "PASS",
+    "1111": "PASS",
+    "1119": "MINOR",
+    "1122": "MINOR",
+    "1128": "PASS",
+    "1134": "PASS",
+    "1139": "MINOR",
+    "1141": "PASS",
+    "1162": "PASS",
+    "1165": "PASS",
+    "1175": "PASS",
+    "1176": "MINOR",
+    "1180": "PASS"
+  },
+  "note": "Baseline reviewed once and frozen to avoid reviewer drift between prompt candidates; raw reviews and lead notes retained.",
+  "explicit_baseline_errata_before_round3_review": [
+    {
+      "case_no": 56,
+      "before": "PASS",
+      "after": "MINOR",
+      "reason": "Baseline repeats company-name spelling and irrelevant exclusions almost verbatim; single-target initial audit missed incomplete cleanup."
+    },
+    {
+      "case_no": 64,
+      "before": "PASS",
+      "after": "MINOR",
+      "reason": "Baseline repeats order/date/promotion complaint several times with incomplete starts; initial single-target audit missed cleanup residue."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "reviewed": 128,
+  "primary_adjudicated": 15,
+  "groups": {
+    "accepted_sample": {
+      "reviewed": 50,
+      "all_three_pass": 47,
+      "needs_further_work": 3
+    },
+    "repaired_check": {
+      "reviewed": 53,
+      "all_three_pass": 43,
+      "needs_further_work": 10
+    },
+    "rejected_or_pending_sample": {
+      "reviewed": 25,
+      "all_three_pass": 18,
+      "needs_further_work": 7
+    }
+  },
+  "formal_training_approved": false,
+  "limitations": "Model judgments, not human gold; only flagged cases received primary post-adjudication. Prior primary prereview20 additionally identifies accepted candidates requiring work. Do not interpret model agreement as guaranteed full-dataset quality."
+}

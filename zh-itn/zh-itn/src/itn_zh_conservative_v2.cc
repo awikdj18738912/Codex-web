@@ -190,6 +190,7 @@ constexpr const char* kDecimalMoneyThresholdRuleVersion = "1";
 constexpr const char* kContextualStockPriceRule = "zh.money.contextual_stock_price";
 constexpr const char* kContextualStockPriceRuleVersion = "2";
 constexpr const char* kExplicitTemperatureRule = "zh.measure.explicit_temperature";
+constexpr const char* kBareDegreeRule = "zh.measure.explicit_bare_degree";
 constexpr const char* kExplicitTemperatureRuleVersion = "3";
 constexpr const char* kExplicitTemperatureApproximateRule =
     "zh.measure.explicit_temperature_approximate";
@@ -4084,6 +4085,57 @@ std::optional<std::string> parse_explicit_temperature(
     );
     if (!value.has_value()) return std::nullopt;
     return prefix + *value + suffix;
+}
+
+RuleApproval approve_bare_degree(
+    const std::string& input,
+    const SafePolicyContext& context,
+    const TransformationCandidate& candidate
+) {
+    const auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {RuleDecision::error, "", {}, {}, "invalid_utf8"};
+    const auto& range = candidate.semantic_source;
+    const size_t length = boundaries->size() - 1;
+    if (range.end <= range.start + 1 || range.end > length
+        || unicode_scalar_substring(input, *boundaries, range.start, range.end) != range.text
+        || !ends_with_any(range.text, {"度"})
+        || inside_protected_delimiters(input, *boundaries, range.start)
+        || incomplete_cross_segment_span(context, length, range.start, range.end)
+        || (range.start == 0 && context.has_left_neighbor)
+        || (range.end == length && context.has_right_neighbor)) {
+        return {RuleDecision::preserve, "", {}, {}, "uncertain_bare_degree_boundary"};
+    }
+    const auto left = left_clause_context(input, *boundaries, range.start, 16);
+    const auto right = right_clause_context(input, *boundaries, range.end, 12);
+    const auto number = unicode_scalar_substring(input, *boundaries, range.start, range.end - 1);
+    if (range.start > 0) {
+        const auto previous = unicode_scalar_substring(input, *boundaries, range.start - 1, range.start);
+        // Composite ranges and signed temperatures keep their existing rules.
+        if (number_continuation(previous) || range_connector(previous)
+            || contains_any("点.第", {previous}) || ends_with_any(left, {"零下", "零上", "负", "正", "摄氏", "华氏"})) {
+            return {RuleDecision::preserve, "", {}, {}, "bare_degree_continues_left"};
+        }
+    }
+    if (ends_with_any(left, {"梅开"})
+        || starts_with_any(right, {"假", "量", "数", "制", "空间", "梅", "认为", "表示", "强调",
+            "获奖", "夺冠", "蝉联", "登顶", "出任", "当选", "回归", "重逢", "归来", "到访"})
+        || (range.end < length && (number_continuation(unicode_scalar_substring(
+                input, *boundaries, range.end, range.end + 1))
+            || range_connector(unicode_scalar_substring(input, *boundaries, range.end, range.end + 1))))) {
+        return {RuleDecision::preserve, "", {}, {}, "lexical_or_composite_degree"};
+    }
+    const bool physical_one = starts_with_any(right, {"电"})
+        || contains_any(left, {"温度", "气温", "体温", "水温", "空调", "角度", "旋转", "转动", "倾斜", "酒精", "白酒"});
+    if (number == "一" && !physical_one) {
+        return {RuleDecision::preserve, "", {}, {}, "lexical_yidu"};
+    }
+    const auto value = parse_percentage_value(input, *boundaries, range.start, range.end - 1);
+    if (!value.has_value()) return {RuleDecision::preserve, "", {}, {}, "invalid_degree_number"};
+    const auto replacement = *value + "度";
+    return {RuleDecision::approve, replacement,
+        {{"shape", "explicit_number_and_unchanged_degree_unit", kBareDegreeRule},
+         {"boundary", "complete_nonlexical_degree_quantity", kBareDegreeRule}},
+        {{{range.start, range.end, range.text}, replacement}}, "explicit_bare_degree"};
 }
 
 RuleApproval approve_explicit_temperature(
@@ -11018,6 +11070,32 @@ std::vector<TransformationCandidate> detect_explicit_temperatures(
     return candidates;
 }
 
+std::vector<TransformationCandidate> detect_bare_degrees(const std::string& input) {
+    const auto boundaries = unicode_scalar_boundaries(input);
+    if (!boundaries.has_value()) return {};
+    const size_t length = boundaries->size() - 1;
+    std::vector<TransformationCandidate> candidates;
+    for (size_t start = 0; start < length; ++start) {
+        const auto first = unicode_scalar_substring(input, *boundaries, start, start + 1);
+        if (!spoken_cardinal_digit(first).has_value() && !spoken_small_unit(first).has_value()) continue;
+        size_t end = start;
+        while (end < length && decimal_duration_number_scalar(
+                unicode_scalar_substring(input, *boundaries, end, end + 1))) ++end;
+        if (end >= length || unicode_scalar_substring(input, *boundaries, end, end + 1) != "度") continue;
+        ++end;
+        const auto left = left_clause_context(input, *boundaries, start, 16);
+        // Leave explicitly anchored temperature handling and its provenance intact.
+        if (!contains_any(left, {"温度", "气温", "室温", "体温", "水温", "油温", "炉温", "冷库", "空调"})
+            && !contextual_battery_capacity_degree(left, "度")) {
+            candidates.push_back({"zh-bare-degree-" + std::to_string(start) + "-" + std::to_string(end),
+                {start, end, unicode_scalar_substring(input, *boundaries, start, end)},
+                "zh-CN", "measure", "explicit_bare_degree", kBareDegreeRule, "1"});
+        }
+        start = end - 1;
+    }
+    return candidates;
+}
+
 std::vector<TransformationCandidate> detect_explicit_temperature_ranges(
     const std::string& input,
     const std::vector<TransformationCandidate>& temperatures
@@ -14981,6 +15059,9 @@ const std::vector<ReleasedRule>& released_rules() {
             "measure", "explicit_temperature", approve_explicit_temperature,
         },
         {
+            kBareDegreeRule, "1", "zh-CN", "measure", "explicit_bare_degree", approve_bare_degree,
+        },
+        {
             kExplicitTemperatureApproximateRule,
             kExplicitTemperatureApproximateRuleVersion,
             "zh-CN", "measure", "explicit_temperature_approximation",
@@ -15699,6 +15780,8 @@ static SafeNormalizationResult normalize_zh_conservative_v2_impl(
     candidates.insert(candidates.end(), stock_prices.begin(), stock_prices.end());
     const auto temperatures = detect_explicit_temperatures(request.text);
     candidates.insert(candidates.end(), temperatures.begin(), temperatures.end());
+    const auto bare_degrees = detect_bare_degrees(request.text);
+    candidates.insert(candidates.end(), bare_degrees.begin(), bare_degrees.end());
     const auto temperature_ranges = detect_explicit_temperature_ranges(
         request.text, temperatures
     );

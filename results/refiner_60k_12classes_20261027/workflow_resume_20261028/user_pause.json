@@ -1,0 +1,24 @@
+{
+  "status": "paused_by_user_services_stopped_gpu_memory_released",
+  "paused_utc": "2026-10-28T02:27:33.652122+00:00",
+  "accepted_at_last_progress": 50785,
+  "method": "Stopped owned paused workflow, generator and teacher processes; SQLite ledger preserved.",
+  "resume_requires_explicit_user_instruction": true,
+  "gpu_memory_retained": false,
+  "units": [
+    {
+      "unit": "refiner60k-experiment-workflow-3ep-20261028.service",
+      "main_process": "2339242 Ts   python"
+    },
+    {
+      "unit": "refiner-generation-60k-12classes-v4-20261028.service",
+      "main_process": "2314320 Tsl  python"
+    },
+    {
+      "unit": "refiner-teacher-gpu0-60k-20261027.service",
+      "main_process": "2308743 TLsl python"
+    }
+  ],
+  "accepted_in_ledger": 50795,
+  "updated_utc": "2026-10-28T02:28:28.724838+00:00"
+}

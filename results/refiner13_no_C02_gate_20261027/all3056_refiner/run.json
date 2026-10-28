@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "input": "/home/aim0/data/ASR/training/refiner_noC02_pregate_gpu0_20261027/balanced_test_predictions.jsonl",
+  "input_sha256": "cbf5b8cb6db99a11c7f74ff194c49d8ae93240d0ddbb576600f56b90f43f4fdc",
+  "base": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "adapter": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_lora_20261027/checkpoint-990",
+  "adapter_sha256": "862e40114d348aac1e0966e7f9eca2dcda01351851e03a3a45368cef77a965ed",
+  "gate_threshold": 0.02,
+  "batch_size": 8,
+  "gpu": 0,
+  "decode": "BF16 greedy max_new_tokens512 repetition_penalty1; same system prompt as training",
+  "full_inference": true,
+  "reused_predictions": false,
+  "gate_controls_inference": false,
+  "labels": "Candidate weak labels, not human gold; Refiner edits are not correctness labels",
+  "concurrent_full_training": true,
+  "latency_benchmark": false,
+  "finished_utc": "2026-10-27T08:51:52.476490+00:00",
+  "sample_count": 3056,
+  "eos_count": 3056,
+  "summary_path": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_gate_20261027/all3056_refiner/summary.json"
+}

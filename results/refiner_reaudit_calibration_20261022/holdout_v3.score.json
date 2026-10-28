@@ -1,0 +1,27 @@
+{
+  "completed": 100,
+  "errors": 2,
+  "confusion": {
+    "PASS": {
+      "accept": 84,
+      "quarantine": 2,
+      "repair": 1
+    },
+    "MINOR": {
+      "accept": 4,
+      "quarantine": 1
+    },
+    "FAIL": {
+      "accept": 2,
+      "repair": 1,
+      "error": 2
+    },
+    "REVIEW": {
+      "accept": 1,
+      "repair": 1,
+      "quarantine": 1
+    }
+  },
+  "disagreement_count": 7,
+  "limitations": "Diagnostic references are earlier GPT reviews, not human gold. Resolve disagreements before treating the confusion matrix as accuracy. Five FAIL references per split cannot establish full-corpus false-accept rate."
+}

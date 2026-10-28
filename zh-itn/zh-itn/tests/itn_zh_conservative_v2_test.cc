@@ -2219,6 +2219,8 @@ int main() {
             {"误差不到零点五斤", "误差不到0.5斤"},
             {"收货地址是南京市玄武区中山路三百零四号", "收货地址是南京市玄武区中山路304号"},
             {"电池容量是一百零二度", "电池容量是102度"},
+            {"完成一百八十度大转弯", "完成180度大转弯"},
+            {"洛氏硬度只有五十五度", "洛氏硬度只有55度"},
             {"满电续航七百多公里", "满电续航700多公里"},
         }) {
         const auto result = normalize_zh_conservative_v2(request(input));
@@ -2231,8 +2233,7 @@ int main() {
             "货物看起来有两三百斤", "大概有两三百斤", "四零二室设备",
             "原文写作“集团本季度营收为五百一十二亿六千万元”",
             "原文写作“也就是三二零四号房”",
-            "中山路三百零四号文件", "完成一百八十度大转弯",
-            "洛氏硬度只有五十五度",
+            "中山路三百零四号文件",
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
         passed &= expect(
@@ -2463,7 +2464,7 @@ int main() {
     for (const auto& text : std::vector<std::string>{
             "还差六百多就到目的地了", "这家店的东西大概九万多吧", "家里有四口人",
             "设置下午二十一点十分的日程", "设一个四点三十五分的目标",
-            "参加第二十一首诗朗诵", "完成十七度大转弯", "音量大概二十五",
+            "参加第二十一首诗朗诵", "音量大概二十五",
             "买了个一百元件样品",
         }) {
         const auto result = normalize_zh_conservative_v2(request(text));
@@ -2870,6 +2871,45 @@ int main() {
         passed &= expect(result.valid && result.normalized.output == numeric_policy_expected(result.normalized.input, expected),
             "v87 changed an idiom, ambiguity, or incomplete year: " + input + " -> " + result.normalized.output);
     }
+
+    for (const auto& [input, expected] : std::vector<std::pair<std::string, std::string>>{
+            {"三十七度。", "37度。"},
+            {"大概有三十七度。", "大概有37度。"},
+            {"今天天气大概有三十七度。", "今天天气大概有37度。"},
+            {"旋转三十七度。", "旋转37度。"},
+            {"完成十七度大转弯", "完成17度大转弯"},
+            {"用了三十七度电。", "用了37度电。"},
+            {"这款白酒三十七度。", "这款白酒37度。"},
+            {"大概三十七点五度。", "大概37.5度。"},
+            {"大概有三十七度。然后哈哈哈。", "大概有37度。然后哈哈哈。"},
+            {"旋转一度。", "旋转1度。"},
+            {"用了一度电。", "用了1度电。"},
+            {"体温三十七度。", "体温37度。"},
+            {"三十七摄氏度。", "37摄氏度。"},
+        }) {
+        const auto result = normalize_zh_conservative_v2(request(input));
+        passed &= expect(result.valid && result.normalized.output == expected,
+            "v91 degree quantity mismatch: " + input + " -> " + result.normalized.output);
+        const auto twice = normalize_zh_conservative_v2(request(result.normalized.output));
+        passed &= expect(twice.valid && twice.normalized.output == expected,
+            "v91 degree quantity is not idempotent: " + input);
+    }
+    for (const std::string input : {
+            "一度认为这个方案可行。", "几度春秋。", "梅开二度。", "三度夺冠。",
+            "第十度假村。", "品牌叫三十七度。", "《三十七度》",
+            "原文写作“三十七度”。", "文件名是三十七度。",
+            "三点点五度。", "三十七点度。", "三十七度至。",
+        }) {
+        const auto result = normalize_zh_conservative_v2(request(input));
+        passed &= expect(result.valid && result.normalized.output == input,
+            "v91 changed lexical, literal or incomplete degree: " + input + " -> " + result.normalized.output);
+    }
+    auto degree_prefix = request("三十七度");
+    degree_prefix.right_context = "电";
+    degree_prefix.has_right_neighbor = true;
+    const auto incomplete_degree = normalize_zh_conservative_v2(degree_prefix);
+    passed &= expect(incomplete_degree.valid && incomplete_degree.normalized.output == degree_prefix.text,
+        "v91 changed a degree expression with an unfinished right boundary");
 
     auto wrong_locale = request("二零二六年");
     wrong_locale.locale = "en-US";

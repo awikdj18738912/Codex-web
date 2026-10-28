@@ -1,0 +1,28 @@
+{
+  "raw_pass_through": {
+    "sample_count": 1902,
+    "exact_reference_matches": 229,
+    "exact_match_rate": 0.12039957939011567,
+    "normalized_char_difference_rate": 0.10166675144547875,
+    "E07_changed_rate": 0.0,
+    "description": "Pass through the frozen text inputs without refinement; these are predominantly synthetic texts, not newly measured audio ASR outputs."
+  },
+  "refined": {
+    "LoRA两轮": {
+      "exact_match_rate": 0.880651945320715,
+      "normalized_char_difference_rate": 0.00781660647371009,
+      "E07_changed_rate": 0.08843537414965986
+    },
+    "LoRA追加一轮": {
+      "exact_match_rate": 0.8774973711882229,
+      "normalized_char_difference_rate": 0.008749173406582227,
+      "E07_changed_rate": 0.11564625850340136
+    },
+    "全量两轮": {
+      "exact_match_rate": 0.8848580441640379,
+      "normalized_char_difference_rate": 0.00964782881462265,
+      "E07_changed_rate": 0.05442176870748299
+    }
+  },
+  "reference_status": "Provisional cleaned text, not human gold verbatim transcription. This comparison is not an end-to-end real-audio ASR benchmark."
+}

@@ -1,0 +1,71 @@
+{
+  "started_utc": "2026-10-26T07:45:15.313994+00:00",
+  "model_path": "/home/aim0/data/models/ASR/AgenticASR-Refiner",
+  "model_config": {
+    "architectures": [
+      "LlamaForCausalLM"
+    ],
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": 0,
+    "dtype": "float32",
+    "eos_token_id": 1,
+    "head_dim": 128,
+    "hidden_act": "silu",
+    "hidden_size": 1536,
+    "initializer_range": 0.02,
+    "intermediate_size": 4608,
+    "max_position_embeddings": 131072,
+    "mlp_bias": false,
+    "model_type": "llama",
+    "num_attention_heads": 16,
+    "num_hidden_layers": 24,
+    "num_key_value_heads": 2,
+    "pad_token_id": 1,
+    "pretraining_tp": 1,
+    "rms_norm_eps": 1e-06,
+    "rope_parameters": {
+      "rope_theta": 5000000,
+      "rope_type": "default"
+    },
+    "tie_word_embeddings": false,
+    "transformers_version": "5.0.0",
+    "use_cache": false,
+    "vocab_size": 130560
+  },
+  "model_config_sha256": "1e2212f0a509a6f7746b3adbff9d0f23d3807e803d55c2e173eb7ff1617ddf9f",
+  "weight_file_size": 4322556448,
+  "source_queue": "/home/aim0/data/datasets/ASR/refiner_balanced_13classes_20261026_no_A04_B03_C03_C04/review_queue.pending.jsonl",
+  "source_queue_sha256": "92821725f2f43e007785dbc84822400746dd4c2ca4b46c8c7dbd9210ed19352c",
+  "sample_count": 21,
+  "by_source": {
+    "Gemma4": 16,
+    "CS2W": 1,
+    "FCGEC": 4
+  },
+  "gpu_ids": [
+    0
+  ],
+  "dtype": "bfloat16",
+  "batch_size": 1,
+  "do_sample": false,
+  "max_new_tokens": 512,
+  "prompt_source": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/scripts/postprocess_asr.py",
+  "prompt_source_sha256": "2056b023548fff1b81969e6a3d6c6fb6f86cfe75549c49c33a1121f9c442196c",
+  "system_prompt": "你是 ASR 文本纠错助手。保留原意，最小修改：去口癖/重复，修错字，补必要标点，处理自我修正。不要总结、扩写或解释。数字、日期、术语和代码符号已由系统规则处理，不得自行转换数字，成语中的汉字数字（如三番五次）必须保持原样。重要易错实体在末尾追加 <KEY>[词1、词2]；没有则不加。输入中形如 __ENTITY_000__ 的内容是不可编辑的受保护标记；每个标记必须原样保留一次，不得删除、改写、重复或调整顺序。",
+  "script_sha256": "0a4742819caaed05c9d1190425a239a8118875e40a6c359efd0ccbf6dc1612c6",
+  "purpose": "User-requested inference comparison on all21 records including public; not machine quality audit",
+  "reference_in_model_input": false,
+  "category_in_model_input": false,
+  "postprocessing": "Remove optional <KEY> annotation only, retain raw output separately",
+  "production_candidates_modified": false,
+  "training_started": false,
+  "torch_version": "2.11.0+cu130",
+  "transformers_version": "5.14.1",
+  "model_parameter_count": 1080632832,
+  "device_name": "NVIDIA GeForce RTX 3090",
+  "template_kwargs": {
+    "enable_thinking": false
+  },
+  "model_weight_sha256": "1a9635c8f288648c5ec3c9d8572caaa53295242c90f94f1655e07ef2b31d907d"
+}

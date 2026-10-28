@@ -1,0 +1,27 @@
+{
+  "scope": "read-only inventory of exact SFT files; flags are not semantic verdicts",
+  "files": {
+    "train_sft.json": {
+      "path": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021/train_sft.json",
+      "sha256": "7c909f65dfd7e4a64f7573a844b181323721304d41fdd58a96b7ed13d1fe282d"
+    },
+    "val_sft.json": {
+      "path": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021/val_sft.json",
+      "sha256": "2bc19a7e317d26e2e971b0dc82ef4ee936aa36c46e0d796a8f536f0b7e5457be"
+    }
+  },
+  "counts": {
+    "train": 84875,
+    "validation": 14977
+  },
+  "input_conflicts": 0,
+  "cross_split_exact_inputs": 0,
+  "missing_or_inconsistent_manifest": 0,
+  "flags": {
+    "correction_or_negation_needs_context": 59918,
+    "exact_noop": 11505,
+    "long_input": 7858,
+    "bracket_needs_context": 3225
+  },
+  "training_data_changed": false
+}

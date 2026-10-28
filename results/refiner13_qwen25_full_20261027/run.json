@@ -1,0 +1,51 @@
+{
+  "status": "training_and_evaluation_complete",
+  "started_local": "2026-10-27 00:58:23 Asia/Shanghai",
+  "method": "LLaMA-Factory full-parameter SFT",
+  "model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "gpu_visible": "1",
+  "systemd_user_unit": "refiner13-full-gpu1.service",
+  "service_main_pid": 3284140,
+  "model_trainable_parameters": 494032768,
+  "model_trainable_percent": 100,
+  "config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner13_qwen25_full_20261027_resume300.yaml",
+  "config_sha256": "79e4bb344af1753e90da46a1dfb47fc812cf2cfd87e45874ac53beb962b66c7f",
+  "dataset_manifest": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261026_provisional/manifest.json",
+  "dataset_manifest_sha256": "5c9f384e6d2e193b98af29c6343463c18082f6f8b4bdb5f18f7e929745a6794e",
+  "training_examples": 34278,
+  "validation_examples": 1902,
+  "heldout_test_examples": 1902,
+  "epochs": 2,
+  "optimizer_steps_total": 1072,
+  "effective_batch_single_gpu": 64,
+  "output_dir": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_full_20261027_provisional",
+  "training_log": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_full_20261027/train.log",
+  "train_exit_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_full_20261027/train.exit",
+  "evaluation_log": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_full_20261027/eval.log",
+  "comparison_lora_run": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_qwen25_lora_20261026/run.json",
+  "candidate_data_status": "pending human review; experimental reference labels, not gold",
+  "evaluation_plan": "Same frozen test split and same inference system prompt as LoRA; full evaluation runs automatically after successful training.",
+  "user_requested_gpu1_deadline": {
+    "scope": "All current-user GPU1 compute jobs/services every day at 09:00 Asia/Shanghai",
+    "scheduler": "system cron",
+    "schedule_manifest": "/home/aim0/桌面/tan/ASR/Codex-web/results/gpu1_daily_stop/schedule.json",
+    "supersedes": "refiner13-full-gpu1-stop-0900.timer; old one-time timer stopped after daily cron installed",
+    "next_local": "2026-10-27 09:00:00 Asia/Shanghai"
+  },
+  "manual_stop_correction": {
+    "stopped_local": "2026-10-27 01:31:17 Asia/Shanghai",
+    "reason": "The 09:00 CST deadline had not arrived; the stop was manually triggered by an incorrect UTC-to-CST conversion.",
+    "training_state_at_stop": "Approximately step 360; checkpoint-300 was complete.",
+    "resumed_local": "2026-10-27 01:32:25 Asia/Shanghai",
+    "resume_checkpoint": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_full_20261027_provisional/checkpoint-300"
+  },
+  "last_updated_utc": "2026-10-26T17:32:59.278363+00:00",
+  "resume_from_checkpoint": "/home/aim0/data/ASR/training/qwen25_05b_refiner13_full_20261027_provisional/checkpoint-300",
+  "deadline_check_0900": {
+    "status": "daily_cron_installed",
+    "schedule_manifest": "/home/aim0/桌面/tan/ASR/Codex-web/results/gpu1_daily_stop/schedule.json"
+  },
+  "completed_training": true,
+  "evaluation_complete": true,
+  "comparison_report": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_comparison_20261027/LoRA与全量微调对照报告.md"
+}

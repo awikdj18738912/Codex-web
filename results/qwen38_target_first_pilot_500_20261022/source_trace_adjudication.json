@@ -1,0 +1,23 @@
+{
+  "records_traced": 300,
+  "all_target_hashes_match_original_refined_text": true,
+  "all_upstream_split_decisions_review_pass": true,
+  "pilot_source_equals_target": 183,
+  "exact_pairs_with_source_not_pass": 119,
+  "changed_pairs": 117,
+  "changed_pairs_source_not_pass": 64,
+  "first_pass_19_pair_concern_adjudication": {
+    "oral_generation_clear": 3,
+    "mixed_seed_generation": 1,
+    "seed_text_concern": 12,
+    "initial_overflag": 3
+  },
+  "seed_text_risk_queue_rows": 120,
+  "oral_generation_risk_queue_rows": 67,
+  "files": {
+    "source_trace": "independent_blind_audit_300_source_trace.jsonl",
+    "seed_queue": "seed_text_risk_queue.jsonl",
+    "generation_queue": "oral_generation_risk_queue.jsonl"
+  },
+  "note": "Trace uses the original final/train.jsonl and reviewed split manifest; ChatGPT second-look adjudication is not human gold."
+}

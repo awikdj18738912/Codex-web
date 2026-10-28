@@ -1,0 +1,35 @@
+{
+  "updated_utc": "2026-10-25T17:40:22.709232+00:00",
+  "active_gpu_ids": [
+    0,
+    1
+  ],
+  "gpu1_paused_by_user": false,
+  "service_tensor_parallel_size": 2,
+  "client_workers": 32,
+  "service_max_num_seqs": 32,
+  "api": "http://127.0.0.1:8014/v1",
+  "teacher_session": "gemma4_teacher_first50k_tp2_32_resume",
+  "generation_session": "gemma4_generate_first50k_tp2_32_resume",
+  "teacher_log": "server_first50k_tp2_32_resume.log",
+  "generation_log": "generation_first50k_tp2_32_resume.log",
+  "note": "User requested first 50k experiment. Old generator drained, source pool and surplus preserved. Reuse capped seeds and synthesize only class gaps, including A01 and C02/C03/C04. No training started.",
+  "active_generation_categories": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "D01",
+    "E05"
+  ],
+  "balanced_target_per_class": 2941,
+  "kv_cache_memory_bytes": 10737418240,
+  "status": "running_first50k_dual_gpu_32",
+  "verified_utc": "2026-10-25T17:46:10.917854+00:00",
+  "current_data_directory": "/home/aim0/data/datasets/ASR/refiner_balanced_50k_20261026",
+  "mixed_dataset_target": 49997
+}

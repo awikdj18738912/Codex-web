@@ -1,0 +1,36 @@
+{
+  "gpu": 0,
+  "mode": "text_only_no_audio_no_ASR",
+  "models": {
+    "lora": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_lora_20261027/checkpoint-990",
+    "full": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_full_20261027",
+    "agentic1b": "/home/aim0/data/models/ASR/AgenticASR-Refiner"
+  },
+  "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "gate": "/home/aim0/data/ASR/training/refiner_noC02_gate_rbt3_20261027",
+  "threshold": 0.005,
+  "dtype": "bfloat16",
+  "gate_dtype": "float32",
+  "lora_deployment": "merge_and_unload in memory; no checkpoint files changed",
+  "batch_size": 1,
+  "max_new_tokens": 1024,
+  "do_sample": false,
+  "use_cache": true,
+  "prompts": {
+    "qwen": "你是中文ASR转写精修助手。只做最小必要修改：清理口癖和无意义重复，处理明确的自我修正，修正明显错字或误词，修复语法赘余、必要标点和句界。说话者明确改口时保留最终意图；忽略强调表达，重复表达可以压缩。不得总结、扩写、补全或推测输入没有的信息；不得删掉不同事实、实体、数量、否定、条件、立场或情态。保留数字和日期的数值及输入写法，保留英文名称、大小写、空格、连字符和代码符号。__ENTITY_NNN__形式的实体占位符须逐字保留，每个出现一次且顺序不变。无需修改时原样输出。只输出精修正文，不要类别、解释、实体列表、<KEY>或JSON。",
+    "agentic1b": "你是 ASR 文本纠错助手。保留原意，最小修改：去口癖/重复，修错字，补必要标点，处理自我修正。不要总结、扩写或解释。数字、日期、术语和代码符号已由系统规则处理，不得自行转换数字，成语中的汉字数字（如三番五次）必须保持原样。重要易错实体在末尾追加 <KEY>[词1、词2]；没有则不加。输入中形如 __ENTITY_000__ 的内容是不可编辑的受保护标记；每个标记必须原样保留一次，不得删除、改写、重复或调整顺序。"
+  },
+  "text_manifest_sha256": "bfd2e1d8b5334fe60892a2a020692c6daaf016d9fb7d4987297d2f889819e450",
+  "script_sha256": "ba7069ba81b588780af53fb1aa866d9023460511d37627b10a8b95e60f282e41",
+  "sample_count": 256,
+  "weak_clean_count": 128,
+  "weak_need_refine_count": 128,
+  "repeat_second_round_first_n": 64,
+  "quality_limitations": [
+    "References are candidate labels, not human gold",
+    "Small pilot from previously inspected heldout corpus, not accuracy guarantee"
+  ],
+  "timing": "Warm per-request text wall time includes gate, tokenization, host/device copy, autoregressive generation and output decode; excludes model startup, disk logging, ASR and network",
+  "order": "seeded shuffled pipeline order per sample; 256 first round plus fixed64 second round",
+  "extras": "No streaming, entity protection, ITN, web/network transport, or vLLM; direct Transformers SDPA"
+}

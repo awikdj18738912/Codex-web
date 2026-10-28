@@ -1,0 +1,51 @@
+{
+  "status": "complete",
+  "threshold": 0.03,
+  "gate": {
+    "n": 3346,
+    "need_refine_count": 1673,
+    "no_change_count": 1673,
+    "need_refine_recall": 0.9928272564255828,
+    "missed_refine_count": 12,
+    "clean_skip_rate": 0.3102211595935445,
+    "clean_sent_to_refiner": 1154,
+    "all_skip_rate": 0.15869695158398087,
+    "per_class_positive_recall": {
+      "A01": 1.0,
+      "A02": 1.0,
+      "A03": 0.9863013698630136,
+      "B01": 1.0,
+      "B02": 1.0,
+      "C01": 1.0,
+      "C02": 0.9862068965517241,
+      "D01": 1.0,
+      "D02": 1.0,
+      "E03": 1.0,
+      "E05": 0.9657534246575342,
+      "E06": 0.9794520547945206
+    }
+  },
+  "lora_only": {
+    "n": 3346,
+    "exact_count": 3062,
+    "exact_rate": 0.9151225343693963,
+    "clean_false_edit_count": 71,
+    "clean_n": 1673,
+    "normalized_char_difference_rate": 0.005682489659247587
+  },
+  "gated_lora": {
+    "n": 3346,
+    "exact_count": 3067,
+    "exact_rate": 0.9166168559473998,
+    "clean_false_edit_count": 59,
+    "clean_n": 1673,
+    "normalized_char_difference_rate": 0.005702186330510144
+  },
+  "refiner_calls": 2815,
+  "saved_calls": 531,
+  "lost_exact": 7,
+  "gained_exact": 12,
+  "added_clean_inference_and_analysis_seconds": 181.51189293095376,
+  "speed_note": "Cached original outputs plus batched added-clean inference; not an end-to-end latency benchmark",
+  "labels": "Weak supervision, not human gold; paired clean references are diagnostic only"
+}

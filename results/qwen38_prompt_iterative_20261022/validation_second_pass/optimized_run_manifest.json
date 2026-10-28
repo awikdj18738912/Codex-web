@@ -1,0 +1,9 @@
+{
+  "model": "Qwen3.8-27B-AWQ-INT4",
+  "vllm_version": "0.26.0",
+  "server_pid": 894353,
+  "sample_sha256": "8d9be2c0a6d91430cc371b08be6e9e5b6e2970e4bae5db57be1506ac5c2a3f85",
+  "prompt_sha256": "6bc35052f7d6d5968bd1c0e82f1ed4a7ac5f092b14bdc571ec4937c9c778119c",
+  "runtime_config": "gpu_memory_utilization=0.92; cpu_offload_gb=0; max_num_seqs=4; max_num_batched_tokens=1024; max_model_len=3072; CUDA Graph enabled by default (no --enforce-eager)",
+  "validation_run": "fresh 100 items from scratch after partial eager/offload run archived; no validation outputs reviewed before freezing."
+}

@@ -1,0 +1,23 @@
+{
+  "eligible_population": 99396,
+  "excluded_previously_reviewed_ids": 456,
+  "samples": 500,
+  "sampling_arms": {
+    "uniform_random": 250,
+    "risk_enriched": 250
+  },
+  "risk_strata": {
+    "mixed_code": 75,
+    "correction_or_negation": 100,
+    "long_input": 50,
+    "brackets": 25
+  },
+  "source_files_sha256": {
+    "train_sft.json": "7c909f65dfd7e4a64f7573a844b181323721304d41fdd58a96b7ed13d1fe282d",
+    "val_sft.json": "2bc19a7e317d26e2e971b0dc82ef4ee936aa36c46e0d796a8f536f0b7e5457be",
+    "split_manifest.jsonl": "69a814527277a747af35e19a3192fd7e6a8d68ad0313c320c1ddd22466f587b4"
+  },
+  "sample_sha256": "dd24a0f8a9a5ac4eaabdac518f43210dcd577314af83df053070cba7ec8c3709",
+  "scope": "random arm estimates only the eligible previously unreviewed population; risk arm is diagnostic, never combine as full-dataset error rate",
+  "formal_dataset_modified": false
+}

@@ -1,0 +1,23 @@
+{
+  "official_functions": [
+    "benchmark_io.load_rubric",
+    "benchmark_io.match_records",
+    "result_store.evaluate_sample",
+    "result_store.write_summary"
+  ],
+  "judge_model": "/home/aim0/data/ASR/models/gemma-4-31B-it-qat-w4a16-ct",
+  "judge_identity": "gemma4-31B-QAT-W4A16-local-AASR-no-thinking-9afdfd7cebf86ac3",
+  "quantization": "QAT W4A16 compressed tensors",
+  "local_api": "http://127.0.0.1:8024/v1",
+  "workers": 4,
+  "temperature": 0,
+  "enable_thinking": false,
+  "rubric_reference": "Original clean/oral; NOT number-normalized or model-edited",
+  "unique_sample_outputs": 1168,
+  "total_variant_samples": 2550,
+  "questions_per_variant": 3416,
+  "questions_all_variants": 17080,
+  "duplicate_policy": "Same id + exact output + same rubric + same judge identity reuses exactly the same judgement",
+  "context_policy": "3072 context; adapt max output tokens, recursively split question group only on exceptional overflow; original QA and scores unchanged",
+  "qualification": "Official rubric and repository scoring functions with local quantized judge and direct oral text. NOT paper full-audio/full-precision reproduction."
+}

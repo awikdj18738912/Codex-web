@@ -1,0 +1,21 @@
+{
+  "status": "full_training_running",
+  "method": "LLaMA-Factory SFT full fine-tuning",
+  "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "initialization": "fresh full fine-tune from base model",
+  "removed_category": "C02",
+  "train_count": 31642,
+  "dev_count": 1757,
+  "test_count": 1757,
+  "epochs": 2,
+  "optimizer_steps_expected": 990,
+  "effective_batch_size": 64,
+  "gpu": 0,
+  "service": "refiner13-no-c02-full-gpu0.service",
+  "config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner13_qwen25_full_no_C02_20261027.yaml",
+  "dataset_manifest": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02/manifest.json",
+  "output_dir": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_full_20261027",
+  "auto_evaluation": "same 1757 non-C02 test rows and prior 71 diagnostics; compare against original LoRA and no-C02 LoRA",
+  "quality": "provisional references; not human gold",
+  "updated_utc": "2026-10-27T07:13:18.324374+00:00"
+}

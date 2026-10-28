@@ -1,0 +1,59 @@
+{
+  "status": "pilot_finished_pending_human_review",
+  "requested": 72,
+  "generated": 72,
+  "machine_passed_unique": 32,
+  "rejected": 40,
+  "batch_failures": [],
+  "by_class": {
+    "B01": {
+      "requested": 12,
+      "machine_passed_unique": 6,
+      "rejected": 6
+    },
+    "B02": {
+      "requested": 12,
+      "machine_passed_unique": 0,
+      "rejected": 12
+    },
+    "B03": {
+      "requested": 12,
+      "machine_passed_unique": 0,
+      "rejected": 12
+    },
+    "D02": {
+      "requested": 12,
+      "machine_passed_unique": 5,
+      "rejected": 7
+    },
+    "E03": {
+      "requested": 12,
+      "machine_passed_unique": 9,
+      "rejected": 3
+    },
+    "E06": {
+      "requested": 12,
+      "machine_passed_unique": 12,
+      "rejected": 0
+    }
+  },
+  "rejection_reasons": {
+    "unsupported_content_insertion_or_reorder": 6,
+    "repair_candidates_inconsistent": 1,
+    "invalid_repair_chain": 11,
+    "semantic_audit_rejected": 1,
+    "missing_spelling_entity": 12,
+    "invalid_break_boundary": 7,
+    "missing_protected_structure": 2
+  },
+  "teacher_calls": 52,
+  "completion_tokens": 8493,
+  "elapsed_seconds": 369.1,
+  "limitations": [
+    "synthetic inputs",
+    "quantized teacher",
+    "same-model blind QC is not independent human validation",
+    "small pilot, no quality claim or training admission",
+    "no train/dev/test split yet; keep derived groups together"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "run": {
+    "total_sample_count": 510,
+    "completed_sample_count": 510,
+    "failed_question_count": 0,
+    "asr_retry_exhausted_sample_count": 0,
+    "asr_retry_exhausted_question_count": 0,
+    "input_asr_sample_count": 510,
+    "out_of_benchmark_asr_sample_count": 0
+  },
+  "overall": {
+    "question_count": 3416,
+    "total_score": 2684,
+    "max_possible_score": 4322,
+    "normalized_score": 0.6210087922258214
+  },
+  "by_category": {
+    "content": {
+      "question_count": 1872,
+      "total_score": 1812,
+      "max_possible_score": 1872,
+      "normalized_score": 0.967948717948718
+    },
+    "filter": {
+      "question_count": 491,
+      "total_score": 298,
+      "max_possible_score": 982,
+      "normalized_score": 0.3034623217922607
+    },
+    "format": {
+      "question_count": 638,
+      "total_score": 391,
+      "max_possible_score": 638,
+      "normalized_score": 0.6128526645768025
+    },
+    "rephrase": {
+      "question_count": 415,
+      "total_score": 183,
+      "max_possible_score": 830,
+      "normalized_score": 0.22048192771084338
+    }
+  },
+  "by_scene": {
+    "academic": {
+      "question_count": 459,
+      "total_score": 321,
+      "max_possible_score": 563,
+      "normalized_score": 0.5701598579040853
+    },
+    "customer_service": {
+      "question_count": 381,
+      "total_score": 262,
+      "max_possible_score": 465,
+      "normalized_score": 0.5634408602150538
+    },
+    "daily_chat": {
+      "question_count": 361,
+      "total_score": 296,
+      "max_possible_score": 451,
+      "normalized_score": 0.656319290465632
+    },
+    "dictation_memo": {
+      "question_count": 403,
+      "total_score": 303,
+      "max_possible_score": 494,
+      "normalized_score": 0.6133603238866396
+    },
+    "explanation": {
+      "question_count": 241,
+      "total_score": 153,
+      "max_possible_score": 375,
+      "normalized_score": 0.408
+    },
+    "meeting": {
+      "question_count": 293,
+      "total_score": 212,
+      "max_possible_score": 371,
+      "normalized_score": 0.5714285714285714
+    },
+    "navigation": {
+      "question_count": 276,
+      "total_score": 224,
+      "max_possible_score": 358,
+      "normalized_score": 0.6256983240223464
+    },
+    "passthrough": {
+      "question_count": 379,
+      "total_score": 427,
+      "max_possible_score": 444,
+      "normalized_score": 0.9617117117117117
+    },
+    "vibe_coding": {
+      "question_count": 360,
+      "total_score": 268,
+      "max_possible_score": 459,
+      "normalized_score": 0.5838779956427015
+    },
+    "voice_search": {
+      "question_count": 263,
+      "total_score": 218,
+      "max_possible_score": 342,
+      "normalized_score": 0.6374269005847953
+    }
+  },
+  "asr_metrics": {
+    "sample_count": 510,
+    "text_metric_sample_count": 510,
+    "latency_sample_count": 0,
+    "missing_latency_sample_count": 510,
+    "average_latency_ms": 0.0,
+    "wer": 0.5152069517493711,
+    "wer_errors": 2253,
+    "wer_reference_units": 4373,
+    "cer": 0.22879609130467973,
+    "cer_errors": 5994,
+    "cer_reference_units": 26198,
+    "mer": 0.25361396490590055,
+    "mer_errors": 5579,
+    "mer_reference_units": 21998
+  },
+  "config": {
+    "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora_gate.for_rubric.jsonl",
+    "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+    "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora_gate.rubric_results.jsonl",
+    "model": "aasr-rubric-gemma4",
+    "text_field": "output",
+    "weighting": "question"
+  }
+}

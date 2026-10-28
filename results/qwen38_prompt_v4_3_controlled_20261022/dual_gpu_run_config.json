@@ -1,0 +1,15 @@
+{
+  "gpus": [
+    0,
+    1
+  ],
+  "ports": [
+    8012,
+    8013
+  ],
+  "max_sequences_per_gpu": 8,
+  "client_concurrency_per_arm": 8,
+  "total_client_concurrency": 16,
+  "partial_run": "archived_single_gpu_partial",
+  "paired_routing": "same case goes to same GPU in both arms"
+}

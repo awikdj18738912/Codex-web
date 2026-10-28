@@ -1,0 +1,23 @@
+{
+  "sample_size": 300,
+  "strata": {
+    "clean_passthrough": 50,
+    "repetition_false_start": 50,
+    "self_correction": 50,
+    "boundary_punctuation": 50,
+    "fillers": 50,
+    "natural_mixed_code_switch": 50
+  },
+  "sampling_seed": 20261022,
+  "excluded_previously_reviewed_case_ids": 160,
+  "reviewer": "independent conversational model review",
+  "blinding": "category, scene, case_id, generator provenance, prior teacher decisions withheld in packet",
+  "rubric": [
+    "source coherence/naturalness",
+    "target faithfully preserves final intended meaning",
+    "whether a meaningful refinement is needed",
+    "critical semantic or style issue"
+  ],
+  "packet": "independent_blind_audit_300.jsonl",
+  "key": "independent_blind_audit_300_key.jsonl"
+}

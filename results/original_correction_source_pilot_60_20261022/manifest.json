@@ -1,0 +1,33 @@
+{
+  "candidate_pool_count_by_scene": {
+    "academic": 623,
+    "customer_service": 2489,
+    "daily_chat": 3951,
+    "dictation_memo": 1851,
+    "explanation": 3122,
+    "meeting": 3737,
+    "navigation": 925,
+    "vibe_coding": 7970,
+    "voice_search": 1097
+  },
+  "sample_size": 60,
+  "quotas": {
+    "customer_service": 10,
+    "daily_chat": 10,
+    "vibe_coding": 10,
+    "academic": 5,
+    "explanation": 5,
+    "navigation": 5,
+    "voice_search": 5,
+    "meeting": 5,
+    "dictation_memo": 5
+  },
+  "sampling_seed": 20261025,
+  "filter": "reviewed train targets only; input!=target; self-correction discourse markers; excludes parenthesis/brackets and all previous 5k/300/v4 pilot target hashes; excludes source IDs already reviewed in target-first pilot",
+  "all_split_train": true,
+  "review_decisions": {
+    "review_pass": 60
+  },
+  "production_data_modified": false,
+  "purpose": "audit existing source-target correction pairs as an alternative to generating correction histories from clean targets"
+}

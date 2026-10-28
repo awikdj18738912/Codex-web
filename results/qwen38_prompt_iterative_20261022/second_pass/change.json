@@ -1,0 +1,7 @@
+{
+  "method": "Two-pass offline teacher generation: stage1 frozen baseline Qwen3.8 output, stage2 source-guided cleanup. Existing training target never supplied.",
+  "only_experiment": true,
+  "production_prompt_changed": false,
+  "pipeline_contract_different": true,
+  "reason": "Three single-pass variants still trade cleanup against semantic preservation; test local editing of an existing draft instead of regenerating a paraphrase."
+}

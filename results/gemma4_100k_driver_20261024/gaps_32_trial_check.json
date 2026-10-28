@@ -1,0 +1,107 @@
+{
+  "checked_utc": "2026-10-24T18:15:48.780969+00:00",
+  "runtime": {
+    "started_utc": "2026-10-24T18:12:07.406797+00:00",
+    "dataset_config_hash": "8058304052419415a249aea2b2af19b447f821c506d5ef520c1253d5ae1b5d1e",
+    "logical_api_in_dataset_config": "http://127.0.0.1:8014/v1",
+    "actual_endpoints": [
+      "http://127.0.0.1:8014/v1"
+    ],
+    "workers": 32,
+    "per_server_limit": 32,
+    "batch_size": 4,
+    "request_timeout_seconds": 900,
+    "active_categories": [
+      "B01",
+      "B02",
+      "B03",
+      "D02",
+      "E03",
+      "E06"
+    ],
+    "scope_maximum": 40000,
+    "phase_stop_after_additional": 512,
+    "scoped_runner_source_sha256": "3ee0a920a03b5ad5843160bba5a933e074e059f98e278ff631987c63b5f5a918",
+    "transport_source_sha256": "294cb300c4fe4594338140fcb0178a86ce9d997e9fcca8ed4c75cc7a5f2e8894",
+    "note": "Transport-only change; original generation/audit rules, quotas and ledger retained. Raw responses identify the actual endpoint. Accepted remains pending human review."
+  },
+  "counts": {
+    "accepted": 3385,
+    "rejected": 1563
+  },
+  "new_counts_by_category_status": [
+    [
+      "B01",
+      "accepted",
+      34
+    ],
+    [
+      "B01",
+      "rejected",
+      18
+    ],
+    [
+      "B02",
+      "accepted",
+      36
+    ],
+    [
+      "B02",
+      "rejected",
+      16
+    ],
+    [
+      "B03",
+      "accepted",
+      23
+    ],
+    [
+      "B03",
+      "rejected",
+      25
+    ],
+    [
+      "D02",
+      "accepted",
+      9
+    ],
+    [
+      "D02",
+      "rejected",
+      43
+    ],
+    [
+      "E03",
+      "accepted",
+      41
+    ],
+    [
+      "E03",
+      "rejected",
+      11
+    ],
+    [
+      "E06",
+      "accepted",
+      29
+    ],
+    [
+      "E06",
+      "rejected",
+      19
+    ]
+  ],
+  "new_accepted_since_32_start": 172,
+  "elapsed_seconds": 221.4,
+  "accepted_per_hour_including_warmup": 2797.1,
+  "baseline_same_six_categories_accepted_in_last_hour_before_switch": 311,
+  "all_previous_3213_candidates_preserved": true,
+  "only_selected_categories_generated": true,
+  "metrics": [
+    "vllm:num_requests_running{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 32.0",
+    "vllm:num_requests_waiting{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.0",
+    "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.6121352704187523",
+    "vllm:num_preemptions_total{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 4.0"
+  ],
+  "note": "Current trial still running; not a controlled quality or latency benchmark. Baseline and trial category proportions can differ."
+}

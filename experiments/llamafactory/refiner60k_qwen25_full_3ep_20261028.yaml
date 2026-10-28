@@ -1,0 +1,59 @@
+# Provisional 60k expansion: full SFT after audits and quarantines, original splits retained.
+# Match the no-C02 LoRA model, data splits, template, cutoff and epochs.
+model_name_or_path: /home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct
+trust_remote_code: false
+flash_attn: sdpa
+cache_dir: /home/aim0/data/ASR/training/refiner13_qwen25_lora_20261026/hf_cache
+
+stage: sft
+do_train: true
+do_eval: true
+finetuning_type: full
+
+dataset_dir: /home/aim0/data/datasets/ASR/refiner60k_qwen25_full_20261027
+dataset: refiner60k_train
+eval_dataset: refiner60k_dev
+template: qwen
+cutoff_len: 1024
+packing: false
+train_on_prompt: false
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+overwrite_cache: false
+tokenized_path: /home/aim0/data/datasets/ASR/refiner60k_qwen25_full_20261027/tokenized_cache
+
+output_dir: /home/aim0/data/ASR/training/qwen25_05b_refiner60k_full_3ep_20261028
+overwrite_output_dir: false
+logging_steps: 20
+logging_first_step: true
+save_strategy: steps
+save_steps: 100
+eval_strategy: steps
+eval_steps: 100
+save_total_limit: 3
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+prediction_loss_only: true
+eval_accumulation_steps: 1
+plot_loss: true
+save_only_model: false
+report_to: none
+push_to_hub: false
+
+# Full-parameter micro batch 2 matched to LoRA effective batch 64.
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 2
+gradient_accumulation_steps: 32
+num_train_epochs: 3
+learning_rate: 0.00002
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+weight_decay: 0.01
+max_grad_norm: 1.0
+optim: adamw_torch
+bf16: true
+fp16: false
+gradient_checkpointing: true
+seed: 20261027
+data_seed: 20261027

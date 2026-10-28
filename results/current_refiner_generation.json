@@ -1,0 +1,48 @@
+{
+  "status": "resumed_after_A02_audit_prompt_fix",
+  "output": "/home/aim0/data/datasets/ASR/refiner_balanced_12classes_60k_20261027_v4",
+  "seed_manifest": "/home/aim0/data/datasets/ASR/refiner_60k_12classes_inputs_20261027_v4/manifest.json",
+  "target": 60000,
+  "seed_total": 35292,
+  "planned_net_additional": 24708,
+  "per_category_target": 5000,
+  "active_categories": [
+    "A01",
+    "A02",
+    "A03",
+    "B01",
+    "B02",
+    "C01",
+    "D01",
+    "D02",
+    "E03",
+    "E05",
+    "E06",
+    "E07"
+  ],
+  "gpu_ids": [
+    0
+  ],
+  "workers": 16,
+  "teacher_service": "refiner-teacher-gpu0-60k-20261027.service",
+  "generation_service": "refiner-generation-60k-12classes-v4-20261028.service",
+  "training_started": false,
+  "progress_file": "/home/aim0/data/datasets/ASR/refiner_balanced_12classes_60k_20261027_v4/progress.json",
+  "workflow_service": "refiner60k-experiment-workflow-3ep-20261028.service",
+  "workflow_progress": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner_60k_12classes_20261027/workflow_resume_20261028/progress.json",
+  "stop_owned_services_on_success_or_failure": true,
+  "live_status_source": "Read workflow_progress and progress_file; this file is a static launch manifest.",
+  "audit_prompt_regression_probe": "6/6 matched; audit_probe.json",
+  "retained_at_resume": 40562,
+  "workflow_script": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/scripts/run_refiner_60k_workflow_v5.py",
+  "refiner_training_plan": {
+    "lora_epochs": 3,
+    "full_epochs": 3,
+    "same_frozen_data": true,
+    "same_base": "Qwen2.5-0.5B-Instruct",
+    "execution": "GPU0 sequential",
+    "lora_config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner60k_qwen25_lora_3ep_20261028.yaml",
+    "full_config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner60k_qwen25_full_3ep_20261028.yaml",
+    "checkpoint_for_evaluation": "validation-loss best per model; report best epoch separately from training completion epoch"
+  }
+}

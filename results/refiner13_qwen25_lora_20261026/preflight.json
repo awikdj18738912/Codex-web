@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner13_qwen25_lora_20261026.yaml",
+  "config_sha256": "37cf8c1f5f1831374af1bac6f4dd83cf35602bdf53d6ed7b0b476ac7a8bd1e14",
+  "dataset_manifest_sha256": "5c9f384e6d2e193b98af29c6343463c18082f6f8b4bdb5f18f7e929745a6794e",
+  "candidate_data_are_provisional_not_human_gold": true,
+  "template": "qwen",
+  "lora_target": "all",
+  "dataset_counts": {
+    "train": 34278,
+    "dev": 1902
+  },
+  "examples_checked": 36180,
+  "max_tokens": 646,
+  "max_target_tokens": 228,
+  "assistant_only_loss": true,
+  "truncation": false
+}

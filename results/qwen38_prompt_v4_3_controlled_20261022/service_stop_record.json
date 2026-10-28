@@ -1,0 +1,32 @@
+[
+  {
+    "pid": 1232597,
+    "command": "/home/aim0/anaconda3/bin/python /home/aim0/桌面/tan/ASR/Codex-web/results/qwen38_prompt_v4_3_controlled_20261022/generate_comparison.py --variant baseline --output /home/aim0/桌面/tan/ASR/Codex-web/results/qwen38_prompt_v4_3_controlled_20261022/baseline.jsonl --concurrency 2 --retries 0 ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Codex-web"
+  },
+  {
+    "pid": 1232599,
+    "command": "/home/aim0/anaconda3/bin/python /home/aim0/桌面/tan/ASR/Codex-web/results/qwen38_prompt_v4_3_controlled_20261022/generate_comparison.py --variant revised --output /home/aim0/桌面/tan/ASR/Codex-web/results/qwen38_prompt_v4_3_controlled_20261022/revised.jsonl --concurrency 2 --retries 0 ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Codex-web"
+  },
+  {
+    "pid": 1232421,
+    "command": "python results/qwen38_prompt_v4_3_controlled_20261022/run_comparison.py ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Codex-web"
+  },
+  {
+    "pid": 1230106,
+    "command": "/home/aim0/data/conda/envs/agentic-asr/bin/python -m vllm.entrypoints.openai.api_server --model /home/aim0/data/ASR/models/Qwen3.8-27B-AWQ-INT4 --served-model-name qwen38-teacher --host 127.0.0.1 --port 8012 --language-model-only --max-model-len 3072 --max-num-seqs 4 --max-num-batched-tokens 1024 --gpu-memory-utilization 0.90 --cpu-offload-gb 0 --dtype bfloat16 --enforce-eager --reasoning-parser qwen3 ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Codex-web"
+  },
+  {
+    "pid": 774004,
+    "command": "/home/aim0/data/conda/envs/agentic-asr/bin/python -m vllm.entrypoints.openai.api_server --model /home/aim0/data/models/ASR/Index-Translate-2B-FP8 --served-model-name Index-Translate-2B --host 127.0.0.1 --port 8090 --dtype bfloat16 --quantization compressed-tensors --linear-backend marlin --language-model-only --generation-config vllm --max-model-len 2048 --max-num-seqs 8 --max-num-batched-tokens 2048 --gpu-memory-utilization 0.17 --no-enable-prefix-caching ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Translator/workbench"
+  },
+  {
+    "pid": 778308,
+    "command": "/home/aim0/data/conda/envs/agentic-asr/bin/python -u app.py --port 8083 ",
+    "cwd": "/home/aim0/桌面/tan/ASR/Translator/workbench"
+  }
+]

@@ -1,0 +1,353 @@
+{
+  "before_rule_pack": "zh-itn-strict-conservative-v90",
+  "after_rule_pack": "zh-itn-strict-conservative-v91",
+  "passed": 26,
+  "total": 26,
+  "native_suites": [
+    "rules_test",
+    "safe_test"
+  ],
+  "python_test_methods": 4,
+  "baseline_python_cases": 163,
+  "added_python_cases": 15,
+  "library": "/home/aim0/桌面/tan/ASR/Codex-web/zh-itn/zh-itn/build/libzh_itn_bridge.so",
+  "backup": "/home/aim0/桌面/tan/ASR/Codex-web/results/zh_itn_bare_degree_v91_20261027/libzh_itn_bridge_v90.so",
+  "library_sha256": "9365dd0a3a8593470eecf5e818ea10a1557d4aa19191a4b767c1c4be949c50ba",
+  "source_sha256": {
+    "zh-itn/zh-itn/src/itn_zh_conservative_v2.cc": "c262638e8b7bc263eceb8b0a2307500a65c776496dba621e46efc777ca0df659",
+    "zh-itn/zh-itn/include/itn_zh_conservative_v2.h": "c0f3937799b5cbb2e81b210880b7a477b6e1d44e6e925945d6bc70f7f583c91d",
+    "zh-itn/zh-itn/tests/itn_zh_conservative_v2_test.cc": "eef7896dfcc6d4d51b6c882f8c5a49612f7f30087af41c16fd4a861e7ea9d7ad",
+    "tests/test_zh_itn_numeric_grammar.py": "40aef871f23063ae5a8f7ddbefe2c8611a7ecedca320a23307b7ebf20ef32ee2"
+  },
+  "server_restart": false,
+  "rows": [
+    {
+      "source": "三十七度。",
+      "expected": "37度。",
+      "before": "三十七度。",
+      "after": "37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 0,
+          "end": 4
+        }
+      ]
+    },
+    {
+      "source": "大概有三十七度。",
+      "expected": "大概有37度。",
+      "before": "大概有三十七度。",
+      "after": "大概有37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 3,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "source": "今天天气大概有三十七度。",
+      "expected": "今天天气大概有37度。",
+      "before": "今天天气大概有三十七度。",
+      "after": "今天天气大概有37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 7,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "source": "旋转三十七度。",
+      "expected": "旋转37度。",
+      "before": "旋转三十七度。",
+      "after": "旋转37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "source": "用了三十七度电。",
+      "expected": "用了37度电。",
+      "before": "用了三十七度电。",
+      "after": "用了37度电。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "source": "这款白酒三十七度。",
+      "expected": "这款白酒37度。",
+      "before": "这款白酒三十七度。",
+      "after": "这款白酒37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 4,
+          "end": 8
+        }
+      ]
+    },
+    {
+      "source": "大概三十七点五度。",
+      "expected": "大概37.5度。",
+      "before": "大概三十七点五度。",
+      "after": "大概37.5度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七点五度",
+          "replacement": "37.5度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 8
+        }
+      ]
+    },
+    {
+      "source": "大概有三十七度。然后哈哈哈。",
+      "expected": "大概有37度。然后哈哈哈。",
+      "before": "大概有三十七度。然后哈哈哈。",
+      "after": "大概有37度。然后哈哈哈。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 3,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "source": "一度认为这个方案可行。",
+      "expected": "一度认为这个方案可行。",
+      "before": "一度认为这个方案可行。",
+      "after": "一度认为这个方案可行。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "几度春秋。",
+      "expected": "几度春秋。",
+      "before": "几度春秋。",
+      "after": "几度春秋。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "梅开二度。",
+      "expected": "梅开二度。",
+      "before": "梅开二度。",
+      "after": "梅开二度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "三度夺冠。",
+      "expected": "三度夺冠。",
+      "before": "三度夺冠。",
+      "after": "三度夺冠。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "第十度假村。",
+      "expected": "第十度假村。",
+      "before": "第十度假村。",
+      "after": "第十度假村。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "品牌叫三十七度。",
+      "expected": "品牌叫三十七度。",
+      "before": "品牌叫三十七度。",
+      "after": "品牌叫三十七度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "《三十七度》",
+      "expected": "《三十七度》",
+      "before": "《三十七度》",
+      "after": "《三十七度》",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "原文写作“三十七度”。",
+      "expected": "原文写作“三十七度”。",
+      "before": "原文写作“三十七度”。",
+      "after": "原文写作“三十七度”。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "文件名是三十七度。",
+      "expected": "文件名是三十七度。",
+      "before": "文件名是三十七度。",
+      "after": "文件名是三十七度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "三十七点度。",
+      "expected": "三十七点度。",
+      "before": "三十七点度。",
+      "after": "三十七点度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "三十七度至。",
+      "expected": "三十七度至。",
+      "before": "三十七度至。",
+      "after": "三十七度至。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": []
+    },
+    {
+      "source": "旋转一度。",
+      "expected": "旋转1度。",
+      "before": "旋转一度。",
+      "after": "旋转1度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "一度",
+          "replacement": "1度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 4
+        }
+      ]
+    },
+    {
+      "source": "用了一度电。",
+      "expected": "用了1度电。",
+      "before": "用了一度电。",
+      "after": "用了1度电。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "一度",
+          "replacement": "1度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 4
+        }
+      ]
+    },
+    {
+      "source": "体温三十七度。",
+      "expected": "体温37度。",
+      "before": "体温37度。",
+      "after": "体温37度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七度",
+          "replacement": "37度",
+          "kind": "zh.measure.explicit_temperature",
+          "start": 2,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "source": "三十七摄氏度。",
+      "expected": "37摄氏度。",
+      "before": "37摄氏度。",
+      "after": "37摄氏度。",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "三十七摄氏度",
+          "replacement": "37摄氏度",
+          "kind": "zh.measure.explicit_temperature",
+          "start": 0,
+          "end": 6
+        }
+      ]
+    },
+    {
+      "source": "电池容量是一百零二度",
+      "expected": "电池容量是102度",
+      "before": "电池容量是102度",
+      "after": "电池容量是102度",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "一百零二度",
+          "replacement": "102度",
+          "kind": "zh.measure.explicit_integer",
+          "start": 5,
+          "end": 10
+        }
+      ]
+    },
+    {
+      "source": "完成一百八十度大转弯",
+      "expected": "完成180度大转弯",
+      "before": "完成一百八十度大转弯",
+      "after": "完成180度大转弯",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "一百八十度",
+          "replacement": "180度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 2,
+          "end": 7
+        }
+      ]
+    },
+    {
+      "source": "洛氏硬度只有五十五度",
+      "expected": "洛氏硬度只有55度",
+      "before": "洛氏硬度只有五十五度",
+      "after": "洛氏硬度只有55度",
+      "rule_pack": "zh-itn-strict-conservative-v91",
+      "changes": [
+        {
+          "original": "五十五度",
+          "replacement": "55度",
+          "kind": "zh.measure.explicit_bare_degree",
+          "start": 6,
+          "end": 10
+        }
+      ]
+    }
+  ]
+}

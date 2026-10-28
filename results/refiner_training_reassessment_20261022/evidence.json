@@ -1,0 +1,51 @@
+{
+  "metrics": [
+    {
+      "epoch": 1,
+      "mean_logged_training_loss": 0.2870190530866011,
+      "validation_loss": 0.24267664551734924,
+      "step": 2653
+    },
+    {
+      "epoch": 2,
+      "mean_logged_training_loss": 0.1768415607146497,
+      "validation_loss": 0.22838850319385529,
+      "step": 5306
+    },
+    {
+      "epoch": 3,
+      "mean_logged_training_loss": 0.0868288671857906,
+      "validation_loss": 0.2660974860191345,
+      "step": 7959
+    },
+    {
+      "epoch": 4,
+      "mean_logged_training_loss": 0.029536262014530655,
+      "validation_loss": 0.3262068033218384,
+      "step": 10612
+    },
+    {
+      "epoch": 5,
+      "mean_logged_training_loss": 0.008442070742823042,
+      "validation_loss": 0.38725095987319946,
+      "step": 13265
+    }
+  ],
+  "full_finetuning": true,
+  "learning_rate": 2e-05,
+  "local_effective_batch": 32,
+  "paper_effective_batch": 128,
+  "local_packing": false,
+  "paper_packing": true,
+  "best_epoch": 2,
+  "final_weights_identical_to_epoch2": true,
+  "causal_limitations": [
+    "No learning rate ablation",
+    "No full vs LoRA matched comparison",
+    "No model capacity ablation locally",
+    "Validation batch changes from 1 to 4 after epoch2",
+    "256 semantic audit is a development set, not independent human gold",
+    "200 training pairs were risk stratified, not prevalence sample",
+    "Recent v4 prompts postdate completed training"
+  ]
+}

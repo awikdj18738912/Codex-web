@@ -1,0 +1,40 @@
+{
+  "selection_seed": 20261028,
+  "selection": "Round-robin stratified by category, labels fixed before inference; no selection by gate/refiner outcomes",
+  "source": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_gate_20261027/all3056_refiner/predictions.jsonl",
+  "source_sha256": "7eb8d0036c1e3608f9774812ee949625cd11c7982bbebc8a4ab9e27f69a5ac2c",
+  "frozen_split": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02/split_audit.jsonl",
+  "frozen_split_sha256": "63814c47168ee279ddee38cd6fcb51ec18e40d76236c829ed9c6232a0367357c",
+  "eligible_counts": {
+    "0": 1372,
+    "1": 1518
+  },
+  "excluded": {},
+  "selected_labels": {
+    "0": 500,
+    "1": 500
+  },
+  "selected_categories": {
+    "E06": 90,
+    "A02": 92,
+    "D01": 90,
+    "A03": 92,
+    "B02": 92,
+    "A01": 92,
+    "B01": 92,
+    "E05": 90,
+    "E03": 90,
+    "D02": 90,
+    "C01": 90
+  },
+  "derived_clean_count": 476,
+  "all_from_Gemma4_test": true,
+  "raw_and_normalized_inputs_unique": true,
+  "no_exact_input_overlap_with_train_dev_input_or_reference": true,
+  "limitations": [
+    "Candidate references not all manually audited",
+    "Derived clean texts are synthetic reference targets, not independently collected natural clean utterances",
+    "This heldout pool was previously inspected; no claim of new blind independent generalization",
+    "Reference texts are excluded from inference prompts"
+  ]
+}

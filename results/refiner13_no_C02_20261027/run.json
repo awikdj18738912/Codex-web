@@ -1,0 +1,27 @@
+{
+  "status": "training_running",
+  "started_by_user": true,
+  "method": "LLaMA-Factory SFT LoRA",
+  "base_model": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "initialization": "fresh adapter from original base, not continued from old LoRA",
+  "removed_category": "C02",
+  "removed_training_count": 2636,
+  "train_count": 31642,
+  "dev_count": 1757,
+  "test_count": 1757,
+  "epochs": 2,
+  "optimizer_steps_expected": 990,
+  "gpu": 0,
+  "service": "refiner13-no-c02-lora-gpu0.service",
+  "config": "/home/aim0/桌面/tan/ASR/Codex-web/experiments/llamafactory/refiner13_qwen25_lora_no_C02_20261027.yaml",
+  "dataset_manifest": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02/manifest.json",
+  "output_dir": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_lora_20261027",
+  "auto_evaluation": "same 1757 non-C02 test rows plus prior 71 changed clean diagnostics",
+  "quality": "provisional references; not human gold",
+  "updated_utc": "2026-10-27T05:35:23.640296+00:00",
+  "stopped_gpu0_services": [
+    "translation-workbench-web.service",
+    "translation-workbench-asr.service",
+    "translation-workbench-vllm.service"
+  ]
+}

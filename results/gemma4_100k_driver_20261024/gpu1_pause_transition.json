@@ -1,0 +1,23 @@
+{
+  "requested_utc": "2026-10-25T06:02:22.777165+00:00",
+  "reason": "User requested pausing GPU1; transition from TP2 to GPU0 only",
+  "counts_after_draining": {
+    "accepted": 39329,
+    "duplicate": 3,
+    "rejected": 33041
+  },
+  "backup": "/home/aim0/data/datasets/ASR/gemma4_selfgen_all17_100k_v2_20261024/backups/pause_gpu1_20261025T060214Z",
+  "original_config_sha256": "d68b1cec8b068bd036aad4f491604eee122897cad931eabdde42acd5b548aead",
+  "active_gpu": 0,
+  "paused_gpu": 1,
+  "new_workers": 2,
+  "selected_categories": [
+    "B01",
+    "B02",
+    "B03",
+    "D02",
+    "E03",
+    "E06"
+  ],
+  "training_started": false
+}

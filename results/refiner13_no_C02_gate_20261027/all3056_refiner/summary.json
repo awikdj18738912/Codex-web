@@ -1,0 +1,74 @@
+{
+  "status": "complete",
+  "n": 3056,
+  "label_counts": {
+    "1": 1528,
+    "0": 1528
+  },
+  "gate_threshold": 0.02,
+  "gate_edit_count": 2291,
+  "lora_edit_exact": 1552,
+  "lora_edit_excluding_outer_whitespace": 1550,
+  "lora_edit_excluding_all_whitespace": 1549,
+  "whitespace_only_changes": 3,
+  "matrix_exact": {
+    "gate_edit_lora_edit": 1537,
+    "gate_edit_lora_keep": 754,
+    "gate_keep_lora_edit": 15,
+    "gate_keep_lora_keep": 750
+  },
+  "matrix_excluding_outer_whitespace": {
+    "gate_edit_lora_edit": 1535,
+    "gate_edit_lora_keep": 756,
+    "gate_keep_lora_edit": 15,
+    "gate_keep_lora_keep": 750
+  },
+  "by_weak_label": {
+    "0": {
+      "n": 1528,
+      "gate_edit_count": 776,
+      "lora_edit_count": 40,
+      "matrix": {
+        "gate_edit_lora_edit": 34,
+        "gate_edit_lora_keep": 742,
+        "gate_keep_lora_edit": 6,
+        "gate_keep_lora_keep": 746
+      }
+    },
+    "1": {
+      "n": 1528,
+      "gate_edit_count": 1515,
+      "lora_edit_count": 1512,
+      "matrix": {
+        "gate_edit_lora_edit": 1503,
+        "gate_edit_lora_keep": 12,
+        "gate_keep_lora_edit": 9,
+        "gate_keep_lora_keep": 4
+      }
+    }
+  },
+  "lora_only": {
+    "n": 3056,
+    "exact_count": 2864,
+    "exact_rate": 0.93717277486911,
+    "clean_text_changed": 40,
+    "normalized_char_difference_rate": 0.004283617081881724
+  },
+  "gated_lora": {
+    "n": 3056,
+    "exact_count": 2861,
+    "exact_rate": 0.9361910994764397,
+    "clean_text_changed": 34,
+    "normalized_char_difference_rate": 0.004371261421152961
+  },
+  "lost_exact_from_gate": 9,
+  "gained_exact_from_gate": 6,
+  "eos_count": 3056,
+  "elapsed_seconds": 664.8127519979607,
+  "qualification": "Actual full batched LoRA inference, not cached. Output changes != objective need to refine. References are weak candidates. Concurrent GPU work means this is not an end-to-end timing benchmark.",
+  "serial70_crosscheck": {
+    "n": 70,
+    "different_outputs": 0,
+    "note": "Batch BF16 numerical differences may change greedy output; full-run comparison uses only this run."
+  }
+}

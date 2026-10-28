@@ -1,0 +1,14 @@
+{
+  "model": "qwen38-teacher",
+  "endpoints": [
+    "http://127.0.0.1:8012/v1/chat/completions",
+    "http://127.0.0.1:8013/v1/chat/completions"
+  ],
+  "prompt_sha256": "eb12b426a29732d13f7f302cd29c9fdb402721d3a629c76f01b60384c86f83b7",
+  "sample_sha256": "eb72893a99156b29fe8b719085fa92904055ddd3e40b60e098a86113c609a185",
+  "temperature": 0,
+  "max_tokens": 600,
+  "concurrency_per_gpu": 8,
+  "reference_labels_sent": false,
+  "scope": "calibration only; no training data changed"
+}

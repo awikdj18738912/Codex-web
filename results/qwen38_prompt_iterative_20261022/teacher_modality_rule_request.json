@@ -1,0 +1,22 @@
+{
+  "model": "qwen38-teacher",
+  "messages": [
+    {
+      "role": "system",
+      "content": "你编辑中文口语精修提示词。只输出JSON。"
+    },
+    {
+      "role": "user",
+      "content": "模型精修时把询问是否应该退差价改成了我要求退差价，把推测是否促销信息有误改成了断言促销信息是假的。请提出一句通用提示词规则，要求清理口语但保留疑问、推测、建议和要求的差别，不举特定商品或退款例子，不超过60字。输出字段extra_rule。"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 256,
+  "response_format": {
+    "type": "json_object"
+  },
+  "chat_template_kwargs": {
+    "enable_thinking": false,
+    "preserve_thinking": false
+  }
+}

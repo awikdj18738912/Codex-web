@@ -1,0 +1,14 @@
+{
+  "total": 99852,
+  "reused": 477,
+  "queued": 99375,
+  "batches": 199,
+  "priority_known_issues": 39,
+  "prior_reviewed_patches": 2,
+  "original_data": "/home/aim0/data/datasets/ASR/refiner_zh_100k_finalaudit_20261018/sft_reviewed_v5_20261021",
+  "source_hashes": {
+    "train_sft.json": "7c909f65dfd7e4a64f7573a844b181323721304d41fdd58a96b7ed13d1fe282d",
+    "val_sft.json": "2bc19a7e317d26e2e971b0dc82ef4ee936aa36c46e0d796a8f536f0b7e5457be"
+  },
+  "policy": "Residual error allowed; candidate dataset is evaluated by independent stratified sample and student metrics, not required to be error free. Preserve original split and all decisions. API/quote failures remain unresolved, not silently treated as bad data."
+}

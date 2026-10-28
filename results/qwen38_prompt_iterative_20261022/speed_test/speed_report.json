@@ -1,0 +1,13 @@
+{
+  "test": "same 10 development items, same Qwen3.8 model, prompt, source, first-pass draft, temperature=0/top_p=1/max_tokens=768/concurrency=4",
+  "old_engine": "vLLM 0.26.0, gpu_memory_utilization=0.80, cpu_offload_gb=3, enforce_eager=True",
+  "new_engine": "vLLM 0.26.0, gpu_memory_utilization=0.92, cpu_offload_gb=0, enforce_eager=False (CUDA Graph enabled by default)",
+  "records": 10,
+  "generation_errors": 0,
+  "exact_output_matches": 10,
+  "old_median_request_seconds": 35.33,
+  "new_median_request_seconds": 8.1,
+  "median_request_speedup_x": 4.36,
+  "new_wall_seconds": 23.9,
+  "note": "Small fixed development sample; no validation outputs used to select runtime settings."
+}

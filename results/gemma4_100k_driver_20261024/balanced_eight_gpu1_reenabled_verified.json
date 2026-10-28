@@ -1,0 +1,33 @@
+{
+  "verified_utc": "2026-10-25T15:38:17.028417+00:00",
+  "health_http": 200,
+  "active_gpu_ids": [
+    0,
+    1
+  ],
+  "workers_total": 32,
+  "per_server_limit": 32,
+  "all_previous_candidates_preserved": 42302,
+  "current_candidate_count": 42302,
+  "successful_new_model_responses": 57,
+  "rules_audits_quotas_and_seed_inputs_unchanged": true,
+  "all_balanced_class_caps_respected": true,
+  "active_categories": [
+    "A02",
+    "A03",
+    "A04",
+    "C01",
+    "D01",
+    "E03",
+    "E05",
+    "E06"
+  ],
+  "runtime_config_hash": "3a11f8a0174c64afe2b7f20213311c9cca387a0933018304265a71733b3a2725",
+  "metrics": [
+    "vllm:num_requests_running{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 30.0",
+    "vllm:num_requests_waiting{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.0",
+    "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.417165181296545",
+    "vllm:num_preemptions_total{engine=\"0\",model_name=\"gemma4-31b-teacher\"} 0.0"
+  ],
+  "training_started": false
+}

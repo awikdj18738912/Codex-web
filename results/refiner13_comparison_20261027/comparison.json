@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "test_sample_count": 1902,
+  "same_ids_inputs_references_verified": true,
+  "report": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_comparison_20261027/LoRA与全量微调对照报告.md",
+  "metrics": {
+    "LoRA两轮": {
+      "exact_match_rate": 0.880651945320715,
+      "normalized_char_error_rate": 0.00781660647371009,
+      "E07_changed_rate": 0.08843537414965986
+    },
+    "LoRA追加一轮": {
+      "exact_match_rate": 0.8774973711882229,
+      "normalized_char_error_rate": 0.008749173406582227,
+      "E07_changed_rate": 0.11564625850340136
+    },
+    "全量两轮": {
+      "exact_match_rate": 0.8848580441640379,
+      "normalized_char_error_rate": 0.00964782881462265,
+      "E07_changed_rate": 0.05442176870748299
+    }
+  },
+  "preferred_baseline": "LoRA两轮; full has some severe deletion cases, additional LoRA epoch did not improve aggregate metrics",
+  "test_labels": "provisional not human gold"
+}

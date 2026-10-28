@@ -1,0 +1,26 @@
+{
+  "sample_size": 100,
+  "eligible_seed_count": 107,
+  "phenomena": {
+    "clean_passthrough": 12,
+    "fillers": 20,
+    "repetition_false_start": 20,
+    "self_correction": 15,
+    "boundary_punctuation": 18,
+    "natural_mixed_code_switch": 15
+  },
+  "sampling_seed": 20261024,
+  "source": "300-record blinded audit; seed source IDs were traced to reviewed train split",
+  "category_assignment": "category is assigned directly with the selected seed; all natural_mixed_code_switch seeds must have an existing ASCII/code span; controls must have no common oral correction/filler markers",
+  "exclusions": [
+    "source review not PASS",
+    "pair review not PASS",
+    "critical issue flagged",
+    "parentheses/brackets",
+    "credential-shaped assignments",
+    "outside 20-180 chars"
+  ],
+  "production_data_modified": false,
+  "purpose": "corrected sampling pilot only; not training data",
+  "seed_pool_sha256": "d72f58018fdcfeb3df61bd09c3d8ff947eb0ee09fb7dde1a634f0a2b9e8ba5dd"
+}

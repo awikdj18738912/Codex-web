@@ -1,0 +1,16 @@
+{
+  "model": "qwen38-teacher",
+  "variant": "revised",
+  "instructions_sha256": "f1af23c8e74f3e0971940ecd944d36e98c6f7d2a199b275c1878f9da1cb840bd",
+  "retries": 0,
+  "seed_rule": "sha256(case_id:attempt) first 8 hex digits, identical across variants",
+  "passthrough_policy": "deterministic copy, excluded from generation effectiveness estimates",
+  "sample_sha256": "d72f58018fdcfeb3df61bd09c3d8ff947eb0ee09fb7dde1a634f0a2b9e8ba5dd",
+  "system_prompt_sha256": "c6e78dff11f99ca3d456621084e56443d678e8ba10c6cff4e1e33fdeea2fef0c",
+  "validator": "all-digit-surfaces+number-unit-surfaces+ASCII+URLs+assignments+operators+quoted ASCII literals+new brackets",
+  "temperature": 0.65,
+  "top_p": 0.8,
+  "max_tokens": 768,
+  "concurrency": 2,
+  "no_production_data_modified": true
+}

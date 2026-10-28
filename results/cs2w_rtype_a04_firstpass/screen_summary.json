@@ -1,0 +1,27 @@
+{
+  "source_rows_train": 5789,
+  "source_rtype_sentences": 4212,
+  "mechanically_shortlisted": 823,
+  "mechanical_exclusions": {
+    "exact_literal_repeat_later": 2477,
+    "multiple_R_spans": 556,
+    "cooccurring_other_error_labels": 292,
+    "annotated_span_retained_in_ref": 64,
+    "R_annotation_character_alignment_exception_rows": 8
+  },
+  "LLM_assisted_first_pass": {
+    "other_R_type": 445,
+    "non_A04_but_pair_ok": 21,
+    "bad_pair": 118,
+    "A04_restart": 201,
+    "uncertain": 38
+  },
+  "provisional_A04_by_position": {
+    "sentence_start": 78,
+    "within_sentence": 123
+  },
+  "human_reviewed": false,
+  "admitted_to_current_training": 0,
+  "decision": "The provisional A04 count is not stable enough for admission; first-pass readers disagreed strongly across batches. Treat 823 as review queue and 201 as provisional model suggestions only.",
+  "reference": "CS2W R-type mixes repeat/restart/repair; its native label is not A04."
+}

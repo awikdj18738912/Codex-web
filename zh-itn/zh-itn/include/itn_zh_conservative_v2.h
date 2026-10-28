@@ -10,7 +10,7 @@
 namespace zh_itn::itn {
 
 inline constexpr const char* kZhConservativeV2RulePack =
-    "zh-itn-strict-conservative-v90";
+    "zh-itn-strict-conservative-v91";
 
 struct V2SegmentRequest {
     std::string text;

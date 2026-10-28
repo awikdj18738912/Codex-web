@@ -1,0 +1,109 @@
+{
+  "sample_size": 300,
+  "reviewer": "ChatGPT independent review; generation category and original teacher reviews were hidden during review",
+  "source_quality_counts": {
+    "borderline": 83,
+    "fail": 100,
+    "pass": 117
+  },
+  "target_fidelity_counts": {
+    "pass": 281,
+    "fail": 19
+  },
+  "refinement_counts": {
+    "adequate_noop": 87,
+    "no_op_but_source_invalid": 1,
+    "adequate": 48,
+    "overedited": 4,
+    "missed": 115,
+    "partial": 45
+  },
+  "critical_issue_count": 124,
+  "exact_oral_target_count": 183,
+  "by_phenomenon": {
+    "boundary_punctuation": {
+      "n": 50,
+      "source_fail": 16,
+      "source_borderline": 13,
+      "source_pass": 21,
+      "target_fail": 3,
+      "refinement_missed": 22,
+      "refinement_partial": 5,
+      "critical_issues": 22,
+      "oral_equals_target": 35
+    },
+    "clean_passthrough": {
+      "n": 50,
+      "source_fail": 16,
+      "source_borderline": 15,
+      "source_pass": 19,
+      "target_fail": 1,
+      "refinement_missed": 19,
+      "refinement_partial": 2,
+      "critical_issues": 18,
+      "oral_equals_target": 50
+    },
+    "fillers": {
+      "n": 50,
+      "source_fail": 13,
+      "source_borderline": 15,
+      "source_pass": 22,
+      "target_fail": 3,
+      "refinement_missed": 13,
+      "refinement_partial": 16,
+      "critical_issues": 16,
+      "oral_equals_target": 7
+    },
+    "natural_mixed_code_switch": {
+      "n": 50,
+      "source_fail": 17,
+      "source_borderline": 18,
+      "source_pass": 15,
+      "target_fail": 4,
+      "refinement_missed": 20,
+      "refinement_partial": 5,
+      "critical_issues": 19,
+      "oral_equals_target": 38
+    },
+    "repetition_false_start": {
+      "n": 50,
+      "source_fail": 15,
+      "source_borderline": 10,
+      "source_pass": 25,
+      "target_fail": 2,
+      "refinement_missed": 13,
+      "refinement_partial": 12,
+      "critical_issues": 20,
+      "oral_equals_target": 17
+    },
+    "self_correction": {
+      "n": 50,
+      "source_fail": 23,
+      "source_borderline": 12,
+      "source_pass": 15,
+      "target_fail": 6,
+      "refinement_missed": 28,
+      "refinement_partial": 5,
+      "critical_issues": 29,
+      "oral_equals_target": 36
+    }
+  },
+  "sampling_weights_from_4989_valid_candidates": {
+    "boundary_punctuation": 0.09961916215674484,
+    "clean_passthrough": 0.15033072760072158,
+    "fillers": 0.25055121266786934,
+    "natural_mixed_code_switch": 0.049709360593305274,
+    "repetition_false_start": 0.19983964722389255,
+    "self_correction": 0.24994988975746643
+  },
+  "production_weighted_estimates_not_full_audit": {
+    "source_fail": 0.3369573060733614,
+    "source_borderline": 0.2640168370414913,
+    "target_fail": 0.06598115854880737,
+    "critical_issue": 0.42192423331328927,
+    "missed_refinement": 0.37791541391060335,
+    "partial_refinement": 0.1740789737422329,
+    "source_target_identical": 0.540829825616356,
+    "strict_pair_pass": 0.39003006614552016
+  }
+}

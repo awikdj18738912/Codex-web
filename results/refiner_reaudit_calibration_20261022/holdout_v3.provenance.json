@@ -1,0 +1,16 @@
+{
+  "model": "qwen38-teacher",
+  "endpoints": [
+    "http://127.0.0.1:8012/v1/chat/completions",
+    "http://127.0.0.1:8013/v1/chat/completions"
+  ],
+  "prompt_sha256": "cf7d35a8dadbfffabaacdc6419f0fd8d9e99d9a5cdb68dbc50c6c2ed04395bed",
+  "sample_sha256": "561078066bc8aa0e4d0534ef09597c121c3ba03190e80ed484298807c6627dc9",
+  "temperature": 0,
+  "max_tokens": 1100,
+  "thinking": false,
+  "context_budget": "tokenize count; cap at model limit minus prompt minus16",
+  "concurrency_per_gpu": 8,
+  "reference_labels_sent": false,
+  "scope": "calibration only; no training data changed"
+}

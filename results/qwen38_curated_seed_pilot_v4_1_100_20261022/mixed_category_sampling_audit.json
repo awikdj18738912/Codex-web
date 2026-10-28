@@ -1,0 +1,108 @@
+{
+  "assigned_natural_mixed_code_switch_targets": 11,
+  "seed_targets_with_ascii": 4,
+  "outputs_with_ascii": 5,
+  "valid_for_category_rate_estimate": false,
+  "reason": "phenomenon labels were randomized independently from the selected ASCII-bearing seed subset; do not use the mixed-code trigger estimate.",
+  "cases": [
+    {
+      "case_id": "curated_v4_085",
+      "target_sha256": "0a0325ca41529aaddeda9217b0ab3cbfc6214b37331c64e4a4e4670395d21dc4",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "我之前在宁夏回族自治区银川市金凤区北京中路188号下的单，订单号是2024121888664422。申请退款时，系统自动将钱退回到原支付账户，但网页上展示的颜色与收到货的颜色差异很大，根本不是同一颜色。我原本想询问是否可以换一种退款方式，比如退到其他银行卡，但系统没有提供选项，直接退回了。对此我有些不满意，希望能再处理一下。",
+      "clean_target": "我之前在宁夏回族自治区银川市金凤区北京中路188号下的单，订单号是2024121888664422。申请退款时，系统自动将钱退回到原支付账户，但网页上展示的颜色与收到货的颜色差异很大，根本不是同一颜色。我原本想询问是否可以换一种退款方式，比如退到其他银行卡，但系统没有提供选项，直接退回了。对此我有些不满意，希望能再处理一下。",
+      "phenomenon_trigger_recorded": false
+    },
+    {
+      "case_id": "curated_v4_076",
+      "target_sha256": "5f32866421a3ae16bc9e988e8deb28e0748ac579e72ea85fdd96744150d754d4",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "最近几个项目都卡住了，企业供应链系统里采购订单的交付周期异常延长，工业视觉检测模型的误报率高于阈值，还有边缘设备固件签名验证的成功率不稳定，这些都在拖整体进度，得赶紧协调资源解决。",
+      "clean_target": "最近几个项目都遇到了技术瓶颈，企业供应链系统采购订单交付周期异常延长，工业视觉检测模型误报率高于阈值，边缘设备固件签名验证成功率不稳定，这些都影响了整体进度，需尽快协调资源解决。",
+      "phenomenon_trigger_recorded": false
+    },
+    {
+      "case_id": "curated_v4_015",
+      "target_sha256": "bfbf5e082c43aa1cacb9a6f9da93c14f9328bdeef95673cf7f4d98cebf933f96",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "哎，你去过杭州那个良渚遗址区吧？我前2天去，碰上小郑，就是那个讲解员，讲得可细了，什么玉琮啊、古城墙啊，听得我差点以为自己穿越回5000年前了。不过说实话，他一开始说‘良渚文化’的时候，我还真以为是‘良猪’文化，闹了个笑话，后来才反应过来，是‘良渚’，不是‘良猪’。这名字太像了，得改过来，是良渚，不是良猪，不然以后别人还以为我们挖的是猪骨头呢……",
+      "clean_target": "哎，你去过杭州那个良渚遗址区吧？我前2天去，碰上小郑，就是那个讲解员，讲得可细了，什么玉琮啊、古城墙啊，听得我差点以为自己穿越回5000年前了。不过说实话，他一开始说‘良渚文化’的时候，我还真以为是‘良猪’文化，闹了个笑话，后来才反应过来，是‘良渚’，不是‘良猪’。这名字太像了，得改过来，是良渚，不是良猪，不然以后别人还以为我们挖的是猪骨头呢……",
+      "phenomenon_trigger_recorded": false
+    },
+    {
+      "case_id": "curated_v4_002",
+      "target_sha256": "9bdf50e7307567996453bb86c2aa8793b2b98852e6dbc775cec65c7fb4dd0bcf",
+      "target_has_ascii": true,
+      "source_has_ascii": true,
+      "source_text": "我先用 git checkout -b feature/user-auth 新建分支，然后运行 npm run test:coverage 检查测试覆盖率，如果没问题就推送上去；如果遇到 409 Conflict 就重新拉取，最后再确认一下 aws ec2 describe-instances 的输出是否正常。",
+      "clean_target": "我先用 git checkout -b feature/user-auth 新建分支，然后运行 npm run test:coverage 检查测试覆盖率，如果没问题就推送上去；如果遇到 409 Conflict 就重新拉取，最后再确认一下 aws ec2 describe-instances 的输出是否正常。",
+      "phenomenon_trigger_recorded": true
+    },
+    {
+      "case_id": "curated_v4_018",
+      "target_sha256": "23d444910fb189295f1dad25245ce0e31055bdd88591e032d30ae7179da12fef",
+      "target_has_ascii": true,
+      "source_has_ascii": true,
+      "source_text": "我是在找运行时的错误日志，比如在 /var/log 目录下，结合 Gin 框架的上下文，因为是用 Gin 写的 API，错误可能记录在日志里。应该先用 grep -r \"error\" /var/log 查看日志，再结合 Gin 的 middleware 日志，然后检查 enum 中是否有错误码定义，最后查看 namespace 的结构来定位问题。",
+      "clean_target": "我是在找运行时的错误日志，比如在 /var/log 目录下，结合 Gin 框架的上下文，因为是用 Gin 写的 API，错误可能记录在日志里。应该先用 grep -r \"error\" /var/log 查看日志，再结合 Gin 的 middleware 日志，然后检查 enum 中是否有错误码定义，最后查看 namespace 的结构来定位问题。",
+      "phenomenon_trigger_recorded": true
+    },
+    {
+      "case_id": "curated_v4_020",
+      "target_sha256": "d6071562ae936ec00dfaa9dd17b89340a4075feadc573a81d402cb4dae2e933a",
+      "target_has_ascii": true,
+      "source_has_ascii": true,
+      "source_text": "帮我找一下抖音上那个1280x720分辨率的城市夜景航拍视频合集，之前找的是90秒的，现在要的是更清晰的版本。",
+      "clean_target": "帮我找一下抖音上那个1280x720分辨率的城市夜景航拍视频合集，之前找的是90秒的，现在要的是更清晰的版本。",
+      "phenomenon_trigger_recorded": true
+    },
+    {
+      "case_id": "curated_v4_065",
+      "target_sha256": "40d787548d426ff3cfc22ee36cb8b3612e249c28a83e03abe39565b3f60a405a",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "我们医院感染控制与环境消毒效果动态评估小组最近发现，关键区域的消毒效率在4.3小时后趋于稳定，这个时间点需要重新校准，而不是原先预估的5小时。",
+      "clean_target": "我们医院感染控制与环境消毒效果动态评估小组最近发现，关键区域的消毒效率在4.3小时后趋于稳定，这个时间点需要重新校准，而不是原先预估的5小时。",
+      "phenomenon_trigger_recorded": false
+    },
+    {
+      "case_id": "curated_v4_090",
+      "target_sha256": "847537fe91d0eec5dd7fb90e41e32e5b6687291a5184dc5418e9eca50187052a",
+      "target_has_ascii": false,
+      "source_has_ascii": true,
+      "source_text": "你见过成都锦里古街武侯祠侧门灯笼巷那条小路吗？晚上灯光一亮，红灯笼挂得密密麻麻，走上去像进了古代街市，特别有氛围。我上次去拍了张照片，60fps的视频里，连风吹灯笼的晃动都清楚得很，真没想到这么小的巷子能这么出片。",
+      "clean_target": "你见过成都锦里古街武侯祠侧门灯笼巷那条小路吗？晚上灯光一亮，红灯笼挂得密密麻麻，走上去像进了古代街市，特别有氛围。我上次去拍了张照片，60帧每秒的视频里，连风吹灯笼的晃动都清楚得很，真没想到这么小的巷子能这么出片。",
+      "phenomenon_trigger_recorded": true
+    },
+    {
+      "case_id": "curated_v4_094",
+      "target_sha256": "c70da269b845c10f16ce5a132abee1afd9336dae7924eb451e46392fac23cf68",
+      "target_has_ascii": true,
+      "source_has_ascii": true,
+      "source_text": "我那天买了阿迪达斯NMD_R1，本来想用信用卡支付，但页面一直卡，我点了好几次，结果不小心扣了2次钱。我赶紧申请退款，本来说是3天内到账，现在快1个星期了还没消息。我先打电话给客服，对方说‘您可能理解有误’，我有点火大，就问‘我都扣了2次了，还能理解错？’后来换了个人，才说会查，但到现在还是没回音。我这心里特别没底，这事儿到底什么时候能解决啊？",
+      "clean_target": "我那天买了阿迪达斯NMD_R1，本来想用信用卡支付，但页面一直卡，我点了好几次，结果不小心扣了2次钱。我赶紧申请退款，本来说是3天内到账，现在快1个星期了还没消息。我先打电话给客服，对方说‘您可能理解有误’，我有点火大，就问‘我都扣了2次了，还能理解错？’后来换了个人，才说会查，但到现在还是没回音。我这心里特别没底，这事儿到底什么时候能解决啊？",
+      "phenomenon_trigger_recorded": true
+    },
+    {
+      "case_id": "curated_v4_096",
+      "target_sha256": "ac04ffbd17ef6b26bf3f8d5848f60c19c4c4b8aed24e3d2a9c1f9074fcd008de",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "我们这个碳足迹追踪与减排管理系统建设项目，之前定的预算大概是41.8万元，不过刚才我重新核对了一下，发现实际应该按42.3万元来算，但等一下，再确认一遍，其实还是得回到最初那个41.8万元的预算更准确，所以最终还是定在41.8万元。",
+      "clean_target": "我们这个碳足迹追踪与减排管理系统建设项目，之前定的预算大概是41.8万元，不过刚才我重新核对了一下，发现实际应该按42.3万元来算，但等一下，再确认一遍，其实还是得回到最初那个41.8万元的预算更准确，所以最终还是定在41.8万元。",
+      "phenomenon_trigger_recorded": false
+    },
+    {
+      "case_id": "curated_v4_064",
+      "target_sha256": "f304d09c13576786fbdbdbd4cfc9b12f56be22eedd8048c094209f5d42c2d515",
+      "target_has_ascii": false,
+      "source_has_ascii": false,
+      "source_text": "我这边是大连华录松下电子信息有限公司的，我之前报修的那台设备，工单号是2024102511223344，现在情况是，我们后来发现地址写错了，应该是福建省福州市鼓楼区五四路118号，不是原来填的山东省青岛市崂山区海尔路123号海尔科技园3号楼，麻烦你们把地址信息更新一下。",
+      "clean_target": "我这边是大连华录松下电子信息有限公司的，我之前报修的那台设备，工单号是2024102511223344，现在情况是，我们后来发现地址写错了，应该是福建省福州市鼓楼区五四路118号，不是原来填的山东省青岛市崂山区海尔路123号海尔科技园3号楼，麻烦你们把地址信息更新一下。",
+      "phenomenon_trigger_recorded": false
+    }
+  ]
+}

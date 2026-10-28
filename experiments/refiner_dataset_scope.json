@@ -1,0 +1,69 @@
+{
+  "active_categories": [
+    "A01",
+    "A02",
+    "A03",
+    "B01",
+    "B02",
+    "C01",
+    "D01",
+    "D02",
+    "E03",
+    "E05",
+    "E06",
+    "E07"
+  ],
+  "disabled_categories": [
+    "A04",
+    "B03",
+    "C02",
+    "C03",
+    "C04"
+  ],
+  "category_ids_renumbered": false,
+  "current_dataset_manifest": "/home/aim0/data/datasets/ASR/refiner_balanced_13classes_20261026_no_A04_B03_C03_C04/manifest.json",
+  "dataset_target": 35292,
+  "per_category": 2941,
+  "note": "A04, B03, C02, C03, C04 are excluded from active training/generation. Historical source ledgers preserved; current frozen training is the no-C02 derived manifest.",
+  "emphasis_policy": {
+    "updated_utc": "2026-10-26T05:50:49.574494+00:00",
+    "user_instruction": "忽略所有强调表达，当前精修不考虑强调表达",
+    "preserve_emphasis_exception": false,
+    "allow_repetition_compression_despite_emphasis": true,
+    "emphasis_alone_not_rejection_reason": true,
+    "scope": "Repeated/redundant emphasis may be compressed; do not delete unique facts, negation, conditions, quantities, entities, or meaningful degree words simply because they convey emphasis.",
+    "original_queue_count": 41,
+    "excluded_count": 6,
+    "remaining_review_queue_count": 35,
+    "excluded_ids_and_reasons": {
+      "A03-001000732-0": "重复“修枝剪”的强调/停顿衔接不再作为保留重复或拒收的理由，精修后对象仍明确。",
+      "A03-001001564-3": "用户点名：重复“最高优先级”允许压缩为一次，不要求保留强调重复。",
+      "A03-002003054-2": "重复“核对一下”允许合并，是否有强调作用不再作为拒收理由。",
+      "C02-002001386-0": "重复“赶紧赶紧”允许压缩为一次；强调例外取消，类别争议亦已按用户要求忽略。",
+      "FCGEC:594711f3a34a1e981633ff903086c0ad": "“之前/事先”的时间意义已在其余文本中保留；仅强调/同义冗余保留争议不再计入本次复核。",
+      "Gemma4:C02-000000560-0": "“漏水了漏水了”允许去重；报修强调不再要求保留。"
+    },
+    "candidate_dataset_unchanged": true,
+    "source_queue_preserved": "/home/aim0/data/datasets/ASR/refiner_balanced_15classes_20261026_no_C03_C04/review_queue.content_only.pending.jsonl"
+  },
+  "review_queue_path": "/home/aim0/data/datasets/ASR/refiner_balanced_13classes_20261026_no_A04_B03_C03_C04/review_queue.pending.jsonl",
+  "machine_audit_policy": {
+    "default_skip_public": true,
+    "skip_status": "skipped_public_dataset",
+    "skip_is_pass": false,
+    "public_original_labels_unchanged": true,
+    "synthetic_sources": [
+      "Gemma4"
+    ],
+    "known_public_names": [
+      "CS2W",
+      "FCGEC",
+      "ChineseHP",
+      "ChFT"
+    ],
+    "unknown_source_status": "source_unconfirmed",
+    "unknown_source_auto_pass": false,
+    "include_public_default": false
+  },
+  "current_training_dataset_manifest": "/home/aim0/data/datasets/ASR/refiner13_qwen25_lora_20261027_no_C02/manifest.json"
+}

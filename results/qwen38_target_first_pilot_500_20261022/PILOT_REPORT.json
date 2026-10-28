@@ -1,0 +1,94 @@
+{
+  "status": "5k target-first candidate pilot generated; not merged into training data",
+  "generated": {
+    "candidate_records": 5000,
+    "unique_cases": 5000,
+    "unique_clean_targets": 5000,
+    "hard_validation_errors": 11,
+    "valid_oral_outputs": 4989,
+    "generation_time_seconds": 2100.8,
+    "source_targets_from_training_split_only": true,
+    "target_overlap_between_pilot_parts": 0,
+    "first_500_wall_seconds": 355.0,
+    "additional_4500_wall_seconds": 2100.8,
+    "total_wall_seconds": 2455.8,
+    "validation_target_overlap": 0
+  },
+  "phenomena": {
+    "boundary_punctuation": {
+      "valid_candidates": 497,
+      "signal_marker_count": 212,
+      "signal_marker_rate": 0.427
+    },
+    "clean_passthrough": {
+      "valid_candidates": 750,
+      "signal_marker_count": 750,
+      "signal_marker_rate": 1.0
+    },
+    "fillers": {
+      "valid_candidates": 1250,
+      "signal_marker_count": 1090,
+      "signal_marker_rate": 0.872
+    },
+    "natural_mixed_code_switch": {
+      "valid_candidates": 248,
+      "signal_marker_count": 112,
+      "signal_marker_rate": 0.452
+    },
+    "repetition_false_start": {
+      "valid_candidates": 997,
+      "signal_marker_count": 326,
+      "signal_marker_rate": 0.327
+    },
+    "self_correction": {
+      "valid_candidates": 1247,
+      "signal_marker_count": 589,
+      "signal_marker_rate": 0.472
+    }
+  },
+  "new_bulk_stratified_review": {
+    "sample_size": 100,
+    "valid_reviews": 99,
+    "review_errors": 1,
+    "source_valid": 89,
+    "source_valid_rate": 0.899,
+    "gold_target_pass": 86,
+    "gold_target_rate": 0.869,
+    "current_refiner_output_pass": 81,
+    "current_refiner_rate": 0.818,
+    "provisional_pairs_written": 86
+  },
+  "paired_comparison_same_60_gold_targets": {
+    "valid_pairs": 55,
+    "source_valid": {
+      "target_first_only_pass": 8,
+      "original_pipeline_only_pass": 3,
+      "ties": 44,
+      "n": 55
+    },
+    "gold_target_pass": {
+      "target_first_only_pass": 8,
+      "original_pipeline_only_pass": 3,
+      "ties": 44,
+      "n": 55
+    },
+    "current_refiner_output_pass": {
+      "target_first_only_pass": 17,
+      "original_pipeline_only_pass": 8,
+      "ties": 30,
+      "n": 55
+    }
+  },
+  "limitations": [
+    "All ratings are from local Qwen3.8, which also generated data; estimates are model-assisted and not a human gold standard.",
+    "Phenomenon marker rates are string heuristics, not semantic/naturalness judgments.",
+    "Only 160 of the 5,000 generated candidate pairs have stratified local-teacher review (60 paired comparison plus 100 new bulk sample); full 5,000 has not been accepted.",
+    "All generated targets are reused from audited train split; generated additions must remain in train and not be split by row without intent grouping.",
+    "No SFT training file was modified.",
+    "The local Qwen3.8 teacher both generated and reviewed the samples; no human adjudication was performed in this pilot."
+  ],
+  "provisional_sampled_pairs_written": 135,
+  "teacher_service_after_pilot": "stopped; GPU0 freed after generation and review",
+  "production_prompt_sha256": "d054886def94bac2b7fe225667e59b05abc4d90d51a3235ae427c6f84b9873cb",
+  "training_data_modified": false
+}

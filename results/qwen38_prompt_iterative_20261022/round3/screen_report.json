@@ -1,0 +1,29 @@
+{
+  "compared_records": 40,
+  "generation_records_so_far": 40,
+  "generation_errors": 0,
+  "ratings": {
+    "baseline": {
+      "MINOR": 11,
+      "AMBIGUOUS": 3,
+      "PASS": 26
+    },
+    "candidate": {
+      "MINOR": 6,
+      "AMBIGUOUS": 3,
+      "PASS": 30,
+      "FAIL": 1
+    }
+  },
+  "paired_wins": {
+    "TIE": 31,
+    "UNRESOLVED": 3,
+    "baseline": 2,
+    "candidate": 4
+  },
+  "semantic_regression_cases": [
+    64
+  ],
+  "semantic_improvement_cases": [],
+  "limitation": "Development/risk-enriched comparison with model-assisted judgments and explicit lead adjudications; not population accuracy."
+}

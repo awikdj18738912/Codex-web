@@ -1,0 +1,39 @@
+{
+  "id": "chatcmpl-97d9a99d2c66e097",
+  "object": "chat.completion",
+  "created": 1792654689,
+  "model": "qwen38-teacher",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"correction_paragraph\": \"处理改口时，严格区分撤回与确认。若说话者明确否定或替换某项内容，仅移除被纠正部分，严禁将已撤回的提议误判为真实经历或有效步骤。当同一数值或描述用于不同对象时，需结合上下文精准定位作用范围，避免过度清理导致误删最后的纠正或独立事项。若纠正范围模糊，保留原文的不确定性，不猜测性删除未明确撤回的独立请求、原因、条件、后果及提醒。确保最终文本忠实反映说话者最后确认的意图，同时完整保留未被撤回的背景信息和有效解释。\",\n  \"rationale\": \"通过强调“仅移除被纠正部分”和“精准定位作用范围”，防止将撤回内容误留为历史或误删有效纠正。明确在范围模糊时保留不确定性，避免猜测性删除独立事项，从而平衡清理力度与信息完整性。\"\n}",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "stop_reason": null,
+      "token_ids": null,
+      "routed_experts": null
+    }
+  ],
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.26.0-6bfd7df8",
+  "usage": {
+    "prompt_tokens": 543,
+    "total_tokens": 740,
+    "completion_tokens": 197,
+    "prompt_tokens_details": null
+  },
+  "prompt_logprobs": null,
+  "prompt_token_ids": null,
+  "prompt_text": null,
+  "kv_transfer_params": null,
+  "ec_transfer_params": null,
+  "metrics": null
+}

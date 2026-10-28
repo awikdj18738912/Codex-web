@@ -1,0 +1,1503 @@
+{
+  "benchmark": "AASR-Bench Chinese oral text-only adaptation",
+  "official_rubric_run": true,
+  "official_rubric_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/rubric_scores_by_variant.json",
+  "dataset": {
+    "n": 510,
+    "scenes": {
+      "navigation": 45,
+      "customer_service": 51,
+      "explanation": 47,
+      "passthrough": 76,
+      "academic": 52,
+      "vibe_coding": 51,
+      "daily_chat": 51,
+      "meeting": 45,
+      "voice_search": 42,
+      "dictation_memo": 50
+    },
+    "passthrough_n": 76,
+    "changed_n": 434
+  },
+  "pipelines": {
+    "lora": {
+      "latency_n": 32,
+      "latency_mean_ms": 835.4979249961616,
+      "latency_median_ms": 726.665893511381,
+      "latency_p95_ms": 1549.7236926748883,
+      "latency_rule_mean_ms": 9.679938233603025,
+      "latency_gate_mean_ms": 0.0,
+      "latency_refiner_mean_ms": 822.9361002267979,
+      "latency_numeric_guard_mean_ms": 2.8471940640883986,
+      "throughput_n": 510,
+      "throughput_batches": 64,
+      "throughput_batch8_seconds_all_510": 137.5324400109239,
+      "throughput_inputs_per_second": 3.7082160394994217,
+      "throughput_mean_batch_completion_seconds": 2.148944375170686,
+      "throughput_refiner_calls": 510,
+      "throughput_rule_seconds": 5.012333107064478,
+      "throughput_gate_seconds": 0.0,
+      "throughput_refiner_seconds": 131.1337081870297,
+      "throughput_numeric_guard_seconds": 1.383644061977975,
+      "quality": {
+        "all_510": {
+          "n": 510,
+          "raw_clean_exact": 96,
+          "normalized_clean_exact": 103,
+          "raw_clean_exact_rate": 0.18823529411764706,
+          "normalized_clean_exact_rate": 0.2019607843137255
+        },
+        "passthrough_76": {
+          "n": 76,
+          "raw_clean_exact": 70,
+          "normalized_clean_exact": 76,
+          "raw_clean_exact_rate": 0.9210526315789473,
+          "normalized_clean_exact_rate": 1.0
+        },
+        "changed_434": {
+          "n": 434,
+          "raw_clean_exact": 26,
+          "normalized_clean_exact": 27,
+          "raw_clean_exact_rate": 0.059907834101382486,
+          "normalized_clean_exact_rate": 0.06221198156682028
+        },
+        "by_scene": {
+          "academic": {
+            "n": 52,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.019230769230769232,
+            "normalized_clean_exact_rate": 0.019230769230769232
+          },
+          "customer_service": {
+            "n": 51,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "daily_chat": {
+            "n": 51,
+            "raw_clean_exact": 5,
+            "normalized_clean_exact": 5,
+            "raw_clean_exact_rate": 0.09803921568627451,
+            "normalized_clean_exact_rate": 0.09803921568627451
+          },
+          "dictation_memo": {
+            "n": 50,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "explanation": {
+            "n": 47,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.06382978723404255,
+            "normalized_clean_exact_rate": 0.06382978723404255
+          },
+          "meeting": {
+            "n": 45,
+            "raw_clean_exact": 5,
+            "normalized_clean_exact": 5,
+            "raw_clean_exact_rate": 0.1111111111111111,
+            "normalized_clean_exact_rate": 0.1111111111111111
+          },
+          "navigation": {
+            "n": 45,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 4,
+            "raw_clean_exact_rate": 0.06666666666666667,
+            "normalized_clean_exact_rate": 0.08888888888888889
+          },
+          "passthrough": {
+            "n": 76,
+            "raw_clean_exact": 69,
+            "normalized_clean_exact": 75,
+            "raw_clean_exact_rate": 0.9078947368421053,
+            "normalized_clean_exact_rate": 0.9868421052631579
+          },
+          "vibe_coding": {
+            "n": 51,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.058823529411764705,
+            "normalized_clean_exact_rate": 0.058823529411764705
+          },
+          "voice_search": {
+            "n": 42,
+            "raw_clean_exact": 7,
+            "normalized_clean_exact": 7,
+            "raw_clean_exact_rate": 0.16666666666666666,
+            "normalized_clean_exact_rate": 0.16666666666666666
+          }
+        }
+      },
+      "numeric_fallback_count": 112,
+      "numeric_guard_lost_raw_clean_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "numeric_guard_lost_normalized_clean_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "non_eos_count": 0,
+      "gate_skipped_count": null
+    },
+    "lora_gate": {
+      "latency_n": 32,
+      "latency_mean_ms": 743.0715399932524,
+      "latency_median_ms": 703.163041966036,
+      "latency_p95_ms": 1550.3380748035852,
+      "latency_rule_mean_ms": 9.630857221054612,
+      "latency_gate_mean_ms": 3.358451504027471,
+      "latency_refiner_mean_ms": 727.4275489326101,
+      "latency_numeric_guard_mean_ms": 2.6216184960503597,
+      "throughput_n": 510,
+      "throughput_batches": 64,
+      "throughput_batch8_seconds_all_510": 137.2564227967523,
+      "throughput_inputs_per_second": 3.7156731146578257,
+      "throughput_mean_batch_completion_seconds": 2.1446316061992547,
+      "throughput_refiner_calls": 442,
+      "throughput_rule_seconds": 5.001798670971766,
+      "throughput_gate_seconds": 0.5528650984633714,
+      "throughput_refiner_seconds": 130.46131979778875,
+      "throughput_numeric_guard_seconds": 1.237762764794752,
+      "quality": {
+        "all_510": {
+          "n": 510,
+          "raw_clean_exact": 96,
+          "normalized_clean_exact": 103,
+          "raw_clean_exact_rate": 0.18823529411764706,
+          "normalized_clean_exact_rate": 0.2019607843137255
+        },
+        "passthrough_76": {
+          "n": 76,
+          "raw_clean_exact": 70,
+          "normalized_clean_exact": 76,
+          "raw_clean_exact_rate": 0.9210526315789473,
+          "normalized_clean_exact_rate": 1.0
+        },
+        "changed_434": {
+          "n": 434,
+          "raw_clean_exact": 26,
+          "normalized_clean_exact": 27,
+          "raw_clean_exact_rate": 0.059907834101382486,
+          "normalized_clean_exact_rate": 0.06221198156682028
+        },
+        "by_scene": {
+          "academic": {
+            "n": 52,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.019230769230769232,
+            "normalized_clean_exact_rate": 0.019230769230769232
+          },
+          "customer_service": {
+            "n": 51,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "daily_chat": {
+            "n": 51,
+            "raw_clean_exact": 5,
+            "normalized_clean_exact": 5,
+            "raw_clean_exact_rate": 0.09803921568627451,
+            "normalized_clean_exact_rate": 0.09803921568627451
+          },
+          "dictation_memo": {
+            "n": 50,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "explanation": {
+            "n": 47,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.06382978723404255,
+            "normalized_clean_exact_rate": 0.06382978723404255
+          },
+          "meeting": {
+            "n": 45,
+            "raw_clean_exact": 5,
+            "normalized_clean_exact": 5,
+            "raw_clean_exact_rate": 0.1111111111111111,
+            "normalized_clean_exact_rate": 0.1111111111111111
+          },
+          "navigation": {
+            "n": 45,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 4,
+            "raw_clean_exact_rate": 0.06666666666666667,
+            "normalized_clean_exact_rate": 0.08888888888888889
+          },
+          "passthrough": {
+            "n": 76,
+            "raw_clean_exact": 69,
+            "normalized_clean_exact": 75,
+            "raw_clean_exact_rate": 0.9078947368421053,
+            "normalized_clean_exact_rate": 0.9868421052631579
+          },
+          "vibe_coding": {
+            "n": 51,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.058823529411764705,
+            "normalized_clean_exact_rate": 0.058823529411764705
+          },
+          "voice_search": {
+            "n": 42,
+            "raw_clean_exact": 7,
+            "normalized_clean_exact": 7,
+            "raw_clean_exact_rate": 0.16666666666666666,
+            "normalized_clean_exact_rate": 0.16666666666666666
+          }
+        }
+      },
+      "numeric_fallback_count": 113,
+      "numeric_guard_lost_raw_clean_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "numeric_guard_lost_normalized_clean_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "non_eos_count": 0,
+      "gate_skipped_count": 68
+    },
+    "full": {
+      "latency_n": 32,
+      "latency_mean_ms": 819.8981136265502,
+      "latency_median_ms": 706.4592310343869,
+      "latency_p95_ms": 1511.8257762864232,
+      "latency_rule_mean_ms": 9.697088124084985,
+      "latency_gate_mean_ms": 0.0,
+      "latency_refiner_mean_ms": 807.1684726310195,
+      "latency_numeric_guard_mean_ms": 2.9918778454884887,
+      "throughput_n": 510,
+      "throughput_batches": 64,
+      "throughput_batch8_seconds_all_510": 166.41508841933683,
+      "throughput_inputs_per_second": 3.0646259593654723,
+      "throughput_mean_batch_completion_seconds": 2.600235756552138,
+      "throughput_refiner_calls": 510,
+      "throughput_rule_seconds": 5.013078103540465,
+      "throughput_gate_seconds": 0.0,
+      "throughput_refiner_seconds": 159.98668298288248,
+      "throughput_numeric_guard_seconds": 1.4125356101430953,
+      "quality": {
+        "all_510": {
+          "n": 510,
+          "raw_clean_exact": 89,
+          "normalized_clean_exact": 95,
+          "raw_clean_exact_rate": 0.17450980392156862,
+          "normalized_clean_exact_rate": 0.18627450980392157
+        },
+        "passthrough_76": {
+          "n": 76,
+          "raw_clean_exact": 70,
+          "normalized_clean_exact": 76,
+          "raw_clean_exact_rate": 0.9210526315789473,
+          "normalized_clean_exact_rate": 1.0
+        },
+        "changed_434": {
+          "n": 434,
+          "raw_clean_exact": 19,
+          "normalized_clean_exact": 19,
+          "raw_clean_exact_rate": 0.04377880184331797,
+          "normalized_clean_exact_rate": 0.04377880184331797
+        },
+        "by_scene": {
+          "academic": {
+            "n": 52,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.019230769230769232,
+            "normalized_clean_exact_rate": 0.019230769230769232
+          },
+          "customer_service": {
+            "n": 51,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "daily_chat": {
+            "n": 51,
+            "raw_clean_exact": 2,
+            "normalized_clean_exact": 2,
+            "raw_clean_exact_rate": 0.0392156862745098,
+            "normalized_clean_exact_rate": 0.0392156862745098
+          },
+          "dictation_memo": {
+            "n": 50,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.02,
+            "normalized_clean_exact_rate": 0.02
+          },
+          "explanation": {
+            "n": 47,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "meeting": {
+            "n": 45,
+            "raw_clean_exact": 4,
+            "normalized_clean_exact": 4,
+            "raw_clean_exact_rate": 0.08888888888888889,
+            "normalized_clean_exact_rate": 0.08888888888888889
+          },
+          "navigation": {
+            "n": 45,
+            "raw_clean_exact": 2,
+            "normalized_clean_exact": 2,
+            "raw_clean_exact_rate": 0.044444444444444446,
+            "normalized_clean_exact_rate": 0.044444444444444446
+          },
+          "passthrough": {
+            "n": 76,
+            "raw_clean_exact": 69,
+            "normalized_clean_exact": 75,
+            "raw_clean_exact_rate": 0.9078947368421053,
+            "normalized_clean_exact_rate": 0.9868421052631579
+          },
+          "vibe_coding": {
+            "n": 51,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.058823529411764705,
+            "normalized_clean_exact_rate": 0.058823529411764705
+          },
+          "voice_search": {
+            "n": 42,
+            "raw_clean_exact": 7,
+            "normalized_clean_exact": 7,
+            "raw_clean_exact_rate": 0.16666666666666666,
+            "normalized_clean_exact_rate": 0.16666666666666666
+          }
+        }
+      },
+      "numeric_fallback_count": 103,
+      "numeric_guard_lost_raw_clean_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "numeric_guard_lost_normalized_clean_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:97",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "non_eos_count": 1,
+      "gate_skipped_count": null
+    },
+    "full_gate": {
+      "latency_n": 32,
+      "latency_mean_ms": 728.1127029636991,
+      "latency_median_ms": 665.8910865080543,
+      "latency_p95_ms": 1520.2369673061185,
+      "latency_rule_mean_ms": 9.676878464233596,
+      "latency_gate_mean_ms": 3.509849055262748,
+      "latency_refiner_mean_ms": 712.3257783459849,
+      "latency_numeric_guard_mean_ms": 2.5675118013168685,
+      "throughput_n": 510,
+      "throughput_batches": 64,
+      "throughput_batch8_seconds_all_510": 166.5906780444784,
+      "throughput_inputs_per_second": 3.0613957874871844,
+      "throughput_mean_batch_completion_seconds": 2.602979344444975,
+      "throughput_refiner_calls": 442,
+      "throughput_rule_seconds": 5.017802352900617,
+      "throughput_gate_seconds": 0.5660096101928502,
+      "throughput_refiner_seconds": 159.7405076471623,
+      "throughput_numeric_guard_seconds": 1.2636695369146764,
+      "quality": {
+        "all_510": {
+          "n": 510,
+          "raw_clean_exact": 89,
+          "normalized_clean_exact": 95,
+          "raw_clean_exact_rate": 0.17450980392156862,
+          "normalized_clean_exact_rate": 0.18627450980392157
+        },
+        "passthrough_76": {
+          "n": 76,
+          "raw_clean_exact": 70,
+          "normalized_clean_exact": 76,
+          "raw_clean_exact_rate": 0.9210526315789473,
+          "normalized_clean_exact_rate": 1.0
+        },
+        "changed_434": {
+          "n": 434,
+          "raw_clean_exact": 19,
+          "normalized_clean_exact": 19,
+          "raw_clean_exact_rate": 0.04377880184331797,
+          "normalized_clean_exact_rate": 0.04377880184331797
+        },
+        "by_scene": {
+          "academic": {
+            "n": 52,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.019230769230769232,
+            "normalized_clean_exact_rate": 0.019230769230769232
+          },
+          "customer_service": {
+            "n": 51,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "daily_chat": {
+            "n": 51,
+            "raw_clean_exact": 2,
+            "normalized_clean_exact": 2,
+            "raw_clean_exact_rate": 0.0392156862745098,
+            "normalized_clean_exact_rate": 0.0392156862745098
+          },
+          "dictation_memo": {
+            "n": 50,
+            "raw_clean_exact": 1,
+            "normalized_clean_exact": 1,
+            "raw_clean_exact_rate": 0.02,
+            "normalized_clean_exact_rate": 0.02
+          },
+          "explanation": {
+            "n": 47,
+            "raw_clean_exact": 0,
+            "normalized_clean_exact": 0,
+            "raw_clean_exact_rate": 0.0,
+            "normalized_clean_exact_rate": 0.0
+          },
+          "meeting": {
+            "n": 45,
+            "raw_clean_exact": 4,
+            "normalized_clean_exact": 4,
+            "raw_clean_exact_rate": 0.08888888888888889,
+            "normalized_clean_exact_rate": 0.08888888888888889
+          },
+          "navigation": {
+            "n": 45,
+            "raw_clean_exact": 2,
+            "normalized_clean_exact": 2,
+            "raw_clean_exact_rate": 0.044444444444444446,
+            "normalized_clean_exact_rate": 0.044444444444444446
+          },
+          "passthrough": {
+            "n": 76,
+            "raw_clean_exact": 69,
+            "normalized_clean_exact": 75,
+            "raw_clean_exact_rate": 0.9078947368421053,
+            "normalized_clean_exact_rate": 0.9868421052631579
+          },
+          "vibe_coding": {
+            "n": 51,
+            "raw_clean_exact": 3,
+            "normalized_clean_exact": 3,
+            "raw_clean_exact_rate": 0.058823529411764705,
+            "normalized_clean_exact_rate": 0.058823529411764705
+          },
+          "voice_search": {
+            "n": 42,
+            "raw_clean_exact": 7,
+            "normalized_clean_exact": 7,
+            "raw_clean_exact_rate": 0.16666666666666666,
+            "normalized_clean_exact_rate": 0.16666666666666666
+          }
+        }
+      },
+      "numeric_fallback_count": 103,
+      "numeric_guard_lost_raw_clean_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "numeric_guard_lost_normalized_clean_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "non_eos_count": 1,
+      "gate_skipped_count": 68
+    },
+    "agentic1b": {
+      "latency_n": 32,
+      "latency_mean_ms": 792.350812946097,
+      "latency_median_ms": 702.9546640114859,
+      "latency_p95_ms": 1551.0781753691842,
+      "latency_rule_mean_ms": 0.00046812056098133326,
+      "latency_gate_mean_ms": 0.0,
+      "latency_refiner_mean_ms": 792.3277002228133,
+      "latency_numeric_guard_mean_ms": 0.0,
+      "throughput_n": 510,
+      "throughput_batches": 64,
+      "throughput_batch8_seconds_all_510": 129.86488254205324,
+      "throughput_inputs_per_second": 3.927158674592804,
+      "throughput_mean_batch_completion_seconds": 2.029138789719582,
+      "throughput_refiner_calls": 510,
+      "throughput_rule_seconds": 3.3100019209086895e-05,
+      "throughput_gate_seconds": 0.0,
+      "throughput_refiner_seconds": 129.86332872975618,
+      "throughput_numeric_guard_seconds": 0.0,
+      "quality": {
+        "all_510": {
+          "n": 510,
+          "raw_clean_exact": 190,
+          "normalized_clean_exact": 185,
+          "raw_clean_exact_rate": 0.37254901960784315,
+          "normalized_clean_exact_rate": 0.3627450980392157
+        },
+        "passthrough_76": {
+          "n": 76,
+          "raw_clean_exact": 60,
+          "normalized_clean_exact": 56,
+          "raw_clean_exact_rate": 0.7894736842105263,
+          "normalized_clean_exact_rate": 0.7368421052631579
+        },
+        "changed_434": {
+          "n": 434,
+          "raw_clean_exact": 130,
+          "normalized_clean_exact": 129,
+          "raw_clean_exact_rate": 0.2995391705069124,
+          "normalized_clean_exact_rate": 0.29723502304147464
+        },
+        "by_scene": {
+          "academic": {
+            "n": 52,
+            "raw_clean_exact": 4,
+            "normalized_clean_exact": 4,
+            "raw_clean_exact_rate": 0.07692307692307693,
+            "normalized_clean_exact_rate": 0.07692307692307693
+          },
+          "customer_service": {
+            "n": 51,
+            "raw_clean_exact": 9,
+            "normalized_clean_exact": 9,
+            "raw_clean_exact_rate": 0.17647058823529413,
+            "normalized_clean_exact_rate": 0.17647058823529413
+          },
+          "daily_chat": {
+            "n": 51,
+            "raw_clean_exact": 15,
+            "normalized_clean_exact": 14,
+            "raw_clean_exact_rate": 0.29411764705882354,
+            "normalized_clean_exact_rate": 0.27450980392156865
+          },
+          "dictation_memo": {
+            "n": 50,
+            "raw_clean_exact": 7,
+            "normalized_clean_exact": 7,
+            "raw_clean_exact_rate": 0.14,
+            "normalized_clean_exact_rate": 0.14
+          },
+          "explanation": {
+            "n": 47,
+            "raw_clean_exact": 29,
+            "normalized_clean_exact": 30,
+            "raw_clean_exact_rate": 0.6170212765957447,
+            "normalized_clean_exact_rate": 0.6382978723404256
+          },
+          "meeting": {
+            "n": 45,
+            "raw_clean_exact": 17,
+            "normalized_clean_exact": 17,
+            "raw_clean_exact_rate": 0.37777777777777777,
+            "normalized_clean_exact_rate": 0.37777777777777777
+          },
+          "navigation": {
+            "n": 45,
+            "raw_clean_exact": 16,
+            "normalized_clean_exact": 15,
+            "raw_clean_exact_rate": 0.35555555555555557,
+            "normalized_clean_exact_rate": 0.3333333333333333
+          },
+          "passthrough": {
+            "n": 76,
+            "raw_clean_exact": 59,
+            "normalized_clean_exact": 55,
+            "raw_clean_exact_rate": 0.7763157894736842,
+            "normalized_clean_exact_rate": 0.7236842105263158
+          },
+          "vibe_coding": {
+            "n": 51,
+            "raw_clean_exact": 16,
+            "normalized_clean_exact": 16,
+            "raw_clean_exact_rate": 0.3137254901960784,
+            "normalized_clean_exact_rate": 0.3137254901960784
+          },
+          "voice_search": {
+            "n": 42,
+            "raw_clean_exact": 18,
+            "normalized_clean_exact": 18,
+            "raw_clean_exact_rate": 0.42857142857142855,
+            "normalized_clean_exact_rate": 0.42857142857142855
+          }
+        }
+      },
+      "numeric_fallback_count": 0,
+      "numeric_guard_lost_raw_clean_ids": [],
+      "numeric_guard_lost_normalized_clean_ids": [],
+      "non_eos_count": 0,
+      "gate_skipped_count": null
+    }
+  },
+  "gate_comparisons": {
+    "lora": {
+      "latency_mean_reduction": 0.11062431424151509,
+      "throughput_total_time_reduction": 0.0020069244328804192,
+      "throughput_speedup": 1.0020109602781964,
+      "raw_clean_exact_losses": [],
+      "losses_due_to_skip": [],
+      "losses_while_still_routed_batch_shape_difference": [],
+      "normalized_clean_exact_losses": [],
+      "normalized_losses_due_to_skip": [],
+      "normalized_losses_while_still_routed_batch_shape_difference": [],
+      "raw_clean_exact_gains": [],
+      "different_output_ids": [
+        "assigned_records.jsonl:4888",
+        "assigned_records.jsonl:12677",
+        "explanation.jsonl:2041",
+        "recheck.jsonl:546",
+        "assigned_records.jsonl:11832",
+        "recheck.jsonl:737",
+        "recheck.jsonl:231",
+        "explanation.jsonl:2019",
+        "explanation.jsonl:2044"
+      ],
+      "weak_changed_skipped_count": 2,
+      "routed_outputs_differ_count": 9
+    },
+    "full": {
+      "latency_mean_reduction": 0.11194733728178541,
+      "throughput_total_time_reduction": -0.0010551304380472804,
+      "throughput_speedup": 0.998945981688755,
+      "raw_clean_exact_losses": [],
+      "losses_due_to_skip": [],
+      "losses_while_still_routed_batch_shape_difference": [],
+      "normalized_clean_exact_losses": [],
+      "normalized_losses_due_to_skip": [],
+      "normalized_losses_while_still_routed_batch_shape_difference": [],
+      "raw_clean_exact_gains": [],
+      "different_output_ids": [
+        "assigned_records.jsonl:12530",
+        "recheck.jsonl:896",
+        "assigned_records.jsonl:12181",
+        "recheck.jsonl:90",
+        "explanation.jsonl:2028",
+        "explanation.jsonl:2046",
+        "recheck.jsonl:839",
+        "assigned_records.jsonl:18156",
+        "assigned_records.jsonl:17917",
+        "recheck.jsonl:824",
+        "recheck.jsonl:791"
+      ],
+      "weak_changed_skipped_count": 2,
+      "routed_outputs_differ_count": 11
+    }
+  },
+  "numeric_guard_losses": {
+    "lora": {
+      "n": 112,
+      "lost_raw_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "lost_normalized_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ]
+    },
+    "lora_gate": {
+      "n": 113,
+      "lost_raw_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "lost_normalized_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "recheck.jsonl:900",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:898",
+        "assigned_records.jsonl:4468",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ]
+    },
+    "full": {
+      "n": 103,
+      "lost_raw_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "lost_normalized_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:97",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ]
+    },
+    "full_gate": {
+      "n": 103,
+      "lost_raw_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ],
+      "lost_normalized_clean_exact_ids": [
+        "recheck.jsonl:549",
+        "assigned_records.jsonl:3685",
+        "recheck.jsonl:44",
+        "recheck.jsonl:97",
+        "recheck.jsonl:843",
+        "recheck.jsonl:506",
+        "recheck.jsonl:847"
+      ]
+    },
+    "agentic1b": {
+      "n": 0,
+      "lost_raw_clean_exact_ids": [],
+      "lost_normalized_clean_exact_ids": []
+    }
+  },
+  "protocol": {
+    "input": "Pure text: official oral transcript is supplied directly; audio is not transcribed.",
+    "quality_warning": "Raw and rule-normalized exact matches are descriptive only, not official rubric scores.",
+    "execution": "GPU execution deliberately serial across pipelines for fair comparison; vectorized batch8, no competing model jobs",
+    "precision": "bfloat16",
+    "rule_pack": "zh-itn-strict-conservative-v91",
+    "lora": "in-memory merged; files unchanged",
+    "agentic1b": "Local system.refiner.SYSTEM_PROMPT / refinement_protocol.REFINER_SYSTEM_PROMPT, raw oral input, model owns numeric conversion, no native numeric rules; KEY stripped from body"
+  },
+  "official_rubric_qualification": "Official AASR rubric with LOCAL QUANTIZED Gemma4 judge; text-only oral input, not paper reproduction",
+  "judge_protocol": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/judge_protocol.json",
+  "official_rubric_scores": {
+    "lora": {
+      "run": {
+        "total_sample_count": 510,
+        "completed_sample_count": 510,
+        "failed_question_count": 0,
+        "asr_retry_exhausted_sample_count": 0,
+        "asr_retry_exhausted_question_count": 0,
+        "input_asr_sample_count": 510,
+        "out_of_benchmark_asr_sample_count": 0
+      },
+      "overall": {
+        "question_count": 3416,
+        "total_score": 2689,
+        "max_possible_score": 4322,
+        "normalized_score": 0.6221656640444239
+      },
+      "by_category": {
+        "content": {
+          "question_count": 1872,
+          "total_score": 1813,
+          "max_possible_score": 1872,
+          "normalized_score": 0.968482905982906
+        },
+        "filter": {
+          "question_count": 491,
+          "total_score": 302,
+          "max_possible_score": 982,
+          "normalized_score": 0.3075356415478615
+        },
+        "format": {
+          "question_count": 638,
+          "total_score": 391,
+          "max_possible_score": 638,
+          "normalized_score": 0.6128526645768025
+        },
+        "rephrase": {
+          "question_count": 415,
+          "total_score": 183,
+          "max_possible_score": 830,
+          "normalized_score": 0.22048192771084338
+        }
+      },
+      "by_scene": {
+        "academic": {
+          "question_count": 459,
+          "total_score": 321,
+          "max_possible_score": 563,
+          "normalized_score": 0.5701598579040853
+        },
+        "customer_service": {
+          "question_count": 381,
+          "total_score": 262,
+          "max_possible_score": 465,
+          "normalized_score": 0.5634408602150538
+        },
+        "daily_chat": {
+          "question_count": 361,
+          "total_score": 296,
+          "max_possible_score": 451,
+          "normalized_score": 0.656319290465632
+        },
+        "dictation_memo": {
+          "question_count": 403,
+          "total_score": 303,
+          "max_possible_score": 494,
+          "normalized_score": 0.6133603238866396
+        },
+        "explanation": {
+          "question_count": 241,
+          "total_score": 156,
+          "max_possible_score": 375,
+          "normalized_score": 0.416
+        },
+        "meeting": {
+          "question_count": 293,
+          "total_score": 214,
+          "max_possible_score": 371,
+          "normalized_score": 0.5768194070080862
+        },
+        "navigation": {
+          "question_count": 276,
+          "total_score": 224,
+          "max_possible_score": 358,
+          "normalized_score": 0.6256983240223464
+        },
+        "passthrough": {
+          "question_count": 379,
+          "total_score": 427,
+          "max_possible_score": 444,
+          "normalized_score": 0.9617117117117117
+        },
+        "vibe_coding": {
+          "question_count": 360,
+          "total_score": 268,
+          "max_possible_score": 459,
+          "normalized_score": 0.5838779956427015
+        },
+        "voice_search": {
+          "question_count": 263,
+          "total_score": 218,
+          "max_possible_score": 342,
+          "normalized_score": 0.6374269005847953
+        }
+      },
+      "asr_metrics": {
+        "sample_count": 510,
+        "text_metric_sample_count": 510,
+        "latency_sample_count": 0,
+        "missing_latency_sample_count": 510,
+        "average_latency_ms": 0.0,
+        "wer": 0.5122341641893438,
+        "wer_errors": 2240,
+        "wer_reference_units": 4373,
+        "cer": 0.22826169936636384,
+        "cer_errors": 5980,
+        "cer_reference_units": 26198,
+        "mer": 0.2529775434130376,
+        "mer_errors": 5565,
+        "mer_reference_units": 21998
+      },
+      "config": {
+        "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora.for_rubric.jsonl",
+        "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+        "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora.rubric_results.jsonl",
+        "model": "aasr-rubric-gemma4",
+        "text_field": "output",
+        "weighting": "question"
+      }
+    },
+    "lora_gate": {
+      "run": {
+        "total_sample_count": 510,
+        "completed_sample_count": 510,
+        "failed_question_count": 0,
+        "asr_retry_exhausted_sample_count": 0,
+        "asr_retry_exhausted_question_count": 0,
+        "input_asr_sample_count": 510,
+        "out_of_benchmark_asr_sample_count": 0
+      },
+      "overall": {
+        "question_count": 3416,
+        "total_score": 2684,
+        "max_possible_score": 4322,
+        "normalized_score": 0.6210087922258214
+      },
+      "by_category": {
+        "content": {
+          "question_count": 1872,
+          "total_score": 1812,
+          "max_possible_score": 1872,
+          "normalized_score": 0.967948717948718
+        },
+        "filter": {
+          "question_count": 491,
+          "total_score": 298,
+          "max_possible_score": 982,
+          "normalized_score": 0.3034623217922607
+        },
+        "format": {
+          "question_count": 638,
+          "total_score": 391,
+          "max_possible_score": 638,
+          "normalized_score": 0.6128526645768025
+        },
+        "rephrase": {
+          "question_count": 415,
+          "total_score": 183,
+          "max_possible_score": 830,
+          "normalized_score": 0.22048192771084338
+        }
+      },
+      "by_scene": {
+        "academic": {
+          "question_count": 459,
+          "total_score": 321,
+          "max_possible_score": 563,
+          "normalized_score": 0.5701598579040853
+        },
+        "customer_service": {
+          "question_count": 381,
+          "total_score": 262,
+          "max_possible_score": 465,
+          "normalized_score": 0.5634408602150538
+        },
+        "daily_chat": {
+          "question_count": 361,
+          "total_score": 296,
+          "max_possible_score": 451,
+          "normalized_score": 0.656319290465632
+        },
+        "dictation_memo": {
+          "question_count": 403,
+          "total_score": 303,
+          "max_possible_score": 494,
+          "normalized_score": 0.6133603238866396
+        },
+        "explanation": {
+          "question_count": 241,
+          "total_score": 153,
+          "max_possible_score": 375,
+          "normalized_score": 0.408
+        },
+        "meeting": {
+          "question_count": 293,
+          "total_score": 212,
+          "max_possible_score": 371,
+          "normalized_score": 0.5714285714285714
+        },
+        "navigation": {
+          "question_count": 276,
+          "total_score": 224,
+          "max_possible_score": 358,
+          "normalized_score": 0.6256983240223464
+        },
+        "passthrough": {
+          "question_count": 379,
+          "total_score": 427,
+          "max_possible_score": 444,
+          "normalized_score": 0.9617117117117117
+        },
+        "vibe_coding": {
+          "question_count": 360,
+          "total_score": 268,
+          "max_possible_score": 459,
+          "normalized_score": 0.5838779956427015
+        },
+        "voice_search": {
+          "question_count": 263,
+          "total_score": 218,
+          "max_possible_score": 342,
+          "normalized_score": 0.6374269005847953
+        }
+      },
+      "asr_metrics": {
+        "sample_count": 510,
+        "text_metric_sample_count": 510,
+        "latency_sample_count": 0,
+        "missing_latency_sample_count": 510,
+        "average_latency_ms": 0.0,
+        "wer": 0.5152069517493711,
+        "wer_errors": 2253,
+        "wer_reference_units": 4373,
+        "cer": 0.22879609130467973,
+        "cer_errors": 5994,
+        "cer_reference_units": 26198,
+        "mer": 0.25361396490590055,
+        "mer_errors": 5579,
+        "mer_reference_units": 21998
+      },
+      "config": {
+        "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora_gate.for_rubric.jsonl",
+        "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+        "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/lora_gate.rubric_results.jsonl",
+        "model": "aasr-rubric-gemma4",
+        "text_field": "output",
+        "weighting": "question"
+      }
+    },
+    "full": {
+      "run": {
+        "total_sample_count": 510,
+        "completed_sample_count": 510,
+        "failed_question_count": 0,
+        "asr_retry_exhausted_sample_count": 0,
+        "asr_retry_exhausted_question_count": 0,
+        "input_asr_sample_count": 510,
+        "out_of_benchmark_asr_sample_count": 0
+      },
+      "overall": {
+        "question_count": 3416,
+        "total_score": 2629,
+        "max_possible_score": 4322,
+        "normalized_score": 0.6082832022211939
+      },
+      "by_category": {
+        "content": {
+          "question_count": 1872,
+          "total_score": 1800,
+          "max_possible_score": 1872,
+          "normalized_score": 0.9615384615384616
+        },
+        "filter": {
+          "question_count": 491,
+          "total_score": 276,
+          "max_possible_score": 982,
+          "normalized_score": 0.28105906313645623
+        },
+        "format": {
+          "question_count": 638,
+          "total_score": 398,
+          "max_possible_score": 638,
+          "normalized_score": 0.6238244514106583
+        },
+        "rephrase": {
+          "question_count": 415,
+          "total_score": 155,
+          "max_possible_score": 830,
+          "normalized_score": 0.18674698795180722
+        }
+      },
+      "by_scene": {
+        "academic": {
+          "question_count": 459,
+          "total_score": 315,
+          "max_possible_score": 563,
+          "normalized_score": 0.5595026642984015
+        },
+        "customer_service": {
+          "question_count": 381,
+          "total_score": 262,
+          "max_possible_score": 465,
+          "normalized_score": 0.5634408602150538
+        },
+        "daily_chat": {
+          "question_count": 361,
+          "total_score": 280,
+          "max_possible_score": 451,
+          "normalized_score": 0.6208425720620843
+        },
+        "dictation_memo": {
+          "question_count": 403,
+          "total_score": 295,
+          "max_possible_score": 494,
+          "normalized_score": 0.597165991902834
+        },
+        "explanation": {
+          "question_count": 241,
+          "total_score": 133,
+          "max_possible_score": 375,
+          "normalized_score": 0.3546666666666667
+        },
+        "meeting": {
+          "question_count": 293,
+          "total_score": 210,
+          "max_possible_score": 371,
+          "normalized_score": 0.5660377358490566
+        },
+        "navigation": {
+          "question_count": 276,
+          "total_score": 219,
+          "max_possible_score": 358,
+          "normalized_score": 0.611731843575419
+        },
+        "passthrough": {
+          "question_count": 379,
+          "total_score": 427,
+          "max_possible_score": 444,
+          "normalized_score": 0.9617117117117117
+        },
+        "vibe_coding": {
+          "question_count": 360,
+          "total_score": 262,
+          "max_possible_score": 459,
+          "normalized_score": 0.5708061002178649
+        },
+        "voice_search": {
+          "question_count": 263,
+          "total_score": 226,
+          "max_possible_score": 342,
+          "normalized_score": 0.6608187134502924
+        }
+      },
+      "asr_metrics": {
+        "sample_count": 510,
+        "text_metric_sample_count": 510,
+        "latency_sample_count": 0,
+        "missing_latency_sample_count": 510,
+        "average_latency_ms": 0.0,
+        "wer": 0.5339583809741596,
+        "wer_errors": 2335,
+        "wer_reference_units": 4373,
+        "cer": 0.2395602717764715,
+        "cer_errors": 6276,
+        "cer_reference_units": 26198,
+        "mer": 0.26661514683153015,
+        "mer_errors": 5865,
+        "mer_reference_units": 21998
+      },
+      "config": {
+        "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/full.for_rubric.jsonl",
+        "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+        "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/full.rubric_results.jsonl",
+        "model": "aasr-rubric-gemma4",
+        "text_field": "output",
+        "weighting": "question"
+      }
+    },
+    "full_gate": {
+      "run": {
+        "total_sample_count": 510,
+        "completed_sample_count": 510,
+        "failed_question_count": 0,
+        "asr_retry_exhausted_sample_count": 0,
+        "asr_retry_exhausted_question_count": 0,
+        "input_asr_sample_count": 510,
+        "out_of_benchmark_asr_sample_count": 0
+      },
+      "overall": {
+        "question_count": 3416,
+        "total_score": 2629,
+        "max_possible_score": 4322,
+        "normalized_score": 0.6082832022211939
+      },
+      "by_category": {
+        "content": {
+          "question_count": 1872,
+          "total_score": 1800,
+          "max_possible_score": 1872,
+          "normalized_score": 0.9615384615384616
+        },
+        "filter": {
+          "question_count": 491,
+          "total_score": 276,
+          "max_possible_score": 982,
+          "normalized_score": 0.28105906313645623
+        },
+        "format": {
+          "question_count": 638,
+          "total_score": 399,
+          "max_possible_score": 638,
+          "normalized_score": 0.6253918495297806
+        },
+        "rephrase": {
+          "question_count": 415,
+          "total_score": 154,
+          "max_possible_score": 830,
+          "normalized_score": 0.1855421686746988
+        }
+      },
+      "by_scene": {
+        "academic": {
+          "question_count": 459,
+          "total_score": 315,
+          "max_possible_score": 563,
+          "normalized_score": 0.5595026642984015
+        },
+        "customer_service": {
+          "question_count": 381,
+          "total_score": 262,
+          "max_possible_score": 465,
+          "normalized_score": 0.5634408602150538
+        },
+        "daily_chat": {
+          "question_count": 361,
+          "total_score": 280,
+          "max_possible_score": 451,
+          "normalized_score": 0.6208425720620843
+        },
+        "dictation_memo": {
+          "question_count": 403,
+          "total_score": 295,
+          "max_possible_score": 494,
+          "normalized_score": 0.597165991902834
+        },
+        "explanation": {
+          "question_count": 241,
+          "total_score": 135,
+          "max_possible_score": 375,
+          "normalized_score": 0.36
+        },
+        "meeting": {
+          "question_count": 293,
+          "total_score": 210,
+          "max_possible_score": 371,
+          "normalized_score": 0.5660377358490566
+        },
+        "navigation": {
+          "question_count": 276,
+          "total_score": 217,
+          "max_possible_score": 358,
+          "normalized_score": 0.6061452513966481
+        },
+        "passthrough": {
+          "question_count": 379,
+          "total_score": 427,
+          "max_possible_score": 444,
+          "normalized_score": 0.9617117117117117
+        },
+        "vibe_coding": {
+          "question_count": 360,
+          "total_score": 262,
+          "max_possible_score": 459,
+          "normalized_score": 0.5708061002178649
+        },
+        "voice_search": {
+          "question_count": 263,
+          "total_score": 226,
+          "max_possible_score": 342,
+          "normalized_score": 0.6608187134502924
+        }
+      },
+      "asr_metrics": {
+        "sample_count": 510,
+        "text_metric_sample_count": 510,
+        "latency_sample_count": 0,
+        "missing_latency_sample_count": 510,
+        "average_latency_ms": 0.0,
+        "wer": 0.5332723530756918,
+        "wer_errors": 2332,
+        "wer_reference_units": 4373,
+        "cer": 0.23849148789983968,
+        "cer_errors": 6248,
+        "cer_reference_units": 26198,
+        "mer": 0.2657968906264206,
+        "mer_errors": 5847,
+        "mer_reference_units": 21998
+      },
+      "config": {
+        "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/full_gate.for_rubric.jsonl",
+        "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+        "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/full_gate.rubric_results.jsonl",
+        "model": "aasr-rubric-gemma4",
+        "text_field": "output",
+        "weighting": "question"
+      }
+    },
+    "agentic1b": {
+      "run": {
+        "total_sample_count": 510,
+        "completed_sample_count": 510,
+        "failed_question_count": 0,
+        "asr_retry_exhausted_sample_count": 0,
+        "asr_retry_exhausted_question_count": 0,
+        "input_asr_sample_count": 510,
+        "out_of_benchmark_asr_sample_count": 0
+      },
+      "overall": {
+        "question_count": 3416,
+        "total_score": 3889,
+        "max_possible_score": 4322,
+        "normalized_score": 0.8998149005090236
+      },
+      "by_category": {
+        "content": {
+          "question_count": 1872,
+          "total_score": 1802,
+          "max_possible_score": 1872,
+          "normalized_score": 0.9626068376068376
+        },
+        "filter": {
+          "question_count": 491,
+          "total_score": 868,
+          "max_possible_score": 982,
+          "normalized_score": 0.8839103869653768
+        },
+        "format": {
+          "question_count": 638,
+          "total_score": 531,
+          "max_possible_score": 638,
+          "normalized_score": 0.8322884012539185
+        },
+        "rephrase": {
+          "question_count": 415,
+          "total_score": 688,
+          "max_possible_score": 830,
+          "normalized_score": 0.8289156626506025
+        }
+      },
+      "by_scene": {
+        "academic": {
+          "question_count": 459,
+          "total_score": 502,
+          "max_possible_score": 563,
+          "normalized_score": 0.8916518650088809
+        },
+        "customer_service": {
+          "question_count": 381,
+          "total_score": 382,
+          "max_possible_score": 465,
+          "normalized_score": 0.821505376344086
+        },
+        "daily_chat": {
+          "question_count": 361,
+          "total_score": 407,
+          "max_possible_score": 451,
+          "normalized_score": 0.9024390243902439
+        },
+        "dictation_memo": {
+          "question_count": 403,
+          "total_score": 440,
+          "max_possible_score": 494,
+          "normalized_score": 0.8906882591093117
+        },
+        "explanation": {
+          "question_count": 241,
+          "total_score": 344,
+          "max_possible_score": 375,
+          "normalized_score": 0.9173333333333333
+        },
+        "meeting": {
+          "question_count": 293,
+          "total_score": 349,
+          "max_possible_score": 371,
+          "normalized_score": 0.9407008086253369
+        },
+        "navigation": {
+          "question_count": 276,
+          "total_score": 309,
+          "max_possible_score": 358,
+          "normalized_score": 0.8631284916201117
+        },
+        "passthrough": {
+          "question_count": 379,
+          "total_score": 425,
+          "max_possible_score": 444,
+          "normalized_score": 0.9572072072072072
+        },
+        "vibe_coding": {
+          "question_count": 360,
+          "total_score": 421,
+          "max_possible_score": 459,
+          "normalized_score": 0.9172113289760349
+        },
+        "voice_search": {
+          "question_count": 263,
+          "total_score": 310,
+          "max_possible_score": 342,
+          "normalized_score": 0.9064327485380117
+        }
+      },
+      "asr_metrics": {
+        "sample_count": 510,
+        "text_metric_sample_count": 510,
+        "latency_sample_count": 0,
+        "missing_latency_sample_count": 510,
+        "average_latency_ms": 0.0,
+        "wer": 0.1680768351246284,
+        "wer_errors": 735,
+        "wer_reference_units": 4373,
+        "cer": 0.05649286205053821,
+        "cer_errors": 1480,
+        "cer_reference_units": 26198,
+        "mer": 0.05964178561687426,
+        "mer_errors": 1312,
+        "mer_reference_units": 21998
+      },
+      "config": {
+        "asr_jsonl": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/agentic1b.for_rubric.jsonl",
+        "rubric": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/original_rubric.json",
+        "results": "/home/aim0/桌面/tan/ASR/Codex-web/results/aasr_bench_refiners_gpu0_20261028/agentic1b.rubric_results.jsonl",
+        "model": "aasr-rubric-gemma4",
+        "text_field": "output",
+        "weighting": "question"
+      }
+    }
+  }
+}

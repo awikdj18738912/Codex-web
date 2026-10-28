@@ -1,0 +1,10 @@
+{
+  "input_file": "/home/aim0/桌面/tan/ASR/Codex-web/results/refiner13_no_C02_gate_20261027/clean_routed_sample70.jsonl",
+  "input_sha256": "6311921774f56a827f95ebfc03926394969f6330ec98bb24a862aea45d16c77c",
+  "base": "/home/aim0/data/ASR/models/Qwen2.5-0.5B-Instruct",
+  "adapter": "/home/aim0/data/ASR/training/qwen25_05b_refiner_noC02_lora_20261027/checkpoint-990",
+  "gpu": 0,
+  "sample_count": 70,
+  "weak_label_note": "Input-as-reference measures text preservation, not human correctness.",
+  "decode": "greedy; max_new_tokens=512; repetition_penalty=1; same training system prompt"
+}

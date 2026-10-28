@@ -1,0 +1,39 @@
+{
+  "id": "chatcmpl-8934749bc68b780c",
+  "object": "chat.completion",
+  "created": 1792655630,
+  "model": "qwen38-teacher",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"extra_rule\": \"清理口语时，严格保留原句的疑问、推测、建议或要求语气，禁止将不确定表述改为断言，或将询问改为强制要求。\"\n}",
+        "refusal": null,
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "reasoning": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "stop_reason": null,
+      "token_ids": null,
+      "routed_experts": null
+    }
+  ],
+  "service_tier": null,
+  "system_fingerprint": "vllm-0.26.0-6bfd7df8",
+  "usage": {
+    "prompt_tokens": 101,
+    "total_tokens": 145,
+    "completion_tokens": 44,
+    "prompt_tokens_details": null
+  },
+  "prompt_logprobs": null,
+  "prompt_token_ids": null,
+  "prompt_text": null,
+  "kv_transfer_params": null,
+  "ec_transfer_params": null,
+  "metrics": null
+}

@@ -1,0 +1,49 @@
+{
+  "elapsed_seconds": 61.15,
+  "response": {
+    "id": "chatcmpl-b40a89d54b9d33bf",
+    "object": "chat.completion",
+    "created": 1792851118,
+    "model": "gemma4-31b-teacher",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"text\": \"明天下午三点开会。\"\n}\n```",
+          "refusal": null,
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "reasoning": null
+        },
+        "logprobs": null,
+        "finish_reason": "stop",
+        "stop_reason": 106,
+        "token_ids": null,
+        "routed_experts": null
+      }
+    ],
+    "service_tier": null,
+    "system_fingerprint": "vllm-0.26.0-b3080362",
+    "usage": {
+      "prompt_tokens": 58,
+      "total_tokens": 80,
+      "completion_tokens": 22,
+      "prompt_tokens_details": null
+    },
+    "prompt_logprobs": null,
+    "prompt_token_ids": null,
+    "prompt_text": null,
+    "kv_transfer_params": null,
+    "ec_transfer_params": null,
+    "metrics": null
+  },
+  "validation": {
+    "chinese_refinement_passed": true,
+    "strict_json_without_fences": false,
+    "parsed_after_removing_markdown_fence": {
+      "text": "明天下午三点开会。"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "generated": 100,
+  "successful_outputs": 84,
+  "teacher_refusals_or_errors": 16,
+  "blinded_reviewed": 84,
+  "source_quality_counts": {
+    "pass": 69,
+    "borderline": 15
+  },
+  "pair_fidelity_counts": {
+    "pass": 82,
+    "fail": 2
+  },
+  "critical_issues": 5,
+  "posthoc_number_unit_issues": 1,
+  "category_results": {
+    "boundary_punctuation": {
+      "n": 14,
+      "source_pass": 10,
+      "pair_pass": 14,
+      "critical": 3,
+      "source_equals_target": 0,
+      "phenomenon_signal": 10,
+      "signal_rate": 0.714,
+      "strict_candidates": 6
+    },
+    "clean_passthrough": {
+      "n": 12,
+      "source_pass": 10,
+      "pair_pass": 12,
+      "critical": 0,
+      "source_equals_target": 12,
+      "phenomenon_signal": 12,
+      "signal_rate": 1.0,
+      "strict_candidates": 10
+    },
+    "fillers": {
+      "n": 20,
+      "source_pass": 20,
+      "pair_pass": 20,
+      "critical": 0,
+      "source_equals_target": 0,
+      "phenomenon_signal": 18,
+      "signal_rate": 0.9,
+      "strict_candidates": 18
+    },
+    "natural_mixed_code_switch": {
+      "n": 11,
+      "source_pass": 11,
+      "pair_pass": 10,
+      "critical": 1,
+      "source_equals_target": 9,
+      "phenomenon_signal": 5,
+      "signal_rate": 0.455,
+      "strict_candidates": 4
+    },
+    "repetition_false_start": {
+      "n": 17,
+      "source_pass": 9,
+      "pair_pass": 16,
+      "critical": 1,
+      "source_equals_target": 3,
+      "phenomenon_signal": 11,
+      "signal_rate": 0.647,
+      "strict_candidates": 3
+    },
+    "self_correction": {
+      "n": 10,
+      "source_pass": 9,
+      "pair_pass": 10,
+      "critical": 0,
+      "source_equals_target": 3,
+      "phenomenon_signal": 1,
+      "signal_rate": 0.1,
+      "strict_candidates": 0
+    }
+  },
+  "strict_candidates_retained": 41,
+  "training_set_modified": false,
+  "limitations": [
+    "one independent model reviewer, not human gold",
+    "small balanced seed pilot",
+    "previous blind pair review was used to choose seeds",
+    "phenomenon-rate coding was category-blinded then revealed"
+  ],
+  "mixed_category_seed_assignment_bug": {
+    "assigned_targets": 15,
+    "targets_with_ascii_or_code": 4,
+    "issue": "The seed sampler independently shuffled phenomenon labels after selecting the ASCII seed subset; labels were not bound to those targets. Mixed-code rate is invalid."
+  },
+  "posthoc_number_unit_validation_issue": "curated_v4_090 changed target “60帧每秒” to “60fps”; the generation-time validator did not include number-unit spans.",
+  "strict_candidates_after_quarantine": 37,
+  "mixed_candidates_held": 11,
+  "category_assignment_warning": "The mixed-code seed selection was not bound to the assigned phenomenon. Its trigger rate and mixed-code strict-candidate count are invalid; all such records are held.",
+  "strict_candidate_counts_by_category": {
+    "clean_passthrough": 10,
+    "fillers": 18,
+    "boundary_punctuation": 6,
+    "repetition_false_start": 3
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "source_path": "/home/aim0/data/ASR/training/refiner_noC02_pregate_gpu0_20261027/balanced_test_predictions.jsonl",
+  "source_sha256": "cbf5b8cb6db99a11c7f74ff194c49d8ae93240d0ddbb576600f56b90f43f4fdc",
+  "selection_rule": "label == 0 and route_to_refiner is True",
+  "eligible_count": 776,
+  "sample_count": 70,
+  "sort_before_sampling": "id ascending",
+  "sampling": "random.Random(20261027).sample(eligible_rows, 70); sampled order retained",
+  "random_seed": 20261027,
+  "gate_threshold": 0.02,
+  "probability_note": "Model score; not a calibrated true probability.",
+  "label_note": "“Clean” is a candidate weak label; some rows may still contain disfluencies that should be cleaned.",
+  "review_note": "No large-model rereview was performed and no refined answers were generated.",
+  "source_modified": false,
+  "sampled_distribution": {
+    "source": {
+      "FCGEC": 2,
+      "Gemma4": 68
+    },
+    "category": {
+      "A01": 5,
+      "A02": 10,
+      "A03": 13,
+      "B01": 5,
+      "B02": 4,
+      "C01": 10,
+      "D01": 4,
+      "D02": 5,
+      "E03": 4,
+      "E05": 3,
+      "E06": 5,
+      "E07": 2
+    },
+    "derived_clean": {
+      "false": 4,
+      "true": 66
+    }
+  },
+  "source_eligible_distribution": {
+    "source": {
+      "CS2W": 3,
+      "FCGEC": 28,
+      "Gemma4": 745
+    },
+    "category": {
+      "A01": 91,
+      "A02": 100,
+      "A03": 108,
+      "B01": 71,
+      "B02": 53,
+      "C01": 106,
+      "D01": 29,
+      "D02": 46,
+      "E03": 87,
+      "E05": 17,
+      "E06": 40,
+      "E07": 28
+    },
+    "derived_clean": {
+      "false": 83,
+      "true": 693
+    }
+  }
+}

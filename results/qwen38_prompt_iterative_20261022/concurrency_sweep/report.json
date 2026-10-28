@@ -1,0 +1,92 @@
+{
+  "sample": "40 fixed development/risk-enriched samples; source-guided second-pass cleanup; not from-scratch pair generation",
+  "config": {
+    "pid": 985878,
+    "command": [
+      "/home/aim0/data/conda/envs/agentic-asr/bin/python",
+      "-m",
+      "vllm.entrypoints.openai.api_server",
+      "--model",
+      "/home/aim0/data/ASR/models/Qwen3.8-27B-AWQ-INT4",
+      "--served-model-name",
+      "qwen38-teacher",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "8012",
+      "--language-model-only",
+      "--max-model-len",
+      "3072",
+      "--max-num-seqs",
+      "16",
+      "--max-num-batched-tokens",
+      "1024",
+      "--gpu-memory-utilization",
+      "0.95",
+      "--cpu-offload-gb",
+      "0",
+      "--dtype",
+      "bfloat16",
+      "--reasoning-parser",
+      "qwen3"
+    ]
+  },
+  "results": [
+    {
+      "concurrency": 4,
+      "records": 40,
+      "wall_seconds": 50.58,
+      "records_per_hour": 2847,
+      "errors": 0,
+      "completion_tokens": 4986,
+      "exact_matches_prior_development_output": 38,
+      "output_tokens_per_second": 98.58,
+      "matches_same_server_c4": 40,
+      "speedup_vs_c4": 1.0
+    },
+    {
+      "concurrency": 8,
+      "records": 40,
+      "wall_seconds": 34.19,
+      "records_per_hour": 4211,
+      "errors": 0,
+      "completion_tokens": 4948,
+      "exact_matches_prior_development_output": 37,
+      "output_tokens_per_second": 144.71,
+      "matches_same_server_c4": 39,
+      "speedup_vs_c4": 1.48
+    },
+    {
+      "concurrency": 12,
+      "records": 40,
+      "wall_seconds": 31.17,
+      "records_per_hour": 4620,
+      "errors": 0,
+      "completion_tokens": 5010,
+      "exact_matches_prior_development_output": 37,
+      "output_tokens_per_second": 160.74,
+      "matches_same_server_c4": 39,
+      "speedup_vs_c4": 1.62
+    },
+    {
+      "concurrency": 16,
+      "records": 40,
+      "wall_seconds": 29.92,
+      "records_per_hour": 4812,
+      "errors": 0,
+      "completion_tokens": 4951,
+      "exact_matches_prior_development_output": 38,
+      "output_tokens_per_second": 165.46,
+      "matches_same_server_c4": 38,
+      "speedup_vs_c4": 1.69
+    }
+  ],
+  "preemption_log_lines": [],
+  "recommendation": {
+    "default_client_concurrency": 12,
+    "server_max_num_seqs": 16,
+    "fastest_in_small_sample": 16,
+    "reason": "12 gives most observed throughput with less concurrent cache demand; 16 was 4% faster in this small sample. No sustained saturation or greater-than-16 trial performed."
+  },
+  "quality_note": "Batch size changes can change greedy decoding. Against c4: c8/c12 changed case1176 phrasing without changing final priority; c16 changed case64 phrasing and retained extra retracted wording in case1119. This is a targeted read, not a full independent semantic quality evaluation."
+}

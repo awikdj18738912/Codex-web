@@ -1,0 +1,23 @@
+{
+  "shared_scoring_functions": [
+    "benchmark_io.load_rubric",
+    "benchmark_io.match_records",
+    "result_store.evaluate_sample",
+    "result_store.write_summary"
+  ],
+  "judge_model": "/home/aim0/data/ASR/models/gemma-4-31B-it-qat-w4a16-ct",
+  "judge_identity": "gemma4-31B-QAT-W4A16-local-synthetic-custom4dims-aea2ca9f89f7b28b",
+  "quantization": "QAT W4A16 compressed tensors",
+  "local_api": "http://127.0.0.1:8024/v1",
+  "workers": 4,
+  "temperature": 0,
+  "enable_thinking": false,
+  "rubric_reference": "Raw generated input as oral; candidate clean normalized by frozen native numeric rules; no model predictions in rubric",
+  "unique_sample_outputs": 1512,
+  "total_variant_samples": 5000,
+  "questions_per_variant": 4000,
+  "questions_all_variants": 20000,
+  "duplicate_policy": "Same id + exact output + same rubric + same judge identity reuses exactly the same judgement",
+  "context_policy": "3072 context; adapt max output tokens, recursively split question group only on exceptional overflow; original QA and scores unchanged",
+  "qualification": "Custom four-dimension rubric using existing parser/scorer.1000 synthetic heldout texts with weak references.Not comparable with official AASR scores."
+}
